@@ -1,0 +1,58 @@
+class Base 
+{
+    _test()
+    {
+        print this._value;
+    }
+
+    get chunk()
+    {
+        return this._chunk;
+    }
+
+    set chunk(val)
+    {
+        this._chunk = val;
+    }
+
+    get data()
+    {
+        return this._value;
+    }
+
+    set data(val)
+    {
+        this._value = val;
+    }
+
+}
+
+class Test : Base
+{
+    doTest()
+    {
+        this._test();
+    }
+
+    get data()
+    {
+        return this._value;
+    }
+
+    set data(val)
+    {
+        this._value = val;
+    }
+    
+}
+
+var t = Test();
+
+t.data = 5;
+t.doTest(); // expect: 5
+print t.data; // expect: 5
+
+t.chunk = 7;
+print t.chunk; // expect: 7
+
+//print t._value;

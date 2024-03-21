@@ -1,0 +1,31 @@
+
+
+<Page Name='thePage' xmlns='http://schemas.microsoft.com/winfx/2006/xaml/presentation' 
+    xmlns:x='http://schemas.microsoft.com/winfx/2006/xaml'
+    xmlns:m='using:moxaml'>
+    <Grid Name='theGrid'>
+
+
+    <StackPanel Name='thePanel' m:mox.Event='PointerPressed' >
+            <MenuBar VerticalAlignment='Top' Height='50'>
+            <MenuBarItem Title='Select'>
+                <MenuFlyoutItem Text='Go' Name='MenuGo' />
+            </MenuBarItem>
+        </MenuBar>
+        <TextBlock  Text='What is your name?'/>
+        <TextBlock  Text='{Binding ElementName=theList, Path=SelectedItem }'/>
+        <StackPanel  Orientation='Horizontal' Margin='0,20,0,20'>
+            <TextBox  x:Name='nameInput' Text='{Binding Path=[name], Mode=TwoWay }'
+                     Header='Enter your name:' PlaceholderText='Name'
+                     Width='300' HorizontalAlignment='Left'/>
+            <Button m:mox.Event='Click' Name='theButt' Content='{Binding Path=[prop] }' />
+        </StackPanel>
+        <TextBlock x:Name='greetingOutput' Text='{Binding ElementName=nameInput, Path=Text}' />
+        <ListBox  x:Name='theList' Height='300' Width='100' ItemsSource='{Binding Path=[theList] }' SelectedItem='{Binding Path=[selected], Mode=TwoWay}' SelectedIndex='{Binding Path=[selectedIndex], Mode=TwoWay}' >
+            <ListBox.ItemTemplate>
+                <DataTemplate><TextBlock Text='{Binding}' /></DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+    </StackPanel>
+    </Grid>
+</Page>

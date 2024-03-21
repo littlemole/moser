@@ -1,0 +1,20 @@
+{
+    "default-registry": {
+      "kind": "git",
+      "repository": "https://github.com/microsoft/vcpkg",
+      "baseline": "eefee7408133f3a0fef711ef9c6a3677b7e06fd7" 
+    },
+    "registries": [
+      {
+        "kind": "git",
+        "repository": "https://github.com/littlemole/vcpkg-registry",
+        "baseline": "63005331254762cd860a992803bb82c58a24db11",
+        "packages": [ 
+          "metacpp", 
+          "patex", 
+          "webview2", 
+          "winmdparser" 
+        ]
+      }
+    ]
+}

@@ -1,0 +1,53 @@
+
+
+@Proxy("GObjInterceptor")
+class MtkWebView : GObj
+{
+    MtkWebView(ptr)
+    {
+        var parent = WebKit2.WebView;
+        super.GObj(parent.typelib,ptr,parent.info);
+    }
+
+    static init_class(ptr)
+    {
+        var parentKlazz =  WebKit2.WebViewClass( MtkWebView.parentClass );
+    }
+
+    static init_instance(ptr)
+    {
+        var that = MtkWebView.factory.that(ptr);
+        var wrapper = MtkWebView(ptr);
+    }
+    
+    static new()
+    {
+        return MtkWebView.factory.new();
+    }
+
+    invoke_javascript( handler, param )
+    {
+        var wrapper = MtkWebView(this.object);
+        GtkUI.invoke_javascript( wrapper, handler, param );
+    }
+
+}
+
+MtkWebView.factory = GObjectFactory(MtkWebView,WebKit2.WebView);
+
+/*
+MtkWebView.properties = [ 
+    GObject.param_spec_string( "path", "", "", ".", GObject.ParamFlags.readwrite ),
+    GObject.param_spec_string( "root", "", "", ".", GObject.ParamFlags.readwrite ),
+    GObject.param_spec_string( "filter", "", "", ".*", GObject.ParamFlags.readwrite ),
+];
+
+
+MtkWebView.signals = [
+    { 
+        "name" : "testSignal", 
+        "ret_gtype" : GIRDEF.GTYPE_NONE, 
+        "param_gtypes" : [ GIRDEF.GTYPE_STRING ] 
+    }
+];
+*/

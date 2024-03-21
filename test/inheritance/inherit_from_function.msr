@@ -1,0 +1,5 @@
+fun foo() {}
+
+class Subclass : foo {} // expect: Superclass must be a class.
+
+// expect: [line 3] in script

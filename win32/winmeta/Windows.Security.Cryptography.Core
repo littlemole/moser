@@ -1,0 +1,5185 @@
+{
+class WinRtInterface { 
+    queryInterface(iid) { return this.comPtr.queryInterface(iid); }
+    release() { this.comPtr.release(); this.comPtr = nil; }
+    valid() { return this.comPtr != nil && int(this.comPtr) != 0; }
+}
+
+if( runtime.global("Windows") == nil ) { runtime.global("Windows", {}); }
+var Windows = runtime.global("Windows");
+if ( Windows.Security == nil ) { Windows.Security = {}; }
+if ( Windows.Security.Cryptography == nil ) { Windows.Security.Cryptography = {}; }
+if ( Windows.Security.Cryptography.Core == nil ) { Windows.Security.Cryptography.Core = {}; }
+
+Windows.Security.Cryptography.Core.Capi1KdfTargetAlgorithm = {
+    "NotAes" : 0, 
+    "Aes" : 1
+};
+
+
+Windows.Security.Cryptography.Core.CryptographicPadding = {
+    "None" : 0, 
+    "RsaOaep" : 1, 
+    "RsaPkcs1V15" : 2, 
+    "RsaPss" : 3
+};
+
+
+Windows.Security.Cryptography.Core.CryptographicPrivateKeyBlobType = {
+    "Pkcs8RawPrivateKeyInfo" : 0, 
+    "Pkcs1RsaPrivateKey" : 1, 
+    "BCryptPrivateKey" : 2, 
+    "Capi1PrivateKey" : 3, 
+    "BCryptEccFullPrivateKey" : 4
+};
+
+
+Windows.Security.Cryptography.Core.CryptographicPublicKeyBlobType = {
+    "X509SubjectPublicKeyInfo" : 0, 
+    "Pkcs1RsaPublicKey" : 1, 
+    "BCryptPublicKey" : 2, 
+    "Capi1PublicKey" : 3, 
+    "BCryptEccFullPublicKey" : 4
+};
+
+//@Interface("Windows.Security.Cryptography.Core.IAsymmetricAlgorithmNamesStatics")
+//@IID("{CAF6FCE4-67C0-46AA-84F9-752E77449F9B}")
+class Windows_Security_Cryptography_Core_IAsymmetricAlgorithmNamesStatics : WinRtInterface 
+{
+    Windows_Security_Cryptography_Core_IAsymmetricAlgorithmNamesStatics( comPtr )
+    {
+        var Windows = runtime.global("Windows");
+        this.comPtr = comPtr.queryInterface( "{CAF6FCE4-67C0-46AA-84F9-752E77449F9B}");
+    }
+
+    //@VtableIndex(6)
+    //@Async(0)
+    //@Returns("String")
+    get_RsaPkcs1()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 6, "String", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(7)
+    //@Async(0)
+    //@Returns("String")
+    get_RsaOaepSha1()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 7, "String", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(8)
+    //@Async(0)
+    //@Returns("String")
+    get_RsaOaepSha256()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 8, "String", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(9)
+    //@Async(0)
+    //@Returns("String")
+    get_RsaOaepSha384()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 9, "String", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(10)
+    //@Async(0)
+    //@Returns("String")
+    get_RsaOaepSha512()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 10, "String", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(11)
+    //@Async(0)
+    //@Returns("String")
+    get_EcdsaP256Sha256()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 11, "String", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(12)
+    //@Async(0)
+    //@Returns("String")
+    get_EcdsaP384Sha384()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 12, "String", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(13)
+    //@Async(0)
+    //@Returns("String")
+    get_EcdsaP521Sha512()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 13, "String", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(14)
+    //@Async(0)
+    //@Returns("String")
+    get_DsaSha1()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 14, "String", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(15)
+    //@Async(0)
+    //@Returns("String")
+    get_DsaSha256()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 15, "String", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(16)
+    //@Async(0)
+    //@Returns("String")
+    get_RsaSignPkcs1Sha1()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 16, "String", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(17)
+    //@Async(0)
+    //@Returns("String")
+    get_RsaSignPkcs1Sha256()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 17, "String", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(18)
+    //@Async(0)
+    //@Returns("String")
+    get_RsaSignPkcs1Sha384()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 18, "String", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(19)
+    //@Async(0)
+    //@Returns("String")
+    get_RsaSignPkcs1Sha512()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 19, "String", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(20)
+    //@Async(0)
+    //@Returns("String")
+    get_RsaSignPssSha1()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 20, "String", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(21)
+    //@Async(0)
+    //@Returns("String")
+    get_RsaSignPssSha256()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 21, "String", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(22)
+    //@Async(0)
+    //@Returns("String")
+    get_RsaSignPssSha384()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 22, "String", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(23)
+    //@Async(0)
+    //@Returns("String")
+    get_RsaSignPssSha512()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 23, "String", [], [] );
+        return _r;
+    }
+
+
+}
+Windows_Security_Cryptography_Core_IAsymmetricAlgorithmNamesStatics.iid = "{CAF6FCE4-67C0-46AA-84F9-752E77449F9B}";
+Windows.Security.Cryptography.Core.IAsymmetricAlgorithmNamesStatics = Windows_Security_Cryptography_Core_IAsymmetricAlgorithmNamesStatics;
+
+
+//@Interface("Windows.Security.Cryptography.Core.IAsymmetricAlgorithmNamesStatics2")
+//@IID("{F141C0D6-4BFF-4F23-BA66-6045B137D5DF}")
+class Windows_Security_Cryptography_Core_IAsymmetricAlgorithmNamesStatics2 : WinRtInterface 
+{
+    Windows_Security_Cryptography_Core_IAsymmetricAlgorithmNamesStatics2( comPtr )
+    {
+        var Windows = runtime.global("Windows");
+        this.comPtr = comPtr.queryInterface( "{F141C0D6-4BFF-4F23-BA66-6045B137D5DF}");
+    }
+
+    //@VtableIndex(6)
+    //@Async(0)
+    //@Returns("String")
+    get_EcdsaSha256()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 6, "String", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(7)
+    //@Async(0)
+    //@Returns("String")
+    get_EcdsaSha384()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 7, "String", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(8)
+    //@Async(0)
+    //@Returns("String")
+    get_EcdsaSha512()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 8, "String", [], [] );
+        return _r;
+    }
+
+
+}
+Windows_Security_Cryptography_Core_IAsymmetricAlgorithmNamesStatics2.iid = "{F141C0D6-4BFF-4F23-BA66-6045B137D5DF}";
+Windows.Security.Cryptography.Core.IAsymmetricAlgorithmNamesStatics2 = Windows_Security_Cryptography_Core_IAsymmetricAlgorithmNamesStatics2;
+
+
+//@Interface("Windows.Security.Cryptography.Core.IAsymmetricKeyAlgorithmProvider")
+//@IID("{E8D2FF37-6259-4E88-B7E0-94191FDE699E}")
+class Windows_Security_Cryptography_Core_IAsymmetricKeyAlgorithmProvider : WinRtInterface 
+{
+    Windows_Security_Cryptography_Core_IAsymmetricKeyAlgorithmProvider( comPtr )
+    {
+        var Windows = runtime.global("Windows");
+        this.comPtr = comPtr.queryInterface( "{E8D2FF37-6259-4E88-B7E0-94191FDE699E}");
+    }
+
+    //@VtableIndex(6)
+    //@Async(0)
+    //@Returns("String")
+    get_AlgorithmName()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 6, "String", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(7)
+    //@Async(0)
+    //@Returns("Windows.Security.Cryptography.Core.CryptographicKey")
+    //@Parameters("UInt32")
+    CreateKeyPair(keySize)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = keySize;
+        var _r = Windows.Security.Cryptography.Core.CryptographicKey(
+            this.comPtr.invoke( 7, "Windows.Security.Cryptography.Core.CryptographicKey", ["UInt32"], [p1] )
+        );
+        return _r;
+    }
+
+    //@VtableIndex(8)
+    //@Async(0)
+    //@Returns("Windows.Security.Cryptography.Core.CryptographicKey")
+    //@Parameters("Windows.Storage.Streams.IBuffer")
+    ImportDefaultPrivateKeyBlob(keyBlob)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = Windows.Storage.Streams.IBuffer( keyBlob); 
+        var _r = Windows.Security.Cryptography.Core.CryptographicKey(
+            this.comPtr.invoke( 8, "Windows.Security.Cryptography.Core.CryptographicKey", ["Windows.Storage.Streams.IBuffer"], [p1] )
+        );
+        return _r;
+    }
+
+    //@VtableIndex(9)
+    //@Async(0)
+    //@Returns("Windows.Security.Cryptography.Core.CryptographicKey")
+    //@Parameters("Windows.Storage.Streams.IBuffer","Windows.Security.Cryptography.Core.CryptographicPrivateKeyBlobType")
+    ImportKeyPairWithBlobType(keyBlob,BlobType)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = Windows.Storage.Streams.IBuffer( keyBlob); 
+        var p2 = BlobType;
+        var _r = Windows.Security.Cryptography.Core.CryptographicKey(
+            this.comPtr.invoke( 9, "Windows.Security.Cryptography.Core.CryptographicKey", ["Windows.Storage.Streams.IBuffer", "UInt32"], [p1, p2] )
+        );
+        return _r;
+    }
+
+    //@VtableIndex(10)
+    //@Async(0)
+    //@Returns("Windows.Security.Cryptography.Core.CryptographicKey")
+    //@Parameters("Windows.Storage.Streams.IBuffer")
+    ImportDefaultPublicKeyBlob(keyBlob)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = Windows.Storage.Streams.IBuffer( keyBlob); 
+        var _r = Windows.Security.Cryptography.Core.CryptographicKey(
+            this.comPtr.invoke( 10, "Windows.Security.Cryptography.Core.CryptographicKey", ["Windows.Storage.Streams.IBuffer"], [p1] )
+        );
+        return _r;
+    }
+
+    //@VtableIndex(11)
+    //@Async(0)
+    //@Returns("Windows.Security.Cryptography.Core.CryptographicKey")
+    //@Parameters("Windows.Storage.Streams.IBuffer","Windows.Security.Cryptography.Core.CryptographicPublicKeyBlobType")
+    ImportPublicKeyWithBlobType(keyBlob,BlobType)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = Windows.Storage.Streams.IBuffer( keyBlob); 
+        var p2 = BlobType;
+        var _r = Windows.Security.Cryptography.Core.CryptographicKey(
+            this.comPtr.invoke( 11, "Windows.Security.Cryptography.Core.CryptographicKey", ["Windows.Storage.Streams.IBuffer", "UInt32"], [p1, p2] )
+        );
+        return _r;
+    }
+
+
+}
+Windows_Security_Cryptography_Core_IAsymmetricKeyAlgorithmProvider.iid = "{E8D2FF37-6259-4E88-B7E0-94191FDE699E}";
+Windows.Security.Cryptography.Core.IAsymmetricKeyAlgorithmProvider = Windows_Security_Cryptography_Core_IAsymmetricKeyAlgorithmProvider;
+
+
+//@Interface("Windows.Security.Cryptography.Core.IAsymmetricKeyAlgorithmProvider2")
+//@IID("{4E322A7E-7C4D-4997-AC4F-1B848B36306E}")
+class Windows_Security_Cryptography_Core_IAsymmetricKeyAlgorithmProvider2 : WinRtInterface 
+{
+    Windows_Security_Cryptography_Core_IAsymmetricKeyAlgorithmProvider2( comPtr )
+    {
+        var Windows = runtime.global("Windows");
+        this.comPtr = comPtr.queryInterface( "{4E322A7E-7C4D-4997-AC4F-1B848B36306E}");
+    }
+
+    //@VtableIndex(6)
+    //@Async(0)
+    //@Returns("Windows.Security.Cryptography.Core.CryptographicKey")
+    //@Parameters("String")
+    CreateKeyPairWithCurveName(curveName)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = curveName;
+        var _r = Windows.Security.Cryptography.Core.CryptographicKey(
+            this.comPtr.invoke( 6, "Windows.Security.Cryptography.Core.CryptographicKey", ["String"], [p1] )
+        );
+        return _r;
+    }
+
+
+}
+Windows_Security_Cryptography_Core_IAsymmetricKeyAlgorithmProvider2.iid = "{4E322A7E-7C4D-4997-AC4F-1B848B36306E}";
+Windows.Security.Cryptography.Core.IAsymmetricKeyAlgorithmProvider2 = Windows_Security_Cryptography_Core_IAsymmetricKeyAlgorithmProvider2;
+
+
+//@Interface("Windows.Security.Cryptography.Core.IAsymmetricKeyAlgorithmProviderStatics")
+//@IID("{425BDE18-A7F3-47A6-A8D2-C48D6033A65C}")
+class Windows_Security_Cryptography_Core_IAsymmetricKeyAlgorithmProviderStatics : WinRtInterface 
+{
+    Windows_Security_Cryptography_Core_IAsymmetricKeyAlgorithmProviderStatics( comPtr )
+    {
+        var Windows = runtime.global("Windows");
+        this.comPtr = comPtr.queryInterface( "{425BDE18-A7F3-47A6-A8D2-C48D6033A65C}");
+    }
+
+    //@VtableIndex(6)
+    //@Async(0)
+    //@Returns("Windows.Security.Cryptography.Core.AsymmetricKeyAlgorithmProvider")
+    //@Parameters("String")
+    OpenAlgorithm(algorithm)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = algorithm;
+        var _r = Windows.Security.Cryptography.Core.AsymmetricKeyAlgorithmProvider(
+            this.comPtr.invoke( 6, "Windows.Security.Cryptography.Core.AsymmetricKeyAlgorithmProvider", ["String"], [p1] )
+        );
+        return _r;
+    }
+
+
+}
+Windows_Security_Cryptography_Core_IAsymmetricKeyAlgorithmProviderStatics.iid = "{425BDE18-A7F3-47A6-A8D2-C48D6033A65C}";
+Windows.Security.Cryptography.Core.IAsymmetricKeyAlgorithmProviderStatics = Windows_Security_Cryptography_Core_IAsymmetricKeyAlgorithmProviderStatics;
+
+
+//@Interface("Windows.Security.Cryptography.Core.ICryptographicEngineStatics")
+//@IID("{9FEA0639-6FF7-4C85-A095-95EB31715EB9}")
+class Windows_Security_Cryptography_Core_ICryptographicEngineStatics : WinRtInterface 
+{
+    Windows_Security_Cryptography_Core_ICryptographicEngineStatics( comPtr )
+    {
+        var Windows = runtime.global("Windows");
+        this.comPtr = comPtr.queryInterface( "{9FEA0639-6FF7-4C85-A095-95EB31715EB9}");
+    }
+
+    //@VtableIndex(6)
+    //@Async(0)
+    //@Returns("Windows.Storage.Streams.IBuffer")
+    //@Parameters("Windows.Security.Cryptography.Core.CryptographicKey","Windows.Storage.Streams.IBuffer","Windows.Storage.Streams.IBuffer")
+    Encrypt(key,data,iv)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = Windows.Security.Cryptography.Core.CryptographicKey( key); 
+        var p2 = Windows.Storage.Streams.IBuffer( data); 
+        var p3 = Windows.Storage.Streams.IBuffer( iv); 
+        var _r = Windows.Storage.Streams.IBuffer(
+            this.comPtr.invoke( 6, "Windows.Storage.Streams.IBuffer", ["Windows.Security.Cryptography.Core.CryptographicKey", "Windows.Storage.Streams.IBuffer", "Windows.Storage.Streams.IBuffer"], [p1, p2, p3] )
+        );
+        return _r;
+    }
+
+    //@VtableIndex(7)
+    //@Async(0)
+    //@Returns("Windows.Storage.Streams.IBuffer")
+    //@Parameters("Windows.Security.Cryptography.Core.CryptographicKey","Windows.Storage.Streams.IBuffer","Windows.Storage.Streams.IBuffer")
+    Decrypt(key,data,iv)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = Windows.Security.Cryptography.Core.CryptographicKey( key); 
+        var p2 = Windows.Storage.Streams.IBuffer( data); 
+        var p3 = Windows.Storage.Streams.IBuffer( iv); 
+        var _r = Windows.Storage.Streams.IBuffer(
+            this.comPtr.invoke( 7, "Windows.Storage.Streams.IBuffer", ["Windows.Security.Cryptography.Core.CryptographicKey", "Windows.Storage.Streams.IBuffer", "Windows.Storage.Streams.IBuffer"], [p1, p2, p3] )
+        );
+        return _r;
+    }
+
+    //@VtableIndex(8)
+    //@Async(0)
+    //@Returns("Windows.Security.Cryptography.Core.EncryptedAndAuthenticatedData")
+    //@Parameters("Windows.Security.Cryptography.Core.CryptographicKey","Windows.Storage.Streams.IBuffer","Windows.Storage.Streams.IBuffer","Windows.Storage.Streams.IBuffer")
+    EncryptAndAuthenticate(key,data,nonce,authenticatedData)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = Windows.Security.Cryptography.Core.CryptographicKey( key); 
+        var p2 = Windows.Storage.Streams.IBuffer( data); 
+        var p3 = Windows.Storage.Streams.IBuffer( nonce); 
+        var p4 = Windows.Storage.Streams.IBuffer( authenticatedData); 
+        var _r = Windows.Security.Cryptography.Core.EncryptedAndAuthenticatedData(
+            this.comPtr.invoke( 8, "Windows.Security.Cryptography.Core.EncryptedAndAuthenticatedData", ["Windows.Security.Cryptography.Core.CryptographicKey", "Windows.Storage.Streams.IBuffer", "Windows.Storage.Streams.IBuffer", "Windows.Storage.Streams.IBuffer"], [p1, p2, p3, p4] )
+        );
+        return _r;
+    }
+
+    //@VtableIndex(9)
+    //@Async(0)
+    //@Returns("Windows.Storage.Streams.IBuffer")
+    //@Parameters("Windows.Security.Cryptography.Core.CryptographicKey","Windows.Storage.Streams.IBuffer","Windows.Storage.Streams.IBuffer","Windows.Storage.Streams.IBuffer","Windows.Storage.Streams.IBuffer")
+    DecryptAndAuthenticate(key,data,nonce,authenticationTag,authenticatedData)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = Windows.Security.Cryptography.Core.CryptographicKey( key); 
+        var p2 = Windows.Storage.Streams.IBuffer( data); 
+        var p3 = Windows.Storage.Streams.IBuffer( nonce); 
+        var p4 = Windows.Storage.Streams.IBuffer( authenticationTag); 
+        var p5 = Windows.Storage.Streams.IBuffer( authenticatedData); 
+        var _r = Windows.Storage.Streams.IBuffer(
+            this.comPtr.invoke( 9, "Windows.Storage.Streams.IBuffer", ["Windows.Security.Cryptography.Core.CryptographicKey", "Windows.Storage.Streams.IBuffer", "Windows.Storage.Streams.IBuffer", "Windows.Storage.Streams.IBuffer", "Windows.Storage.Streams.IBuffer"], [p1, p2, p3, p4, p5] )
+        );
+        return _r;
+    }
+
+    //@VtableIndex(10)
+    //@Async(0)
+    //@Returns("Windows.Storage.Streams.IBuffer")
+    //@Parameters("Windows.Security.Cryptography.Core.CryptographicKey","Windows.Storage.Streams.IBuffer")
+    Sign(key,data)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = Windows.Security.Cryptography.Core.CryptographicKey( key); 
+        var p2 = Windows.Storage.Streams.IBuffer( data); 
+        var _r = Windows.Storage.Streams.IBuffer(
+            this.comPtr.invoke( 10, "Windows.Storage.Streams.IBuffer", ["Windows.Security.Cryptography.Core.CryptographicKey", "Windows.Storage.Streams.IBuffer"], [p1, p2] )
+        );
+        return _r;
+    }
+
+    //@VtableIndex(11)
+    //@Async(0)
+    //@Returns("Boolean")
+    //@Parameters("Windows.Security.Cryptography.Core.CryptographicKey","Windows.Storage.Streams.IBuffer","Windows.Storage.Streams.IBuffer")
+    VerifySignature(key,data,signature)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = Windows.Security.Cryptography.Core.CryptographicKey( key); 
+        var p2 = Windows.Storage.Streams.IBuffer( data); 
+        var p3 = Windows.Storage.Streams.IBuffer( signature); 
+        var _r = this.comPtr.invoke( 11, "Boolean", ["Windows.Security.Cryptography.Core.CryptographicKey", "Windows.Storage.Streams.IBuffer", "Windows.Storage.Streams.IBuffer"], [p1, p2, p3] );
+        return _r;
+    }
+
+    //@VtableIndex(12)
+    //@Async(0)
+    //@Returns("Windows.Storage.Streams.IBuffer")
+    //@Parameters("Windows.Security.Cryptography.Core.CryptographicKey","Windows.Security.Cryptography.Core.KeyDerivationParameters","UInt32")
+    DeriveKeyMaterial(key,parameters,desiredKeySize)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = Windows.Security.Cryptography.Core.CryptographicKey( key); 
+        var p2 = Windows.Security.Cryptography.Core.KeyDerivationParameters( parameters); 
+        var p3 = desiredKeySize;
+        var _r = Windows.Storage.Streams.IBuffer(
+            this.comPtr.invoke( 12, "Windows.Storage.Streams.IBuffer", ["Windows.Security.Cryptography.Core.CryptographicKey", "Windows.Security.Cryptography.Core.KeyDerivationParameters", "UInt32"], [p1, p2, p3] )
+        );
+        return _r;
+    }
+
+
+}
+Windows_Security_Cryptography_Core_ICryptographicEngineStatics.iid = "{9FEA0639-6FF7-4C85-A095-95EB31715EB9}";
+Windows.Security.Cryptography.Core.ICryptographicEngineStatics = Windows_Security_Cryptography_Core_ICryptographicEngineStatics;
+
+
+//@Interface("Windows.Security.Cryptography.Core.ICryptographicEngineStatics2")
+//@IID("{675948FE-DF9F-4191-92C7-6CE6F58420E0}")
+class Windows_Security_Cryptography_Core_ICryptographicEngineStatics2 : WinRtInterface 
+{
+    Windows_Security_Cryptography_Core_ICryptographicEngineStatics2( comPtr )
+    {
+        var Windows = runtime.global("Windows");
+        this.comPtr = comPtr.queryInterface( "{675948FE-DF9F-4191-92C7-6CE6F58420E0}");
+    }
+
+    //@VtableIndex(6)
+    //@Async(0)
+    //@Returns("Windows.Storage.Streams.IBuffer")
+    //@Parameters("Windows.Security.Cryptography.Core.CryptographicKey","Windows.Storage.Streams.IBuffer")
+    SignHashedData(key,data)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = Windows.Security.Cryptography.Core.CryptographicKey( key); 
+        var p2 = Windows.Storage.Streams.IBuffer( data); 
+        var _r = Windows.Storage.Streams.IBuffer(
+            this.comPtr.invoke( 6, "Windows.Storage.Streams.IBuffer", ["Windows.Security.Cryptography.Core.CryptographicKey", "Windows.Storage.Streams.IBuffer"], [p1, p2] )
+        );
+        return _r;
+    }
+
+    //@VtableIndex(7)
+    //@Async(0)
+    //@Returns("Boolean")
+    //@Parameters("Windows.Security.Cryptography.Core.CryptographicKey","Windows.Storage.Streams.IBuffer","Windows.Storage.Streams.IBuffer")
+    VerifySignatureWithHashInput(key,data,signature)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = Windows.Security.Cryptography.Core.CryptographicKey( key); 
+        var p2 = Windows.Storage.Streams.IBuffer( data); 
+        var p3 = Windows.Storage.Streams.IBuffer( signature); 
+        var _r = this.comPtr.invoke( 7, "Boolean", ["Windows.Security.Cryptography.Core.CryptographicKey", "Windows.Storage.Streams.IBuffer", "Windows.Storage.Streams.IBuffer"], [p1, p2, p3] );
+        return _r;
+    }
+
+    //@VtableIndex(8)
+    //@Async(3)
+    //@Returns("Windows.Foundation.IAsyncOperation`1<Windows.Storage.Streams.IBuffer>")
+    //@Parameters("Windows.Security.Cryptography.Core.CryptographicKey","Windows.Storage.Streams.IBuffer","Windows.Storage.Streams.IBuffer")
+    DecryptAsync(key,data,iv,cb)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = Windows.Security.Cryptography.Core.CryptographicKey( key); 
+        var p2 = Windows.Storage.Streams.IBuffer( data); 
+        var p3 = Windows.Storage.Streams.IBuffer( iv); 
+        this.comPtr.asyncOperation( 8, "Windows.Storage.Streams.IBuffer", Windows.Foundation.IAsyncOperation_1_Windows_Storage_Streams_IBuffer_.handler_iid, ["Windows.Security.Cryptography.Core.CryptographicKey", "Windows.Storage.Streams.IBuffer", "Windows.Storage.Streams.IBuffer"], [p1, p2, p3] , fun(status,value) { if(status == Windows.Foundation.AsyncStatus.Completed ) {cb(status, Windows.Storage.Streams.IBuffer(value)); } else { cb( status, value ); } } );
+    }
+
+    //@VtableIndex(9)
+    //@Async(3)
+    //@Returns("Windows.Foundation.IAsyncOperation`1<Windows.Storage.Streams.IBuffer>")
+    //@Parameters("Windows.Security.Cryptography.Core.CryptographicKey","Windows.Storage.Streams.IBuffer")
+    SignAsync(key,data,cb)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = Windows.Security.Cryptography.Core.CryptographicKey( key); 
+        var p2 = Windows.Storage.Streams.IBuffer( data); 
+        this.comPtr.asyncOperation( 9, "Windows.Storage.Streams.IBuffer", Windows.Foundation.IAsyncOperation_1_Windows_Storage_Streams_IBuffer_.handler_iid, ["Windows.Security.Cryptography.Core.CryptographicKey", "Windows.Storage.Streams.IBuffer"], [p1, p2] , fun(status,value) { if(status == Windows.Foundation.AsyncStatus.Completed ) {cb(status, Windows.Storage.Streams.IBuffer(value)); } else { cb( status, value ); } } );
+    }
+
+    //@VtableIndex(10)
+    //@Async(3)
+    //@Returns("Windows.Foundation.IAsyncOperation`1<Windows.Storage.Streams.IBuffer>")
+    //@Parameters("Windows.Security.Cryptography.Core.CryptographicKey","Windows.Storage.Streams.IBuffer")
+    SignHashedDataAsync(key,data,cb)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = Windows.Security.Cryptography.Core.CryptographicKey( key); 
+        var p2 = Windows.Storage.Streams.IBuffer( data); 
+        this.comPtr.asyncOperation( 10, "Windows.Storage.Streams.IBuffer", Windows.Foundation.IAsyncOperation_1_Windows_Storage_Streams_IBuffer_.handler_iid, ["Windows.Security.Cryptography.Core.CryptographicKey", "Windows.Storage.Streams.IBuffer"], [p1, p2] , fun(status,value) { if(status == Windows.Foundation.AsyncStatus.Completed ) {cb(status, Windows.Storage.Streams.IBuffer(value)); } else { cb( status, value ); } } );
+    }
+
+
+}
+Windows_Security_Cryptography_Core_ICryptographicEngineStatics2.iid = "{675948FE-DF9F-4191-92C7-6CE6F58420E0}";
+Windows.Security.Cryptography.Core.ICryptographicEngineStatics2 = Windows_Security_Cryptography_Core_ICryptographicEngineStatics2;
+
+
+//@Interface("Windows.Security.Cryptography.Core.ICryptographicKey")
+//@IID("{ED2A3B70-8E7B-4009-8401-FFD1A62EEB27}")
+class Windows_Security_Cryptography_Core_ICryptographicKey : WinRtInterface 
+{
+    Windows_Security_Cryptography_Core_ICryptographicKey( comPtr )
+    {
+        var Windows = runtime.global("Windows");
+        this.comPtr = comPtr.queryInterface( "{ED2A3B70-8E7B-4009-8401-FFD1A62EEB27}");
+    }
+
+    //@VtableIndex(6)
+    //@Async(0)
+    //@Returns("UInt32")
+    get_KeySize()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 6, "UInt32", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(7)
+    //@Async(0)
+    //@Returns("Windows.Storage.Streams.IBuffer")
+    ExportDefaultPrivateKeyBlobType()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = Windows.Storage.Streams.IBuffer(
+            this.comPtr.invoke( 7, "Windows.Storage.Streams.IBuffer", [], [] )
+        );
+        return _r;
+    }
+
+    //@VtableIndex(8)
+    //@Async(0)
+    //@Returns("Windows.Storage.Streams.IBuffer")
+    //@Parameters("Windows.Security.Cryptography.Core.CryptographicPrivateKeyBlobType")
+    ExportPrivateKeyWithBlobType(BlobType)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = BlobType;
+        var _r = Windows.Storage.Streams.IBuffer(
+            this.comPtr.invoke( 8, "Windows.Storage.Streams.IBuffer", ["UInt32"], [p1] )
+        );
+        return _r;
+    }
+
+    //@VtableIndex(9)
+    //@Async(0)
+    //@Returns("Windows.Storage.Streams.IBuffer")
+    ExportDefaultPublicKeyBlobType()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = Windows.Storage.Streams.IBuffer(
+            this.comPtr.invoke( 9, "Windows.Storage.Streams.IBuffer", [], [] )
+        );
+        return _r;
+    }
+
+    //@VtableIndex(10)
+    //@Async(0)
+    //@Returns("Windows.Storage.Streams.IBuffer")
+    //@Parameters("Windows.Security.Cryptography.Core.CryptographicPublicKeyBlobType")
+    ExportPublicKeyWithBlobType(BlobType)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = BlobType;
+        var _r = Windows.Storage.Streams.IBuffer(
+            this.comPtr.invoke( 10, "Windows.Storage.Streams.IBuffer", ["UInt32"], [p1] )
+        );
+        return _r;
+    }
+
+
+}
+Windows_Security_Cryptography_Core_ICryptographicKey.iid = "{ED2A3B70-8E7B-4009-8401-FFD1A62EEB27}";
+Windows.Security.Cryptography.Core.ICryptographicKey = Windows_Security_Cryptography_Core_ICryptographicKey;
+
+
+//@Interface("Windows.Security.Cryptography.Core.IEccCurveNamesStatics")
+//@IID("{B3FF930C-AEEB-409E-B7D4-9B95295AAECF}")
+class Windows_Security_Cryptography_Core_IEccCurveNamesStatics : WinRtInterface 
+{
+    Windows_Security_Cryptography_Core_IEccCurveNamesStatics( comPtr )
+    {
+        var Windows = runtime.global("Windows");
+        this.comPtr = comPtr.queryInterface( "{B3FF930C-AEEB-409E-B7D4-9B95295AAECF}");
+    }
+
+    //@VtableIndex(6)
+    //@Async(0)
+    //@Returns("String")
+    get_BrainpoolP160r1()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 6, "String", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(7)
+    //@Async(0)
+    //@Returns("String")
+    get_BrainpoolP160t1()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 7, "String", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(8)
+    //@Async(0)
+    //@Returns("String")
+    get_BrainpoolP192r1()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 8, "String", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(9)
+    //@Async(0)
+    //@Returns("String")
+    get_BrainpoolP192t1()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 9, "String", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(10)
+    //@Async(0)
+    //@Returns("String")
+    get_BrainpoolP224r1()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 10, "String", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(11)
+    //@Async(0)
+    //@Returns("String")
+    get_BrainpoolP224t1()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 11, "String", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(12)
+    //@Async(0)
+    //@Returns("String")
+    get_BrainpoolP256r1()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 12, "String", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(13)
+    //@Async(0)
+    //@Returns("String")
+    get_BrainpoolP256t1()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 13, "String", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(14)
+    //@Async(0)
+    //@Returns("String")
+    get_BrainpoolP320r1()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 14, "String", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(15)
+    //@Async(0)
+    //@Returns("String")
+    get_BrainpoolP320t1()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 15, "String", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(16)
+    //@Async(0)
+    //@Returns("String")
+    get_BrainpoolP384r1()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 16, "String", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(17)
+    //@Async(0)
+    //@Returns("String")
+    get_BrainpoolP384t1()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 17, "String", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(18)
+    //@Async(0)
+    //@Returns("String")
+    get_BrainpoolP512r1()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 18, "String", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(19)
+    //@Async(0)
+    //@Returns("String")
+    get_BrainpoolP512t1()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 19, "String", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(20)
+    //@Async(0)
+    //@Returns("String")
+    get_Curve25519()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 20, "String", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(21)
+    //@Async(0)
+    //@Returns("String")
+    get_Ec192wapi()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 21, "String", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(22)
+    //@Async(0)
+    //@Returns("String")
+    get_NistP192()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 22, "String", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(23)
+    //@Async(0)
+    //@Returns("String")
+    get_NistP224()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 23, "String", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(24)
+    //@Async(0)
+    //@Returns("String")
+    get_NistP256()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 24, "String", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(25)
+    //@Async(0)
+    //@Returns("String")
+    get_NistP384()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 25, "String", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(26)
+    //@Async(0)
+    //@Returns("String")
+    get_NistP521()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 26, "String", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(27)
+    //@Async(0)
+    //@Returns("String")
+    get_NumsP256t1()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 27, "String", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(28)
+    //@Async(0)
+    //@Returns("String")
+    get_NumsP384t1()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 28, "String", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(29)
+    //@Async(0)
+    //@Returns("String")
+    get_NumsP512t1()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 29, "String", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(30)
+    //@Async(0)
+    //@Returns("String")
+    get_SecP160k1()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 30, "String", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(31)
+    //@Async(0)
+    //@Returns("String")
+    get_SecP160r1()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 31, "String", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(32)
+    //@Async(0)
+    //@Returns("String")
+    get_SecP160r2()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 32, "String", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(33)
+    //@Async(0)
+    //@Returns("String")
+    get_SecP192k1()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 33, "String", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(34)
+    //@Async(0)
+    //@Returns("String")
+    get_SecP192r1()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 34, "String", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(35)
+    //@Async(0)
+    //@Returns("String")
+    get_SecP224k1()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 35, "String", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(36)
+    //@Async(0)
+    //@Returns("String")
+    get_SecP224r1()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 36, "String", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(37)
+    //@Async(0)
+    //@Returns("String")
+    get_SecP256k1()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 37, "String", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(38)
+    //@Async(0)
+    //@Returns("String")
+    get_SecP256r1()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 38, "String", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(39)
+    //@Async(0)
+    //@Returns("String")
+    get_SecP384r1()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 39, "String", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(40)
+    //@Async(0)
+    //@Returns("String")
+    get_SecP521r1()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 40, "String", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(41)
+    //@Async(0)
+    //@Returns("String")
+    get_Wtls7()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 41, "String", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(42)
+    //@Async(0)
+    //@Returns("String")
+    get_Wtls9()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 42, "String", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(43)
+    //@Async(0)
+    //@Returns("String")
+    get_Wtls12()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 43, "String", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(44)
+    //@Async(0)
+    //@Returns("String")
+    get_X962P192v1()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 44, "String", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(45)
+    //@Async(0)
+    //@Returns("String")
+    get_X962P192v2()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 45, "String", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(46)
+    //@Async(0)
+    //@Returns("String")
+    get_X962P192v3()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 46, "String", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(47)
+    //@Async(0)
+    //@Returns("String")
+    get_X962P239v1()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 47, "String", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(48)
+    //@Async(0)
+    //@Returns("String")
+    get_X962P239v2()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 48, "String", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(49)
+    //@Async(0)
+    //@Returns("String")
+    get_X962P239v3()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 49, "String", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(50)
+    //@Async(0)
+    //@Returns("String")
+    get_X962P256v1()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 50, "String", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(51)
+    //@Async(0)
+    //@Returns("Windows.Foundation.Collections.IVectorView`1<String>")
+    get_AllEccCurveNames()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = Windows.Foundation.Collections.IVectorView_1_String_(
+            this.comPtr.invoke( 51, "Windows.Foundation.Collections.IVectorView`1<String>", [], [] )
+        );
+        return _r;
+    }
+
+
+}
+Windows_Security_Cryptography_Core_IEccCurveNamesStatics.iid = "{B3FF930C-AEEB-409E-B7D4-9B95295AAECF}";
+Windows.Security.Cryptography.Core.IEccCurveNamesStatics = Windows_Security_Cryptography_Core_IEccCurveNamesStatics;
+
+
+//@Interface("Windows.Security.Cryptography.Core.IEncryptedAndAuthenticatedData")
+//@IID("{6FA42FE7-1ECB-4B00-BEA5-60B83F862F17}")
+class Windows_Security_Cryptography_Core_IEncryptedAndAuthenticatedData : WinRtInterface 
+{
+    Windows_Security_Cryptography_Core_IEncryptedAndAuthenticatedData( comPtr )
+    {
+        var Windows = runtime.global("Windows");
+        this.comPtr = comPtr.queryInterface( "{6FA42FE7-1ECB-4B00-BEA5-60B83F862F17}");
+    }
+
+    //@VtableIndex(6)
+    //@Async(0)
+    //@Returns("Windows.Storage.Streams.IBuffer")
+    get_EncryptedData()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = Windows.Storage.Streams.IBuffer(
+            this.comPtr.invoke( 6, "Windows.Storage.Streams.IBuffer", [], [] )
+        );
+        return _r;
+    }
+
+    //@VtableIndex(7)
+    //@Async(0)
+    //@Returns("Windows.Storage.Streams.IBuffer")
+    get_AuthenticationTag()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = Windows.Storage.Streams.IBuffer(
+            this.comPtr.invoke( 7, "Windows.Storage.Streams.IBuffer", [], [] )
+        );
+        return _r;
+    }
+
+
+}
+Windows_Security_Cryptography_Core_IEncryptedAndAuthenticatedData.iid = "{6FA42FE7-1ECB-4B00-BEA5-60B83F862F17}";
+Windows.Security.Cryptography.Core.IEncryptedAndAuthenticatedData = Windows_Security_Cryptography_Core_IEncryptedAndAuthenticatedData;
+
+
+//@Interface("Windows.Security.Cryptography.Core.IHashAlgorithmNamesStatics")
+//@IID("{6B5E0516-DE96-4F0A-8D57-DCC9DAE36C76}")
+class Windows_Security_Cryptography_Core_IHashAlgorithmNamesStatics : WinRtInterface 
+{
+    Windows_Security_Cryptography_Core_IHashAlgorithmNamesStatics( comPtr )
+    {
+        var Windows = runtime.global("Windows");
+        this.comPtr = comPtr.queryInterface( "{6B5E0516-DE96-4F0A-8D57-DCC9DAE36C76}");
+    }
+
+    //@VtableIndex(6)
+    //@Async(0)
+    //@Returns("String")
+    get_Md5()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 6, "String", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(7)
+    //@Async(0)
+    //@Returns("String")
+    get_Sha1()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 7, "String", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(8)
+    //@Async(0)
+    //@Returns("String")
+    get_Sha256()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 8, "String", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(9)
+    //@Async(0)
+    //@Returns("String")
+    get_Sha384()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 9, "String", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(10)
+    //@Async(0)
+    //@Returns("String")
+    get_Sha512()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 10, "String", [], [] );
+        return _r;
+    }
+
+
+}
+Windows_Security_Cryptography_Core_IHashAlgorithmNamesStatics.iid = "{6B5E0516-DE96-4F0A-8D57-DCC9DAE36C76}";
+Windows.Security.Cryptography.Core.IHashAlgorithmNamesStatics = Windows_Security_Cryptography_Core_IHashAlgorithmNamesStatics;
+
+
+//@Interface("Windows.Security.Cryptography.Core.IHashAlgorithmProvider")
+//@IID("{BE9B3080-B2C3-422B-BCE1-EC90EFB5D7B5}")
+class Windows_Security_Cryptography_Core_IHashAlgorithmProvider : WinRtInterface 
+{
+    Windows_Security_Cryptography_Core_IHashAlgorithmProvider( comPtr )
+    {
+        var Windows = runtime.global("Windows");
+        this.comPtr = comPtr.queryInterface( "{BE9B3080-B2C3-422B-BCE1-EC90EFB5D7B5}");
+    }
+
+    //@VtableIndex(6)
+    //@Async(0)
+    //@Returns("String")
+    get_AlgorithmName()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 6, "String", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(7)
+    //@Async(0)
+    //@Returns("UInt32")
+    get_HashLength()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 7, "UInt32", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(8)
+    //@Async(0)
+    //@Returns("Windows.Storage.Streams.IBuffer")
+    //@Parameters("Windows.Storage.Streams.IBuffer")
+    HashData(data)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = Windows.Storage.Streams.IBuffer( data); 
+        var _r = Windows.Storage.Streams.IBuffer(
+            this.comPtr.invoke( 8, "Windows.Storage.Streams.IBuffer", ["Windows.Storage.Streams.IBuffer"], [p1] )
+        );
+        return _r;
+    }
+
+    //@VtableIndex(9)
+    //@Async(0)
+    //@Returns("Windows.Security.Cryptography.Core.CryptographicHash")
+    CreateHash()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = Windows.Security.Cryptography.Core.CryptographicHash(
+            this.comPtr.invoke( 9, "Windows.Security.Cryptography.Core.CryptographicHash", [], [] )
+        );
+        return _r;
+    }
+
+
+}
+Windows_Security_Cryptography_Core_IHashAlgorithmProvider.iid = "{BE9B3080-B2C3-422B-BCE1-EC90EFB5D7B5}";
+Windows.Security.Cryptography.Core.IHashAlgorithmProvider = Windows_Security_Cryptography_Core_IHashAlgorithmProvider;
+
+
+//@Interface("Windows.Security.Cryptography.Core.IHashAlgorithmProviderStatics")
+//@IID("{9FAC9741-5CC4-4336-AE38-6212B75A915A}")
+class Windows_Security_Cryptography_Core_IHashAlgorithmProviderStatics : WinRtInterface 
+{
+    Windows_Security_Cryptography_Core_IHashAlgorithmProviderStatics( comPtr )
+    {
+        var Windows = runtime.global("Windows");
+        this.comPtr = comPtr.queryInterface( "{9FAC9741-5CC4-4336-AE38-6212B75A915A}");
+    }
+
+    //@VtableIndex(6)
+    //@Async(0)
+    //@Returns("Windows.Security.Cryptography.Core.HashAlgorithmProvider")
+    //@Parameters("String")
+    OpenAlgorithm(algorithm)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = algorithm;
+        var _r = Windows.Security.Cryptography.Core.HashAlgorithmProvider(
+            this.comPtr.invoke( 6, "Windows.Security.Cryptography.Core.HashAlgorithmProvider", ["String"], [p1] )
+        );
+        return _r;
+    }
+
+
+}
+Windows_Security_Cryptography_Core_IHashAlgorithmProviderStatics.iid = "{9FAC9741-5CC4-4336-AE38-6212B75A915A}";
+Windows.Security.Cryptography.Core.IHashAlgorithmProviderStatics = Windows_Security_Cryptography_Core_IHashAlgorithmProviderStatics;
+
+
+//@Interface("Windows.Security.Cryptography.Core.IHashComputation")
+//@IID("{5904D1B6-AD31-4603-A3A4-B1BDA98E2562}")
+class Windows_Security_Cryptography_Core_IHashComputation : WinRtInterface 
+{
+    Windows_Security_Cryptography_Core_IHashComputation( comPtr )
+    {
+        var Windows = runtime.global("Windows");
+        this.comPtr = comPtr.queryInterface( "{5904D1B6-AD31-4603-A3A4-B1BDA98E2562}");
+    }
+
+    //@VtableIndex(6)
+    //@Async(0)
+    //@Returns("void")
+    //@Parameters("Windows.Storage.Streams.IBuffer")
+    Append(data)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = Windows.Storage.Streams.IBuffer( data); 
+        this.comPtr.invoke( 6, "void", ["Windows.Storage.Streams.IBuffer"], [p1] );
+    }
+
+    //@VtableIndex(7)
+    //@Async(0)
+    //@Returns("Windows.Storage.Streams.IBuffer")
+    GetValueAndReset()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = Windows.Storage.Streams.IBuffer(
+            this.comPtr.invoke( 7, "Windows.Storage.Streams.IBuffer", [], [] )
+        );
+        return _r;
+    }
+
+
+}
+Windows_Security_Cryptography_Core_IHashComputation.iid = "{5904D1B6-AD31-4603-A3A4-B1BDA98E2562}";
+Windows.Security.Cryptography.Core.IHashComputation = Windows_Security_Cryptography_Core_IHashComputation;
+
+
+//@Interface("Windows.Security.Cryptography.Core.IKeyDerivationAlgorithmNamesStatics")
+//@IID("{7B6E363E-94D2-4739-A57B-022E0C3A402A}")
+class Windows_Security_Cryptography_Core_IKeyDerivationAlgorithmNamesStatics : WinRtInterface 
+{
+    Windows_Security_Cryptography_Core_IKeyDerivationAlgorithmNamesStatics( comPtr )
+    {
+        var Windows = runtime.global("Windows");
+        this.comPtr = comPtr.queryInterface( "{7B6E363E-94D2-4739-A57B-022E0C3A402A}");
+    }
+
+    //@VtableIndex(6)
+    //@Async(0)
+    //@Returns("String")
+    get_Pbkdf2Md5()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 6, "String", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(7)
+    //@Async(0)
+    //@Returns("String")
+    get_Pbkdf2Sha1()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 7, "String", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(8)
+    //@Async(0)
+    //@Returns("String")
+    get_Pbkdf2Sha256()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 8, "String", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(9)
+    //@Async(0)
+    //@Returns("String")
+    get_Pbkdf2Sha384()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 9, "String", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(10)
+    //@Async(0)
+    //@Returns("String")
+    get_Pbkdf2Sha512()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 10, "String", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(11)
+    //@Async(0)
+    //@Returns("String")
+    get_Sp800108CtrHmacMd5()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 11, "String", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(12)
+    //@Async(0)
+    //@Returns("String")
+    get_Sp800108CtrHmacSha1()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 12, "String", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(13)
+    //@Async(0)
+    //@Returns("String")
+    get_Sp800108CtrHmacSha256()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 13, "String", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(14)
+    //@Async(0)
+    //@Returns("String")
+    get_Sp800108CtrHmacSha384()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 14, "String", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(15)
+    //@Async(0)
+    //@Returns("String")
+    get_Sp800108CtrHmacSha512()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 15, "String", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(16)
+    //@Async(0)
+    //@Returns("String")
+    get_Sp80056aConcatMd5()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 16, "String", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(17)
+    //@Async(0)
+    //@Returns("String")
+    get_Sp80056aConcatSha1()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 17, "String", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(18)
+    //@Async(0)
+    //@Returns("String")
+    get_Sp80056aConcatSha256()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 18, "String", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(19)
+    //@Async(0)
+    //@Returns("String")
+    get_Sp80056aConcatSha384()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 19, "String", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(20)
+    //@Async(0)
+    //@Returns("String")
+    get_Sp80056aConcatSha512()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 20, "String", [], [] );
+        return _r;
+    }
+
+
+}
+Windows_Security_Cryptography_Core_IKeyDerivationAlgorithmNamesStatics.iid = "{7B6E363E-94D2-4739-A57B-022E0C3A402A}";
+Windows.Security.Cryptography.Core.IKeyDerivationAlgorithmNamesStatics = Windows_Security_Cryptography_Core_IKeyDerivationAlgorithmNamesStatics;
+
+
+//@Interface("Windows.Security.Cryptography.Core.IKeyDerivationAlgorithmNamesStatics2")
+//@IID("{57953FAB-6044-466F-97F4-337B7808384D}")
+class Windows_Security_Cryptography_Core_IKeyDerivationAlgorithmNamesStatics2 : WinRtInterface 
+{
+    Windows_Security_Cryptography_Core_IKeyDerivationAlgorithmNamesStatics2( comPtr )
+    {
+        var Windows = runtime.global("Windows");
+        this.comPtr = comPtr.queryInterface( "{57953FAB-6044-466F-97F4-337B7808384D}");
+    }
+
+    //@VtableIndex(6)
+    //@Async(0)
+    //@Returns("String")
+    get_CapiKdfMd5()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 6, "String", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(7)
+    //@Async(0)
+    //@Returns("String")
+    get_CapiKdfSha1()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 7, "String", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(8)
+    //@Async(0)
+    //@Returns("String")
+    get_CapiKdfSha256()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 8, "String", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(9)
+    //@Async(0)
+    //@Returns("String")
+    get_CapiKdfSha384()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 9, "String", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(10)
+    //@Async(0)
+    //@Returns("String")
+    get_CapiKdfSha512()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 10, "String", [], [] );
+        return _r;
+    }
+
+
+}
+Windows_Security_Cryptography_Core_IKeyDerivationAlgorithmNamesStatics2.iid = "{57953FAB-6044-466F-97F4-337B7808384D}";
+Windows.Security.Cryptography.Core.IKeyDerivationAlgorithmNamesStatics2 = Windows_Security_Cryptography_Core_IKeyDerivationAlgorithmNamesStatics2;
+
+
+//@Interface("Windows.Security.Cryptography.Core.IKeyDerivationAlgorithmProvider")
+//@IID("{E1FBA83B-4671-43B7-9158-763AAA98B6BF}")
+class Windows_Security_Cryptography_Core_IKeyDerivationAlgorithmProvider : WinRtInterface 
+{
+    Windows_Security_Cryptography_Core_IKeyDerivationAlgorithmProvider( comPtr )
+    {
+        var Windows = runtime.global("Windows");
+        this.comPtr = comPtr.queryInterface( "{E1FBA83B-4671-43B7-9158-763AAA98B6BF}");
+    }
+
+    //@VtableIndex(6)
+    //@Async(0)
+    //@Returns("String")
+    get_AlgorithmName()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 6, "String", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(7)
+    //@Async(0)
+    //@Returns("Windows.Security.Cryptography.Core.CryptographicKey")
+    //@Parameters("Windows.Storage.Streams.IBuffer")
+    CreateKey(keyMaterial)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = Windows.Storage.Streams.IBuffer( keyMaterial); 
+        var _r = Windows.Security.Cryptography.Core.CryptographicKey(
+            this.comPtr.invoke( 7, "Windows.Security.Cryptography.Core.CryptographicKey", ["Windows.Storage.Streams.IBuffer"], [p1] )
+        );
+        return _r;
+    }
+
+
+}
+Windows_Security_Cryptography_Core_IKeyDerivationAlgorithmProvider.iid = "{E1FBA83B-4671-43B7-9158-763AAA98B6BF}";
+Windows.Security.Cryptography.Core.IKeyDerivationAlgorithmProvider = Windows_Security_Cryptography_Core_IKeyDerivationAlgorithmProvider;
+
+
+//@Interface("Windows.Security.Cryptography.Core.IKeyDerivationAlgorithmProviderStatics")
+//@IID("{0A22097A-0A1C-443B-9418-B9498AEB1603}")
+class Windows_Security_Cryptography_Core_IKeyDerivationAlgorithmProviderStatics : WinRtInterface 
+{
+    Windows_Security_Cryptography_Core_IKeyDerivationAlgorithmProviderStatics( comPtr )
+    {
+        var Windows = runtime.global("Windows");
+        this.comPtr = comPtr.queryInterface( "{0A22097A-0A1C-443B-9418-B9498AEB1603}");
+    }
+
+    //@VtableIndex(6)
+    //@Async(0)
+    //@Returns("Windows.Security.Cryptography.Core.KeyDerivationAlgorithmProvider")
+    //@Parameters("String")
+    OpenAlgorithm(algorithm)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = algorithm;
+        var _r = Windows.Security.Cryptography.Core.KeyDerivationAlgorithmProvider(
+            this.comPtr.invoke( 6, "Windows.Security.Cryptography.Core.KeyDerivationAlgorithmProvider", ["String"], [p1] )
+        );
+        return _r;
+    }
+
+
+}
+Windows_Security_Cryptography_Core_IKeyDerivationAlgorithmProviderStatics.iid = "{0A22097A-0A1C-443B-9418-B9498AEB1603}";
+Windows.Security.Cryptography.Core.IKeyDerivationAlgorithmProviderStatics = Windows_Security_Cryptography_Core_IKeyDerivationAlgorithmProviderStatics;
+
+
+//@Interface("Windows.Security.Cryptography.Core.IKeyDerivationParameters")
+//@IID("{7BF05967-047B-4A8C-964A-469FFD5522E2}")
+class Windows_Security_Cryptography_Core_IKeyDerivationParameters : WinRtInterface 
+{
+    Windows_Security_Cryptography_Core_IKeyDerivationParameters( comPtr )
+    {
+        var Windows = runtime.global("Windows");
+        this.comPtr = comPtr.queryInterface( "{7BF05967-047B-4A8C-964A-469FFD5522E2}");
+    }
+
+    //@VtableIndex(6)
+    //@Async(0)
+    //@Returns("Windows.Storage.Streams.IBuffer")
+    get_KdfGenericBinary()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = Windows.Storage.Streams.IBuffer(
+            this.comPtr.invoke( 6, "Windows.Storage.Streams.IBuffer", [], [] )
+        );
+        return _r;
+    }
+
+    //@VtableIndex(7)
+    //@Async(0)
+    //@Returns("void")
+    //@Parameters("Windows.Storage.Streams.IBuffer")
+    put_KdfGenericBinary(value)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = Windows.Storage.Streams.IBuffer( value); 
+        this.comPtr.invoke( 7, "void", ["Windows.Storage.Streams.IBuffer"], [p1] );
+    }
+
+    //@VtableIndex(8)
+    //@Async(0)
+    //@Returns("UInt32")
+    get_IterationCount()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 8, "UInt32", [], [] );
+        return _r;
+    }
+
+
+}
+Windows_Security_Cryptography_Core_IKeyDerivationParameters.iid = "{7BF05967-047B-4A8C-964A-469FFD5522E2}";
+Windows.Security.Cryptography.Core.IKeyDerivationParameters = Windows_Security_Cryptography_Core_IKeyDerivationParameters;
+
+
+//@Interface("Windows.Security.Cryptography.Core.IKeyDerivationParameters2")
+//@IID("{CD4166D1-417E-4F4C-B666-C0D879F3F8E0}")
+class Windows_Security_Cryptography_Core_IKeyDerivationParameters2 : WinRtInterface 
+{
+    Windows_Security_Cryptography_Core_IKeyDerivationParameters2( comPtr )
+    {
+        var Windows = runtime.global("Windows");
+        this.comPtr = comPtr.queryInterface( "{CD4166D1-417E-4F4C-B666-C0D879F3F8E0}");
+    }
+
+    //@VtableIndex(6)
+    //@Async(0)
+    //@Returns("Windows.Security.Cryptography.Core.Capi1KdfTargetAlgorithm")
+    get_Capi1KdfTargetAlgorithm()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 6, "UInt32", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(7)
+    //@Async(0)
+    //@Returns("void")
+    //@Parameters("Windows.Security.Cryptography.Core.Capi1KdfTargetAlgorithm")
+    put_Capi1KdfTargetAlgorithm(value)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = value;
+        this.comPtr.invoke( 7, "void", ["UInt32"], [p1] );
+    }
+
+
+}
+Windows_Security_Cryptography_Core_IKeyDerivationParameters2.iid = "{CD4166D1-417E-4F4C-B666-C0D879F3F8E0}";
+Windows.Security.Cryptography.Core.IKeyDerivationParameters2 = Windows_Security_Cryptography_Core_IKeyDerivationParameters2;
+
+
+//@Interface("Windows.Security.Cryptography.Core.IKeyDerivationParametersStatics")
+//@IID("{EA961FBE-F37F-4146-9DFE-A456F1735F4B}")
+class Windows_Security_Cryptography_Core_IKeyDerivationParametersStatics : WinRtInterface 
+{
+    Windows_Security_Cryptography_Core_IKeyDerivationParametersStatics( comPtr )
+    {
+        var Windows = runtime.global("Windows");
+        this.comPtr = comPtr.queryInterface( "{EA961FBE-F37F-4146-9DFE-A456F1735F4B}");
+    }
+
+    //@VtableIndex(6)
+    //@Async(0)
+    //@Returns("Windows.Security.Cryptography.Core.KeyDerivationParameters")
+    //@Parameters("Windows.Storage.Streams.IBuffer","UInt32")
+    BuildForPbkdf2(pbkdf2Salt,iterationCount)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = Windows.Storage.Streams.IBuffer( pbkdf2Salt); 
+        var p2 = iterationCount;
+        var _r = Windows.Security.Cryptography.Core.KeyDerivationParameters(
+            this.comPtr.invoke( 6, "Windows.Security.Cryptography.Core.KeyDerivationParameters", ["Windows.Storage.Streams.IBuffer", "UInt32"], [p1, p2] )
+        );
+        return _r;
+    }
+
+    //@VtableIndex(7)
+    //@Async(0)
+    //@Returns("Windows.Security.Cryptography.Core.KeyDerivationParameters")
+    //@Parameters("Windows.Storage.Streams.IBuffer","Windows.Storage.Streams.IBuffer")
+    BuildForSP800108(label,context)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = Windows.Storage.Streams.IBuffer( label); 
+        var p2 = Windows.Storage.Streams.IBuffer( context); 
+        var _r = Windows.Security.Cryptography.Core.KeyDerivationParameters(
+            this.comPtr.invoke( 7, "Windows.Security.Cryptography.Core.KeyDerivationParameters", ["Windows.Storage.Streams.IBuffer", "Windows.Storage.Streams.IBuffer"], [p1, p2] )
+        );
+        return _r;
+    }
+
+    //@VtableIndex(8)
+    //@Async(0)
+    //@Returns("Windows.Security.Cryptography.Core.KeyDerivationParameters")
+    //@Parameters("Windows.Storage.Streams.IBuffer","Windows.Storage.Streams.IBuffer","Windows.Storage.Streams.IBuffer","Windows.Storage.Streams.IBuffer","Windows.Storage.Streams.IBuffer")
+    BuildForSP80056a(algorithmId,partyUInfo,partyVInfo,suppPubInfo,suppPrivInfo)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = Windows.Storage.Streams.IBuffer( algorithmId); 
+        var p2 = Windows.Storage.Streams.IBuffer( partyUInfo); 
+        var p3 = Windows.Storage.Streams.IBuffer( partyVInfo); 
+        var p4 = Windows.Storage.Streams.IBuffer( suppPubInfo); 
+        var p5 = Windows.Storage.Streams.IBuffer( suppPrivInfo); 
+        var _r = Windows.Security.Cryptography.Core.KeyDerivationParameters(
+            this.comPtr.invoke( 8, "Windows.Security.Cryptography.Core.KeyDerivationParameters", ["Windows.Storage.Streams.IBuffer", "Windows.Storage.Streams.IBuffer", "Windows.Storage.Streams.IBuffer", "Windows.Storage.Streams.IBuffer", "Windows.Storage.Streams.IBuffer"], [p1, p2, p3, p4, p5] )
+        );
+        return _r;
+    }
+
+
+}
+Windows_Security_Cryptography_Core_IKeyDerivationParametersStatics.iid = "{EA961FBE-F37F-4146-9DFE-A456F1735F4B}";
+Windows.Security.Cryptography.Core.IKeyDerivationParametersStatics = Windows_Security_Cryptography_Core_IKeyDerivationParametersStatics;
+
+
+//@Interface("Windows.Security.Cryptography.Core.IKeyDerivationParametersStatics2")
+//@IID("{A5783DD5-58E3-4EFB-B283-A1653126E1BE}")
+class Windows_Security_Cryptography_Core_IKeyDerivationParametersStatics2 : WinRtInterface 
+{
+    Windows_Security_Cryptography_Core_IKeyDerivationParametersStatics2( comPtr )
+    {
+        var Windows = runtime.global("Windows");
+        this.comPtr = comPtr.queryInterface( "{A5783DD5-58E3-4EFB-B283-A1653126E1BE}");
+    }
+
+    //@VtableIndex(6)
+    //@Async(0)
+    //@Returns("Windows.Security.Cryptography.Core.KeyDerivationParameters")
+    //@Parameters("Windows.Security.Cryptography.Core.Capi1KdfTargetAlgorithm")
+    BuildForCapi1Kdf(capi1KdfTargetAlgorithm)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = capi1KdfTargetAlgorithm;
+        var _r = Windows.Security.Cryptography.Core.KeyDerivationParameters(
+            this.comPtr.invoke( 6, "Windows.Security.Cryptography.Core.KeyDerivationParameters", ["UInt32"], [p1] )
+        );
+        return _r;
+    }
+
+
+}
+Windows_Security_Cryptography_Core_IKeyDerivationParametersStatics2.iid = "{A5783DD5-58E3-4EFB-B283-A1653126E1BE}";
+Windows.Security.Cryptography.Core.IKeyDerivationParametersStatics2 = Windows_Security_Cryptography_Core_IKeyDerivationParametersStatics2;
+
+
+//@Interface("Windows.Security.Cryptography.Core.IMacAlgorithmNamesStatics")
+//@IID("{41412678-FB1E-43A4-895E-A9026E4390A3}")
+class Windows_Security_Cryptography_Core_IMacAlgorithmNamesStatics : WinRtInterface 
+{
+    Windows_Security_Cryptography_Core_IMacAlgorithmNamesStatics( comPtr )
+    {
+        var Windows = runtime.global("Windows");
+        this.comPtr = comPtr.queryInterface( "{41412678-FB1E-43A4-895E-A9026E4390A3}");
+    }
+
+    //@VtableIndex(6)
+    //@Async(0)
+    //@Returns("String")
+    get_HmacMd5()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 6, "String", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(7)
+    //@Async(0)
+    //@Returns("String")
+    get_HmacSha1()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 7, "String", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(8)
+    //@Async(0)
+    //@Returns("String")
+    get_HmacSha256()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 8, "String", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(9)
+    //@Async(0)
+    //@Returns("String")
+    get_HmacSha384()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 9, "String", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(10)
+    //@Async(0)
+    //@Returns("String")
+    get_HmacSha512()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 10, "String", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(11)
+    //@Async(0)
+    //@Returns("String")
+    get_AesCmac()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 11, "String", [], [] );
+        return _r;
+    }
+
+
+}
+Windows_Security_Cryptography_Core_IMacAlgorithmNamesStatics.iid = "{41412678-FB1E-43A4-895E-A9026E4390A3}";
+Windows.Security.Cryptography.Core.IMacAlgorithmNamesStatics = Windows_Security_Cryptography_Core_IMacAlgorithmNamesStatics;
+
+
+//@Interface("Windows.Security.Cryptography.Core.IMacAlgorithmProvider")
+//@IID("{4A3FC5C3-1CBD-41CE-A092-AA0BC5D2D2F5}")
+class Windows_Security_Cryptography_Core_IMacAlgorithmProvider : WinRtInterface 
+{
+    Windows_Security_Cryptography_Core_IMacAlgorithmProvider( comPtr )
+    {
+        var Windows = runtime.global("Windows");
+        this.comPtr = comPtr.queryInterface( "{4A3FC5C3-1CBD-41CE-A092-AA0BC5D2D2F5}");
+    }
+
+    //@VtableIndex(6)
+    //@Async(0)
+    //@Returns("String")
+    get_AlgorithmName()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 6, "String", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(7)
+    //@Async(0)
+    //@Returns("UInt32")
+    get_MacLength()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 7, "UInt32", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(8)
+    //@Async(0)
+    //@Returns("Windows.Security.Cryptography.Core.CryptographicKey")
+    //@Parameters("Windows.Storage.Streams.IBuffer")
+    CreateKey(keyMaterial)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = Windows.Storage.Streams.IBuffer( keyMaterial); 
+        var _r = Windows.Security.Cryptography.Core.CryptographicKey(
+            this.comPtr.invoke( 8, "Windows.Security.Cryptography.Core.CryptographicKey", ["Windows.Storage.Streams.IBuffer"], [p1] )
+        );
+        return _r;
+    }
+
+
+}
+Windows_Security_Cryptography_Core_IMacAlgorithmProvider.iid = "{4A3FC5C3-1CBD-41CE-A092-AA0BC5D2D2F5}";
+Windows.Security.Cryptography.Core.IMacAlgorithmProvider = Windows_Security_Cryptography_Core_IMacAlgorithmProvider;
+
+
+//@Interface("Windows.Security.Cryptography.Core.IMacAlgorithmProvider2")
+//@IID("{6DA32A15-D931-42ED-8E7E-C301CAEE119C}")
+class Windows_Security_Cryptography_Core_IMacAlgorithmProvider2 : WinRtInterface 
+{
+    Windows_Security_Cryptography_Core_IMacAlgorithmProvider2( comPtr )
+    {
+        var Windows = runtime.global("Windows");
+        this.comPtr = comPtr.queryInterface( "{6DA32A15-D931-42ED-8E7E-C301CAEE119C}");
+    }
+
+    //@VtableIndex(6)
+    //@Async(0)
+    //@Returns("Windows.Security.Cryptography.Core.CryptographicHash")
+    //@Parameters("Windows.Storage.Streams.IBuffer")
+    CreateHash(keyMaterial)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = Windows.Storage.Streams.IBuffer( keyMaterial); 
+        var _r = Windows.Security.Cryptography.Core.CryptographicHash(
+            this.comPtr.invoke( 6, "Windows.Security.Cryptography.Core.CryptographicHash", ["Windows.Storage.Streams.IBuffer"], [p1] )
+        );
+        return _r;
+    }
+
+
+}
+Windows_Security_Cryptography_Core_IMacAlgorithmProvider2.iid = "{6DA32A15-D931-42ED-8E7E-C301CAEE119C}";
+Windows.Security.Cryptography.Core.IMacAlgorithmProvider2 = Windows_Security_Cryptography_Core_IMacAlgorithmProvider2;
+
+
+//@Interface("Windows.Security.Cryptography.Core.IMacAlgorithmProviderStatics")
+//@IID("{C9BDC147-CC77-4DF0-9E4E-B921E080644C}")
+class Windows_Security_Cryptography_Core_IMacAlgorithmProviderStatics : WinRtInterface 
+{
+    Windows_Security_Cryptography_Core_IMacAlgorithmProviderStatics( comPtr )
+    {
+        var Windows = runtime.global("Windows");
+        this.comPtr = comPtr.queryInterface( "{C9BDC147-CC77-4DF0-9E4E-B921E080644C}");
+    }
+
+    //@VtableIndex(6)
+    //@Async(0)
+    //@Returns("Windows.Security.Cryptography.Core.MacAlgorithmProvider")
+    //@Parameters("String")
+    OpenAlgorithm(algorithm)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = algorithm;
+        var _r = Windows.Security.Cryptography.Core.MacAlgorithmProvider(
+            this.comPtr.invoke( 6, "Windows.Security.Cryptography.Core.MacAlgorithmProvider", ["String"], [p1] )
+        );
+        return _r;
+    }
+
+
+}
+Windows_Security_Cryptography_Core_IMacAlgorithmProviderStatics.iid = "{C9BDC147-CC77-4DF0-9E4E-B921E080644C}";
+Windows.Security.Cryptography.Core.IMacAlgorithmProviderStatics = Windows_Security_Cryptography_Core_IMacAlgorithmProviderStatics;
+
+
+//@Interface("Windows.Security.Cryptography.Core.IPersistedKeyProviderStatics")
+//@IID("{77274814-D9D4-4CF5-B668-E0457DF30894}")
+class Windows_Security_Cryptography_Core_IPersistedKeyProviderStatics : WinRtInterface 
+{
+    Windows_Security_Cryptography_Core_IPersistedKeyProviderStatics( comPtr )
+    {
+        var Windows = runtime.global("Windows");
+        this.comPtr = comPtr.queryInterface( "{77274814-D9D4-4CF5-B668-E0457DF30894}");
+    }
+
+    //@VtableIndex(6)
+    //@Async(3)
+    //@Returns("Windows.Foundation.IAsyncOperation`1<Windows.Security.Cryptography.Core.CryptographicKey>")
+    //@Parameters("Windows.Security.Cryptography.Certificates.Certificate","String","Windows.Security.Cryptography.Core.CryptographicPadding")
+    OpenKeyPairFromCertificateAsync(certificate,hashAlgorithmName,padding,cb)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = Windows.Security.Cryptography.Certificates.Certificate( certificate); 
+        var p2 = hashAlgorithmName;
+        var p3 = padding;
+        this.comPtr.asyncOperation( 6, "Windows.Security.Cryptography.Core.CryptographicKey", Windows.Foundation.IAsyncOperation_1_Windows_Security_Cryptography_Core_CryptographicKey_.handler_iid, ["Windows.Security.Cryptography.Certificates.Certificate", "String", "UInt32"], [p1, p2, p3] , fun(status,value) { if(status == Windows.Foundation.AsyncStatus.Completed ) {cb(status, Windows.Security.Cryptography.Core.CryptographicKey(value)); } else { cb( status, value ); } } );
+    }
+
+    //@VtableIndex(7)
+    //@Async(0)
+    //@Returns("Windows.Security.Cryptography.Core.CryptographicKey")
+    //@Parameters("Windows.Security.Cryptography.Certificates.Certificate","String","Windows.Security.Cryptography.Core.CryptographicPadding")
+    OpenPublicKeyFromCertificate(certificate,hashAlgorithmName,padding)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = Windows.Security.Cryptography.Certificates.Certificate( certificate); 
+        var p2 = hashAlgorithmName;
+        var p3 = padding;
+        var _r = Windows.Security.Cryptography.Core.CryptographicKey(
+            this.comPtr.invoke( 7, "Windows.Security.Cryptography.Core.CryptographicKey", ["Windows.Security.Cryptography.Certificates.Certificate", "String", "UInt32"], [p1, p2, p3] )
+        );
+        return _r;
+    }
+
+
+}
+Windows_Security_Cryptography_Core_IPersistedKeyProviderStatics.iid = "{77274814-D9D4-4CF5-B668-E0457DF30894}";
+Windows.Security.Cryptography.Core.IPersistedKeyProviderStatics = Windows_Security_Cryptography_Core_IPersistedKeyProviderStatics;
+
+
+//@Interface("Windows.Security.Cryptography.Core.ISymmetricAlgorithmNamesStatics")
+//@IID("{6870727B-C996-4EAE-84D7-79B2AEB73B9C}")
+class Windows_Security_Cryptography_Core_ISymmetricAlgorithmNamesStatics : WinRtInterface 
+{
+    Windows_Security_Cryptography_Core_ISymmetricAlgorithmNamesStatics( comPtr )
+    {
+        var Windows = runtime.global("Windows");
+        this.comPtr = comPtr.queryInterface( "{6870727B-C996-4EAE-84D7-79B2AEB73B9C}");
+    }
+
+    //@VtableIndex(6)
+    //@Async(0)
+    //@Returns("String")
+    get_DesCbc()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 6, "String", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(7)
+    //@Async(0)
+    //@Returns("String")
+    get_DesEcb()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 7, "String", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(8)
+    //@Async(0)
+    //@Returns("String")
+    get_TripleDesCbc()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 8, "String", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(9)
+    //@Async(0)
+    //@Returns("String")
+    get_TripleDesEcb()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 9, "String", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(10)
+    //@Async(0)
+    //@Returns("String")
+    get_Rc2Cbc()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 10, "String", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(11)
+    //@Async(0)
+    //@Returns("String")
+    get_Rc2Ecb()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 11, "String", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(12)
+    //@Async(0)
+    //@Returns("String")
+    get_AesCbc()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 12, "String", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(13)
+    //@Async(0)
+    //@Returns("String")
+    get_AesEcb()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 13, "String", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(14)
+    //@Async(0)
+    //@Returns("String")
+    get_AesGcm()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 14, "String", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(15)
+    //@Async(0)
+    //@Returns("String")
+    get_AesCcm()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 15, "String", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(16)
+    //@Async(0)
+    //@Returns("String")
+    get_AesCbcPkcs7()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 16, "String", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(17)
+    //@Async(0)
+    //@Returns("String")
+    get_AesEcbPkcs7()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 17, "String", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(18)
+    //@Async(0)
+    //@Returns("String")
+    get_DesCbcPkcs7()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 18, "String", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(19)
+    //@Async(0)
+    //@Returns("String")
+    get_DesEcbPkcs7()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 19, "String", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(20)
+    //@Async(0)
+    //@Returns("String")
+    get_TripleDesCbcPkcs7()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 20, "String", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(21)
+    //@Async(0)
+    //@Returns("String")
+    get_TripleDesEcbPkcs7()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 21, "String", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(22)
+    //@Async(0)
+    //@Returns("String")
+    get_Rc2CbcPkcs7()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 22, "String", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(23)
+    //@Async(0)
+    //@Returns("String")
+    get_Rc2EcbPkcs7()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 23, "String", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(24)
+    //@Async(0)
+    //@Returns("String")
+    get_Rc4()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 24, "String", [], [] );
+        return _r;
+    }
+
+
+}
+Windows_Security_Cryptography_Core_ISymmetricAlgorithmNamesStatics.iid = "{6870727B-C996-4EAE-84D7-79B2AEB73B9C}";
+Windows.Security.Cryptography.Core.ISymmetricAlgorithmNamesStatics = Windows_Security_Cryptography_Core_ISymmetricAlgorithmNamesStatics;
+
+
+//@Interface("Windows.Security.Cryptography.Core.ISymmetricKeyAlgorithmProvider")
+//@IID("{3D7E4A33-3BD0-4902-8AC8-470D50D21376}")
+class Windows_Security_Cryptography_Core_ISymmetricKeyAlgorithmProvider : WinRtInterface 
+{
+    Windows_Security_Cryptography_Core_ISymmetricKeyAlgorithmProvider( comPtr )
+    {
+        var Windows = runtime.global("Windows");
+        this.comPtr = comPtr.queryInterface( "{3D7E4A33-3BD0-4902-8AC8-470D50D21376}");
+    }
+
+    //@VtableIndex(6)
+    //@Async(0)
+    //@Returns("String")
+    get_AlgorithmName()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 6, "String", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(7)
+    //@Async(0)
+    //@Returns("UInt32")
+    get_BlockLength()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 7, "UInt32", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(8)
+    //@Async(0)
+    //@Returns("Windows.Security.Cryptography.Core.CryptographicKey")
+    //@Parameters("Windows.Storage.Streams.IBuffer")
+    CreateSymmetricKey(keyMaterial)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = Windows.Storage.Streams.IBuffer( keyMaterial); 
+        var _r = Windows.Security.Cryptography.Core.CryptographicKey(
+            this.comPtr.invoke( 8, "Windows.Security.Cryptography.Core.CryptographicKey", ["Windows.Storage.Streams.IBuffer"], [p1] )
+        );
+        return _r;
+    }
+
+
+}
+Windows_Security_Cryptography_Core_ISymmetricKeyAlgorithmProvider.iid = "{3D7E4A33-3BD0-4902-8AC8-470D50D21376}";
+Windows.Security.Cryptography.Core.ISymmetricKeyAlgorithmProvider = Windows_Security_Cryptography_Core_ISymmetricKeyAlgorithmProvider;
+
+
+//@Interface("Windows.Security.Cryptography.Core.ISymmetricKeyAlgorithmProviderStatics")
+//@IID("{8D3B2326-1F37-491F-B60E-F5431B26B483}")
+class Windows_Security_Cryptography_Core_ISymmetricKeyAlgorithmProviderStatics : WinRtInterface 
+{
+    Windows_Security_Cryptography_Core_ISymmetricKeyAlgorithmProviderStatics( comPtr )
+    {
+        var Windows = runtime.global("Windows");
+        this.comPtr = comPtr.queryInterface( "{8D3B2326-1F37-491F-B60E-F5431B26B483}");
+    }
+
+    //@VtableIndex(6)
+    //@Async(0)
+    //@Returns("Windows.Security.Cryptography.Core.SymmetricKeyAlgorithmProvider")
+    //@Parameters("String")
+    OpenAlgorithm(algorithm)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = algorithm;
+        var _r = Windows.Security.Cryptography.Core.SymmetricKeyAlgorithmProvider(
+            this.comPtr.invoke( 6, "Windows.Security.Cryptography.Core.SymmetricKeyAlgorithmProvider", ["String"], [p1] )
+        );
+        return _r;
+    }
+
+
+}
+Windows_Security_Cryptography_Core_ISymmetricKeyAlgorithmProviderStatics.iid = "{8D3B2326-1F37-491F-B60E-F5431B26B483}";
+Windows.Security.Cryptography.Core.ISymmetricKeyAlgorithmProviderStatics = Windows_Security_Cryptography_Core_ISymmetricKeyAlgorithmProviderStatics;
+
+
+//@RuntimeClass("Windows.Security.Cryptography.Core.AsymmetricAlgorithmNames")
+//@Implements("")
+//@DefaultInterface("")
+@Proxy("WinRtProxy")
+class Windows_Security_Cryptography_Core_AsymmetricAlgorithmNames : WinRtInterface
+{
+    Windows_Security_Cryptography_Core_AsymmetricAlgorithmNames( comPtr )
+    {
+        this.comPtr = comPtr;
+    }
+
+    // s Windows.Security.Cryptography.Core.IAsymmetricAlgorithmNamesStatics2
+    //@Async(0)
+    //@Returns("String")
+    static get_EcdsaSha256( )
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Security.Cryptography.Core.AsymmetricAlgorithmNames" );
+        var iface = Windows.Security.Cryptography.Core.IAsymmetricAlgorithmNamesStatics2( factory );
+        var _r = iface.get_EcdsaSha256( );
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    //@Async(0)
+    //@Returns("String")
+    static get_EcdsaSha384( )
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Security.Cryptography.Core.AsymmetricAlgorithmNames" );
+        var iface = Windows.Security.Cryptography.Core.IAsymmetricAlgorithmNamesStatics2( factory );
+        var _r = iface.get_EcdsaSha384( );
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    //@Async(0)
+    //@Returns("String")
+    static get_EcdsaSha512( )
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Security.Cryptography.Core.AsymmetricAlgorithmNames" );
+        var iface = Windows.Security.Cryptography.Core.IAsymmetricAlgorithmNamesStatics2( factory );
+        var _r = iface.get_EcdsaSha512( );
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    // s Windows.Security.Cryptography.Core.IAsymmetricAlgorithmNamesStatics
+    //@Async(0)
+    //@Returns("String")
+    static get_RsaPkcs1( )
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Security.Cryptography.Core.AsymmetricAlgorithmNames" );
+        var iface = Windows.Security.Cryptography.Core.IAsymmetricAlgorithmNamesStatics( factory );
+        var _r = iface.get_RsaPkcs1( );
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    //@Async(0)
+    //@Returns("String")
+    static get_RsaOaepSha1( )
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Security.Cryptography.Core.AsymmetricAlgorithmNames" );
+        var iface = Windows.Security.Cryptography.Core.IAsymmetricAlgorithmNamesStatics( factory );
+        var _r = iface.get_RsaOaepSha1( );
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    //@Async(0)
+    //@Returns("String")
+    static get_RsaOaepSha256( )
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Security.Cryptography.Core.AsymmetricAlgorithmNames" );
+        var iface = Windows.Security.Cryptography.Core.IAsymmetricAlgorithmNamesStatics( factory );
+        var _r = iface.get_RsaOaepSha256( );
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    //@Async(0)
+    //@Returns("String")
+    static get_RsaOaepSha384( )
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Security.Cryptography.Core.AsymmetricAlgorithmNames" );
+        var iface = Windows.Security.Cryptography.Core.IAsymmetricAlgorithmNamesStatics( factory );
+        var _r = iface.get_RsaOaepSha384( );
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    //@Async(0)
+    //@Returns("String")
+    static get_RsaOaepSha512( )
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Security.Cryptography.Core.AsymmetricAlgorithmNames" );
+        var iface = Windows.Security.Cryptography.Core.IAsymmetricAlgorithmNamesStatics( factory );
+        var _r = iface.get_RsaOaepSha512( );
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    //@Async(0)
+    //@Returns("String")
+    static get_EcdsaP256Sha256( )
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Security.Cryptography.Core.AsymmetricAlgorithmNames" );
+        var iface = Windows.Security.Cryptography.Core.IAsymmetricAlgorithmNamesStatics( factory );
+        var _r = iface.get_EcdsaP256Sha256( );
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    //@Async(0)
+    //@Returns("String")
+    static get_EcdsaP384Sha384( )
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Security.Cryptography.Core.AsymmetricAlgorithmNames" );
+        var iface = Windows.Security.Cryptography.Core.IAsymmetricAlgorithmNamesStatics( factory );
+        var _r = iface.get_EcdsaP384Sha384( );
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    //@Async(0)
+    //@Returns("String")
+    static get_EcdsaP521Sha512( )
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Security.Cryptography.Core.AsymmetricAlgorithmNames" );
+        var iface = Windows.Security.Cryptography.Core.IAsymmetricAlgorithmNamesStatics( factory );
+        var _r = iface.get_EcdsaP521Sha512( );
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    //@Async(0)
+    //@Returns("String")
+    static get_DsaSha1( )
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Security.Cryptography.Core.AsymmetricAlgorithmNames" );
+        var iface = Windows.Security.Cryptography.Core.IAsymmetricAlgorithmNamesStatics( factory );
+        var _r = iface.get_DsaSha1( );
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    //@Async(0)
+    //@Returns("String")
+    static get_DsaSha256( )
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Security.Cryptography.Core.AsymmetricAlgorithmNames" );
+        var iface = Windows.Security.Cryptography.Core.IAsymmetricAlgorithmNamesStatics( factory );
+        var _r = iface.get_DsaSha256( );
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    //@Async(0)
+    //@Returns("String")
+    static get_RsaSignPkcs1Sha1( )
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Security.Cryptography.Core.AsymmetricAlgorithmNames" );
+        var iface = Windows.Security.Cryptography.Core.IAsymmetricAlgorithmNamesStatics( factory );
+        var _r = iface.get_RsaSignPkcs1Sha1( );
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    //@Async(0)
+    //@Returns("String")
+    static get_RsaSignPkcs1Sha256( )
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Security.Cryptography.Core.AsymmetricAlgorithmNames" );
+        var iface = Windows.Security.Cryptography.Core.IAsymmetricAlgorithmNamesStatics( factory );
+        var _r = iface.get_RsaSignPkcs1Sha256( );
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    //@Async(0)
+    //@Returns("String")
+    static get_RsaSignPkcs1Sha384( )
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Security.Cryptography.Core.AsymmetricAlgorithmNames" );
+        var iface = Windows.Security.Cryptography.Core.IAsymmetricAlgorithmNamesStatics( factory );
+        var _r = iface.get_RsaSignPkcs1Sha384( );
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    //@Async(0)
+    //@Returns("String")
+    static get_RsaSignPkcs1Sha512( )
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Security.Cryptography.Core.AsymmetricAlgorithmNames" );
+        var iface = Windows.Security.Cryptography.Core.IAsymmetricAlgorithmNamesStatics( factory );
+        var _r = iface.get_RsaSignPkcs1Sha512( );
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    //@Async(0)
+    //@Returns("String")
+    static get_RsaSignPssSha1( )
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Security.Cryptography.Core.AsymmetricAlgorithmNames" );
+        var iface = Windows.Security.Cryptography.Core.IAsymmetricAlgorithmNamesStatics( factory );
+        var _r = iface.get_RsaSignPssSha1( );
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    //@Async(0)
+    //@Returns("String")
+    static get_RsaSignPssSha256( )
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Security.Cryptography.Core.AsymmetricAlgorithmNames" );
+        var iface = Windows.Security.Cryptography.Core.IAsymmetricAlgorithmNamesStatics( factory );
+        var _r = iface.get_RsaSignPssSha256( );
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    //@Async(0)
+    //@Returns("String")
+    static get_RsaSignPssSha384( )
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Security.Cryptography.Core.AsymmetricAlgorithmNames" );
+        var iface = Windows.Security.Cryptography.Core.IAsymmetricAlgorithmNamesStatics( factory );
+        var _r = iface.get_RsaSignPssSha384( );
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    //@Async(0)
+    //@Returns("String")
+    static get_RsaSignPssSha512( )
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Security.Cryptography.Core.AsymmetricAlgorithmNames" );
+        var iface = Windows.Security.Cryptography.Core.IAsymmetricAlgorithmNamesStatics( factory );
+        var _r = iface.get_RsaSignPssSha512( );
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    static Create()
+    {
+        return Windows.Security.Cryptography.Core.AsymmetricAlgorithmNames(
+            winrt.activate("Windows.Security.Cryptography.Core.AsymmetricAlgorithmNames")
+        );
+    }
+
+}
+Windows.Security.Cryptography.Core.AsymmetricAlgorithmNames = Windows_Security_Cryptography_Core_AsymmetricAlgorithmNames;
+
+//@RuntimeClass("Windows.Security.Cryptography.Core.AsymmetricKeyAlgorithmProvider")
+//@Implements("Windows.Security.Cryptography.Core.IAsymmetricKeyAlgorithmProvider","Windows.Security.Cryptography.Core.IAsymmetricKeyAlgorithmProvider2")
+//@DefaultInterface("Windows.Security.Cryptography.Core.IAsymmetricKeyAlgorithmProvider")
+@Proxy("WinRtProxy")
+class Windows_Security_Cryptography_Core_AsymmetricKeyAlgorithmProvider : WinRtInterface
+{
+    Windows_Security_Cryptography_Core_AsymmetricKeyAlgorithmProvider( comPtr )
+    {
+        var Windows = runtime.global("Windows");
+        this.comPtr = comPtr.queryInterface( Windows.Security.Cryptography.Core.IAsymmetricKeyAlgorithmProvider.iid );
+    }
+
+    // s Windows.Security.Cryptography.Core.IAsymmetricKeyAlgorithmProviderStatics
+    //@Async(0)
+    //@Returns("Windows.Security.Cryptography.Core.AsymmetricKeyAlgorithmProvider")
+    //@Parameters("String")
+    static OpenAlgorithm( algorithm)
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Security.Cryptography.Core.AsymmetricKeyAlgorithmProvider" );
+        var iface = Windows.Security.Cryptography.Core.IAsymmetricKeyAlgorithmProviderStatics( factory );
+        var _r = iface.OpenAlgorithm( algorithm);
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    static Create()
+    {
+        return Windows.Security.Cryptography.Core.AsymmetricKeyAlgorithmProvider(
+            winrt.activate("Windows.Security.Cryptography.Core.AsymmetricKeyAlgorithmProvider")
+        );
+    }
+    //@Returns("String")
+    get_AlgorithmName()
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Security.Cryptography.Core.IAsymmetricKeyAlgorithmProvider( this.comPtr );
+        var _r = iface.get_AlgorithmName(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Parameters("UInt32")
+    //@Returns("Windows.Security.Cryptography.Core.CryptographicKey")
+    //@Parameters("UInt32")
+    CreateKeyPair(keySize)
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Security.Cryptography.Core.IAsymmetricKeyAlgorithmProvider( this.comPtr );
+        var _r = iface.CreateKeyPair( keySize );
+        iface.release();
+        return _r;
+    }
+
+    //@Parameters("String")
+    //@Returns("Windows.Security.Cryptography.Core.CryptographicKey")
+    //@Parameters("String")
+    CreateKeyPairWithCurveName(curveName)
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Security.Cryptography.Core.IAsymmetricKeyAlgorithmProvider2( this.comPtr );
+        var _r = iface.CreateKeyPairWithCurveName( curveName );
+        iface.release();
+        return _r;
+    }
+
+
+}
+Windows.Security.Cryptography.Core.AsymmetricKeyAlgorithmProvider = Windows_Security_Cryptography_Core_AsymmetricKeyAlgorithmProvider;
+
+//@RuntimeClass("Windows.Security.Cryptography.Core.CryptographicEngine")
+//@Implements("")
+//@DefaultInterface("")
+@Proxy("WinRtProxy")
+class Windows_Security_Cryptography_Core_CryptographicEngine : WinRtInterface
+{
+    Windows_Security_Cryptography_Core_CryptographicEngine( comPtr )
+    {
+        this.comPtr = comPtr;
+    }
+
+    // s Windows.Security.Cryptography.Core.ICryptographicEngineStatics2
+    //@Async(0)
+    //@Returns("Windows.Storage.Streams.IBuffer")
+    //@Parameters("Windows.Security.Cryptography.Core.CryptographicKey","Windows.Storage.Streams.IBuffer")
+    static SignHashedData( key, data)
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Security.Cryptography.Core.CryptographicEngine" );
+        var iface = Windows.Security.Cryptography.Core.ICryptographicEngineStatics2( factory );
+        var _r = iface.SignHashedData( key, data);
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    //@Async(0)
+    //@Returns("Boolean")
+    //@Parameters("Windows.Security.Cryptography.Core.CryptographicKey","Windows.Storage.Streams.IBuffer","Windows.Storage.Streams.IBuffer")
+    static VerifySignatureWithHashInput( key, data, signature)
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Security.Cryptography.Core.CryptographicEngine" );
+        var iface = Windows.Security.Cryptography.Core.ICryptographicEngineStatics2( factory );
+        var _r = iface.VerifySignatureWithHashInput( key, data, signature);
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    //@Async(3)
+    //@Returns("Windows.Foundation.IAsyncOperation`1<Windows.Storage.Streams.IBuffer>")
+    //@Parameters("Windows.Security.Cryptography.Core.CryptographicKey","Windows.Storage.Streams.IBuffer","Windows.Storage.Streams.IBuffer")
+    static DecryptAsync( key, data, iv)
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Security.Cryptography.Core.CryptographicEngine" );
+        var iface = Windows.Security.Cryptography.Core.ICryptographicEngineStatics2( factory );
+        var _promise = Future();
+        var _cb = fun(status, result)
+        {
+            if (status == Windows.Foundation.AsyncStatus.Completed)
+            {
+                _promise.resolve(result);
+            } else {
+                _promise.reject(status);
+            }
+        };
+        iface.DecryptAsync( key, data, iv, _cb);
+        iface.release();
+        factory.release();
+        return _promise;
+    }
+
+
+    //@Async(3)
+    //@Returns("Windows.Foundation.IAsyncOperation`1<Windows.Storage.Streams.IBuffer>")
+    //@Parameters("Windows.Security.Cryptography.Core.CryptographicKey","Windows.Storage.Streams.IBuffer")
+    static SignAsync( key, data)
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Security.Cryptography.Core.CryptographicEngine" );
+        var iface = Windows.Security.Cryptography.Core.ICryptographicEngineStatics2( factory );
+        var _promise = Future();
+        var _cb = fun(status, result)
+        {
+            if (status == Windows.Foundation.AsyncStatus.Completed)
+            {
+                _promise.resolve(result);
+            } else {
+                _promise.reject(status);
+            }
+        };
+        iface.SignAsync( key, data, _cb);
+        iface.release();
+        factory.release();
+        return _promise;
+    }
+
+
+    //@Async(3)
+    //@Returns("Windows.Foundation.IAsyncOperation`1<Windows.Storage.Streams.IBuffer>")
+    //@Parameters("Windows.Security.Cryptography.Core.CryptographicKey","Windows.Storage.Streams.IBuffer")
+    static SignHashedDataAsync( key, data)
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Security.Cryptography.Core.CryptographicEngine" );
+        var iface = Windows.Security.Cryptography.Core.ICryptographicEngineStatics2( factory );
+        var _promise = Future();
+        var _cb = fun(status, result)
+        {
+            if (status == Windows.Foundation.AsyncStatus.Completed)
+            {
+                _promise.resolve(result);
+            } else {
+                _promise.reject(status);
+            }
+        };
+        iface.SignHashedDataAsync( key, data, _cb);
+        iface.release();
+        factory.release();
+        return _promise;
+    }
+
+
+    // s Windows.Security.Cryptography.Core.ICryptographicEngineStatics
+    //@Async(0)
+    //@Returns("Windows.Storage.Streams.IBuffer")
+    //@Parameters("Windows.Security.Cryptography.Core.CryptographicKey","Windows.Storage.Streams.IBuffer","Windows.Storage.Streams.IBuffer")
+    static Encrypt( key, data, iv)
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Security.Cryptography.Core.CryptographicEngine" );
+        var iface = Windows.Security.Cryptography.Core.ICryptographicEngineStatics( factory );
+        var _r = iface.Encrypt( key, data, iv);
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    //@Async(0)
+    //@Returns("Windows.Storage.Streams.IBuffer")
+    //@Parameters("Windows.Security.Cryptography.Core.CryptographicKey","Windows.Storage.Streams.IBuffer","Windows.Storage.Streams.IBuffer")
+    static Decrypt( key, data, iv)
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Security.Cryptography.Core.CryptographicEngine" );
+        var iface = Windows.Security.Cryptography.Core.ICryptographicEngineStatics( factory );
+        var _r = iface.Decrypt( key, data, iv);
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    //@Async(0)
+    //@Returns("Windows.Security.Cryptography.Core.EncryptedAndAuthenticatedData")
+    //@Parameters("Windows.Security.Cryptography.Core.CryptographicKey","Windows.Storage.Streams.IBuffer","Windows.Storage.Streams.IBuffer","Windows.Storage.Streams.IBuffer")
+    static EncryptAndAuthenticate( key, data, nonce, authenticatedData)
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Security.Cryptography.Core.CryptographicEngine" );
+        var iface = Windows.Security.Cryptography.Core.ICryptographicEngineStatics( factory );
+        var _r = iface.EncryptAndAuthenticate( key, data, nonce, authenticatedData);
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    //@Async(0)
+    //@Returns("Windows.Storage.Streams.IBuffer")
+    //@Parameters("Windows.Security.Cryptography.Core.CryptographicKey","Windows.Storage.Streams.IBuffer","Windows.Storage.Streams.IBuffer","Windows.Storage.Streams.IBuffer","Windows.Storage.Streams.IBuffer")
+    static DecryptAndAuthenticate( key, data, nonce, authenticationTag, authenticatedData)
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Security.Cryptography.Core.CryptographicEngine" );
+        var iface = Windows.Security.Cryptography.Core.ICryptographicEngineStatics( factory );
+        var _r = iface.DecryptAndAuthenticate( key, data, nonce, authenticationTag, authenticatedData);
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    //@Async(0)
+    //@Returns("Windows.Storage.Streams.IBuffer")
+    //@Parameters("Windows.Security.Cryptography.Core.CryptographicKey","Windows.Storage.Streams.IBuffer")
+    static Sign( key, data)
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Security.Cryptography.Core.CryptographicEngine" );
+        var iface = Windows.Security.Cryptography.Core.ICryptographicEngineStatics( factory );
+        var _r = iface.Sign( key, data);
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    //@Async(0)
+    //@Returns("Boolean")
+    //@Parameters("Windows.Security.Cryptography.Core.CryptographicKey","Windows.Storage.Streams.IBuffer","Windows.Storage.Streams.IBuffer")
+    static VerifySignature( key, data, signature)
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Security.Cryptography.Core.CryptographicEngine" );
+        var iface = Windows.Security.Cryptography.Core.ICryptographicEngineStatics( factory );
+        var _r = iface.VerifySignature( key, data, signature);
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    //@Async(0)
+    //@Returns("Windows.Storage.Streams.IBuffer")
+    //@Parameters("Windows.Security.Cryptography.Core.CryptographicKey","Windows.Security.Cryptography.Core.KeyDerivationParameters","UInt32")
+    static DeriveKeyMaterial( key, parameters, desiredKeySize)
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Security.Cryptography.Core.CryptographicEngine" );
+        var iface = Windows.Security.Cryptography.Core.ICryptographicEngineStatics( factory );
+        var _r = iface.DeriveKeyMaterial( key, parameters, desiredKeySize);
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    static Create()
+    {
+        return Windows.Security.Cryptography.Core.CryptographicEngine(
+            winrt.activate("Windows.Security.Cryptography.Core.CryptographicEngine")
+        );
+    }
+
+}
+Windows.Security.Cryptography.Core.CryptographicEngine = Windows_Security_Cryptography_Core_CryptographicEngine;
+
+//@RuntimeClass("Windows.Security.Cryptography.Core.CryptographicHash")
+//@Implements("Windows.Security.Cryptography.Core.IHashComputation")
+//@DefaultInterface("Windows.Security.Cryptography.Core.IHashComputation")
+@Proxy("WinRtProxy")
+class Windows_Security_Cryptography_Core_CryptographicHash : WinRtInterface
+{
+    Windows_Security_Cryptography_Core_CryptographicHash( comPtr )
+    {
+        var Windows = runtime.global("Windows");
+        this.comPtr = comPtr.queryInterface( Windows.Security.Cryptography.Core.IHashComputation.iid );
+    }
+
+    static Create()
+    {
+        return Windows.Security.Cryptography.Core.CryptographicHash(
+            winrt.activate("Windows.Security.Cryptography.Core.CryptographicHash")
+        );
+    }
+    //@Parameters("Windows.Storage.Streams.IBuffer")
+    //@Returns("void")
+    //@Parameters("Windows.Storage.Streams.IBuffer")
+    Append(data)
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Security.Cryptography.Core.IHashComputation( this.comPtr );
+        iface.Append( data );
+        iface.release();
+    }
+
+    //@Returns("Windows.Storage.Streams.IBuffer")
+    GetValueAndReset()
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Security.Cryptography.Core.IHashComputation( this.comPtr );
+        var _r = iface.GetValueAndReset(  );
+        iface.release();
+        return _r;
+    }
+
+
+}
+Windows.Security.Cryptography.Core.CryptographicHash = Windows_Security_Cryptography_Core_CryptographicHash;
+
+//@RuntimeClass("Windows.Security.Cryptography.Core.CryptographicKey")
+//@Implements("Windows.Security.Cryptography.Core.ICryptographicKey")
+//@DefaultInterface("Windows.Security.Cryptography.Core.ICryptographicKey")
+@Proxy("WinRtProxy")
+class Windows_Security_Cryptography_Core_CryptographicKey : WinRtInterface
+{
+    Windows_Security_Cryptography_Core_CryptographicKey( comPtr )
+    {
+        var Windows = runtime.global("Windows");
+        this.comPtr = comPtr.queryInterface( Windows.Security.Cryptography.Core.ICryptographicKey.iid );
+    }
+
+    static Create()
+    {
+        return Windows.Security.Cryptography.Core.CryptographicKey(
+            winrt.activate("Windows.Security.Cryptography.Core.CryptographicKey")
+        );
+    }
+    //@Returns("UInt32")
+    get_KeySize()
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Security.Cryptography.Core.ICryptographicKey( this.comPtr );
+        var _r = iface.get_KeySize(  );
+        iface.release();
+        return _r;
+    }
+
+
+}
+Windows.Security.Cryptography.Core.CryptographicKey = Windows_Security_Cryptography_Core_CryptographicKey;
+
+//@RuntimeClass("Windows.Security.Cryptography.Core.EccCurveNames")
+//@Implements("")
+//@DefaultInterface("")
+@Proxy("WinRtProxy")
+class Windows_Security_Cryptography_Core_EccCurveNames : WinRtInterface
+{
+    Windows_Security_Cryptography_Core_EccCurveNames( comPtr )
+    {
+        this.comPtr = comPtr;
+    }
+
+    // s Windows.Security.Cryptography.Core.IEccCurveNamesStatics
+    //@Async(0)
+    //@Returns("String")
+    static get_BrainpoolP160r1( )
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Security.Cryptography.Core.EccCurveNames" );
+        var iface = Windows.Security.Cryptography.Core.IEccCurveNamesStatics( factory );
+        var _r = iface.get_BrainpoolP160r1( );
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    //@Async(0)
+    //@Returns("String")
+    static get_BrainpoolP160t1( )
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Security.Cryptography.Core.EccCurveNames" );
+        var iface = Windows.Security.Cryptography.Core.IEccCurveNamesStatics( factory );
+        var _r = iface.get_BrainpoolP160t1( );
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    //@Async(0)
+    //@Returns("String")
+    static get_BrainpoolP192r1( )
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Security.Cryptography.Core.EccCurveNames" );
+        var iface = Windows.Security.Cryptography.Core.IEccCurveNamesStatics( factory );
+        var _r = iface.get_BrainpoolP192r1( );
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    //@Async(0)
+    //@Returns("String")
+    static get_BrainpoolP192t1( )
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Security.Cryptography.Core.EccCurveNames" );
+        var iface = Windows.Security.Cryptography.Core.IEccCurveNamesStatics( factory );
+        var _r = iface.get_BrainpoolP192t1( );
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    //@Async(0)
+    //@Returns("String")
+    static get_BrainpoolP224r1( )
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Security.Cryptography.Core.EccCurveNames" );
+        var iface = Windows.Security.Cryptography.Core.IEccCurveNamesStatics( factory );
+        var _r = iface.get_BrainpoolP224r1( );
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    //@Async(0)
+    //@Returns("String")
+    static get_BrainpoolP224t1( )
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Security.Cryptography.Core.EccCurveNames" );
+        var iface = Windows.Security.Cryptography.Core.IEccCurveNamesStatics( factory );
+        var _r = iface.get_BrainpoolP224t1( );
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    //@Async(0)
+    //@Returns("String")
+    static get_BrainpoolP256r1( )
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Security.Cryptography.Core.EccCurveNames" );
+        var iface = Windows.Security.Cryptography.Core.IEccCurveNamesStatics( factory );
+        var _r = iface.get_BrainpoolP256r1( );
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    //@Async(0)
+    //@Returns("String")
+    static get_BrainpoolP256t1( )
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Security.Cryptography.Core.EccCurveNames" );
+        var iface = Windows.Security.Cryptography.Core.IEccCurveNamesStatics( factory );
+        var _r = iface.get_BrainpoolP256t1( );
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    //@Async(0)
+    //@Returns("String")
+    static get_BrainpoolP320r1( )
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Security.Cryptography.Core.EccCurveNames" );
+        var iface = Windows.Security.Cryptography.Core.IEccCurveNamesStatics( factory );
+        var _r = iface.get_BrainpoolP320r1( );
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    //@Async(0)
+    //@Returns("String")
+    static get_BrainpoolP320t1( )
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Security.Cryptography.Core.EccCurveNames" );
+        var iface = Windows.Security.Cryptography.Core.IEccCurveNamesStatics( factory );
+        var _r = iface.get_BrainpoolP320t1( );
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    //@Async(0)
+    //@Returns("String")
+    static get_BrainpoolP384r1( )
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Security.Cryptography.Core.EccCurveNames" );
+        var iface = Windows.Security.Cryptography.Core.IEccCurveNamesStatics( factory );
+        var _r = iface.get_BrainpoolP384r1( );
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    //@Async(0)
+    //@Returns("String")
+    static get_BrainpoolP384t1( )
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Security.Cryptography.Core.EccCurveNames" );
+        var iface = Windows.Security.Cryptography.Core.IEccCurveNamesStatics( factory );
+        var _r = iface.get_BrainpoolP384t1( );
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    //@Async(0)
+    //@Returns("String")
+    static get_BrainpoolP512r1( )
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Security.Cryptography.Core.EccCurveNames" );
+        var iface = Windows.Security.Cryptography.Core.IEccCurveNamesStatics( factory );
+        var _r = iface.get_BrainpoolP512r1( );
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    //@Async(0)
+    //@Returns("String")
+    static get_BrainpoolP512t1( )
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Security.Cryptography.Core.EccCurveNames" );
+        var iface = Windows.Security.Cryptography.Core.IEccCurveNamesStatics( factory );
+        var _r = iface.get_BrainpoolP512t1( );
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    //@Async(0)
+    //@Returns("String")
+    static get_Curve25519( )
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Security.Cryptography.Core.EccCurveNames" );
+        var iface = Windows.Security.Cryptography.Core.IEccCurveNamesStatics( factory );
+        var _r = iface.get_Curve25519( );
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    //@Async(0)
+    //@Returns("String")
+    static get_Ec192wapi( )
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Security.Cryptography.Core.EccCurveNames" );
+        var iface = Windows.Security.Cryptography.Core.IEccCurveNamesStatics( factory );
+        var _r = iface.get_Ec192wapi( );
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    //@Async(0)
+    //@Returns("String")
+    static get_NistP192( )
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Security.Cryptography.Core.EccCurveNames" );
+        var iface = Windows.Security.Cryptography.Core.IEccCurveNamesStatics( factory );
+        var _r = iface.get_NistP192( );
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    //@Async(0)
+    //@Returns("String")
+    static get_NistP224( )
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Security.Cryptography.Core.EccCurveNames" );
+        var iface = Windows.Security.Cryptography.Core.IEccCurveNamesStatics( factory );
+        var _r = iface.get_NistP224( );
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    //@Async(0)
+    //@Returns("String")
+    static get_NistP256( )
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Security.Cryptography.Core.EccCurveNames" );
+        var iface = Windows.Security.Cryptography.Core.IEccCurveNamesStatics( factory );
+        var _r = iface.get_NistP256( );
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    //@Async(0)
+    //@Returns("String")
+    static get_NistP384( )
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Security.Cryptography.Core.EccCurveNames" );
+        var iface = Windows.Security.Cryptography.Core.IEccCurveNamesStatics( factory );
+        var _r = iface.get_NistP384( );
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    //@Async(0)
+    //@Returns("String")
+    static get_NistP521( )
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Security.Cryptography.Core.EccCurveNames" );
+        var iface = Windows.Security.Cryptography.Core.IEccCurveNamesStatics( factory );
+        var _r = iface.get_NistP521( );
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    //@Async(0)
+    //@Returns("String")
+    static get_NumsP256t1( )
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Security.Cryptography.Core.EccCurveNames" );
+        var iface = Windows.Security.Cryptography.Core.IEccCurveNamesStatics( factory );
+        var _r = iface.get_NumsP256t1( );
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    //@Async(0)
+    //@Returns("String")
+    static get_NumsP384t1( )
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Security.Cryptography.Core.EccCurveNames" );
+        var iface = Windows.Security.Cryptography.Core.IEccCurveNamesStatics( factory );
+        var _r = iface.get_NumsP384t1( );
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    //@Async(0)
+    //@Returns("String")
+    static get_NumsP512t1( )
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Security.Cryptography.Core.EccCurveNames" );
+        var iface = Windows.Security.Cryptography.Core.IEccCurveNamesStatics( factory );
+        var _r = iface.get_NumsP512t1( );
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    //@Async(0)
+    //@Returns("String")
+    static get_SecP160k1( )
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Security.Cryptography.Core.EccCurveNames" );
+        var iface = Windows.Security.Cryptography.Core.IEccCurveNamesStatics( factory );
+        var _r = iface.get_SecP160k1( );
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    //@Async(0)
+    //@Returns("String")
+    static get_SecP160r1( )
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Security.Cryptography.Core.EccCurveNames" );
+        var iface = Windows.Security.Cryptography.Core.IEccCurveNamesStatics( factory );
+        var _r = iface.get_SecP160r1( );
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    //@Async(0)
+    //@Returns("String")
+    static get_SecP160r2( )
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Security.Cryptography.Core.EccCurveNames" );
+        var iface = Windows.Security.Cryptography.Core.IEccCurveNamesStatics( factory );
+        var _r = iface.get_SecP160r2( );
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    //@Async(0)
+    //@Returns("String")
+    static get_SecP192k1( )
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Security.Cryptography.Core.EccCurveNames" );
+        var iface = Windows.Security.Cryptography.Core.IEccCurveNamesStatics( factory );
+        var _r = iface.get_SecP192k1( );
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    //@Async(0)
+    //@Returns("String")
+    static get_SecP192r1( )
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Security.Cryptography.Core.EccCurveNames" );
+        var iface = Windows.Security.Cryptography.Core.IEccCurveNamesStatics( factory );
+        var _r = iface.get_SecP192r1( );
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    //@Async(0)
+    //@Returns("String")
+    static get_SecP224k1( )
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Security.Cryptography.Core.EccCurveNames" );
+        var iface = Windows.Security.Cryptography.Core.IEccCurveNamesStatics( factory );
+        var _r = iface.get_SecP224k1( );
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    //@Async(0)
+    //@Returns("String")
+    static get_SecP224r1( )
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Security.Cryptography.Core.EccCurveNames" );
+        var iface = Windows.Security.Cryptography.Core.IEccCurveNamesStatics( factory );
+        var _r = iface.get_SecP224r1( );
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    //@Async(0)
+    //@Returns("String")
+    static get_SecP256k1( )
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Security.Cryptography.Core.EccCurveNames" );
+        var iface = Windows.Security.Cryptography.Core.IEccCurveNamesStatics( factory );
+        var _r = iface.get_SecP256k1( );
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    //@Async(0)
+    //@Returns("String")
+    static get_SecP256r1( )
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Security.Cryptography.Core.EccCurveNames" );
+        var iface = Windows.Security.Cryptography.Core.IEccCurveNamesStatics( factory );
+        var _r = iface.get_SecP256r1( );
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    //@Async(0)
+    //@Returns("String")
+    static get_SecP384r1( )
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Security.Cryptography.Core.EccCurveNames" );
+        var iface = Windows.Security.Cryptography.Core.IEccCurveNamesStatics( factory );
+        var _r = iface.get_SecP384r1( );
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    //@Async(0)
+    //@Returns("String")
+    static get_SecP521r1( )
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Security.Cryptography.Core.EccCurveNames" );
+        var iface = Windows.Security.Cryptography.Core.IEccCurveNamesStatics( factory );
+        var _r = iface.get_SecP521r1( );
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    //@Async(0)
+    //@Returns("String")
+    static get_Wtls7( )
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Security.Cryptography.Core.EccCurveNames" );
+        var iface = Windows.Security.Cryptography.Core.IEccCurveNamesStatics( factory );
+        var _r = iface.get_Wtls7( );
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    //@Async(0)
+    //@Returns("String")
+    static get_Wtls9( )
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Security.Cryptography.Core.EccCurveNames" );
+        var iface = Windows.Security.Cryptography.Core.IEccCurveNamesStatics( factory );
+        var _r = iface.get_Wtls9( );
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    //@Async(0)
+    //@Returns("String")
+    static get_Wtls12( )
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Security.Cryptography.Core.EccCurveNames" );
+        var iface = Windows.Security.Cryptography.Core.IEccCurveNamesStatics( factory );
+        var _r = iface.get_Wtls12( );
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    //@Async(0)
+    //@Returns("String")
+    static get_X962P192v1( )
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Security.Cryptography.Core.EccCurveNames" );
+        var iface = Windows.Security.Cryptography.Core.IEccCurveNamesStatics( factory );
+        var _r = iface.get_X962P192v1( );
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    //@Async(0)
+    //@Returns("String")
+    static get_X962P192v2( )
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Security.Cryptography.Core.EccCurveNames" );
+        var iface = Windows.Security.Cryptography.Core.IEccCurveNamesStatics( factory );
+        var _r = iface.get_X962P192v2( );
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    //@Async(0)
+    //@Returns("String")
+    static get_X962P192v3( )
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Security.Cryptography.Core.EccCurveNames" );
+        var iface = Windows.Security.Cryptography.Core.IEccCurveNamesStatics( factory );
+        var _r = iface.get_X962P192v3( );
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    //@Async(0)
+    //@Returns("String")
+    static get_X962P239v1( )
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Security.Cryptography.Core.EccCurveNames" );
+        var iface = Windows.Security.Cryptography.Core.IEccCurveNamesStatics( factory );
+        var _r = iface.get_X962P239v1( );
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    //@Async(0)
+    //@Returns("String")
+    static get_X962P239v2( )
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Security.Cryptography.Core.EccCurveNames" );
+        var iface = Windows.Security.Cryptography.Core.IEccCurveNamesStatics( factory );
+        var _r = iface.get_X962P239v2( );
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    //@Async(0)
+    //@Returns("String")
+    static get_X962P239v3( )
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Security.Cryptography.Core.EccCurveNames" );
+        var iface = Windows.Security.Cryptography.Core.IEccCurveNamesStatics( factory );
+        var _r = iface.get_X962P239v3( );
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    //@Async(0)
+    //@Returns("String")
+    static get_X962P256v1( )
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Security.Cryptography.Core.EccCurveNames" );
+        var iface = Windows.Security.Cryptography.Core.IEccCurveNamesStatics( factory );
+        var _r = iface.get_X962P256v1( );
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    //@Async(0)
+    //@Returns("Windows.Foundation.Collections.IVectorView`1<String>")
+    static get_AllEccCurveNames( )
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Security.Cryptography.Core.EccCurveNames" );
+        var iface = Windows.Security.Cryptography.Core.IEccCurveNamesStatics( factory );
+        var _r = iface.get_AllEccCurveNames( );
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    static Create()
+    {
+        return Windows.Security.Cryptography.Core.EccCurveNames(
+            winrt.activate("Windows.Security.Cryptography.Core.EccCurveNames")
+        );
+    }
+
+}
+Windows.Security.Cryptography.Core.EccCurveNames = Windows_Security_Cryptography_Core_EccCurveNames;
+
+//@RuntimeClass("Windows.Security.Cryptography.Core.EncryptedAndAuthenticatedData")
+//@Implements("Windows.Security.Cryptography.Core.IEncryptedAndAuthenticatedData")
+//@DefaultInterface("Windows.Security.Cryptography.Core.IEncryptedAndAuthenticatedData")
+@Proxy("WinRtProxy")
+class Windows_Security_Cryptography_Core_EncryptedAndAuthenticatedData : WinRtInterface
+{
+    Windows_Security_Cryptography_Core_EncryptedAndAuthenticatedData( comPtr )
+    {
+        var Windows = runtime.global("Windows");
+        this.comPtr = comPtr.queryInterface( Windows.Security.Cryptography.Core.IEncryptedAndAuthenticatedData.iid );
+    }
+
+    static Create()
+    {
+        return Windows.Security.Cryptography.Core.EncryptedAndAuthenticatedData(
+            winrt.activate("Windows.Security.Cryptography.Core.EncryptedAndAuthenticatedData")
+        );
+    }
+    //@Returns("Windows.Storage.Streams.IBuffer")
+    get_EncryptedData()
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Security.Cryptography.Core.IEncryptedAndAuthenticatedData( this.comPtr );
+        var _r = iface.get_EncryptedData(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Returns("Windows.Storage.Streams.IBuffer")
+    get_AuthenticationTag()
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Security.Cryptography.Core.IEncryptedAndAuthenticatedData( this.comPtr );
+        var _r = iface.get_AuthenticationTag(  );
+        iface.release();
+        return _r;
+    }
+
+
+}
+Windows.Security.Cryptography.Core.EncryptedAndAuthenticatedData = Windows_Security_Cryptography_Core_EncryptedAndAuthenticatedData;
+
+//@RuntimeClass("Windows.Security.Cryptography.Core.HashAlgorithmNames")
+//@Implements("")
+//@DefaultInterface("")
+@Proxy("WinRtProxy")
+class Windows_Security_Cryptography_Core_HashAlgorithmNames : WinRtInterface
+{
+    Windows_Security_Cryptography_Core_HashAlgorithmNames( comPtr )
+    {
+        this.comPtr = comPtr;
+    }
+
+    // s Windows.Security.Cryptography.Core.IHashAlgorithmNamesStatics
+    //@Async(0)
+    //@Returns("String")
+    static get_Md5( )
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Security.Cryptography.Core.HashAlgorithmNames" );
+        var iface = Windows.Security.Cryptography.Core.IHashAlgorithmNamesStatics( factory );
+        var _r = iface.get_Md5( );
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    //@Async(0)
+    //@Returns("String")
+    static get_Sha1( )
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Security.Cryptography.Core.HashAlgorithmNames" );
+        var iface = Windows.Security.Cryptography.Core.IHashAlgorithmNamesStatics( factory );
+        var _r = iface.get_Sha1( );
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    //@Async(0)
+    //@Returns("String")
+    static get_Sha256( )
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Security.Cryptography.Core.HashAlgorithmNames" );
+        var iface = Windows.Security.Cryptography.Core.IHashAlgorithmNamesStatics( factory );
+        var _r = iface.get_Sha256( );
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    //@Async(0)
+    //@Returns("String")
+    static get_Sha384( )
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Security.Cryptography.Core.HashAlgorithmNames" );
+        var iface = Windows.Security.Cryptography.Core.IHashAlgorithmNamesStatics( factory );
+        var _r = iface.get_Sha384( );
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    //@Async(0)
+    //@Returns("String")
+    static get_Sha512( )
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Security.Cryptography.Core.HashAlgorithmNames" );
+        var iface = Windows.Security.Cryptography.Core.IHashAlgorithmNamesStatics( factory );
+        var _r = iface.get_Sha512( );
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    static Create()
+    {
+        return Windows.Security.Cryptography.Core.HashAlgorithmNames(
+            winrt.activate("Windows.Security.Cryptography.Core.HashAlgorithmNames")
+        );
+    }
+
+}
+Windows.Security.Cryptography.Core.HashAlgorithmNames = Windows_Security_Cryptography_Core_HashAlgorithmNames;
+
+//@RuntimeClass("Windows.Security.Cryptography.Core.HashAlgorithmProvider")
+//@Implements("Windows.Security.Cryptography.Core.IHashAlgorithmProvider")
+//@DefaultInterface("Windows.Security.Cryptography.Core.IHashAlgorithmProvider")
+@Proxy("WinRtProxy")
+class Windows_Security_Cryptography_Core_HashAlgorithmProvider : WinRtInterface
+{
+    Windows_Security_Cryptography_Core_HashAlgorithmProvider( comPtr )
+    {
+        var Windows = runtime.global("Windows");
+        this.comPtr = comPtr.queryInterface( Windows.Security.Cryptography.Core.IHashAlgorithmProvider.iid );
+    }
+
+    // s Windows.Security.Cryptography.Core.IHashAlgorithmProviderStatics
+    //@Async(0)
+    //@Returns("Windows.Security.Cryptography.Core.HashAlgorithmProvider")
+    //@Parameters("String")
+    static OpenAlgorithm( algorithm)
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Security.Cryptography.Core.HashAlgorithmProvider" );
+        var iface = Windows.Security.Cryptography.Core.IHashAlgorithmProviderStatics( factory );
+        var _r = iface.OpenAlgorithm( algorithm);
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    static Create()
+    {
+        return Windows.Security.Cryptography.Core.HashAlgorithmProvider(
+            winrt.activate("Windows.Security.Cryptography.Core.HashAlgorithmProvider")
+        );
+    }
+    //@Returns("String")
+    get_AlgorithmName()
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Security.Cryptography.Core.IHashAlgorithmProvider( this.comPtr );
+        var _r = iface.get_AlgorithmName(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Returns("UInt32")
+    get_HashLength()
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Security.Cryptography.Core.IHashAlgorithmProvider( this.comPtr );
+        var _r = iface.get_HashLength(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Parameters("Windows.Storage.Streams.IBuffer")
+    //@Returns("Windows.Storage.Streams.IBuffer")
+    //@Parameters("Windows.Storage.Streams.IBuffer")
+    HashData(data)
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Security.Cryptography.Core.IHashAlgorithmProvider( this.comPtr );
+        var _r = iface.HashData( data );
+        iface.release();
+        return _r;
+    }
+
+    //@Returns("Windows.Security.Cryptography.Core.CryptographicHash")
+    CreateHash()
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Security.Cryptography.Core.IHashAlgorithmProvider( this.comPtr );
+        var _r = iface.CreateHash(  );
+        iface.release();
+        return _r;
+    }
+
+
+}
+Windows.Security.Cryptography.Core.HashAlgorithmProvider = Windows_Security_Cryptography_Core_HashAlgorithmProvider;
+
+//@RuntimeClass("Windows.Security.Cryptography.Core.KeyDerivationAlgorithmNames")
+//@Implements("")
+//@DefaultInterface("")
+@Proxy("WinRtProxy")
+class Windows_Security_Cryptography_Core_KeyDerivationAlgorithmNames : WinRtInterface
+{
+    Windows_Security_Cryptography_Core_KeyDerivationAlgorithmNames( comPtr )
+    {
+        this.comPtr = comPtr;
+    }
+
+    // s Windows.Security.Cryptography.Core.IKeyDerivationAlgorithmNamesStatics2
+    //@Async(0)
+    //@Returns("String")
+    static get_CapiKdfMd5( )
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Security.Cryptography.Core.KeyDerivationAlgorithmNames" );
+        var iface = Windows.Security.Cryptography.Core.IKeyDerivationAlgorithmNamesStatics2( factory );
+        var _r = iface.get_CapiKdfMd5( );
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    //@Async(0)
+    //@Returns("String")
+    static get_CapiKdfSha1( )
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Security.Cryptography.Core.KeyDerivationAlgorithmNames" );
+        var iface = Windows.Security.Cryptography.Core.IKeyDerivationAlgorithmNamesStatics2( factory );
+        var _r = iface.get_CapiKdfSha1( );
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    //@Async(0)
+    //@Returns("String")
+    static get_CapiKdfSha256( )
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Security.Cryptography.Core.KeyDerivationAlgorithmNames" );
+        var iface = Windows.Security.Cryptography.Core.IKeyDerivationAlgorithmNamesStatics2( factory );
+        var _r = iface.get_CapiKdfSha256( );
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    //@Async(0)
+    //@Returns("String")
+    static get_CapiKdfSha384( )
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Security.Cryptography.Core.KeyDerivationAlgorithmNames" );
+        var iface = Windows.Security.Cryptography.Core.IKeyDerivationAlgorithmNamesStatics2( factory );
+        var _r = iface.get_CapiKdfSha384( );
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    //@Async(0)
+    //@Returns("String")
+    static get_CapiKdfSha512( )
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Security.Cryptography.Core.KeyDerivationAlgorithmNames" );
+        var iface = Windows.Security.Cryptography.Core.IKeyDerivationAlgorithmNamesStatics2( factory );
+        var _r = iface.get_CapiKdfSha512( );
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    // s Windows.Security.Cryptography.Core.IKeyDerivationAlgorithmNamesStatics
+    //@Async(0)
+    //@Returns("String")
+    static get_Pbkdf2Md5( )
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Security.Cryptography.Core.KeyDerivationAlgorithmNames" );
+        var iface = Windows.Security.Cryptography.Core.IKeyDerivationAlgorithmNamesStatics( factory );
+        var _r = iface.get_Pbkdf2Md5( );
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    //@Async(0)
+    //@Returns("String")
+    static get_Pbkdf2Sha1( )
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Security.Cryptography.Core.KeyDerivationAlgorithmNames" );
+        var iface = Windows.Security.Cryptography.Core.IKeyDerivationAlgorithmNamesStatics( factory );
+        var _r = iface.get_Pbkdf2Sha1( );
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    //@Async(0)
+    //@Returns("String")
+    static get_Pbkdf2Sha256( )
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Security.Cryptography.Core.KeyDerivationAlgorithmNames" );
+        var iface = Windows.Security.Cryptography.Core.IKeyDerivationAlgorithmNamesStatics( factory );
+        var _r = iface.get_Pbkdf2Sha256( );
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    //@Async(0)
+    //@Returns("String")
+    static get_Pbkdf2Sha384( )
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Security.Cryptography.Core.KeyDerivationAlgorithmNames" );
+        var iface = Windows.Security.Cryptography.Core.IKeyDerivationAlgorithmNamesStatics( factory );
+        var _r = iface.get_Pbkdf2Sha384( );
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    //@Async(0)
+    //@Returns("String")
+    static get_Pbkdf2Sha512( )
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Security.Cryptography.Core.KeyDerivationAlgorithmNames" );
+        var iface = Windows.Security.Cryptography.Core.IKeyDerivationAlgorithmNamesStatics( factory );
+        var _r = iface.get_Pbkdf2Sha512( );
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    //@Async(0)
+    //@Returns("String")
+    static get_Sp800108CtrHmacMd5( )
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Security.Cryptography.Core.KeyDerivationAlgorithmNames" );
+        var iface = Windows.Security.Cryptography.Core.IKeyDerivationAlgorithmNamesStatics( factory );
+        var _r = iface.get_Sp800108CtrHmacMd5( );
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    //@Async(0)
+    //@Returns("String")
+    static get_Sp800108CtrHmacSha1( )
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Security.Cryptography.Core.KeyDerivationAlgorithmNames" );
+        var iface = Windows.Security.Cryptography.Core.IKeyDerivationAlgorithmNamesStatics( factory );
+        var _r = iface.get_Sp800108CtrHmacSha1( );
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    //@Async(0)
+    //@Returns("String")
+    static get_Sp800108CtrHmacSha256( )
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Security.Cryptography.Core.KeyDerivationAlgorithmNames" );
+        var iface = Windows.Security.Cryptography.Core.IKeyDerivationAlgorithmNamesStatics( factory );
+        var _r = iface.get_Sp800108CtrHmacSha256( );
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    //@Async(0)
+    //@Returns("String")
+    static get_Sp800108CtrHmacSha384( )
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Security.Cryptography.Core.KeyDerivationAlgorithmNames" );
+        var iface = Windows.Security.Cryptography.Core.IKeyDerivationAlgorithmNamesStatics( factory );
+        var _r = iface.get_Sp800108CtrHmacSha384( );
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    //@Async(0)
+    //@Returns("String")
+    static get_Sp800108CtrHmacSha512( )
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Security.Cryptography.Core.KeyDerivationAlgorithmNames" );
+        var iface = Windows.Security.Cryptography.Core.IKeyDerivationAlgorithmNamesStatics( factory );
+        var _r = iface.get_Sp800108CtrHmacSha512( );
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    //@Async(0)
+    //@Returns("String")
+    static get_Sp80056aConcatMd5( )
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Security.Cryptography.Core.KeyDerivationAlgorithmNames" );
+        var iface = Windows.Security.Cryptography.Core.IKeyDerivationAlgorithmNamesStatics( factory );
+        var _r = iface.get_Sp80056aConcatMd5( );
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    //@Async(0)
+    //@Returns("String")
+    static get_Sp80056aConcatSha1( )
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Security.Cryptography.Core.KeyDerivationAlgorithmNames" );
+        var iface = Windows.Security.Cryptography.Core.IKeyDerivationAlgorithmNamesStatics( factory );
+        var _r = iface.get_Sp80056aConcatSha1( );
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    //@Async(0)
+    //@Returns("String")
+    static get_Sp80056aConcatSha256( )
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Security.Cryptography.Core.KeyDerivationAlgorithmNames" );
+        var iface = Windows.Security.Cryptography.Core.IKeyDerivationAlgorithmNamesStatics( factory );
+        var _r = iface.get_Sp80056aConcatSha256( );
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    //@Async(0)
+    //@Returns("String")
+    static get_Sp80056aConcatSha384( )
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Security.Cryptography.Core.KeyDerivationAlgorithmNames" );
+        var iface = Windows.Security.Cryptography.Core.IKeyDerivationAlgorithmNamesStatics( factory );
+        var _r = iface.get_Sp80056aConcatSha384( );
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    //@Async(0)
+    //@Returns("String")
+    static get_Sp80056aConcatSha512( )
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Security.Cryptography.Core.KeyDerivationAlgorithmNames" );
+        var iface = Windows.Security.Cryptography.Core.IKeyDerivationAlgorithmNamesStatics( factory );
+        var _r = iface.get_Sp80056aConcatSha512( );
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    static Create()
+    {
+        return Windows.Security.Cryptography.Core.KeyDerivationAlgorithmNames(
+            winrt.activate("Windows.Security.Cryptography.Core.KeyDerivationAlgorithmNames")
+        );
+    }
+
+}
+Windows.Security.Cryptography.Core.KeyDerivationAlgorithmNames = Windows_Security_Cryptography_Core_KeyDerivationAlgorithmNames;
+
+//@RuntimeClass("Windows.Security.Cryptography.Core.KeyDerivationAlgorithmProvider")
+//@Implements("Windows.Security.Cryptography.Core.IKeyDerivationAlgorithmProvider")
+//@DefaultInterface("Windows.Security.Cryptography.Core.IKeyDerivationAlgorithmProvider")
+@Proxy("WinRtProxy")
+class Windows_Security_Cryptography_Core_KeyDerivationAlgorithmProvider : WinRtInterface
+{
+    Windows_Security_Cryptography_Core_KeyDerivationAlgorithmProvider( comPtr )
+    {
+        var Windows = runtime.global("Windows");
+        this.comPtr = comPtr.queryInterface( Windows.Security.Cryptography.Core.IKeyDerivationAlgorithmProvider.iid );
+    }
+
+    // s Windows.Security.Cryptography.Core.IKeyDerivationAlgorithmProviderStatics
+    //@Async(0)
+    //@Returns("Windows.Security.Cryptography.Core.KeyDerivationAlgorithmProvider")
+    //@Parameters("String")
+    static OpenAlgorithm( algorithm)
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Security.Cryptography.Core.KeyDerivationAlgorithmProvider" );
+        var iface = Windows.Security.Cryptography.Core.IKeyDerivationAlgorithmProviderStatics( factory );
+        var _r = iface.OpenAlgorithm( algorithm);
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    static Create()
+    {
+        return Windows.Security.Cryptography.Core.KeyDerivationAlgorithmProvider(
+            winrt.activate("Windows.Security.Cryptography.Core.KeyDerivationAlgorithmProvider")
+        );
+    }
+    //@Returns("String")
+    get_AlgorithmName()
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Security.Cryptography.Core.IKeyDerivationAlgorithmProvider( this.comPtr );
+        var _r = iface.get_AlgorithmName(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Parameters("Windows.Storage.Streams.IBuffer")
+    //@Returns("Windows.Security.Cryptography.Core.CryptographicKey")
+    //@Parameters("Windows.Storage.Streams.IBuffer")
+    CreateKey(keyMaterial)
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Security.Cryptography.Core.IKeyDerivationAlgorithmProvider( this.comPtr );
+        var _r = iface.CreateKey( keyMaterial );
+        iface.release();
+        return _r;
+    }
+
+
+}
+Windows.Security.Cryptography.Core.KeyDerivationAlgorithmProvider = Windows_Security_Cryptography_Core_KeyDerivationAlgorithmProvider;
+
+//@RuntimeClass("Windows.Security.Cryptography.Core.KeyDerivationParameters")
+//@Implements("Windows.Security.Cryptography.Core.IKeyDerivationParameters","Windows.Security.Cryptography.Core.IKeyDerivationParameters2")
+//@DefaultInterface("Windows.Security.Cryptography.Core.IKeyDerivationParameters")
+@Proxy("WinRtProxy")
+class Windows_Security_Cryptography_Core_KeyDerivationParameters : WinRtInterface
+{
+    Windows_Security_Cryptography_Core_KeyDerivationParameters( comPtr )
+    {
+        var Windows = runtime.global("Windows");
+        this.comPtr = comPtr.queryInterface( Windows.Security.Cryptography.Core.IKeyDerivationParameters.iid );
+    }
+
+    // s Windows.Security.Cryptography.Core.IKeyDerivationParametersStatics2
+    //@Async(0)
+    //@Returns("Windows.Security.Cryptography.Core.KeyDerivationParameters")
+    //@Parameters("Windows.Security.Cryptography.Core.Capi1KdfTargetAlgorithm")
+    static BuildForCapi1Kdf( capi1KdfTargetAlgorithm)
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Security.Cryptography.Core.KeyDerivationParameters" );
+        var iface = Windows.Security.Cryptography.Core.IKeyDerivationParametersStatics2( factory );
+        var _r = iface.BuildForCapi1Kdf( capi1KdfTargetAlgorithm);
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    // s Windows.Security.Cryptography.Core.IKeyDerivationParametersStatics
+    //@Async(0)
+    //@Returns("Windows.Security.Cryptography.Core.KeyDerivationParameters")
+    //@Parameters("Windows.Storage.Streams.IBuffer","UInt32")
+    static BuildForPbkdf2( pbkdf2Salt, iterationCount)
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Security.Cryptography.Core.KeyDerivationParameters" );
+        var iface = Windows.Security.Cryptography.Core.IKeyDerivationParametersStatics( factory );
+        var _r = iface.BuildForPbkdf2( pbkdf2Salt, iterationCount);
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    //@Async(0)
+    //@Returns("Windows.Security.Cryptography.Core.KeyDerivationParameters")
+    //@Parameters("Windows.Storage.Streams.IBuffer","Windows.Storage.Streams.IBuffer")
+    static BuildForSP800108( label, context)
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Security.Cryptography.Core.KeyDerivationParameters" );
+        var iface = Windows.Security.Cryptography.Core.IKeyDerivationParametersStatics( factory );
+        var _r = iface.BuildForSP800108( label, context);
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    //@Async(0)
+    //@Returns("Windows.Security.Cryptography.Core.KeyDerivationParameters")
+    //@Parameters("Windows.Storage.Streams.IBuffer","Windows.Storage.Streams.IBuffer","Windows.Storage.Streams.IBuffer","Windows.Storage.Streams.IBuffer","Windows.Storage.Streams.IBuffer")
+    static BuildForSP80056a( algorithmId, partyUInfo, partyVInfo, suppPubInfo, suppPrivInfo)
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Security.Cryptography.Core.KeyDerivationParameters" );
+        var iface = Windows.Security.Cryptography.Core.IKeyDerivationParametersStatics( factory );
+        var _r = iface.BuildForSP80056a( algorithmId, partyUInfo, partyVInfo, suppPubInfo, suppPrivInfo);
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    static Create()
+    {
+        return Windows.Security.Cryptography.Core.KeyDerivationParameters(
+            winrt.activate("Windows.Security.Cryptography.Core.KeyDerivationParameters")
+        );
+    }
+    //@Returns("Windows.Storage.Streams.IBuffer")
+    get_KdfGenericBinary()
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Security.Cryptography.Core.IKeyDerivationParameters( this.comPtr );
+        var _r = iface.get_KdfGenericBinary(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Parameters("Windows.Storage.Streams.IBuffer")
+    //@Returns("void")
+    //@Parameters("Windows.Storage.Streams.IBuffer")
+    put_KdfGenericBinary(value)
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Security.Cryptography.Core.IKeyDerivationParameters( this.comPtr );
+        iface.put_KdfGenericBinary( value );
+        iface.release();
+    }
+
+    //@Returns("UInt32")
+    get_IterationCount()
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Security.Cryptography.Core.IKeyDerivationParameters( this.comPtr );
+        var _r = iface.get_IterationCount(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Returns("Windows.Security.Cryptography.Core.Capi1KdfTargetAlgorithm")
+    get_Capi1KdfTargetAlgorithm()
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Security.Cryptography.Core.IKeyDerivationParameters2( this.comPtr );
+        var _r = iface.get_Capi1KdfTargetAlgorithm(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Parameters("Windows.Security.Cryptography.Core.Capi1KdfTargetAlgorithm")
+    //@Returns("void")
+    //@Parameters("Windows.Security.Cryptography.Core.Capi1KdfTargetAlgorithm")
+    put_Capi1KdfTargetAlgorithm(value)
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Security.Cryptography.Core.IKeyDerivationParameters2( this.comPtr );
+        iface.put_Capi1KdfTargetAlgorithm( value );
+        iface.release();
+    }
+
+
+}
+Windows.Security.Cryptography.Core.KeyDerivationParameters = Windows_Security_Cryptography_Core_KeyDerivationParameters;
+
+//@RuntimeClass("Windows.Security.Cryptography.Core.MacAlgorithmNames")
+//@Implements("")
+//@DefaultInterface("")
+@Proxy("WinRtProxy")
+class Windows_Security_Cryptography_Core_MacAlgorithmNames : WinRtInterface
+{
+    Windows_Security_Cryptography_Core_MacAlgorithmNames( comPtr )
+    {
+        this.comPtr = comPtr;
+    }
+
+    // s Windows.Security.Cryptography.Core.IMacAlgorithmNamesStatics
+    //@Async(0)
+    //@Returns("String")
+    static get_HmacMd5( )
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Security.Cryptography.Core.MacAlgorithmNames" );
+        var iface = Windows.Security.Cryptography.Core.IMacAlgorithmNamesStatics( factory );
+        var _r = iface.get_HmacMd5( );
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    //@Async(0)
+    //@Returns("String")
+    static get_HmacSha1( )
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Security.Cryptography.Core.MacAlgorithmNames" );
+        var iface = Windows.Security.Cryptography.Core.IMacAlgorithmNamesStatics( factory );
+        var _r = iface.get_HmacSha1( );
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    //@Async(0)
+    //@Returns("String")
+    static get_HmacSha256( )
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Security.Cryptography.Core.MacAlgorithmNames" );
+        var iface = Windows.Security.Cryptography.Core.IMacAlgorithmNamesStatics( factory );
+        var _r = iface.get_HmacSha256( );
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    //@Async(0)
+    //@Returns("String")
+    static get_HmacSha384( )
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Security.Cryptography.Core.MacAlgorithmNames" );
+        var iface = Windows.Security.Cryptography.Core.IMacAlgorithmNamesStatics( factory );
+        var _r = iface.get_HmacSha384( );
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    //@Async(0)
+    //@Returns("String")
+    static get_HmacSha512( )
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Security.Cryptography.Core.MacAlgorithmNames" );
+        var iface = Windows.Security.Cryptography.Core.IMacAlgorithmNamesStatics( factory );
+        var _r = iface.get_HmacSha512( );
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    //@Async(0)
+    //@Returns("String")
+    static get_AesCmac( )
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Security.Cryptography.Core.MacAlgorithmNames" );
+        var iface = Windows.Security.Cryptography.Core.IMacAlgorithmNamesStatics( factory );
+        var _r = iface.get_AesCmac( );
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    static Create()
+    {
+        return Windows.Security.Cryptography.Core.MacAlgorithmNames(
+            winrt.activate("Windows.Security.Cryptography.Core.MacAlgorithmNames")
+        );
+    }
+
+}
+Windows.Security.Cryptography.Core.MacAlgorithmNames = Windows_Security_Cryptography_Core_MacAlgorithmNames;
+
+//@RuntimeClass("Windows.Security.Cryptography.Core.MacAlgorithmProvider")
+//@Implements("Windows.Security.Cryptography.Core.IMacAlgorithmProvider","Windows.Security.Cryptography.Core.IMacAlgorithmProvider2")
+//@DefaultInterface("Windows.Security.Cryptography.Core.IMacAlgorithmProvider")
+@Proxy("WinRtProxy")
+class Windows_Security_Cryptography_Core_MacAlgorithmProvider : WinRtInterface
+{
+    Windows_Security_Cryptography_Core_MacAlgorithmProvider( comPtr )
+    {
+        var Windows = runtime.global("Windows");
+        this.comPtr = comPtr.queryInterface( Windows.Security.Cryptography.Core.IMacAlgorithmProvider.iid );
+    }
+
+    // s Windows.Security.Cryptography.Core.IMacAlgorithmProviderStatics
+    //@Async(0)
+    //@Returns("Windows.Security.Cryptography.Core.MacAlgorithmProvider")
+    //@Parameters("String")
+    static OpenAlgorithm( algorithm)
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Security.Cryptography.Core.MacAlgorithmProvider" );
+        var iface = Windows.Security.Cryptography.Core.IMacAlgorithmProviderStatics( factory );
+        var _r = iface.OpenAlgorithm( algorithm);
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    static Create()
+    {
+        return Windows.Security.Cryptography.Core.MacAlgorithmProvider(
+            winrt.activate("Windows.Security.Cryptography.Core.MacAlgorithmProvider")
+        );
+    }
+    //@Returns("String")
+    get_AlgorithmName()
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Security.Cryptography.Core.IMacAlgorithmProvider( this.comPtr );
+        var _r = iface.get_AlgorithmName(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Returns("UInt32")
+    get_MacLength()
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Security.Cryptography.Core.IMacAlgorithmProvider( this.comPtr );
+        var _r = iface.get_MacLength(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Parameters("Windows.Storage.Streams.IBuffer")
+    //@Returns("Windows.Security.Cryptography.Core.CryptographicKey")
+    //@Parameters("Windows.Storage.Streams.IBuffer")
+    CreateKey(keyMaterial)
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Security.Cryptography.Core.IMacAlgorithmProvider( this.comPtr );
+        var _r = iface.CreateKey( keyMaterial );
+        iface.release();
+        return _r;
+    }
+
+    //@Parameters("Windows.Storage.Streams.IBuffer")
+    //@Returns("Windows.Security.Cryptography.Core.CryptographicHash")
+    //@Parameters("Windows.Storage.Streams.IBuffer")
+    CreateHash(keyMaterial)
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Security.Cryptography.Core.IMacAlgorithmProvider2( this.comPtr );
+        var _r = iface.CreateHash( keyMaterial );
+        iface.release();
+        return _r;
+    }
+
+
+}
+Windows.Security.Cryptography.Core.MacAlgorithmProvider = Windows_Security_Cryptography_Core_MacAlgorithmProvider;
+
+//@RuntimeClass("Windows.Security.Cryptography.Core.PersistedKeyProvider")
+//@Implements("")
+//@DefaultInterface("")
+@Proxy("WinRtProxy")
+class Windows_Security_Cryptography_Core_PersistedKeyProvider : WinRtInterface
+{
+    Windows_Security_Cryptography_Core_PersistedKeyProvider( comPtr )
+    {
+        this.comPtr = comPtr;
+    }
+
+    // s Windows.Security.Cryptography.Core.IPersistedKeyProviderStatics
+    //@Async(3)
+    //@Returns("Windows.Foundation.IAsyncOperation`1<Windows.Security.Cryptography.Core.CryptographicKey>")
+    //@Parameters("Windows.Security.Cryptography.Certificates.Certificate","String","Windows.Security.Cryptography.Core.CryptographicPadding")
+    static OpenKeyPairFromCertificateAsync( certificate, hashAlgorithmName, padding)
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Security.Cryptography.Core.PersistedKeyProvider" );
+        var iface = Windows.Security.Cryptography.Core.IPersistedKeyProviderStatics( factory );
+        var _promise = Future();
+        var _cb = fun(status, result)
+        {
+            if (status == Windows.Foundation.AsyncStatus.Completed)
+            {
+                _promise.resolve(result);
+            } else {
+                _promise.reject(status);
+            }
+        };
+        iface.OpenKeyPairFromCertificateAsync( certificate, hashAlgorithmName, padding, _cb);
+        iface.release();
+        factory.release();
+        return _promise;
+    }
+
+
+    //@Async(0)
+    //@Returns("Windows.Security.Cryptography.Core.CryptographicKey")
+    //@Parameters("Windows.Security.Cryptography.Certificates.Certificate","String","Windows.Security.Cryptography.Core.CryptographicPadding")
+    static OpenPublicKeyFromCertificate( certificate, hashAlgorithmName, padding)
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Security.Cryptography.Core.PersistedKeyProvider" );
+        var iface = Windows.Security.Cryptography.Core.IPersistedKeyProviderStatics( factory );
+        var _r = iface.OpenPublicKeyFromCertificate( certificate, hashAlgorithmName, padding);
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    static Create()
+    {
+        return Windows.Security.Cryptography.Core.PersistedKeyProvider(
+            winrt.activate("Windows.Security.Cryptography.Core.PersistedKeyProvider")
+        );
+    }
+
+}
+Windows.Security.Cryptography.Core.PersistedKeyProvider = Windows_Security_Cryptography_Core_PersistedKeyProvider;
+
+//@RuntimeClass("Windows.Security.Cryptography.Core.SymmetricAlgorithmNames")
+//@Implements("")
+//@DefaultInterface("")
+@Proxy("WinRtProxy")
+class Windows_Security_Cryptography_Core_SymmetricAlgorithmNames : WinRtInterface
+{
+    Windows_Security_Cryptography_Core_SymmetricAlgorithmNames( comPtr )
+    {
+        this.comPtr = comPtr;
+    }
+
+    // s Windows.Security.Cryptography.Core.ISymmetricAlgorithmNamesStatics
+    //@Async(0)
+    //@Returns("String")
+    static get_DesCbc( )
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Security.Cryptography.Core.SymmetricAlgorithmNames" );
+        var iface = Windows.Security.Cryptography.Core.ISymmetricAlgorithmNamesStatics( factory );
+        var _r = iface.get_DesCbc( );
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    //@Async(0)
+    //@Returns("String")
+    static get_DesEcb( )
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Security.Cryptography.Core.SymmetricAlgorithmNames" );
+        var iface = Windows.Security.Cryptography.Core.ISymmetricAlgorithmNamesStatics( factory );
+        var _r = iface.get_DesEcb( );
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    //@Async(0)
+    //@Returns("String")
+    static get_TripleDesCbc( )
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Security.Cryptography.Core.SymmetricAlgorithmNames" );
+        var iface = Windows.Security.Cryptography.Core.ISymmetricAlgorithmNamesStatics( factory );
+        var _r = iface.get_TripleDesCbc( );
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    //@Async(0)
+    //@Returns("String")
+    static get_TripleDesEcb( )
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Security.Cryptography.Core.SymmetricAlgorithmNames" );
+        var iface = Windows.Security.Cryptography.Core.ISymmetricAlgorithmNamesStatics( factory );
+        var _r = iface.get_TripleDesEcb( );
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    //@Async(0)
+    //@Returns("String")
+    static get_Rc2Cbc( )
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Security.Cryptography.Core.SymmetricAlgorithmNames" );
+        var iface = Windows.Security.Cryptography.Core.ISymmetricAlgorithmNamesStatics( factory );
+        var _r = iface.get_Rc2Cbc( );
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    //@Async(0)
+    //@Returns("String")
+    static get_Rc2Ecb( )
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Security.Cryptography.Core.SymmetricAlgorithmNames" );
+        var iface = Windows.Security.Cryptography.Core.ISymmetricAlgorithmNamesStatics( factory );
+        var _r = iface.get_Rc2Ecb( );
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    //@Async(0)
+    //@Returns("String")
+    static get_AesCbc( )
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Security.Cryptography.Core.SymmetricAlgorithmNames" );
+        var iface = Windows.Security.Cryptography.Core.ISymmetricAlgorithmNamesStatics( factory );
+        var _r = iface.get_AesCbc( );
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    //@Async(0)
+    //@Returns("String")
+    static get_AesEcb( )
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Security.Cryptography.Core.SymmetricAlgorithmNames" );
+        var iface = Windows.Security.Cryptography.Core.ISymmetricAlgorithmNamesStatics( factory );
+        var _r = iface.get_AesEcb( );
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    //@Async(0)
+    //@Returns("String")
+    static get_AesGcm( )
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Security.Cryptography.Core.SymmetricAlgorithmNames" );
+        var iface = Windows.Security.Cryptography.Core.ISymmetricAlgorithmNamesStatics( factory );
+        var _r = iface.get_AesGcm( );
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    //@Async(0)
+    //@Returns("String")
+    static get_AesCcm( )
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Security.Cryptography.Core.SymmetricAlgorithmNames" );
+        var iface = Windows.Security.Cryptography.Core.ISymmetricAlgorithmNamesStatics( factory );
+        var _r = iface.get_AesCcm( );
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    //@Async(0)
+    //@Returns("String")
+    static get_AesCbcPkcs7( )
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Security.Cryptography.Core.SymmetricAlgorithmNames" );
+        var iface = Windows.Security.Cryptography.Core.ISymmetricAlgorithmNamesStatics( factory );
+        var _r = iface.get_AesCbcPkcs7( );
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    //@Async(0)
+    //@Returns("String")
+    static get_AesEcbPkcs7( )
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Security.Cryptography.Core.SymmetricAlgorithmNames" );
+        var iface = Windows.Security.Cryptography.Core.ISymmetricAlgorithmNamesStatics( factory );
+        var _r = iface.get_AesEcbPkcs7( );
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    //@Async(0)
+    //@Returns("String")
+    static get_DesCbcPkcs7( )
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Security.Cryptography.Core.SymmetricAlgorithmNames" );
+        var iface = Windows.Security.Cryptography.Core.ISymmetricAlgorithmNamesStatics( factory );
+        var _r = iface.get_DesCbcPkcs7( );
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    //@Async(0)
+    //@Returns("String")
+    static get_DesEcbPkcs7( )
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Security.Cryptography.Core.SymmetricAlgorithmNames" );
+        var iface = Windows.Security.Cryptography.Core.ISymmetricAlgorithmNamesStatics( factory );
+        var _r = iface.get_DesEcbPkcs7( );
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    //@Async(0)
+    //@Returns("String")
+    static get_TripleDesCbcPkcs7( )
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Security.Cryptography.Core.SymmetricAlgorithmNames" );
+        var iface = Windows.Security.Cryptography.Core.ISymmetricAlgorithmNamesStatics( factory );
+        var _r = iface.get_TripleDesCbcPkcs7( );
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    //@Async(0)
+    //@Returns("String")
+    static get_TripleDesEcbPkcs7( )
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Security.Cryptography.Core.SymmetricAlgorithmNames" );
+        var iface = Windows.Security.Cryptography.Core.ISymmetricAlgorithmNamesStatics( factory );
+        var _r = iface.get_TripleDesEcbPkcs7( );
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    //@Async(0)
+    //@Returns("String")
+    static get_Rc2CbcPkcs7( )
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Security.Cryptography.Core.SymmetricAlgorithmNames" );
+        var iface = Windows.Security.Cryptography.Core.ISymmetricAlgorithmNamesStatics( factory );
+        var _r = iface.get_Rc2CbcPkcs7( );
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    //@Async(0)
+    //@Returns("String")
+    static get_Rc2EcbPkcs7( )
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Security.Cryptography.Core.SymmetricAlgorithmNames" );
+        var iface = Windows.Security.Cryptography.Core.ISymmetricAlgorithmNamesStatics( factory );
+        var _r = iface.get_Rc2EcbPkcs7( );
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    //@Async(0)
+    //@Returns("String")
+    static get_Rc4( )
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Security.Cryptography.Core.SymmetricAlgorithmNames" );
+        var iface = Windows.Security.Cryptography.Core.ISymmetricAlgorithmNamesStatics( factory );
+        var _r = iface.get_Rc4( );
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    static Create()
+    {
+        return Windows.Security.Cryptography.Core.SymmetricAlgorithmNames(
+            winrt.activate("Windows.Security.Cryptography.Core.SymmetricAlgorithmNames")
+        );
+    }
+
+}
+Windows.Security.Cryptography.Core.SymmetricAlgorithmNames = Windows_Security_Cryptography_Core_SymmetricAlgorithmNames;
+
+//@RuntimeClass("Windows.Security.Cryptography.Core.SymmetricKeyAlgorithmProvider")
+//@Implements("Windows.Security.Cryptography.Core.ISymmetricKeyAlgorithmProvider")
+//@DefaultInterface("Windows.Security.Cryptography.Core.ISymmetricKeyAlgorithmProvider")
+@Proxy("WinRtProxy")
+class Windows_Security_Cryptography_Core_SymmetricKeyAlgorithmProvider : WinRtInterface
+{
+    Windows_Security_Cryptography_Core_SymmetricKeyAlgorithmProvider( comPtr )
+    {
+        var Windows = runtime.global("Windows");
+        this.comPtr = comPtr.queryInterface( Windows.Security.Cryptography.Core.ISymmetricKeyAlgorithmProvider.iid );
+    }
+
+    // s Windows.Security.Cryptography.Core.ISymmetricKeyAlgorithmProviderStatics
+    //@Async(0)
+    //@Returns("Windows.Security.Cryptography.Core.SymmetricKeyAlgorithmProvider")
+    //@Parameters("String")
+    static OpenAlgorithm( algorithm)
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Security.Cryptography.Core.SymmetricKeyAlgorithmProvider" );
+        var iface = Windows.Security.Cryptography.Core.ISymmetricKeyAlgorithmProviderStatics( factory );
+        var _r = iface.OpenAlgorithm( algorithm);
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    static Create()
+    {
+        return Windows.Security.Cryptography.Core.SymmetricKeyAlgorithmProvider(
+            winrt.activate("Windows.Security.Cryptography.Core.SymmetricKeyAlgorithmProvider")
+        );
+    }
+    //@Returns("String")
+    get_AlgorithmName()
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Security.Cryptography.Core.ISymmetricKeyAlgorithmProvider( this.comPtr );
+        var _r = iface.get_AlgorithmName(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Returns("UInt32")
+    get_BlockLength()
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Security.Cryptography.Core.ISymmetricKeyAlgorithmProvider( this.comPtr );
+        var _r = iface.get_BlockLength(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Parameters("Windows.Storage.Streams.IBuffer")
+    //@Returns("Windows.Security.Cryptography.Core.CryptographicKey")
+    //@Parameters("Windows.Storage.Streams.IBuffer")
+    CreateSymmetricKey(keyMaterial)
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Security.Cryptography.Core.ISymmetricKeyAlgorithmProvider( this.comPtr );
+        var _r = iface.CreateSymmetricKey( keyMaterial );
+        iface.release();
+        return _r;
+    }
+
+
+}
+Windows.Security.Cryptography.Core.SymmetricKeyAlgorithmProvider = Windows_Security_Cryptography_Core_SymmetricKeyAlgorithmProvider;
+
+if ( Windows.Foundation == nil ) { Windows.Foundation = {}; }
+//@Interface("Windows.Foundation.IAsyncOperation`1<Windows.Storage.Streams.IBuffer>")
+//@IID("{3BEE8834-B9A7-5A80-A746-5EF097227878}")
+class Windows_Foundation_IAsyncOperation_1_Windows_Storage_Streams_IBuffer_ : WinRtInterface {}
+Windows_Foundation_IAsyncOperation_1_Windows_Storage_Streams_IBuffer_.iid = "{3BEE8834-B9A7-5A80-A746-5EF097227878}";
+Windows_Foundation_IAsyncOperation_1_Windows_Storage_Streams_IBuffer_.handler_iid = "{51C3D2FD-B8A1-5620-B746-7EE6D533ACA3}";
+
+Windows.Foundation.IAsyncOperation_1_Windows_Storage_Streams_IBuffer_ = Windows_Foundation_IAsyncOperation_1_Windows_Storage_Streams_IBuffer_;
+if ( Windows.Foundation == nil ) { Windows.Foundation = {}; }
+//@Interface("Windows.Foundation.IAsyncOperation`1<Windows.Security.Cryptography.Core.CryptographicKey>")
+//@IID("{81CA789B-98DF-5C6A-9531-966238E3E7AE}")
+class Windows_Foundation_IAsyncOperation_1_Windows_Security_Cryptography_Core_CryptographicKey_ : WinRtInterface {}
+Windows_Foundation_IAsyncOperation_1_Windows_Security_Cryptography_Core_CryptographicKey_.iid = "{81CA789B-98DF-5C6A-9531-966238E3E7AE}";
+Windows_Foundation_IAsyncOperation_1_Windows_Security_Cryptography_Core_CryptographicKey_.handler_iid = "{04CA4378-F594-5DE6-A555-304F62CB4FAF}";
+
+Windows.Foundation.IAsyncOperation_1_Windows_Security_Cryptography_Core_CryptographicKey_ = Windows_Foundation_IAsyncOperation_1_Windows_Security_Cryptography_Core_CryptographicKey_;
+if ( Windows.Foundation == nil ) { Windows.Foundation = {}; }
+if ( Windows.Foundation.Collections == nil ) { Windows.Foundation.Collections = {}; }
+//@Interface("Windows.Foundation.Collections.IVectorView`1<String>")
+//@IID("{2F13C006-A03A-5F69-B090-75A43E33423E}")
+class Windows_Foundation_Collections_IVectorView_1_String_ : WinRtInterface 
+{
+    Windows_Foundation_Collections_IVectorView_1_String_( comPtr )
+    {
+        this.comPtr = comPtr.queryInterface( "{2F13C006-A03A-5F69-B090-75A43E33423E}");
+    }
+
+    //@VtableIndex(6)
+    //@Returns("T0")
+    //@Parameters("UInt32")
+    GetAt(index)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = index;
+        var _r = this.comPtr.invoke(6, "String", ["UInt32"], [p1] );
+        return _r;
+    }
+
+    //@VtableIndex(7)
+    //@Returns("UInt32")
+    get_Size()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke(7, "UInt32", [], [] );
+        return _r;
+    }
+
+
+}
+Windows_Foundation_Collections_IVectorView_1_String_.iid = "{2F13C006-A03A-5F69-B090-75A43E33423E}";
+Windows.Foundation.Collections.IVectorView_1_String_ = Windows_Foundation_Collections_IVectorView_1_String_;
+
+
+
+}

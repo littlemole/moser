@@ -1,0 +1,16 @@
+class Base {
+  Base(a, b) {
+    print "Base.init(" + a + ", " + b + ")";
+  }
+}
+
+class Derived : Base {
+  Derived() {
+    print "Derived.init()";
+    super.Base("a", "b");
+  }
+}
+
+Derived();
+// expect: Derived.init()
+// expect: Base.init(a, b)

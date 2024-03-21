@@ -1,0 +1,29 @@
+
+var text = "an example string to examplify regex matching";
+
+var rgx = regex("an example .*");
+
+var m = rgx.match(text);
+
+if(!m) {
+    print "did not match!"; 
+}
+else {
+    print "match: " + m;
+}
+
+// expect: match: array [ an example string to examplify regex matching, ]
+
+var rgx2 = regex("e([^ ]*)");
+
+m = rgx2.search(text);
+
+while(m)
+{
+    print "match: " + m;
+    m = rgx2.search(rgx2.suffix);
+}
+
+// expect: match: array [ example, xample, ]
+// expect: match: array [ examplify, xamplify, ]
+// expect: match: array [ egex, gex, ]

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+  <head>
+        <meta charset="utf-8">
+        <script src="js/diff2html.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="css/diff2html.min.css">
+        <style type="text/css">
+      
+          body {
+              background-color: white;
+              padding:10px;
+              margin:10px;
+          }
+      
+        </style>
+  </head>
+  <body>
+
+    <h5><span id="git"></span></h5>
+    <div class="main">
+     <div id="commit">
+       commit message:<br>
+       <textarea id="commitMsg" rows=5 cols=80></textarea>
+       <button id="commitButton">commit</button>
+     </div>
+     <div id="html" class="html">
+       <pre id="plaintext"></pre>  
+     </div>
+    </div>
+
+
+<script>
+    window.onerror = function(e) {
+        alert(e);
+    }
+    
+    function escapeHtml(unsafe) {
+        return unsafe
+             .replace(/&/g, "&amp;")
+             .replace(/</g, "&lt;")
+             .replace(/>/g, "&gt;")
+             .replace(/"/g, "&quot;")
+             .replace(/'/g, "&#039;");
+     }
+
+
+    function setDiff( diff ) 
+    {
+        var gitdir = diff.dir;
+        var output = diff.output;
+
+        var diffHtml = window.Diff2Html.html( output, {
+            drawFileList: true,
+            matching: 'lines',
+        //                outputFormat: 'side-by-side',
+        });
+
+        document.getElementById("commit").style.display = "none";
+        document.getElementById("html").innerHTML = diffHtml;
+        document.getElementById("git").innerHTML = gitdir;
+    }
+
+    function setPlainText( status )
+    {
+        var gitdir = status.dir;
+        var output = status.output;
+
+        var content = "<pre>" + escapeHtml(output) + "</pre>";
+
+        document.getElementById("commit").style.display = "none";
+        document.getElementById("html").innerHTML = content;
+        document.getElementById("git").innerHTML = gitdir;
+    }
+    
+    window.onload = function(e)
+    {
+        window.webkit.messageHandlers.host.postMessage({cmd:"onload"});
+    };
+</script>
+
+
+   </body>
+</html>

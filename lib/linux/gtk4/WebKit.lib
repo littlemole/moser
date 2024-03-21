@@ -1,0 +1,1436 @@
+// load libgio-2.0.so.0: 139688862994432
+// load libgobject-2.0.so.0: 139688872968192
+// load libglib-2.0.so.0: 139688864931840
+// load libgobject-2.0.so.0: 139688872968192
+// load libgtk-4.so.1: 139688851537920
+// load libgtk-4.so.1: 139688851537920
+// load libgtksourceview-5.so.0: 139688838385664
+// load libwebkitgtk-6.0.so.4: 139688729903104
+// load libjavascriptcoregtk-6.0.so.1: 139688702640128
+// load libjavascriptcoregtk-6.0.so.1: 139688702640128
+// namespace WebKit
+// libs libwebkitgtk-6.0.so.4,libjavascriptcoregtk-6.0.so.1
+extern from "libwebkitgtk-6.0.so.4" {
+ptr webkit_application_info_new();
+str webkit_application_info_get_name(ptr);
+void webkit_application_info_get_version(ptr, ptr, ptr, ptr);
+ptr webkit_application_info_ref(ptr);
+void webkit_application_info_set_name(ptr, str);
+void webkit_application_info_set_version(ptr, ulong, ulong, ulong);
+void webkit_application_info_unref(ptr);
+void webkit_authentication_request_authenticate(ptr, ptr);
+int webkit_authentication_request_can_save_credentials(ptr);
+void webkit_authentication_request_cancel(ptr);
+int webkit_authentication_request_get_certificate_pin_flags(ptr);
+str webkit_authentication_request_get_host(ptr);
+uint webkit_authentication_request_get_port(ptr);
+ptr webkit_authentication_request_get_proposed_credential(ptr);
+str webkit_authentication_request_get_realm(ptr);
+int webkit_authentication_request_get_scheme(ptr);
+ptr webkit_authentication_request_get_security_origin(ptr);
+int webkit_authentication_request_is_for_proxy(ptr);
+int webkit_authentication_request_is_retry(ptr);
+void webkit_authentication_request_set_can_save_credentials(ptr, int);
+void webkit_authentication_request_set_proposed_credential(ptr, ptr);
+ptr webkit_automation_session_get_application_info(ptr);
+str webkit_automation_session_get_id(ptr);
+void webkit_automation_session_set_application_info(ptr, ptr);
+ptr webkit_back_forward_list_get_back_item(ptr);
+ptr webkit_back_forward_list_get_back_list(ptr);
+ptr webkit_back_forward_list_get_back_list_with_limit(ptr, uint);
+ptr webkit_back_forward_list_get_current_item(ptr);
+ptr webkit_back_forward_list_get_forward_item(ptr);
+ptr webkit_back_forward_list_get_forward_list(ptr);
+ptr webkit_back_forward_list_get_forward_list_with_limit(ptr, uint);
+uint webkit_back_forward_list_get_length(ptr);
+ptr webkit_back_forward_list_get_nth_item(ptr, int);
+str webkit_back_forward_list_item_get_original_uri(ptr);
+str webkit_back_forward_list_item_get_title(ptr);
+str webkit_back_forward_list_item_get_uri(ptr);
+void webkit_color_chooser_request_cancel(ptr);
+void webkit_color_chooser_request_finish(ptr);
+void webkit_color_chooser_request_get_element_rectangle(ptr, ptr);
+void webkit_color_chooser_request_get_rgba(ptr, ptr);
+void webkit_color_chooser_request_set_rgba(ptr, ptr);
+ptr webkit_context_menu_new();
+ptr webkit_context_menu_new_with_items(ptr);
+void webkit_context_menu_append(ptr, ptr);
+ptr webkit_context_menu_first(ptr);
+ptr webkit_context_menu_get_event(ptr);
+ptr webkit_context_menu_get_item_at_position(ptr, uint);
+ptr webkit_context_menu_get_items(ptr);
+uint webkit_context_menu_get_n_items(ptr);
+ptr webkit_context_menu_get_user_data(ptr);
+void webkit_context_menu_insert(ptr, ptr, int);
+ptr webkit_context_menu_last(ptr);
+void webkit_context_menu_move_item(ptr, ptr, int);
+void webkit_context_menu_prepend(ptr, ptr);
+void webkit_context_menu_remove(ptr, ptr);
+void webkit_context_menu_remove_all(ptr);
+void webkit_context_menu_set_user_data(ptr, ptr);
+ptr webkit_context_menu_item_new_from_gaction(ptr, str, ptr);
+ptr webkit_context_menu_item_new_from_stock_action(int);
+ptr webkit_context_menu_item_new_from_stock_action_with_label(int, str);
+ptr webkit_context_menu_item_new_separator();
+ptr webkit_context_menu_item_new_with_submenu(str, ptr);
+ptr webkit_context_menu_item_get_gaction(ptr);
+int webkit_context_menu_item_get_stock_action(ptr);
+ptr webkit_context_menu_item_get_submenu(ptr);
+int webkit_context_menu_item_is_separator(ptr);
+void webkit_context_menu_item_set_submenu(ptr, ptr);
+void webkit_cookie_manager_add_cookie(ptr, ptr, ptr, ptr, ptr);
+int webkit_cookie_manager_add_cookie_finish(ptr, ptr, ptr);
+void webkit_cookie_manager_delete_cookie(ptr, ptr, ptr, ptr, ptr);
+int webkit_cookie_manager_delete_cookie_finish(ptr, ptr, ptr);
+void webkit_cookie_manager_get_accept_policy(ptr, ptr, ptr, ptr);
+int webkit_cookie_manager_get_accept_policy_finish(ptr, ptr, ptr);
+void webkit_cookie_manager_get_cookies(ptr, str, ptr, ptr, ptr);
+ptr webkit_cookie_manager_get_cookies_finish(ptr, ptr, ptr);
+void webkit_cookie_manager_set_accept_policy(ptr, int);
+void webkit_cookie_manager_set_persistent_storage(ptr, str, int);
+ptr webkit_credential_new(str, str, int);
+ptr webkit_credential_new_for_certificate(ptr, int);
+ptr webkit_credential_new_for_certificate_pin(str, int);
+ptr webkit_credential_copy(ptr);
+void webkit_credential_free(ptr);
+ptr webkit_credential_get_certificate(ptr);
+str webkit_credential_get_password(ptr);
+int webkit_credential_get_persistence(ptr);
+str webkit_credential_get_username(ptr);
+int webkit_credential_has_password(ptr);
+void webkit_download_cancel(ptr);
+int webkit_download_get_allow_overwrite(ptr);
+str webkit_download_get_destination(ptr);
+double webkit_download_get_elapsed_time(ptr);
+double webkit_download_get_estimated_progress(ptr);
+ulong webkit_download_get_received_data_length(ptr);
+ptr webkit_download_get_request(ptr);
+ptr webkit_download_get_response(ptr);
+ptr webkit_download_get_web_view(ptr);
+void webkit_download_set_allow_overwrite(ptr, int);
+void webkit_download_set_destination(ptr, str);
+uint webkit_editor_state_get_typing_attributes(ptr);
+int webkit_editor_state_is_copy_available(ptr);
+int webkit_editor_state_is_cut_available(ptr);
+int webkit_editor_state_is_paste_available(ptr);
+int webkit_editor_state_is_redo_available(ptr);
+int webkit_editor_state_is_undo_available(ptr);
+void webkit_favicon_database_clear(ptr);
+void webkit_favicon_database_get_favicon(ptr, str, ptr, ptr, ptr);
+ptr webkit_favicon_database_get_favicon_finish(ptr, ptr, ptr);
+ptr webkit_favicon_database_get_favicon_uri(ptr, str);
+void webkit_file_chooser_request_cancel(ptr);
+ptr webkit_file_chooser_request_get_mime_types(ptr);
+ptr webkit_file_chooser_request_get_mime_types_filter(ptr);
+int webkit_file_chooser_request_get_select_multiple(ptr);
+ptr webkit_file_chooser_request_get_selected_files(ptr);
+void webkit_file_chooser_request_select_files(ptr, ptr);
+void webkit_find_controller_count_matches(ptr, str, uint, uint);
+uint webkit_find_controller_get_max_match_count(ptr);
+uint webkit_find_controller_get_options(ptr);
+str webkit_find_controller_get_search_text(ptr);
+ptr webkit_find_controller_get_web_view(ptr);
+void webkit_find_controller_search(ptr, str, uint, uint);
+void webkit_find_controller_search_finish(ptr);
+void webkit_find_controller_search_next(ptr);
+void webkit_find_controller_search_previous(ptr);
+int webkit_form_submission_request_list_text_fields(ptr, ptr, ptr);
+void webkit_form_submission_request_submit(ptr);
+void webkit_geolocation_manager_failed(ptr, str);
+int webkit_geolocation_manager_get_enable_high_accuracy(ptr);
+void webkit_geolocation_manager_update_position(ptr, ptr);
+ptr webkit_geolocation_position_new(double, double, double);
+ptr webkit_geolocation_position_copy(ptr);
+void webkit_geolocation_position_free(ptr);
+void webkit_geolocation_position_set_altitude(ptr, double);
+void webkit_geolocation_position_set_altitude_accuracy(ptr, double);
+void webkit_geolocation_position_set_heading(ptr, double);
+void webkit_geolocation_position_set_speed(ptr, double);
+void webkit_geolocation_position_set_timestamp(ptr, ulong);
+int webkit_hit_test_result_context_is_editable(ptr);
+int webkit_hit_test_result_context_is_image(ptr);
+int webkit_hit_test_result_context_is_link(ptr);
+int webkit_hit_test_result_context_is_media(ptr);
+int webkit_hit_test_result_context_is_scrollbar(ptr);
+int webkit_hit_test_result_context_is_selection(ptr);
+uint webkit_hit_test_result_get_context(ptr);
+str webkit_hit_test_result_get_image_uri(ptr);
+str webkit_hit_test_result_get_link_label(ptr);
+str webkit_hit_test_result_get_link_title(ptr);
+str webkit_hit_test_result_get_link_uri(ptr);
+str webkit_hit_test_result_get_media_uri(ptr);
+str webkit_itp_first_party_get_domain(ptr);
+ptr webkit_itp_first_party_get_last_update_time(ptr);
+int webkit_itp_first_party_get_website_data_access_allowed(ptr);
+ptr webkit_itp_first_party_ref(ptr);
+void webkit_itp_first_party_unref(ptr);
+str webkit_itp_third_party_get_domain(ptr);
+ptr webkit_itp_third_party_get_first_parties(ptr);
+ptr webkit_itp_third_party_ref(ptr);
+void webkit_itp_third_party_unref(ptr);
+int webkit_input_method_context_filter_key_event(ptr, ptr);
+int webkit_input_method_context_get_input_hints(ptr);
+int webkit_input_method_context_get_input_purpose(ptr);
+void webkit_input_method_context_get_preedit(ptr, ptr, ptr, ptr);
+void webkit_input_method_context_notify_cursor_area(ptr, int, int, int, int);
+void webkit_input_method_context_notify_focus_in(ptr);
+void webkit_input_method_context_notify_focus_out(ptr);
+void webkit_input_method_context_notify_surrounding(ptr, str, int, uint, uint);
+void webkit_input_method_context_reset(ptr);
+void webkit_input_method_context_set_enable_preedit(ptr, int);
+void webkit_input_method_context_set_input_hints(ptr, int);
+void webkit_input_method_context_set_input_purpose(ptr, int);
+ptr webkit_input_method_underline_new(uint, uint);
+ptr webkit_input_method_underline_copy(ptr);
+void webkit_input_method_underline_free(ptr);
+void webkit_input_method_underline_set_color(ptr, ptr);
+ptr webkit_memory_pressure_settings_new();
+ptr webkit_memory_pressure_settings_copy(ptr);
+void webkit_memory_pressure_settings_free(ptr);
+double webkit_memory_pressure_settings_get_conservative_threshold(ptr);
+double webkit_memory_pressure_settings_get_kill_threshold(ptr);
+uint webkit_memory_pressure_settings_get_memory_limit(ptr);
+double webkit_memory_pressure_settings_get_poll_interval(ptr);
+double webkit_memory_pressure_settings_get_strict_threshold(ptr);
+void webkit_memory_pressure_settings_set_conservative_threshold(ptr, double);
+void webkit_memory_pressure_settings_set_kill_threshold(ptr, double);
+void webkit_memory_pressure_settings_set_memory_limit(ptr, uint);
+void webkit_memory_pressure_settings_set_poll_interval(ptr, double);
+void webkit_memory_pressure_settings_set_strict_threshold(ptr, double);
+ptr webkit_navigation_action_copy(ptr);
+void webkit_navigation_action_free(ptr);
+str webkit_navigation_action_get_frame_name(ptr);
+uint webkit_navigation_action_get_modifiers(ptr);
+uint webkit_navigation_action_get_mouse_button(ptr);
+int webkit_navigation_action_get_navigation_type(ptr);
+ptr webkit_navigation_action_get_request(ptr);
+int webkit_navigation_action_is_redirect(ptr);
+int webkit_navigation_action_is_user_gesture(ptr);
+ptr webkit_navigation_policy_decision_get_navigation_action(ptr);
+ptr webkit_network_proxy_settings_new(str, ptr);
+void webkit_network_proxy_settings_add_proxy_for_scheme(ptr, str, str);
+ptr webkit_network_proxy_settings_copy(ptr);
+void webkit_network_proxy_settings_free(ptr);
+ptr webkit_network_session_new(str, str);
+ptr webkit_network_session_new_ephemeral();
+ptr webkit_network_session_get_default(ptr);
+void webkit_network_session_set_memory_pressure_settings(ptr, ptr);
+void webkit_network_session_allow_tls_certificate_for_host(ptr, ptr, str);
+ptr webkit_network_session_download_uri(ptr, str);
+ptr webkit_network_session_get_cookie_manager(ptr);
+int webkit_network_session_get_itp_enabled(ptr);
+void webkit_network_session_get_itp_summary(ptr, ptr, ptr, ptr);
+ptr webkit_network_session_get_itp_summary_finish(ptr, ptr, ptr);
+int webkit_network_session_get_persistent_credential_storage_enabled(ptr);
+int webkit_network_session_get_tls_errors_policy(ptr);
+ptr webkit_network_session_get_website_data_manager(ptr);
+int webkit_network_session_is_ephemeral(ptr);
+void webkit_network_session_prefetch_dns(ptr, str);
+void webkit_network_session_set_itp_enabled(ptr, int);
+void webkit_network_session_set_persistent_credential_storage_enabled(ptr, int);
+void webkit_network_session_set_proxy_settings(ptr, int, ptr);
+void webkit_network_session_set_tls_errors_policy(ptr, int);
+void webkit_notification_clicked(ptr);
+void webkit_notification_close(ptr);
+str webkit_notification_get_body(ptr);
+ulong webkit_notification_get_id(ptr);
+str webkit_notification_get_tag(ptr);
+str webkit_notification_get_title(ptr);
+void webkit_option_menu_activate_item(ptr, uint);
+void webkit_option_menu_close(ptr);
+ptr webkit_option_menu_get_event(ptr);
+ptr webkit_option_menu_get_item(ptr, uint);
+uint webkit_option_menu_get_n_items(ptr);
+void webkit_option_menu_select_item(ptr, uint);
+ptr webkit_option_menu_item_copy(ptr);
+void webkit_option_menu_item_free(ptr);
+str webkit_option_menu_item_get_label(ptr);
+str webkit_option_menu_item_get_tooltip(ptr);
+int webkit_option_menu_item_is_enabled(ptr);
+int webkit_option_menu_item_is_group_child(ptr);
+int webkit_option_menu_item_is_group_label(ptr);
+int webkit_option_menu_item_is_selected(ptr);
+void webkit_permission_request_allow(ptr);
+void webkit_permission_request_deny(ptr);
+void webkit_permission_state_query_finish(ptr, int);
+str webkit_permission_state_query_get_name(ptr);
+ptr webkit_permission_state_query_get_security_origin(ptr);
+ptr webkit_permission_state_query_ref(ptr);
+void webkit_permission_state_query_unref(ptr);
+void webkit_policy_decision_download(ptr);
+void webkit_policy_decision_ignore(ptr);
+void webkit_policy_decision_use(ptr);
+void webkit_policy_decision_use_with_policies(ptr, ptr);
+ptr webkit_print_operation_new(ptr);
+ptr webkit_print_operation_get_page_setup(ptr);
+ptr webkit_print_operation_get_print_settings(ptr);
+void webkit_print_operation_print(ptr);
+int webkit_print_operation_run_dialog(ptr, ptr);
+void webkit_print_operation_set_page_setup(ptr, ptr);
+void webkit_print_operation_set_print_settings(ptr, ptr);
+ptr webkit_response_policy_decision_get_request(ptr);
+ptr webkit_response_policy_decision_get_response(ptr);
+int webkit_response_policy_decision_is_main_frame_main_resource(ptr);
+int webkit_response_policy_decision_is_mime_type_supported(ptr);
+void webkit_script_dialog_close(ptr);
+void webkit_script_dialog_confirm_set_confirmed(ptr, int);
+int webkit_script_dialog_get_dialog_type(ptr);
+str webkit_script_dialog_get_message(ptr);
+str webkit_script_dialog_prompt_get_default_text(ptr);
+void webkit_script_dialog_prompt_set_text(ptr, str);
+ptr webkit_script_dialog_ref(ptr);
+void webkit_script_dialog_unref(ptr);
+ptr webkit_script_message_reply_ref(ptr);
+void webkit_script_message_reply_return_error_message(ptr, str);
+void webkit_script_message_reply_return_value(ptr, ptr);
+void webkit_script_message_reply_unref(ptr);
+void webkit_security_manager_register_uri_scheme_as_cors_enabled(ptr, str);
+void webkit_security_manager_register_uri_scheme_as_display_isolated(ptr, str);
+void webkit_security_manager_register_uri_scheme_as_empty_document(ptr, str);
+void webkit_security_manager_register_uri_scheme_as_local(ptr, str);
+void webkit_security_manager_register_uri_scheme_as_no_access(ptr, str);
+void webkit_security_manager_register_uri_scheme_as_secure(ptr, str);
+int webkit_security_manager_uri_scheme_is_cors_enabled(ptr, str);
+int webkit_security_manager_uri_scheme_is_display_isolated(ptr, str);
+int webkit_security_manager_uri_scheme_is_empty_document(ptr, str);
+int webkit_security_manager_uri_scheme_is_local(ptr, str);
+int webkit_security_manager_uri_scheme_is_no_access(ptr, str);
+int webkit_security_manager_uri_scheme_is_secure(ptr, str);
+ptr webkit_security_origin_new(str, str, ushort);
+ptr webkit_security_origin_new_for_uri(str);
+str webkit_security_origin_get_host(ptr);
+ushort webkit_security_origin_get_port(ptr);
+str webkit_security_origin_get_protocol(ptr);
+ptr webkit_security_origin_ref(ptr);
+ptr webkit_security_origin_to_string(ptr);
+void webkit_security_origin_unref(ptr);
+ptr webkit_settings_new();
+uint webkit_settings_font_size_to_pixels(ptr, uint);
+uint webkit_settings_font_size_to_points(ptr, uint);
+int webkit_settings_get_allow_file_access_from_file_urls(ptr);
+int webkit_settings_get_allow_modal_dialogs(ptr);
+int webkit_settings_get_allow_top_navigation_to_data_urls(ptr);
+int webkit_settings_get_allow_universal_access_from_file_urls(ptr);
+int webkit_settings_get_auto_load_images(ptr);
+str webkit_settings_get_cursive_font_family(ptr);
+str webkit_settings_get_default_charset(ptr);
+str webkit_settings_get_default_font_family(ptr);
+uint webkit_settings_get_default_font_size(ptr);
+uint webkit_settings_get_default_monospace_font_size(ptr);
+int webkit_settings_get_disable_web_security(ptr);
+int webkit_settings_get_draw_compositing_indicators(ptr);
+int webkit_settings_get_enable_back_forward_navigation_gestures(ptr);
+int webkit_settings_get_enable_caret_browsing(ptr);
+int webkit_settings_get_enable_developer_extras(ptr);
+int webkit_settings_get_enable_dns_prefetching(ptr);
+int webkit_settings_get_enable_encrypted_media(ptr);
+int webkit_settings_get_enable_fullscreen(ptr);
+int webkit_settings_get_enable_html5_database(ptr);
+int webkit_settings_get_enable_html5_local_storage(ptr);
+int webkit_settings_get_enable_hyperlink_auditing(ptr);
+int webkit_settings_get_enable_javascript(ptr);
+int webkit_settings_get_enable_javascript_markup(ptr);
+int webkit_settings_get_enable_media(ptr);
+int webkit_settings_get_enable_media_capabilities(ptr);
+int webkit_settings_get_enable_media_stream(ptr);
+int webkit_settings_get_enable_mediasource(ptr);
+int webkit_settings_get_enable_mock_capture_devices(ptr);
+int webkit_settings_get_enable_offline_web_application_cache(ptr);
+int webkit_settings_get_enable_page_cache(ptr);
+int webkit_settings_get_enable_resizable_text_areas(ptr);
+int webkit_settings_get_enable_site_specific_quirks(ptr);
+int webkit_settings_get_enable_smooth_scrolling(ptr);
+int webkit_settings_get_enable_spatial_navigation(ptr);
+int webkit_settings_get_enable_tabs_to_links(ptr);
+int webkit_settings_get_enable_webaudio(ptr);
+int webkit_settings_get_enable_webgl(ptr);
+int webkit_settings_get_enable_webrtc(ptr);
+int webkit_settings_get_enable_write_console_messages_to_stdout(ptr);
+str webkit_settings_get_fantasy_font_family(ptr);
+int webkit_settings_get_hardware_acceleration_policy(ptr);
+int webkit_settings_get_javascript_can_access_clipboard(ptr);
+int webkit_settings_get_javascript_can_open_windows_automatically(ptr);
+int webkit_settings_get_load_icons_ignoring_image_load_setting(ptr);
+str webkit_settings_get_media_content_types_requiring_hardware_support(ptr);
+int webkit_settings_get_media_playback_allows_inline(ptr);
+int webkit_settings_get_media_playback_requires_user_gesture(ptr);
+uint webkit_settings_get_minimum_font_size(ptr);
+str webkit_settings_get_monospace_font_family(ptr);
+str webkit_settings_get_pictograph_font_family(ptr);
+int webkit_settings_get_print_backgrounds(ptr);
+str webkit_settings_get_sans_serif_font_family(ptr);
+str webkit_settings_get_serif_font_family(ptr);
+str webkit_settings_get_user_agent(ptr);
+int webkit_settings_get_zoom_text_only(ptr);
+void webkit_settings_set_allow_file_access_from_file_urls(ptr, int);
+void webkit_settings_set_allow_modal_dialogs(ptr, int);
+void webkit_settings_set_allow_top_navigation_to_data_urls(ptr, int);
+void webkit_settings_set_allow_universal_access_from_file_urls(ptr, int);
+void webkit_settings_set_auto_load_images(ptr, int);
+void webkit_settings_set_cursive_font_family(ptr, str);
+void webkit_settings_set_default_charset(ptr, str);
+void webkit_settings_set_default_font_family(ptr, str);
+void webkit_settings_set_default_font_size(ptr, uint);
+void webkit_settings_set_default_monospace_font_size(ptr, uint);
+void webkit_settings_set_disable_web_security(ptr, int);
+void webkit_settings_set_draw_compositing_indicators(ptr, int);
+void webkit_settings_set_enable_back_forward_navigation_gestures(ptr, int);
+void webkit_settings_set_enable_caret_browsing(ptr, int);
+void webkit_settings_set_enable_developer_extras(ptr, int);
+void webkit_settings_set_enable_dns_prefetching(ptr, int);
+void webkit_settings_set_enable_encrypted_media(ptr, int);
+void webkit_settings_set_enable_fullscreen(ptr, int);
+void webkit_settings_set_enable_html5_database(ptr, int);
+void webkit_settings_set_enable_html5_local_storage(ptr, int);
+void webkit_settings_set_enable_hyperlink_auditing(ptr, int);
+void webkit_settings_set_enable_javascript(ptr, int);
+void webkit_settings_set_enable_javascript_markup(ptr, int);
+void webkit_settings_set_enable_media(ptr, int);
+void webkit_settings_set_enable_media_capabilities(ptr, int);
+void webkit_settings_set_enable_media_stream(ptr, int);
+void webkit_settings_set_enable_mediasource(ptr, int);
+void webkit_settings_set_enable_mock_capture_devices(ptr, int);
+void webkit_settings_set_enable_offline_web_application_cache(ptr, int);
+void webkit_settings_set_enable_page_cache(ptr, int);
+void webkit_settings_set_enable_resizable_text_areas(ptr, int);
+void webkit_settings_set_enable_site_specific_quirks(ptr, int);
+void webkit_settings_set_enable_smooth_scrolling(ptr, int);
+void webkit_settings_set_enable_spatial_navigation(ptr, int);
+void webkit_settings_set_enable_tabs_to_links(ptr, int);
+void webkit_settings_set_enable_webaudio(ptr, int);
+void webkit_settings_set_enable_webgl(ptr, int);
+void webkit_settings_set_enable_webrtc(ptr, int);
+void webkit_settings_set_enable_write_console_messages_to_stdout(ptr, int);
+void webkit_settings_set_fantasy_font_family(ptr, str);
+void webkit_settings_set_hardware_acceleration_policy(ptr, int);
+void webkit_settings_set_javascript_can_access_clipboard(ptr, int);
+void webkit_settings_set_javascript_can_open_windows_automatically(ptr, int);
+void webkit_settings_set_load_icons_ignoring_image_load_setting(ptr, int);
+void webkit_settings_set_media_content_types_requiring_hardware_support(ptr, str);
+void webkit_settings_set_media_playback_allows_inline(ptr, int);
+void webkit_settings_set_media_playback_requires_user_gesture(ptr, int);
+void webkit_settings_set_minimum_font_size(ptr, uint);
+void webkit_settings_set_monospace_font_family(ptr, str);
+void webkit_settings_set_pictograph_font_family(ptr, str);
+void webkit_settings_set_print_backgrounds(ptr, int);
+void webkit_settings_set_sans_serif_font_family(ptr, str);
+void webkit_settings_set_serif_font_family(ptr, str);
+void webkit_settings_set_user_agent(ptr, str);
+void webkit_settings_set_user_agent_with_application_details(ptr, str, str);
+void webkit_settings_set_zoom_text_only(ptr, int);
+ptr webkit_uri_request_new(str);
+ptr webkit_uri_request_get_http_headers(ptr);
+str webkit_uri_request_get_http_method(ptr);
+str webkit_uri_request_get_uri(ptr);
+void webkit_uri_request_set_uri(ptr, str);
+ulong webkit_uri_response_get_content_length(ptr);
+ptr webkit_uri_response_get_http_headers(ptr);
+str webkit_uri_response_get_mime_type(ptr);
+uint webkit_uri_response_get_status_code(ptr);
+str webkit_uri_response_get_suggested_filename(ptr);
+str webkit_uri_response_get_uri(ptr);
+void webkit_uri_scheme_request_finish(ptr, ptr, long, str);
+void webkit_uri_scheme_request_finish_error(ptr, ptr);
+void webkit_uri_scheme_request_finish_with_response(ptr, ptr);
+ptr webkit_uri_scheme_request_get_http_body(ptr);
+ptr webkit_uri_scheme_request_get_http_headers(ptr);
+str webkit_uri_scheme_request_get_http_method(ptr);
+str webkit_uri_scheme_request_get_path(ptr);
+str webkit_uri_scheme_request_get_scheme(ptr);
+str webkit_uri_scheme_request_get_uri(ptr);
+ptr webkit_uri_scheme_request_get_web_view(ptr);
+ptr webkit_uri_scheme_response_new(ptr, long);
+void webkit_uri_scheme_response_set_content_type(ptr, str);
+void webkit_uri_scheme_response_set_http_headers(ptr, ptr);
+void webkit_uri_scheme_response_set_status(ptr, uint, str);
+str webkit_user_content_filter_get_identifier(ptr);
+ptr webkit_user_content_filter_ref(ptr);
+void webkit_user_content_filter_unref(ptr);
+ptr webkit_user_content_filter_store_new(str);
+void webkit_user_content_filter_store_fetch_identifiers(ptr, ptr, ptr, ptr);
+ptr webkit_user_content_filter_store_fetch_identifiers_finish(ptr, ptr);
+str webkit_user_content_filter_store_get_path(ptr);
+void webkit_user_content_filter_store_load(ptr, str, ptr, ptr, ptr);
+ptr webkit_user_content_filter_store_load_finish(ptr, ptr, ptr);
+void webkit_user_content_filter_store_remove(ptr, str, ptr, ptr, ptr);
+int webkit_user_content_filter_store_remove_finish(ptr, ptr, ptr);
+void webkit_user_content_filter_store_save(ptr, str, ptr, ptr, ptr, ptr);
+ptr webkit_user_content_filter_store_save_finish(ptr, ptr, ptr);
+void webkit_user_content_filter_store_save_from_file(ptr, str, ptr, ptr, ptr, ptr);
+ptr webkit_user_content_filter_store_save_from_file_finish(ptr, ptr, ptr);
+ptr webkit_user_content_manager_new();
+void webkit_user_content_manager_add_filter(ptr, ptr);
+void webkit_user_content_manager_add_script(ptr, ptr);
+void webkit_user_content_manager_add_style_sheet(ptr, ptr);
+int webkit_user_content_manager_register_script_message_handler(ptr, str, str);
+int webkit_user_content_manager_register_script_message_handler_with_reply(ptr, str, str);
+void webkit_user_content_manager_remove_all_filters(ptr);
+void webkit_user_content_manager_remove_all_scripts(ptr);
+void webkit_user_content_manager_remove_all_style_sheets(ptr);
+void webkit_user_content_manager_remove_filter(ptr, ptr);
+void webkit_user_content_manager_remove_filter_by_id(ptr, str);
+void webkit_user_content_manager_remove_script(ptr, ptr);
+void webkit_user_content_manager_remove_style_sheet(ptr, ptr);
+void webkit_user_content_manager_unregister_script_message_handler(ptr, str, str);
+ptr webkit_user_message_new(str, ptr);
+ptr webkit_user_message_new_with_fd_list(str, ptr, ptr);
+ptr webkit_user_message_get_fd_list(ptr);
+str webkit_user_message_get_name(ptr);
+ptr webkit_user_message_get_parameters(ptr);
+void webkit_user_message_send_reply(ptr, ptr);
+ptr webkit_user_script_new(str, int, int, ptr, ptr);
+ptr webkit_user_script_new_for_world(str, int, int, str, ptr, ptr);
+ptr webkit_user_script_ref(ptr);
+void webkit_user_script_unref(ptr);
+ptr webkit_user_style_sheet_new(str, int, int, ptr, ptr);
+ptr webkit_user_style_sheet_new_for_world(str, int, int, str, ptr, ptr);
+ptr webkit_user_style_sheet_ref(ptr);
+void webkit_user_style_sheet_unref(ptr);
+ptr webkit_web_context_new();
+ptr webkit_web_context_get_default(ptr);
+void webkit_web_context_add_path_to_sandbox(ptr, ptr, int);
+int webkit_web_context_get_cache_model(ptr);
+ptr webkit_web_context_get_geolocation_manager(ptr);
+ptr webkit_web_context_get_network_session_for_automation(ptr);
+ptr webkit_web_context_get_security_manager(ptr);
+int webkit_web_context_get_spell_checking_enabled(ptr);
+ptr webkit_web_context_get_spell_checking_languages(ptr);
+str webkit_web_context_get_time_zone_override(ptr);
+void webkit_web_context_initialize_notification_permissions(ptr, ptr, ptr);
+int webkit_web_context_is_automation_allowed(ptr);
+void webkit_web_context_register_uri_scheme(ptr, str, ptr, ptr, ptr);
+void webkit_web_context_send_message_to_all_extensions(ptr, ptr);
+void webkit_web_context_set_automation_allowed(ptr, int);
+void webkit_web_context_set_cache_model(ptr, int);
+void webkit_web_context_set_preferred_languages(ptr, ptr);
+void webkit_web_context_set_spell_checking_enabled(ptr, int);
+void webkit_web_context_set_spell_checking_languages(ptr, ptr);
+void webkit_web_context_set_web_process_extensions_directory(ptr, str);
+void webkit_web_context_set_web_process_extensions_initialization_user_data(ptr, ptr);
+void webkit_web_inspector_attach(ptr);
+void webkit_web_inspector_close(ptr);
+void webkit_web_inspector_detach(ptr);
+uint webkit_web_inspector_get_attached_height(ptr);
+int webkit_web_inspector_get_can_attach(ptr);
+str webkit_web_inspector_get_inspected_uri(ptr);
+ptr webkit_web_inspector_get_web_view(ptr);
+int webkit_web_inspector_is_attached(ptr);
+void webkit_web_inspector_show(ptr);
+void webkit_web_resource_get_data(ptr, ptr, ptr, ptr);
+ptr webkit_web_resource_get_data_finish(ptr, ptr, ptr, ptr);
+ptr webkit_web_resource_get_response(ptr);
+str webkit_web_resource_get_uri(ptr);
+ptr webkit_web_view_new();
+void webkit_web_view_call_async_javascript_function(ptr, str, long, ptr, str, str, ptr, ptr, ptr);
+ptr webkit_web_view_call_async_javascript_function_finish(ptr, ptr, ptr);
+void webkit_web_view_can_execute_editing_command(ptr, str, ptr, ptr, ptr);
+int webkit_web_view_can_execute_editing_command_finish(ptr, ptr, ptr);
+int webkit_web_view_can_go_back(ptr);
+int webkit_web_view_can_go_forward(ptr);
+int webkit_web_view_can_show_mime_type(ptr, str);
+ptr webkit_web_view_download_uri(ptr, str);
+void webkit_web_view_evaluate_javascript(ptr, str, long, str, str, ptr, ptr, ptr);
+ptr webkit_web_view_evaluate_javascript_finish(ptr, ptr, ptr);
+void webkit_web_view_execute_editing_command(ptr, str);
+void webkit_web_view_execute_editing_command_with_argument(ptr, str, str);
+int webkit_web_view_get_automation_presentation_type(ptr);
+ptr webkit_web_view_get_back_forward_list(ptr);
+void webkit_web_view_get_background_color(ptr, ptr);
+int webkit_web_view_get_camera_capture_state(ptr);
+ptr webkit_web_view_get_context(ptr);
+str webkit_web_view_get_custom_charset(ptr);
+str webkit_web_view_get_default_content_security_policy(ptr);
+int webkit_web_view_get_display_capture_state(ptr);
+ptr webkit_web_view_get_editor_state(ptr);
+double webkit_web_view_get_estimated_load_progress(ptr);
+ptr webkit_web_view_get_favicon(ptr);
+ptr webkit_web_view_get_find_controller(ptr);
+ptr webkit_web_view_get_input_method_context(ptr);
+ptr webkit_web_view_get_inspector(ptr);
+int webkit_web_view_get_is_muted(ptr);
+int webkit_web_view_get_is_web_process_responsive(ptr);
+ptr webkit_web_view_get_main_resource(ptr);
+int webkit_web_view_get_microphone_capture_state(ptr);
+ptr webkit_web_view_get_network_session(ptr);
+ulong webkit_web_view_get_page_id(ptr);
+ptr webkit_web_view_get_session_state(ptr);
+ptr webkit_web_view_get_settings(ptr);
+void webkit_web_view_get_snapshot(ptr, int, int, ptr, ptr, ptr);
+ptr webkit_web_view_get_snapshot_finish(ptr, ptr, ptr);
+str webkit_web_view_get_title(ptr);
+int webkit_web_view_get_tls_info(ptr, ptr, ptr);
+str webkit_web_view_get_uri(ptr);
+ptr webkit_web_view_get_user_content_manager(ptr);
+int webkit_web_view_get_web_extension_mode(ptr);
+ptr webkit_web_view_get_website_policies(ptr);
+ptr webkit_web_view_get_window_properties(ptr);
+double webkit_web_view_get_zoom_level(ptr);
+void webkit_web_view_go_back(ptr);
+void webkit_web_view_go_forward(ptr);
+void webkit_web_view_go_to_back_forward_list_item(ptr, ptr);
+int webkit_web_view_is_controlled_by_automation(ptr);
+int webkit_web_view_is_editable(ptr);
+int webkit_web_view_is_loading(ptr);
+int webkit_web_view_is_playing_audio(ptr);
+void webkit_web_view_load_alternate_html(ptr, str, str, str);
+void webkit_web_view_load_bytes(ptr, ptr, str, str, str);
+void webkit_web_view_load_html(ptr, str, str);
+void webkit_web_view_load_plain_text(ptr, str);
+void webkit_web_view_load_request(ptr, ptr);
+void webkit_web_view_load_uri(ptr, str);
+void webkit_web_view_reload(ptr);
+void webkit_web_view_reload_bypass_cache(ptr);
+void webkit_web_view_restore_session_state(ptr, ptr);
+void webkit_web_view_save(ptr, int, ptr, ptr, ptr);
+ptr webkit_web_view_save_finish(ptr, ptr, ptr);
+void webkit_web_view_save_to_file(ptr, ptr, int, ptr, ptr, ptr);
+int webkit_web_view_save_to_file_finish(ptr, ptr, ptr);
+void webkit_web_view_send_message_to_page(ptr, ptr, ptr, ptr, ptr);
+ptr webkit_web_view_send_message_to_page_finish(ptr, ptr, ptr);
+void webkit_web_view_set_background_color(ptr, ptr);
+void webkit_web_view_set_camera_capture_state(ptr, int);
+void webkit_web_view_set_cors_allowlist(ptr, ptr);
+void webkit_web_view_set_custom_charset(ptr, str);
+void webkit_web_view_set_display_capture_state(ptr, int);
+void webkit_web_view_set_editable(ptr, int);
+void webkit_web_view_set_input_method_context(ptr, ptr);
+void webkit_web_view_set_is_muted(ptr, int);
+void webkit_web_view_set_microphone_capture_state(ptr, int);
+void webkit_web_view_set_settings(ptr, ptr);
+void webkit_web_view_set_zoom_level(ptr, double);
+void webkit_web_view_stop_loading(ptr);
+void webkit_web_view_terminate_web_process(ptr);
+void webkit_web_view_try_close(ptr);
+ptr webkit_web_view_session_state_new(ptr);
+ptr webkit_web_view_session_state_ref(ptr);
+ptr webkit_web_view_session_state_serialize(ptr);
+void webkit_web_view_session_state_unref(ptr);
+str webkit_website_data_get_name(ptr);
+ulong webkit_website_data_get_size(ptr, int);
+int webkit_website_data_get_types(ptr);
+ptr webkit_website_data_ref(ptr);
+void webkit_website_data_unref(ptr);
+str webkit_website_data_access_permission_request_get_current_domain(ptr);
+str webkit_website_data_access_permission_request_get_requesting_domain(ptr);
+void webkit_website_data_manager_clear(ptr, int, long, ptr, ptr, ptr);
+int webkit_website_data_manager_clear_finish(ptr, ptr, ptr);
+void webkit_website_data_manager_fetch(ptr, int, ptr, ptr, ptr);
+ptr webkit_website_data_manager_fetch_finish(ptr, ptr, ptr);
+str webkit_website_data_manager_get_base_cache_directory(ptr);
+str webkit_website_data_manager_get_base_data_directory(ptr);
+ptr webkit_website_data_manager_get_favicon_database(ptr);
+int webkit_website_data_manager_get_favicons_enabled(ptr);
+void webkit_website_data_manager_get_itp_summary(ptr, ptr, ptr, ptr);
+ptr webkit_website_data_manager_get_itp_summary_finish(ptr, ptr, ptr);
+int webkit_website_data_manager_is_ephemeral(ptr);
+void webkit_website_data_manager_remove(ptr, int, ptr, ptr, ptr, ptr);
+int webkit_website_data_manager_remove_finish(ptr, ptr, ptr);
+void webkit_website_data_manager_set_favicons_enabled(ptr, int);
+ptr webkit_website_policies_new();
+int webkit_website_policies_get_autoplay_policy(ptr);
+int webkit_window_properties_get_fullscreen(ptr);
+void webkit_window_properties_get_geometry(ptr, ptr);
+int webkit_window_properties_get_locationbar_visible(ptr);
+int webkit_window_properties_get_menubar_visible(ptr);
+int webkit_window_properties_get_resizable(ptr);
+int webkit_window_properties_get_scrollbars_visible(ptr);
+int webkit_window_properties_get_statusbar_visible(ptr);
+int webkit_window_properties_get_toolbar_visible(ptr);
+uint webkit_download_error_quark();
+uint webkit_favicon_database_error_quark();
+uint webkit_get_major_version();
+uint webkit_get_micro_version();
+uint webkit_get_minor_version();
+uint webkit_javascript_error_quark();
+uint webkit_media_error_quark();
+str webkit_media_key_system_permission_get_name(ptr);
+uint webkit_network_error_quark();
+uint webkit_policy_error_quark();
+uint webkit_print_error_quark();
+uint webkit_snapshot_error_quark();
+ptr webkit_uri_for_display(str);
+uint webkit_user_content_filter_error_quark();
+int webkit_user_media_permission_is_for_audio_device(ptr);
+int webkit_user_media_permission_is_for_display_device(ptr);
+int webkit_user_media_permission_is_for_video_device(ptr);
+uint webkit_user_message_error_quark();
+};
+
+extern callback void WebKitURISchemeRequestCallback(ptr, ptr);
+// name WebKitApplicationInfo
+extern struct WebKitApplicationInfo{
+
+};
+
+extern struct WebKitAuthenticationRequestClass{
+byte parent_class[136],  // WebKitObjectClass
+};
+
+extern struct WebKitAutomationSessionClass{
+byte parent_class[136],  // WebKitObjectClass
+};
+
+extern struct WebKitBackForwardListClass{
+byte parent_class[136],  // WebKitObjectClass
+};
+
+extern struct WebKitBackForwardListItemClass{
+byte parent_class[136],  // WebKitInitiallyUnownedClass
+};
+
+extern struct WebKitColorChooserRequestClass{
+byte parent_class[136],  // WebKitObjectClass
+};
+
+extern struct WebKitContextMenuClass{
+byte parent_class[136],  // WebKitObjectClass
+};
+
+extern struct WebKitContextMenuItemClass{
+byte parent_class[136],  // WebKitInitiallyUnownedClass
+};
+
+extern struct WebKitCookieManagerClass{
+byte parent_class[136],  // WebKitObjectClass
+};
+
+// name WebKitCredential
+extern struct WebKitCredential{
+
+};
+
+extern struct WebKitDeviceInfoPermissionRequestClass{
+byte parent_class[136],  // WebKitObjectClass
+};
+
+extern struct WebKitDownloadClass{
+byte parent_class[136],  // WebKitObjectClass
+};
+
+extern struct WebKitEditorStateClass{
+byte parent_class[136],  // WebKitObjectClass
+};
+
+extern struct WebKitFaviconDatabaseClass{
+byte parent_class[136],  // WebKitObjectClass
+};
+
+extern struct WebKitFileChooserRequestClass{
+byte parent_class[136],  // WebKitObjectClass
+};
+
+extern struct WebKitFindControllerClass{
+byte parent_class[136],  // WebKitObjectClass
+};
+
+extern struct WebKitFormSubmissionRequestClass{
+byte parent_class[136],  // WebKitObjectClass
+};
+
+extern struct WebKitGeolocationManagerClass{
+byte parent_class[136],  // WebKitObjectClass
+};
+
+extern struct WebKitGeolocationPermissionRequestClass{
+byte parent_class[136],  // WebKitObjectClass
+};
+
+// name WebKitGeolocationPosition
+extern struct WebKitGeolocationPosition{
+
+};
+
+extern struct WebKitHitTestResultClass{
+byte parent_class[136],  // WebKitObjectClass
+};
+
+// name WebKitITPFirstParty
+extern struct WebKitITPFirstParty{
+
+};
+
+// name WebKitITPThirdParty
+extern struct WebKitITPThirdParty{
+
+};
+
+extern struct WebKitInputMethodContextClass{
+byte parent_class[136],  // WebKitObjectClass
+ptr preedit_started,  // ::preedit_started
+ptr preedit_changed,  // ::preedit_changed
+ptr preedit_finished,  // ::preedit_finished
+ptr committed,  // ::committed
+ptr delete_surrounding,  // ::delete_surrounding
+ptr set_enable_preedit,  // ::set_enable_preedit
+ptr get_preedit,  // ::get_preedit
+ptr filter_key_event,  // ::filter_key_event
+ptr notify_focus_in,  // ::notify_focus_in
+ptr notify_focus_out,  // ::notify_focus_out
+ptr notify_cursor_area,  // ::notify_cursor_area
+ptr notify_surrounding,  // ::notify_surrounding
+ptr reset,  // ::reset
+ptr _webkit_reserved0,  // void*
+ptr _webkit_reserved1,  // void*
+ptr _webkit_reserved2,  // void*
+ptr _webkit_reserved3,  // void*
+ptr _webkit_reserved4,  // void*
+ptr _webkit_reserved5,  // void*
+ptr _webkit_reserved6,  // void*
+ptr _webkit_reserved7,  // void*
+ptr _webkit_reserved8,  // void*
+ptr _webkit_reserved9,  // void*
+ptr _webkit_reserved10,  // void*
+ptr _webkit_reserved11,  // void*
+ptr _webkit_reserved12,  // void*
+ptr _webkit_reserved13,  // void*
+ptr _webkit_reserved14,  // void*
+ptr _webkit_reserved15,  // void*
+};
+
+extern struct WebKitInputMethodContextPrivate{
+
+};
+
+// name WebKitInputMethodUnderline
+extern struct WebKitInputMethodUnderline{
+
+};
+
+extern struct WebKitMediaKeySystemPermissionRequestClass{
+byte parent_class[136],  // WebKitObjectClass
+};
+
+// name WebKitMemoryPressureSettings
+extern struct WebKitMemoryPressureSettings{
+
+};
+
+// name WebKitNavigationAction
+extern struct WebKitNavigationAction{
+
+};
+
+extern struct WebKitNavigationPolicyDecisionClass{
+byte parent_class[200],  // WebKitPolicyDecisionClass
+};
+
+// name WebKitNetworkProxySettings
+extern struct WebKitNetworkProxySettings{
+
+};
+
+extern struct WebKitNetworkSessionClass{
+byte parent_class[136],  // WebKitObjectClass
+};
+
+extern struct WebKitNotificationClass{
+byte parent_class[136],  // WebKitObjectClass
+};
+
+extern struct WebKitNotificationPermissionRequestClass{
+byte parent_class[136],  // WebKitObjectClass
+};
+
+extern struct WebKitOptionMenuClass{
+byte parent_class[136],  // WebKitObjectClass
+};
+
+// name WebKitOptionMenuItem
+extern struct WebKitOptionMenuItem{
+
+};
+
+extern struct WebKitPermissionRequestInterface{
+byte parent_interface[16],  // WebKitTypeInterface
+ptr allow,  // ::allow
+ptr deny,  // ::deny
+};
+
+// name WebKitPermissionStateQuery
+extern struct WebKitPermissionStateQuery{
+
+};
+
+extern struct WebKitPointerLockPermissionRequestClass{
+byte parent_class[136],  // WebKitObjectClass
+};
+
+extern struct WebKitPolicyDecisionClass{
+byte parent_class[136],  // WebKitObjectClass
+ptr _webkit_reserved0,  // void*
+ptr _webkit_reserved1,  // void*
+ptr _webkit_reserved2,  // void*
+ptr _webkit_reserved3,  // void*
+ptr _webkit_reserved4,  // void*
+ptr _webkit_reserved5,  // void*
+ptr _webkit_reserved6,  // void*
+ptr _webkit_reserved7,  // void*
+};
+
+extern struct WebKitPolicyDecisionPrivate{
+
+};
+
+extern struct WebKitPrintOperationClass{
+byte parent_class[136],  // WebKitObjectClass
+};
+
+extern struct WebKitResponsePolicyDecisionClass{
+byte parent_class[200],  // WebKitPolicyDecisionClass
+};
+
+// name WebKitScriptDialog
+extern struct WebKitScriptDialog{
+
+};
+
+// name WebKitScriptMessageReply
+extern struct WebKitScriptMessageReply{
+
+};
+
+extern struct WebKitSecurityManagerClass{
+byte parent_class[136],  // WebKitObjectClass
+};
+
+// name WebKitSecurityOrigin
+extern struct WebKitSecurityOrigin{
+
+};
+
+extern struct WebKitSettingsClass{
+byte parent_class[136],  // WebKitObjectClass
+};
+
+extern struct WebKitURIRequestClass{
+byte parent_class[136],  // WebKitObjectClass
+};
+
+extern struct WebKitURIResponseClass{
+byte parent_class[136],  // WebKitObjectClass
+};
+
+extern struct WebKitURISchemeRequestClass{
+byte parent_class[136],  // WebKitObjectClass
+};
+
+extern struct WebKitURISchemeResponseClass{
+byte parent_class[136],  // WebKitObjectClass
+};
+
+// name WebKitUserContentFilter
+extern struct WebKitUserContentFilter{
+
+};
+
+extern struct WebKitUserContentFilterStoreClass{
+byte parent_class[136],  // WebKitObjectClass
+};
+
+extern struct WebKitUserContentManagerClass{
+byte parent_class[136],  // WebKitObjectClass
+};
+
+extern struct WebKitUserMediaPermissionRequestClass{
+byte parent_class[136],  // WebKitObjectClass
+};
+
+extern struct WebKitUserMessageClass{
+byte parent_class[136],  // WebKitInitiallyUnownedClass
+};
+
+// name WebKitUserScript
+extern struct WebKitUserScript{
+
+};
+
+// name WebKitUserStyleSheet
+extern struct WebKitUserStyleSheet{
+
+};
+
+extern struct WebKitWebContextClass{
+byte parent_class[136],  // WebKitObjectClass
+};
+
+extern struct WebKitWebInspectorClass{
+byte parent_class[136],  // WebKitObjectClass
+};
+
+extern struct WebKitWebResourceClass{
+byte parent_class[136],  // WebKitObjectClass
+};
+
+extern struct WebKitWebViewBaseClass{
+byte parentClass[408],  // WebKitWidgetClass
+ptr _webkit_reserved0,  // void*
+ptr _webkit_reserved1,  // void*
+ptr _webkit_reserved2,  // void*
+ptr _webkit_reserved3,  // void*
+};
+
+extern struct WebKitWebViewBasePrivate{
+
+};
+
+extern struct WebKitWebViewClass{
+byte parent[440],  // WebKitWebViewBaseClass
+ptr load_changed,  // ::load_changed
+ptr load_failed,  // ::load_failed
+ptr create,  // void*
+ptr ready_to_show,  // ::ready_to_show
+ptr run_as_modal,  // ::run_as_modal
+ptr close,  // ::close
+ptr script_dialog,  // ::script_dialog
+ptr decide_policy,  // ::decide_policy
+ptr permission_request,  // ::permission_request
+ptr mouse_target_changed,  // ::mouse_target_changed
+ptr print_,  // ::print
+ptr resource_load_started,  // ::resource_load_started
+ptr enter_fullscreen,  // ::enter_fullscreen
+ptr leave_fullscreen,  // ::leave_fullscreen
+ptr run_file_chooser,  // ::run_file_chooser
+ptr context_menu,  // ::context_menu
+ptr context_menu_dismissed,  // ::context_menu_dismissed
+ptr submit_form,  // ::submit_form
+ptr insecure_content_detected,  // ::insecure_content_detected
+ptr web_process_crashed,  // ::web_process_crashed
+ptr authenticate,  // ::authenticate
+ptr load_failed_with_tls_errors,  // ::load_failed_with_tls_errors
+ptr show_notification,  // ::show_notification
+ptr run_color_chooser,  // ::run_color_chooser
+ptr show_option_menu,  // ::show_option_menu
+ptr web_process_terminated,  // ::web_process_terminated
+ptr user_message_received,  // ::user_message_received
+ptr query_permission_state,  // ::query_permission_state
+ptr _webkit_reserved0,  // void*
+ptr _webkit_reserved1,  // void*
+ptr _webkit_reserved2,  // void*
+ptr _webkit_reserved3,  // void*
+ptr _webkit_reserved4,  // void*
+ptr _webkit_reserved5,  // void*
+ptr _webkit_reserved6,  // void*
+ptr _webkit_reserved7,  // void*
+ptr _webkit_reserved8,  // void*
+ptr _webkit_reserved9,  // void*
+ptr _webkit_reserved10,  // void*
+ptr _webkit_reserved11,  // void*
+ptr _webkit_reserved12,  // void*
+ptr _webkit_reserved13,  // void*
+ptr _webkit_reserved14,  // void*
+ptr _webkit_reserved15,  // void*
+ptr _webkit_reserved16,  // void*
+ptr _webkit_reserved17,  // void*
+ptr _webkit_reserved18,  // void*
+ptr _webkit_reserved19,  // void*
+ptr _webkit_reserved20,  // void*
+ptr _webkit_reserved21,  // void*
+ptr _webkit_reserved22,  // void*
+ptr _webkit_reserved23,  // void*
+ptr _webkit_reserved24,  // void*
+ptr _webkit_reserved25,  // void*
+ptr _webkit_reserved26,  // void*
+ptr _webkit_reserved27,  // void*
+ptr _webkit_reserved28,  // void*
+ptr _webkit_reserved29,  // void*
+ptr _webkit_reserved30,  // void*
+};
+
+extern struct WebKitWebViewPrivate{
+
+};
+
+// name WebKitWebViewSessionState
+extern struct WebKitWebViewSessionState{
+
+};
+
+// name WebKitWebsiteData
+extern struct WebKitWebsiteData{
+
+};
+
+extern struct WebKitWebsiteDataAccessPermissionRequestClass{
+byte parent_class[136],  // WebKitObjectClass
+};
+
+extern struct WebKitWebsiteDataManagerClass{
+byte parent_class[136],  // WebKitObjectClass
+};
+
+extern struct WebKitWebsitePoliciesClass{
+byte parent_class[136],  // WebKitObjectClass
+};
+
+extern struct WebKitWindowPropertiesClass{
+byte parent_class[136],  // WebKitObjectClass
+};
+
+var WebKit_AuthenticationScheme_default = 1;
+var WebKit_AuthenticationScheme_http_basic = 2;
+var WebKit_AuthenticationScheme_http_digest = 3;
+var WebKit_AuthenticationScheme_html_form = 4;
+var WebKit_AuthenticationScheme_ntlm = 5;
+var WebKit_AuthenticationScheme_negotiate = 6;
+var WebKit_AuthenticationScheme_client_certificate_requested = 7;
+var WebKit_AuthenticationScheme_server_trust_evaluation_requested = 8;
+var WebKit_AuthenticationScheme_client_certificate_pin_requested = 9;
+var WebKit_AuthenticationScheme_unknown = 100;
+
+var WebKit_AutomationBrowsingContextPresentation_window = 0;
+var WebKit_AutomationBrowsingContextPresentation_tab = 1;
+
+var WebKit_AutoplayPolicy_allow = 0;
+var WebKit_AutoplayPolicy_allow_without_sound = 1;
+var WebKit_AutoplayPolicy_deny = 2;
+
+var WebKit_CacheModel_document_viewer = 0;
+var WebKit_CacheModel_web_browser = 1;
+var WebKit_CacheModel_document_browser = 2;
+
+var WebKit_ContextMenuAction_no_action = 0;
+var WebKit_ContextMenuAction_open_link = 1;
+var WebKit_ContextMenuAction_open_link_in_new_window = 2;
+var WebKit_ContextMenuAction_download_link_to_disk = 3;
+var WebKit_ContextMenuAction_copy_link_to_clipboard = 4;
+var WebKit_ContextMenuAction_open_image_in_new_window = 5;
+var WebKit_ContextMenuAction_download_image_to_disk = 6;
+var WebKit_ContextMenuAction_copy_image_to_clipboard = 7;
+var WebKit_ContextMenuAction_copy_image_url_to_clipboard = 8;
+var WebKit_ContextMenuAction_open_frame_in_new_window = 9;
+var WebKit_ContextMenuAction_go_back = 10;
+var WebKit_ContextMenuAction_go_forward = 11;
+var WebKit_ContextMenuAction_stop = 12;
+var WebKit_ContextMenuAction_reload = 13;
+var WebKit_ContextMenuAction_copy = 14;
+var WebKit_ContextMenuAction_cut = 15;
+var WebKit_ContextMenuAction_paste = 16;
+var WebKit_ContextMenuAction_delete = 17;
+var WebKit_ContextMenuAction_select_all = 18;
+var WebKit_ContextMenuAction_input_methods = 19;
+var WebKit_ContextMenuAction_unicode = 20;
+var WebKit_ContextMenuAction_spelling_guess = 21;
+var WebKit_ContextMenuAction_no_guesses_found = 22;
+var WebKit_ContextMenuAction_ignore_spelling = 23;
+var WebKit_ContextMenuAction_learn_spelling = 24;
+var WebKit_ContextMenuAction_ignore_grammar = 25;
+var WebKit_ContextMenuAction_font_menu = 26;
+var WebKit_ContextMenuAction_bold = 27;
+var WebKit_ContextMenuAction_italic = 28;
+var WebKit_ContextMenuAction_underline = 29;
+var WebKit_ContextMenuAction_outline = 30;
+var WebKit_ContextMenuAction_inspect_element = 31;
+var WebKit_ContextMenuAction_open_video_in_new_window = 32;
+var WebKit_ContextMenuAction_open_audio_in_new_window = 33;
+var WebKit_ContextMenuAction_copy_video_link_to_clipboard = 34;
+var WebKit_ContextMenuAction_copy_audio_link_to_clipboard = 35;
+var WebKit_ContextMenuAction_toggle_media_controls = 36;
+var WebKit_ContextMenuAction_toggle_media_loop = 37;
+var WebKit_ContextMenuAction_enter_video_fullscreen = 38;
+var WebKit_ContextMenuAction_media_play = 39;
+var WebKit_ContextMenuAction_media_pause = 40;
+var WebKit_ContextMenuAction_media_mute = 41;
+var WebKit_ContextMenuAction_download_video_to_disk = 42;
+var WebKit_ContextMenuAction_download_audio_to_disk = 43;
+var WebKit_ContextMenuAction_insert_emoji = 44;
+var WebKit_ContextMenuAction_paste_as_plain_text = 45;
+var WebKit_ContextMenuAction_custom = 10000;
+
+var WebKit_CookieAcceptPolicy_always = 0;
+var WebKit_CookieAcceptPolicy_never = 1;
+var WebKit_CookieAcceptPolicy_no_third_party = 2;
+
+var WebKit_CookiePersistentStorage_text = 0;
+var WebKit_CookiePersistentStorage_sqlite = 1;
+
+var WebKit_CredentialPersistence_none = 0;
+var WebKit_CredentialPersistence_for_session = 1;
+var WebKit_CredentialPersistence_permanent = 2;
+
+var WebKit_DownloadError_network = 499;
+var WebKit_DownloadError_cancelled_by_user = 400;
+var WebKit_DownloadError_destination = 401;
+
+var WebKit_EditorTypingAttributes_none = 2;
+var WebKit_EditorTypingAttributes_bold = 4;
+var WebKit_EditorTypingAttributes_italic = 8;
+var WebKit_EditorTypingAttributes_underline = 16;
+var WebKit_EditorTypingAttributes_strikethrough = 32;
+
+var WebKit_FaviconDatabaseError_not_initialized = 0;
+var WebKit_FaviconDatabaseError_favicon_not_found = 1;
+var WebKit_FaviconDatabaseError_favicon_unknown = 2;
+
+var WebKit_FindOptions_none = 0;
+var WebKit_FindOptions_case_insensitive = 1;
+var WebKit_FindOptions_at_word_starts = 2;
+var WebKit_FindOptions_treat_medial_capital_as_word_start = 4;
+var WebKit_FindOptions_backwards = 8;
+var WebKit_FindOptions_wrap_around = 16;
+
+var WebKit_HardwareAccelerationPolicy_always = 0;
+var WebKit_HardwareAccelerationPolicy_never = 1;
+
+var WebKit_HitTestResultContext_document = 2;
+var WebKit_HitTestResultContext_link = 4;
+var WebKit_HitTestResultContext_image = 8;
+var WebKit_HitTestResultContext_media = 16;
+var WebKit_HitTestResultContext_editable = 32;
+var WebKit_HitTestResultContext_scrollbar = 64;
+var WebKit_HitTestResultContext_selection = 128;
+
+var WebKit_InputHints_none = 0;
+var WebKit_InputHints_spellcheck = 1;
+var WebKit_InputHints_lowercase = 2;
+var WebKit_InputHints_uppercase_chars = 4;
+var WebKit_InputHints_uppercase_words = 8;
+var WebKit_InputHints_uppercase_sentences = 16;
+var WebKit_InputHints_inhibit_osk = 32;
+
+var WebKit_InputPurpose_free_form = 0;
+var WebKit_InputPurpose_digits = 1;
+var WebKit_InputPurpose_number = 2;
+var WebKit_InputPurpose_phone = 3;
+var WebKit_InputPurpose_url = 4;
+var WebKit_InputPurpose_email = 5;
+var WebKit_InputPurpose_password = 6;
+
+var WebKit_InsecureContentEvent_run = 0;
+var WebKit_InsecureContentEvent_displayed = 1;
+
+var WebKit_JavascriptError_script_failed = 699;
+var WebKit_JavascriptError_invalid_parameter = 600;
+var WebKit_JavascriptError_invalid_result = 601;
+
+var WebKit_LoadEvent_started = 0;
+var WebKit_LoadEvent_redirected = 1;
+var WebKit_LoadEvent_committed = 2;
+var WebKit_LoadEvent_finished = 3;
+
+var WebKit_MediaCaptureState_none = 0;
+var WebKit_MediaCaptureState_active = 1;
+var WebKit_MediaCaptureState_muted = 2;
+
+var WebKit_MediaError_load = 204;
+
+var WebKit_NavigationType_link_clicked = 0;
+var WebKit_NavigationType_form_submitted = 1;
+var WebKit_NavigationType_back_forward = 2;
+var WebKit_NavigationType_reload = 3;
+var WebKit_NavigationType_form_resubmitted = 4;
+var WebKit_NavigationType_other = 5;
+
+var WebKit_NetworkError_failed = 399;
+var WebKit_NetworkError_transport = 300;
+var WebKit_NetworkError_unknown_protocol = 301;
+var WebKit_NetworkError_cancelled = 302;
+var WebKit_NetworkError_file_does_not_exist = 303;
+
+var WebKit_NetworkProxyMode_default = 0;
+var WebKit_NetworkProxyMode_no_proxy = 1;
+var WebKit_NetworkProxyMode_custom = 2;
+
+var WebKit_PermissionState_granted = 0;
+var WebKit_PermissionState_denied = 1;
+var WebKit_PermissionState_prompt = 2;
+
+var WebKit_PolicyDecisionType_navigation_action = 0;
+var WebKit_PolicyDecisionType_new_window_action = 1;
+var WebKit_PolicyDecisionType_response = 2;
+
+var WebKit_PolicyError_failed = 199;
+var WebKit_PolicyError_cannot_show_mime_type = 100;
+var WebKit_PolicyError_cannot_show_uri = 101;
+var WebKit_PolicyError_frame_load_interrupted_by_policy_change = 102;
+var WebKit_PolicyError_cannot_use_restricted_port = 103;
+
+var WebKit_PrintError_general = 599;
+var WebKit_PrintError_printer_not_found = 500;
+var WebKit_PrintError_invalid_page_range = 501;
+
+var WebKit_PrintOperationResponse_print = 0;
+var WebKit_PrintOperationResponse_cancel = 1;
+
+var WebKit_SaveMode_mhtml = 0;
+
+var WebKit_ScriptDialogType_alert = 0;
+var WebKit_ScriptDialogType_confirm = 1;
+var WebKit_ScriptDialogType_prompt = 2;
+var WebKit_ScriptDialogType_before_unload_confirm = 3;
+
+var WebKit_SnapshotError_create = 799;
+
+var WebKit_SnapshotOptions_none = 0;
+var WebKit_SnapshotOptions_include_selection_highlighting = 1;
+var WebKit_SnapshotOptions_transparent_background = 2;
+
+var WebKit_SnapshotRegion_visible = 0;
+var WebKit_SnapshotRegion_full_document = 1;
+
+var WebKit_TLSErrorsPolicy_ignore = 0;
+var WebKit_TLSErrorsPolicy_fail = 1;
+
+var WebKit_UserContentFilterError_invalid_source = 0;
+var WebKit_UserContentFilterError_not_found = 1;
+
+var WebKit_UserContentInjectedFrames_all_frames = 0;
+var WebKit_UserContentInjectedFrames_top_frame = 1;
+
+var WebKit_UserMessageError_message = 0;
+
+var WebKit_UserScriptInjectionTime_start = 0;
+var WebKit_UserScriptInjectionTime_end = 1;
+
+var WebKit_UserStyleLevel_user = 0;
+var WebKit_UserStyleLevel_author = 1;
+
+var WebKit_WebExtensionMode_none = 0;
+var WebKit_WebExtensionMode_manifestv2 = 1;
+var WebKit_WebExtensionMode_manifestv3 = 2;
+
+var WebKit_WebProcessTerminationReason_crashed = 0;
+var WebKit_WebProcessTerminationReason_exceeded_memory_limit = 1;
+var WebKit_WebProcessTerminationReason_terminated_by_api = 2;
+
+var WebKit_WebsiteDataTypes_memory_cache = 1;
+var WebKit_WebsiteDataTypes_disk_cache = 2;
+var WebKit_WebsiteDataTypes_offline_application_cache = 4;
+var WebKit_WebsiteDataTypes_session_storage = 8;
+var WebKit_WebsiteDataTypes_local_storage = 16;
+var WebKit_WebsiteDataTypes_indexeddb_databases = 32;
+var WebKit_WebsiteDataTypes_cookies = 64;
+var WebKit_WebsiteDataTypes_device_id_hash_salt = 128;
+var WebKit_WebsiteDataTypes_hsts_cache = 256;
+var WebKit_WebsiteDataTypes_itp = 512;
+var WebKit_WebsiteDataTypes_service_worker_registrations = 1024;
+var WebKit_WebsiteDataTypes_dom_cache = 2048;
+var WebKit_WebsiteDataTypes_all = 4095;
+
+var WebKit_EDITING_COMMAND_COPY_EDITING_COMMAND_COPY = "Copy";
+var WebKit_EDITING_COMMAND_CREATE_LINK_EDITING_COMMAND_CREATE_LINK = "CreateLink";
+var WebKit_EDITING_COMMAND_CUT_EDITING_COMMAND_CUT = "Cut";
+var WebKit_EDITING_COMMAND_INSERT_IMAGE_EDITING_COMMAND_INSERT_IMAGE = "InsertImage";
+var WebKit_EDITING_COMMAND_PASTE_EDITING_COMMAND_PASTE = "Paste";
+var WebKit_EDITING_COMMAND_PASTE_AS_PLAIN_TEXT_EDITING_COMMAND_PASTE_AS_PLAIN_TEXT = "PasteAsPlainText";
+var WebKit_EDITING_COMMAND_REDO_EDITING_COMMAND_REDO = "Redo";
+var WebKit_EDITING_COMMAND_SELECT_ALL_EDITING_COMMAND_SELECT_ALL = "SelectAll";
+var WebKit_EDITING_COMMAND_UNDO_EDITING_COMMAND_UNDO = "Undo";
+var WebKit_MAJOR_VERSION_MAJOR_VERSION = 2;
+
+var WebKit_MICRO_VERSION_MICRO_VERSION = 2;
+
+var WebKit_MINOR_VERSION_MINOR_VERSION = 40;
+
+
+extern callback void WebKitAuthenticationRequest_signal_authenticated(ptr, ptr, ptr);
+extern callback void WebKitAuthenticationRequest_signal_cancelled(ptr, ptr);
+extern callback ptr WebKitAutomationSession_signal_create_web_view(ptr, ptr);
+extern callback void WebKitBackForwardList_signal_changed(ptr, ptr, ptr, ptr);
+extern callback void WebKitColorChooserRequest_signal_finished(ptr, ptr);
+extern callback void WebKitCookieManager_signal_changed(ptr, ptr);
+extern callback void WebKitDownload_signal_created_destination(ptr, str, ptr);
+extern callback int WebKitDownload_signal_decide_destination(ptr, str, ptr);
+extern callback void WebKitDownload_signal_failed(ptr, ptr, ptr);
+extern callback void WebKitDownload_signal_finished(ptr, ptr);
+extern callback void WebKitDownload_signal_received_data(ptr, ulong, ptr);
+extern callback void WebKitFaviconDatabase_signal_favicon_changed(ptr, str, str, ptr);
+extern callback void WebKitFindController_signal_counted_matches(ptr, uint, ptr);
+extern callback void WebKitFindController_signal_failed_to_find_text(ptr, ptr);
+extern callback void WebKitFindController_signal_found_text(ptr, uint, ptr);
+extern callback int WebKitGeolocationManager_signal_start(ptr, ptr);
+extern callback void WebKitGeolocationManager_signal_stop(ptr, ptr);
+extern callback void WebKitInputMethodContext_signal_committed(ptr, str, ptr);
+extern callback void WebKitInputMethodContext_signal_delete_surrounding(ptr, int, uint, ptr);
+extern callback void WebKitInputMethodContext_signal_preedit_changed(ptr, ptr);
+extern callback void WebKitInputMethodContext_signal_preedit_finished(ptr, ptr);
+extern callback void WebKitInputMethodContext_signal_preedit_started(ptr, ptr);
+extern callback void WebKitNetworkSession_signal_download_started(ptr, ptr, ptr);
+extern callback void WebKitNotification_signal_clicked(ptr, ptr);
+extern callback void WebKitNotification_signal_closed(ptr, ptr);
+extern callback void WebKitOptionMenu_signal_close(ptr, ptr);
+extern callback void WebKitPrintOperation_signal_failed(ptr, ptr, ptr);
+extern callback void WebKitPrintOperation_signal_finished(ptr, ptr);
+extern callback void WebKitUserContentManager_signal_script_message_received(ptr, ptr, ptr);
+extern callback int WebKitUserContentManager_signal_script_message_with_reply_received(ptr, ptr, ptr, ptr);
+extern callback void WebKitWebContext_signal_automation_started(ptr, ptr, ptr);
+extern callback void WebKitWebContext_signal_initialize_notification_permissions(ptr, ptr);
+extern callback void WebKitWebContext_signal_initialize_web_process_extensions(ptr, ptr);
+extern callback int WebKitWebContext_signal_user_message_received(ptr, ptr, ptr);
+extern callback int WebKitWebInspector_signal_attach(ptr, ptr);
+extern callback int WebKitWebInspector_signal_bring_to_front(ptr, ptr);
+extern callback void WebKitWebInspector_signal_closed(ptr, ptr);
+extern callback int WebKitWebInspector_signal_detach(ptr, ptr);
+extern callback int WebKitWebInspector_signal_open_window(ptr, ptr);
+extern callback void WebKitWebResource_signal_failed(ptr, ptr, ptr);
+extern callback void WebKitWebResource_signal_failed_with_tls_errors(ptr, ptr, int, ptr);
+extern callback void WebKitWebResource_signal_finished(ptr, ptr);
+extern callback void WebKitWebResource_signal_sent_request(ptr, ptr, ptr, ptr);
+extern callback int WebKitWebView_signal_authenticate(ptr, ptr, ptr);
+extern callback void WebKitWebView_signal_close(ptr, ptr);
+extern callback int WebKitWebView_signal_context_menu(ptr, ptr, ptr, ptr);
+extern callback void WebKitWebView_signal_context_menu_dismissed(ptr, ptr);
+extern callback ptr WebKitWebView_signal_create(ptr, ptr, ptr);
+extern callback int WebKitWebView_signal_decide_policy(ptr, ptr, int, ptr);
+extern callback int WebKitWebView_signal_enter_fullscreen(ptr, ptr);
+extern callback void WebKitWebView_signal_insecure_content_detected(ptr, int, ptr);
+extern callback int WebKitWebView_signal_leave_fullscreen(ptr, ptr);
+extern callback void WebKitWebView_signal_load_changed(ptr, int, ptr);
+extern callback int WebKitWebView_signal_load_failed(ptr, int, str, ptr, ptr);
+extern callback int WebKitWebView_signal_load_failed_with_tls_errors(ptr, str, ptr, int, ptr);
+extern callback void WebKitWebView_signal_mouse_target_changed(ptr, ptr, uint, ptr);
+extern callback int WebKitWebView_signal_permission_request(ptr, ptr, ptr);
+extern callback int WebKitWebView_signal_print(ptr, ptr, ptr);
+extern callback int WebKitWebView_signal_query_permission_state(ptr, ptr, ptr);
+extern callback void WebKitWebView_signal_ready_to_show(ptr, ptr);
+extern callback void WebKitWebView_signal_resource_load_started(ptr, ptr, ptr, ptr);
+extern callback void WebKitWebView_signal_run_as_modal(ptr, ptr);
+extern callback int WebKitWebView_signal_run_color_chooser(ptr, ptr, ptr);
+extern callback int WebKitWebView_signal_run_file_chooser(ptr, ptr, ptr);
+extern callback int WebKitWebView_signal_script_dialog(ptr, ptr, ptr);
+extern callback int WebKitWebView_signal_show_notification(ptr, ptr, ptr);
+extern callback int WebKitWebView_signal_show_option_menu(ptr, ptr, ptr, ptr);
+extern callback void WebKitWebView_signal_submit_form(ptr, ptr, ptr);
+extern callback int WebKitWebView_signal_user_message_received(ptr, ptr, ptr);
+extern callback void WebKitWebView_signal_web_process_terminated(ptr, int, ptr);
+////////////////////////
+extern callback void WebKitInputMethodContext_virtual_committed(ptr, str);
+extern callback void WebKitInputMethodContext_virtual_delete_surrounding(ptr, int, uint);
+extern callback int WebKitInputMethodContext_virtual_filter_key_event(ptr, ptr);
+extern callback void WebKitInputMethodContext_virtual_get_preedit(ptr, ptr, ptr, ptr);
+extern callback void WebKitInputMethodContext_virtual_notify_cursor_area(ptr, int, int, int, int);
+extern callback void WebKitInputMethodContext_virtual_notify_focus_in(ptr);
+extern callback void WebKitInputMethodContext_virtual_notify_focus_out(ptr);
+extern callback void WebKitInputMethodContext_virtual_notify_surrounding(ptr, str, uint, uint, uint);
+extern callback void WebKitInputMethodContext_virtual_preedit_changed(ptr);
+extern callback void WebKitInputMethodContext_virtual_preedit_finished(ptr);
+extern callback void WebKitInputMethodContext_virtual_preedit_started(ptr);
+extern callback void WebKitInputMethodContext_virtual_reset(ptr);
+extern callback void WebKitInputMethodContext_virtual_set_enable_preedit(ptr, int);
+extern callback int WebKitWebView_virtual_authenticate(ptr, ptr);
+extern callback void WebKitWebView_virtual_close(ptr);
+extern callback int WebKitWebView_virtual_context_menu(ptr, ptr, ptr);
+extern callback void WebKitWebView_virtual_context_menu_dismissed(ptr);
+extern callback int WebKitWebView_virtual_decide_policy(ptr, ptr, int);
+extern callback int WebKitWebView_virtual_enter_fullscreen(ptr);
+extern callback void WebKitWebView_virtual_insecure_content_detected(ptr, int);
+extern callback int WebKitWebView_virtual_leave_fullscreen(ptr);
+extern callback void WebKitWebView_virtual_load_changed(ptr, int);
+extern callback int WebKitWebView_virtual_load_failed(ptr, int, str, ptr);
+extern callback int WebKitWebView_virtual_load_failed_with_tls_errors(ptr, str, ptr, int);
+extern callback void WebKitWebView_virtual_mouse_target_changed(ptr, ptr, uint);
+extern callback int WebKitWebView_virtual_permission_request(ptr, ptr);
+extern callback int WebKitWebView_virtual_print(ptr, ptr);
+extern callback int WebKitWebView_virtual_query_permission_state(ptr, ptr);
+extern callback void WebKitWebView_virtual_ready_to_show(ptr);
+extern callback void WebKitWebView_virtual_resource_load_started(ptr, ptr, ptr);
+extern callback void WebKitWebView_virtual_run_as_modal(ptr);
+extern callback int WebKitWebView_virtual_run_color_chooser(ptr, ptr);
+extern callback int WebKitWebView_virtual_run_file_chooser(ptr, ptr);
+extern callback int WebKitWebView_virtual_script_dialog(ptr, ptr);
+extern callback int WebKitWebView_virtual_show_notification(ptr, ptr);
+extern callback int WebKitWebView_virtual_show_option_menu(ptr, ptr, ptr);
+extern callback void WebKitWebView_virtual_submit_form(ptr, ptr);
+extern callback int WebKitWebView_virtual_user_message_received(ptr, ptr);
+extern callback int WebKitWebView_virtual_web_process_crashed(ptr);
+extern callback void WebKitWebView_virtual_web_process_terminated(ptr, int);
+

@@ -1,0 +1,82 @@
+import("win32/crypt");
+import("wincrypt");
+import("stdin");
+
+var hash_digest = {};
+
+
+hash_digest.md5 = fun( input )
+{
+	var cc = CryptoCtx();
+	var h = Hash(cc,HASH.MD5);
+	return io.toHex( h.hash(input) );
+};
+
+hash_digest.sha1 = fun( input )
+{
+	var cc = CryptoCtx();
+	var h = Hash(cc,HASH.SHA1);
+	return io.toHex( h.hash(input) );
+};
+
+hash_digest.sha256 = fun( input )
+{
+	var cc = CryptoCtx();
+	var h = Hash(cc,HASH.SHA_256);
+	return io.toHex( h.hash(input) );
+};
+
+hash_digest.sha512 = fun( input )
+{
+	var cc = CryptoCtx();
+	var h = Hash(cc,HASH.SHA_512);
+	return io.toHex( h.hash(input) );
+};
+
+
+fun usage()
+{
+	print "usage: moser hash.msr [md5|sha1|sha256|sha512] [file]";
+}
+
+fun slurp(file)
+{
+	var buf = sys.buffer(1024);
+	var r = 1;
+	var content = "";
+	while(r != 0)
+	{
+		r = fread( buf, 1, 1024, file);
+		content = content + buf.asString(r);
+	}
+
+	return content;
+}
+
+var args = sys.args();
+
+if ( args.length == 4)
+{
+	var kind = args[2];
+	var input = io.slurp(args[3]);
+	print hash_digest{kind}( input );
+}
+else if (args.length == 3 )
+{
+	var kind = args[2];
+	var stdin = _fdopen(STDIN,"rb");
+	var b = has_data(stdin);
+	if(!b) 
+	{
+		usage();
+	}
+	else
+	{
+		var input = slurp(stdin);
+		print hash_digest{kind}( input );	
+	}
+}
+else
+{
+	usage();
+}

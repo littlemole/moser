@@ -1,0 +1,13 @@
+class Base {}
+
+class Derived : Base {
+  foo() {
+    super.doesNotExist(1);     
+  }
+}
+
+Derived().foo();
+
+// expect: Binding Super failed - method does not exits in superclass.
+// expect: [line 5] in foo()
+// expect: [line 9] in script

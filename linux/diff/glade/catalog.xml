@@ -1,0 +1,25 @@
+<glade-catalog name="the_catalog_name" domain="glade-3" 
+               depends="webkit2gtk" version="1.0" >
+  <glade-widget-classes>
+    <glade-widget-class title="Mtk Directory Tree" name="MtkDirTree" 
+                        generic-name="DirTree" parent="GtkTreeView"
+                        icon-name="widget-gtk-treeview" >
+     <properties>
+      <property id="root" name="root" common="False" default="/" save-always="True" save="True" ignore="True" >
+       <parameter-spec>
+        <type>GParamString</type>
+       </parameter-spec>
+      </property>
+     </properties>
+    </glade-widget-class>
+    <glade-widget-class title="Mtk WebView" name="MtkWebView" 
+                        generic-name="WebView" parent="WebKitWebView"
+                        icon-name="widget-gtk-treeview" >
+    </glade-widget-class>
+  </glade-widget-classes>
+  <glade-widget-group name="customwidgets" title="Custom Widgets" >
+    <glade-widget-class-ref name="MtkDirTree" />
+    <glade-widget-class-ref name="MtkWebView" />
+  </glade-widget-group>
+
+</glade-catalog>

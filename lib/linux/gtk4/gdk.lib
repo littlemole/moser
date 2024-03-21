@@ -1,0 +1,5472 @@
+// load libgio-2.0.so.0: 139757216755712
+// load libgobject-2.0.so.0: 139757225545728
+// load libglib-2.0.so.0: 139757221601280
+// load libgobject-2.0.so.0: 139757225545728
+// load libgtk-4.so.1: 139757206110208
+// load libgtk-4.so.1: 139757206110208
+// load libgtksourceview-5.so.0: 139757191905280
+// load libwebkitgtk-6.0.so.4: 139757084475392
+// load libjavascriptcoregtk-6.0.so.1: 139757057212416
+// load libjavascriptcoregtk-6.0.so.1: 139757057212416
+// namespace Gdk
+// libs libgtk-4.so.1
+extern from "nil" {
+ptr gdk_app_launch_context_get_display(ptr);
+void gdk_app_launch_context_set_desktop(ptr, int);
+void gdk_app_launch_context_set_icon(ptr, ptr);
+void gdk_app_launch_context_set_icon_name(ptr, str);
+void gdk_app_launch_context_set_timestamp(ptr, uint);
+uint gdk_button_event_get_button(ptr);
+ptr gdk_cairo_context_cairo_create(ptr);
+ptr gdk_clipboard_get_content(ptr);
+ptr gdk_clipboard_get_display(ptr);
+ptr gdk_clipboard_get_formats(ptr);
+int gdk_clipboard_is_local(ptr);
+void gdk_clipboard_read_async(ptr, ptr, int, ptr, ptr, ptr);
+ptr gdk_clipboard_read_finish(ptr, ptr, str, ptr);
+void gdk_clipboard_read_text_async(ptr, ptr, ptr, ptr);
+ptr gdk_clipboard_read_text_finish(ptr, ptr, ptr);
+void gdk_clipboard_read_texture_async(ptr, ptr, ptr, ptr);
+ptr gdk_clipboard_read_texture_finish(ptr, ptr, ptr);
+void gdk_clipboard_read_value_async(ptr, ulong, int, ptr, ptr, ptr);
+ptr gdk_clipboard_read_value_finish(ptr, ptr, ptr);
+int gdk_clipboard_set_content(ptr, ptr);
+void gdk_clipboard_set_value(ptr, ptr);
+void gdk_clipboard_store_async(ptr, int, ptr, ptr, ptr);
+int gdk_clipboard_store_finish(ptr, ptr, ptr);
+ptr gdk_content_deserializer_get_cancellable(ptr);
+ulong gdk_content_deserializer_get_gtype(ptr);
+ptr gdk_content_deserializer_get_input_stream(ptr);
+str gdk_content_deserializer_get_mime_type(ptr);
+int gdk_content_deserializer_get_priority(ptr);
+ptr gdk_content_deserializer_get_task_data(ptr);
+ptr gdk_content_deserializer_get_user_data(ptr);
+ptr gdk_content_deserializer_get_value(ptr);
+void gdk_content_deserializer_return_error(ptr, ptr);
+void gdk_content_deserializer_return_success(ptr);
+void gdk_content_deserializer_set_task_data(ptr, ptr, ptr);
+ptr gdk_content_formats_new(ptr, uint);
+ptr gdk_content_formats_new_for_gtype(ulong);
+int gdk_content_formats_contain_gtype(ptr, ulong);
+int gdk_content_formats_contain_mime_type(ptr, str);
+ptr gdk_content_formats_get_gtypes(ptr, ptr);
+ptr gdk_content_formats_get_mime_types(ptr, ptr);
+int gdk_content_formats_match(ptr, ptr);
+ulong gdk_content_formats_match_gtype(ptr, ptr);
+str gdk_content_formats_match_mime_type(ptr, ptr);
+void gdk_content_formats_print(ptr, ptr);
+ptr gdk_content_formats_ref(ptr);
+ptr gdk_content_formats_to_string(ptr);
+ptr gdk_content_formats_union(ptr, ptr);
+ptr gdk_content_formats_union_deserialize_gtypes(ptr);
+ptr gdk_content_formats_union_deserialize_mime_types(ptr);
+ptr gdk_content_formats_union_serialize_gtypes(ptr);
+ptr gdk_content_formats_union_serialize_mime_types(ptr);
+void gdk_content_formats_unref(ptr);
+ptr gdk_content_formats_parse(ptr, str);
+ptr gdk_content_formats_builder_new();
+void gdk_content_formats_builder_add_formats(ptr, ptr);
+void gdk_content_formats_builder_add_gtype(ptr, ulong);
+void gdk_content_formats_builder_add_mime_type(ptr, str);
+ptr gdk_content_formats_builder_ref(ptr);
+ptr gdk_content_formats_builder_to_formats(ptr);
+void gdk_content_formats_builder_unref(ptr);
+ptr gdk_content_provider_new_for_bytes(str, ptr);
+ptr gdk_content_provider_new_for_value(ptr);
+ptr gdk_content_provider_new_union(ptr, ulong);
+void gdk_content_provider_content_changed(ptr);
+int gdk_content_provider_get_value(ptr, ptr, ptr);
+ptr gdk_content_provider_ref_formats(ptr);
+ptr gdk_content_provider_ref_storable_formats(ptr);
+void gdk_content_provider_write_mime_type_async(ptr, str, ptr, int, ptr, ptr, ptr);
+int gdk_content_provider_write_mime_type_finish(ptr, ptr, ptr);
+ptr gdk_content_serializer_get_cancellable(ptr);
+ulong gdk_content_serializer_get_gtype(ptr);
+str gdk_content_serializer_get_mime_type(ptr);
+ptr gdk_content_serializer_get_output_stream(ptr);
+int gdk_content_serializer_get_priority(ptr);
+ptr gdk_content_serializer_get_task_data(ptr);
+ptr gdk_content_serializer_get_user_data(ptr);
+ptr gdk_content_serializer_get_value(ptr);
+void gdk_content_serializer_return_error(ptr, ptr);
+void gdk_content_serializer_return_success(ptr);
+void gdk_content_serializer_set_task_data(ptr, ptr, ptr);
+int gdk_crossing_event_get_detail(ptr);
+int gdk_crossing_event_get_focus(ptr);
+int gdk_crossing_event_get_mode(ptr);
+ptr gdk_cursor_new_from_name(str, ptr);
+ptr gdk_cursor_new_from_texture(ptr, int, int, ptr);
+ptr gdk_cursor_get_fallback(ptr);
+int gdk_cursor_get_hotspot_x(ptr);
+int gdk_cursor_get_hotspot_y(ptr);
+str gdk_cursor_get_name(ptr);
+ptr gdk_cursor_get_texture(ptr);
+ptr gdk_dnd_event_get_drop(ptr);
+int gdk_device_get_caps_lock_state(ptr);
+ptr gdk_device_get_device_tool(ptr);
+int gdk_device_get_direction(ptr);
+ptr gdk_device_get_display(ptr);
+int gdk_device_get_has_cursor(ptr);
+int gdk_device_get_modifier_state(ptr);
+str gdk_device_get_name(ptr);
+int gdk_device_get_num_lock_state(ptr);
+uint gdk_device_get_num_touches(ptr);
+str gdk_device_get_product_id(ptr);
+int gdk_device_get_scroll_lock_state(ptr);
+ptr gdk_device_get_seat(ptr);
+int gdk_device_get_source(ptr);
+ptr gdk_device_get_surface_at_position(ptr, ptr, ptr);
+uint gdk_device_get_timestamp(ptr);
+str gdk_device_get_vendor_id(ptr);
+int gdk_device_has_bidi_layouts(ptr);
+int gdk_device_pad_get_feature_group(ptr, int, int);
+int gdk_device_pad_get_group_n_modes(ptr, int);
+int gdk_device_pad_get_n_features(ptr, int);
+int gdk_device_pad_get_n_groups(ptr);
+int gdk_device_tool_get_axes(ptr);
+ulong gdk_device_tool_get_hardware_id(ptr);
+ulong gdk_device_tool_get_serial(ptr);
+int gdk_device_tool_get_tool_type(ptr);
+ptr gdk_display_get_default(ptr);
+ptr gdk_display_open(ptr, str);
+void gdk_display_beep(ptr);
+void gdk_display_close(ptr);
+ptr gdk_display_create_gl_context(ptr, ptr);
+int gdk_display_device_is_grabbed(ptr, ptr);
+void gdk_display_flush(ptr);
+ptr gdk_display_get_app_launch_context(ptr);
+ptr gdk_display_get_clipboard(ptr);
+ptr gdk_display_get_default_seat(ptr);
+ptr gdk_display_get_monitor_at_surface(ptr, ptr);
+ptr gdk_display_get_monitors(ptr);
+str gdk_display_get_name(ptr);
+ptr gdk_display_get_primary_clipboard(ptr);
+int gdk_display_get_setting(ptr, str, ptr);
+str gdk_display_get_startup_notification_id(ptr);
+int gdk_display_is_closed(ptr);
+int gdk_display_is_composited(ptr);
+int gdk_display_is_rgba(ptr);
+ptr gdk_display_list_seats(ptr);
+int gdk_display_map_keycode(ptr, uint, ptr, ptr, ptr);
+int gdk_display_map_keyval(ptr, uint, ptr, ptr);
+void gdk_display_notify_startup_complete(ptr, str);
+int gdk_display_prepare_gl(ptr, ptr);
+void gdk_display_put_event(ptr, ptr);
+int gdk_display_supports_input_shapes(ptr);
+void gdk_display_sync(ptr);
+int gdk_display_translate_key(ptr, uint, int, int, ptr, ptr, ptr, ptr);
+ptr gdk_display_manager_get(ptr);
+ptr gdk_display_manager_get_default_display(ptr);
+ptr gdk_display_manager_list_displays(ptr);
+ptr gdk_display_manager_open_display(ptr, str);
+void gdk_display_manager_set_default_display(ptr, ptr);
+ptr gdk_drag_begin(ptr, ptr, ptr, ptr, int, double, double);
+void gdk_drag_drop_done(ptr, int);
+int gdk_drag_get_actions(ptr);
+ptr gdk_drag_get_content(ptr);
+ptr gdk_drag_get_device(ptr);
+ptr gdk_drag_get_display(ptr);
+ptr gdk_drag_get_drag_surface(ptr);
+ptr gdk_drag_get_formats(ptr);
+int gdk_drag_get_selected_action(ptr);
+ptr gdk_drag_get_surface(ptr);
+void gdk_drag_set_hotspot(ptr, int, int);
+int gdk_drag_surface_present(ptr, int, int);
+void gdk_draw_context_begin_frame(ptr, ptr);
+void gdk_draw_context_end_frame(ptr);
+ptr gdk_draw_context_get_display(ptr);
+ptr gdk_draw_context_get_frame_region(ptr);
+ptr gdk_draw_context_get_surface(ptr);
+int gdk_draw_context_is_in_frame(ptr);
+void gdk_drop_finish(ptr, int);
+int gdk_drop_get_actions(ptr);
+ptr gdk_drop_get_device(ptr);
+ptr gdk_drop_get_display(ptr);
+ptr gdk_drop_get_drag(ptr);
+ptr gdk_drop_get_formats(ptr);
+ptr gdk_drop_get_surface(ptr);
+void gdk_drop_read_async(ptr, ptr, int, ptr, ptr, ptr);
+ptr gdk_drop_read_finish(ptr, ptr, ptr, ptr);
+void gdk_drop_read_value_async(ptr, ulong, int, ptr, ptr, ptr);
+ptr gdk_drop_read_value_finish(ptr, ptr, ptr);
+void gdk_drop_status(ptr, int, int);
+int gdk_events_get_angle(ptr, ptr, ptr);
+int gdk_events_get_center(ptr, ptr, ptr, ptr);
+int gdk_events_get_distance(ptr, ptr, ptr);
+int gdk_event_get_axes(ptr, ptr, ptr);
+int gdk_event_get_axis(ptr, int, ptr);
+ptr gdk_event_get_device(ptr);
+ptr gdk_event_get_device_tool(ptr);
+ptr gdk_event_get_display(ptr);
+ptr gdk_event_get_event_sequence(ptr);
+int gdk_event_get_event_type(ptr);
+ptr gdk_event_get_history(ptr, ptr);
+int gdk_event_get_modifier_state(ptr);
+int gdk_event_get_pointer_emulated(ptr);
+int gdk_event_get_position(ptr, ptr, ptr);
+ptr gdk_event_get_seat(ptr);
+ptr gdk_event_get_surface(ptr);
+uint gdk_event_get_time(ptr);
+ptr gdk_event_ref(ptr);
+int gdk_event_triggers_context_menu(ptr);
+void gdk_event_unref(ptr);
+ptr gdk_file_list_get_files(ptr);
+int gdk_focus_event_get_in(ptr);
+void gdk_frame_clock_begin_updating(ptr);
+void gdk_frame_clock_end_updating(ptr);
+ptr gdk_frame_clock_get_current_timings(ptr);
+double gdk_frame_clock_get_fps(ptr);
+long gdk_frame_clock_get_frame_counter(ptr);
+long gdk_frame_clock_get_frame_time(ptr);
+long gdk_frame_clock_get_history_start(ptr);
+void gdk_frame_clock_get_refresh_info(ptr, long, ptr, ptr);
+ptr gdk_frame_clock_get_timings(ptr, long);
+void gdk_frame_clock_request_phase(ptr, int);
+int gdk_frame_timings_get_complete(ptr);
+long gdk_frame_timings_get_frame_counter(ptr);
+long gdk_frame_timings_get_frame_time(ptr);
+long gdk_frame_timings_get_predicted_presentation_time(ptr);
+long gdk_frame_timings_get_presentation_time(ptr);
+long gdk_frame_timings_get_refresh_interval(ptr);
+ptr gdk_frame_timings_ref(ptr);
+void gdk_frame_timings_unref(ptr);
+void gdk_gl_context_clear_current(ptr);
+ptr gdk_gl_context_get_current(ptr);
+int gdk_gl_context_get_allowed_apis(ptr);
+int gdk_gl_context_get_api(ptr);
+int gdk_gl_context_get_debug_enabled(ptr);
+ptr gdk_gl_context_get_display(ptr);
+int gdk_gl_context_get_forward_compatible(ptr);
+void gdk_gl_context_get_required_version(ptr, ptr, ptr);
+ptr gdk_gl_context_get_shared_context(ptr);
+ptr gdk_gl_context_get_surface(ptr);
+int gdk_gl_context_get_use_es(ptr);
+void gdk_gl_context_get_version(ptr, ptr, ptr);
+int gdk_gl_context_is_legacy(ptr);
+int gdk_gl_context_is_shared(ptr, ptr);
+void gdk_gl_context_make_current(ptr);
+int gdk_gl_context_realize(ptr, ptr);
+void gdk_gl_context_set_allowed_apis(ptr, int);
+void gdk_gl_context_set_debug_enabled(ptr, int);
+void gdk_gl_context_set_forward_compatible(ptr, int);
+void gdk_gl_context_set_required_version(ptr, int, int);
+void gdk_gl_context_set_use_es(ptr, int);
+ptr gdk_gl_texture_new(ptr, uint, int, int, ptr, ptr);
+void gdk_gl_texture_release(ptr);
+ptr gdk_grab_broken_event_get_grab_surface(ptr);
+int gdk_grab_broken_event_get_implicit(ptr);
+int gdk_key_event_get_consumed_modifiers(ptr);
+uint gdk_key_event_get_keycode(ptr);
+uint gdk_key_event_get_keyval(ptr);
+uint gdk_key_event_get_layout(ptr);
+uint gdk_key_event_get_level(ptr);
+int gdk_key_event_get_match(ptr, ptr, ptr);
+int gdk_key_event_is_modifier(ptr);
+int gdk_key_event_matches(ptr, uint, int);
+ptr gdk_memory_texture_new(int, int, int, ptr, ulong);
+str gdk_monitor_get_connector(ptr);
+ptr gdk_monitor_get_display(ptr);
+void gdk_monitor_get_geometry(ptr, ptr);
+int gdk_monitor_get_height_mm(ptr);
+str gdk_monitor_get_manufacturer(ptr);
+str gdk_monitor_get_model(ptr);
+int gdk_monitor_get_refresh_rate(ptr);
+int gdk_monitor_get_scale_factor(ptr);
+int gdk_monitor_get_subpixel_layout(ptr);
+int gdk_monitor_get_width_mm(ptr);
+int gdk_monitor_is_valid(ptr);
+void gdk_pad_event_get_axis_value(ptr, ptr, ptr);
+uint gdk_pad_event_get_button(ptr);
+void gdk_pad_event_get_group_mode(ptr, ptr, ptr);
+ptr gdk_paintable_new_empty(ptr, int, int);
+void gdk_paintable_compute_concrete_size(ptr, double, double, double, double, ptr, ptr);
+ptr gdk_paintable_get_current_image(ptr);
+int gdk_paintable_get_flags(ptr);
+double gdk_paintable_get_intrinsic_aspect_ratio(ptr);
+int gdk_paintable_get_intrinsic_height(ptr);
+int gdk_paintable_get_intrinsic_width(ptr);
+void gdk_paintable_invalidate_contents(ptr);
+void gdk_paintable_invalidate_size(ptr);
+void gdk_paintable_snapshot(ptr, ptr, double, double);
+int gdk_popup_get_autohide(ptr);
+ptr gdk_popup_get_parent(ptr);
+int gdk_popup_get_position_x(ptr);
+int gdk_popup_get_position_y(ptr);
+int gdk_popup_get_rect_anchor(ptr);
+int gdk_popup_get_surface_anchor(ptr);
+int gdk_popup_present(ptr, int, int, ptr);
+ptr gdk_popup_layout_new(ptr, int, int);
+ptr gdk_popup_layout_copy(ptr);
+int gdk_popup_layout_equal(ptr, ptr);
+int gdk_popup_layout_get_anchor_hints(ptr);
+ptr gdk_popup_layout_get_anchor_rect(ptr);
+void gdk_popup_layout_get_offset(ptr, ptr, ptr);
+int gdk_popup_layout_get_rect_anchor(ptr);
+void gdk_popup_layout_get_shadow_width(ptr, ptr, ptr, ptr, ptr);
+int gdk_popup_layout_get_surface_anchor(ptr);
+ptr gdk_popup_layout_ref(ptr);
+void gdk_popup_layout_set_anchor_hints(ptr, int);
+void gdk_popup_layout_set_anchor_rect(ptr, ptr);
+void gdk_popup_layout_set_offset(ptr, int, int);
+void gdk_popup_layout_set_rect_anchor(ptr, int);
+void gdk_popup_layout_set_shadow_width(ptr, int, int, int, int);
+void gdk_popup_layout_set_surface_anchor(ptr, int);
+void gdk_popup_layout_unref(ptr);
+ptr gdk_rgba_copy(ptr);
+int gdk_rgba_equal(ptr, ptr);
+void gdk_rgba_free(ptr);
+uint gdk_rgba_hash(ptr);
+int gdk_rgba_is_clear(ptr);
+int gdk_rgba_is_opaque(ptr);
+int gdk_rgba_parse(ptr, str);
+ptr gdk_rgba_to_string(ptr);
+int gdk_rectangle_contains_point(ptr, int, int);
+int gdk_rectangle_equal(ptr, ptr);
+int gdk_rectangle_intersect(ptr, ptr, ptr);
+void gdk_rectangle_union(ptr, ptr, ptr);
+void gdk_scroll_event_get_deltas(ptr, ptr, ptr);
+int gdk_scroll_event_get_direction(ptr);
+int gdk_scroll_event_is_stop(ptr);
+int gdk_seat_get_capabilities(ptr);
+ptr gdk_seat_get_devices(ptr, int);
+ptr gdk_seat_get_display(ptr);
+ptr gdk_seat_get_keyboard(ptr);
+ptr gdk_seat_get_pointer(ptr);
+ptr gdk_seat_get_tools(ptr);
+ptr gdk_surface_new_popup(ptr, int);
+ptr gdk_surface_new_toplevel(ptr);
+void gdk_surface_beep(ptr);
+ptr gdk_surface_create_cairo_context(ptr);
+ptr gdk_surface_create_gl_context(ptr, ptr);
+ptr gdk_surface_create_similar_surface(ptr, int, int, int);
+ptr gdk_surface_create_vulkan_context(ptr, ptr);
+void gdk_surface_destroy(ptr);
+ptr gdk_surface_get_cursor(ptr);
+ptr gdk_surface_get_device_cursor(ptr, ptr);
+int gdk_surface_get_device_position(ptr, ptr, ptr, ptr, ptr);
+ptr gdk_surface_get_display(ptr);
+ptr gdk_surface_get_frame_clock(ptr);
+int gdk_surface_get_height(ptr);
+int gdk_surface_get_mapped(ptr);
+int gdk_surface_get_scale_factor(ptr);
+int gdk_surface_get_width(ptr);
+void gdk_surface_hide(ptr);
+int gdk_surface_is_destroyed(ptr);
+void gdk_surface_queue_render(ptr);
+void gdk_surface_request_layout(ptr);
+void gdk_surface_set_cursor(ptr, ptr);
+void gdk_surface_set_device_cursor(ptr, ptr, ptr);
+void gdk_surface_set_input_region(ptr, ptr);
+void gdk_surface_set_opaque_region(ptr, ptr);
+int gdk_surface_translate_coordinates(ptr, ptr, ptr, ptr);
+ptr gdk_texture_new_for_pixbuf(ptr);
+ptr gdk_texture_new_from_bytes(ptr, ptr);
+ptr gdk_texture_new_from_file(ptr, ptr);
+ptr gdk_texture_new_from_filename(ptr, ptr);
+ptr gdk_texture_new_from_resource(str);
+void gdk_texture_download(ptr, ptr, ulong);
+int gdk_texture_get_height(ptr);
+int gdk_texture_get_width(ptr);
+int gdk_texture_save_to_png(ptr, ptr);
+ptr gdk_texture_save_to_png_bytes(ptr);
+int gdk_texture_save_to_tiff(ptr, ptr);
+ptr gdk_texture_save_to_tiff_bytes(ptr);
+void gdk_toplevel_begin_move(ptr, ptr, int, double, double, uint);
+void gdk_toplevel_begin_resize(ptr, int, ptr, int, double, double, uint);
+void gdk_toplevel_focus(ptr, uint);
+int gdk_toplevel_get_state(ptr);
+void gdk_toplevel_inhibit_system_shortcuts(ptr, ptr);
+int gdk_toplevel_lower(ptr);
+int gdk_toplevel_minimize(ptr);
+void gdk_toplevel_present(ptr, ptr);
+void gdk_toplevel_restore_system_shortcuts(ptr);
+void gdk_toplevel_set_decorated(ptr, int);
+void gdk_toplevel_set_deletable(ptr, int);
+void gdk_toplevel_set_icon_list(ptr, ptr);
+void gdk_toplevel_set_modal(ptr, int);
+void gdk_toplevel_set_startup_id(ptr, str);
+void gdk_toplevel_set_title(ptr, str);
+void gdk_toplevel_set_transient_for(ptr, ptr);
+int gdk_toplevel_show_window_menu(ptr, ptr);
+int gdk_toplevel_supports_edge_constraints(ptr);
+int gdk_toplevel_titlebar_gesture(ptr, int);
+ptr gdk_toplevel_layout_new();
+ptr gdk_toplevel_layout_copy(ptr);
+int gdk_toplevel_layout_equal(ptr, ptr);
+int gdk_toplevel_layout_get_fullscreen(ptr, ptr);
+ptr gdk_toplevel_layout_get_fullscreen_monitor(ptr);
+int gdk_toplevel_layout_get_maximized(ptr, ptr);
+int gdk_toplevel_layout_get_resizable(ptr);
+ptr gdk_toplevel_layout_ref(ptr);
+void gdk_toplevel_layout_set_fullscreen(ptr, int, ptr);
+void gdk_toplevel_layout_set_maximized(ptr, int);
+void gdk_toplevel_layout_set_resizable(ptr, int);
+void gdk_toplevel_layout_unref(ptr);
+void gdk_toplevel_size_get_bounds(ptr, ptr, ptr);
+void gdk_toplevel_size_set_min_size(ptr, int, int);
+void gdk_toplevel_size_set_shadow_width(ptr, int, int, int, int);
+void gdk_toplevel_size_set_size(ptr, int, int);
+int gdk_touch_event_get_emulating_pointer(ptr);
+void gdk_touchpad_event_get_deltas(ptr, ptr, ptr);
+int gdk_touchpad_event_get_gesture_phase(ptr);
+uint gdk_touchpad_event_get_n_fingers(ptr);
+double gdk_touchpad_event_get_pinch_angle_delta(ptr);
+double gdk_touchpad_event_get_pinch_scale(ptr);
+void gdk_cairo_draw_from_gl(ptr, ptr, int, int, int, int, int, int, int);
+void gdk_cairo_rectangle(ptr, ptr);
+void gdk_cairo_region(ptr, ptr);
+ptr gdk_cairo_region_create_from_surface(ptr);
+void gdk_cairo_set_source_pixbuf(ptr, ptr, double, double);
+void gdk_cairo_set_source_rgba(ptr, ptr);
+void gdk_content_deserialize_async(ptr, str, ulong, int, ptr, ptr, ptr);
+int gdk_content_deserialize_finish(ptr, ptr, ptr);
+ptr gdk_content_formats_parse(str);
+void gdk_content_register_deserializer(str, ulong, ptr, ptr, ptr);
+void gdk_content_register_serializer(ulong, str, ptr, ptr, ptr);
+void gdk_content_serialize_async(ptr, str, ptr, int, ptr, ptr, ptr);
+int gdk_content_serialize_finish(ptr, ptr);
+int gdk_drag_action_is_unique(int);
+int gdk_events_get_angle(ptr, ptr, ptr);
+int gdk_events_get_center(ptr, ptr, ptr, ptr);
+int gdk_events_get_distance(ptr, ptr, ptr);
+uint gdk_gl_error_quark();
+str gdk_intern_mime_type(str);
+void gdk_keyval_convert_case(uint, ptr, ptr);
+uint gdk_keyval_from_name(str);
+int gdk_keyval_is_lower(uint);
+int gdk_keyval_is_upper(uint);
+str gdk_keyval_name(uint);
+uint gdk_keyval_to_lower(uint);
+uint gdk_keyval_to_unicode(uint);
+uint gdk_keyval_to_upper(uint);
+ptr gdk_paintable_new_empty(int, int);
+ptr gdk_pixbuf_get_from_surface(ptr, int, int, int, int);
+ptr gdk_pixbuf_get_from_texture(ptr);
+void gdk_set_allowed_backends(str);
+uint gdk_texture_error_quark();
+ulong gdk_toplevel_size_get_type();
+uint gdk_unicode_to_keyval(uint);
+uint gdk_vulkan_error_quark();
+};
+
+extern callback void GdkContentDeserializeFunc(ptr);
+extern callback void GdkContentSerializeFunc(ptr);
+// name GdkContentFormats
+extern struct GdkContentFormats{
+
+};
+
+// name GdkContentFormatsBuilder
+extern struct GdkContentFormatsBuilder{
+
+};
+
+extern struct GdkContentProviderClass{
+byte parent_class[136],  // GdkObjectClass
+ptr content_changed,  // ::content_changed
+ptr attach_clipboard,  // ::attach_clipboard
+ptr detach_clipboard,  // ::detach_clipboard
+ptr ref_formats,  // ::ref_formats
+ptr ref_storable_formats,  // ::ref_storable_formats
+ptr write_mime_type_async,  // ::write_mime_type_async
+ptr write_mime_type_finish,  // ::write_mime_type_finish
+ptr get_value,  // ::get_value
+ptr padding_0,
+ptr padding_1,
+ptr padding_2,
+ptr padding_3,
+ptr padding_4,
+ptr padding_5,
+ptr padding_6,
+ptr padding_7,
+};
+
+extern struct GdkDevicePadInterface{
+
+};
+
+extern struct GdkDragSurfaceInterface{
+
+};
+
+// name GdkEventSequence
+extern struct GdkEventSequence{
+
+};
+
+// name GdkFileList
+extern struct GdkFileList{
+
+};
+
+extern struct GdkFrameClockClass{
+
+};
+
+extern struct GdkFrameClockPrivate{
+
+};
+
+// name GdkFrameTimings
+extern struct GdkFrameTimings{
+
+};
+
+extern struct GdkGLTextureClass{
+
+};
+
+extern struct GdkKeymapKey{
+uint keycode,  // guint32
+int group,  // gint32
+int level,  // gint32
+};
+
+extern struct GdkMemoryTextureClass{
+
+};
+
+extern struct GdkMonitorClass{
+
+};
+
+extern struct GdkPaintableInterface{
+byte g_iface[16],  // GdkTypeInterface
+ptr snapshot,  // ::snapshot
+ptr get_current_image,  // ::get_current_image
+ptr get_flags,  // ::get_flags
+ptr get_intrinsic_width,  // ::get_intrinsic_width
+ptr get_intrinsic_height,  // ::get_intrinsic_height
+ptr get_intrinsic_aspect_ratio,  // ::get_intrinsic_aspect_ratio
+};
+
+extern struct GdkPopupInterface{
+
+};
+
+// name GdkPopupLayout
+extern struct GdkPopupLayout{
+
+};
+
+// name GdkRGBA
+extern struct GdkRGBA{
+float red,  // gfloat
+float green,  // gfloat
+float blue,  // gfloat
+float alpha,  // gfloat
+};
+
+// name GdkRectangle
+extern struct GdkRectangle{
+int x,  // gint32
+int y,  // gint32
+int width,  // gint32
+int height,  // gint32
+};
+
+extern struct GdkSnapshotClass{
+
+};
+
+extern struct GdkSurfaceClass{
+
+};
+
+extern struct GdkTextureClass{
+
+};
+
+extern struct GdkTimeCoord{
+uint time,  // guint32
+int flags,  // GdkAxisFlags
+ptr axes_0,
+ptr axes_1,
+ptr axes_2,
+ptr axes_3,
+ptr axes_4,
+ptr axes_5,
+ptr axes_6,
+ptr axes_7,
+ptr axes_8,
+ptr axes_9,
+ptr axes_10,
+ptr axes_11,
+};
+
+extern struct GdkToplevelInterface{
+
+};
+
+// name GdkToplevelLayout
+extern struct GdkToplevelLayout{
+
+};
+
+extern struct GdkToplevelSize{
+
+};
+
+var Gdk_AnchorHints_flip_x = 1;
+var Gdk_AnchorHints_flip_y = 2;
+var Gdk_AnchorHints_slide_x = 4;
+var Gdk_AnchorHints_slide_y = 8;
+var Gdk_AnchorHints_resize_x = 16;
+var Gdk_AnchorHints_resize_y = 32;
+var Gdk_AnchorHints_flip = 3;
+var Gdk_AnchorHints_slide = 12;
+var Gdk_AnchorHints_resize = 48;
+
+var Gdk_AxisFlags_x = 2;
+var Gdk_AxisFlags_y = 4;
+var Gdk_AxisFlags_delta_x = 8;
+var Gdk_AxisFlags_delta_y = 16;
+var Gdk_AxisFlags_pressure = 32;
+var Gdk_AxisFlags_xtilt = 64;
+var Gdk_AxisFlags_ytilt = 128;
+var Gdk_AxisFlags_wheel = 256;
+var Gdk_AxisFlags_distance = 512;
+var Gdk_AxisFlags_rotation = 1024;
+var Gdk_AxisFlags_slider = 2048;
+
+var Gdk_AxisUse_ignore = 0;
+var Gdk_AxisUse_x = 1;
+var Gdk_AxisUse_y = 2;
+var Gdk_AxisUse_delta_x = 3;
+var Gdk_AxisUse_delta_y = 4;
+var Gdk_AxisUse_pressure = 5;
+var Gdk_AxisUse_xtilt = 6;
+var Gdk_AxisUse_ytilt = 7;
+var Gdk_AxisUse_wheel = 8;
+var Gdk_AxisUse_distance = 9;
+var Gdk_AxisUse_rotation = 10;
+var Gdk_AxisUse_slider = 11;
+var Gdk_AxisUse_last = 12;
+
+var Gdk_CrossingMode_normal = 0;
+var Gdk_CrossingMode_grab = 1;
+var Gdk_CrossingMode_ungrab = 2;
+var Gdk_CrossingMode_gtk_grab = 3;
+var Gdk_CrossingMode_gtk_ungrab = 4;
+var Gdk_CrossingMode_state_changed = 5;
+var Gdk_CrossingMode_touch_begin = 6;
+var Gdk_CrossingMode_touch_end = 7;
+var Gdk_CrossingMode_device_switch = 8;
+
+var Gdk_DevicePadFeature_button = 0;
+var Gdk_DevicePadFeature_ring = 1;
+var Gdk_DevicePadFeature_strip = 2;
+
+var Gdk_DeviceToolType_unknown = 0;
+var Gdk_DeviceToolType_pen = 1;
+var Gdk_DeviceToolType_eraser = 2;
+var Gdk_DeviceToolType_brush = 3;
+var Gdk_DeviceToolType_pencil = 4;
+var Gdk_DeviceToolType_airbrush = 5;
+var Gdk_DeviceToolType_mouse = 6;
+var Gdk_DeviceToolType_lens = 7;
+
+var Gdk_DragAction_copy = 1;
+var Gdk_DragAction_move = 2;
+var Gdk_DragAction_link = 4;
+var Gdk_DragAction_ask = 8;
+
+var Gdk_DragCancelReason_no_target = 0;
+var Gdk_DragCancelReason_user_cancelled = 1;
+var Gdk_DragCancelReason_error = 2;
+
+var Gdk_EventType_delete = 0;
+var Gdk_EventType_motion_notify = 1;
+var Gdk_EventType_button_press = 2;
+var Gdk_EventType_button_release = 3;
+var Gdk_EventType_key_press = 4;
+var Gdk_EventType_key_release = 5;
+var Gdk_EventType_enter_notify = 6;
+var Gdk_EventType_leave_notify = 7;
+var Gdk_EventType_focus_change = 8;
+var Gdk_EventType_proximity_in = 9;
+var Gdk_EventType_proximity_out = 10;
+var Gdk_EventType_drag_enter = 11;
+var Gdk_EventType_drag_leave = 12;
+var Gdk_EventType_drag_motion = 13;
+var Gdk_EventType_drop_start = 14;
+var Gdk_EventType_scroll = 15;
+var Gdk_EventType_grab_broken = 16;
+var Gdk_EventType_touch_begin = 17;
+var Gdk_EventType_touch_update = 18;
+var Gdk_EventType_touch_end = 19;
+var Gdk_EventType_touch_cancel = 20;
+var Gdk_EventType_touchpad_swipe = 21;
+var Gdk_EventType_touchpad_pinch = 22;
+var Gdk_EventType_pad_button_press = 23;
+var Gdk_EventType_pad_button_release = 24;
+var Gdk_EventType_pad_ring = 25;
+var Gdk_EventType_pad_strip = 26;
+var Gdk_EventType_pad_group_mode = 27;
+var Gdk_EventType_touchpad_hold = 28;
+var Gdk_EventType_event_last = 29;
+
+var Gdk_FrameClockPhase_none = 0;
+var Gdk_FrameClockPhase_flush_events = 1;
+var Gdk_FrameClockPhase_before_paint = 2;
+var Gdk_FrameClockPhase_update = 4;
+var Gdk_FrameClockPhase_layout = 8;
+var Gdk_FrameClockPhase_paint = 16;
+var Gdk_FrameClockPhase_resume_events = 32;
+var Gdk_FrameClockPhase_after_paint = 64;
+
+var Gdk_FullscreenMode_current_monitor = 0;
+var Gdk_FullscreenMode_all_monitors = 1;
+
+var Gdk_GLAPI_gl = 1;
+var Gdk_GLAPI_gles = 2;
+
+var Gdk_GLError_not_available = 0;
+var Gdk_GLError_unsupported_format = 1;
+var Gdk_GLError_unsupported_profile = 2;
+var Gdk_GLError_compilation_failed = 3;
+var Gdk_GLError_link_failed = 4;
+
+var Gdk_Gravity_north_west = 1;
+var Gdk_Gravity_north = 2;
+var Gdk_Gravity_north_east = 3;
+var Gdk_Gravity_west = 4;
+var Gdk_Gravity_center = 5;
+var Gdk_Gravity_east = 6;
+var Gdk_Gravity_south_west = 7;
+var Gdk_Gravity_south = 8;
+var Gdk_Gravity_south_east = 9;
+var Gdk_Gravity_static = 10;
+
+var Gdk_InputSource_mouse = 0;
+var Gdk_InputSource_pen = 1;
+var Gdk_InputSource_keyboard = 2;
+var Gdk_InputSource_touchscreen = 3;
+var Gdk_InputSource_touchpad = 4;
+var Gdk_InputSource_trackpoint = 5;
+var Gdk_InputSource_tablet_pad = 6;
+
+var Gdk_KeyMatch_none = 0;
+var Gdk_KeyMatch_partial = 1;
+var Gdk_KeyMatch_exact = 2;
+
+var Gdk_MemoryFormat_b8g8r8a8_premultiplied = 0;
+var Gdk_MemoryFormat_a8r8g8b8_premultiplied = 1;
+var Gdk_MemoryFormat_r8g8b8a8_premultiplied = 2;
+var Gdk_MemoryFormat_b8g8r8a8 = 3;
+var Gdk_MemoryFormat_a8r8g8b8 = 4;
+var Gdk_MemoryFormat_r8g8b8a8 = 5;
+var Gdk_MemoryFormat_a8b8g8r8 = 6;
+var Gdk_MemoryFormat_r8g8b8 = 7;
+var Gdk_MemoryFormat_b8g8r8 = 8;
+var Gdk_MemoryFormat_r16g16b16 = 9;
+var Gdk_MemoryFormat_r16g16b16a16_premultiplied = 10;
+var Gdk_MemoryFormat_r16g16b16a16 = 11;
+var Gdk_MemoryFormat_r16g16b16_float = 12;
+var Gdk_MemoryFormat_r16g16b16a16_float_premultiplied = 13;
+var Gdk_MemoryFormat_r16g16b16a16_float = 14;
+var Gdk_MemoryFormat_r32g32b32_float = 15;
+var Gdk_MemoryFormat_r32g32b32a32_float_premultiplied = 16;
+var Gdk_MemoryFormat_r32g32b32a32_float = 17;
+var Gdk_MemoryFormat_n_formats = 18;
+
+var Gdk_ModifierType_shift_mask = 1;
+var Gdk_ModifierType_lock_mask = 2;
+var Gdk_ModifierType_control_mask = 4;
+var Gdk_ModifierType_alt_mask = 8;
+var Gdk_ModifierType_button1_mask = 256;
+var Gdk_ModifierType_button2_mask = 512;
+var Gdk_ModifierType_button3_mask = 1024;
+var Gdk_ModifierType_button4_mask = 2048;
+var Gdk_ModifierType_button5_mask = 4096;
+var Gdk_ModifierType_super_mask = 67108864;
+var Gdk_ModifierType_hyper_mask = 134217728;
+var Gdk_ModifierType_meta_mask = 268435456;
+
+var Gdk_NotifyType_ancestor = 0;
+var Gdk_NotifyType_virtual = 1;
+var Gdk_NotifyType_inferior = 2;
+var Gdk_NotifyType_nonlinear = 3;
+var Gdk_NotifyType_nonlinear_virtual = 4;
+var Gdk_NotifyType_unknown = 5;
+
+var Gdk_PaintableFlags_size = 1;
+var Gdk_PaintableFlags_contents = 2;
+
+var Gdk_ScrollDirection_up = 0;
+var Gdk_ScrollDirection_down = 1;
+var Gdk_ScrollDirection_left = 2;
+var Gdk_ScrollDirection_right = 3;
+var Gdk_ScrollDirection_smooth = 4;
+
+var Gdk_SeatCapabilities_none = 0;
+var Gdk_SeatCapabilities_pointer = 1;
+var Gdk_SeatCapabilities_touch = 2;
+var Gdk_SeatCapabilities_tablet_stylus = 4;
+var Gdk_SeatCapabilities_keyboard = 8;
+var Gdk_SeatCapabilities_tablet_pad = 16;
+var Gdk_SeatCapabilities_all_pointing = 7;
+var Gdk_SeatCapabilities_all = 15;
+
+var Gdk_SubpixelLayout_unknown = 0;
+var Gdk_SubpixelLayout_none = 1;
+var Gdk_SubpixelLayout_horizontal_rgb = 2;
+var Gdk_SubpixelLayout_horizontal_bgr = 3;
+var Gdk_SubpixelLayout_vertical_rgb = 4;
+var Gdk_SubpixelLayout_vertical_bgr = 5;
+
+var Gdk_SurfaceEdge_north_west = 0;
+var Gdk_SurfaceEdge_north = 1;
+var Gdk_SurfaceEdge_north_east = 2;
+var Gdk_SurfaceEdge_west = 3;
+var Gdk_SurfaceEdge_east = 4;
+var Gdk_SurfaceEdge_south_west = 5;
+var Gdk_SurfaceEdge_south = 6;
+var Gdk_SurfaceEdge_south_east = 7;
+
+var Gdk_TextureError_too_large = 0;
+var Gdk_TextureError_corrupt_image = 1;
+var Gdk_TextureError_unsupported_content = 2;
+var Gdk_TextureError_unsupported_format = 3;
+
+var Gdk_TitlebarGesture_double_click = 1;
+var Gdk_TitlebarGesture_right_click = 2;
+var Gdk_TitlebarGesture_middle_click = 3;
+
+var Gdk_ToplevelState_minimized = 1;
+var Gdk_ToplevelState_maximized = 2;
+var Gdk_ToplevelState_sticky = 4;
+var Gdk_ToplevelState_fullscreen = 8;
+var Gdk_ToplevelState_above = 16;
+var Gdk_ToplevelState_below = 32;
+var Gdk_ToplevelState_focused = 64;
+var Gdk_ToplevelState_tiled = 128;
+var Gdk_ToplevelState_top_tiled = 256;
+var Gdk_ToplevelState_top_resizable = 512;
+var Gdk_ToplevelState_right_tiled = 1024;
+var Gdk_ToplevelState_right_resizable = 2048;
+var Gdk_ToplevelState_bottom_tiled = 4096;
+var Gdk_ToplevelState_bottom_resizable = 8192;
+var Gdk_ToplevelState_left_tiled = 16384;
+var Gdk_ToplevelState_left_resizable = 32768;
+
+var Gdk_TouchpadGesturePhase_begin = 0;
+var Gdk_TouchpadGesturePhase_update = 1;
+var Gdk_TouchpadGesturePhase_end = 2;
+var Gdk_TouchpadGesturePhase_cancel = 3;
+
+var Gdk_VulkanError_unsupported = 0;
+var Gdk_VulkanError_not_available = 1;
+
+var Gdk_ACTION_ALL_ACTION_ALL = 7;
+
+var Gdk_BUTTON_MIDDLE_BUTTON_MIDDLE = 2;
+
+var Gdk_BUTTON_PRIMARY_BUTTON_PRIMARY = 1;
+
+var Gdk_BUTTON_SECONDARY_BUTTON_SECONDARY = 3;
+
+var Gdk_CURRENT_TIME_CURRENT_TIME = 0;
+
+var Gdk_KEY_0_KEY_0 = 48;
+
+var Gdk_KEY_1_KEY_1 = 49;
+
+var Gdk_KEY_2_KEY_2 = 50;
+
+var Gdk_KEY_3_KEY_3 = 51;
+
+var Gdk_KEY_3270_AltCursor_KEY_3270_AltCursor = 64784;
+
+var Gdk_KEY_3270_Attn_KEY_3270_Attn = 64782;
+
+var Gdk_KEY_3270_BackTab_KEY_3270_BackTab = 64773;
+
+var Gdk_KEY_3270_ChangeScreen_KEY_3270_ChangeScreen = 64793;
+
+var Gdk_KEY_3270_Copy_KEY_3270_Copy = 64789;
+
+var Gdk_KEY_3270_CursorBlink_KEY_3270_CursorBlink = 64783;
+
+var Gdk_KEY_3270_CursorSelect_KEY_3270_CursorSelect = 64796;
+
+var Gdk_KEY_3270_DeleteWord_KEY_3270_DeleteWord = 64794;
+
+var Gdk_KEY_3270_Duplicate_KEY_3270_Duplicate = 64769;
+
+var Gdk_KEY_3270_Enter_KEY_3270_Enter = 64798;
+
+var Gdk_KEY_3270_EraseEOF_KEY_3270_EraseEOF = 64774;
+
+var Gdk_KEY_3270_EraseInput_KEY_3270_EraseInput = 64775;
+
+var Gdk_KEY_3270_ExSelect_KEY_3270_ExSelect = 64795;
+
+var Gdk_KEY_3270_FieldMark_KEY_3270_FieldMark = 64770;
+
+var Gdk_KEY_3270_Ident_KEY_3270_Ident = 64787;
+
+var Gdk_KEY_3270_Jump_KEY_3270_Jump = 64786;
+
+var Gdk_KEY_3270_KeyClick_KEY_3270_KeyClick = 64785;
+
+var Gdk_KEY_3270_Left2_KEY_3270_Left2 = 64772;
+
+var Gdk_KEY_3270_PA1_KEY_3270_PA1 = 64778;
+
+var Gdk_KEY_3270_PA2_KEY_3270_PA2 = 64779;
+
+var Gdk_KEY_3270_PA3_KEY_3270_PA3 = 64780;
+
+var Gdk_KEY_3270_Play_KEY_3270_Play = 64790;
+
+var Gdk_KEY_3270_PrintScreen_KEY_3270_PrintScreen = 64797;
+
+var Gdk_KEY_3270_Quit_KEY_3270_Quit = 64777;
+
+var Gdk_KEY_3270_Record_KEY_3270_Record = 64792;
+
+var Gdk_KEY_3270_Reset_KEY_3270_Reset = 64776;
+
+var Gdk_KEY_3270_Right2_KEY_3270_Right2 = 64771;
+
+var Gdk_KEY_3270_Rule_KEY_3270_Rule = 64788;
+
+var Gdk_KEY_3270_Setup_KEY_3270_Setup = 64791;
+
+var Gdk_KEY_3270_Test_KEY_3270_Test = 64781;
+
+var Gdk_KEY_4_KEY_4 = 52;
+
+var Gdk_KEY_5_KEY_5 = 53;
+
+var Gdk_KEY_6_KEY_6 = 54;
+
+var Gdk_KEY_7_KEY_7 = 55;
+
+var Gdk_KEY_8_KEY_8 = 56;
+
+var Gdk_KEY_9_KEY_9 = 57;
+
+var Gdk_KEY_A_KEY_A = 65;
+
+var Gdk_KEY_AE_KEY_AE = 198;
+
+var Gdk_KEY_Aacute_KEY_Aacute = 193;
+
+var Gdk_KEY_Abelowdot_KEY_Abelowdot = 16785056;
+
+var Gdk_KEY_Abreve_KEY_Abreve = 451;
+
+var Gdk_KEY_Abreveacute_KEY_Abreveacute = 16785070;
+
+var Gdk_KEY_Abrevebelowdot_KEY_Abrevebelowdot = 16785078;
+
+var Gdk_KEY_Abrevegrave_KEY_Abrevegrave = 16785072;
+
+var Gdk_KEY_Abrevehook_KEY_Abrevehook = 16785074;
+
+var Gdk_KEY_Abrevetilde_KEY_Abrevetilde = 16785076;
+
+var Gdk_KEY_AccessX_Enable_KEY_AccessX_Enable = 65136;
+
+var Gdk_KEY_AccessX_Feedback_Enable_KEY_AccessX_Feedback_Enable = 65137;
+
+var Gdk_KEY_Acircumflex_KEY_Acircumflex = 194;
+
+var Gdk_KEY_Acircumflexacute_KEY_Acircumflexacute = 16785060;
+
+var Gdk_KEY_Acircumflexbelowdot_KEY_Acircumflexbelowdot = 16785068;
+
+var Gdk_KEY_Acircumflexgrave_KEY_Acircumflexgrave = 16785062;
+
+var Gdk_KEY_Acircumflexhook_KEY_Acircumflexhook = 16785064;
+
+var Gdk_KEY_Acircumflextilde_KEY_Acircumflextilde = 16785066;
+
+var Gdk_KEY_AddFavorite_KEY_AddFavorite = 269025081;
+
+var Gdk_KEY_Adiaeresis_KEY_Adiaeresis = 196;
+
+var Gdk_KEY_Agrave_KEY_Agrave = 192;
+
+var Gdk_KEY_Ahook_KEY_Ahook = 16785058;
+
+var Gdk_KEY_Alt_L_KEY_Alt_L = 65513;
+
+var Gdk_KEY_Alt_R_KEY_Alt_R = 65514;
+
+var Gdk_KEY_Amacron_KEY_Amacron = 960;
+
+var Gdk_KEY_Aogonek_KEY_Aogonek = 417;
+
+var Gdk_KEY_ApplicationLeft_KEY_ApplicationLeft = 269025104;
+
+var Gdk_KEY_ApplicationRight_KEY_ApplicationRight = 269025105;
+
+var Gdk_KEY_Arabic_0_KEY_Arabic_0 = 16778848;
+
+var Gdk_KEY_Arabic_1_KEY_Arabic_1 = 16778849;
+
+var Gdk_KEY_Arabic_2_KEY_Arabic_2 = 16778850;
+
+var Gdk_KEY_Arabic_3_KEY_Arabic_3 = 16778851;
+
+var Gdk_KEY_Arabic_4_KEY_Arabic_4 = 16778852;
+
+var Gdk_KEY_Arabic_5_KEY_Arabic_5 = 16778853;
+
+var Gdk_KEY_Arabic_6_KEY_Arabic_6 = 16778854;
+
+var Gdk_KEY_Arabic_7_KEY_Arabic_7 = 16778855;
+
+var Gdk_KEY_Arabic_8_KEY_Arabic_8 = 16778856;
+
+var Gdk_KEY_Arabic_9_KEY_Arabic_9 = 16778857;
+
+var Gdk_KEY_Arabic_ain_KEY_Arabic_ain = 1497;
+
+var Gdk_KEY_Arabic_alef_KEY_Arabic_alef = 1479;
+
+var Gdk_KEY_Arabic_alefmaksura_KEY_Arabic_alefmaksura = 1513;
+
+var Gdk_KEY_Arabic_beh_KEY_Arabic_beh = 1480;
+
+var Gdk_KEY_Arabic_comma_KEY_Arabic_comma = 1452;
+
+var Gdk_KEY_Arabic_dad_KEY_Arabic_dad = 1494;
+
+var Gdk_KEY_Arabic_dal_KEY_Arabic_dal = 1487;
+
+var Gdk_KEY_Arabic_damma_KEY_Arabic_damma = 1519;
+
+var Gdk_KEY_Arabic_dammatan_KEY_Arabic_dammatan = 1516;
+
+var Gdk_KEY_Arabic_ddal_KEY_Arabic_ddal = 16778888;
+
+var Gdk_KEY_Arabic_farsi_yeh_KEY_Arabic_farsi_yeh = 16778956;
+
+var Gdk_KEY_Arabic_fatha_KEY_Arabic_fatha = 1518;
+
+var Gdk_KEY_Arabic_fathatan_KEY_Arabic_fathatan = 1515;
+
+var Gdk_KEY_Arabic_feh_KEY_Arabic_feh = 1505;
+
+var Gdk_KEY_Arabic_fullstop_KEY_Arabic_fullstop = 16778964;
+
+var Gdk_KEY_Arabic_gaf_KEY_Arabic_gaf = 16778927;
+
+var Gdk_KEY_Arabic_ghain_KEY_Arabic_ghain = 1498;
+
+var Gdk_KEY_Arabic_ha_KEY_Arabic_ha = 1511;
+
+var Gdk_KEY_Arabic_hah_KEY_Arabic_hah = 1485;
+
+var Gdk_KEY_Arabic_hamza_KEY_Arabic_hamza = 1473;
+
+var Gdk_KEY_Arabic_hamza_above_KEY_Arabic_hamza_above = 16778836;
+
+var Gdk_KEY_Arabic_hamza_below_KEY_Arabic_hamza_below = 16778837;
+
+var Gdk_KEY_Arabic_hamzaonalef_KEY_Arabic_hamzaonalef = 1475;
+
+var Gdk_KEY_Arabic_hamzaonwaw_KEY_Arabic_hamzaonwaw = 1476;
+
+var Gdk_KEY_Arabic_hamzaonyeh_KEY_Arabic_hamzaonyeh = 1478;
+
+var Gdk_KEY_Arabic_hamzaunderalef_KEY_Arabic_hamzaunderalef = 1477;
+
+var Gdk_KEY_Arabic_heh_KEY_Arabic_heh = 1511;
+
+var Gdk_KEY_Arabic_heh_doachashmee_KEY_Arabic_heh_doachashmee = 16778942;
+
+var Gdk_KEY_Arabic_heh_goal_KEY_Arabic_heh_goal = 16778945;
+
+var Gdk_KEY_Arabic_jeem_KEY_Arabic_jeem = 1484;
+
+var Gdk_KEY_Arabic_jeh_KEY_Arabic_jeh = 16778904;
+
+var Gdk_KEY_Arabic_kaf_KEY_Arabic_kaf = 1507;
+
+var Gdk_KEY_Arabic_kasra_KEY_Arabic_kasra = 1520;
+
+var Gdk_KEY_Arabic_kasratan_KEY_Arabic_kasratan = 1517;
+
+var Gdk_KEY_Arabic_keheh_KEY_Arabic_keheh = 16778921;
+
+var Gdk_KEY_Arabic_khah_KEY_Arabic_khah = 1486;
+
+var Gdk_KEY_Arabic_lam_KEY_Arabic_lam = 1508;
+
+var Gdk_KEY_Arabic_madda_above_KEY_Arabic_madda_above = 16778835;
+
+var Gdk_KEY_Arabic_maddaonalef_KEY_Arabic_maddaonalef = 1474;
+
+var Gdk_KEY_Arabic_meem_KEY_Arabic_meem = 1509;
+
+var Gdk_KEY_Arabic_noon_KEY_Arabic_noon = 1510;
+
+var Gdk_KEY_Arabic_noon_ghunna_KEY_Arabic_noon_ghunna = 16778938;
+
+var Gdk_KEY_Arabic_peh_KEY_Arabic_peh = 16778878;
+
+var Gdk_KEY_Arabic_percent_KEY_Arabic_percent = 16778858;
+
+var Gdk_KEY_Arabic_qaf_KEY_Arabic_qaf = 1506;
+
+var Gdk_KEY_Arabic_question_mark_KEY_Arabic_question_mark = 1471;
+
+var Gdk_KEY_Arabic_ra_KEY_Arabic_ra = 1489;
+
+var Gdk_KEY_Arabic_rreh_KEY_Arabic_rreh = 16778897;
+
+var Gdk_KEY_Arabic_sad_KEY_Arabic_sad = 1493;
+
+var Gdk_KEY_Arabic_seen_KEY_Arabic_seen = 1491;
+
+var Gdk_KEY_Arabic_semicolon_KEY_Arabic_semicolon = 1467;
+
+var Gdk_KEY_Arabic_shadda_KEY_Arabic_shadda = 1521;
+
+var Gdk_KEY_Arabic_sheen_KEY_Arabic_sheen = 1492;
+
+var Gdk_KEY_Arabic_sukun_KEY_Arabic_sukun = 1522;
+
+var Gdk_KEY_Arabic_superscript_alef_KEY_Arabic_superscript_alef = 16778864;
+
+var Gdk_KEY_Arabic_switch_KEY_Arabic_switch = 65406;
+
+var Gdk_KEY_Arabic_tah_KEY_Arabic_tah = 1495;
+
+var Gdk_KEY_Arabic_tatweel_KEY_Arabic_tatweel = 1504;
+
+var Gdk_KEY_Arabic_tcheh_KEY_Arabic_tcheh = 16778886;
+
+var Gdk_KEY_Arabic_teh_KEY_Arabic_teh = 1482;
+
+var Gdk_KEY_Arabic_tehmarbuta_KEY_Arabic_tehmarbuta = 1481;
+
+var Gdk_KEY_Arabic_thal_KEY_Arabic_thal = 1488;
+
+var Gdk_KEY_Arabic_theh_KEY_Arabic_theh = 1483;
+
+var Gdk_KEY_Arabic_tteh_KEY_Arabic_tteh = 16778873;
+
+var Gdk_KEY_Arabic_veh_KEY_Arabic_veh = 16778916;
+
+var Gdk_KEY_Arabic_waw_KEY_Arabic_waw = 1512;
+
+var Gdk_KEY_Arabic_yeh_KEY_Arabic_yeh = 1514;
+
+var Gdk_KEY_Arabic_yeh_baree_KEY_Arabic_yeh_baree = 16778962;
+
+var Gdk_KEY_Arabic_zah_KEY_Arabic_zah = 1496;
+
+var Gdk_KEY_Arabic_zain_KEY_Arabic_zain = 1490;
+
+var Gdk_KEY_Aring_KEY_Aring = 197;
+
+var Gdk_KEY_Armenian_AT_KEY_Armenian_AT = 16778552;
+
+var Gdk_KEY_Armenian_AYB_KEY_Armenian_AYB = 16778545;
+
+var Gdk_KEY_Armenian_BEN_KEY_Armenian_BEN = 16778546;
+
+var Gdk_KEY_Armenian_CHA_KEY_Armenian_CHA = 16778569;
+
+var Gdk_KEY_Armenian_DA_KEY_Armenian_DA = 16778548;
+
+var Gdk_KEY_Armenian_DZA_KEY_Armenian_DZA = 16778561;
+
+var Gdk_KEY_Armenian_E_KEY_Armenian_E = 16778551;
+
+var Gdk_KEY_Armenian_FE_KEY_Armenian_FE = 16778582;
+
+var Gdk_KEY_Armenian_GHAT_KEY_Armenian_GHAT = 16778562;
+
+var Gdk_KEY_Armenian_GIM_KEY_Armenian_GIM = 16778547;
+
+var Gdk_KEY_Armenian_HI_KEY_Armenian_HI = 16778565;
+
+var Gdk_KEY_Armenian_HO_KEY_Armenian_HO = 16778560;
+
+var Gdk_KEY_Armenian_INI_KEY_Armenian_INI = 16778555;
+
+var Gdk_KEY_Armenian_JE_KEY_Armenian_JE = 16778571;
+
+var Gdk_KEY_Armenian_KE_KEY_Armenian_KE = 16778580;
+
+var Gdk_KEY_Armenian_KEN_KEY_Armenian_KEN = 16778559;
+
+var Gdk_KEY_Armenian_KHE_KEY_Armenian_KHE = 16778557;
+
+var Gdk_KEY_Armenian_LYUN_KEY_Armenian_LYUN = 16778556;
+
+var Gdk_KEY_Armenian_MEN_KEY_Armenian_MEN = 16778564;
+
+var Gdk_KEY_Armenian_NU_KEY_Armenian_NU = 16778566;
+
+var Gdk_KEY_Armenian_O_KEY_Armenian_O = 16778581;
+
+var Gdk_KEY_Armenian_PE_KEY_Armenian_PE = 16778570;
+
+var Gdk_KEY_Armenian_PYUR_KEY_Armenian_PYUR = 16778579;
+
+var Gdk_KEY_Armenian_RA_KEY_Armenian_RA = 16778572;
+
+var Gdk_KEY_Armenian_RE_KEY_Armenian_RE = 16778576;
+
+var Gdk_KEY_Armenian_SE_KEY_Armenian_SE = 16778573;
+
+var Gdk_KEY_Armenian_SHA_KEY_Armenian_SHA = 16778567;
+
+var Gdk_KEY_Armenian_TCHE_KEY_Armenian_TCHE = 16778563;
+
+var Gdk_KEY_Armenian_TO_KEY_Armenian_TO = 16778553;
+
+var Gdk_KEY_Armenian_TSA_KEY_Armenian_TSA = 16778558;
+
+var Gdk_KEY_Armenian_TSO_KEY_Armenian_TSO = 16778577;
+
+var Gdk_KEY_Armenian_TYUN_KEY_Armenian_TYUN = 16778575;
+
+var Gdk_KEY_Armenian_VEV_KEY_Armenian_VEV = 16778574;
+
+var Gdk_KEY_Armenian_VO_KEY_Armenian_VO = 16778568;
+
+var Gdk_KEY_Armenian_VYUN_KEY_Armenian_VYUN = 16778578;
+
+var Gdk_KEY_Armenian_YECH_KEY_Armenian_YECH = 16778549;
+
+var Gdk_KEY_Armenian_ZA_KEY_Armenian_ZA = 16778550;
+
+var Gdk_KEY_Armenian_ZHE_KEY_Armenian_ZHE = 16778554;
+
+var Gdk_KEY_Armenian_accent_KEY_Armenian_accent = 16778587;
+
+var Gdk_KEY_Armenian_amanak_KEY_Armenian_amanak = 16778588;
+
+var Gdk_KEY_Armenian_apostrophe_KEY_Armenian_apostrophe = 16778586;
+
+var Gdk_KEY_Armenian_at_KEY_Armenian_at = 16778600;
+
+var Gdk_KEY_Armenian_ayb_KEY_Armenian_ayb = 16778593;
+
+var Gdk_KEY_Armenian_ben_KEY_Armenian_ben = 16778594;
+
+var Gdk_KEY_Armenian_but_KEY_Armenian_but = 16778589;
+
+var Gdk_KEY_Armenian_cha_KEY_Armenian_cha = 16778617;
+
+var Gdk_KEY_Armenian_da_KEY_Armenian_da = 16778596;
+
+var Gdk_KEY_Armenian_dza_KEY_Armenian_dza = 16778609;
+
+var Gdk_KEY_Armenian_e_KEY_Armenian_e = 16778599;
+
+var Gdk_KEY_Armenian_exclam_KEY_Armenian_exclam = 16778588;
+
+var Gdk_KEY_Armenian_fe_KEY_Armenian_fe = 16778630;
+
+var Gdk_KEY_Armenian_full_stop_KEY_Armenian_full_stop = 16778633;
+
+var Gdk_KEY_Armenian_ghat_KEY_Armenian_ghat = 16778610;
+
+var Gdk_KEY_Armenian_gim_KEY_Armenian_gim = 16778595;
+
+var Gdk_KEY_Armenian_hi_KEY_Armenian_hi = 16778613;
+
+var Gdk_KEY_Armenian_ho_KEY_Armenian_ho = 16778608;
+
+var Gdk_KEY_Armenian_hyphen_KEY_Armenian_hyphen = 16778634;
+
+var Gdk_KEY_Armenian_ini_KEY_Armenian_ini = 16778603;
+
+var Gdk_KEY_Armenian_je_KEY_Armenian_je = 16778619;
+
+var Gdk_KEY_Armenian_ke_KEY_Armenian_ke = 16778628;
+
+var Gdk_KEY_Armenian_ken_KEY_Armenian_ken = 16778607;
+
+var Gdk_KEY_Armenian_khe_KEY_Armenian_khe = 16778605;
+
+var Gdk_KEY_Armenian_ligature_ew_KEY_Armenian_ligature_ew = 16778631;
+
+var Gdk_KEY_Armenian_lyun_KEY_Armenian_lyun = 16778604;
+
+var Gdk_KEY_Armenian_men_KEY_Armenian_men = 16778612;
+
+var Gdk_KEY_Armenian_nu_KEY_Armenian_nu = 16778614;
+
+var Gdk_KEY_Armenian_o_KEY_Armenian_o = 16778629;
+
+var Gdk_KEY_Armenian_paruyk_KEY_Armenian_paruyk = 16778590;
+
+var Gdk_KEY_Armenian_pe_KEY_Armenian_pe = 16778618;
+
+var Gdk_KEY_Armenian_pyur_KEY_Armenian_pyur = 16778627;
+
+var Gdk_KEY_Armenian_question_KEY_Armenian_question = 16778590;
+
+var Gdk_KEY_Armenian_ra_KEY_Armenian_ra = 16778620;
+
+var Gdk_KEY_Armenian_re_KEY_Armenian_re = 16778624;
+
+var Gdk_KEY_Armenian_se_KEY_Armenian_se = 16778621;
+
+var Gdk_KEY_Armenian_separation_mark_KEY_Armenian_separation_mark = 16778589;
+
+var Gdk_KEY_Armenian_sha_KEY_Armenian_sha = 16778615;
+
+var Gdk_KEY_Armenian_shesht_KEY_Armenian_shesht = 16778587;
+
+var Gdk_KEY_Armenian_tche_KEY_Armenian_tche = 16778611;
+
+var Gdk_KEY_Armenian_to_KEY_Armenian_to = 16778601;
+
+var Gdk_KEY_Armenian_tsa_KEY_Armenian_tsa = 16778606;
+
+var Gdk_KEY_Armenian_tso_KEY_Armenian_tso = 16778625;
+
+var Gdk_KEY_Armenian_tyun_KEY_Armenian_tyun = 16778623;
+
+var Gdk_KEY_Armenian_verjaket_KEY_Armenian_verjaket = 16778633;
+
+var Gdk_KEY_Armenian_vev_KEY_Armenian_vev = 16778622;
+
+var Gdk_KEY_Armenian_vo_KEY_Armenian_vo = 16778616;
+
+var Gdk_KEY_Armenian_vyun_KEY_Armenian_vyun = 16778626;
+
+var Gdk_KEY_Armenian_yech_KEY_Armenian_yech = 16778597;
+
+var Gdk_KEY_Armenian_yentamna_KEY_Armenian_yentamna = 16778634;
+
+var Gdk_KEY_Armenian_za_KEY_Armenian_za = 16778598;
+
+var Gdk_KEY_Armenian_zhe_KEY_Armenian_zhe = 16778602;
+
+var Gdk_KEY_Atilde_KEY_Atilde = 195;
+
+var Gdk_KEY_AudibleBell_Enable_KEY_AudibleBell_Enable = 65146;
+
+var Gdk_KEY_AudioCycleTrack_KEY_AudioCycleTrack = 269025179;
+
+var Gdk_KEY_AudioForward_KEY_AudioForward = 269025175;
+
+var Gdk_KEY_AudioLowerVolume_KEY_AudioLowerVolume = 269025041;
+
+var Gdk_KEY_AudioMedia_KEY_AudioMedia = 269025074;
+
+var Gdk_KEY_AudioMicMute_KEY_AudioMicMute = 269025202;
+
+var Gdk_KEY_AudioMute_KEY_AudioMute = 269025042;
+
+var Gdk_KEY_AudioNext_KEY_AudioNext = 269025047;
+
+var Gdk_KEY_AudioPause_KEY_AudioPause = 269025073;
+
+var Gdk_KEY_AudioPlay_KEY_AudioPlay = 269025044;
+
+var Gdk_KEY_AudioPreset_KEY_AudioPreset = 269025206;
+
+var Gdk_KEY_AudioPrev_KEY_AudioPrev = 269025046;
+
+var Gdk_KEY_AudioRaiseVolume_KEY_AudioRaiseVolume = 269025043;
+
+var Gdk_KEY_AudioRandomPlay_KEY_AudioRandomPlay = 269025177;
+
+var Gdk_KEY_AudioRecord_KEY_AudioRecord = 269025052;
+
+var Gdk_KEY_AudioRepeat_KEY_AudioRepeat = 269025176;
+
+var Gdk_KEY_AudioRewind_KEY_AudioRewind = 269025086;
+
+var Gdk_KEY_AudioStop_KEY_AudioStop = 269025045;
+
+var Gdk_KEY_Away_KEY_Away = 269025165;
+
+var Gdk_KEY_B_KEY_B = 66;
+
+var Gdk_KEY_Babovedot_KEY_Babovedot = 16784898;
+
+var Gdk_KEY_Back_KEY_Back = 269025062;
+
+var Gdk_KEY_BackForward_KEY_BackForward = 269025087;
+
+var Gdk_KEY_BackSpace_KEY_BackSpace = 65288;
+
+var Gdk_KEY_Battery_KEY_Battery = 269025171;
+
+var Gdk_KEY_Begin_KEY_Begin = 65368;
+
+var Gdk_KEY_Blue_KEY_Blue = 269025190;
+
+var Gdk_KEY_Bluetooth_KEY_Bluetooth = 269025172;
+
+var Gdk_KEY_Book_KEY_Book = 269025106;
+
+var Gdk_KEY_BounceKeys_Enable_KEY_BounceKeys_Enable = 65140;
+
+var Gdk_KEY_Break_KEY_Break = 65387;
+
+var Gdk_KEY_BrightnessAdjust_KEY_BrightnessAdjust = 269025083;
+
+var Gdk_KEY_Byelorussian_SHORTU_KEY_Byelorussian_SHORTU = 1726;
+
+var Gdk_KEY_Byelorussian_shortu_KEY_Byelorussian_shortu = 1710;
+
+var Gdk_KEY_C_KEY_C = 67;
+
+var Gdk_KEY_CD_KEY_CD = 269025107;
+
+var Gdk_KEY_CH_KEY_CH = 65186;
+
+var Gdk_KEY_C_H_KEY_C_H = 65189;
+
+var Gdk_KEY_C_h_KEY_C_h = 65188;
+
+var Gdk_KEY_Cabovedot_KEY_Cabovedot = 709;
+
+var Gdk_KEY_Cacute_KEY_Cacute = 454;
+
+var Gdk_KEY_Calculator_KEY_Calculator = 269025053;
+
+var Gdk_KEY_Calendar_KEY_Calendar = 269025056;
+
+var Gdk_KEY_Cancel_KEY_Cancel = 65385;
+
+var Gdk_KEY_Caps_Lock_KEY_Caps_Lock = 65509;
+
+var Gdk_KEY_Ccaron_KEY_Ccaron = 456;
+
+var Gdk_KEY_Ccedilla_KEY_Ccedilla = 199;
+
+var Gdk_KEY_Ccircumflex_KEY_Ccircumflex = 710;
+
+var Gdk_KEY_Ch_KEY_Ch = 65185;
+
+var Gdk_KEY_Clear_KEY_Clear = 65291;
+
+var Gdk_KEY_ClearGrab_KEY_ClearGrab = 269024801;
+
+var Gdk_KEY_Close_KEY_Close = 269025110;
+
+var Gdk_KEY_Codeinput_KEY_Codeinput = 65335;
+
+var Gdk_KEY_ColonSign_KEY_ColonSign = 16785569;
+
+var Gdk_KEY_Community_KEY_Community = 269025085;
+
+var Gdk_KEY_ContrastAdjust_KEY_ContrastAdjust = 269025058;
+
+var Gdk_KEY_Control_L_KEY_Control_L = 65507;
+
+var Gdk_KEY_Control_R_KEY_Control_R = 65508;
+
+var Gdk_KEY_Copy_KEY_Copy = 269025111;
+
+var Gdk_KEY_CruzeiroSign_KEY_CruzeiroSign = 16785570;
+
+var Gdk_KEY_Cut_KEY_Cut = 269025112;
+
+var Gdk_KEY_CycleAngle_KEY_CycleAngle = 269025180;
+
+var Gdk_KEY_Cyrillic_A_KEY_Cyrillic_A = 1761;
+
+var Gdk_KEY_Cyrillic_BE_KEY_Cyrillic_BE = 1762;
+
+var Gdk_KEY_Cyrillic_CHE_KEY_Cyrillic_CHE = 1790;
+
+var Gdk_KEY_Cyrillic_CHE_descender_KEY_Cyrillic_CHE_descender = 16778422;
+
+var Gdk_KEY_Cyrillic_CHE_vertstroke_KEY_Cyrillic_CHE_vertstroke = 16778424;
+
+var Gdk_KEY_Cyrillic_DE_KEY_Cyrillic_DE = 1764;
+
+var Gdk_KEY_Cyrillic_DZHE_KEY_Cyrillic_DZHE = 1727;
+
+var Gdk_KEY_Cyrillic_E_KEY_Cyrillic_E = 1788;
+
+var Gdk_KEY_Cyrillic_EF_KEY_Cyrillic_EF = 1766;
+
+var Gdk_KEY_Cyrillic_EL_KEY_Cyrillic_EL = 1772;
+
+var Gdk_KEY_Cyrillic_EM_KEY_Cyrillic_EM = 1773;
+
+var Gdk_KEY_Cyrillic_EN_KEY_Cyrillic_EN = 1774;
+
+var Gdk_KEY_Cyrillic_EN_descender_KEY_Cyrillic_EN_descender = 16778402;
+
+var Gdk_KEY_Cyrillic_ER_KEY_Cyrillic_ER = 1778;
+
+var Gdk_KEY_Cyrillic_ES_KEY_Cyrillic_ES = 1779;
+
+var Gdk_KEY_Cyrillic_GHE_KEY_Cyrillic_GHE = 1767;
+
+var Gdk_KEY_Cyrillic_GHE_bar_KEY_Cyrillic_GHE_bar = 16778386;
+
+var Gdk_KEY_Cyrillic_HA_KEY_Cyrillic_HA = 1768;
+
+var Gdk_KEY_Cyrillic_HARDSIGN_KEY_Cyrillic_HARDSIGN = 1791;
+
+var Gdk_KEY_Cyrillic_HA_descender_KEY_Cyrillic_HA_descender = 16778418;
+
+var Gdk_KEY_Cyrillic_I_KEY_Cyrillic_I = 1769;
+
+var Gdk_KEY_Cyrillic_IE_KEY_Cyrillic_IE = 1765;
+
+var Gdk_KEY_Cyrillic_IO_KEY_Cyrillic_IO = 1715;
+
+var Gdk_KEY_Cyrillic_I_macron_KEY_Cyrillic_I_macron = 16778466;
+
+var Gdk_KEY_Cyrillic_JE_KEY_Cyrillic_JE = 1720;
+
+var Gdk_KEY_Cyrillic_KA_KEY_Cyrillic_KA = 1771;
+
+var Gdk_KEY_Cyrillic_KA_descender_KEY_Cyrillic_KA_descender = 16778394;
+
+var Gdk_KEY_Cyrillic_KA_vertstroke_KEY_Cyrillic_KA_vertstroke = 16778396;
+
+var Gdk_KEY_Cyrillic_LJE_KEY_Cyrillic_LJE = 1721;
+
+var Gdk_KEY_Cyrillic_NJE_KEY_Cyrillic_NJE = 1722;
+
+var Gdk_KEY_Cyrillic_O_KEY_Cyrillic_O = 1775;
+
+var Gdk_KEY_Cyrillic_O_bar_KEY_Cyrillic_O_bar = 16778472;
+
+var Gdk_KEY_Cyrillic_PE_KEY_Cyrillic_PE = 1776;
+
+var Gdk_KEY_Cyrillic_SCHWA_KEY_Cyrillic_SCHWA = 16778456;
+
+var Gdk_KEY_Cyrillic_SHA_KEY_Cyrillic_SHA = 1787;
+
+var Gdk_KEY_Cyrillic_SHCHA_KEY_Cyrillic_SHCHA = 1789;
+
+var Gdk_KEY_Cyrillic_SHHA_KEY_Cyrillic_SHHA = 16778426;
+
+var Gdk_KEY_Cyrillic_SHORTI_KEY_Cyrillic_SHORTI = 1770;
+
+var Gdk_KEY_Cyrillic_SOFTSIGN_KEY_Cyrillic_SOFTSIGN = 1784;
+
+var Gdk_KEY_Cyrillic_TE_KEY_Cyrillic_TE = 1780;
+
+var Gdk_KEY_Cyrillic_TSE_KEY_Cyrillic_TSE = 1763;
+
+var Gdk_KEY_Cyrillic_U_KEY_Cyrillic_U = 1781;
+
+var Gdk_KEY_Cyrillic_U_macron_KEY_Cyrillic_U_macron = 16778478;
+
+var Gdk_KEY_Cyrillic_U_straight_KEY_Cyrillic_U_straight = 16778414;
+
+var Gdk_KEY_Cyrillic_U_straight_bar_KEY_Cyrillic_U_straight_bar = 16778416;
+
+var Gdk_KEY_Cyrillic_VE_KEY_Cyrillic_VE = 1783;
+
+var Gdk_KEY_Cyrillic_YA_KEY_Cyrillic_YA = 1777;
+
+var Gdk_KEY_Cyrillic_YERU_KEY_Cyrillic_YERU = 1785;
+
+var Gdk_KEY_Cyrillic_YU_KEY_Cyrillic_YU = 1760;
+
+var Gdk_KEY_Cyrillic_ZE_KEY_Cyrillic_ZE = 1786;
+
+var Gdk_KEY_Cyrillic_ZHE_KEY_Cyrillic_ZHE = 1782;
+
+var Gdk_KEY_Cyrillic_ZHE_descender_KEY_Cyrillic_ZHE_descender = 16778390;
+
+var Gdk_KEY_Cyrillic_a_KEY_Cyrillic_a = 1729;
+
+var Gdk_KEY_Cyrillic_be_KEY_Cyrillic_be = 1730;
+
+var Gdk_KEY_Cyrillic_che_KEY_Cyrillic_che = 1758;
+
+var Gdk_KEY_Cyrillic_che_descender_KEY_Cyrillic_che_descender = 16778423;
+
+var Gdk_KEY_Cyrillic_che_vertstroke_KEY_Cyrillic_che_vertstroke = 16778425;
+
+var Gdk_KEY_Cyrillic_de_KEY_Cyrillic_de = 1732;
+
+var Gdk_KEY_Cyrillic_dzhe_KEY_Cyrillic_dzhe = 1711;
+
+var Gdk_KEY_Cyrillic_e_KEY_Cyrillic_e = 1756;
+
+var Gdk_KEY_Cyrillic_ef_KEY_Cyrillic_ef = 1734;
+
+var Gdk_KEY_Cyrillic_el_KEY_Cyrillic_el = 1740;
+
+var Gdk_KEY_Cyrillic_em_KEY_Cyrillic_em = 1741;
+
+var Gdk_KEY_Cyrillic_en_KEY_Cyrillic_en = 1742;
+
+var Gdk_KEY_Cyrillic_en_descender_KEY_Cyrillic_en_descender = 16778403;
+
+var Gdk_KEY_Cyrillic_er_KEY_Cyrillic_er = 1746;
+
+var Gdk_KEY_Cyrillic_es_KEY_Cyrillic_es = 1747;
+
+var Gdk_KEY_Cyrillic_ghe_KEY_Cyrillic_ghe = 1735;
+
+var Gdk_KEY_Cyrillic_ghe_bar_KEY_Cyrillic_ghe_bar = 16778387;
+
+var Gdk_KEY_Cyrillic_ha_KEY_Cyrillic_ha = 1736;
+
+var Gdk_KEY_Cyrillic_ha_descender_KEY_Cyrillic_ha_descender = 16778419;
+
+var Gdk_KEY_Cyrillic_hardsign_KEY_Cyrillic_hardsign = 1759;
+
+var Gdk_KEY_Cyrillic_i_KEY_Cyrillic_i = 1737;
+
+var Gdk_KEY_Cyrillic_i_macron_KEY_Cyrillic_i_macron = 16778467;
+
+var Gdk_KEY_Cyrillic_ie_KEY_Cyrillic_ie = 1733;
+
+var Gdk_KEY_Cyrillic_io_KEY_Cyrillic_io = 1699;
+
+var Gdk_KEY_Cyrillic_je_KEY_Cyrillic_je = 1704;
+
+var Gdk_KEY_Cyrillic_ka_KEY_Cyrillic_ka = 1739;
+
+var Gdk_KEY_Cyrillic_ka_descender_KEY_Cyrillic_ka_descender = 16778395;
+
+var Gdk_KEY_Cyrillic_ka_vertstroke_KEY_Cyrillic_ka_vertstroke = 16778397;
+
+var Gdk_KEY_Cyrillic_lje_KEY_Cyrillic_lje = 1705;
+
+var Gdk_KEY_Cyrillic_nje_KEY_Cyrillic_nje = 1706;
+
+var Gdk_KEY_Cyrillic_o_KEY_Cyrillic_o = 1743;
+
+var Gdk_KEY_Cyrillic_o_bar_KEY_Cyrillic_o_bar = 16778473;
+
+var Gdk_KEY_Cyrillic_pe_KEY_Cyrillic_pe = 1744;
+
+var Gdk_KEY_Cyrillic_schwa_KEY_Cyrillic_schwa = 16778457;
+
+var Gdk_KEY_Cyrillic_sha_KEY_Cyrillic_sha = 1755;
+
+var Gdk_KEY_Cyrillic_shcha_KEY_Cyrillic_shcha = 1757;
+
+var Gdk_KEY_Cyrillic_shha_KEY_Cyrillic_shha = 16778427;
+
+var Gdk_KEY_Cyrillic_shorti_KEY_Cyrillic_shorti = 1738;
+
+var Gdk_KEY_Cyrillic_softsign_KEY_Cyrillic_softsign = 1752;
+
+var Gdk_KEY_Cyrillic_te_KEY_Cyrillic_te = 1748;
+
+var Gdk_KEY_Cyrillic_tse_KEY_Cyrillic_tse = 1731;
+
+var Gdk_KEY_Cyrillic_u_KEY_Cyrillic_u = 1749;
+
+var Gdk_KEY_Cyrillic_u_macron_KEY_Cyrillic_u_macron = 16778479;
+
+var Gdk_KEY_Cyrillic_u_straight_KEY_Cyrillic_u_straight = 16778415;
+
+var Gdk_KEY_Cyrillic_u_straight_bar_KEY_Cyrillic_u_straight_bar = 16778417;
+
+var Gdk_KEY_Cyrillic_ve_KEY_Cyrillic_ve = 1751;
+
+var Gdk_KEY_Cyrillic_ya_KEY_Cyrillic_ya = 1745;
+
+var Gdk_KEY_Cyrillic_yeru_KEY_Cyrillic_yeru = 1753;
+
+var Gdk_KEY_Cyrillic_yu_KEY_Cyrillic_yu = 1728;
+
+var Gdk_KEY_Cyrillic_ze_KEY_Cyrillic_ze = 1754;
+
+var Gdk_KEY_Cyrillic_zhe_KEY_Cyrillic_zhe = 1750;
+
+var Gdk_KEY_Cyrillic_zhe_descender_KEY_Cyrillic_zhe_descender = 16778391;
+
+var Gdk_KEY_D_KEY_D = 68;
+
+var Gdk_KEY_DOS_KEY_DOS = 269025114;
+
+var Gdk_KEY_Dabovedot_KEY_Dabovedot = 16784906;
+
+var Gdk_KEY_Dcaron_KEY_Dcaron = 463;
+
+var Gdk_KEY_Delete_KEY_Delete = 65535;
+
+var Gdk_KEY_Display_KEY_Display = 269025113;
+
+var Gdk_KEY_Documents_KEY_Documents = 269025115;
+
+var Gdk_KEY_DongSign_KEY_DongSign = 16785579;
+
+var Gdk_KEY_Down_KEY_Down = 65364;
+
+var Gdk_KEY_Dstroke_KEY_Dstroke = 464;
+
+var Gdk_KEY_E_KEY_E = 69;
+
+var Gdk_KEY_ENG_KEY_ENG = 957;
+
+var Gdk_KEY_ETH_KEY_ETH = 208;
+
+var Gdk_KEY_EZH_KEY_EZH = 16777655;
+
+var Gdk_KEY_Eabovedot_KEY_Eabovedot = 972;
+
+var Gdk_KEY_Eacute_KEY_Eacute = 201;
+
+var Gdk_KEY_Ebelowdot_KEY_Ebelowdot = 16785080;
+
+var Gdk_KEY_Ecaron_KEY_Ecaron = 460;
+
+var Gdk_KEY_Ecircumflex_KEY_Ecircumflex = 202;
+
+var Gdk_KEY_Ecircumflexacute_KEY_Ecircumflexacute = 16785086;
+
+var Gdk_KEY_Ecircumflexbelowdot_KEY_Ecircumflexbelowdot = 16785094;
+
+var Gdk_KEY_Ecircumflexgrave_KEY_Ecircumflexgrave = 16785088;
+
+var Gdk_KEY_Ecircumflexhook_KEY_Ecircumflexhook = 16785090;
+
+var Gdk_KEY_Ecircumflextilde_KEY_Ecircumflextilde = 16785092;
+
+var Gdk_KEY_EcuSign_KEY_EcuSign = 16785568;
+
+var Gdk_KEY_Ediaeresis_KEY_Ediaeresis = 203;
+
+var Gdk_KEY_Egrave_KEY_Egrave = 200;
+
+var Gdk_KEY_Ehook_KEY_Ehook = 16785082;
+
+var Gdk_KEY_Eisu_Shift_KEY_Eisu_Shift = 65327;
+
+var Gdk_KEY_Eisu_toggle_KEY_Eisu_toggle = 65328;
+
+var Gdk_KEY_Eject_KEY_Eject = 269025068;
+
+var Gdk_KEY_Emacron_KEY_Emacron = 938;
+
+var Gdk_KEY_End_KEY_End = 65367;
+
+var Gdk_KEY_Eogonek_KEY_Eogonek = 458;
+
+var Gdk_KEY_Escape_KEY_Escape = 65307;
+
+var Gdk_KEY_Eth_KEY_Eth = 208;
+
+var Gdk_KEY_Etilde_KEY_Etilde = 16785084;
+
+var Gdk_KEY_EuroSign_KEY_EuroSign = 8364;
+
+var Gdk_KEY_Excel_KEY_Excel = 269025116;
+
+var Gdk_KEY_Execute_KEY_Execute = 65378;
+
+var Gdk_KEY_Explorer_KEY_Explorer = 269025117;
+
+var Gdk_KEY_F_KEY_F = 70;
+
+var Gdk_KEY_F1_KEY_F1 = 65470;
+
+var Gdk_KEY_F10_KEY_F10 = 65479;
+
+var Gdk_KEY_F11_KEY_F11 = 65480;
+
+var Gdk_KEY_F12_KEY_F12 = 65481;
+
+var Gdk_KEY_F13_KEY_F13 = 65482;
+
+var Gdk_KEY_F14_KEY_F14 = 65483;
+
+var Gdk_KEY_F15_KEY_F15 = 65484;
+
+var Gdk_KEY_F16_KEY_F16 = 65485;
+
+var Gdk_KEY_F17_KEY_F17 = 65486;
+
+var Gdk_KEY_F18_KEY_F18 = 65487;
+
+var Gdk_KEY_F19_KEY_F19 = 65488;
+
+var Gdk_KEY_F2_KEY_F2 = 65471;
+
+var Gdk_KEY_F20_KEY_F20 = 65489;
+
+var Gdk_KEY_F21_KEY_F21 = 65490;
+
+var Gdk_KEY_F22_KEY_F22 = 65491;
+
+var Gdk_KEY_F23_KEY_F23 = 65492;
+
+var Gdk_KEY_F24_KEY_F24 = 65493;
+
+var Gdk_KEY_F25_KEY_F25 = 65494;
+
+var Gdk_KEY_F26_KEY_F26 = 65495;
+
+var Gdk_KEY_F27_KEY_F27 = 65496;
+
+var Gdk_KEY_F28_KEY_F28 = 65497;
+
+var Gdk_KEY_F29_KEY_F29 = 65498;
+
+var Gdk_KEY_F3_KEY_F3 = 65472;
+
+var Gdk_KEY_F30_KEY_F30 = 65499;
+
+var Gdk_KEY_F31_KEY_F31 = 65500;
+
+var Gdk_KEY_F32_KEY_F32 = 65501;
+
+var Gdk_KEY_F33_KEY_F33 = 65502;
+
+var Gdk_KEY_F34_KEY_F34 = 65503;
+
+var Gdk_KEY_F35_KEY_F35 = 65504;
+
+var Gdk_KEY_F4_KEY_F4 = 65473;
+
+var Gdk_KEY_F5_KEY_F5 = 65474;
+
+var Gdk_KEY_F6_KEY_F6 = 65475;
+
+var Gdk_KEY_F7_KEY_F7 = 65476;
+
+var Gdk_KEY_F8_KEY_F8 = 65477;
+
+var Gdk_KEY_F9_KEY_F9 = 65478;
+
+var Gdk_KEY_FFrancSign_KEY_FFrancSign = 16785571;
+
+var Gdk_KEY_Fabovedot_KEY_Fabovedot = 16784926;
+
+var Gdk_KEY_Farsi_0_KEY_Farsi_0 = 16778992;
+
+var Gdk_KEY_Farsi_1_KEY_Farsi_1 = 16778993;
+
+var Gdk_KEY_Farsi_2_KEY_Farsi_2 = 16778994;
+
+var Gdk_KEY_Farsi_3_KEY_Farsi_3 = 16778995;
+
+var Gdk_KEY_Farsi_4_KEY_Farsi_4 = 16778996;
+
+var Gdk_KEY_Farsi_5_KEY_Farsi_5 = 16778997;
+
+var Gdk_KEY_Farsi_6_KEY_Farsi_6 = 16778998;
+
+var Gdk_KEY_Farsi_7_KEY_Farsi_7 = 16778999;
+
+var Gdk_KEY_Farsi_8_KEY_Farsi_8 = 16779000;
+
+var Gdk_KEY_Farsi_9_KEY_Farsi_9 = 16779001;
+
+var Gdk_KEY_Farsi_yeh_KEY_Farsi_yeh = 16778956;
+
+var Gdk_KEY_Favorites_KEY_Favorites = 269025072;
+
+var Gdk_KEY_Finance_KEY_Finance = 269025084;
+
+var Gdk_KEY_Find_KEY_Find = 65384;
+
+var Gdk_KEY_First_Virtual_Screen_KEY_First_Virtual_Screen = 65232;
+
+var Gdk_KEY_Forward_KEY_Forward = 269025063;
+
+var Gdk_KEY_FrameBack_KEY_FrameBack = 269025181;
+
+var Gdk_KEY_FrameForward_KEY_FrameForward = 269025182;
+
+var Gdk_KEY_G_KEY_G = 71;
+
+var Gdk_KEY_Gabovedot_KEY_Gabovedot = 725;
+
+var Gdk_KEY_Game_KEY_Game = 269025118;
+
+var Gdk_KEY_Gbreve_KEY_Gbreve = 683;
+
+var Gdk_KEY_Gcaron_KEY_Gcaron = 16777702;
+
+var Gdk_KEY_Gcedilla_KEY_Gcedilla = 939;
+
+var Gdk_KEY_Gcircumflex_KEY_Gcircumflex = 728;
+
+var Gdk_KEY_Georgian_an_KEY_Georgian_an = 16781520;
+
+var Gdk_KEY_Georgian_ban_KEY_Georgian_ban = 16781521;
+
+var Gdk_KEY_Georgian_can_KEY_Georgian_can = 16781546;
+
+var Gdk_KEY_Georgian_char_KEY_Georgian_char = 16781549;
+
+var Gdk_KEY_Georgian_chin_KEY_Georgian_chin = 16781545;
+
+var Gdk_KEY_Georgian_cil_KEY_Georgian_cil = 16781548;
+
+var Gdk_KEY_Georgian_don_KEY_Georgian_don = 16781523;
+
+var Gdk_KEY_Georgian_en_KEY_Georgian_en = 16781524;
+
+var Gdk_KEY_Georgian_fi_KEY_Georgian_fi = 16781558;
+
+var Gdk_KEY_Georgian_gan_KEY_Georgian_gan = 16781522;
+
+var Gdk_KEY_Georgian_ghan_KEY_Georgian_ghan = 16781542;
+
+var Gdk_KEY_Georgian_hae_KEY_Georgian_hae = 16781552;
+
+var Gdk_KEY_Georgian_har_KEY_Georgian_har = 16781556;
+
+var Gdk_KEY_Georgian_he_KEY_Georgian_he = 16781553;
+
+var Gdk_KEY_Georgian_hie_KEY_Georgian_hie = 16781554;
+
+var Gdk_KEY_Georgian_hoe_KEY_Georgian_hoe = 16781557;
+
+var Gdk_KEY_Georgian_in_KEY_Georgian_in = 16781528;
+
+var Gdk_KEY_Georgian_jhan_KEY_Georgian_jhan = 16781551;
+
+var Gdk_KEY_Georgian_jil_KEY_Georgian_jil = 16781547;
+
+var Gdk_KEY_Georgian_kan_KEY_Georgian_kan = 16781529;
+
+var Gdk_KEY_Georgian_khar_KEY_Georgian_khar = 16781541;
+
+var Gdk_KEY_Georgian_las_KEY_Georgian_las = 16781530;
+
+var Gdk_KEY_Georgian_man_KEY_Georgian_man = 16781531;
+
+var Gdk_KEY_Georgian_nar_KEY_Georgian_nar = 16781532;
+
+var Gdk_KEY_Georgian_on_KEY_Georgian_on = 16781533;
+
+var Gdk_KEY_Georgian_par_KEY_Georgian_par = 16781534;
+
+var Gdk_KEY_Georgian_phar_KEY_Georgian_phar = 16781540;
+
+var Gdk_KEY_Georgian_qar_KEY_Georgian_qar = 16781543;
+
+var Gdk_KEY_Georgian_rae_KEY_Georgian_rae = 16781536;
+
+var Gdk_KEY_Georgian_san_KEY_Georgian_san = 16781537;
+
+var Gdk_KEY_Georgian_shin_KEY_Georgian_shin = 16781544;
+
+var Gdk_KEY_Georgian_tan_KEY_Georgian_tan = 16781527;
+
+var Gdk_KEY_Georgian_tar_KEY_Georgian_tar = 16781538;
+
+var Gdk_KEY_Georgian_un_KEY_Georgian_un = 16781539;
+
+var Gdk_KEY_Georgian_vin_KEY_Georgian_vin = 16781525;
+
+var Gdk_KEY_Georgian_we_KEY_Georgian_we = 16781555;
+
+var Gdk_KEY_Georgian_xan_KEY_Georgian_xan = 16781550;
+
+var Gdk_KEY_Georgian_zen_KEY_Georgian_zen = 16781526;
+
+var Gdk_KEY_Georgian_zhar_KEY_Georgian_zhar = 16781535;
+
+var Gdk_KEY_Go_KEY_Go = 269025119;
+
+var Gdk_KEY_Greek_ALPHA_KEY_Greek_ALPHA = 1985;
+
+var Gdk_KEY_Greek_ALPHAaccent_KEY_Greek_ALPHAaccent = 1953;
+
+var Gdk_KEY_Greek_BETA_KEY_Greek_BETA = 1986;
+
+var Gdk_KEY_Greek_CHI_KEY_Greek_CHI = 2007;
+
+var Gdk_KEY_Greek_DELTA_KEY_Greek_DELTA = 1988;
+
+var Gdk_KEY_Greek_EPSILON_KEY_Greek_EPSILON = 1989;
+
+var Gdk_KEY_Greek_EPSILONaccent_KEY_Greek_EPSILONaccent = 1954;
+
+var Gdk_KEY_Greek_ETA_KEY_Greek_ETA = 1991;
+
+var Gdk_KEY_Greek_ETAaccent_KEY_Greek_ETAaccent = 1955;
+
+var Gdk_KEY_Greek_GAMMA_KEY_Greek_GAMMA = 1987;
+
+var Gdk_KEY_Greek_IOTA_KEY_Greek_IOTA = 1993;
+
+var Gdk_KEY_Greek_IOTAaccent_KEY_Greek_IOTAaccent = 1956;
+
+var Gdk_KEY_Greek_IOTAdiaeresis_KEY_Greek_IOTAdiaeresis = 1957;
+
+var Gdk_KEY_Greek_IOTAdieresis_KEY_Greek_IOTAdieresis = 1957;
+
+var Gdk_KEY_Greek_KAPPA_KEY_Greek_KAPPA = 1994;
+
+var Gdk_KEY_Greek_LAMBDA_KEY_Greek_LAMBDA = 1995;
+
+var Gdk_KEY_Greek_LAMDA_KEY_Greek_LAMDA = 1995;
+
+var Gdk_KEY_Greek_MU_KEY_Greek_MU = 1996;
+
+var Gdk_KEY_Greek_NU_KEY_Greek_NU = 1997;
+
+var Gdk_KEY_Greek_OMEGA_KEY_Greek_OMEGA = 2009;
+
+var Gdk_KEY_Greek_OMEGAaccent_KEY_Greek_OMEGAaccent = 1963;
+
+var Gdk_KEY_Greek_OMICRON_KEY_Greek_OMICRON = 1999;
+
+var Gdk_KEY_Greek_OMICRONaccent_KEY_Greek_OMICRONaccent = 1959;
+
+var Gdk_KEY_Greek_PHI_KEY_Greek_PHI = 2006;
+
+var Gdk_KEY_Greek_PI_KEY_Greek_PI = 2000;
+
+var Gdk_KEY_Greek_PSI_KEY_Greek_PSI = 2008;
+
+var Gdk_KEY_Greek_RHO_KEY_Greek_RHO = 2001;
+
+var Gdk_KEY_Greek_SIGMA_KEY_Greek_SIGMA = 2002;
+
+var Gdk_KEY_Greek_TAU_KEY_Greek_TAU = 2004;
+
+var Gdk_KEY_Greek_THETA_KEY_Greek_THETA = 1992;
+
+var Gdk_KEY_Greek_UPSILON_KEY_Greek_UPSILON = 2005;
+
+var Gdk_KEY_Greek_UPSILONaccent_KEY_Greek_UPSILONaccent = 1960;
+
+var Gdk_KEY_Greek_UPSILONdieresis_KEY_Greek_UPSILONdieresis = 1961;
+
+var Gdk_KEY_Greek_XI_KEY_Greek_XI = 1998;
+
+var Gdk_KEY_Greek_ZETA_KEY_Greek_ZETA = 1990;
+
+var Gdk_KEY_Greek_accentdieresis_KEY_Greek_accentdieresis = 1966;
+
+var Gdk_KEY_Greek_alpha_KEY_Greek_alpha = 2017;
+
+var Gdk_KEY_Greek_alphaaccent_KEY_Greek_alphaaccent = 1969;
+
+var Gdk_KEY_Greek_beta_KEY_Greek_beta = 2018;
+
+var Gdk_KEY_Greek_chi_KEY_Greek_chi = 2039;
+
+var Gdk_KEY_Greek_delta_KEY_Greek_delta = 2020;
+
+var Gdk_KEY_Greek_epsilon_KEY_Greek_epsilon = 2021;
+
+var Gdk_KEY_Greek_epsilonaccent_KEY_Greek_epsilonaccent = 1970;
+
+var Gdk_KEY_Greek_eta_KEY_Greek_eta = 2023;
+
+var Gdk_KEY_Greek_etaaccent_KEY_Greek_etaaccent = 1971;
+
+var Gdk_KEY_Greek_finalsmallsigma_KEY_Greek_finalsmallsigma = 2035;
+
+var Gdk_KEY_Greek_gamma_KEY_Greek_gamma = 2019;
+
+var Gdk_KEY_Greek_horizbar_KEY_Greek_horizbar = 1967;
+
+var Gdk_KEY_Greek_iota_KEY_Greek_iota = 2025;
+
+var Gdk_KEY_Greek_iotaaccent_KEY_Greek_iotaaccent = 1972;
+
+var Gdk_KEY_Greek_iotaaccentdieresis_KEY_Greek_iotaaccentdieresis = 1974;
+
+var Gdk_KEY_Greek_iotadieresis_KEY_Greek_iotadieresis = 1973;
+
+var Gdk_KEY_Greek_kappa_KEY_Greek_kappa = 2026;
+
+var Gdk_KEY_Greek_lambda_KEY_Greek_lambda = 2027;
+
+var Gdk_KEY_Greek_lamda_KEY_Greek_lamda = 2027;
+
+var Gdk_KEY_Greek_mu_KEY_Greek_mu = 2028;
+
+var Gdk_KEY_Greek_nu_KEY_Greek_nu = 2029;
+
+var Gdk_KEY_Greek_omega_KEY_Greek_omega = 2041;
+
+var Gdk_KEY_Greek_omegaaccent_KEY_Greek_omegaaccent = 1979;
+
+var Gdk_KEY_Greek_omicron_KEY_Greek_omicron = 2031;
+
+var Gdk_KEY_Greek_omicronaccent_KEY_Greek_omicronaccent = 1975;
+
+var Gdk_KEY_Greek_phi_KEY_Greek_phi = 2038;
+
+var Gdk_KEY_Greek_pi_KEY_Greek_pi = 2032;
+
+var Gdk_KEY_Greek_psi_KEY_Greek_psi = 2040;
+
+var Gdk_KEY_Greek_rho_KEY_Greek_rho = 2033;
+
+var Gdk_KEY_Greek_sigma_KEY_Greek_sigma = 2034;
+
+var Gdk_KEY_Greek_switch_KEY_Greek_switch = 65406;
+
+var Gdk_KEY_Greek_tau_KEY_Greek_tau = 2036;
+
+var Gdk_KEY_Greek_theta_KEY_Greek_theta = 2024;
+
+var Gdk_KEY_Greek_upsilon_KEY_Greek_upsilon = 2037;
+
+var Gdk_KEY_Greek_upsilonaccent_KEY_Greek_upsilonaccent = 1976;
+
+var Gdk_KEY_Greek_upsilonaccentdieresis_KEY_Greek_upsilonaccentdieresis = 1978;
+
+var Gdk_KEY_Greek_upsilondieresis_KEY_Greek_upsilondieresis = 1977;
+
+var Gdk_KEY_Greek_xi_KEY_Greek_xi = 2030;
+
+var Gdk_KEY_Greek_zeta_KEY_Greek_zeta = 2022;
+
+var Gdk_KEY_Green_KEY_Green = 269025188;
+
+var Gdk_KEY_H_KEY_H = 72;
+
+var Gdk_KEY_Hangul_KEY_Hangul = 65329;
+
+var Gdk_KEY_Hangul_A_KEY_Hangul_A = 3775;
+
+var Gdk_KEY_Hangul_AE_KEY_Hangul_AE = 3776;
+
+var Gdk_KEY_Hangul_AraeA_KEY_Hangul_AraeA = 3830;
+
+var Gdk_KEY_Hangul_AraeAE_KEY_Hangul_AraeAE = 3831;
+
+var Gdk_KEY_Hangul_Banja_KEY_Hangul_Banja = 65337;
+
+var Gdk_KEY_Hangul_Cieuc_KEY_Hangul_Cieuc = 3770;
+
+var Gdk_KEY_Hangul_Codeinput_KEY_Hangul_Codeinput = 65335;
+
+var Gdk_KEY_Hangul_Dikeud_KEY_Hangul_Dikeud = 3751;
+
+var Gdk_KEY_Hangul_E_KEY_Hangul_E = 3780;
+
+var Gdk_KEY_Hangul_EO_KEY_Hangul_EO = 3779;
+
+var Gdk_KEY_Hangul_EU_KEY_Hangul_EU = 3793;
+
+var Gdk_KEY_Hangul_End_KEY_Hangul_End = 65331;
+
+var Gdk_KEY_Hangul_Hanja_KEY_Hangul_Hanja = 65332;
+
+var Gdk_KEY_Hangul_Hieuh_KEY_Hangul_Hieuh = 3774;
+
+var Gdk_KEY_Hangul_I_KEY_Hangul_I = 3795;
+
+var Gdk_KEY_Hangul_Ieung_KEY_Hangul_Ieung = 3767;
+
+var Gdk_KEY_Hangul_J_Cieuc_KEY_Hangul_J_Cieuc = 3818;
+
+var Gdk_KEY_Hangul_J_Dikeud_KEY_Hangul_J_Dikeud = 3802;
+
+var Gdk_KEY_Hangul_J_Hieuh_KEY_Hangul_J_Hieuh = 3822;
+
+var Gdk_KEY_Hangul_J_Ieung_KEY_Hangul_J_Ieung = 3816;
+
+var Gdk_KEY_Hangul_J_Jieuj_KEY_Hangul_J_Jieuj = 3817;
+
+var Gdk_KEY_Hangul_J_Khieuq_KEY_Hangul_J_Khieuq = 3819;
+
+var Gdk_KEY_Hangul_J_Kiyeog_KEY_Hangul_J_Kiyeog = 3796;
+
+var Gdk_KEY_Hangul_J_KiyeogSios_KEY_Hangul_J_KiyeogSios = 3798;
+
+var Gdk_KEY_Hangul_J_KkogjiDalrinIeung_KEY_Hangul_J_KkogjiDalrinIeung = 3833;
+
+var Gdk_KEY_Hangul_J_Mieum_KEY_Hangul_J_Mieum = 3811;
+
+var Gdk_KEY_Hangul_J_Nieun_KEY_Hangul_J_Nieun = 3799;
+
+var Gdk_KEY_Hangul_J_NieunHieuh_KEY_Hangul_J_NieunHieuh = 3801;
+
+var Gdk_KEY_Hangul_J_NieunJieuj_KEY_Hangul_J_NieunJieuj = 3800;
+
+var Gdk_KEY_Hangul_J_PanSios_KEY_Hangul_J_PanSios = 3832;
+
+var Gdk_KEY_Hangul_J_Phieuf_KEY_Hangul_J_Phieuf = 3821;
+
+var Gdk_KEY_Hangul_J_Pieub_KEY_Hangul_J_Pieub = 3812;
+
+var Gdk_KEY_Hangul_J_PieubSios_KEY_Hangul_J_PieubSios = 3813;
+
+var Gdk_KEY_Hangul_J_Rieul_KEY_Hangul_J_Rieul = 3803;
+
+var Gdk_KEY_Hangul_J_RieulHieuh_KEY_Hangul_J_RieulHieuh = 3810;
+
+var Gdk_KEY_Hangul_J_RieulKiyeog_KEY_Hangul_J_RieulKiyeog = 3804;
+
+var Gdk_KEY_Hangul_J_RieulMieum_KEY_Hangul_J_RieulMieum = 3805;
+
+var Gdk_KEY_Hangul_J_RieulPhieuf_KEY_Hangul_J_RieulPhieuf = 3809;
+
+var Gdk_KEY_Hangul_J_RieulPieub_KEY_Hangul_J_RieulPieub = 3806;
+
+var Gdk_KEY_Hangul_J_RieulSios_KEY_Hangul_J_RieulSios = 3807;
+
+var Gdk_KEY_Hangul_J_RieulTieut_KEY_Hangul_J_RieulTieut = 3808;
+
+var Gdk_KEY_Hangul_J_Sios_KEY_Hangul_J_Sios = 3814;
+
+var Gdk_KEY_Hangul_J_SsangKiyeog_KEY_Hangul_J_SsangKiyeog = 3797;
+
+var Gdk_KEY_Hangul_J_SsangSios_KEY_Hangul_J_SsangSios = 3815;
+
+var Gdk_KEY_Hangul_J_Tieut_KEY_Hangul_J_Tieut = 3820;
+
+var Gdk_KEY_Hangul_J_YeorinHieuh_KEY_Hangul_J_YeorinHieuh = 3834;
+
+var Gdk_KEY_Hangul_Jamo_KEY_Hangul_Jamo = 65333;
+
+var Gdk_KEY_Hangul_Jeonja_KEY_Hangul_Jeonja = 65336;
+
+var Gdk_KEY_Hangul_Jieuj_KEY_Hangul_Jieuj = 3768;
+
+var Gdk_KEY_Hangul_Khieuq_KEY_Hangul_Khieuq = 3771;
+
+var Gdk_KEY_Hangul_Kiyeog_KEY_Hangul_Kiyeog = 3745;
+
+var Gdk_KEY_Hangul_KiyeogSios_KEY_Hangul_KiyeogSios = 3747;
+
+var Gdk_KEY_Hangul_KkogjiDalrinIeung_KEY_Hangul_KkogjiDalrinIeung = 3827;
+
+var Gdk_KEY_Hangul_Mieum_KEY_Hangul_Mieum = 3761;
+
+var Gdk_KEY_Hangul_MultipleCandidate_KEY_Hangul_MultipleCandidate = 65341;
+
+var Gdk_KEY_Hangul_Nieun_KEY_Hangul_Nieun = 3748;
+
+var Gdk_KEY_Hangul_NieunHieuh_KEY_Hangul_NieunHieuh = 3750;
+
+var Gdk_KEY_Hangul_NieunJieuj_KEY_Hangul_NieunJieuj = 3749;
+
+var Gdk_KEY_Hangul_O_KEY_Hangul_O = 3783;
+
+var Gdk_KEY_Hangul_OE_KEY_Hangul_OE = 3786;
+
+var Gdk_KEY_Hangul_PanSios_KEY_Hangul_PanSios = 3826;
+
+var Gdk_KEY_Hangul_Phieuf_KEY_Hangul_Phieuf = 3773;
+
+var Gdk_KEY_Hangul_Pieub_KEY_Hangul_Pieub = 3762;
+
+var Gdk_KEY_Hangul_PieubSios_KEY_Hangul_PieubSios = 3764;
+
+var Gdk_KEY_Hangul_PostHanja_KEY_Hangul_PostHanja = 65339;
+
+var Gdk_KEY_Hangul_PreHanja_KEY_Hangul_PreHanja = 65338;
+
+var Gdk_KEY_Hangul_PreviousCandidate_KEY_Hangul_PreviousCandidate = 65342;
+
+var Gdk_KEY_Hangul_Rieul_KEY_Hangul_Rieul = 3753;
+
+var Gdk_KEY_Hangul_RieulHieuh_KEY_Hangul_RieulHieuh = 3760;
+
+var Gdk_KEY_Hangul_RieulKiyeog_KEY_Hangul_RieulKiyeog = 3754;
+
+var Gdk_KEY_Hangul_RieulMieum_KEY_Hangul_RieulMieum = 3755;
+
+var Gdk_KEY_Hangul_RieulPhieuf_KEY_Hangul_RieulPhieuf = 3759;
+
+var Gdk_KEY_Hangul_RieulPieub_KEY_Hangul_RieulPieub = 3756;
+
+var Gdk_KEY_Hangul_RieulSios_KEY_Hangul_RieulSios = 3757;
+
+var Gdk_KEY_Hangul_RieulTieut_KEY_Hangul_RieulTieut = 3758;
+
+var Gdk_KEY_Hangul_RieulYeorinHieuh_KEY_Hangul_RieulYeorinHieuh = 3823;
+
+var Gdk_KEY_Hangul_Romaja_KEY_Hangul_Romaja = 65334;
+
+var Gdk_KEY_Hangul_SingleCandidate_KEY_Hangul_SingleCandidate = 65340;
+
+var Gdk_KEY_Hangul_Sios_KEY_Hangul_Sios = 3765;
+
+var Gdk_KEY_Hangul_Special_KEY_Hangul_Special = 65343;
+
+var Gdk_KEY_Hangul_SsangDikeud_KEY_Hangul_SsangDikeud = 3752;
+
+var Gdk_KEY_Hangul_SsangJieuj_KEY_Hangul_SsangJieuj = 3769;
+
+var Gdk_KEY_Hangul_SsangKiyeog_KEY_Hangul_SsangKiyeog = 3746;
+
+var Gdk_KEY_Hangul_SsangPieub_KEY_Hangul_SsangPieub = 3763;
+
+var Gdk_KEY_Hangul_SsangSios_KEY_Hangul_SsangSios = 3766;
+
+var Gdk_KEY_Hangul_Start_KEY_Hangul_Start = 65330;
+
+var Gdk_KEY_Hangul_SunkyeongeumMieum_KEY_Hangul_SunkyeongeumMieum = 3824;
+
+var Gdk_KEY_Hangul_SunkyeongeumPhieuf_KEY_Hangul_SunkyeongeumPhieuf = 3828;
+
+var Gdk_KEY_Hangul_SunkyeongeumPieub_KEY_Hangul_SunkyeongeumPieub = 3825;
+
+var Gdk_KEY_Hangul_Tieut_KEY_Hangul_Tieut = 3772;
+
+var Gdk_KEY_Hangul_U_KEY_Hangul_U = 3788;
+
+var Gdk_KEY_Hangul_WA_KEY_Hangul_WA = 3784;
+
+var Gdk_KEY_Hangul_WAE_KEY_Hangul_WAE = 3785;
+
+var Gdk_KEY_Hangul_WE_KEY_Hangul_WE = 3790;
+
+var Gdk_KEY_Hangul_WEO_KEY_Hangul_WEO = 3789;
+
+var Gdk_KEY_Hangul_WI_KEY_Hangul_WI = 3791;
+
+var Gdk_KEY_Hangul_YA_KEY_Hangul_YA = 3777;
+
+var Gdk_KEY_Hangul_YAE_KEY_Hangul_YAE = 3778;
+
+var Gdk_KEY_Hangul_YE_KEY_Hangul_YE = 3782;
+
+var Gdk_KEY_Hangul_YEO_KEY_Hangul_YEO = 3781;
+
+var Gdk_KEY_Hangul_YI_KEY_Hangul_YI = 3794;
+
+var Gdk_KEY_Hangul_YO_KEY_Hangul_YO = 3787;
+
+var Gdk_KEY_Hangul_YU_KEY_Hangul_YU = 3792;
+
+var Gdk_KEY_Hangul_YeorinHieuh_KEY_Hangul_YeorinHieuh = 3829;
+
+var Gdk_KEY_Hangul_switch_KEY_Hangul_switch = 65406;
+
+var Gdk_KEY_Hankaku_KEY_Hankaku = 65321;
+
+var Gdk_KEY_Hcircumflex_KEY_Hcircumflex = 678;
+
+var Gdk_KEY_Hebrew_switch_KEY_Hebrew_switch = 65406;
+
+var Gdk_KEY_Help_KEY_Help = 65386;
+
+var Gdk_KEY_Henkan_KEY_Henkan = 65315;
+
+var Gdk_KEY_Henkan_Mode_KEY_Henkan_Mode = 65315;
+
+var Gdk_KEY_Hibernate_KEY_Hibernate = 269025192;
+
+var Gdk_KEY_Hiragana_KEY_Hiragana = 65317;
+
+var Gdk_KEY_Hiragana_Katakana_KEY_Hiragana_Katakana = 65319;
+
+var Gdk_KEY_History_KEY_History = 269025079;
+
+var Gdk_KEY_Home_KEY_Home = 65360;
+
+var Gdk_KEY_HomePage_KEY_HomePage = 269025048;
+
+var Gdk_KEY_HotLinks_KEY_HotLinks = 269025082;
+
+var Gdk_KEY_Hstroke_KEY_Hstroke = 673;
+
+var Gdk_KEY_Hyper_L_KEY_Hyper_L = 65517;
+
+var Gdk_KEY_Hyper_R_KEY_Hyper_R = 65518;
+
+var Gdk_KEY_I_KEY_I = 73;
+
+var Gdk_KEY_ISO_Center_Object_KEY_ISO_Center_Object = 65075;
+
+var Gdk_KEY_ISO_Continuous_Underline_KEY_ISO_Continuous_Underline = 65072;
+
+var Gdk_KEY_ISO_Discontinuous_Underline_KEY_ISO_Discontinuous_Underline = 65073;
+
+var Gdk_KEY_ISO_Emphasize_KEY_ISO_Emphasize = 65074;
+
+var Gdk_KEY_ISO_Enter_KEY_ISO_Enter = 65076;
+
+var Gdk_KEY_ISO_Fast_Cursor_Down_KEY_ISO_Fast_Cursor_Down = 65071;
+
+var Gdk_KEY_ISO_Fast_Cursor_Left_KEY_ISO_Fast_Cursor_Left = 65068;
+
+var Gdk_KEY_ISO_Fast_Cursor_Right_KEY_ISO_Fast_Cursor_Right = 65069;
+
+var Gdk_KEY_ISO_Fast_Cursor_Up_KEY_ISO_Fast_Cursor_Up = 65070;
+
+var Gdk_KEY_ISO_First_Group_KEY_ISO_First_Group = 65036;
+
+var Gdk_KEY_ISO_First_Group_Lock_KEY_ISO_First_Group_Lock = 65037;
+
+var Gdk_KEY_ISO_Group_Latch_KEY_ISO_Group_Latch = 65030;
+
+var Gdk_KEY_ISO_Group_Lock_KEY_ISO_Group_Lock = 65031;
+
+var Gdk_KEY_ISO_Group_Shift_KEY_ISO_Group_Shift = 65406;
+
+var Gdk_KEY_ISO_Last_Group_KEY_ISO_Last_Group = 65038;
+
+var Gdk_KEY_ISO_Last_Group_Lock_KEY_ISO_Last_Group_Lock = 65039;
+
+var Gdk_KEY_ISO_Left_Tab_KEY_ISO_Left_Tab = 65056;
+
+var Gdk_KEY_ISO_Level2_Latch_KEY_ISO_Level2_Latch = 65026;
+
+var Gdk_KEY_ISO_Level3_Latch_KEY_ISO_Level3_Latch = 65028;
+
+var Gdk_KEY_ISO_Level3_Lock_KEY_ISO_Level3_Lock = 65029;
+
+var Gdk_KEY_ISO_Level3_Shift_KEY_ISO_Level3_Shift = 65027;
+
+var Gdk_KEY_ISO_Level5_Latch_KEY_ISO_Level5_Latch = 65042;
+
+var Gdk_KEY_ISO_Level5_Lock_KEY_ISO_Level5_Lock = 65043;
+
+var Gdk_KEY_ISO_Level5_Shift_KEY_ISO_Level5_Shift = 65041;
+
+var Gdk_KEY_ISO_Lock_KEY_ISO_Lock = 65025;
+
+var Gdk_KEY_ISO_Move_Line_Down_KEY_ISO_Move_Line_Down = 65058;
+
+var Gdk_KEY_ISO_Move_Line_Up_KEY_ISO_Move_Line_Up = 65057;
+
+var Gdk_KEY_ISO_Next_Group_KEY_ISO_Next_Group = 65032;
+
+var Gdk_KEY_ISO_Next_Group_Lock_KEY_ISO_Next_Group_Lock = 65033;
+
+var Gdk_KEY_ISO_Partial_Line_Down_KEY_ISO_Partial_Line_Down = 65060;
+
+var Gdk_KEY_ISO_Partial_Line_Up_KEY_ISO_Partial_Line_Up = 65059;
+
+var Gdk_KEY_ISO_Partial_Space_Left_KEY_ISO_Partial_Space_Left = 65061;
+
+var Gdk_KEY_ISO_Partial_Space_Right_KEY_ISO_Partial_Space_Right = 65062;
+
+var Gdk_KEY_ISO_Prev_Group_KEY_ISO_Prev_Group = 65034;
+
+var Gdk_KEY_ISO_Prev_Group_Lock_KEY_ISO_Prev_Group_Lock = 65035;
+
+var Gdk_KEY_ISO_Release_Both_Margins_KEY_ISO_Release_Both_Margins = 65067;
+
+var Gdk_KEY_ISO_Release_Margin_Left_KEY_ISO_Release_Margin_Left = 65065;
+
+var Gdk_KEY_ISO_Release_Margin_Right_KEY_ISO_Release_Margin_Right = 65066;
+
+var Gdk_KEY_ISO_Set_Margin_Left_KEY_ISO_Set_Margin_Left = 65063;
+
+var Gdk_KEY_ISO_Set_Margin_Right_KEY_ISO_Set_Margin_Right = 65064;
+
+var Gdk_KEY_Iabovedot_KEY_Iabovedot = 681;
+
+var Gdk_KEY_Iacute_KEY_Iacute = 205;
+
+var Gdk_KEY_Ibelowdot_KEY_Ibelowdot = 16785098;
+
+var Gdk_KEY_Ibreve_KEY_Ibreve = 16777516;
+
+var Gdk_KEY_Icircumflex_KEY_Icircumflex = 206;
+
+var Gdk_KEY_Idiaeresis_KEY_Idiaeresis = 207;
+
+var Gdk_KEY_Igrave_KEY_Igrave = 204;
+
+var Gdk_KEY_Ihook_KEY_Ihook = 16785096;
+
+var Gdk_KEY_Imacron_KEY_Imacron = 975;
+
+var Gdk_KEY_Insert_KEY_Insert = 65379;
+
+var Gdk_KEY_Iogonek_KEY_Iogonek = 967;
+
+var Gdk_KEY_Itilde_KEY_Itilde = 933;
+
+var Gdk_KEY_J_KEY_J = 74;
+
+var Gdk_KEY_Jcircumflex_KEY_Jcircumflex = 684;
+
+var Gdk_KEY_K_KEY_K = 75;
+
+var Gdk_KEY_KP_0_KEY_KP_0 = 65456;
+
+var Gdk_KEY_KP_1_KEY_KP_1 = 65457;
+
+var Gdk_KEY_KP_2_KEY_KP_2 = 65458;
+
+var Gdk_KEY_KP_3_KEY_KP_3 = 65459;
+
+var Gdk_KEY_KP_4_KEY_KP_4 = 65460;
+
+var Gdk_KEY_KP_5_KEY_KP_5 = 65461;
+
+var Gdk_KEY_KP_6_KEY_KP_6 = 65462;
+
+var Gdk_KEY_KP_7_KEY_KP_7 = 65463;
+
+var Gdk_KEY_KP_8_KEY_KP_8 = 65464;
+
+var Gdk_KEY_KP_9_KEY_KP_9 = 65465;
+
+var Gdk_KEY_KP_Add_KEY_KP_Add = 65451;
+
+var Gdk_KEY_KP_Begin_KEY_KP_Begin = 65437;
+
+var Gdk_KEY_KP_Decimal_KEY_KP_Decimal = 65454;
+
+var Gdk_KEY_KP_Delete_KEY_KP_Delete = 65439;
+
+var Gdk_KEY_KP_Divide_KEY_KP_Divide = 65455;
+
+var Gdk_KEY_KP_Down_KEY_KP_Down = 65433;
+
+var Gdk_KEY_KP_End_KEY_KP_End = 65436;
+
+var Gdk_KEY_KP_Enter_KEY_KP_Enter = 65421;
+
+var Gdk_KEY_KP_Equal_KEY_KP_Equal = 65469;
+
+var Gdk_KEY_KP_F1_KEY_KP_F1 = 65425;
+
+var Gdk_KEY_KP_F2_KEY_KP_F2 = 65426;
+
+var Gdk_KEY_KP_F3_KEY_KP_F3 = 65427;
+
+var Gdk_KEY_KP_F4_KEY_KP_F4 = 65428;
+
+var Gdk_KEY_KP_Home_KEY_KP_Home = 65429;
+
+var Gdk_KEY_KP_Insert_KEY_KP_Insert = 65438;
+
+var Gdk_KEY_KP_Left_KEY_KP_Left = 65430;
+
+var Gdk_KEY_KP_Multiply_KEY_KP_Multiply = 65450;
+
+var Gdk_KEY_KP_Next_KEY_KP_Next = 65435;
+
+var Gdk_KEY_KP_Page_Down_KEY_KP_Page_Down = 65435;
+
+var Gdk_KEY_KP_Page_Up_KEY_KP_Page_Up = 65434;
+
+var Gdk_KEY_KP_Prior_KEY_KP_Prior = 65434;
+
+var Gdk_KEY_KP_Right_KEY_KP_Right = 65432;
+
+var Gdk_KEY_KP_Separator_KEY_KP_Separator = 65452;
+
+var Gdk_KEY_KP_Space_KEY_KP_Space = 65408;
+
+var Gdk_KEY_KP_Subtract_KEY_KP_Subtract = 65453;
+
+var Gdk_KEY_KP_Tab_KEY_KP_Tab = 65417;
+
+var Gdk_KEY_KP_Up_KEY_KP_Up = 65431;
+
+var Gdk_KEY_Kana_Lock_KEY_Kana_Lock = 65325;
+
+var Gdk_KEY_Kana_Shift_KEY_Kana_Shift = 65326;
+
+var Gdk_KEY_Kanji_KEY_Kanji = 65313;
+
+var Gdk_KEY_Kanji_Bangou_KEY_Kanji_Bangou = 65335;
+
+var Gdk_KEY_Katakana_KEY_Katakana = 65318;
+
+var Gdk_KEY_KbdBrightnessDown_KEY_KbdBrightnessDown = 269025030;
+
+var Gdk_KEY_KbdBrightnessUp_KEY_KbdBrightnessUp = 269025029;
+
+var Gdk_KEY_KbdLightOnOff_KEY_KbdLightOnOff = 269025028;
+
+var Gdk_KEY_Kcedilla_KEY_Kcedilla = 979;
+
+var Gdk_KEY_Keyboard_KEY_Keyboard = 269025203;
+
+var Gdk_KEY_Korean_Won_KEY_Korean_Won = 3839;
+
+var Gdk_KEY_L_KEY_L = 76;
+
+var Gdk_KEY_L1_KEY_L1 = 65480;
+
+var Gdk_KEY_L10_KEY_L10 = 65489;
+
+var Gdk_KEY_L2_KEY_L2 = 65481;
+
+var Gdk_KEY_L3_KEY_L3 = 65482;
+
+var Gdk_KEY_L4_KEY_L4 = 65483;
+
+var Gdk_KEY_L5_KEY_L5 = 65484;
+
+var Gdk_KEY_L6_KEY_L6 = 65485;
+
+var Gdk_KEY_L7_KEY_L7 = 65486;
+
+var Gdk_KEY_L8_KEY_L8 = 65487;
+
+var Gdk_KEY_L9_KEY_L9 = 65488;
+
+var Gdk_KEY_Lacute_KEY_Lacute = 453;
+
+var Gdk_KEY_Last_Virtual_Screen_KEY_Last_Virtual_Screen = 65236;
+
+var Gdk_KEY_Launch0_KEY_Launch0 = 269025088;
+
+var Gdk_KEY_Launch1_KEY_Launch1 = 269025089;
+
+var Gdk_KEY_Launch2_KEY_Launch2 = 269025090;
+
+var Gdk_KEY_Launch3_KEY_Launch3 = 269025091;
+
+var Gdk_KEY_Launch4_KEY_Launch4 = 269025092;
+
+var Gdk_KEY_Launch5_KEY_Launch5 = 269025093;
+
+var Gdk_KEY_Launch6_KEY_Launch6 = 269025094;
+
+var Gdk_KEY_Launch7_KEY_Launch7 = 269025095;
+
+var Gdk_KEY_Launch8_KEY_Launch8 = 269025096;
+
+var Gdk_KEY_Launch9_KEY_Launch9 = 269025097;
+
+var Gdk_KEY_LaunchA_KEY_LaunchA = 269025098;
+
+var Gdk_KEY_LaunchB_KEY_LaunchB = 269025099;
+
+var Gdk_KEY_LaunchC_KEY_LaunchC = 269025100;
+
+var Gdk_KEY_LaunchD_KEY_LaunchD = 269025101;
+
+var Gdk_KEY_LaunchE_KEY_LaunchE = 269025102;
+
+var Gdk_KEY_LaunchF_KEY_LaunchF = 269025103;
+
+var Gdk_KEY_Lbelowdot_KEY_Lbelowdot = 16784950;
+
+var Gdk_KEY_Lcaron_KEY_Lcaron = 421;
+
+var Gdk_KEY_Lcedilla_KEY_Lcedilla = 934;
+
+var Gdk_KEY_Left_KEY_Left = 65361;
+
+var Gdk_KEY_LightBulb_KEY_LightBulb = 269025077;
+
+var Gdk_KEY_Linefeed_KEY_Linefeed = 65290;
+
+var Gdk_KEY_LiraSign_KEY_LiraSign = 16785572;
+
+var Gdk_KEY_LogGrabInfo_KEY_LogGrabInfo = 269024805;
+
+var Gdk_KEY_LogOff_KEY_LogOff = 269025121;
+
+var Gdk_KEY_LogWindowTree_KEY_LogWindowTree = 269024804;
+
+var Gdk_KEY_Lstroke_KEY_Lstroke = 419;
+
+var Gdk_KEY_M_KEY_M = 77;
+
+var Gdk_KEY_Mabovedot_KEY_Mabovedot = 16784960;
+
+var Gdk_KEY_Macedonia_DSE_KEY_Macedonia_DSE = 1717;
+
+var Gdk_KEY_Macedonia_GJE_KEY_Macedonia_GJE = 1714;
+
+var Gdk_KEY_Macedonia_KJE_KEY_Macedonia_KJE = 1724;
+
+var Gdk_KEY_Macedonia_dse_KEY_Macedonia_dse = 1701;
+
+var Gdk_KEY_Macedonia_gje_KEY_Macedonia_gje = 1698;
+
+var Gdk_KEY_Macedonia_kje_KEY_Macedonia_kje = 1708;
+
+var Gdk_KEY_Mae_Koho_KEY_Mae_Koho = 65342;
+
+var Gdk_KEY_Mail_KEY_Mail = 269025049;
+
+var Gdk_KEY_MailForward_KEY_MailForward = 269025168;
+
+var Gdk_KEY_Market_KEY_Market = 269025122;
+
+var Gdk_KEY_Massyo_KEY_Massyo = 65324;
+
+var Gdk_KEY_Meeting_KEY_Meeting = 269025123;
+
+var Gdk_KEY_Memo_KEY_Memo = 269025054;
+
+var Gdk_KEY_Menu_KEY_Menu = 65383;
+
+var Gdk_KEY_MenuKB_KEY_MenuKB = 269025125;
+
+var Gdk_KEY_MenuPB_KEY_MenuPB = 269025126;
+
+var Gdk_KEY_Messenger_KEY_Messenger = 269025166;
+
+var Gdk_KEY_Meta_L_KEY_Meta_L = 65511;
+
+var Gdk_KEY_Meta_R_KEY_Meta_R = 65512;
+
+var Gdk_KEY_MillSign_KEY_MillSign = 16785573;
+
+var Gdk_KEY_ModeLock_KEY_ModeLock = 269025025;
+
+var Gdk_KEY_Mode_switch_KEY_Mode_switch = 65406;
+
+var Gdk_KEY_MonBrightnessDown_KEY_MonBrightnessDown = 269025027;
+
+var Gdk_KEY_MonBrightnessUp_KEY_MonBrightnessUp = 269025026;
+
+var Gdk_KEY_MouseKeys_Accel_Enable_KEY_MouseKeys_Accel_Enable = 65143;
+
+var Gdk_KEY_MouseKeys_Enable_KEY_MouseKeys_Enable = 65142;
+
+var Gdk_KEY_Muhenkan_KEY_Muhenkan = 65314;
+
+var Gdk_KEY_Multi_key_KEY_Multi_key = 65312;
+
+var Gdk_KEY_MultipleCandidate_KEY_MultipleCandidate = 65341;
+
+var Gdk_KEY_Music_KEY_Music = 269025170;
+
+var Gdk_KEY_MyComputer_KEY_MyComputer = 269025075;
+
+var Gdk_KEY_MySites_KEY_MySites = 269025127;
+
+var Gdk_KEY_N_KEY_N = 78;
+
+var Gdk_KEY_Nacute_KEY_Nacute = 465;
+
+var Gdk_KEY_NairaSign_KEY_NairaSign = 16785574;
+
+var Gdk_KEY_Ncaron_KEY_Ncaron = 466;
+
+var Gdk_KEY_Ncedilla_KEY_Ncedilla = 977;
+
+var Gdk_KEY_New_KEY_New = 269025128;
+
+var Gdk_KEY_NewSheqelSign_KEY_NewSheqelSign = 16785578;
+
+var Gdk_KEY_News_KEY_News = 269025129;
+
+var Gdk_KEY_Next_KEY_Next = 65366;
+
+var Gdk_KEY_Next_VMode_KEY_Next_VMode = 269024802;
+
+var Gdk_KEY_Next_Virtual_Screen_KEY_Next_Virtual_Screen = 65234;
+
+var Gdk_KEY_Ntilde_KEY_Ntilde = 209;
+
+var Gdk_KEY_Num_Lock_KEY_Num_Lock = 65407;
+
+var Gdk_KEY_O_KEY_O = 79;
+
+var Gdk_KEY_OE_KEY_OE = 5052;
+
+var Gdk_KEY_Oacute_KEY_Oacute = 211;
+
+var Gdk_KEY_Obarred_KEY_Obarred = 16777631;
+
+var Gdk_KEY_Obelowdot_KEY_Obelowdot = 16785100;
+
+var Gdk_KEY_Ocaron_KEY_Ocaron = 16777681;
+
+var Gdk_KEY_Ocircumflex_KEY_Ocircumflex = 212;
+
+var Gdk_KEY_Ocircumflexacute_KEY_Ocircumflexacute = 16785104;
+
+var Gdk_KEY_Ocircumflexbelowdot_KEY_Ocircumflexbelowdot = 16785112;
+
+var Gdk_KEY_Ocircumflexgrave_KEY_Ocircumflexgrave = 16785106;
+
+var Gdk_KEY_Ocircumflexhook_KEY_Ocircumflexhook = 16785108;
+
+var Gdk_KEY_Ocircumflextilde_KEY_Ocircumflextilde = 16785110;
+
+var Gdk_KEY_Odiaeresis_KEY_Odiaeresis = 214;
+
+var Gdk_KEY_Odoubleacute_KEY_Odoubleacute = 469;
+
+var Gdk_KEY_OfficeHome_KEY_OfficeHome = 269025130;
+
+var Gdk_KEY_Ograve_KEY_Ograve = 210;
+
+var Gdk_KEY_Ohook_KEY_Ohook = 16785102;
+
+var Gdk_KEY_Ohorn_KEY_Ohorn = 16777632;
+
+var Gdk_KEY_Ohornacute_KEY_Ohornacute = 16785114;
+
+var Gdk_KEY_Ohornbelowdot_KEY_Ohornbelowdot = 16785122;
+
+var Gdk_KEY_Ohorngrave_KEY_Ohorngrave = 16785116;
+
+var Gdk_KEY_Ohornhook_KEY_Ohornhook = 16785118;
+
+var Gdk_KEY_Ohorntilde_KEY_Ohorntilde = 16785120;
+
+var Gdk_KEY_Omacron_KEY_Omacron = 978;
+
+var Gdk_KEY_Ooblique_KEY_Ooblique = 216;
+
+var Gdk_KEY_Open_KEY_Open = 269025131;
+
+var Gdk_KEY_OpenURL_KEY_OpenURL = 269025080;
+
+var Gdk_KEY_Option_KEY_Option = 269025132;
+
+var Gdk_KEY_Oslash_KEY_Oslash = 216;
+
+var Gdk_KEY_Otilde_KEY_Otilde = 213;
+
+var Gdk_KEY_Overlay1_Enable_KEY_Overlay1_Enable = 65144;
+
+var Gdk_KEY_Overlay2_Enable_KEY_Overlay2_Enable = 65145;
+
+var Gdk_KEY_P_KEY_P = 80;
+
+var Gdk_KEY_Pabovedot_KEY_Pabovedot = 16784982;
+
+var Gdk_KEY_Page_Down_KEY_Page_Down = 65366;
+
+var Gdk_KEY_Page_Up_KEY_Page_Up = 65365;
+
+var Gdk_KEY_Paste_KEY_Paste = 269025133;
+
+var Gdk_KEY_Pause_KEY_Pause = 65299;
+
+var Gdk_KEY_PesetaSign_KEY_PesetaSign = 16785575;
+
+var Gdk_KEY_Phone_KEY_Phone = 269025134;
+
+var Gdk_KEY_Pictures_KEY_Pictures = 269025169;
+
+var Gdk_KEY_Pointer_Accelerate_KEY_Pointer_Accelerate = 65274;
+
+var Gdk_KEY_Pointer_Button1_KEY_Pointer_Button1 = 65257;
+
+var Gdk_KEY_Pointer_Button2_KEY_Pointer_Button2 = 65258;
+
+var Gdk_KEY_Pointer_Button3_KEY_Pointer_Button3 = 65259;
+
+var Gdk_KEY_Pointer_Button4_KEY_Pointer_Button4 = 65260;
+
+var Gdk_KEY_Pointer_Button5_KEY_Pointer_Button5 = 65261;
+
+var Gdk_KEY_Pointer_Button_Dflt_KEY_Pointer_Button_Dflt = 65256;
+
+var Gdk_KEY_Pointer_DblClick1_KEY_Pointer_DblClick1 = 65263;
+
+var Gdk_KEY_Pointer_DblClick2_KEY_Pointer_DblClick2 = 65264;
+
+var Gdk_KEY_Pointer_DblClick3_KEY_Pointer_DblClick3 = 65265;
+
+var Gdk_KEY_Pointer_DblClick4_KEY_Pointer_DblClick4 = 65266;
+
+var Gdk_KEY_Pointer_DblClick5_KEY_Pointer_DblClick5 = 65267;
+
+var Gdk_KEY_Pointer_DblClick_Dflt_KEY_Pointer_DblClick_Dflt = 65262;
+
+var Gdk_KEY_Pointer_DfltBtnNext_KEY_Pointer_DfltBtnNext = 65275;
+
+var Gdk_KEY_Pointer_DfltBtnPrev_KEY_Pointer_DfltBtnPrev = 65276;
+
+var Gdk_KEY_Pointer_Down_KEY_Pointer_Down = 65251;
+
+var Gdk_KEY_Pointer_DownLeft_KEY_Pointer_DownLeft = 65254;
+
+var Gdk_KEY_Pointer_DownRight_KEY_Pointer_DownRight = 65255;
+
+var Gdk_KEY_Pointer_Drag1_KEY_Pointer_Drag1 = 65269;
+
+var Gdk_KEY_Pointer_Drag2_KEY_Pointer_Drag2 = 65270;
+
+var Gdk_KEY_Pointer_Drag3_KEY_Pointer_Drag3 = 65271;
+
+var Gdk_KEY_Pointer_Drag4_KEY_Pointer_Drag4 = 65272;
+
+var Gdk_KEY_Pointer_Drag5_KEY_Pointer_Drag5 = 65277;
+
+var Gdk_KEY_Pointer_Drag_Dflt_KEY_Pointer_Drag_Dflt = 65268;
+
+var Gdk_KEY_Pointer_EnableKeys_KEY_Pointer_EnableKeys = 65273;
+
+var Gdk_KEY_Pointer_Left_KEY_Pointer_Left = 65248;
+
+var Gdk_KEY_Pointer_Right_KEY_Pointer_Right = 65249;
+
+var Gdk_KEY_Pointer_Up_KEY_Pointer_Up = 65250;
+
+var Gdk_KEY_Pointer_UpLeft_KEY_Pointer_UpLeft = 65252;
+
+var Gdk_KEY_Pointer_UpRight_KEY_Pointer_UpRight = 65253;
+
+var Gdk_KEY_PowerDown_KEY_PowerDown = 269025057;
+
+var Gdk_KEY_PowerOff_KEY_PowerOff = 269025066;
+
+var Gdk_KEY_Prev_VMode_KEY_Prev_VMode = 269024803;
+
+var Gdk_KEY_Prev_Virtual_Screen_KEY_Prev_Virtual_Screen = 65233;
+
+var Gdk_KEY_PreviousCandidate_KEY_PreviousCandidate = 65342;
+
+var Gdk_KEY_Print_KEY_Print = 65377;
+
+var Gdk_KEY_Prior_KEY_Prior = 65365;
+
+var Gdk_KEY_Q_KEY_Q = 81;
+
+var Gdk_KEY_R_KEY_R = 82;
+
+var Gdk_KEY_R1_KEY_R1 = 65490;
+
+var Gdk_KEY_R10_KEY_R10 = 65499;
+
+var Gdk_KEY_R11_KEY_R11 = 65500;
+
+var Gdk_KEY_R12_KEY_R12 = 65501;
+
+var Gdk_KEY_R13_KEY_R13 = 65502;
+
+var Gdk_KEY_R14_KEY_R14 = 65503;
+
+var Gdk_KEY_R15_KEY_R15 = 65504;
+
+var Gdk_KEY_R2_KEY_R2 = 65491;
+
+var Gdk_KEY_R3_KEY_R3 = 65492;
+
+var Gdk_KEY_R4_KEY_R4 = 65493;
+
+var Gdk_KEY_R5_KEY_R5 = 65494;
+
+var Gdk_KEY_R6_KEY_R6 = 65495;
+
+var Gdk_KEY_R7_KEY_R7 = 65496;
+
+var Gdk_KEY_R8_KEY_R8 = 65497;
+
+var Gdk_KEY_R9_KEY_R9 = 65498;
+
+var Gdk_KEY_RFKill_KEY_RFKill = 269025205;
+
+var Gdk_KEY_Racute_KEY_Racute = 448;
+
+var Gdk_KEY_Rcaron_KEY_Rcaron = 472;
+
+var Gdk_KEY_Rcedilla_KEY_Rcedilla = 931;
+
+var Gdk_KEY_Red_KEY_Red = 269025187;
+
+var Gdk_KEY_Redo_KEY_Redo = 65382;
+
+var Gdk_KEY_Refresh_KEY_Refresh = 269025065;
+
+var Gdk_KEY_Reload_KEY_Reload = 269025139;
+
+var Gdk_KEY_RepeatKeys_Enable_KEY_RepeatKeys_Enable = 65138;
+
+var Gdk_KEY_Reply_KEY_Reply = 269025138;
+
+var Gdk_KEY_Return_KEY_Return = 65293;
+
+var Gdk_KEY_Right_KEY_Right = 65363;
+
+var Gdk_KEY_RockerDown_KEY_RockerDown = 269025060;
+
+var Gdk_KEY_RockerEnter_KEY_RockerEnter = 269025061;
+
+var Gdk_KEY_RockerUp_KEY_RockerUp = 269025059;
+
+var Gdk_KEY_Romaji_KEY_Romaji = 65316;
+
+var Gdk_KEY_RotateWindows_KEY_RotateWindows = 269025140;
+
+var Gdk_KEY_RotationKB_KEY_RotationKB = 269025142;
+
+var Gdk_KEY_RotationPB_KEY_RotationPB = 269025141;
+
+var Gdk_KEY_RupeeSign_KEY_RupeeSign = 16785576;
+
+var Gdk_KEY_S_KEY_S = 83;
+
+var Gdk_KEY_SCHWA_KEY_SCHWA = 16777615;
+
+var Gdk_KEY_Sabovedot_KEY_Sabovedot = 16784992;
+
+var Gdk_KEY_Sacute_KEY_Sacute = 422;
+
+var Gdk_KEY_Save_KEY_Save = 269025143;
+
+var Gdk_KEY_Scaron_KEY_Scaron = 425;
+
+var Gdk_KEY_Scedilla_KEY_Scedilla = 426;
+
+var Gdk_KEY_Scircumflex_KEY_Scircumflex = 734;
+
+var Gdk_KEY_ScreenSaver_KEY_ScreenSaver = 269025069;
+
+var Gdk_KEY_ScrollClick_KEY_ScrollClick = 269025146;
+
+var Gdk_KEY_ScrollDown_KEY_ScrollDown = 269025145;
+
+var Gdk_KEY_ScrollUp_KEY_ScrollUp = 269025144;
+
+var Gdk_KEY_Scroll_Lock_KEY_Scroll_Lock = 65300;
+
+var Gdk_KEY_Search_KEY_Search = 269025051;
+
+var Gdk_KEY_Select_KEY_Select = 65376;
+
+var Gdk_KEY_SelectButton_KEY_SelectButton = 269025184;
+
+var Gdk_KEY_Send_KEY_Send = 269025147;
+
+var Gdk_KEY_Serbian_DJE_KEY_Serbian_DJE = 1713;
+
+var Gdk_KEY_Serbian_DZE_KEY_Serbian_DZE = 1727;
+
+var Gdk_KEY_Serbian_JE_KEY_Serbian_JE = 1720;
+
+var Gdk_KEY_Serbian_LJE_KEY_Serbian_LJE = 1721;
+
+var Gdk_KEY_Serbian_NJE_KEY_Serbian_NJE = 1722;
+
+var Gdk_KEY_Serbian_TSHE_KEY_Serbian_TSHE = 1723;
+
+var Gdk_KEY_Serbian_dje_KEY_Serbian_dje = 1697;
+
+var Gdk_KEY_Serbian_dze_KEY_Serbian_dze = 1711;
+
+var Gdk_KEY_Serbian_je_KEY_Serbian_je = 1704;
+
+var Gdk_KEY_Serbian_lje_KEY_Serbian_lje = 1705;
+
+var Gdk_KEY_Serbian_nje_KEY_Serbian_nje = 1706;
+
+var Gdk_KEY_Serbian_tshe_KEY_Serbian_tshe = 1707;
+
+var Gdk_KEY_Shift_L_KEY_Shift_L = 65505;
+
+var Gdk_KEY_Shift_Lock_KEY_Shift_Lock = 65510;
+
+var Gdk_KEY_Shift_R_KEY_Shift_R = 65506;
+
+var Gdk_KEY_Shop_KEY_Shop = 269025078;
+
+var Gdk_KEY_SingleCandidate_KEY_SingleCandidate = 65340;
+
+var Gdk_KEY_Sinh_a_KEY_Sinh_a = 16780677;
+
+var Gdk_KEY_Sinh_aa_KEY_Sinh_aa = 16780678;
+
+var Gdk_KEY_Sinh_aa2_KEY_Sinh_aa2 = 16780751;
+
+var Gdk_KEY_Sinh_ae_KEY_Sinh_ae = 16780679;
+
+var Gdk_KEY_Sinh_ae2_KEY_Sinh_ae2 = 16780752;
+
+var Gdk_KEY_Sinh_aee_KEY_Sinh_aee = 16780680;
+
+var Gdk_KEY_Sinh_aee2_KEY_Sinh_aee2 = 16780753;
+
+var Gdk_KEY_Sinh_ai_KEY_Sinh_ai = 16780691;
+
+var Gdk_KEY_Sinh_ai2_KEY_Sinh_ai2 = 16780763;
+
+var Gdk_KEY_Sinh_al_KEY_Sinh_al = 16780746;
+
+var Gdk_KEY_Sinh_au_KEY_Sinh_au = 16780694;
+
+var Gdk_KEY_Sinh_au2_KEY_Sinh_au2 = 16780766;
+
+var Gdk_KEY_Sinh_ba_KEY_Sinh_ba = 16780726;
+
+var Gdk_KEY_Sinh_bha_KEY_Sinh_bha = 16780727;
+
+var Gdk_KEY_Sinh_ca_KEY_Sinh_ca = 16780704;
+
+var Gdk_KEY_Sinh_cha_KEY_Sinh_cha = 16780705;
+
+var Gdk_KEY_Sinh_dda_KEY_Sinh_dda = 16780713;
+
+var Gdk_KEY_Sinh_ddha_KEY_Sinh_ddha = 16780714;
+
+var Gdk_KEY_Sinh_dha_KEY_Sinh_dha = 16780719;
+
+var Gdk_KEY_Sinh_dhha_KEY_Sinh_dhha = 16780720;
+
+var Gdk_KEY_Sinh_e_KEY_Sinh_e = 16780689;
+
+var Gdk_KEY_Sinh_e2_KEY_Sinh_e2 = 16780761;
+
+var Gdk_KEY_Sinh_ee_KEY_Sinh_ee = 16780690;
+
+var Gdk_KEY_Sinh_ee2_KEY_Sinh_ee2 = 16780762;
+
+var Gdk_KEY_Sinh_fa_KEY_Sinh_fa = 16780742;
+
+var Gdk_KEY_Sinh_ga_KEY_Sinh_ga = 16780700;
+
+var Gdk_KEY_Sinh_gha_KEY_Sinh_gha = 16780701;
+
+var Gdk_KEY_Sinh_h2_KEY_Sinh_h2 = 16780675;
+
+var Gdk_KEY_Sinh_ha_KEY_Sinh_ha = 16780740;
+
+var Gdk_KEY_Sinh_i_KEY_Sinh_i = 16780681;
+
+var Gdk_KEY_Sinh_i2_KEY_Sinh_i2 = 16780754;
+
+var Gdk_KEY_Sinh_ii_KEY_Sinh_ii = 16780682;
+
+var Gdk_KEY_Sinh_ii2_KEY_Sinh_ii2 = 16780755;
+
+var Gdk_KEY_Sinh_ja_KEY_Sinh_ja = 16780706;
+
+var Gdk_KEY_Sinh_jha_KEY_Sinh_jha = 16780707;
+
+var Gdk_KEY_Sinh_jnya_KEY_Sinh_jnya = 16780709;
+
+var Gdk_KEY_Sinh_ka_KEY_Sinh_ka = 16780698;
+
+var Gdk_KEY_Sinh_kha_KEY_Sinh_kha = 16780699;
+
+var Gdk_KEY_Sinh_kunddaliya_KEY_Sinh_kunddaliya = 16780788;
+
+var Gdk_KEY_Sinh_la_KEY_Sinh_la = 16780733;
+
+var Gdk_KEY_Sinh_lla_KEY_Sinh_lla = 16780741;
+
+var Gdk_KEY_Sinh_lu_KEY_Sinh_lu = 16780687;
+
+var Gdk_KEY_Sinh_lu2_KEY_Sinh_lu2 = 16780767;
+
+var Gdk_KEY_Sinh_luu_KEY_Sinh_luu = 16780688;
+
+var Gdk_KEY_Sinh_luu2_KEY_Sinh_luu2 = 16780787;
+
+var Gdk_KEY_Sinh_ma_KEY_Sinh_ma = 16780728;
+
+var Gdk_KEY_Sinh_mba_KEY_Sinh_mba = 16780729;
+
+var Gdk_KEY_Sinh_na_KEY_Sinh_na = 16780721;
+
+var Gdk_KEY_Sinh_ndda_KEY_Sinh_ndda = 16780716;
+
+var Gdk_KEY_Sinh_ndha_KEY_Sinh_ndha = 16780723;
+
+var Gdk_KEY_Sinh_ng_KEY_Sinh_ng = 16780674;
+
+var Gdk_KEY_Sinh_ng2_KEY_Sinh_ng2 = 16780702;
+
+var Gdk_KEY_Sinh_nga_KEY_Sinh_nga = 16780703;
+
+var Gdk_KEY_Sinh_nja_KEY_Sinh_nja = 16780710;
+
+var Gdk_KEY_Sinh_nna_KEY_Sinh_nna = 16780715;
+
+var Gdk_KEY_Sinh_nya_KEY_Sinh_nya = 16780708;
+
+var Gdk_KEY_Sinh_o_KEY_Sinh_o = 16780692;
+
+var Gdk_KEY_Sinh_o2_KEY_Sinh_o2 = 16780764;
+
+var Gdk_KEY_Sinh_oo_KEY_Sinh_oo = 16780693;
+
+var Gdk_KEY_Sinh_oo2_KEY_Sinh_oo2 = 16780765;
+
+var Gdk_KEY_Sinh_pa_KEY_Sinh_pa = 16780724;
+
+var Gdk_KEY_Sinh_pha_KEY_Sinh_pha = 16780725;
+
+var Gdk_KEY_Sinh_ra_KEY_Sinh_ra = 16780731;
+
+var Gdk_KEY_Sinh_ri_KEY_Sinh_ri = 16780685;
+
+var Gdk_KEY_Sinh_rii_KEY_Sinh_rii = 16780686;
+
+var Gdk_KEY_Sinh_ru2_KEY_Sinh_ru2 = 16780760;
+
+var Gdk_KEY_Sinh_ruu2_KEY_Sinh_ruu2 = 16780786;
+
+var Gdk_KEY_Sinh_sa_KEY_Sinh_sa = 16780739;
+
+var Gdk_KEY_Sinh_sha_KEY_Sinh_sha = 16780737;
+
+var Gdk_KEY_Sinh_ssha_KEY_Sinh_ssha = 16780738;
+
+var Gdk_KEY_Sinh_tha_KEY_Sinh_tha = 16780717;
+
+var Gdk_KEY_Sinh_thha_KEY_Sinh_thha = 16780718;
+
+var Gdk_KEY_Sinh_tta_KEY_Sinh_tta = 16780711;
+
+var Gdk_KEY_Sinh_ttha_KEY_Sinh_ttha = 16780712;
+
+var Gdk_KEY_Sinh_u_KEY_Sinh_u = 16780683;
+
+var Gdk_KEY_Sinh_u2_KEY_Sinh_u2 = 16780756;
+
+var Gdk_KEY_Sinh_uu_KEY_Sinh_uu = 16780684;
+
+var Gdk_KEY_Sinh_uu2_KEY_Sinh_uu2 = 16780758;
+
+var Gdk_KEY_Sinh_va_KEY_Sinh_va = 16780736;
+
+var Gdk_KEY_Sinh_ya_KEY_Sinh_ya = 16780730;
+
+var Gdk_KEY_Sleep_KEY_Sleep = 269025071;
+
+var Gdk_KEY_SlowKeys_Enable_KEY_SlowKeys_Enable = 65139;
+
+var Gdk_KEY_Spell_KEY_Spell = 269025148;
+
+var Gdk_KEY_SplitScreen_KEY_SplitScreen = 269025149;
+
+var Gdk_KEY_Standby_KEY_Standby = 269025040;
+
+var Gdk_KEY_Start_KEY_Start = 269025050;
+
+var Gdk_KEY_StickyKeys_Enable_KEY_StickyKeys_Enable = 65141;
+
+var Gdk_KEY_Stop_KEY_Stop = 269025064;
+
+var Gdk_KEY_Subtitle_KEY_Subtitle = 269025178;
+
+var Gdk_KEY_Super_L_KEY_Super_L = 65515;
+
+var Gdk_KEY_Super_R_KEY_Super_R = 65516;
+
+var Gdk_KEY_Support_KEY_Support = 269025150;
+
+var Gdk_KEY_Suspend_KEY_Suspend = 269025191;
+
+var Gdk_KEY_Switch_VT_1_KEY_Switch_VT_1 = 269024769;
+
+var Gdk_KEY_Switch_VT_10_KEY_Switch_VT_10 = 269024778;
+
+var Gdk_KEY_Switch_VT_11_KEY_Switch_VT_11 = 269024779;
+
+var Gdk_KEY_Switch_VT_12_KEY_Switch_VT_12 = 269024780;
+
+var Gdk_KEY_Switch_VT_2_KEY_Switch_VT_2 = 269024770;
+
+var Gdk_KEY_Switch_VT_3_KEY_Switch_VT_3 = 269024771;
+
+var Gdk_KEY_Switch_VT_4_KEY_Switch_VT_4 = 269024772;
+
+var Gdk_KEY_Switch_VT_5_KEY_Switch_VT_5 = 269024773;
+
+var Gdk_KEY_Switch_VT_6_KEY_Switch_VT_6 = 269024774;
+
+var Gdk_KEY_Switch_VT_7_KEY_Switch_VT_7 = 269024775;
+
+var Gdk_KEY_Switch_VT_8_KEY_Switch_VT_8 = 269024776;
+
+var Gdk_KEY_Switch_VT_9_KEY_Switch_VT_9 = 269024777;
+
+var Gdk_KEY_Sys_Req_KEY_Sys_Req = 65301;
+
+var Gdk_KEY_T_KEY_T = 84;
+
+var Gdk_KEY_THORN_KEY_THORN = 222;
+
+var Gdk_KEY_Tab_KEY_Tab = 65289;
+
+var Gdk_KEY_Tabovedot_KEY_Tabovedot = 16785002;
+
+var Gdk_KEY_TaskPane_KEY_TaskPane = 269025151;
+
+var Gdk_KEY_Tcaron_KEY_Tcaron = 427;
+
+var Gdk_KEY_Tcedilla_KEY_Tcedilla = 478;
+
+var Gdk_KEY_Terminal_KEY_Terminal = 269025152;
+
+var Gdk_KEY_Terminate_Server_KEY_Terminate_Server = 65237;
+
+var Gdk_KEY_Thai_baht_KEY_Thai_baht = 3551;
+
+var Gdk_KEY_Thai_bobaimai_KEY_Thai_bobaimai = 3514;
+
+var Gdk_KEY_Thai_chochan_KEY_Thai_chochan = 3496;
+
+var Gdk_KEY_Thai_chochang_KEY_Thai_chochang = 3498;
+
+var Gdk_KEY_Thai_choching_KEY_Thai_choching = 3497;
+
+var Gdk_KEY_Thai_chochoe_KEY_Thai_chochoe = 3500;
+
+var Gdk_KEY_Thai_dochada_KEY_Thai_dochada = 3502;
+
+var Gdk_KEY_Thai_dodek_KEY_Thai_dodek = 3508;
+
+var Gdk_KEY_Thai_fofa_KEY_Thai_fofa = 3517;
+
+var Gdk_KEY_Thai_fofan_KEY_Thai_fofan = 3519;
+
+var Gdk_KEY_Thai_hohip_KEY_Thai_hohip = 3531;
+
+var Gdk_KEY_Thai_honokhuk_KEY_Thai_honokhuk = 3534;
+
+var Gdk_KEY_Thai_khokhai_KEY_Thai_khokhai = 3490;
+
+var Gdk_KEY_Thai_khokhon_KEY_Thai_khokhon = 3493;
+
+var Gdk_KEY_Thai_khokhuat_KEY_Thai_khokhuat = 3491;
+
+var Gdk_KEY_Thai_khokhwai_KEY_Thai_khokhwai = 3492;
+
+var Gdk_KEY_Thai_khorakhang_KEY_Thai_khorakhang = 3494;
+
+var Gdk_KEY_Thai_kokai_KEY_Thai_kokai = 3489;
+
+var Gdk_KEY_Thai_lakkhangyao_KEY_Thai_lakkhangyao = 3557;
+
+var Gdk_KEY_Thai_lekchet_KEY_Thai_lekchet = 3575;
+
+var Gdk_KEY_Thai_lekha_KEY_Thai_lekha = 3573;
+
+var Gdk_KEY_Thai_lekhok_KEY_Thai_lekhok = 3574;
+
+var Gdk_KEY_Thai_lekkao_KEY_Thai_lekkao = 3577;
+
+var Gdk_KEY_Thai_leknung_KEY_Thai_leknung = 3569;
+
+var Gdk_KEY_Thai_lekpaet_KEY_Thai_lekpaet = 3576;
+
+var Gdk_KEY_Thai_leksam_KEY_Thai_leksam = 3571;
+
+var Gdk_KEY_Thai_leksi_KEY_Thai_leksi = 3572;
+
+var Gdk_KEY_Thai_leksong_KEY_Thai_leksong = 3570;
+
+var Gdk_KEY_Thai_leksun_KEY_Thai_leksun = 3568;
+
+var Gdk_KEY_Thai_lochula_KEY_Thai_lochula = 3532;
+
+var Gdk_KEY_Thai_loling_KEY_Thai_loling = 3525;
+
+var Gdk_KEY_Thai_lu_KEY_Thai_lu = 3526;
+
+var Gdk_KEY_Thai_maichattawa_KEY_Thai_maichattawa = 3563;
+
+var Gdk_KEY_Thai_maiek_KEY_Thai_maiek = 3560;
+
+var Gdk_KEY_Thai_maihanakat_KEY_Thai_maihanakat = 3537;
+
+var Gdk_KEY_Thai_maihanakat_maitho_KEY_Thai_maihanakat_maitho = 3550;
+
+var Gdk_KEY_Thai_maitaikhu_KEY_Thai_maitaikhu = 3559;
+
+var Gdk_KEY_Thai_maitho_KEY_Thai_maitho = 3561;
+
+var Gdk_KEY_Thai_maitri_KEY_Thai_maitri = 3562;
+
+var Gdk_KEY_Thai_maiyamok_KEY_Thai_maiyamok = 3558;
+
+var Gdk_KEY_Thai_moma_KEY_Thai_moma = 3521;
+
+var Gdk_KEY_Thai_ngongu_KEY_Thai_ngongu = 3495;
+
+var Gdk_KEY_Thai_nikhahit_KEY_Thai_nikhahit = 3565;
+
+var Gdk_KEY_Thai_nonen_KEY_Thai_nonen = 3507;
+
+var Gdk_KEY_Thai_nonu_KEY_Thai_nonu = 3513;
+
+var Gdk_KEY_Thai_oang_KEY_Thai_oang = 3533;
+
+var Gdk_KEY_Thai_paiyannoi_KEY_Thai_paiyannoi = 3535;
+
+var Gdk_KEY_Thai_phinthu_KEY_Thai_phinthu = 3546;
+
+var Gdk_KEY_Thai_phophan_KEY_Thai_phophan = 3518;
+
+var Gdk_KEY_Thai_phophung_KEY_Thai_phophung = 3516;
+
+var Gdk_KEY_Thai_phosamphao_KEY_Thai_phosamphao = 3520;
+
+var Gdk_KEY_Thai_popla_KEY_Thai_popla = 3515;
+
+var Gdk_KEY_Thai_rorua_KEY_Thai_rorua = 3523;
+
+var Gdk_KEY_Thai_ru_KEY_Thai_ru = 3524;
+
+var Gdk_KEY_Thai_saraa_KEY_Thai_saraa = 3536;
+
+var Gdk_KEY_Thai_saraaa_KEY_Thai_saraaa = 3538;
+
+var Gdk_KEY_Thai_saraae_KEY_Thai_saraae = 3553;
+
+var Gdk_KEY_Thai_saraaimaimalai_KEY_Thai_saraaimaimalai = 3556;
+
+var Gdk_KEY_Thai_saraaimaimuan_KEY_Thai_saraaimaimuan = 3555;
+
+var Gdk_KEY_Thai_saraam_KEY_Thai_saraam = 3539;
+
+var Gdk_KEY_Thai_sarae_KEY_Thai_sarae = 3552;
+
+var Gdk_KEY_Thai_sarai_KEY_Thai_sarai = 3540;
+
+var Gdk_KEY_Thai_saraii_KEY_Thai_saraii = 3541;
+
+var Gdk_KEY_Thai_sarao_KEY_Thai_sarao = 3554;
+
+var Gdk_KEY_Thai_sarau_KEY_Thai_sarau = 3544;
+
+var Gdk_KEY_Thai_saraue_KEY_Thai_saraue = 3542;
+
+var Gdk_KEY_Thai_sarauee_KEY_Thai_sarauee = 3543;
+
+var Gdk_KEY_Thai_sarauu_KEY_Thai_sarauu = 3545;
+
+var Gdk_KEY_Thai_sorusi_KEY_Thai_sorusi = 3529;
+
+var Gdk_KEY_Thai_sosala_KEY_Thai_sosala = 3528;
+
+var Gdk_KEY_Thai_soso_KEY_Thai_soso = 3499;
+
+var Gdk_KEY_Thai_sosua_KEY_Thai_sosua = 3530;
+
+var Gdk_KEY_Thai_thanthakhat_KEY_Thai_thanthakhat = 3564;
+
+var Gdk_KEY_Thai_thonangmontho_KEY_Thai_thonangmontho = 3505;
+
+var Gdk_KEY_Thai_thophuthao_KEY_Thai_thophuthao = 3506;
+
+var Gdk_KEY_Thai_thothahan_KEY_Thai_thothahan = 3511;
+
+var Gdk_KEY_Thai_thothan_KEY_Thai_thothan = 3504;
+
+var Gdk_KEY_Thai_thothong_KEY_Thai_thothong = 3512;
+
+var Gdk_KEY_Thai_thothung_KEY_Thai_thothung = 3510;
+
+var Gdk_KEY_Thai_topatak_KEY_Thai_topatak = 3503;
+
+var Gdk_KEY_Thai_totao_KEY_Thai_totao = 3509;
+
+var Gdk_KEY_Thai_wowaen_KEY_Thai_wowaen = 3527;
+
+var Gdk_KEY_Thai_yoyak_KEY_Thai_yoyak = 3522;
+
+var Gdk_KEY_Thai_yoying_KEY_Thai_yoying = 3501;
+
+var Gdk_KEY_Thorn_KEY_Thorn = 222;
+
+var Gdk_KEY_Time_KEY_Time = 269025183;
+
+var Gdk_KEY_ToDoList_KEY_ToDoList = 269025055;
+
+var Gdk_KEY_Tools_KEY_Tools = 269025153;
+
+var Gdk_KEY_TopMenu_KEY_TopMenu = 269025186;
+
+var Gdk_KEY_TouchpadOff_KEY_TouchpadOff = 269025201;
+
+var Gdk_KEY_TouchpadOn_KEY_TouchpadOn = 269025200;
+
+var Gdk_KEY_TouchpadToggle_KEY_TouchpadToggle = 269025193;
+
+var Gdk_KEY_Touroku_KEY_Touroku = 65323;
+
+var Gdk_KEY_Travel_KEY_Travel = 269025154;
+
+var Gdk_KEY_Tslash_KEY_Tslash = 940;
+
+var Gdk_KEY_U_KEY_U = 85;
+
+var Gdk_KEY_UWB_KEY_UWB = 269025174;
+
+var Gdk_KEY_Uacute_KEY_Uacute = 218;
+
+var Gdk_KEY_Ubelowdot_KEY_Ubelowdot = 16785124;
+
+var Gdk_KEY_Ubreve_KEY_Ubreve = 733;
+
+var Gdk_KEY_Ucircumflex_KEY_Ucircumflex = 219;
+
+var Gdk_KEY_Udiaeresis_KEY_Udiaeresis = 220;
+
+var Gdk_KEY_Udoubleacute_KEY_Udoubleacute = 475;
+
+var Gdk_KEY_Ugrave_KEY_Ugrave = 217;
+
+var Gdk_KEY_Uhook_KEY_Uhook = 16785126;
+
+var Gdk_KEY_Uhorn_KEY_Uhorn = 16777647;
+
+var Gdk_KEY_Uhornacute_KEY_Uhornacute = 16785128;
+
+var Gdk_KEY_Uhornbelowdot_KEY_Uhornbelowdot = 16785136;
+
+var Gdk_KEY_Uhorngrave_KEY_Uhorngrave = 16785130;
+
+var Gdk_KEY_Uhornhook_KEY_Uhornhook = 16785132;
+
+var Gdk_KEY_Uhorntilde_KEY_Uhorntilde = 16785134;
+
+var Gdk_KEY_Ukrainian_GHE_WITH_UPTURN_KEY_Ukrainian_GHE_WITH_UPTURN = 1725;
+
+var Gdk_KEY_Ukrainian_I_KEY_Ukrainian_I = 1718;
+
+var Gdk_KEY_Ukrainian_IE_KEY_Ukrainian_IE = 1716;
+
+var Gdk_KEY_Ukrainian_YI_KEY_Ukrainian_YI = 1719;
+
+var Gdk_KEY_Ukrainian_ghe_with_upturn_KEY_Ukrainian_ghe_with_upturn = 1709;
+
+var Gdk_KEY_Ukrainian_i_KEY_Ukrainian_i = 1702;
+
+var Gdk_KEY_Ukrainian_ie_KEY_Ukrainian_ie = 1700;
+
+var Gdk_KEY_Ukrainian_yi_KEY_Ukrainian_yi = 1703;
+
+var Gdk_KEY_Ukranian_I_KEY_Ukranian_I = 1718;
+
+var Gdk_KEY_Ukranian_JE_KEY_Ukranian_JE = 1716;
+
+var Gdk_KEY_Ukranian_YI_KEY_Ukranian_YI = 1719;
+
+var Gdk_KEY_Ukranian_i_KEY_Ukranian_i = 1702;
+
+var Gdk_KEY_Ukranian_je_KEY_Ukranian_je = 1700;
+
+var Gdk_KEY_Ukranian_yi_KEY_Ukranian_yi = 1703;
+
+var Gdk_KEY_Umacron_KEY_Umacron = 990;
+
+var Gdk_KEY_Undo_KEY_Undo = 65381;
+
+var Gdk_KEY_Ungrab_KEY_Ungrab = 269024800;
+
+var Gdk_KEY_Uogonek_KEY_Uogonek = 985;
+
+var Gdk_KEY_Up_KEY_Up = 65362;
+
+var Gdk_KEY_Uring_KEY_Uring = 473;
+
+var Gdk_KEY_User1KB_KEY_User1KB = 269025157;
+
+var Gdk_KEY_User2KB_KEY_User2KB = 269025158;
+
+var Gdk_KEY_UserPB_KEY_UserPB = 269025156;
+
+var Gdk_KEY_Utilde_KEY_Utilde = 989;
+
+var Gdk_KEY_V_KEY_V = 86;
+
+var Gdk_KEY_VendorHome_KEY_VendorHome = 269025076;
+
+var Gdk_KEY_Video_KEY_Video = 269025159;
+
+var Gdk_KEY_View_KEY_View = 269025185;
+
+var Gdk_KEY_VoidSymbol_KEY_VoidSymbol = 16777215;
+
+var Gdk_KEY_W_KEY_W = 87;
+
+var Gdk_KEY_WLAN_KEY_WLAN = 269025173;
+
+var Gdk_KEY_WWAN_KEY_WWAN = 269025204;
+
+var Gdk_KEY_WWW_KEY_WWW = 269025070;
+
+var Gdk_KEY_Wacute_KEY_Wacute = 16785026;
+
+var Gdk_KEY_WakeUp_KEY_WakeUp = 269025067;
+
+var Gdk_KEY_Wcircumflex_KEY_Wcircumflex = 16777588;
+
+var Gdk_KEY_Wdiaeresis_KEY_Wdiaeresis = 16785028;
+
+var Gdk_KEY_WebCam_KEY_WebCam = 269025167;
+
+var Gdk_KEY_Wgrave_KEY_Wgrave = 16785024;
+
+var Gdk_KEY_WheelButton_KEY_WheelButton = 269025160;
+
+var Gdk_KEY_WindowClear_KEY_WindowClear = 269025109;
+
+var Gdk_KEY_WonSign_KEY_WonSign = 16785577;
+
+var Gdk_KEY_Word_KEY_Word = 269025161;
+
+var Gdk_KEY_X_KEY_X = 88;
+
+var Gdk_KEY_Xabovedot_KEY_Xabovedot = 16785034;
+
+var Gdk_KEY_Xfer_KEY_Xfer = 269025162;
+
+var Gdk_KEY_Y_KEY_Y = 89;
+
+var Gdk_KEY_Yacute_KEY_Yacute = 221;
+
+var Gdk_KEY_Ybelowdot_KEY_Ybelowdot = 16785140;
+
+var Gdk_KEY_Ycircumflex_KEY_Ycircumflex = 16777590;
+
+var Gdk_KEY_Ydiaeresis_KEY_Ydiaeresis = 5054;
+
+var Gdk_KEY_Yellow_KEY_Yellow = 269025189;
+
+var Gdk_KEY_Ygrave_KEY_Ygrave = 16785138;
+
+var Gdk_KEY_Yhook_KEY_Yhook = 16785142;
+
+var Gdk_KEY_Ytilde_KEY_Ytilde = 16785144;
+
+var Gdk_KEY_Z_KEY_Z = 90;
+
+var Gdk_KEY_Zabovedot_KEY_Zabovedot = 431;
+
+var Gdk_KEY_Zacute_KEY_Zacute = 428;
+
+var Gdk_KEY_Zcaron_KEY_Zcaron = 430;
+
+var Gdk_KEY_Zen_Koho_KEY_Zen_Koho = 65341;
+
+var Gdk_KEY_Zenkaku_KEY_Zenkaku = 65320;
+
+var Gdk_KEY_Zenkaku_Hankaku_KEY_Zenkaku_Hankaku = 65322;
+
+var Gdk_KEY_ZoomIn_KEY_ZoomIn = 269025163;
+
+var Gdk_KEY_ZoomOut_KEY_ZoomOut = 269025164;
+
+var Gdk_KEY_Zstroke_KEY_Zstroke = 16777653;
+
+var Gdk_KEY_a_KEY_a = 97;
+
+var Gdk_KEY_aacute_KEY_aacute = 225;
+
+var Gdk_KEY_abelowdot_KEY_abelowdot = 16785057;
+
+var Gdk_KEY_abovedot_KEY_abovedot = 511;
+
+var Gdk_KEY_abreve_KEY_abreve = 483;
+
+var Gdk_KEY_abreveacute_KEY_abreveacute = 16785071;
+
+var Gdk_KEY_abrevebelowdot_KEY_abrevebelowdot = 16785079;
+
+var Gdk_KEY_abrevegrave_KEY_abrevegrave = 16785073;
+
+var Gdk_KEY_abrevehook_KEY_abrevehook = 16785075;
+
+var Gdk_KEY_abrevetilde_KEY_abrevetilde = 16785077;
+
+var Gdk_KEY_acircumflex_KEY_acircumflex = 226;
+
+var Gdk_KEY_acircumflexacute_KEY_acircumflexacute = 16785061;
+
+var Gdk_KEY_acircumflexbelowdot_KEY_acircumflexbelowdot = 16785069;
+
+var Gdk_KEY_acircumflexgrave_KEY_acircumflexgrave = 16785063;
+
+var Gdk_KEY_acircumflexhook_KEY_acircumflexhook = 16785065;
+
+var Gdk_KEY_acircumflextilde_KEY_acircumflextilde = 16785067;
+
+var Gdk_KEY_acute_KEY_acute = 180;
+
+var Gdk_KEY_adiaeresis_KEY_adiaeresis = 228;
+
+var Gdk_KEY_ae_KEY_ae = 230;
+
+var Gdk_KEY_agrave_KEY_agrave = 224;
+
+var Gdk_KEY_ahook_KEY_ahook = 16785059;
+
+var Gdk_KEY_amacron_KEY_amacron = 992;
+
+var Gdk_KEY_ampersand_KEY_ampersand = 38;
+
+var Gdk_KEY_aogonek_KEY_aogonek = 433;
+
+var Gdk_KEY_apostrophe_KEY_apostrophe = 39;
+
+var Gdk_KEY_approxeq_KEY_approxeq = 16785992;
+
+var Gdk_KEY_approximate_KEY_approximate = 2248;
+
+var Gdk_KEY_aring_KEY_aring = 229;
+
+var Gdk_KEY_asciicircum_KEY_asciicircum = 94;
+
+var Gdk_KEY_asciitilde_KEY_asciitilde = 126;
+
+var Gdk_KEY_asterisk_KEY_asterisk = 42;
+
+var Gdk_KEY_at_KEY_at = 64;
+
+var Gdk_KEY_atilde_KEY_atilde = 227;
+
+var Gdk_KEY_b_KEY_b = 98;
+
+var Gdk_KEY_babovedot_KEY_babovedot = 16784899;
+
+var Gdk_KEY_backslash_KEY_backslash = 92;
+
+var Gdk_KEY_ballotcross_KEY_ballotcross = 2804;
+
+var Gdk_KEY_bar_KEY_bar = 124;
+
+var Gdk_KEY_because_KEY_because = 16785973;
+
+var Gdk_KEY_blank_KEY_blank = 2527;
+
+var Gdk_KEY_botintegral_KEY_botintegral = 2213;
+
+var Gdk_KEY_botleftparens_KEY_botleftparens = 2220;
+
+var Gdk_KEY_botleftsqbracket_KEY_botleftsqbracket = 2216;
+
+var Gdk_KEY_botleftsummation_KEY_botleftsummation = 2226;
+
+var Gdk_KEY_botrightparens_KEY_botrightparens = 2222;
+
+var Gdk_KEY_botrightsqbracket_KEY_botrightsqbracket = 2218;
+
+var Gdk_KEY_botrightsummation_KEY_botrightsummation = 2230;
+
+var Gdk_KEY_bott_KEY_bott = 2550;
+
+var Gdk_KEY_botvertsummationconnector_KEY_botvertsummationconnector = 2228;
+
+var Gdk_KEY_braceleft_KEY_braceleft = 123;
+
+var Gdk_KEY_braceright_KEY_braceright = 125;
+
+var Gdk_KEY_bracketleft_KEY_bracketleft = 91;
+
+var Gdk_KEY_bracketright_KEY_bracketright = 93;
+
+var Gdk_KEY_braille_blank_KEY_braille_blank = 16787456;
+
+var Gdk_KEY_braille_dot_1_KEY_braille_dot_1 = 65521;
+
+var Gdk_KEY_braille_dot_10_KEY_braille_dot_10 = 65530;
+
+var Gdk_KEY_braille_dot_2_KEY_braille_dot_2 = 65522;
+
+var Gdk_KEY_braille_dot_3_KEY_braille_dot_3 = 65523;
+
+var Gdk_KEY_braille_dot_4_KEY_braille_dot_4 = 65524;
+
+var Gdk_KEY_braille_dot_5_KEY_braille_dot_5 = 65525;
+
+var Gdk_KEY_braille_dot_6_KEY_braille_dot_6 = 65526;
+
+var Gdk_KEY_braille_dot_7_KEY_braille_dot_7 = 65527;
+
+var Gdk_KEY_braille_dot_8_KEY_braille_dot_8 = 65528;
+
+var Gdk_KEY_braille_dot_9_KEY_braille_dot_9 = 65529;
+
+var Gdk_KEY_braille_dots_1_KEY_braille_dots_1 = 16787457;
+
+var Gdk_KEY_braille_dots_12_KEY_braille_dots_12 = 16787459;
+
+var Gdk_KEY_braille_dots_123_KEY_braille_dots_123 = 16787463;
+
+var Gdk_KEY_braille_dots_1234_KEY_braille_dots_1234 = 16787471;
+
+var Gdk_KEY_braille_dots_12345_KEY_braille_dots_12345 = 16787487;
+
+var Gdk_KEY_braille_dots_123456_KEY_braille_dots_123456 = 16787519;
+
+var Gdk_KEY_braille_dots_1234567_KEY_braille_dots_1234567 = 16787583;
+
+var Gdk_KEY_braille_dots_12345678_KEY_braille_dots_12345678 = 16787711;
+
+var Gdk_KEY_braille_dots_1234568_KEY_braille_dots_1234568 = 16787647;
+
+var Gdk_KEY_braille_dots_123457_KEY_braille_dots_123457 = 16787551;
+
+var Gdk_KEY_braille_dots_1234578_KEY_braille_dots_1234578 = 16787679;
+
+var Gdk_KEY_braille_dots_123458_KEY_braille_dots_123458 = 16787615;
+
+var Gdk_KEY_braille_dots_12346_KEY_braille_dots_12346 = 16787503;
+
+var Gdk_KEY_braille_dots_123467_KEY_braille_dots_123467 = 16787567;
+
+var Gdk_KEY_braille_dots_1234678_KEY_braille_dots_1234678 = 16787695;
+
+var Gdk_KEY_braille_dots_123468_KEY_braille_dots_123468 = 16787631;
+
+var Gdk_KEY_braille_dots_12347_KEY_braille_dots_12347 = 16787535;
+
+var Gdk_KEY_braille_dots_123478_KEY_braille_dots_123478 = 16787663;
+
+var Gdk_KEY_braille_dots_12348_KEY_braille_dots_12348 = 16787599;
+
+var Gdk_KEY_braille_dots_1235_KEY_braille_dots_1235 = 16787479;
+
+var Gdk_KEY_braille_dots_12356_KEY_braille_dots_12356 = 16787511;
+
+var Gdk_KEY_braille_dots_123567_KEY_braille_dots_123567 = 16787575;
+
+var Gdk_KEY_braille_dots_1235678_KEY_braille_dots_1235678 = 16787703;
+
+var Gdk_KEY_braille_dots_123568_KEY_braille_dots_123568 = 16787639;
+
+var Gdk_KEY_braille_dots_12357_KEY_braille_dots_12357 = 16787543;
+
+var Gdk_KEY_braille_dots_123578_KEY_braille_dots_123578 = 16787671;
+
+var Gdk_KEY_braille_dots_12358_KEY_braille_dots_12358 = 16787607;
+
+var Gdk_KEY_braille_dots_1236_KEY_braille_dots_1236 = 16787495;
+
+var Gdk_KEY_braille_dots_12367_KEY_braille_dots_12367 = 16787559;
+
+var Gdk_KEY_braille_dots_123678_KEY_braille_dots_123678 = 16787687;
+
+var Gdk_KEY_braille_dots_12368_KEY_braille_dots_12368 = 16787623;
+
+var Gdk_KEY_braille_dots_1237_KEY_braille_dots_1237 = 16787527;
+
+var Gdk_KEY_braille_dots_12378_KEY_braille_dots_12378 = 16787655;
+
+var Gdk_KEY_braille_dots_1238_KEY_braille_dots_1238 = 16787591;
+
+var Gdk_KEY_braille_dots_124_KEY_braille_dots_124 = 16787467;
+
+var Gdk_KEY_braille_dots_1245_KEY_braille_dots_1245 = 16787483;
+
+var Gdk_KEY_braille_dots_12456_KEY_braille_dots_12456 = 16787515;
+
+var Gdk_KEY_braille_dots_124567_KEY_braille_dots_124567 = 16787579;
+
+var Gdk_KEY_braille_dots_1245678_KEY_braille_dots_1245678 = 16787707;
+
+var Gdk_KEY_braille_dots_124568_KEY_braille_dots_124568 = 16787643;
+
+var Gdk_KEY_braille_dots_12457_KEY_braille_dots_12457 = 16787547;
+
+var Gdk_KEY_braille_dots_124578_KEY_braille_dots_124578 = 16787675;
+
+var Gdk_KEY_braille_dots_12458_KEY_braille_dots_12458 = 16787611;
+
+var Gdk_KEY_braille_dots_1246_KEY_braille_dots_1246 = 16787499;
+
+var Gdk_KEY_braille_dots_12467_KEY_braille_dots_12467 = 16787563;
+
+var Gdk_KEY_braille_dots_124678_KEY_braille_dots_124678 = 16787691;
+
+var Gdk_KEY_braille_dots_12468_KEY_braille_dots_12468 = 16787627;
+
+var Gdk_KEY_braille_dots_1247_KEY_braille_dots_1247 = 16787531;
+
+var Gdk_KEY_braille_dots_12478_KEY_braille_dots_12478 = 16787659;
+
+var Gdk_KEY_braille_dots_1248_KEY_braille_dots_1248 = 16787595;
+
+var Gdk_KEY_braille_dots_125_KEY_braille_dots_125 = 16787475;
+
+var Gdk_KEY_braille_dots_1256_KEY_braille_dots_1256 = 16787507;
+
+var Gdk_KEY_braille_dots_12567_KEY_braille_dots_12567 = 16787571;
+
+var Gdk_KEY_braille_dots_125678_KEY_braille_dots_125678 = 16787699;
+
+var Gdk_KEY_braille_dots_12568_KEY_braille_dots_12568 = 16787635;
+
+var Gdk_KEY_braille_dots_1257_KEY_braille_dots_1257 = 16787539;
+
+var Gdk_KEY_braille_dots_12578_KEY_braille_dots_12578 = 16787667;
+
+var Gdk_KEY_braille_dots_1258_KEY_braille_dots_1258 = 16787603;
+
+var Gdk_KEY_braille_dots_126_KEY_braille_dots_126 = 16787491;
+
+var Gdk_KEY_braille_dots_1267_KEY_braille_dots_1267 = 16787555;
+
+var Gdk_KEY_braille_dots_12678_KEY_braille_dots_12678 = 16787683;
+
+var Gdk_KEY_braille_dots_1268_KEY_braille_dots_1268 = 16787619;
+
+var Gdk_KEY_braille_dots_127_KEY_braille_dots_127 = 16787523;
+
+var Gdk_KEY_braille_dots_1278_KEY_braille_dots_1278 = 16787651;
+
+var Gdk_KEY_braille_dots_128_KEY_braille_dots_128 = 16787587;
+
+var Gdk_KEY_braille_dots_13_KEY_braille_dots_13 = 16787461;
+
+var Gdk_KEY_braille_dots_134_KEY_braille_dots_134 = 16787469;
+
+var Gdk_KEY_braille_dots_1345_KEY_braille_dots_1345 = 16787485;
+
+var Gdk_KEY_braille_dots_13456_KEY_braille_dots_13456 = 16787517;
+
+var Gdk_KEY_braille_dots_134567_KEY_braille_dots_134567 = 16787581;
+
+var Gdk_KEY_braille_dots_1345678_KEY_braille_dots_1345678 = 16787709;
+
+var Gdk_KEY_braille_dots_134568_KEY_braille_dots_134568 = 16787645;
+
+var Gdk_KEY_braille_dots_13457_KEY_braille_dots_13457 = 16787549;
+
+var Gdk_KEY_braille_dots_134578_KEY_braille_dots_134578 = 16787677;
+
+var Gdk_KEY_braille_dots_13458_KEY_braille_dots_13458 = 16787613;
+
+var Gdk_KEY_braille_dots_1346_KEY_braille_dots_1346 = 16787501;
+
+var Gdk_KEY_braille_dots_13467_KEY_braille_dots_13467 = 16787565;
+
+var Gdk_KEY_braille_dots_134678_KEY_braille_dots_134678 = 16787693;
+
+var Gdk_KEY_braille_dots_13468_KEY_braille_dots_13468 = 16787629;
+
+var Gdk_KEY_braille_dots_1347_KEY_braille_dots_1347 = 16787533;
+
+var Gdk_KEY_braille_dots_13478_KEY_braille_dots_13478 = 16787661;
+
+var Gdk_KEY_braille_dots_1348_KEY_braille_dots_1348 = 16787597;
+
+var Gdk_KEY_braille_dots_135_KEY_braille_dots_135 = 16787477;
+
+var Gdk_KEY_braille_dots_1356_KEY_braille_dots_1356 = 16787509;
+
+var Gdk_KEY_braille_dots_13567_KEY_braille_dots_13567 = 16787573;
+
+var Gdk_KEY_braille_dots_135678_KEY_braille_dots_135678 = 16787701;
+
+var Gdk_KEY_braille_dots_13568_KEY_braille_dots_13568 = 16787637;
+
+var Gdk_KEY_braille_dots_1357_KEY_braille_dots_1357 = 16787541;
+
+var Gdk_KEY_braille_dots_13578_KEY_braille_dots_13578 = 16787669;
+
+var Gdk_KEY_braille_dots_1358_KEY_braille_dots_1358 = 16787605;
+
+var Gdk_KEY_braille_dots_136_KEY_braille_dots_136 = 16787493;
+
+var Gdk_KEY_braille_dots_1367_KEY_braille_dots_1367 = 16787557;
+
+var Gdk_KEY_braille_dots_13678_KEY_braille_dots_13678 = 16787685;
+
+var Gdk_KEY_braille_dots_1368_KEY_braille_dots_1368 = 16787621;
+
+var Gdk_KEY_braille_dots_137_KEY_braille_dots_137 = 16787525;
+
+var Gdk_KEY_braille_dots_1378_KEY_braille_dots_1378 = 16787653;
+
+var Gdk_KEY_braille_dots_138_KEY_braille_dots_138 = 16787589;
+
+var Gdk_KEY_braille_dots_14_KEY_braille_dots_14 = 16787465;
+
+var Gdk_KEY_braille_dots_145_KEY_braille_dots_145 = 16787481;
+
+var Gdk_KEY_braille_dots_1456_KEY_braille_dots_1456 = 16787513;
+
+var Gdk_KEY_braille_dots_14567_KEY_braille_dots_14567 = 16787577;
+
+var Gdk_KEY_braille_dots_145678_KEY_braille_dots_145678 = 16787705;
+
+var Gdk_KEY_braille_dots_14568_KEY_braille_dots_14568 = 16787641;
+
+var Gdk_KEY_braille_dots_1457_KEY_braille_dots_1457 = 16787545;
+
+var Gdk_KEY_braille_dots_14578_KEY_braille_dots_14578 = 16787673;
+
+var Gdk_KEY_braille_dots_1458_KEY_braille_dots_1458 = 16787609;
+
+var Gdk_KEY_braille_dots_146_KEY_braille_dots_146 = 16787497;
+
+var Gdk_KEY_braille_dots_1467_KEY_braille_dots_1467 = 16787561;
+
+var Gdk_KEY_braille_dots_14678_KEY_braille_dots_14678 = 16787689;
+
+var Gdk_KEY_braille_dots_1468_KEY_braille_dots_1468 = 16787625;
+
+var Gdk_KEY_braille_dots_147_KEY_braille_dots_147 = 16787529;
+
+var Gdk_KEY_braille_dots_1478_KEY_braille_dots_1478 = 16787657;
+
+var Gdk_KEY_braille_dots_148_KEY_braille_dots_148 = 16787593;
+
+var Gdk_KEY_braille_dots_15_KEY_braille_dots_15 = 16787473;
+
+var Gdk_KEY_braille_dots_156_KEY_braille_dots_156 = 16787505;
+
+var Gdk_KEY_braille_dots_1567_KEY_braille_dots_1567 = 16787569;
+
+var Gdk_KEY_braille_dots_15678_KEY_braille_dots_15678 = 16787697;
+
+var Gdk_KEY_braille_dots_1568_KEY_braille_dots_1568 = 16787633;
+
+var Gdk_KEY_braille_dots_157_KEY_braille_dots_157 = 16787537;
+
+var Gdk_KEY_braille_dots_1578_KEY_braille_dots_1578 = 16787665;
+
+var Gdk_KEY_braille_dots_158_KEY_braille_dots_158 = 16787601;
+
+var Gdk_KEY_braille_dots_16_KEY_braille_dots_16 = 16787489;
+
+var Gdk_KEY_braille_dots_167_KEY_braille_dots_167 = 16787553;
+
+var Gdk_KEY_braille_dots_1678_KEY_braille_dots_1678 = 16787681;
+
+var Gdk_KEY_braille_dots_168_KEY_braille_dots_168 = 16787617;
+
+var Gdk_KEY_braille_dots_17_KEY_braille_dots_17 = 16787521;
+
+var Gdk_KEY_braille_dots_178_KEY_braille_dots_178 = 16787649;
+
+var Gdk_KEY_braille_dots_18_KEY_braille_dots_18 = 16787585;
+
+var Gdk_KEY_braille_dots_2_KEY_braille_dots_2 = 16787458;
+
+var Gdk_KEY_braille_dots_23_KEY_braille_dots_23 = 16787462;
+
+var Gdk_KEY_braille_dots_234_KEY_braille_dots_234 = 16787470;
+
+var Gdk_KEY_braille_dots_2345_KEY_braille_dots_2345 = 16787486;
+
+var Gdk_KEY_braille_dots_23456_KEY_braille_dots_23456 = 16787518;
+
+var Gdk_KEY_braille_dots_234567_KEY_braille_dots_234567 = 16787582;
+
+var Gdk_KEY_braille_dots_2345678_KEY_braille_dots_2345678 = 16787710;
+
+var Gdk_KEY_braille_dots_234568_KEY_braille_dots_234568 = 16787646;
+
+var Gdk_KEY_braille_dots_23457_KEY_braille_dots_23457 = 16787550;
+
+var Gdk_KEY_braille_dots_234578_KEY_braille_dots_234578 = 16787678;
+
+var Gdk_KEY_braille_dots_23458_KEY_braille_dots_23458 = 16787614;
+
+var Gdk_KEY_braille_dots_2346_KEY_braille_dots_2346 = 16787502;
+
+var Gdk_KEY_braille_dots_23467_KEY_braille_dots_23467 = 16787566;
+
+var Gdk_KEY_braille_dots_234678_KEY_braille_dots_234678 = 16787694;
+
+var Gdk_KEY_braille_dots_23468_KEY_braille_dots_23468 = 16787630;
+
+var Gdk_KEY_braille_dots_2347_KEY_braille_dots_2347 = 16787534;
+
+var Gdk_KEY_braille_dots_23478_KEY_braille_dots_23478 = 16787662;
+
+var Gdk_KEY_braille_dots_2348_KEY_braille_dots_2348 = 16787598;
+
+var Gdk_KEY_braille_dots_235_KEY_braille_dots_235 = 16787478;
+
+var Gdk_KEY_braille_dots_2356_KEY_braille_dots_2356 = 16787510;
+
+var Gdk_KEY_braille_dots_23567_KEY_braille_dots_23567 = 16787574;
+
+var Gdk_KEY_braille_dots_235678_KEY_braille_dots_235678 = 16787702;
+
+var Gdk_KEY_braille_dots_23568_KEY_braille_dots_23568 = 16787638;
+
+var Gdk_KEY_braille_dots_2357_KEY_braille_dots_2357 = 16787542;
+
+var Gdk_KEY_braille_dots_23578_KEY_braille_dots_23578 = 16787670;
+
+var Gdk_KEY_braille_dots_2358_KEY_braille_dots_2358 = 16787606;
+
+var Gdk_KEY_braille_dots_236_KEY_braille_dots_236 = 16787494;
+
+var Gdk_KEY_braille_dots_2367_KEY_braille_dots_2367 = 16787558;
+
+var Gdk_KEY_braille_dots_23678_KEY_braille_dots_23678 = 16787686;
+
+var Gdk_KEY_braille_dots_2368_KEY_braille_dots_2368 = 16787622;
+
+var Gdk_KEY_braille_dots_237_KEY_braille_dots_237 = 16787526;
+
+var Gdk_KEY_braille_dots_2378_KEY_braille_dots_2378 = 16787654;
+
+var Gdk_KEY_braille_dots_238_KEY_braille_dots_238 = 16787590;
+
+var Gdk_KEY_braille_dots_24_KEY_braille_dots_24 = 16787466;
+
+var Gdk_KEY_braille_dots_245_KEY_braille_dots_245 = 16787482;
+
+var Gdk_KEY_braille_dots_2456_KEY_braille_dots_2456 = 16787514;
+
+var Gdk_KEY_braille_dots_24567_KEY_braille_dots_24567 = 16787578;
+
+var Gdk_KEY_braille_dots_245678_KEY_braille_dots_245678 = 16787706;
+
+var Gdk_KEY_braille_dots_24568_KEY_braille_dots_24568 = 16787642;
+
+var Gdk_KEY_braille_dots_2457_KEY_braille_dots_2457 = 16787546;
+
+var Gdk_KEY_braille_dots_24578_KEY_braille_dots_24578 = 16787674;
+
+var Gdk_KEY_braille_dots_2458_KEY_braille_dots_2458 = 16787610;
+
+var Gdk_KEY_braille_dots_246_KEY_braille_dots_246 = 16787498;
+
+var Gdk_KEY_braille_dots_2467_KEY_braille_dots_2467 = 16787562;
+
+var Gdk_KEY_braille_dots_24678_KEY_braille_dots_24678 = 16787690;
+
+var Gdk_KEY_braille_dots_2468_KEY_braille_dots_2468 = 16787626;
+
+var Gdk_KEY_braille_dots_247_KEY_braille_dots_247 = 16787530;
+
+var Gdk_KEY_braille_dots_2478_KEY_braille_dots_2478 = 16787658;
+
+var Gdk_KEY_braille_dots_248_KEY_braille_dots_248 = 16787594;
+
+var Gdk_KEY_braille_dots_25_KEY_braille_dots_25 = 16787474;
+
+var Gdk_KEY_braille_dots_256_KEY_braille_dots_256 = 16787506;
+
+var Gdk_KEY_braille_dots_2567_KEY_braille_dots_2567 = 16787570;
+
+var Gdk_KEY_braille_dots_25678_KEY_braille_dots_25678 = 16787698;
+
+var Gdk_KEY_braille_dots_2568_KEY_braille_dots_2568 = 16787634;
+
+var Gdk_KEY_braille_dots_257_KEY_braille_dots_257 = 16787538;
+
+var Gdk_KEY_braille_dots_2578_KEY_braille_dots_2578 = 16787666;
+
+var Gdk_KEY_braille_dots_258_KEY_braille_dots_258 = 16787602;
+
+var Gdk_KEY_braille_dots_26_KEY_braille_dots_26 = 16787490;
+
+var Gdk_KEY_braille_dots_267_KEY_braille_dots_267 = 16787554;
+
+var Gdk_KEY_braille_dots_2678_KEY_braille_dots_2678 = 16787682;
+
+var Gdk_KEY_braille_dots_268_KEY_braille_dots_268 = 16787618;
+
+var Gdk_KEY_braille_dots_27_KEY_braille_dots_27 = 16787522;
+
+var Gdk_KEY_braille_dots_278_KEY_braille_dots_278 = 16787650;
+
+var Gdk_KEY_braille_dots_28_KEY_braille_dots_28 = 16787586;
+
+var Gdk_KEY_braille_dots_3_KEY_braille_dots_3 = 16787460;
+
+var Gdk_KEY_braille_dots_34_KEY_braille_dots_34 = 16787468;
+
+var Gdk_KEY_braille_dots_345_KEY_braille_dots_345 = 16787484;
+
+var Gdk_KEY_braille_dots_3456_KEY_braille_dots_3456 = 16787516;
+
+var Gdk_KEY_braille_dots_34567_KEY_braille_dots_34567 = 16787580;
+
+var Gdk_KEY_braille_dots_345678_KEY_braille_dots_345678 = 16787708;
+
+var Gdk_KEY_braille_dots_34568_KEY_braille_dots_34568 = 16787644;
+
+var Gdk_KEY_braille_dots_3457_KEY_braille_dots_3457 = 16787548;
+
+var Gdk_KEY_braille_dots_34578_KEY_braille_dots_34578 = 16787676;
+
+var Gdk_KEY_braille_dots_3458_KEY_braille_dots_3458 = 16787612;
+
+var Gdk_KEY_braille_dots_346_KEY_braille_dots_346 = 16787500;
+
+var Gdk_KEY_braille_dots_3467_KEY_braille_dots_3467 = 16787564;
+
+var Gdk_KEY_braille_dots_34678_KEY_braille_dots_34678 = 16787692;
+
+var Gdk_KEY_braille_dots_3468_KEY_braille_dots_3468 = 16787628;
+
+var Gdk_KEY_braille_dots_347_KEY_braille_dots_347 = 16787532;
+
+var Gdk_KEY_braille_dots_3478_KEY_braille_dots_3478 = 16787660;
+
+var Gdk_KEY_braille_dots_348_KEY_braille_dots_348 = 16787596;
+
+var Gdk_KEY_braille_dots_35_KEY_braille_dots_35 = 16787476;
+
+var Gdk_KEY_braille_dots_356_KEY_braille_dots_356 = 16787508;
+
+var Gdk_KEY_braille_dots_3567_KEY_braille_dots_3567 = 16787572;
+
+var Gdk_KEY_braille_dots_35678_KEY_braille_dots_35678 = 16787700;
+
+var Gdk_KEY_braille_dots_3568_KEY_braille_dots_3568 = 16787636;
+
+var Gdk_KEY_braille_dots_357_KEY_braille_dots_357 = 16787540;
+
+var Gdk_KEY_braille_dots_3578_KEY_braille_dots_3578 = 16787668;
+
+var Gdk_KEY_braille_dots_358_KEY_braille_dots_358 = 16787604;
+
+var Gdk_KEY_braille_dots_36_KEY_braille_dots_36 = 16787492;
+
+var Gdk_KEY_braille_dots_367_KEY_braille_dots_367 = 16787556;
+
+var Gdk_KEY_braille_dots_3678_KEY_braille_dots_3678 = 16787684;
+
+var Gdk_KEY_braille_dots_368_KEY_braille_dots_368 = 16787620;
+
+var Gdk_KEY_braille_dots_37_KEY_braille_dots_37 = 16787524;
+
+var Gdk_KEY_braille_dots_378_KEY_braille_dots_378 = 16787652;
+
+var Gdk_KEY_braille_dots_38_KEY_braille_dots_38 = 16787588;
+
+var Gdk_KEY_braille_dots_4_KEY_braille_dots_4 = 16787464;
+
+var Gdk_KEY_braille_dots_45_KEY_braille_dots_45 = 16787480;
+
+var Gdk_KEY_braille_dots_456_KEY_braille_dots_456 = 16787512;
+
+var Gdk_KEY_braille_dots_4567_KEY_braille_dots_4567 = 16787576;
+
+var Gdk_KEY_braille_dots_45678_KEY_braille_dots_45678 = 16787704;
+
+var Gdk_KEY_braille_dots_4568_KEY_braille_dots_4568 = 16787640;
+
+var Gdk_KEY_braille_dots_457_KEY_braille_dots_457 = 16787544;
+
+var Gdk_KEY_braille_dots_4578_KEY_braille_dots_4578 = 16787672;
+
+var Gdk_KEY_braille_dots_458_KEY_braille_dots_458 = 16787608;
+
+var Gdk_KEY_braille_dots_46_KEY_braille_dots_46 = 16787496;
+
+var Gdk_KEY_braille_dots_467_KEY_braille_dots_467 = 16787560;
+
+var Gdk_KEY_braille_dots_4678_KEY_braille_dots_4678 = 16787688;
+
+var Gdk_KEY_braille_dots_468_KEY_braille_dots_468 = 16787624;
+
+var Gdk_KEY_braille_dots_47_KEY_braille_dots_47 = 16787528;
+
+var Gdk_KEY_braille_dots_478_KEY_braille_dots_478 = 16787656;
+
+var Gdk_KEY_braille_dots_48_KEY_braille_dots_48 = 16787592;
+
+var Gdk_KEY_braille_dots_5_KEY_braille_dots_5 = 16787472;
+
+var Gdk_KEY_braille_dots_56_KEY_braille_dots_56 = 16787504;
+
+var Gdk_KEY_braille_dots_567_KEY_braille_dots_567 = 16787568;
+
+var Gdk_KEY_braille_dots_5678_KEY_braille_dots_5678 = 16787696;
+
+var Gdk_KEY_braille_dots_568_KEY_braille_dots_568 = 16787632;
+
+var Gdk_KEY_braille_dots_57_KEY_braille_dots_57 = 16787536;
+
+var Gdk_KEY_braille_dots_578_KEY_braille_dots_578 = 16787664;
+
+var Gdk_KEY_braille_dots_58_KEY_braille_dots_58 = 16787600;
+
+var Gdk_KEY_braille_dots_6_KEY_braille_dots_6 = 16787488;
+
+var Gdk_KEY_braille_dots_67_KEY_braille_dots_67 = 16787552;
+
+var Gdk_KEY_braille_dots_678_KEY_braille_dots_678 = 16787680;
+
+var Gdk_KEY_braille_dots_68_KEY_braille_dots_68 = 16787616;
+
+var Gdk_KEY_braille_dots_7_KEY_braille_dots_7 = 16787520;
+
+var Gdk_KEY_braille_dots_78_KEY_braille_dots_78 = 16787648;
+
+var Gdk_KEY_braille_dots_8_KEY_braille_dots_8 = 16787584;
+
+var Gdk_KEY_breve_KEY_breve = 418;
+
+var Gdk_KEY_brokenbar_KEY_brokenbar = 166;
+
+var Gdk_KEY_c_KEY_c = 99;
+
+var Gdk_KEY_c_h_KEY_c_h = 65187;
+
+var Gdk_KEY_cabovedot_KEY_cabovedot = 741;
+
+var Gdk_KEY_cacute_KEY_cacute = 486;
+
+var Gdk_KEY_careof_KEY_careof = 2744;
+
+var Gdk_KEY_caret_KEY_caret = 2812;
+
+var Gdk_KEY_caron_KEY_caron = 439;
+
+var Gdk_KEY_ccaron_KEY_ccaron = 488;
+
+var Gdk_KEY_ccedilla_KEY_ccedilla = 231;
+
+var Gdk_KEY_ccircumflex_KEY_ccircumflex = 742;
+
+var Gdk_KEY_cedilla_KEY_cedilla = 184;
+
+var Gdk_KEY_cent_KEY_cent = 162;
+
+var Gdk_KEY_ch_KEY_ch = 65184;
+
+var Gdk_KEY_checkerboard_KEY_checkerboard = 2529;
+
+var Gdk_KEY_checkmark_KEY_checkmark = 2803;
+
+var Gdk_KEY_circle_KEY_circle = 3023;
+
+var Gdk_KEY_club_KEY_club = 2796;
+
+var Gdk_KEY_colon_KEY_colon = 58;
+
+var Gdk_KEY_comma_KEY_comma = 44;
+
+var Gdk_KEY_containsas_KEY_containsas = 16785931;
+
+var Gdk_KEY_copyright_KEY_copyright = 169;
+
+var Gdk_KEY_cr_KEY_cr = 2532;
+
+var Gdk_KEY_crossinglines_KEY_crossinglines = 2542;
+
+var Gdk_KEY_cuberoot_KEY_cuberoot = 16785947;
+
+var Gdk_KEY_currency_KEY_currency = 164;
+
+var Gdk_KEY_cursor_KEY_cursor = 2815;
+
+var Gdk_KEY_d_KEY_d = 100;
+
+var Gdk_KEY_dabovedot_KEY_dabovedot = 16784907;
+
+var Gdk_KEY_dagger_KEY_dagger = 2801;
+
+var Gdk_KEY_dcaron_KEY_dcaron = 495;
+
+var Gdk_KEY_dead_A_KEY_dead_A = 65153;
+
+var Gdk_KEY_dead_E_KEY_dead_E = 65155;
+
+var Gdk_KEY_dead_I_KEY_dead_I = 65157;
+
+var Gdk_KEY_dead_O_KEY_dead_O = 65159;
+
+var Gdk_KEY_dead_U_KEY_dead_U = 65161;
+
+var Gdk_KEY_dead_a_KEY_dead_a = 65152;
+
+var Gdk_KEY_dead_abovecomma_KEY_dead_abovecomma = 65124;
+
+var Gdk_KEY_dead_abovedot_KEY_dead_abovedot = 65110;
+
+var Gdk_KEY_dead_abovereversedcomma_KEY_dead_abovereversedcomma = 65125;
+
+var Gdk_KEY_dead_abovering_KEY_dead_abovering = 65112;
+
+var Gdk_KEY_dead_aboveverticalline_KEY_dead_aboveverticalline = 65169;
+
+var Gdk_KEY_dead_acute_KEY_dead_acute = 65105;
+
+var Gdk_KEY_dead_belowbreve_KEY_dead_belowbreve = 65131;
+
+var Gdk_KEY_dead_belowcircumflex_KEY_dead_belowcircumflex = 65129;
+
+var Gdk_KEY_dead_belowcomma_KEY_dead_belowcomma = 65134;
+
+var Gdk_KEY_dead_belowdiaeresis_KEY_dead_belowdiaeresis = 65132;
+
+var Gdk_KEY_dead_belowdot_KEY_dead_belowdot = 65120;
+
+var Gdk_KEY_dead_belowmacron_KEY_dead_belowmacron = 65128;
+
+var Gdk_KEY_dead_belowring_KEY_dead_belowring = 65127;
+
+var Gdk_KEY_dead_belowtilde_KEY_dead_belowtilde = 65130;
+
+var Gdk_KEY_dead_belowverticalline_KEY_dead_belowverticalline = 65170;
+
+var Gdk_KEY_dead_breve_KEY_dead_breve = 65109;
+
+var Gdk_KEY_dead_capital_schwa_KEY_dead_capital_schwa = 65163;
+
+var Gdk_KEY_dead_caron_KEY_dead_caron = 65114;
+
+var Gdk_KEY_dead_cedilla_KEY_dead_cedilla = 65115;
+
+var Gdk_KEY_dead_circumflex_KEY_dead_circumflex = 65106;
+
+var Gdk_KEY_dead_currency_KEY_dead_currency = 65135;
+
+var Gdk_KEY_dead_dasia_KEY_dead_dasia = 65125;
+
+var Gdk_KEY_dead_diaeresis_KEY_dead_diaeresis = 65111;
+
+var Gdk_KEY_dead_doubleacute_KEY_dead_doubleacute = 65113;
+
+var Gdk_KEY_dead_doublegrave_KEY_dead_doublegrave = 65126;
+
+var Gdk_KEY_dead_e_KEY_dead_e = 65154;
+
+var Gdk_KEY_dead_grave_KEY_dead_grave = 65104;
+
+var Gdk_KEY_dead_greek_KEY_dead_greek = 65164;
+
+var Gdk_KEY_dead_hook_KEY_dead_hook = 65121;
+
+var Gdk_KEY_dead_horn_KEY_dead_horn = 65122;
+
+var Gdk_KEY_dead_i_KEY_dead_i = 65156;
+
+var Gdk_KEY_dead_invertedbreve_KEY_dead_invertedbreve = 65133;
+
+var Gdk_KEY_dead_iota_KEY_dead_iota = 65117;
+
+var Gdk_KEY_dead_longsolidusoverlay_KEY_dead_longsolidusoverlay = 65171;
+
+var Gdk_KEY_dead_lowline_KEY_dead_lowline = 65168;
+
+var Gdk_KEY_dead_macron_KEY_dead_macron = 65108;
+
+var Gdk_KEY_dead_o_KEY_dead_o = 65158;
+
+var Gdk_KEY_dead_ogonek_KEY_dead_ogonek = 65116;
+
+var Gdk_KEY_dead_perispomeni_KEY_dead_perispomeni = 65107;
+
+var Gdk_KEY_dead_psili_KEY_dead_psili = 65124;
+
+var Gdk_KEY_dead_semivoiced_sound_KEY_dead_semivoiced_sound = 65119;
+
+var Gdk_KEY_dead_small_schwa_KEY_dead_small_schwa = 65162;
+
+var Gdk_KEY_dead_stroke_KEY_dead_stroke = 65123;
+
+var Gdk_KEY_dead_tilde_KEY_dead_tilde = 65107;
+
+var Gdk_KEY_dead_u_KEY_dead_u = 65160;
+
+var Gdk_KEY_dead_voiced_sound_KEY_dead_voiced_sound = 65118;
+
+var Gdk_KEY_decimalpoint_KEY_decimalpoint = 2749;
+
+var Gdk_KEY_degree_KEY_degree = 176;
+
+var Gdk_KEY_diaeresis_KEY_diaeresis = 168;
+
+var Gdk_KEY_diamond_KEY_diamond = 2797;
+
+var Gdk_KEY_digitspace_KEY_digitspace = 2725;
+
+var Gdk_KEY_dintegral_KEY_dintegral = 16785964;
+
+var Gdk_KEY_division_KEY_division = 247;
+
+var Gdk_KEY_dollar_KEY_dollar = 36;
+
+var Gdk_KEY_doubbaselinedot_KEY_doubbaselinedot = 2735;
+
+var Gdk_KEY_doubleacute_KEY_doubleacute = 445;
+
+var Gdk_KEY_doubledagger_KEY_doubledagger = 2802;
+
+var Gdk_KEY_doublelowquotemark_KEY_doublelowquotemark = 2814;
+
+var Gdk_KEY_downarrow_KEY_downarrow = 2302;
+
+var Gdk_KEY_downcaret_KEY_downcaret = 2984;
+
+var Gdk_KEY_downshoe_KEY_downshoe = 3030;
+
+var Gdk_KEY_downstile_KEY_downstile = 3012;
+
+var Gdk_KEY_downtack_KEY_downtack = 3010;
+
+var Gdk_KEY_dstroke_KEY_dstroke = 496;
+
+var Gdk_KEY_e_KEY_e = 101;
+
+var Gdk_KEY_eabovedot_KEY_eabovedot = 1004;
+
+var Gdk_KEY_eacute_KEY_eacute = 233;
+
+var Gdk_KEY_ebelowdot_KEY_ebelowdot = 16785081;
+
+var Gdk_KEY_ecaron_KEY_ecaron = 492;
+
+var Gdk_KEY_ecircumflex_KEY_ecircumflex = 234;
+
+var Gdk_KEY_ecircumflexacute_KEY_ecircumflexacute = 16785087;
+
+var Gdk_KEY_ecircumflexbelowdot_KEY_ecircumflexbelowdot = 16785095;
+
+var Gdk_KEY_ecircumflexgrave_KEY_ecircumflexgrave = 16785089;
+
+var Gdk_KEY_ecircumflexhook_KEY_ecircumflexhook = 16785091;
+
+var Gdk_KEY_ecircumflextilde_KEY_ecircumflextilde = 16785093;
+
+var Gdk_KEY_ediaeresis_KEY_ediaeresis = 235;
+
+var Gdk_KEY_egrave_KEY_egrave = 232;
+
+var Gdk_KEY_ehook_KEY_ehook = 16785083;
+
+var Gdk_KEY_eightsubscript_KEY_eightsubscript = 16785544;
+
+var Gdk_KEY_eightsuperior_KEY_eightsuperior = 16785528;
+
+var Gdk_KEY_elementof_KEY_elementof = 16785928;
+
+var Gdk_KEY_ellipsis_KEY_ellipsis = 2734;
+
+var Gdk_KEY_em3space_KEY_em3space = 2723;
+
+var Gdk_KEY_em4space_KEY_em4space = 2724;
+
+var Gdk_KEY_emacron_KEY_emacron = 954;
+
+var Gdk_KEY_emdash_KEY_emdash = 2729;
+
+var Gdk_KEY_emfilledcircle_KEY_emfilledcircle = 2782;
+
+var Gdk_KEY_emfilledrect_KEY_emfilledrect = 2783;
+
+var Gdk_KEY_emopencircle_KEY_emopencircle = 2766;
+
+var Gdk_KEY_emopenrectangle_KEY_emopenrectangle = 2767;
+
+var Gdk_KEY_emptyset_KEY_emptyset = 16785925;
+
+var Gdk_KEY_emspace_KEY_emspace = 2721;
+
+var Gdk_KEY_endash_KEY_endash = 2730;
+
+var Gdk_KEY_enfilledcircbullet_KEY_enfilledcircbullet = 2790;
+
+var Gdk_KEY_enfilledsqbullet_KEY_enfilledsqbullet = 2791;
+
+var Gdk_KEY_eng_KEY_eng = 959;
+
+var Gdk_KEY_enopencircbullet_KEY_enopencircbullet = 2784;
+
+var Gdk_KEY_enopensquarebullet_KEY_enopensquarebullet = 2785;
+
+var Gdk_KEY_enspace_KEY_enspace = 2722;
+
+var Gdk_KEY_eogonek_KEY_eogonek = 490;
+
+var Gdk_KEY_equal_KEY_equal = 61;
+
+var Gdk_KEY_eth_KEY_eth = 240;
+
+var Gdk_KEY_etilde_KEY_etilde = 16785085;
+
+var Gdk_KEY_exclam_KEY_exclam = 33;
+
+var Gdk_KEY_exclamdown_KEY_exclamdown = 161;
+
+var Gdk_KEY_ezh_KEY_ezh = 16777874;
+
+var Gdk_KEY_f_KEY_f = 102;
+
+var Gdk_KEY_fabovedot_KEY_fabovedot = 16784927;
+
+var Gdk_KEY_femalesymbol_KEY_femalesymbol = 2808;
+
+var Gdk_KEY_ff_KEY_ff = 2531;
+
+var Gdk_KEY_figdash_KEY_figdash = 2747;
+
+var Gdk_KEY_filledlefttribullet_KEY_filledlefttribullet = 2780;
+
+var Gdk_KEY_filledrectbullet_KEY_filledrectbullet = 2779;
+
+var Gdk_KEY_filledrighttribullet_KEY_filledrighttribullet = 2781;
+
+var Gdk_KEY_filledtribulletdown_KEY_filledtribulletdown = 2793;
+
+var Gdk_KEY_filledtribulletup_KEY_filledtribulletup = 2792;
+
+var Gdk_KEY_fiveeighths_KEY_fiveeighths = 2757;
+
+var Gdk_KEY_fivesixths_KEY_fivesixths = 2743;
+
+var Gdk_KEY_fivesubscript_KEY_fivesubscript = 16785541;
+
+var Gdk_KEY_fivesuperior_KEY_fivesuperior = 16785525;
+
+var Gdk_KEY_fourfifths_KEY_fourfifths = 2741;
+
+var Gdk_KEY_foursubscript_KEY_foursubscript = 16785540;
+
+var Gdk_KEY_foursuperior_KEY_foursuperior = 16785524;
+
+var Gdk_KEY_fourthroot_KEY_fourthroot = 16785948;
+
+var Gdk_KEY_function_KEY_function = 2294;
+
+var Gdk_KEY_g_KEY_g = 103;
+
+var Gdk_KEY_gabovedot_KEY_gabovedot = 757;
+
+var Gdk_KEY_gbreve_KEY_gbreve = 699;
+
+var Gdk_KEY_gcaron_KEY_gcaron = 16777703;
+
+var Gdk_KEY_gcedilla_KEY_gcedilla = 955;
+
+var Gdk_KEY_gcircumflex_KEY_gcircumflex = 760;
+
+var Gdk_KEY_grave_KEY_grave = 96;
+
+var Gdk_KEY_greater_KEY_greater = 62;
+
+var Gdk_KEY_greaterthanequal_KEY_greaterthanequal = 2238;
+
+var Gdk_KEY_guillemotleft_KEY_guillemotleft = 171;
+
+var Gdk_KEY_guillemotright_KEY_guillemotright = 187;
+
+var Gdk_KEY_h_KEY_h = 104;
+
+var Gdk_KEY_hairspace_KEY_hairspace = 2728;
+
+var Gdk_KEY_hcircumflex_KEY_hcircumflex = 694;
+
+var Gdk_KEY_heart_KEY_heart = 2798;
+
+var Gdk_KEY_hebrew_aleph_KEY_hebrew_aleph = 3296;
+
+var Gdk_KEY_hebrew_ayin_KEY_hebrew_ayin = 3314;
+
+var Gdk_KEY_hebrew_bet_KEY_hebrew_bet = 3297;
+
+var Gdk_KEY_hebrew_beth_KEY_hebrew_beth = 3297;
+
+var Gdk_KEY_hebrew_chet_KEY_hebrew_chet = 3303;
+
+var Gdk_KEY_hebrew_dalet_KEY_hebrew_dalet = 3299;
+
+var Gdk_KEY_hebrew_daleth_KEY_hebrew_daleth = 3299;
+
+var Gdk_KEY_hebrew_doublelowline_KEY_hebrew_doublelowline = 3295;
+
+var Gdk_KEY_hebrew_finalkaph_KEY_hebrew_finalkaph = 3306;
+
+var Gdk_KEY_hebrew_finalmem_KEY_hebrew_finalmem = 3309;
+
+var Gdk_KEY_hebrew_finalnun_KEY_hebrew_finalnun = 3311;
+
+var Gdk_KEY_hebrew_finalpe_KEY_hebrew_finalpe = 3315;
+
+var Gdk_KEY_hebrew_finalzade_KEY_hebrew_finalzade = 3317;
+
+var Gdk_KEY_hebrew_finalzadi_KEY_hebrew_finalzadi = 3317;
+
+var Gdk_KEY_hebrew_gimel_KEY_hebrew_gimel = 3298;
+
+var Gdk_KEY_hebrew_gimmel_KEY_hebrew_gimmel = 3298;
+
+var Gdk_KEY_hebrew_he_KEY_hebrew_he = 3300;
+
+var Gdk_KEY_hebrew_het_KEY_hebrew_het = 3303;
+
+var Gdk_KEY_hebrew_kaph_KEY_hebrew_kaph = 3307;
+
+var Gdk_KEY_hebrew_kuf_KEY_hebrew_kuf = 3319;
+
+var Gdk_KEY_hebrew_lamed_KEY_hebrew_lamed = 3308;
+
+var Gdk_KEY_hebrew_mem_KEY_hebrew_mem = 3310;
+
+var Gdk_KEY_hebrew_nun_KEY_hebrew_nun = 3312;
+
+var Gdk_KEY_hebrew_pe_KEY_hebrew_pe = 3316;
+
+var Gdk_KEY_hebrew_qoph_KEY_hebrew_qoph = 3319;
+
+var Gdk_KEY_hebrew_resh_KEY_hebrew_resh = 3320;
+
+var Gdk_KEY_hebrew_samech_KEY_hebrew_samech = 3313;
+
+var Gdk_KEY_hebrew_samekh_KEY_hebrew_samekh = 3313;
+
+var Gdk_KEY_hebrew_shin_KEY_hebrew_shin = 3321;
+
+var Gdk_KEY_hebrew_taf_KEY_hebrew_taf = 3322;
+
+var Gdk_KEY_hebrew_taw_KEY_hebrew_taw = 3322;
+
+var Gdk_KEY_hebrew_tet_KEY_hebrew_tet = 3304;
+
+var Gdk_KEY_hebrew_teth_KEY_hebrew_teth = 3304;
+
+var Gdk_KEY_hebrew_waw_KEY_hebrew_waw = 3301;
+
+var Gdk_KEY_hebrew_yod_KEY_hebrew_yod = 3305;
+
+var Gdk_KEY_hebrew_zade_KEY_hebrew_zade = 3318;
+
+var Gdk_KEY_hebrew_zadi_KEY_hebrew_zadi = 3318;
+
+var Gdk_KEY_hebrew_zain_KEY_hebrew_zain = 3302;
+
+var Gdk_KEY_hebrew_zayin_KEY_hebrew_zayin = 3302;
+
+var Gdk_KEY_hexagram_KEY_hexagram = 2778;
+
+var Gdk_KEY_horizconnector_KEY_horizconnector = 2211;
+
+var Gdk_KEY_horizlinescan1_KEY_horizlinescan1 = 2543;
+
+var Gdk_KEY_horizlinescan3_KEY_horizlinescan3 = 2544;
+
+var Gdk_KEY_horizlinescan5_KEY_horizlinescan5 = 2545;
+
+var Gdk_KEY_horizlinescan7_KEY_horizlinescan7 = 2546;
+
+var Gdk_KEY_horizlinescan9_KEY_horizlinescan9 = 2547;
+
+var Gdk_KEY_hstroke_KEY_hstroke = 689;
+
+var Gdk_KEY_ht_KEY_ht = 2530;
+
+var Gdk_KEY_hyphen_KEY_hyphen = 173;
+
+var Gdk_KEY_i_KEY_i = 105;
+
+var Gdk_KEY_iTouch_KEY_iTouch = 269025120;
+
+var Gdk_KEY_iacute_KEY_iacute = 237;
+
+var Gdk_KEY_ibelowdot_KEY_ibelowdot = 16785099;
+
+var Gdk_KEY_ibreve_KEY_ibreve = 16777517;
+
+var Gdk_KEY_icircumflex_KEY_icircumflex = 238;
+
+var Gdk_KEY_identical_KEY_identical = 2255;
+
+var Gdk_KEY_idiaeresis_KEY_idiaeresis = 239;
+
+var Gdk_KEY_idotless_KEY_idotless = 697;
+
+var Gdk_KEY_ifonlyif_KEY_ifonlyif = 2253;
+
+var Gdk_KEY_igrave_KEY_igrave = 236;
+
+var Gdk_KEY_ihook_KEY_ihook = 16785097;
+
+var Gdk_KEY_imacron_KEY_imacron = 1007;
+
+var Gdk_KEY_implies_KEY_implies = 2254;
+
+var Gdk_KEY_includedin_KEY_includedin = 2266;
+
+var Gdk_KEY_includes_KEY_includes = 2267;
+
+var Gdk_KEY_infinity_KEY_infinity = 2242;
+
+var Gdk_KEY_integral_KEY_integral = 2239;
+
+var Gdk_KEY_intersection_KEY_intersection = 2268;
+
+var Gdk_KEY_iogonek_KEY_iogonek = 999;
+
+var Gdk_KEY_itilde_KEY_itilde = 949;
+
+var Gdk_KEY_j_KEY_j = 106;
+
+var Gdk_KEY_jcircumflex_KEY_jcircumflex = 700;
+
+var Gdk_KEY_jot_KEY_jot = 3018;
+
+var Gdk_KEY_k_KEY_k = 107;
+
+var Gdk_KEY_kana_A_KEY_kana_A = 1201;
+
+var Gdk_KEY_kana_CHI_KEY_kana_CHI = 1217;
+
+var Gdk_KEY_kana_E_KEY_kana_E = 1204;
+
+var Gdk_KEY_kana_FU_KEY_kana_FU = 1228;
+
+var Gdk_KEY_kana_HA_KEY_kana_HA = 1226;
+
+var Gdk_KEY_kana_HE_KEY_kana_HE = 1229;
+
+var Gdk_KEY_kana_HI_KEY_kana_HI = 1227;
+
+var Gdk_KEY_kana_HO_KEY_kana_HO = 1230;
+
+var Gdk_KEY_kana_HU_KEY_kana_HU = 1228;
+
+var Gdk_KEY_kana_I_KEY_kana_I = 1202;
+
+var Gdk_KEY_kana_KA_KEY_kana_KA = 1206;
+
+var Gdk_KEY_kana_KE_KEY_kana_KE = 1209;
+
+var Gdk_KEY_kana_KI_KEY_kana_KI = 1207;
+
+var Gdk_KEY_kana_KO_KEY_kana_KO = 1210;
+
+var Gdk_KEY_kana_KU_KEY_kana_KU = 1208;
+
+var Gdk_KEY_kana_MA_KEY_kana_MA = 1231;
+
+var Gdk_KEY_kana_ME_KEY_kana_ME = 1234;
+
+var Gdk_KEY_kana_MI_KEY_kana_MI = 1232;
+
+var Gdk_KEY_kana_MO_KEY_kana_MO = 1235;
+
+var Gdk_KEY_kana_MU_KEY_kana_MU = 1233;
+
+var Gdk_KEY_kana_N_KEY_kana_N = 1245;
+
+var Gdk_KEY_kana_NA_KEY_kana_NA = 1221;
+
+var Gdk_KEY_kana_NE_KEY_kana_NE = 1224;
+
+var Gdk_KEY_kana_NI_KEY_kana_NI = 1222;
+
+var Gdk_KEY_kana_NO_KEY_kana_NO = 1225;
+
+var Gdk_KEY_kana_NU_KEY_kana_NU = 1223;
+
+var Gdk_KEY_kana_O_KEY_kana_O = 1205;
+
+var Gdk_KEY_kana_RA_KEY_kana_RA = 1239;
+
+var Gdk_KEY_kana_RE_KEY_kana_RE = 1242;
+
+var Gdk_KEY_kana_RI_KEY_kana_RI = 1240;
+
+var Gdk_KEY_kana_RO_KEY_kana_RO = 1243;
+
+var Gdk_KEY_kana_RU_KEY_kana_RU = 1241;
+
+var Gdk_KEY_kana_SA_KEY_kana_SA = 1211;
+
+var Gdk_KEY_kana_SE_KEY_kana_SE = 1214;
+
+var Gdk_KEY_kana_SHI_KEY_kana_SHI = 1212;
+
+var Gdk_KEY_kana_SO_KEY_kana_SO = 1215;
+
+var Gdk_KEY_kana_SU_KEY_kana_SU = 1213;
+
+var Gdk_KEY_kana_TA_KEY_kana_TA = 1216;
+
+var Gdk_KEY_kana_TE_KEY_kana_TE = 1219;
+
+var Gdk_KEY_kana_TI_KEY_kana_TI = 1217;
+
+var Gdk_KEY_kana_TO_KEY_kana_TO = 1220;
+
+var Gdk_KEY_kana_TSU_KEY_kana_TSU = 1218;
+
+var Gdk_KEY_kana_TU_KEY_kana_TU = 1218;
+
+var Gdk_KEY_kana_U_KEY_kana_U = 1203;
+
+var Gdk_KEY_kana_WA_KEY_kana_WA = 1244;
+
+var Gdk_KEY_kana_WO_KEY_kana_WO = 1190;
+
+var Gdk_KEY_kana_YA_KEY_kana_YA = 1236;
+
+var Gdk_KEY_kana_YO_KEY_kana_YO = 1238;
+
+var Gdk_KEY_kana_YU_KEY_kana_YU = 1237;
+
+var Gdk_KEY_kana_a_KEY_kana_a = 1191;
+
+var Gdk_KEY_kana_closingbracket_KEY_kana_closingbracket = 1187;
+
+var Gdk_KEY_kana_comma_KEY_kana_comma = 1188;
+
+var Gdk_KEY_kana_conjunctive_KEY_kana_conjunctive = 1189;
+
+var Gdk_KEY_kana_e_KEY_kana_e = 1194;
+
+var Gdk_KEY_kana_fullstop_KEY_kana_fullstop = 1185;
+
+var Gdk_KEY_kana_i_KEY_kana_i = 1192;
+
+var Gdk_KEY_kana_middledot_KEY_kana_middledot = 1189;
+
+var Gdk_KEY_kana_o_KEY_kana_o = 1195;
+
+var Gdk_KEY_kana_openingbracket_KEY_kana_openingbracket = 1186;
+
+var Gdk_KEY_kana_switch_KEY_kana_switch = 65406;
+
+var Gdk_KEY_kana_tsu_KEY_kana_tsu = 1199;
+
+var Gdk_KEY_kana_tu_KEY_kana_tu = 1199;
+
+var Gdk_KEY_kana_u_KEY_kana_u = 1193;
+
+var Gdk_KEY_kana_ya_KEY_kana_ya = 1196;
+
+var Gdk_KEY_kana_yo_KEY_kana_yo = 1198;
+
+var Gdk_KEY_kana_yu_KEY_kana_yu = 1197;
+
+var Gdk_KEY_kappa_KEY_kappa = 930;
+
+var Gdk_KEY_kcedilla_KEY_kcedilla = 1011;
+
+var Gdk_KEY_kra_KEY_kra = 930;
+
+var Gdk_KEY_l_KEY_l = 108;
+
+var Gdk_KEY_lacute_KEY_lacute = 485;
+
+var Gdk_KEY_latincross_KEY_latincross = 2777;
+
+var Gdk_KEY_lbelowdot_KEY_lbelowdot = 16784951;
+
+var Gdk_KEY_lcaron_KEY_lcaron = 437;
+
+var Gdk_KEY_lcedilla_KEY_lcedilla = 950;
+
+var Gdk_KEY_leftanglebracket_KEY_leftanglebracket = 2748;
+
+var Gdk_KEY_leftarrow_KEY_leftarrow = 2299;
+
+var Gdk_KEY_leftcaret_KEY_leftcaret = 2979;
+
+var Gdk_KEY_leftdoublequotemark_KEY_leftdoublequotemark = 2770;
+
+var Gdk_KEY_leftmiddlecurlybrace_KEY_leftmiddlecurlybrace = 2223;
+
+var Gdk_KEY_leftopentriangle_KEY_leftopentriangle = 2764;
+
+var Gdk_KEY_leftpointer_KEY_leftpointer = 2794;
+
+var Gdk_KEY_leftradical_KEY_leftradical = 2209;
+
+var Gdk_KEY_leftshoe_KEY_leftshoe = 3034;
+
+var Gdk_KEY_leftsinglequotemark_KEY_leftsinglequotemark = 2768;
+
+var Gdk_KEY_leftt_KEY_leftt = 2548;
+
+var Gdk_KEY_lefttack_KEY_lefttack = 3036;
+
+var Gdk_KEY_less_KEY_less = 60;
+
+var Gdk_KEY_lessthanequal_KEY_lessthanequal = 2236;
+
+var Gdk_KEY_lf_KEY_lf = 2533;
+
+var Gdk_KEY_logicaland_KEY_logicaland = 2270;
+
+var Gdk_KEY_logicalor_KEY_logicalor = 2271;
+
+var Gdk_KEY_lowleftcorner_KEY_lowleftcorner = 2541;
+
+var Gdk_KEY_lowrightcorner_KEY_lowrightcorner = 2538;
+
+var Gdk_KEY_lstroke_KEY_lstroke = 435;
+
+var Gdk_KEY_m_KEY_m = 109;
+
+var Gdk_KEY_mabovedot_KEY_mabovedot = 16784961;
+
+var Gdk_KEY_macron_KEY_macron = 175;
+
+var Gdk_KEY_malesymbol_KEY_malesymbol = 2807;
+
+var Gdk_KEY_maltesecross_KEY_maltesecross = 2800;
+
+var Gdk_KEY_marker_KEY_marker = 2751;
+
+var Gdk_KEY_masculine_KEY_masculine = 186;
+
+var Gdk_KEY_minus_KEY_minus = 45;
+
+var Gdk_KEY_minutes_KEY_minutes = 2774;
+
+var Gdk_KEY_mu_KEY_mu = 181;
+
+var Gdk_KEY_multiply_KEY_multiply = 215;
+
+var Gdk_KEY_musicalflat_KEY_musicalflat = 2806;
+
+var Gdk_KEY_musicalsharp_KEY_musicalsharp = 2805;
+
+var Gdk_KEY_n_KEY_n = 110;
+
+var Gdk_KEY_nabla_KEY_nabla = 2245;
+
+var Gdk_KEY_nacute_KEY_nacute = 497;
+
+var Gdk_KEY_ncaron_KEY_ncaron = 498;
+
+var Gdk_KEY_ncedilla_KEY_ncedilla = 1009;
+
+var Gdk_KEY_ninesubscript_KEY_ninesubscript = 16785545;
+
+var Gdk_KEY_ninesuperior_KEY_ninesuperior = 16785529;
+
+var Gdk_KEY_nl_KEY_nl = 2536;
+
+var Gdk_KEY_nobreakspace_KEY_nobreakspace = 160;
+
+var Gdk_KEY_notapproxeq_KEY_notapproxeq = 16785991;
+
+var Gdk_KEY_notelementof_KEY_notelementof = 16785929;
+
+var Gdk_KEY_notequal_KEY_notequal = 2237;
+
+var Gdk_KEY_notidentical_KEY_notidentical = 16786018;
+
+var Gdk_KEY_notsign_KEY_notsign = 172;
+
+var Gdk_KEY_ntilde_KEY_ntilde = 241;
+
+var Gdk_KEY_numbersign_KEY_numbersign = 35;
+
+var Gdk_KEY_numerosign_KEY_numerosign = 1712;
+
+var Gdk_KEY_o_KEY_o = 111;
+
+var Gdk_KEY_oacute_KEY_oacute = 243;
+
+var Gdk_KEY_obarred_KEY_obarred = 16777845;
+
+var Gdk_KEY_obelowdot_KEY_obelowdot = 16785101;
+
+var Gdk_KEY_ocaron_KEY_ocaron = 16777682;
+
+var Gdk_KEY_ocircumflex_KEY_ocircumflex = 244;
+
+var Gdk_KEY_ocircumflexacute_KEY_ocircumflexacute = 16785105;
+
+var Gdk_KEY_ocircumflexbelowdot_KEY_ocircumflexbelowdot = 16785113;
+
+var Gdk_KEY_ocircumflexgrave_KEY_ocircumflexgrave = 16785107;
+
+var Gdk_KEY_ocircumflexhook_KEY_ocircumflexhook = 16785109;
+
+var Gdk_KEY_ocircumflextilde_KEY_ocircumflextilde = 16785111;
+
+var Gdk_KEY_odiaeresis_KEY_odiaeresis = 246;
+
+var Gdk_KEY_odoubleacute_KEY_odoubleacute = 501;
+
+var Gdk_KEY_oe_KEY_oe = 5053;
+
+var Gdk_KEY_ogonek_KEY_ogonek = 434;
+
+var Gdk_KEY_ograve_KEY_ograve = 242;
+
+var Gdk_KEY_ohook_KEY_ohook = 16785103;
+
+var Gdk_KEY_ohorn_KEY_ohorn = 16777633;
+
+var Gdk_KEY_ohornacute_KEY_ohornacute = 16785115;
+
+var Gdk_KEY_ohornbelowdot_KEY_ohornbelowdot = 16785123;
+
+var Gdk_KEY_ohorngrave_KEY_ohorngrave = 16785117;
+
+var Gdk_KEY_ohornhook_KEY_ohornhook = 16785119;
+
+var Gdk_KEY_ohorntilde_KEY_ohorntilde = 16785121;
+
+var Gdk_KEY_omacron_KEY_omacron = 1010;
+
+var Gdk_KEY_oneeighth_KEY_oneeighth = 2755;
+
+var Gdk_KEY_onefifth_KEY_onefifth = 2738;
+
+var Gdk_KEY_onehalf_KEY_onehalf = 189;
+
+var Gdk_KEY_onequarter_KEY_onequarter = 188;
+
+var Gdk_KEY_onesixth_KEY_onesixth = 2742;
+
+var Gdk_KEY_onesubscript_KEY_onesubscript = 16785537;
+
+var Gdk_KEY_onesuperior_KEY_onesuperior = 185;
+
+var Gdk_KEY_onethird_KEY_onethird = 2736;
+
+var Gdk_KEY_ooblique_KEY_ooblique = 248;
+
+var Gdk_KEY_openrectbullet_KEY_openrectbullet = 2786;
+
+var Gdk_KEY_openstar_KEY_openstar = 2789;
+
+var Gdk_KEY_opentribulletdown_KEY_opentribulletdown = 2788;
+
+var Gdk_KEY_opentribulletup_KEY_opentribulletup = 2787;
+
+var Gdk_KEY_ordfeminine_KEY_ordfeminine = 170;
+
+var Gdk_KEY_oslash_KEY_oslash = 248;
+
+var Gdk_KEY_otilde_KEY_otilde = 245;
+
+var Gdk_KEY_overbar_KEY_overbar = 3008;
+
+var Gdk_KEY_overline_KEY_overline = 1150;
+
+var Gdk_KEY_p_KEY_p = 112;
+
+var Gdk_KEY_pabovedot_KEY_pabovedot = 16784983;
+
+var Gdk_KEY_paragraph_KEY_paragraph = 182;
+
+var Gdk_KEY_parenleft_KEY_parenleft = 40;
+
+var Gdk_KEY_parenright_KEY_parenright = 41;
+
+var Gdk_KEY_partdifferential_KEY_partdifferential = 16785922;
+
+var Gdk_KEY_partialderivative_KEY_partialderivative = 2287;
+
+var Gdk_KEY_percent_KEY_percent = 37;
+
+var Gdk_KEY_period_KEY_period = 46;
+
+var Gdk_KEY_periodcentered_KEY_periodcentered = 183;
+
+var Gdk_KEY_permille_KEY_permille = 2773;
+
+var Gdk_KEY_phonographcopyright_KEY_phonographcopyright = 2811;
+
+var Gdk_KEY_plus_KEY_plus = 43;
+
+var Gdk_KEY_plusminus_KEY_plusminus = 177;
+
+var Gdk_KEY_prescription_KEY_prescription = 2772;
+
+var Gdk_KEY_prolongedsound_KEY_prolongedsound = 1200;
+
+var Gdk_KEY_punctspace_KEY_punctspace = 2726;
+
+var Gdk_KEY_q_KEY_q = 113;
+
+var Gdk_KEY_quad_KEY_quad = 3020;
+
+var Gdk_KEY_question_KEY_question = 63;
+
+var Gdk_KEY_questiondown_KEY_questiondown = 191;
+
+var Gdk_KEY_quotedbl_KEY_quotedbl = 34;
+
+var Gdk_KEY_quoteleft_KEY_quoteleft = 96;
+
+var Gdk_KEY_quoteright_KEY_quoteright = 39;
+
+var Gdk_KEY_r_KEY_r = 114;
+
+var Gdk_KEY_racute_KEY_racute = 480;
+
+var Gdk_KEY_radical_KEY_radical = 2262;
+
+var Gdk_KEY_rcaron_KEY_rcaron = 504;
+
+var Gdk_KEY_rcedilla_KEY_rcedilla = 947;
+
+var Gdk_KEY_registered_KEY_registered = 174;
+
+var Gdk_KEY_rightanglebracket_KEY_rightanglebracket = 2750;
+
+var Gdk_KEY_rightarrow_KEY_rightarrow = 2301;
+
+var Gdk_KEY_rightcaret_KEY_rightcaret = 2982;
+
+var Gdk_KEY_rightdoublequotemark_KEY_rightdoublequotemark = 2771;
+
+var Gdk_KEY_rightmiddlecurlybrace_KEY_rightmiddlecurlybrace = 2224;
+
+var Gdk_KEY_rightmiddlesummation_KEY_rightmiddlesummation = 2231;
+
+var Gdk_KEY_rightopentriangle_KEY_rightopentriangle = 2765;
+
+var Gdk_KEY_rightpointer_KEY_rightpointer = 2795;
+
+var Gdk_KEY_rightshoe_KEY_rightshoe = 3032;
+
+var Gdk_KEY_rightsinglequotemark_KEY_rightsinglequotemark = 2769;
+
+var Gdk_KEY_rightt_KEY_rightt = 2549;
+
+var Gdk_KEY_righttack_KEY_righttack = 3068;
+
+var Gdk_KEY_s_KEY_s = 115;
+
+var Gdk_KEY_sabovedot_KEY_sabovedot = 16784993;
+
+var Gdk_KEY_sacute_KEY_sacute = 438;
+
+var Gdk_KEY_scaron_KEY_scaron = 441;
+
+var Gdk_KEY_scedilla_KEY_scedilla = 442;
+
+var Gdk_KEY_schwa_KEY_schwa = 16777817;
+
+var Gdk_KEY_scircumflex_KEY_scircumflex = 766;
+
+var Gdk_KEY_script_switch_KEY_script_switch = 65406;
+
+var Gdk_KEY_seconds_KEY_seconds = 2775;
+
+var Gdk_KEY_section_KEY_section = 167;
+
+var Gdk_KEY_semicolon_KEY_semicolon = 59;
+
+var Gdk_KEY_semivoicedsound_KEY_semivoicedsound = 1247;
+
+var Gdk_KEY_seveneighths_KEY_seveneighths = 2758;
+
+var Gdk_KEY_sevensubscript_KEY_sevensubscript = 16785543;
+
+var Gdk_KEY_sevensuperior_KEY_sevensuperior = 16785527;
+
+var Gdk_KEY_signaturemark_KEY_signaturemark = 2762;
+
+var Gdk_KEY_signifblank_KEY_signifblank = 2732;
+
+var Gdk_KEY_similarequal_KEY_similarequal = 2249;
+
+var Gdk_KEY_singlelowquotemark_KEY_singlelowquotemark = 2813;
+
+var Gdk_KEY_sixsubscript_KEY_sixsubscript = 16785542;
+
+var Gdk_KEY_sixsuperior_KEY_sixsuperior = 16785526;
+
+var Gdk_KEY_slash_KEY_slash = 47;
+
+var Gdk_KEY_soliddiamond_KEY_soliddiamond = 2528;
+
+var Gdk_KEY_space_KEY_space = 32;
+
+var Gdk_KEY_squareroot_KEY_squareroot = 16785946;
+
+var Gdk_KEY_ssharp_KEY_ssharp = 223;
+
+var Gdk_KEY_sterling_KEY_sterling = 163;
+
+var Gdk_KEY_stricteq_KEY_stricteq = 16786019;
+
+var Gdk_KEY_t_KEY_t = 116;
+
+var Gdk_KEY_tabovedot_KEY_tabovedot = 16785003;
+
+var Gdk_KEY_tcaron_KEY_tcaron = 443;
+
+var Gdk_KEY_tcedilla_KEY_tcedilla = 510;
+
+var Gdk_KEY_telephone_KEY_telephone = 2809;
+
+var Gdk_KEY_telephonerecorder_KEY_telephonerecorder = 2810;
+
+var Gdk_KEY_therefore_KEY_therefore = 2240;
+
+var Gdk_KEY_thinspace_KEY_thinspace = 2727;
+
+var Gdk_KEY_thorn_KEY_thorn = 254;
+
+var Gdk_KEY_threeeighths_KEY_threeeighths = 2756;
+
+var Gdk_KEY_threefifths_KEY_threefifths = 2740;
+
+var Gdk_KEY_threequarters_KEY_threequarters = 190;
+
+var Gdk_KEY_threesubscript_KEY_threesubscript = 16785539;
+
+var Gdk_KEY_threesuperior_KEY_threesuperior = 179;
+
+var Gdk_KEY_tintegral_KEY_tintegral = 16785965;
+
+var Gdk_KEY_topintegral_KEY_topintegral = 2212;
+
+var Gdk_KEY_topleftparens_KEY_topleftparens = 2219;
+
+var Gdk_KEY_topleftradical_KEY_topleftradical = 2210;
+
+var Gdk_KEY_topleftsqbracket_KEY_topleftsqbracket = 2215;
+
+var Gdk_KEY_topleftsummation_KEY_topleftsummation = 2225;
+
+var Gdk_KEY_toprightparens_KEY_toprightparens = 2221;
+
+var Gdk_KEY_toprightsqbracket_KEY_toprightsqbracket = 2217;
+
+var Gdk_KEY_toprightsummation_KEY_toprightsummation = 2229;
+
+var Gdk_KEY_topt_KEY_topt = 2551;
+
+var Gdk_KEY_topvertsummationconnector_KEY_topvertsummationconnector = 2227;
+
+var Gdk_KEY_trademark_KEY_trademark = 2761;
+
+var Gdk_KEY_trademarkincircle_KEY_trademarkincircle = 2763;
+
+var Gdk_KEY_tslash_KEY_tslash = 956;
+
+var Gdk_KEY_twofifths_KEY_twofifths = 2739;
+
+var Gdk_KEY_twosubscript_KEY_twosubscript = 16785538;
+
+var Gdk_KEY_twosuperior_KEY_twosuperior = 178;
+
+var Gdk_KEY_twothirds_KEY_twothirds = 2737;
+
+var Gdk_KEY_u_KEY_u = 117;
+
+var Gdk_KEY_uacute_KEY_uacute = 250;
+
+var Gdk_KEY_ubelowdot_KEY_ubelowdot = 16785125;
+
+var Gdk_KEY_ubreve_KEY_ubreve = 765;
+
+var Gdk_KEY_ucircumflex_KEY_ucircumflex = 251;
+
+var Gdk_KEY_udiaeresis_KEY_udiaeresis = 252;
+
+var Gdk_KEY_udoubleacute_KEY_udoubleacute = 507;
+
+var Gdk_KEY_ugrave_KEY_ugrave = 249;
+
+var Gdk_KEY_uhook_KEY_uhook = 16785127;
+
+var Gdk_KEY_uhorn_KEY_uhorn = 16777648;
+
+var Gdk_KEY_uhornacute_KEY_uhornacute = 16785129;
+
+var Gdk_KEY_uhornbelowdot_KEY_uhornbelowdot = 16785137;
+
+var Gdk_KEY_uhorngrave_KEY_uhorngrave = 16785131;
+
+var Gdk_KEY_uhornhook_KEY_uhornhook = 16785133;
+
+var Gdk_KEY_uhorntilde_KEY_uhorntilde = 16785135;
+
+var Gdk_KEY_umacron_KEY_umacron = 1022;
+
+var Gdk_KEY_underbar_KEY_underbar = 3014;
+
+var Gdk_KEY_underscore_KEY_underscore = 95;
+
+var Gdk_KEY_union_KEY_union = 2269;
+
+var Gdk_KEY_uogonek_KEY_uogonek = 1017;
+
+var Gdk_KEY_uparrow_KEY_uparrow = 2300;
+
+var Gdk_KEY_upcaret_KEY_upcaret = 2985;
+
+var Gdk_KEY_upleftcorner_KEY_upleftcorner = 2540;
+
+var Gdk_KEY_uprightcorner_KEY_uprightcorner = 2539;
+
+var Gdk_KEY_upshoe_KEY_upshoe = 3011;
+
+var Gdk_KEY_upstile_KEY_upstile = 3027;
+
+var Gdk_KEY_uptack_KEY_uptack = 3022;
+
+var Gdk_KEY_uring_KEY_uring = 505;
+
+var Gdk_KEY_utilde_KEY_utilde = 1021;
+
+var Gdk_KEY_v_KEY_v = 118;
+
+var Gdk_KEY_variation_KEY_variation = 2241;
+
+var Gdk_KEY_vertbar_KEY_vertbar = 2552;
+
+var Gdk_KEY_vertconnector_KEY_vertconnector = 2214;
+
+var Gdk_KEY_voicedsound_KEY_voicedsound = 1246;
+
+var Gdk_KEY_vt_KEY_vt = 2537;
+
+var Gdk_KEY_w_KEY_w = 119;
+
+var Gdk_KEY_wacute_KEY_wacute = 16785027;
+
+var Gdk_KEY_wcircumflex_KEY_wcircumflex = 16777589;
+
+var Gdk_KEY_wdiaeresis_KEY_wdiaeresis = 16785029;
+
+var Gdk_KEY_wgrave_KEY_wgrave = 16785025;
+
+var Gdk_KEY_x_KEY_x = 120;
+
+var Gdk_KEY_xabovedot_KEY_xabovedot = 16785035;
+
+var Gdk_KEY_y_KEY_y = 121;
+
+var Gdk_KEY_yacute_KEY_yacute = 253;
+
+var Gdk_KEY_ybelowdot_KEY_ybelowdot = 16785141;
+
+var Gdk_KEY_ycircumflex_KEY_ycircumflex = 16777591;
+
+var Gdk_KEY_ydiaeresis_KEY_ydiaeresis = 255;
+
+var Gdk_KEY_yen_KEY_yen = 165;
+
+var Gdk_KEY_ygrave_KEY_ygrave = 16785139;
+
+var Gdk_KEY_yhook_KEY_yhook = 16785143;
+
+var Gdk_KEY_ytilde_KEY_ytilde = 16785145;
+
+var Gdk_KEY_z_KEY_z = 122;
+
+var Gdk_KEY_zabovedot_KEY_zabovedot = 447;
+
+var Gdk_KEY_zacute_KEY_zacute = 444;
+
+var Gdk_KEY_zcaron_KEY_zcaron = 446;
+
+var Gdk_KEY_zerosubscript_KEY_zerosubscript = 16785536;
+
+var Gdk_KEY_zerosuperior_KEY_zerosuperior = 16785520;
+
+var Gdk_KEY_zstroke_KEY_zstroke = 16777654;
+
+var Gdk_MODIFIER_MASK_MODIFIER_MASK = 469769999;
+
+var Gdk_PRIORITY_REDRAW_PRIORITY_REDRAW = 120;
+
+
+extern callback void GdkClipboard_signal_changed(ptr, ptr);
+extern callback void GdkContentProvider_signal_content_changed(ptr, ptr);
+extern callback void GdkDevice_signal_changed(ptr, ptr);
+extern callback void GdkDevice_signal_tool_changed(ptr, ptr, ptr);
+extern callback void GdkDisplay_signal_closed(ptr, int, ptr);
+extern callback void GdkDisplay_signal_opened(ptr, ptr);
+extern callback void GdkDisplay_signal_seat_added(ptr, ptr, ptr);
+extern callback void GdkDisplay_signal_seat_removed(ptr, ptr, ptr);
+extern callback void GdkDisplay_signal_setting_changed(ptr, str, ptr);
+extern callback void GdkDisplayManager_signal_display_opened(ptr, ptr, ptr);
+extern callback void GdkDrag_signal_cancel(ptr, int, ptr);
+extern callback void GdkDrag_signal_dnd_finished(ptr, ptr);
+extern callback void GdkDrag_signal_drop_performed(ptr, ptr);
+extern callback void GdkFrameClock_signal_after_paint(ptr, ptr);
+extern callback void GdkFrameClock_signal_before_paint(ptr, ptr);
+extern callback void GdkFrameClock_signal_flush_events(ptr, ptr);
+extern callback void GdkFrameClock_signal_layout(ptr, ptr);
+extern callback void GdkFrameClock_signal_paint(ptr, ptr);
+extern callback void GdkFrameClock_signal_resume_events(ptr, ptr);
+extern callback void GdkFrameClock_signal_update(ptr, ptr);
+extern callback void GdkMonitor_signal_invalidate(ptr, ptr);
+extern callback void GdkSeat_signal_device_added(ptr, ptr, ptr);
+extern callback void GdkSeat_signal_device_removed(ptr, ptr, ptr);
+extern callback void GdkSeat_signal_tool_added(ptr, ptr, ptr);
+extern callback void GdkSeat_signal_tool_removed(ptr, ptr, ptr);
+extern callback void GdkSurface_signal_enter_monitor(ptr, ptr, ptr);
+extern callback int GdkSurface_signal_event(ptr, ptr, ptr);
+extern callback void GdkSurface_signal_layout(ptr, int, int, ptr);
+extern callback void GdkSurface_signal_leave_monitor(ptr, ptr, ptr);
+extern callback int GdkSurface_signal_render(ptr, ptr, ptr);
+extern callback void GdkVulkanContext_signal_images_updated(ptr, ptr);
+////////////////////////
+extern callback void GdkContentProvider_virtual_attach_clipboard(ptr, ptr);
+extern callback void GdkContentProvider_virtual_content_changed(ptr);
+extern callback void GdkContentProvider_virtual_detach_clipboard(ptr, ptr);
+extern callback int GdkContentProvider_virtual_get_value(ptr, ptr);
+extern callback ptr GdkContentProvider_virtual_ref_formats(ptr);
+extern callback ptr GdkContentProvider_virtual_ref_storable_formats(ptr);
+extern callback void GdkContentProvider_virtual_write_mime_type_async(ptr, str, ptr, int, ptr, ptr, ptr);
+extern callback int GdkContentProvider_virtual_write_mime_type_finish(ptr, ptr);
+

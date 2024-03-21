@@ -1,0 +1,54 @@
+
+fun digest( kind, input)
+{
+    var ctx = EVP_MD_CTX_new();
+
+    var r = EVP_DigestInit_ex( ctx, kind, 0);
+    if(!r)
+    {
+        throw "digest_init failed";
+    }
+
+    r = EVP_DigestUpdate( ctx, input, input.length );
+    if(!r)
+    {
+        throw "digest_update failed";
+    }
+
+    var buf = sys.buffer(1024);
+    var len = 0;
+    r = EVP_DigestFinal_ex(ctx, buf, &len);
+    if(!r) throw "digest_final failed";
+
+    var result = buf.asString(len);
+
+    EVP_MD_CTX_free(ctx);
+
+    return result;
+}
+
+
+fun md5(input)
+{
+    var kind = EVP_md5();
+    return digest( kind, input );
+}
+
+fun sha1(input)
+{
+    var kind = EVP_sha1();
+    return digest( kind, input );
+}
+
+fun sha256(input)
+{
+    var kind = EVP_sha256();
+    return digest( kind, input );
+}
+
+fun sha512(input)
+{
+    var kind = EVP_sha512();
+    return digest( kind, input );
+}
+

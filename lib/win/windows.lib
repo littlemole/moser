@@ -1,0 +1,563 @@
+
+
+extern {
+    ptr memcpy( ptr, ptr, int );
+}
+
+fun MAKELONG(lo,hi)
+{
+    return (lo & 0xFFFF ) | ( (hi & 0xFFFF) << 16 );
+}
+
+fun MAKEWORD(lo,hi)
+{
+    return (lo & 0xFF ) | ( (hi & 0xFF) << 8 );
+}
+
+fun HIWORD(x)
+{
+    return (x >> 16) & 0xFFFF;
+}
+
+fun LOWORD(x)
+{
+    return x & 0xFFFF;
+}
+
+fun HIBYTE(x)
+{
+    return (x >> 8) & 0xFF;
+}
+
+fun LOBYTE(x)
+{
+    return x & 0xFF;
+}
+
+
+var IDOK                =1;
+var IDCANCEL            =2;
+var IDABORT             =3;
+var IDRETRY             =4;
+var IDIGNORE            =5;
+var IDYES               =6;
+var IDNO                =7;
+
+
+class Wnd {
+
+    Wnd()
+    {
+        this.parent = 0;
+        this.windowClass = wstring(this.className);
+        this.exStyle = 0;
+        this.style = Win32.WINDOW_STYLE.WS_OVERLAPPEDWINDOW;
+        this.clientRect = Win32.RECT();
+    }
+
+    create(title) 
+    {
+        this.hwnd = Win32.CreateWindowExW(
+            this.exStyle,                   // Optional window styles.
+            this.windowClass,               // Window class
+            wstring(title),    		        // Window text
+            this.style,                     // Window style
+
+            // Size and position
+            Win32.CW_USEDEFAULT,Win32.CW_USEDEFAULT,Win32.CW_USEDEFAULT,Win32.CW_USEDEFAULT,
+
+            this.parent,                    // Parent window    
+            this.id,       	                // Menu
+            Win32.GetModuleHandleW(0),      // Instance handle
+            0        	                    // Additional application data
+        );
+    }
+
+    show() 
+    {
+        var args = arguments();
+        var nShow = Win32.SHOW_WINDOW_CMD.SW_SHOW;
+        if(args.length > 0)
+        {
+            nShow = args[0];
+        }
+        Win32.ShowWindow(this.hwnd, nShow);
+    }
+
+    move( x,y)
+    {
+        Win32.SetWindowPos(this.hwnd,0,x,y,0,0,Win32.SET_WINDOW_POS_FLAGS.SWP_NOACTIVATE | Win32.SET_WINDOW_POS_FLAGS.SWP_NOSIZE);
+    }
+
+    resize(w,h)
+    {
+        Win32.SetWindowPos(this.hwnd,0,0,0,w,h,Win32.SET_WINDOW_POS_FLAGS.SWP_NOACTIVATE | Win32.SET_WINDOW_POS_FLAGS.SWP_NOMOVE);
+    }
+
+    setPos(x,y,w,h)
+    {
+        Win32.SetWindowPos(this.hwnd,0,x,y,w,h,Win32.SET_WINDOW_POS_FLAGS.SWP_NOACTIVATE);
+    }
+
+    resizeChild( childWnd )
+    {
+        if(!childWnd) return;
+
+        Win32.GetClientRect( this.hwnd, this.clientRect );
+        Win32.SetWindowPos( 
+            childWnd, 
+            0, 
+            this.clientRect.left, 
+            this.clientRect.top, 
+            this.clientRect.right - this.clientRect.left, 
+            this.clientRect.bottom - this.clientRect.top, 
+            Win32.SET_WINDOW_POS_FLAGS.SWP_NOACTIVATE
+        );
+    }
+}
+
+class Window : Wnd {
+
+    Window() {
+
+        super.Wnd();
+
+        this.wndProc = Win32.WNDPROC( this.windowProcedure);
+
+        var wc = Win32.WNDCLASSW();
+        wc.lpfnWndProc = this.wndProc;
+        wc.hInstance = Win32.GetModuleHandleW(0);
+        wc.lpszClassName = this.windowClass;
+        wc.hbrBackground = Win32.SYS_COLOR_INDEX.COLOR_WINDOW+1;
+
+        Win32.RegisterClassW(wc);
+
+        this.wc = wc;
+        this.ps = Win32.PAINTSTRUCT();
+        this.children = [];
+        this.msgHandler = {};
+        this.cmdHandler = {};
+        this.accels = 0;
+
+        var accels = [];
+
+        this.methods().forEach( fun(k,m) 
+        {
+            if($m)
+            {
+                if($m.exists("msg"))
+                {
+                    var msg = $m.msg.keys()[0];
+                    var id = Win32{msg};
+                    this.msgHandler{id} = m;
+                }
+                if($m.exists("cmd"))
+                {
+                    var cmd = $m.cmd.keys()[0];
+                    var id = runtime.global(cmd);
+                    this.cmdHandler{id} = m;
+                    if($m.exists("accel"))
+                    {
+                        var key = $m.accel.key;
+                        var flag = $m.accel.flag;
+                        if( typeof(key) == "str")
+                        {
+                            key = char(key);
+                        }
+                        accels.push({
+                            "cmd" : id,
+                            "key" : key,
+                            "flag" : Win32.ACCEL_VIRT_FLAGS{flag}
+                        });
+                    }
+                }              
+            }
+        });
+
+        if (accels.length == 0) return;
+
+        var as = os.malloc(Win32.ACCEL.size * accels.length);
+        for( var i = 0; i < accels.length; i++)
+        {
+            var a   = Win32.ACCEL( sys.pointer( int(as) + (Win32.ACCEL.size * i)) );
+            a.key   = int(accels[i].key);
+            a.fVirt = accels[i].flag | Win32.ACCEL_VIRT_FLAGS.FVIRTKEY;
+            a.cmd   = accels[i].cmd;
+        };
+
+        this.accels = Win32.CreateAcceleratorTableA(as,accels.length);
+    }
+
+    add( child )
+    {
+        child.parent = this.hwnd;
+        this.children.push(child);
+    }
+
+    windowProcedure( hWnd, msg, wParam, lParam) 
+    {
+        if( msg == Win32.WM_CREATE) 
+        {
+            var hMenu = win32.menue(this.menu);
+            Win32.SetMenu(hWnd, hMenu);
+            this.hwnd = hWnd;
+            if(!this.msgHandler.exists(msg)) return 0;
+        }
+        if(this.msgHandler.exists(msg))
+        {
+            var r = this.msgHandler{msg}(wParam,lParam);
+            if(r != nil)
+                return r;
+            return Win32.DefWindowProcW(hWnd, msg, wParam, lParam);
+        }
+        /*
+        if( msg == Win32.WM_DESTROY ) 
+        {
+            Win32.PostQuitMessage(0);
+            return 0;
+        }
+        
+        if( msg == Win32.WM_PAINT ) 
+        {
+            var hdc = Win32.BeginPaint(hWnd, this.ps);
+            var txt = wstring("HELLO WINDOWS");
+            Win32.TextOutW( hdc, 50,50, txt, txt.length);
+            Win32.EndPaint(hWnd, this.ps);
+            return 0;
+        }
+        */
+        if( msg == Win32.WM_COMMAND ) 
+        {
+            var id = LOWORD(int(wParam));
+            if(this.cmdHandler.exists(id))
+            {
+                var r = this.cmdHandler{id}(wParam,lParam);
+                if(r!=nil)
+                {
+                    return r;
+                }
+            }
+            return Win32.DefWindowProcW(hWnd, msg, wParam, lParam);
+        }
+        return Win32.DefWindowProcW(hWnd, msg, wParam, lParam);
+    }    
+
+    control( clazz, id, style )
+    {
+        var args = arguments();
+        var title = "";
+        var font = Font("Consolas").create();
+
+        if(args.length > 3 )
+        {
+            title = args[3];
+        }
+        if(args.length > 4 )
+        {
+            font = args[4];
+        }
+
+        var edit = Control( clazz, id );
+        edit.style = style;
+                                
+        this.add(edit);
+        edit.create(title);
+
+        this.font = Font("Consolas").create();
+        Win32.SendMessageW(edit.hwnd, Win32.WM_SETFONT,font,1);
+
+        return edit;
+    }
+}
+
+class Control : Wnd {
+
+    Control(clazz) {
+
+        var args = arguments();
+        this.windowClass = wstring(clazz);
+
+        if(args.length >1 )
+        {
+            var id = args[1];
+            this.id = id;
+        }
+/*
+        if(args.length >2 )
+        {
+            var parent = args[2];
+            parent.add(this);
+        }
+*/
+    }
+}
+
+
+class Module
+{
+    Module(filename)
+    {
+        this.handle = Win32.LoadLibraryW(wstring(filename));
+    }
+
+    ~Module()
+    {
+        Win32.FreeLibrary(this.handle);
+    }
+}
+
+
+class Dialog
+{
+    Dialog(module)
+    {
+        if(typeof(module) == "str")
+        {
+            this.module = Module(module);
+        }
+        else
+        {
+            this.module = module;
+        }
+
+        this.msgHandler = {};
+        this.cmdHandler = {};
+
+        this.methods().forEach( fun(k,m) 
+        {
+            if($m)
+            {
+                if($m.exists("msg"))
+                {
+                    var msg = $m.msg.keys()[0];
+                    var id = Win32{msg};
+                    this.msgHandler{id} = m;
+                }
+                if($m.exists("cmd"))
+                {
+                    var cmd = $m.cmd.keys()[0];
+                    var id = runtime.global(cmd);
+                    this.cmdHandler{id} = m;
+                }              
+            }
+        });
+    }
+
+    show(id)
+    {
+        this.dlgProc = Win32.DLGPROC( this.dialogProcedure );
+        var r = Win32.DialogBoxParamW( this.module.handle, win32.MAKEINTRESOURCE(id) , 0, this.dlgProc, 0);
+        //print(int(r));
+        return int(r);
+    }
+
+    dialogProcedure( hWnd, msg, wParam, lParam) 
+    {
+        if(msg == Win32.WM_INITDIALOG )
+        {
+            this.hwnd = hWnd;
+        }
+        if(this.msgHandler.exists(msg))
+        {            
+            var r = this.msgHandler{msg}(wParam,lParam);
+            if(msg == Win32.WM_INITDIALOG )
+            {
+                return 1;
+            }
+            return 0;
+        }
+        else if(msg == Win32.WM_COMMAND)
+        {
+            var id = int(wParam);
+            if(this.cmdHandler.exists(id))
+            {
+                var r = this.cmdHandler{id}(wParam,lParam);
+                if(r!=nil)
+                {
+                    Win32.EndDialog(hWnd, r);
+                }
+                return 0;
+            }
+            if( int(wParam) == IDCANCEL)
+            {
+                var r = -1;
+                Win32.EndDialog(hWnd, r);
+            }
+            if(int(wParam) == IDOK)
+            {
+                Win32.EndDialog(hWnd, 0);
+            }
+        }
+        return 0;        
+    }
+}
+
+
+class Encodings
+{
+    Encodings()
+    {
+        this.codePages = [
+            65001,
+            1250,
+            1200,
+            28591
+        ]; 
+
+        this.codePagesDesc = [ 
+            "65001 (UTF-8)", 
+            "1250  (ANSI - Central Europe)",
+            "1200  (UTF-16)",
+            "28591 (ISO 8859-1 Latin I)"
+        ];
+
+        this.cpinfo = Win32.CPINFOEXW();
+
+        Win32.EnumSystemCodePagesW( 
+            Win32.CODEPAGE_ENUMPROCW (this.enumCb),
+            0
+        );
+    }
+
+    enumCb(id)
+    {
+        var p = this.cpinfo;
+        var i = int(string(id));
+        //print i;
+        var x = Win32.GetCPInfoExW( i, 0, &p);
+        if(x == 0) return 1;
+        var ws = this.cpinfo.CodePageName.wstring();
+        //print string(ws);
+        this.codePages.push(i);
+        this.codePagesDesc.push(string(ws));
+        return 1;
+    }
+}
+
+
+var win32Timers = {};
+
+fun setTimeout( cb, ms )
+{
+    var handler = fun( hwnd, msg, wParam, lParam ) 
+    {
+        var id = int(wParam);
+        var r = cb();
+        if(r != nil) return;
+        Win32.KillTimer( 0, wParam );
+        delete id from win32Timers;
+    };
+
+    var timer =
+    {
+        "proc" : Win32.TIMERPROC( handler )
+    };
+    
+    timer.id = Win32.SetTimer( 0, 0, ms, timer.proc );
+    win32Timers{ int(timer.id) } = timer;
+}
+
+
+class FileDialog
+{
+    FileDialog( hwnd )
+    {
+        this.filter = "All\0*.*\0\0";
+        this.filenameBuffer = sys.buffer(1024);
+        this.titleBuffer = sys.buffer(1024);
+
+        this.of = Win32.OPENFILENAMEW();
+        this.of.lStructSize = Win32.OPENFILENAMEW.size;
+        this.of.hwndOwner = hwnd;
+        this. of.lpstrFile = this.filenameBuffer;
+        this.of.nMaxFile = 512;
+        this.of.lpstrFilter = wstring(this.filter);
+        this.of.nFilterIndex = 0;
+        this.of.lpstrFileTitle = this.titleBuffer;
+        this.of.nMaxFileTitle = 512;
+        this.of.lpstrInitialDir = 0;
+        this.of.Flags = 0;
+    }
+
+    open()
+    {
+        var r = Win32.GetOpenFileNameW(this.of);
+        if(r)
+        {
+            return string(this.filenameBuffer.asWideString());
+        }
+    }
+
+    save()
+    {
+        var r = Win32.GetSaveFileNameW(this.of);
+        if(r)
+        {
+            return string(this.filenameBuffer.asWideString());
+        }
+    }
+}
+
+
+class Font
+{
+    Font( fontName )
+    {
+        this.hfont = Win32.LOGFONTW();
+        this.hfont.lfHeight = 28;
+        this.hfont.lfWeight = 400;
+        this.hfont.lfCharSet = 1;
+        var f = this.hfont.lfFaceName;
+        var p = sys.pointer(wstring(fontName));
+        memcpy(f,p,(fontName.length+1)*2);
+    }
+
+    create()
+    {
+        return Win32.CreateFontIndirectW(this.hfont);
+    }
+}
+
+
+fun set_webview_user_data_folder(path)
+{
+	var buf = sys.buffer(2048);
+	Win32.SHGetFolderPathW (nil, Win32.CSIDL_LOCAL_APPDATA, 0,0,buf);
+		
+	var localAppData = string(buf.asWideString());
+	var userDataFolder = localAppData + path;
+	Win32.SetEnvironmentVariableW(wstring("WEBVIEW2_USER_DATA_FOLDER"),wstring(userDataFolder));
+}
+
+
+var main_loop_msg = Win32.MSG();
+
+fun run()
+{
+    var args = arguments();
+
+    if(args.length > 0)
+    {      
+        var wnd = args[0];
+
+        //print wnd.accels;
+
+        while (Win32.GetMessageW(main_loop_msg, 0, 0, 0))
+        {
+            if ( (!wnd.accels) || (!int(Win32.TranslateAcceleratorW(wnd.hwnd, wnd.accels, main_loop_msg))) )
+            {
+	            Win32.TranslateMessage(main_loop_msg);
+	            Win32.DispatchMessageW(main_loop_msg);
+            }
+        }
+    }
+    else
+    {
+        while (Win32.GetMessageW(main_loop_msg, 0, 0, 0))
+        {
+	        Win32.TranslateMessage(main_loop_msg);
+	        Win32.DispatchMessageW(main_loop_msg);
+        }
+    }
+}
+

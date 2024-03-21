@@ -1,0 +1,30 @@
+
+var i = 2;
+
+try 
+{
+    while(i>0)
+    {
+        i--;
+        break;
+    }
+}
+catch(e)
+{
+
+}
+
+i = 2;
+
+while(i>0)
+{
+    try 
+    {
+        break; // expect: [line 23] Error at ';': cannot break out of try catch
+    }
+    catch(e)
+    {
+
+    }
+    i--;
+}

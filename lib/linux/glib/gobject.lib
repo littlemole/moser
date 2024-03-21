@@ -1,0 +1,729 @@
+// load libgio-2.0.so.0: 140549567729664
+// load libgobject-2.0.so.0: 140549573808128
+// load libglib-2.0.so.0: 140549569667072
+// load libgdk-3.so.0: 140549564284928
+// load libgtk-3.so.0: 140549543690240
+// load libgdk-3.so.0: 140549564284928
+// load libgobject-2.0.so.0: 140549573808128
+// load libgtksourceview-3.0.so.1: 140549539618816
+// load libwebkit2gtk-4.0.so.37: 140549438832640
+// load libjavascriptcoregtk-4.0.so.18: 140549411569664
+// load libjavascriptcoregtk-4.0.so.18: 140549411569664
+// namespace GObject
+// libs libgobject-2.0.so.0
+extern from "libgobject-2.0.so.0" {
+ptr g_binding_dup_source(ptr);
+ptr g_binding_dup_target(ptr);
+int g_binding_get_flags(ptr);
+ptr g_binding_get_source(ptr);
+str g_binding_get_source_property(ptr);
+ptr g_binding_get_target(ptr);
+str g_binding_get_target_property(ptr);
+void g_binding_unbind(ptr);
+ptr g_binding_group_new();
+void g_binding_group_bind(ptr, str, ptr, str, int);
+void g_binding_group_bind_with_closures(ptr, str, ptr, str, int, ptr, ptr);
+ptr g_binding_group_dup_source(ptr);
+void g_binding_group_set_source(ptr, ptr);
+void g_cclosure_marshal_BOOLEAN__BOXED_BOXED(ptr, ptr, ptr, uint, ptr, ptr, ptr);
+void g_cclosure_marshal_BOOLEAN__FLAGS(ptr, ptr, ptr, uint, ptr, ptr, ptr);
+void g_cclosure_marshal_STRING__OBJECT_POINTER(ptr, ptr, ptr, uint, ptr, ptr, ptr);
+void g_cclosure_marshal_VOID__BOOLEAN(ptr, ptr, ptr, uint, ptr, ptr, ptr);
+void g_cclosure_marshal_VOID__BOXED(ptr, ptr, ptr, uint, ptr, ptr, ptr);
+void g_cclosure_marshal_VOID__CHAR(ptr, ptr, ptr, uint, ptr, ptr, ptr);
+void g_cclosure_marshal_VOID__DOUBLE(ptr, ptr, ptr, uint, ptr, ptr, ptr);
+void g_cclosure_marshal_VOID__ENUM(ptr, ptr, ptr, uint, ptr, ptr, ptr);
+void g_cclosure_marshal_VOID__FLAGS(ptr, ptr, ptr, uint, ptr, ptr, ptr);
+void g_cclosure_marshal_VOID__FLOAT(ptr, ptr, ptr, uint, ptr, ptr, ptr);
+void g_cclosure_marshal_VOID__INT(ptr, ptr, ptr, uint, ptr, ptr, ptr);
+void g_cclosure_marshal_VOID__LONG(ptr, ptr, ptr, uint, ptr, ptr, ptr);
+void g_cclosure_marshal_VOID__OBJECT(ptr, ptr, ptr, uint, ptr, ptr, ptr);
+void g_cclosure_marshal_VOID__PARAM(ptr, ptr, ptr, uint, ptr, ptr, ptr);
+void g_cclosure_marshal_VOID__POINTER(ptr, ptr, ptr, uint, ptr, ptr, ptr);
+void g_cclosure_marshal_VOID__STRING(ptr, ptr, ptr, uint, ptr, ptr, ptr);
+void g_cclosure_marshal_VOID__UCHAR(ptr, ptr, ptr, uint, ptr, ptr, ptr);
+void g_cclosure_marshal_VOID__UINT(ptr, ptr, ptr, uint, ptr, ptr, ptr);
+void g_cclosure_marshal_VOID__UINT_POINTER(ptr, ptr, ptr, uint, ptr, ptr, ptr);
+void g_cclosure_marshal_VOID__ULONG(ptr, ptr, ptr, uint, ptr, ptr, ptr);
+void g_cclosure_marshal_VOID__VARIANT(ptr, ptr, ptr, uint, ptr, ptr, ptr);
+void g_cclosure_marshal_VOID__VOID(ptr, ptr, ptr, uint, ptr, ptr, ptr);
+void g_cclosure_marshal_generic(ptr, ptr, ptr, uint, ptr, ptr, ptr);
+ptr g_closure_new_object(uint, ptr);
+ptr g_closure_new_simple(uint, ptr);
+void g_closure_invalidate(ptr);
+void g_closure_invoke(ptr, ptr, uint, ptr, ptr);
+ptr g_closure_ref(ptr);
+void g_closure_sink(ptr);
+void g_closure_unref(ptr);
+ptr g_object_newv(ulong, uint, ptr);
+ulong g_object_compat_control(ptr, ulong, ptr);
+ptr g_object_interface_find_property(ptr, ptr, str);
+void g_object_interface_install_property(ptr, ptr, ptr);
+ptr g_object_interface_list_properties(ptr, ptr, ptr);
+ptr g_object_bind_property(ptr, str, ptr, str, int);
+ptr g_object_bind_property_with_closures(ptr, str, ptr, str, int, ptr, ptr);
+void g_object_force_floating(ptr);
+void g_object_freeze_notify(ptr);
+ptr g_object_get_data(ptr, str);
+void g_object_get_property(ptr, str, ptr);
+ptr g_object_get_qdata(ptr, uint);
+void g_object_getv(ptr, uint, ptr, ptr);
+int g_object_is_floating(ptr);
+void g_object_notify(ptr, str);
+void g_object_notify_by_pspec(ptr, ptr);
+ptr g_object_ref(ptr);
+ptr g_object_ref_sink(ptr);
+void g_object_run_dispose(ptr);
+void g_object_set_data(ptr, str, ptr);
+void g_object_set_property(ptr, str, ptr);
+ptr g_object_steal_data(ptr, str);
+ptr g_object_steal_qdata(ptr, uint);
+void g_object_thaw_notify(ptr);
+void g_object_unref(ptr);
+void g_object_watch_closure(ptr, ptr);
+ptr g_object_class_find_property(ptr, str);
+void g_object_class_install_properties(ptr, uint, ptr);
+void g_object_class_install_property(ptr, uint, ptr);
+ptr g_object_class_list_properties(ptr, ptr);
+void g_object_class_override_property(ptr, uint, str);
+int g_param_spec_is_valid_name(ptr, str);
+str g_param_spec_get_blurb(ptr);
+ptr g_param_spec_get_default_value(ptr);
+str g_param_spec_get_name(ptr);
+uint g_param_spec_get_name_quark(ptr);
+str g_param_spec_get_nick(ptr);
+ptr g_param_spec_get_qdata(ptr, uint);
+ptr g_param_spec_get_redirect_target(ptr);
+void g_param_spec_set_qdata(ptr, uint, ptr);
+void g_param_spec_sink(ptr);
+ptr g_param_spec_steal_qdata(ptr, uint);
+void g_param_spec_pool_insert(ptr, ptr, ulong);
+ptr g_param_spec_pool_list(ptr, ulong, ptr);
+ptr g_param_spec_pool_list_owned(ptr, ulong);
+ptr g_param_spec_pool_lookup(ptr, str, ulong, int);
+void g_param_spec_pool_remove(ptr, ptr);
+ptr g_signal_group_new(ulong);
+void g_signal_group_block(ptr);
+void g_signal_group_connect_data(ptr, str, ptr, ptr, ptr, int);
+void g_signal_group_connect_swapped(ptr, str, ptr, ptr);
+ptr g_signal_group_dup_target(ptr);
+void g_signal_group_set_target(ptr, ptr);
+void g_signal_group_unblock(ptr);
+void g_type_class_add_private(ptr, ulong);
+ptr g_type_class_get_private(ptr, ulong);
+ptr g_type_class_peek_parent(ptr);
+void g_type_class_unref(ptr);
+void g_type_class_adjust_private_offset(ptr, ptr, ptr);
+ptr g_type_class_peek(ptr, ulong);
+ptr g_type_class_peek_static(ptr, ulong);
+ptr g_type_class_ref(ptr, ulong);
+ptr g_type_instance_get_private(ptr, ulong);
+ptr g_type_interface_peek_parent(ptr);
+void g_type_interface_add_prerequisite(ptr, ulong, ulong);
+ptr g_type_interface_get_plugin(ptr, ulong, ulong);
+ulong g_type_interface_instantiatable_prerequisite(ptr, ulong);
+ptr g_type_interface_peek(ptr, ptr, ulong);
+ptr g_type_interface_prerequisites(ptr, ulong, ptr);
+void g_type_module_add_interface(ptr, ulong, ulong, ptr);
+ulong g_type_module_register_enum(ptr, str, ptr);
+ulong g_type_module_register_flags(ptr, str, ptr);
+ulong g_type_module_register_type(ptr, ulong, str, ptr, int);
+void g_type_module_set_name(ptr, str);
+void g_type_module_unuse(ptr);
+int g_type_module_use(ptr);
+void g_type_plugin_complete_interface_info(ptr, ulong, ulong, ptr);
+void g_type_plugin_complete_type_info(ptr, ulong, ptr, ptr);
+void g_type_plugin_unuse(ptr);
+void g_type_plugin_use(ptr);
+void g_value_copy(ptr, ptr);
+ptr g_value_dup_object(ptr);
+ptr g_value_dup_string(ptr);
+ptr g_value_dup_variant(ptr);
+int g_value_fits_pointer(ptr);
+int g_value_get_boolean(ptr);
+ptr g_value_get_boxed(ptr);
+byte g_value_get_char(ptr);
+double g_value_get_double(ptr);
+int g_value_get_enum(ptr);
+uint g_value_get_flags(ptr);
+float g_value_get_float(ptr);
+ulong g_value_get_gtype(ptr);
+int g_value_get_int(ptr);
+long g_value_get_int64(ptr);
+long g_value_get_long(ptr);
+ptr g_value_get_object(ptr);
+ptr g_value_get_param(ptr);
+ptr g_value_get_pointer(ptr);
+byte g_value_get_schar(ptr);
+str g_value_get_string(ptr);
+ubyte g_value_get_uchar(ptr);
+uint g_value_get_uint(ptr);
+ulong g_value_get_uint64(ptr);
+ulong g_value_get_ulong(ptr);
+ptr g_value_get_variant(ptr);
+ptr g_value_init(ptr, ulong);
+void g_value_init_from_instance(ptr, ptr);
+ptr g_value_peek_pointer(ptr);
+ptr g_value_reset(ptr);
+void g_value_set_boolean(ptr, int);
+void g_value_set_boxed(ptr, ptr);
+void g_value_set_boxed_take_ownership(ptr, ptr);
+void g_value_set_char(ptr, byte);
+void g_value_set_double(ptr, double);
+void g_value_set_enum(ptr, int);
+void g_value_set_flags(ptr, uint);
+void g_value_set_float(ptr, float);
+void g_value_set_gtype(ptr, ulong);
+void g_value_set_instance(ptr, ptr);
+void g_value_set_int(ptr, int);
+void g_value_set_int64(ptr, long);
+void g_value_set_interned_string(ptr, str);
+void g_value_set_long(ptr, long);
+void g_value_set_object(ptr, ptr);
+void g_value_set_param(ptr, ptr);
+void g_value_set_pointer(ptr, ptr);
+void g_value_set_schar(ptr, byte);
+void g_value_set_static_boxed(ptr, ptr);
+void g_value_set_static_string(ptr, str);
+void g_value_set_string(ptr, str);
+void g_value_set_string_take_ownership(ptr, str);
+void g_value_set_uchar(ptr, ubyte);
+void g_value_set_uint(ptr, uint);
+void g_value_set_uint64(ptr, ulong);
+void g_value_set_ulong(ptr, ulong);
+void g_value_set_variant(ptr, ptr);
+void g_value_take_boxed(ptr, ptr);
+void g_value_take_string(ptr, str);
+void g_value_take_variant(ptr, ptr);
+int g_value_transform(ptr, ptr);
+void g_value_unset(ptr);
+int g_value_type_compatible(ptr, ulong, ulong);
+int g_value_type_transformable(ptr, ulong, ulong);
+ptr g_value_array_new(uint);
+ptr g_value_array_append(ptr, ptr);
+ptr g_value_array_copy(ptr);
+ptr g_value_array_get_nth(ptr, uint);
+ptr g_value_array_insert(ptr, uint, ptr);
+ptr g_value_array_prepend(ptr, ptr);
+ptr g_value_array_remove(ptr, uint);
+ptr g_value_array_sort_with_data(ptr, ptr, ptr);
+ptr g_boxed_copy(ulong, ptr);
+void g_boxed_free(ulong, ptr);
+void g_cclosure_marshal_BOOLEAN__BOXED_BOXED(ptr, ptr, uint, ptr, ptr, ptr);
+void g_cclosure_marshal_BOOLEAN__FLAGS(ptr, ptr, uint, ptr, ptr, ptr);
+void g_cclosure_marshal_STRING__OBJECT_POINTER(ptr, ptr, uint, ptr, ptr, ptr);
+void g_cclosure_marshal_VOID__BOOLEAN(ptr, ptr, uint, ptr, ptr, ptr);
+void g_cclosure_marshal_VOID__BOXED(ptr, ptr, uint, ptr, ptr, ptr);
+void g_cclosure_marshal_VOID__CHAR(ptr, ptr, uint, ptr, ptr, ptr);
+void g_cclosure_marshal_VOID__DOUBLE(ptr, ptr, uint, ptr, ptr, ptr);
+void g_cclosure_marshal_VOID__ENUM(ptr, ptr, uint, ptr, ptr, ptr);
+void g_cclosure_marshal_VOID__FLAGS(ptr, ptr, uint, ptr, ptr, ptr);
+void g_cclosure_marshal_VOID__FLOAT(ptr, ptr, uint, ptr, ptr, ptr);
+void g_cclosure_marshal_VOID__INT(ptr, ptr, uint, ptr, ptr, ptr);
+void g_cclosure_marshal_VOID__LONG(ptr, ptr, uint, ptr, ptr, ptr);
+void g_cclosure_marshal_VOID__OBJECT(ptr, ptr, uint, ptr, ptr, ptr);
+void g_cclosure_marshal_VOID__PARAM(ptr, ptr, uint, ptr, ptr, ptr);
+void g_cclosure_marshal_VOID__POINTER(ptr, ptr, uint, ptr, ptr, ptr);
+void g_cclosure_marshal_VOID__STRING(ptr, ptr, uint, ptr, ptr, ptr);
+void g_cclosure_marshal_VOID__UCHAR(ptr, ptr, uint, ptr, ptr, ptr);
+void g_cclosure_marshal_VOID__UINT(ptr, ptr, uint, ptr, ptr, ptr);
+void g_cclosure_marshal_VOID__UINT_POINTER(ptr, ptr, uint, ptr, ptr, ptr);
+void g_cclosure_marshal_VOID__ULONG(ptr, ptr, uint, ptr, ptr, ptr);
+void g_cclosure_marshal_VOID__VARIANT(ptr, ptr, uint, ptr, ptr, ptr);
+void g_cclosure_marshal_VOID__VOID(ptr, ptr, uint, ptr, ptr, ptr);
+void g_cclosure_marshal_generic(ptr, ptr, uint, ptr, ptr, ptr);
+void g_clear_signal_handler(ptr, ptr);
+void g_enum_complete_type_info(ulong, ptr, ptr);
+ptr g_enum_get_value(ptr, int);
+ptr g_enum_get_value_by_name(ptr, str);
+ptr g_enum_get_value_by_nick(ptr, str);
+ulong g_enum_register_static(str, ptr);
+ptr g_enum_to_string(ulong, int);
+void g_flags_complete_type_info(ulong, ptr, ptr);
+ptr g_flags_get_first_value(ptr, uint);
+ptr g_flags_get_value_by_name(ptr, str);
+ptr g_flags_get_value_by_nick(ptr, str);
+ulong g_flags_register_static(str, ptr);
+ptr g_flags_to_string(ulong, uint);
+ulong g_gtype_get_type();
+ptr g_param_spec_boolean(str, str, str, int, int);
+ptr g_param_spec_boxed(str, str, str, ulong, int);
+ptr g_param_spec_char(str, str, str, byte, byte, byte, int);
+ptr g_param_spec_double(str, str, str, double, double, double, int);
+ptr g_param_spec_enum(str, str, str, ulong, int, int);
+ptr g_param_spec_flags(str, str, str, ulong, uint, int);
+ptr g_param_spec_float(str, str, str, float, float, float, int);
+ptr g_param_spec_gtype(str, str, str, ulong, int);
+ptr g_param_spec_int(str, str, str, int, int, int, int);
+ptr g_param_spec_int64(str, str, str, long, long, long, int);
+ptr g_param_spec_long(str, str, str, long, long, long, int);
+ptr g_param_spec_object(str, str, str, ulong, int);
+ptr g_param_spec_param(str, str, str, ulong, int);
+ptr g_param_spec_pointer(str, str, str, int);
+ptr g_param_spec_string(str, str, str, str, int);
+ptr g_param_spec_uchar(str, str, str, ubyte, ubyte, ubyte, int);
+ptr g_param_spec_uint(str, str, str, uint, uint, uint, int);
+ptr g_param_spec_uint64(str, str, str, ulong, ulong, ulong, int);
+ptr g_param_spec_ulong(str, str, str, ulong, ulong, ulong, int);
+ptr g_param_spec_unichar(str, str, str, ptr, int);
+ptr g_param_spec_variant(str, str, str, ptr, ptr, int);
+ulong g_param_type_register_static(str, ptr);
+int g_param_value_convert(ptr, ptr, ptr, int);
+int g_param_value_defaults(ptr, ptr);
+void g_param_value_set_default(ptr, ptr);
+int g_param_value_validate(ptr, ptr);
+int g_param_values_cmp(ptr, ptr, ptr);
+ulong g_pointer_type_register_static(str);
+int g_signal_accumulator_first_wins(ptr, ptr, ptr, ptr);
+int g_signal_accumulator_true_handled(ptr, ptr, ptr, ptr);
+ulong g_signal_add_emission_hook(uint, uint, ptr, ptr, ptr);
+void g_signal_chain_from_overridden(ptr, ptr);
+ulong g_signal_connect_closure(ptr, str, ptr, int);
+ulong g_signal_connect_closure_by_id(ptr, uint, uint, ptr, int);
+void g_signal_emitv(ptr, uint, uint, ptr);
+ptr g_signal_get_invocation_hint(ptr);
+void g_signal_handler_block(ptr, ulong);
+void g_signal_handler_disconnect(ptr, ulong);
+ulong g_signal_handler_find(ptr, int, uint, uint, ptr, ptr, ptr);
+int g_signal_handler_is_connected(ptr, ulong);
+void g_signal_handler_unblock(ptr, ulong);
+uint g_signal_handlers_block_matched(ptr, int, uint, uint, ptr, ptr, ptr);
+void g_signal_handlers_destroy(ptr);
+uint g_signal_handlers_disconnect_matched(ptr, int, uint, uint, ptr, ptr, ptr);
+uint g_signal_handlers_unblock_matched(ptr, int, uint, uint, ptr, ptr, ptr);
+int g_signal_has_handler_pending(ptr, uint, uint, int);
+int g_signal_is_valid_name(str);
+ptr g_signal_list_ids(ulong, ptr);
+uint g_signal_lookup(str, ulong);
+str g_signal_name(uint);
+void g_signal_override_class_closure(uint, ulong, ptr);
+int g_signal_parse_name(str, ulong, ptr, ptr, int);
+void g_signal_query(uint, ptr);
+void g_signal_remove_emission_hook(uint, ulong);
+void g_signal_set_va_marshaller(uint, ulong, ptr);
+void g_signal_stop_emission(ptr, uint, uint);
+void g_signal_stop_emission_by_name(ptr, str);
+ptr g_signal_type_cclosure_new(ulong, uint);
+void g_source_set_closure(ptr, ptr);
+void g_source_set_dummy_callback(ptr);
+ptr g_strdup_value_contents(ptr);
+void g_type_add_class_private(ulong, ulong);
+int g_type_add_instance_private(ulong, ulong);
+void g_type_add_interface_dynamic(ulong, ulong, ptr);
+void g_type_add_interface_static(ulong, ulong, ptr);
+int g_type_check_class_is_a(ptr, ulong);
+int g_type_check_instance(ptr);
+int g_type_check_instance_is_a(ptr, ulong);
+int g_type_check_instance_is_fundamentally_a(ptr, ulong);
+int g_type_check_is_value_type(ulong);
+int g_type_check_value(ptr);
+int g_type_check_value_holds(ptr, ulong);
+ptr g_type_children(ulong, ptr);
+void g_type_class_adjust_private_offset(ptr, ptr);
+ptr g_type_class_peek(ulong);
+ptr g_type_class_peek_static(ulong);
+ptr g_type_class_ref(ulong);
+ptr g_type_default_interface_peek(ulong);
+ptr g_type_default_interface_ref(ulong);
+void g_type_default_interface_unref(ptr);
+uint g_type_depth(ulong);
+void g_type_ensure(ulong);
+void g_type_free_instance(ptr);
+ulong g_type_from_name(str);
+ulong g_type_fundamental(ulong);
+ulong g_type_fundamental_next();
+int g_type_get_instance_count(ulong);
+ptr g_type_get_plugin(ulong);
+ptr g_type_get_qdata(ulong, uint);
+uint g_type_get_type_registration_serial();
+void g_type_init();
+void g_type_init_with_debug_flags(int);
+void g_type_interface_add_prerequisite(ulong, ulong);
+ptr g_type_interface_get_plugin(ulong, ulong);
+ulong g_type_interface_instantiatable_prerequisite(ulong);
+ptr g_type_interface_peek(ptr, ulong);
+ptr g_type_interface_prerequisites(ulong, ptr);
+ptr g_type_interfaces(ulong, ptr);
+int g_type_is_a(ulong, ulong);
+str g_type_name(ulong);
+str g_type_name_from_class(ptr);
+str g_type_name_from_instance(ptr);
+ulong g_type_next_base(ulong, ulong);
+ulong g_type_parent(ulong);
+uint g_type_qname(ulong);
+void g_type_query(ulong, ptr);
+ulong g_type_register_dynamic(ulong, str, ptr, int);
+ulong g_type_register_fundamental(ulong, str, ptr, ptr, int);
+ulong g_type_register_static(ulong, str, ptr, int);
+void g_type_set_qdata(ulong, uint, ptr);
+int g_type_test_flags(ulong, uint);
+int g_value_type_compatible(ulong, ulong);
+int g_value_type_transformable(ulong, ulong);
+};
+
+extern callback void GObjectBaseFinalizeFunc(ptr);
+extern callback void GObjectBaseInitFunc(ptr);
+extern callback int GObjectBindingTransformFunc(ptr, ptr, ptr, ptr);
+extern callback ptr GObjectBoxedCopyFunc(ptr);
+extern callback void GObjectBoxedFreeFunc(ptr);
+extern callback void GObjectCallback();
+extern callback void GObjectClassFinalizeFunc(ptr, ptr);
+extern callback void GObjectClassInitFunc(ptr, ptr);
+extern callback void GObjectClosureMarshal(ptr, ptr, uint, ptr, ptr, ptr);
+extern callback void GObjectClosureNotify(ptr, ptr);
+extern callback void GObjectInstanceInitFunc(ptr, ptr);
+extern callback void GObjectInterfaceFinalizeFunc(ptr, ptr);
+extern callback void GObjectInterfaceInitFunc(ptr, ptr);
+extern callback void GObjectObjectFinalizeFunc(ptr);
+extern callback void GObjectObjectGetPropertyFunc(ptr, uint, ptr, ptr);
+extern callback void GObjectObjectSetPropertyFunc(ptr, uint, ptr, ptr);
+extern callback int GObjectSignalAccumulator(ptr, ptr, ptr, ptr);
+extern callback int GObjectSignalEmissionHook(ptr, uint, ptr, ptr);
+extern callback void GObjectToggleNotify(ptr, ptr, int);
+extern callback int GObjectTypeClassCacheFunc(ptr, ptr);
+extern callback void GObjectTypeInterfaceCheckFunc(ptr, ptr);
+extern callback void GObjectTypePluginCompleteInterfaceInfo(ptr, ulong, ulong, ptr);
+extern callback void GObjectTypePluginCompleteTypeInfo(ptr, ulong, ptr, ptr);
+extern callback void GObjectTypePluginUnuse(ptr);
+extern callback void GObjectTypePluginUse(ptr);
+extern callback void GObjectValueTransform(ptr, ptr);
+extern callback void GObjectWeakNotify(ptr, ptr);
+extern struct GObjectCClosure{
+byte closure[64],  // GObjectClosure
+ptr callback,  // void*
+};
+
+// name GClosure
+extern struct GClosure{
+uint ref_count,  // guint32
+uint meta_marshal_nouse,  // guint32
+uint n_guards,  // guint32
+uint n_fnotifiers,  // guint32
+uint n_inotifiers,  // guint32
+uint in_inotify,  // guint32
+uint floating,  // guint32
+uint derivative_flag,  // guint32
+uint in_marshal,  // guint32
+uint is_invalid,  // guint32
+ptr marshal,  // ::marshal
+ptr data,  // void*
+ptr notifiers,  // GObjectClosureNotifyData*
+};
+
+extern struct GObjectClosureNotifyData{
+ptr data,  // void*
+ptr notify,  // ::ClosureNotify
+};
+
+extern struct GObjectEnumClass{
+byte g_type_class[8],  // GObjectTypeClass
+int minimum,  // gint32
+int maximum,  // gint32
+uint n_values,  // guint32
+ptr values,  // GObjectEnumValue*
+};
+
+extern struct GObjectEnumValue{
+int value,  // gint32
+str value_name,  // utf8*
+str value_nick,  // utf8*
+};
+
+extern struct GObjectFlagsClass{
+byte g_type_class[8],  // GObjectTypeClass
+uint mask,  // guint32
+uint n_values,  // guint32
+ptr values,  // GObjectFlagsValue*
+};
+
+extern struct GObjectFlagsValue{
+uint value,  // guint32
+str value_name,  // utf8*
+str value_nick,  // utf8*
+};
+
+extern struct GObjectInitiallyUnownedClass{
+byte g_type_class[8],  // GObjectTypeClass
+ptr construct_properties,  // gslist*
+ptr constructor,  // void*
+ptr set_property,  // ::set_property
+ptr get_property,  // ::get_property
+ptr dispose,  // ::dispose
+ptr finalize,  // ::finalize
+ptr dispatch_properties_changed,  // ::dispatch_properties_changed
+ptr notify,  // ::notify
+ptr constructed,  // ::constructed
+ulong flags,  // guint64
+ptr pdummy_0,
+ptr pdummy_1,
+ptr pdummy_2,
+ptr pdummy_3,
+ptr pdummy_4,
+ptr pdummy_5,
+};
+
+extern struct GObjectInterfaceInfo{
+ptr interface_init,  // ::InterfaceInitFunc
+ptr interface_finalize,  // ::InterfaceFinalizeFunc
+ptr interface_data,  // void*
+};
+
+extern struct GObjectObjectClass{
+byte g_type_class[8],  // GObjectTypeClass
+ptr construct_properties,  // gslist*
+ptr constructor,  // void*
+ptr set_property,  // ::set_property
+ptr get_property,  // ::get_property
+ptr dispose,  // ::dispose
+ptr finalize,  // ::finalize
+ptr dispatch_properties_changed,  // ::dispatch_properties_changed
+ptr notify,  // ::notify
+ptr constructed,  // ::constructed
+ulong flags,  // guint64
+ptr pdummy_0,
+ptr pdummy_1,
+ptr pdummy_2,
+ptr pdummy_3,
+ptr pdummy_4,
+ptr pdummy_5,
+};
+
+extern struct GObjectObjectConstructParam{
+ptr pspec,  // GObjectParamSpec*
+ptr value,  // GObjectValue*
+};
+
+extern struct GObjectParamSpecClass{
+byte g_type_class[8],  // GObjectTypeClass
+ulong value_type,  // GType
+ptr finalize,  // ::finalize
+ptr value_set_default,  // ::value_set_default
+ptr value_validate,  // ::value_validate
+ptr values_cmp,  // ::values_cmp
+ptr dummy_0,
+ptr dummy_1,
+ptr dummy_2,
+ptr dummy_3,
+};
+
+extern struct GObjectParamSpecPool{
+
+};
+
+extern struct GObjectParamSpecTypeInfo{
+ushort instance_size,  // guint16
+ushort n_preallocs,  // guint16
+ptr instance_init,  // ::instance_init
+ulong value_type,  // GType
+ptr finalize,  // ::finalize
+ptr value_set_default,  // ::value_set_default
+ptr value_validate,  // ::value_validate
+ptr values_cmp,  // ::values_cmp
+};
+
+extern struct GObjectParameter{
+str name,  // utf8*
+byte value[24],  // GObjectValue
+};
+
+extern struct GObjectSignalInvocationHint{
+uint signal_id,  // guint32
+uint detail,  // guint32
+int run_type,  // GObjectSignalFlags
+};
+
+extern struct GObjectSignalQuery{
+uint signal_id,  // guint32
+str signal_name,  // utf8*
+ulong itype,  // GType
+int signal_flags,  // GObjectSignalFlags
+ulong return_type,  // GType
+uint n_params,  // guint32
+ptr param_types,  // array*
+};
+
+extern struct GObjectTypeClass{
+ulong g_type,  // GType
+};
+
+extern struct GObjectTypeFundamentalInfo{
+int type_flags,  // GObjectTypeFundamentalFlags
+};
+
+extern struct GObjectTypeInfo{
+ushort class_size,  // guint16
+ptr base_init,  // ::BaseInitFunc
+ptr base_finalize,  // ::BaseFinalizeFunc
+ptr class_init,  // ::ClassInitFunc
+ptr class_finalize,  // ::ClassFinalizeFunc
+ptr class_data,  // void*
+ushort instance_size,  // guint16
+ushort n_preallocs,  // guint16
+ptr instance_init,  // ::InstanceInitFunc
+ptr value_table,  // GObjectTypeValueTable*
+};
+
+extern struct GObjectTypeInstance{
+ptr g_class,  // GObjectTypeClass*
+};
+
+extern struct GObjectTypeInterface{
+ulong g_type,  // GType
+ulong g_instance_type,  // GType
+};
+
+extern struct GObjectTypeModuleClass{
+byte parent_class[136],  // GObjectObjectClass
+ptr load,  // ::load
+ptr unload,  // ::unload
+ptr reserved1,  // ::reserved1
+ptr reserved2,  // ::reserved2
+ptr reserved3,  // ::reserved3
+ptr reserved4,  // ::reserved4
+};
+
+extern struct GObjectTypePluginClass{
+byte base_iface[16],  // GObjectTypeInterface
+ptr use_plugin,  // ::TypePluginUse
+ptr unuse_plugin,  // ::TypePluginUnuse
+ptr complete_type_info,  // ::TypePluginCompleteTypeInfo
+ptr complete_interface_info,  // ::TypePluginCompleteInterfaceInfo
+};
+
+extern struct GObjectTypeQuery{
+ulong type,  // GType
+str type_name,  // utf8*
+uint class_size,  // guint32
+uint instance_size,  // guint32
+};
+
+extern struct GObjectTypeValueTable{
+ptr value_init,  // ::value_init
+ptr value_free,  // ::value_free
+ptr value_copy,  // ::value_copy
+ptr value_peek_pointer,  // ::value_peek_pointer
+str collect_format,  // utf8*
+ptr collect_value,  // ::collect_value
+str lcopy_format,  // utf8*
+ptr lcopy_value,  // ::lcopy_value
+};
+
+// name GValue
+extern struct GValue{
+ulong g_type,  // GType
+ptr data_0,
+ptr data_1,
+};
+
+// name GValueArray
+extern struct GValueArray{
+uint n_values,  // guint32
+ptr values,  // GObjectValue*
+uint n_prealloced,  // guint32
+};
+
+extern struct GObjectWeakRef{
+
+};
+
+var GObject_BindingFlags_default = 0;
+var GObject_BindingFlags_bidirectional = 1;
+var GObject_BindingFlags_sync_create = 2;
+var GObject_BindingFlags_invert_boolean = 4;
+
+var GObject_ConnectFlags_after = 1;
+var GObject_ConnectFlags_swapped = 2;
+
+var GObject_ParamFlags_readable = 1;
+var GObject_ParamFlags_writable = 2;
+var GObject_ParamFlags_readwrite = 3;
+var GObject_ParamFlags_construct = 4;
+var GObject_ParamFlags_construct_only = 8;
+var GObject_ParamFlags_lax_validation = 16;
+var GObject_ParamFlags_static_name = 32;
+var GObject_ParamFlags_private = 32;
+var GObject_ParamFlags_static_nick = 64;
+var GObject_ParamFlags_static_blurb = 128;
+var GObject_ParamFlags_explicit_notify = 1073741824;
+var GObject_ParamFlags_deprecated = 2147483648;
+
+var GObject_SignalFlags_run_first = 1;
+var GObject_SignalFlags_run_last = 2;
+var GObject_SignalFlags_run_cleanup = 4;
+var GObject_SignalFlags_no_recurse = 8;
+var GObject_SignalFlags_detailed = 16;
+var GObject_SignalFlags_action = 32;
+var GObject_SignalFlags_no_hooks = 64;
+var GObject_SignalFlags_must_collect = 128;
+var GObject_SignalFlags_deprecated = 256;
+var GObject_SignalFlags_accumulator_first_run = 131072;
+
+var GObject_SignalMatchType_id = 1;
+var GObject_SignalMatchType_detail = 2;
+var GObject_SignalMatchType_closure = 4;
+var GObject_SignalMatchType_func = 8;
+var GObject_SignalMatchType_data = 16;
+var GObject_SignalMatchType_unblocked = 32;
+
+var GObject_TypeDebugFlags_none = 0;
+var GObject_TypeDebugFlags_objects = 1;
+var GObject_TypeDebugFlags_signals = 2;
+var GObject_TypeDebugFlags_instance_count = 4;
+var GObject_TypeDebugFlags_mask = 7;
+
+var GObject_TypeFlags_abstract = 16;
+var GObject_TypeFlags_value_abstract = 32;
+var GObject_TypeFlags_final = 64;
+
+var GObject_TypeFundamentalFlags_classed = 1;
+var GObject_TypeFundamentalFlags_instantiatable = 2;
+var GObject_TypeFundamentalFlags_derivable = 4;
+var GObject_TypeFundamentalFlags_deep_derivable = 8;
+
+var GObject_PARAM_MASK_PARAM_MASK = 255;
+
+var GObject_PARAM_STATIC_STRINGS_PARAM_STATIC_STRINGS = 224;
+
+var GObject_PARAM_USER_SHIFT_PARAM_USER_SHIFT = 8;
+
+var GObject_SIGNAL_FLAGS_MASK_SIGNAL_FLAGS_MASK = 511;
+
+var GObject_SIGNAL_MATCH_MASK_SIGNAL_MATCH_MASK = 63;
+
+var GObject_TYPE_FUNDAMENTAL_MAX_TYPE_FUNDAMENTAL_MAX = 255;
+
+var GObject_TYPE_FUNDAMENTAL_SHIFT_TYPE_FUNDAMENTAL_SHIFT = 2;
+
+var GObject_TYPE_RESERVED_BSE_FIRST_TYPE_RESERVED_BSE_FIRST = 32;
+
+var GObject_TYPE_RESERVED_BSE_LAST_TYPE_RESERVED_BSE_LAST = 48;
+
+var GObject_TYPE_RESERVED_GLIB_FIRST_TYPE_RESERVED_GLIB_FIRST = 22;
+
+var GObject_TYPE_RESERVED_GLIB_LAST_TYPE_RESERVED_GLIB_LAST = 31;
+
+var GObject_TYPE_RESERVED_USER_FIRST_TYPE_RESERVED_USER_FIRST = 49;
+
+var GObject_VALUE_INTERNED_STRING_VALUE_INTERNED_STRING = 268435456;
+
+var GObject_VALUE_NOCOPY_CONTENTS_VALUE_NOCOPY_CONTENTS = 134217728;
+
+
+extern callback void GObjectObject_signal_notify(ptr, ptr, ptr);
+extern callback void GObjectSignalGroup_signal_bind(ptr, ptr, ptr);
+extern callback void GObjectSignalGroup_signal_unbind(ptr, ptr);
+////////////////////////
+extern callback void GObjectObject_virtual_constructed(ptr);
+extern callback void GObjectObject_virtual_dispatch_properties_changed(ptr, uint, ptr);
+extern callback void GObjectObject_virtual_dispose(ptr);
+extern callback void GObjectObject_virtual_finalize(ptr);
+extern callback void GObjectObject_virtual_get_property(ptr, uint, ptr, ptr);
+extern callback void GObjectObject_virtual_notify(ptr, ptr);
+extern callback void GObjectObject_virtual_set_property(ptr, uint, ptr, ptr);
+extern callback void GObjectParamSpec_virtual_finalize(ptr);
+extern callback void GObjectParamSpec_virtual_value_set_default(ptr, ptr);
+extern callback int GObjectParamSpec_virtual_value_validate(ptr, ptr);
+extern callback int GObjectParamSpec_virtual_values_cmp(ptr, ptr, ptr);
+extern callback int GObjectTypeModule_virtual_load(ptr);
+extern callback void GObjectTypeModule_virtual_unload(ptr);
+

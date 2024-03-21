@@ -1,0 +1,5 @@
+var Nil = nil;
+
+class Foo : Nil {} // expect: Superclass must be a class.
+
+// expect: [line 3] in script

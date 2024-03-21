@@ -1,0 +1,4338 @@
+{
+
+if( runtime.global("Win32") == nil ) { runtime.global("Win32", {}); }
+var Win32 = runtime.global("Win32");
+
+Win32.WSA_ERROR = {
+    "WSA_IO_PENDING" : 997, 
+    "WSA_IO_INCOMPLETE" : 996, 
+    "WSA_INVALID_HANDLE" : 6, 
+    "WSA_INVALID_PARAMETER" : 87, 
+    "WSA_NOT_ENOUGH_MEMORY" : 8, 
+    "WSA_OPERATION_ABORTED" : 995, 
+    "WSA_WAIT_EVENT_0" : 0, 
+    "WSA_WAIT_IO_COMPLETION" : 192, 
+    "WSABASEERR" : 10000, 
+    "WSAEINTR" : 10004, 
+    "WSAEBADF" : 10009, 
+    "WSAEACCES" : 10013, 
+    "WSAEFAULT" : 10014, 
+    "WSAEINVAL" : 10022, 
+    "WSAEMFILE" : 10024, 
+    "WSAEWOULDBLOCK" : 10035, 
+    "WSAEINPROGRESS" : 10036, 
+    "WSAEALREADY" : 10037, 
+    "WSAENOTSOCK" : 10038, 
+    "WSAEDESTADDRREQ" : 10039, 
+    "WSAEMSGSIZE" : 10040, 
+    "WSAEPROTOTYPE" : 10041, 
+    "WSAENOPROTOOPT" : 10042, 
+    "WSAEPROTONOSUPPORT" : 10043, 
+    "WSAESOCKTNOSUPPORT" : 10044, 
+    "WSAEOPNOTSUPP" : 10045, 
+    "WSAEPFNOSUPPORT" : 10046, 
+    "WSAEAFNOSUPPORT" : 10047, 
+    "WSAEADDRINUSE" : 10048, 
+    "WSAEADDRNOTAVAIL" : 10049, 
+    "WSAENETDOWN" : 10050, 
+    "WSAENETUNREACH" : 10051, 
+    "WSAENETRESET" : 10052, 
+    "WSAECONNABORTED" : 10053, 
+    "WSAECONNRESET" : 10054, 
+    "WSAENOBUFS" : 10055, 
+    "WSAEISCONN" : 10056, 
+    "WSAENOTCONN" : 10057, 
+    "WSAESHUTDOWN" : 10058, 
+    "WSAETOOMANYREFS" : 10059, 
+    "WSAETIMEDOUT" : 10060, 
+    "WSAECONNREFUSED" : 10061, 
+    "WSAELOOP" : 10062, 
+    "WSAENAMETOOLONG" : 10063, 
+    "WSAEHOSTDOWN" : 10064, 
+    "WSAEHOSTUNREACH" : 10065, 
+    "WSAENOTEMPTY" : 10066, 
+    "WSAEPROCLIM" : 10067, 
+    "WSAEUSERS" : 10068, 
+    "WSAEDQUOT" : 10069, 
+    "WSAESTALE" : 10070, 
+    "WSAEREMOTE" : 10071, 
+    "WSASYSNOTREADY" : 10091, 
+    "WSAVERNOTSUPPORTED" : 10092, 
+    "WSANOTINITIALISED" : 10093, 
+    "WSAEDISCON" : 10101, 
+    "WSAENOMORE" : 10102, 
+    "WSAECANCELLED" : 10103, 
+    "WSAEINVALIDPROCTABLE" : 10104, 
+    "WSAEINVALIDPROVIDER" : 10105, 
+    "WSAEPROVIDERFAILEDINIT" : 10106, 
+    "WSASYSCALLFAILURE" : 10107, 
+    "WSASERVICE_NOT_FOUND" : 10108, 
+    "WSATYPE_NOT_FOUND" : 10109, 
+    "WSA_E_NO_MORE" : 10110, 
+    "WSA_E_CANCELLED" : 10111, 
+    "WSAEREFUSED" : 10112, 
+    "WSAHOST_NOT_FOUND" : 11001, 
+    "WSATRY_AGAIN" : 11002, 
+    "WSANO_RECOVERY" : 11003, 
+    "WSANO_DATA" : 11004, 
+    "WSA_QOS_RECEIVERS" : 11005, 
+    "WSA_QOS_SENDERS" : 11006, 
+    "WSA_QOS_NO_SENDERS" : 11007, 
+    "WSA_QOS_NO_RECEIVERS" : 11008, 
+    "WSA_QOS_REQUEST_CONFIRMED" : 11009, 
+    "WSA_QOS_ADMISSION_FAILURE" : 11010, 
+    "WSA_QOS_POLICY_FAILURE" : 11011, 
+    "WSA_QOS_BAD_STYLE" : 11012, 
+    "WSA_QOS_BAD_OBJECT" : 11013, 
+    "WSA_QOS_TRAFFIC_CTRL_ERROR" : 11014, 
+    "WSA_QOS_GENERIC_ERROR" : 11015, 
+    "WSA_QOS_ESERVICETYPE" : 11016, 
+    "WSA_QOS_EFLOWSPEC" : 11017, 
+    "WSA_QOS_EPROVSPECBUF" : 11018, 
+    "WSA_QOS_EFILTERSTYLE" : 11019, 
+    "WSA_QOS_EFILTERTYPE" : 11020, 
+    "WSA_QOS_EFILTERCOUNT" : 11021, 
+    "WSA_QOS_EOBJLENGTH" : 11022, 
+    "WSA_QOS_EFLOWCOUNT" : 11023, 
+    "WSA_QOS_EUNKOWNPSOBJ" : 11024, 
+    "WSA_QOS_EPOLICYOBJ" : 11025, 
+    "WSA_QOS_EFLOWDESC" : 11026, 
+    "WSA_QOS_EPSFLOWSPEC" : 11027, 
+    "WSA_QOS_EPSFILTERSPEC" : 11028, 
+    "WSA_QOS_ESDMODEOBJ" : 11029, 
+    "WSA_QOS_ESHAPERATEOBJ" : 11030, 
+    "WSA_QOS_RESERVED_PETYPE" : 11031, 
+    "WSA_SECURE_HOST_NOT_FOUND" : 11032, 
+    "WSA_IPSEC_NAME_POLICY_ERROR" : 11033
+};
+
+
+Win32.ADDRESS_FAMILY = {
+    "AF_INET" : 2, 
+    "AF_INET6" : 23, 
+    "AF_UNSPEC" : 0
+};
+
+
+Win32.SET_SERVICE_OPERATION = {
+    "SERVICE_REGISTER" : 1, 
+    "SERVICE_DEREGISTER" : 2, 
+    "SERVICE_FLUSH" : 3, 
+    "SERVICE_ADD_TYPE" : 4, 
+    "SERVICE_DELETE_TYPE" : 5
+};
+
+
+Win32.SEND_RECV_FLAGS = {
+    "MSG_OOB" : 1, 
+    "MSG_PEEK" : 2, 
+    "MSG_DONTROUTE" : 4, 
+    "MSG_WAITALL" : 8, 
+    "MSG_PUSH_IMMEDIATE" : 32
+};
+
+
+Win32.RESOURCE_DISPLAY_TYPE = {
+    "RESOURCEDISPLAYTYPE_DOMAIN" : 1, 
+    "RESOURCEDISPLAYTYPE_FILE" : 4, 
+    "RESOURCEDISPLAYTYPE_GENERIC" : 0, 
+    "RESOURCEDISPLAYTYPE_GROUP" : 5, 
+    "RESOURCEDISPLAYTYPE_SERVER" : 2, 
+    "RESOURCEDISPLAYTYPE_SHARE" : 3, 
+    "RESOURCEDISPLAYTYPE_TREE" : 10
+};
+
+
+Win32.IPPROTO = {
+    "IPPROTO_HOPOPTS" : 0, 
+    "IPPROTO_ICMP" : 1, 
+    "IPPROTO_IGMP" : 2, 
+    "IPPROTO_GGP" : 3, 
+    "IPPROTO_IPV4" : 4, 
+    "IPPROTO_ST" : 5, 
+    "IPPROTO_TCP" : 6, 
+    "IPPROTO_CBT" : 7, 
+    "IPPROTO_EGP" : 8, 
+    "IPPROTO_IGP" : 9, 
+    "IPPROTO_PUP" : 12, 
+    "IPPROTO_UDP" : 17, 
+    "IPPROTO_IDP" : 22, 
+    "IPPROTO_RDP" : 27, 
+    "IPPROTO_IPV6" : 41, 
+    "IPPROTO_ROUTING" : 43, 
+    "IPPROTO_FRAGMENT" : 44, 
+    "IPPROTO_ESP" : 50, 
+    "IPPROTO_AH" : 51, 
+    "IPPROTO_ICMPV6" : 58, 
+    "IPPROTO_NONE" : 59, 
+    "IPPROTO_DSTOPTS" : 60, 
+    "IPPROTO_ND" : 77, 
+    "IPPROTO_ICLFXBM" : 78, 
+    "IPPROTO_PIM" : 103, 
+    "IPPROTO_PGM" : 113, 
+    "IPPROTO_L2TP" : 115, 
+    "IPPROTO_SCTP" : 132, 
+    "IPPROTO_RAW" : 255, 
+    "IPPROTO_MAX" : 256, 
+    "IPPROTO_RESERVED_RAW" : 257, 
+    "IPPROTO_RESERVED_IPSEC" : 258, 
+    "IPPROTO_RESERVED_IPSECOFFLOAD" : 259, 
+    "IPPROTO_RESERVED_WNV" : 260, 
+    "IPPROTO_RESERVED_MAX" : 261
+};
+
+
+Win32.SCOPE_LEVEL = {
+    "ScopeLevelInterface" : 1, 
+    "ScopeLevelLink" : 2, 
+    "ScopeLevelSubnet" : 3, 
+    "ScopeLevelAdmin" : 4, 
+    "ScopeLevelSite" : 5, 
+    "ScopeLevelOrganization" : 8, 
+    "ScopeLevelGlobal" : 14, 
+    "ScopeLevelCount" : 16
+};
+
+
+Win32.WSACOMPLETIONTYPE = {
+    "NSP_NOTIFY_IMMEDIATELY" : 0, 
+    "NSP_NOTIFY_HWND" : 1, 
+    "NSP_NOTIFY_EVENT" : 2, 
+    "NSP_NOTIFY_PORT" : 3, 
+    "NSP_NOTIFY_APC" : 4
+};
+
+
+Win32.WSAECOMPARATOR = {
+    "COMP_EQUAL" : 0, 
+    "COMP_NOTLESS" : 1
+};
+
+
+Win32.WSAESETSERVICEOP = {
+    "RNRSERVICE_REGISTER" : 0, 
+    "RNRSERVICE_DEREGISTER" : 1, 
+    "RNRSERVICE_DELETE" : 2
+};
+
+
+Win32.PMTUD_STATE = {
+    "IP_PMTUDISC_NOT_SET" : 0, 
+    "IP_PMTUDISC_DO" : 1, 
+    "IP_PMTUDISC_DONT" : 2, 
+    "IP_PMTUDISC_PROBE" : 3, 
+    "IP_PMTUDISC_MAX" : 4
+};
+
+
+Win32.MULTICAST_MODE_TYPE = {
+    "MCAST_INCLUDE" : 0, 
+    "MCAST_EXCLUDE" : 1
+};
+
+
+Win32.eWINDOW_ADVANCE_METHOD = {
+    "E_WINDOW_ADVANCE_BY_TIME" : 1, 
+    "E_WINDOW_USE_AS_DATA_CACHE" : 2
+};
+
+
+Win32.NL_PREFIX_ORIGIN = {
+    "IpPrefixOriginOther" : 0, 
+    "IpPrefixOriginManual" : 1, 
+    "IpPrefixOriginWellKnown" : 2, 
+    "IpPrefixOriginDhcp" : 3, 
+    "IpPrefixOriginRouterAdvertisement" : 4, 
+    "IpPrefixOriginUnchanged" : 16
+};
+
+
+Win32.NL_SUFFIX_ORIGIN = {
+    "NlsoOther" : 0, 
+    "NlsoManual" : 1, 
+    "NlsoWellKnown" : 2, 
+    "NlsoDhcp" : 3, 
+    "NlsoLinkLayerAddress" : 4, 
+    "NlsoRandom" : 5, 
+    "IpSuffixOriginOther" : 0, 
+    "IpSuffixOriginManual" : 1, 
+    "IpSuffixOriginWellKnown" : 2, 
+    "IpSuffixOriginDhcp" : 3, 
+    "IpSuffixOriginLinkLayerAddress" : 4, 
+    "IpSuffixOriginRandom" : 5, 
+    "IpSuffixOriginUnchanged" : 16
+};
+
+
+Win32.NL_DAD_STATE = {
+    "NldsInvalid" : 0, 
+    "NldsTentative" : 1, 
+    "NldsDuplicate" : 2, 
+    "NldsDeprecated" : 3, 
+    "NldsPreferred" : 4, 
+    "IpDadStateInvalid" : 0, 
+    "IpDadStateTentative" : 1, 
+    "IpDadStateDuplicate" : 2, 
+    "IpDadStateDeprecated" : 3, 
+    "IpDadStatePreferred" : 4
+};
+
+
+Win32.NL_ROUTE_PROTOCOL = {
+    "RouteProtocolOther" : 1, 
+    "RouteProtocolLocal" : 2, 
+    "RouteProtocolNetMgmt" : 3, 
+    "RouteProtocolIcmp" : 4, 
+    "RouteProtocolEgp" : 5, 
+    "RouteProtocolGgp" : 6, 
+    "RouteProtocolHello" : 7, 
+    "RouteProtocolRip" : 8, 
+    "RouteProtocolIsIs" : 9, 
+    "RouteProtocolEsIs" : 10, 
+    "RouteProtocolCisco" : 11, 
+    "RouteProtocolBbn" : 12, 
+    "RouteProtocolOspf" : 13, 
+    "RouteProtocolBgp" : 14, 
+    "RouteProtocolIdpr" : 15, 
+    "RouteProtocolEigrp" : 16, 
+    "RouteProtocolDvmrp" : 17, 
+    "RouteProtocolRpl" : 18, 
+    "RouteProtocolDhcp" : 19, 
+    "MIB_IPPROTO_OTHER" : 1, 
+    "PROTO_IP_OTHER" : 1, 
+    "MIB_IPPROTO_LOCAL" : 2, 
+    "PROTO_IP_LOCAL" : 2, 
+    "MIB_IPPROTO_NETMGMT" : 3, 
+    "PROTO_IP_NETMGMT" : 3, 
+    "MIB_IPPROTO_ICMP" : 4, 
+    "PROTO_IP_ICMP" : 4, 
+    "MIB_IPPROTO_EGP" : 5, 
+    "PROTO_IP_EGP" : 5, 
+    "MIB_IPPROTO_GGP" : 6, 
+    "PROTO_IP_GGP" : 6, 
+    "MIB_IPPROTO_HELLO" : 7, 
+    "PROTO_IP_HELLO" : 7, 
+    "MIB_IPPROTO_RIP" : 8, 
+    "PROTO_IP_RIP" : 8, 
+    "MIB_IPPROTO_IS_IS" : 9, 
+    "PROTO_IP_IS_IS" : 9, 
+    "MIB_IPPROTO_ES_IS" : 10, 
+    "PROTO_IP_ES_IS" : 10, 
+    "MIB_IPPROTO_CISCO" : 11, 
+    "PROTO_IP_CISCO" : 11, 
+    "MIB_IPPROTO_BBN" : 12, 
+    "PROTO_IP_BBN" : 12, 
+    "MIB_IPPROTO_OSPF" : 13, 
+    "PROTO_IP_OSPF" : 13, 
+    "MIB_IPPROTO_BGP" : 14, 
+    "PROTO_IP_BGP" : 14, 
+    "MIB_IPPROTO_IDPR" : 15, 
+    "PROTO_IP_IDPR" : 15, 
+    "MIB_IPPROTO_EIGRP" : 16, 
+    "PROTO_IP_EIGRP" : 16, 
+    "MIB_IPPROTO_DVMRP" : 17, 
+    "PROTO_IP_DVMRP" : 17, 
+    "MIB_IPPROTO_RPL" : 18, 
+    "PROTO_IP_RPL" : 18, 
+    "MIB_IPPROTO_DHCP" : 19, 
+    "PROTO_IP_DHCP" : 19, 
+    "MIB_IPPROTO_NT_AUTOSTATIC" : 10002, 
+    "PROTO_IP_NT_AUTOSTATIC" : 10002, 
+    "MIB_IPPROTO_NT_STATIC" : 10006, 
+    "PROTO_IP_NT_STATIC" : 10006, 
+    "MIB_IPPROTO_NT_STATIC_NON_DOD" : 10007, 
+    "PROTO_IP_NT_STATIC_NON_DOD" : 10007
+};
+
+
+Win32.NL_ADDRESS_TYPE = {
+    "NlatUnspecified" : 0, 
+    "NlatUnicast" : 1, 
+    "NlatAnycast" : 2, 
+    "NlatMulticast" : 3, 
+    "NlatBroadcast" : 4, 
+    "NlatInvalid" : 5
+};
+
+
+Win32.NL_ROUTE_ORIGIN = {
+    "NlroManual" : 0, 
+    "NlroWellKnown" : 1, 
+    "NlroDHCP" : 2, 
+    "NlroRouterAdvertisement" : 3, 
+    "Nlro6to4" : 4
+};
+
+
+Win32.NL_NEIGHBOR_STATE = {
+    "NlnsUnreachable" : 0, 
+    "NlnsIncomplete" : 1, 
+    "NlnsProbe" : 2, 
+    "NlnsDelay" : 3, 
+    "NlnsStale" : 4, 
+    "NlnsReachable" : 5, 
+    "NlnsPermanent" : 6, 
+    "NlnsMaximum" : 7
+};
+
+
+Win32.NL_LINK_LOCAL_ADDRESS_BEHAVIOR = {
+    "LinkLocalAlwaysOff" : 0, 
+    "LinkLocalDelayed" : 1, 
+    "LinkLocalAlwaysOn" : 2, 
+    "LinkLocalUnchanged" : -1
+};
+
+
+Win32.NL_ROUTER_DISCOVERY_BEHAVIOR = {
+    "RouterDiscoveryDisabled" : 0, 
+    "RouterDiscoveryEnabled" : 1, 
+    "RouterDiscoveryDhcp" : 2, 
+    "RouterDiscoveryUnchanged" : -1
+};
+
+
+Win32.NL_BANDWIDTH_FLAG = {
+    "NlbwDisabled" : 0, 
+    "NlbwEnabled" : 1, 
+    "NlbwUnchanged" : -1
+};
+
+
+Win32.NL_NETWORK_CATEGORY = {
+    "NetworkCategoryPublic" : 0, 
+    "NetworkCategoryPrivate" : 1, 
+    "NetworkCategoryDomainAuthenticated" : 2, 
+    "NetworkCategoryUnchanged" : -1, 
+    "NetworkCategoryUnknown" : -1
+};
+
+
+Win32.NL_INTERFACE_NETWORK_CATEGORY_STATE = {
+    "NlincCategoryUnknown" : 0, 
+    "NlincPublic" : 1, 
+    "NlincPrivate" : 2, 
+    "NlincDomainAuthenticated" : 3, 
+    "NlincCategoryStateMax" : 4
+};
+
+
+Win32.NL_NETWORK_CONNECTIVITY_LEVEL_HINT = {
+    "NetworkConnectivityLevelHintUnknown" : 0, 
+    "NetworkConnectivityLevelHintNone" : 1, 
+    "NetworkConnectivityLevelHintLocalAccess" : 2, 
+    "NetworkConnectivityLevelHintInternetAccess" : 3, 
+    "NetworkConnectivityLevelHintConstrainedInternetAccess" : 4, 
+    "NetworkConnectivityLevelHintHidden" : 5
+};
+
+
+Win32.NL_NETWORK_CONNECTIVITY_COST_HINT = {
+    "NetworkConnectivityCostHintUnknown" : 0, 
+    "NetworkConnectivityCostHintUnrestricted" : 1, 
+    "NetworkConnectivityCostHintFixed" : 2, 
+    "NetworkConnectivityCostHintVariable" : 3
+};
+
+
+Win32.TCPSTATE = {
+    "TCPSTATE_CLOSED" : 0, 
+    "TCPSTATE_LISTEN" : 1, 
+    "TCPSTATE_SYN_SENT" : 2, 
+    "TCPSTATE_SYN_RCVD" : 3, 
+    "TCPSTATE_ESTABLISHED" : 4, 
+    "TCPSTATE_FIN_WAIT_1" : 5, 
+    "TCPSTATE_FIN_WAIT_2" : 6, 
+    "TCPSTATE_CLOSE_WAIT" : 7, 
+    "TCPSTATE_CLOSING" : 8, 
+    "TCPSTATE_LAST_ACK" : 9, 
+    "TCPSTATE_TIME_WAIT" : 10, 
+    "TCPSTATE_MAX" : 11
+};
+
+
+Win32.CONTROL_CHANNEL_TRIGGER_STATUS = {
+    "CONTROL_CHANNEL_TRIGGER_STATUS_INVALID" : 0, 
+    "CONTROL_CHANNEL_TRIGGER_STATUS_SOFTWARE_SLOT_ALLOCATED" : 1, 
+    "CONTROL_CHANNEL_TRIGGER_STATUS_HARDWARE_SLOT_ALLOCATED" : 2, 
+    "CONTROL_CHANNEL_TRIGGER_STATUS_POLICY_ERROR" : 3, 
+    "CONTROL_CHANNEL_TRIGGER_STATUS_SYSTEM_ERROR" : 4, 
+    "CONTROL_CHANNEL_TRIGGER_STATUS_TRANSPORT_DISCONNECTED" : 5, 
+    "CONTROL_CHANNEL_TRIGGER_STATUS_SERVICE_UNAVAILABLE" : 6
+};
+
+
+Win32.SOCKET_PRIORITY_HINT = {
+    "SocketPriorityHintVeryLow" : 0, 
+    "SocketPriorityHintLow" : 1, 
+    "SocketPriorityHintNormal" : 2, 
+    "SocketMaximumPriorityHintType" : 3
+};
+
+
+Win32.RCVALL_VALUE = {
+    "RCVALL_OFF" : 0, 
+    "RCVALL_ON" : 1, 
+    "RCVALL_SOCKETLEVELONLY" : 2, 
+    "RCVALL_IPLEVEL" : 3
+};
+
+
+Win32.TCP_ICW_LEVEL = {
+    "TCP_ICW_LEVEL_DEFAULT" : 0, 
+    "TCP_ICW_LEVEL_HIGH" : 1, 
+    "TCP_ICW_LEVEL_VERY_HIGH" : 2, 
+    "TCP_ICW_LEVEL_AGGRESSIVE" : 3, 
+    "TCP_ICW_LEVEL_EXPERIMENTAL" : 4, 
+    "TCP_ICW_LEVEL_COMPAT" : 254, 
+    "TCP_ICW_LEVEL_MAX" : 255
+};
+
+
+Win32.SOCKET_USAGE_TYPE = {
+    "SYSTEM_CRITICAL_SOCKET" : 1
+};
+
+
+Win32.SOCKET_SECURITY_PROTOCOL = {
+    "SOCKET_SECURITY_PROTOCOL_DEFAULT" : 0, 
+    "SOCKET_SECURITY_PROTOCOL_IPSEC" : 1, 
+    "SOCKET_SECURITY_PROTOCOL_IPSEC2" : 2, 
+    "SOCKET_SECURITY_PROTOCOL_INVALID" : 3
+};
+
+
+Win32.WSA_COMPATIBILITY_BEHAVIOR_ID = {
+    "WsaBehaviorAll" : 0, 
+    "WsaBehaviorReceiveBuffering" : 1, 
+    "WsaBehaviorAutoTuning" : 2
+};
+
+
+Win32.Q2931_IE_TYPE = {
+    "IE_AALParameters" : 0, 
+    "IE_TrafficDescriptor" : 1, 
+    "IE_BroadbandBearerCapability" : 2, 
+    "IE_BHLI" : 3, 
+    "IE_BLLI" : 4, 
+    "IE_CalledPartyNumber" : 5, 
+    "IE_CalledPartySubaddress" : 6, 
+    "IE_CallingPartyNumber" : 7, 
+    "IE_CallingPartySubaddress" : 8, 
+    "IE_Cause" : 9, 
+    "IE_QOSClass" : 10, 
+    "IE_TransitNetworkSelection" : 11
+};
+
+
+Win32.AAL_TYPE = {
+    "AALTYPE_5" : 5, 
+    "AALTYPE_USER" : 16
+};
+
+
+Win32.NAPI_PROVIDER_TYPE = {
+    "ProviderType_Application" : 1, 
+    "ProviderType_Service" : 2
+};
+
+
+Win32.NAPI_PROVIDER_LEVEL = {
+    "ProviderLevel_None" : 0, 
+    "ProviderLevel_Secondary" : 1, 
+    "ProviderLevel_Primary" : 2
+};
+
+
+Win32.NLA_BLOB_DATA_TYPE = {
+    "NLA_RAW_DATA" : 0, 
+    "NLA_INTERFACE" : 1, 
+    "NLA_802_1X_LOCATION" : 2, 
+    "NLA_CONNECTIVITY" : 3, 
+    "NLA_ICS" : 4
+};
+
+
+Win32.NLA_CONNECTIVITY_TYPE = {
+    "NLA_NETWORK_AD_HOC" : 0, 
+    "NLA_NETWORK_MANAGED" : 1, 
+    "NLA_NETWORK_UNMANAGED" : 2, 
+    "NLA_NETWORK_UNKNOWN" : 3
+};
+
+
+Win32.NLA_INTERNET = {
+    "NLA_INTERNET_UNKNOWN" : 0, 
+    "NLA_INTERNET_NO" : 1, 
+    "NLA_INTERNET_YES" : 2
+};
+
+
+Win32.RIO_NOTIFICATION_COMPLETION_TYPE = {
+    "RIO_EVENT_COMPLETION" : 1, 
+    "RIO_IOCP_COMPLETION" : 2
+};
+
+
+Win32.WSC_PROVIDER_INFO_TYPE = {
+    "ProviderInfoLspCategories" : 0, 
+    "ProviderInfoAudit" : 1
+};
+
+
+Win32.IPV4_OPTION_TYPE = {
+    "IP_OPT_EOL" : 0, 
+    "IP_OPT_NOP" : 1, 
+    "IP_OPT_SECURITY" : 130, 
+    "IP_OPT_LSRR" : 131, 
+    "IP_OPT_TS" : 68, 
+    "IP_OPT_RR" : 7, 
+    "IP_OPT_SSRR" : 137, 
+    "IP_OPT_SID" : 136, 
+    "IP_OPT_ROUTER_ALERT" : 148, 
+    "IP_OPT_MULTIDEST" : 149
+};
+
+
+Win32.IP_OPTION_TIMESTAMP_FLAGS = {
+    "IP_OPTION_TIMESTAMP_ONLY" : 0, 
+    "IP_OPTION_TIMESTAMP_ADDRESS" : 1, 
+    "IP_OPTION_TIMESTAMP_SPECIFIC_ADDRESS" : 3
+};
+
+
+Win32.ICMP4_UNREACH_CODE = {
+    "ICMP4_UNREACH_NET" : 0, 
+    "ICMP4_UNREACH_HOST" : 1, 
+    "ICMP4_UNREACH_PROTOCOL" : 2, 
+    "ICMP4_UNREACH_PORT" : 3, 
+    "ICMP4_UNREACH_FRAG_NEEDED" : 4, 
+    "ICMP4_UNREACH_SOURCEROUTE_FAILED" : 5, 
+    "ICMP4_UNREACH_NET_UNKNOWN" : 6, 
+    "ICMP4_UNREACH_HOST_UNKNOWN" : 7, 
+    "ICMP4_UNREACH_ISOLATED" : 8, 
+    "ICMP4_UNREACH_NET_ADMIN" : 9, 
+    "ICMP4_UNREACH_HOST_ADMIN" : 10, 
+    "ICMP4_UNREACH_NET_TOS" : 11, 
+    "ICMP4_UNREACH_HOST_TOS" : 12, 
+    "ICMP4_UNREACH_ADMIN" : 13
+};
+
+
+Win32.ICMP4_TIME_EXCEED_CODE = {
+    "ICMP4_TIME_EXCEED_TRANSIT" : 0, 
+    "ICMP4_TIME_EXCEED_REASSEMBLY" : 1
+};
+
+
+Win32.ARP_OPCODE = {
+    "ARP_REQUEST" : 1, 
+    "ARP_RESPONSE" : 2
+};
+
+
+Win32.ARP_HARDWARE_TYPE = {
+    "ARP_HW_ENET" : 1, 
+    "ARP_HW_802" : 6
+};
+
+
+Win32.IGMP_MAX_RESP_CODE_TYPE = {
+    "IGMP_MAX_RESP_CODE_TYPE_NORMAL" : 0, 
+    "IGMP_MAX_RESP_CODE_TYPE_FLOAT" : 1
+};
+
+
+Win32.IPV6_OPTION_TYPE = {
+    "IP6OPT_PAD1" : 0, 
+    "IP6OPT_PADN" : 1, 
+    "IP6OPT_TUNNEL_LIMIT" : 4, 
+    "IP6OPT_ROUTER_ALERT" : 5, 
+    "IP6OPT_JUMBO" : 194, 
+    "IP6OPT_NSAP_ADDR" : 195
+};
+
+
+Win32.ND_OPTION_TYPE = {
+    "ND_OPT_SOURCE_LINKADDR" : 1, 
+    "ND_OPT_TARGET_LINKADDR" : 2, 
+    "ND_OPT_PREFIX_INFORMATION" : 3, 
+    "ND_OPT_REDIRECTED_HEADER" : 4, 
+    "ND_OPT_MTU" : 5, 
+    "ND_OPT_NBMA_SHORTCUT_LIMIT" : 6, 
+    "ND_OPT_ADVERTISEMENT_INTERVAL" : 7, 
+    "ND_OPT_HOME_AGENT_INFORMATION" : 8, 
+    "ND_OPT_SOURCE_ADDR_LIST" : 9, 
+    "ND_OPT_TARGET_ADDR_LIST" : 10, 
+    "ND_OPT_ROUTE_INFO" : 24, 
+    "ND_OPT_RDNSS" : 25, 
+    "ND_OPT_DNSSL" : 31
+};
+
+
+Win32.MLD_MAX_RESP_CODE_TYPE = {
+    "MLD_MAX_RESP_CODE_TYPE_NORMAL" : 0, 
+    "MLD_MAX_RESP_CODE_TYPE_FLOAT" : 1
+};
+
+
+Win32.TUNNEL_SUB_TYPE = {
+    "TUNNEL_SUB_TYPE_NONE" : 0, 
+    "TUNNEL_SUB_TYPE_CP" : 1, 
+    "TUNNEL_SUB_TYPE_IPTLS" : 2, 
+    "TUNNEL_SUB_TYPE_HA" : 3
+};
+
+
+Win32.NPI_MODULEID_TYPE = {
+    "MIT_GUID" : 1, 
+    "MIT_IF_LUID" : 2
+};
+
+
+Win32.FALLBACK_INDEX = {
+    "FallbackIndexTcpFastopen" : 0, 
+    "FallbackIndexMax" : 1
+};
+
+
+Win32.RIO_BUFFERID_t = foreign.named_struct( "Windows.Win32.Networking.WinSock.RIO_BUFFERID_t", [ 
+    
+]); 
+
+
+Win32.RIO_CQ_t = foreign.named_struct( "Windows.Win32.Networking.WinSock.RIO_CQ_t", [ 
+    
+]); 
+
+
+Win32.RIO_RQ_t = foreign.named_struct( "Windows.Win32.Networking.WinSock.RIO_RQ_t", [ 
+    
+]); 
+
+
+Win32.HWSAEVENT = foreign.named_struct( "Windows.Win32.Networking.WinSock.HWSAEVENT", [ 
+    "Value:ptr"
+]); 
+
+
+Win32.SOCKET = foreign.named_struct( "Windows.Win32.Networking.WinSock.SOCKET", [ 
+    "Value:ptr"
+]); 
+
+
+Win32.FLOWSPEC = foreign.named_struct( "Windows.Win32.Networking.WinSock.FLOWSPEC", [ 
+    "TokenRate:uint", 
+    "TokenBucketSize:uint", 
+    "PeakBandwidth:uint", 
+    "Latency:uint", 
+    "DelayVariation:uint", 
+    "ServiceType:uint", 
+    "MaxSduSize:uint", 
+    "MinimumPolicedSize:uint"
+]); 
+
+
+Win32.SERVENT = foreign.named_struct( "Windows.Win32.Networking.WinSock.SERVENT", [ 
+    "s_name:str", 
+    "s_aliases:ptr", 
+    "s_proto:str", 
+    "s_port:short"
+]); 
+
+
+Win32.WSADATA = foreign.named_struct( "Windows.Win32.Networking.WinSock.WSADATA", [ 
+    "wVersion:ushort", 
+    "wHighVersion:ushort", 
+    "iMaxSockets:ushort", 
+    "iMaxUdpDg:ushort", 
+    "lpVendorInfo:str", 
+    "szDescription[257]:Windows.Win32.Foundation.CHAR", 
+    "szSystemStatus[129]:Windows.Win32.Foundation.CHAR"
+]); 
+
+
+Win32.IN_ADDR = foreign.named_struct( "Windows.Win32.Networking.WinSock.IN_ADDR", [ 
+    "S_un:._S_un_e__Union"
+]); 
+
+
+Win32.SOCKADDR = foreign.named_struct( "Windows.Win32.Networking.WinSock.SOCKADDR", [ 
+    "sa_family:ushort", 
+    "sa_data[14]:Windows.Win32.Foundation.CHAR"
+]); 
+
+
+Win32.SOCKET_ADDRESS = foreign.named_struct( "Windows.Win32.Networking.WinSock.SOCKET_ADDRESS", [ 
+    "lpSockaddr:ptr", 
+    "iSockaddrLength:int"
+]); 
+
+
+Win32.SOCKET_ADDRESS_LIST = foreign.named_struct( "Windows.Win32.Networking.WinSock.SOCKET_ADDRESS_LIST", [ 
+    "iAddressCount:int", 
+    "Address[1]:Windows.Win32.Networking.WinSock.SOCKET_ADDRESS"
+]); 
+
+
+Win32.CSADDR_INFO = foreign.named_struct( "Windows.Win32.Networking.WinSock.CSADDR_INFO", [ 
+    "LocalAddr:Windows.Win32.Networking.WinSock.SOCKET_ADDRESS", 
+    "RemoteAddr:Windows.Win32.Networking.WinSock.SOCKET_ADDRESS", 
+    "iSocketType:int", 
+    "iProtocol:int"
+]); 
+
+
+Win32.SOCKADDR_STORAGE = foreign.named_struct( "Windows.Win32.Networking.WinSock.SOCKADDR_STORAGE", [ 
+    "ss_family:ushort", 
+    "__ss_pad1[6]:Windows.Win32.Foundation.CHAR", 
+    "__ss_align:long", 
+    "__ss_pad2[112]:Windows.Win32.Foundation.CHAR"
+]); 
+
+
+Win32.SOCKADDR_STORAGE_XP = foreign.named_struct( "Windows.Win32.Networking.WinSock.SOCKADDR_STORAGE_XP", [ 
+    "ss_family:short", 
+    "__ss_pad1[6]:Windows.Win32.Foundation.CHAR", 
+    "__ss_align:long", 
+    "__ss_pad2[112]:Windows.Win32.Foundation.CHAR"
+]); 
+
+
+Win32.SOCKET_PROCESSOR_AFFINITY = foreign.named_struct( "Windows.Win32.Networking.WinSock.SOCKET_PROCESSOR_AFFINITY", [ 
+    "Processor:Windows.Win32.System.Kernel.PROCESSOR_NUMBER", 
+    "NumaNodeId:ushort", 
+    "Reserved:ushort"
+]); 
+
+
+Win32.SCOPE_ID = foreign.named_struct( "Windows.Win32.Networking.WinSock.SCOPE_ID", [ 
+    "Anonymous:._Anonymous_e__Union"
+]); 
+
+
+Win32.SOCKADDR_IN = foreign.named_struct( "Windows.Win32.Networking.WinSock.SOCKADDR_IN", [ 
+    "sin_family:ushort", 
+    "sin_port:ushort", 
+    "sin_addr:Windows.Win32.Networking.WinSock.IN_ADDR", 
+    "sin_zero[8]:Windows.Win32.Foundation.CHAR"
+]); 
+
+
+Win32.SOCKADDR_DL = foreign.named_struct( "Windows.Win32.Networking.WinSock.SOCKADDR_DL", [ 
+    "sdl_family:ushort", 
+    "sdl_data[8]:ubyte", 
+    "sdl_zero[4]:ubyte"
+]); 
+
+
+Win32.WSABUF = foreign.named_struct( "Windows.Win32.Networking.WinSock.WSABUF", [ 
+    "len:uint", 
+    "buf:str"
+]); 
+
+
+Win32.WSAMSG = foreign.named_struct( "Windows.Win32.Networking.WinSock.WSAMSG", [ 
+    "name:ptr", 
+    "namelen:int", 
+    "lpBuffers:ptr", 
+    "dwBufferCount:uint", 
+    "Control:Windows.Win32.Networking.WinSock.WSABUF", 
+    "dwFlags:uint"
+]); 
+
+
+Win32.CMSGHDR = foreign.named_struct( "Windows.Win32.Networking.WinSock.CMSGHDR", [ 
+    "cmsg_len:ptr", 
+    "cmsg_level:int", 
+    "cmsg_type:int"
+]); 
+
+
+Win32.ADDRINFOA = foreign.named_struct( "Windows.Win32.Networking.WinSock.ADDRINFOA", [ 
+    "ai_flags:int", 
+    "ai_family:int", 
+    "ai_socktype:int", 
+    "ai_protocol:int", 
+    "ai_addrlen:ptr", 
+    "ai_canonname:str", 
+    "ai_addr:ptr", 
+    "ai_next:ptr"
+]); 
+
+
+Win32.ADDRINFOW = foreign.named_struct( "Windows.Win32.Networking.WinSock.ADDRINFOW", [ 
+    "ai_flags:int", 
+    "ai_family:int", 
+    "ai_socktype:int", 
+    "ai_protocol:int", 
+    "ai_addrlen:ptr", 
+    "ai_canonname:wstr", 
+    "ai_addr:ptr", 
+    "ai_next:ptr"
+]); 
+
+
+Win32.ADDRINFOEXA = foreign.named_struct( "Windows.Win32.Networking.WinSock.ADDRINFOEXA", [ 
+    "ai_flags:int", 
+    "ai_family:int", 
+    "ai_socktype:int", 
+    "ai_protocol:int", 
+    "ai_addrlen:ptr", 
+    "ai_canonname:str", 
+    "ai_addr:ptr", 
+    "ai_blob:ptr", 
+    "ai_bloblen:ptr", 
+    "ai_provider:ptr", 
+    "ai_next:ptr"
+]); 
+
+
+Win32.ADDRINFOEXW = foreign.named_struct( "Windows.Win32.Networking.WinSock.ADDRINFOEXW", [ 
+    "ai_flags:int", 
+    "ai_family:int", 
+    "ai_socktype:int", 
+    "ai_protocol:int", 
+    "ai_addrlen:ptr", 
+    "ai_canonname:wstr", 
+    "ai_addr:ptr", 
+    "ai_blob:ptr", 
+    "ai_bloblen:ptr", 
+    "ai_provider:ptr", 
+    "ai_next:ptr"
+]); 
+
+
+Win32.ADDRINFOEX2A = foreign.named_struct( "Windows.Win32.Networking.WinSock.ADDRINFOEX2A", [ 
+    "ai_flags:int", 
+    "ai_family:int", 
+    "ai_socktype:int", 
+    "ai_protocol:int", 
+    "ai_addrlen:ptr", 
+    "ai_canonname:str", 
+    "ai_addr:ptr", 
+    "ai_blob:ptr", 
+    "ai_bloblen:ptr", 
+    "ai_provider:ptr", 
+    "ai_next:ptr", 
+    "ai_version:int", 
+    "ai_fqdn:str"
+]); 
+
+
+Win32.ADDRINFOEX2W = foreign.named_struct( "Windows.Win32.Networking.WinSock.ADDRINFOEX2W", [ 
+    "ai_flags:int", 
+    "ai_family:int", 
+    "ai_socktype:int", 
+    "ai_protocol:int", 
+    "ai_addrlen:ptr", 
+    "ai_canonname:wstr", 
+    "ai_addr:ptr", 
+    "ai_blob:ptr", 
+    "ai_bloblen:ptr", 
+    "ai_provider:ptr", 
+    "ai_next:ptr", 
+    "ai_version:int", 
+    "ai_fqdn:wstr"
+]); 
+
+
+Win32.ADDRINFOEX3 = foreign.named_struct( "Windows.Win32.Networking.WinSock.ADDRINFOEX3", [ 
+    "ai_flags:int", 
+    "ai_family:int", 
+    "ai_socktype:int", 
+    "ai_protocol:int", 
+    "ai_addrlen:ptr", 
+    "ai_canonname:wstr", 
+    "ai_addr:ptr", 
+    "ai_blob:ptr", 
+    "ai_bloblen:ptr", 
+    "ai_provider:ptr", 
+    "ai_next:ptr", 
+    "ai_version:int", 
+    "ai_fqdn:wstr", 
+    "ai_interfaceindex:int"
+]); 
+
+
+Win32.ADDRINFOEX4 = foreign.named_struct( "Windows.Win32.Networking.WinSock.ADDRINFOEX4", [ 
+    "ai_flags:int", 
+    "ai_family:int", 
+    "ai_socktype:int", 
+    "ai_protocol:int", 
+    "ai_addrlen:ptr", 
+    "ai_canonname:wstr", 
+    "ai_addr:ptr", 
+    "ai_blob:ptr", 
+    "ai_bloblen:ptr", 
+    "ai_provider:ptr", 
+    "ai_next:ptr", 
+    "ai_version:int", 
+    "ai_fqdn:wstr", 
+    "ai_interfaceindex:int", 
+    "ai_resolutionhandle:Windows.Win32.Foundation.HANDLE"
+]); 
+
+
+Win32.ADDRINFOEX5 = foreign.named_struct( "Windows.Win32.Networking.WinSock.ADDRINFOEX5", [ 
+    "ai_flags:int", 
+    "ai_family:int", 
+    "ai_socktype:int", 
+    "ai_protocol:int", 
+    "ai_addrlen:ptr", 
+    "ai_canonname:wstr", 
+    "ai_addr:ptr", 
+    "ai_blob:ptr", 
+    "ai_bloblen:ptr", 
+    "ai_provider:ptr", 
+    "ai_next:ptr", 
+    "ai_version:int", 
+    "ai_fqdn:wstr", 
+    "ai_interfaceindex:int", 
+    "ai_resolutionhandle:Windows.Win32.Foundation.HANDLE", 
+    "ai_ttl:uint"
+]); 
+
+
+Win32.ADDRINFO_DNS_SERVER = foreign.named_struct( "Windows.Win32.Networking.WinSock.ADDRINFO_DNS_SERVER", [ 
+    "ai_servertype:uint", 
+    "ai_flags:ulong", 
+    "ai_addrlen:uint", 
+    "ai_addr:ptr", 
+    "Anonymous:._Anonymous_e__Union"
+]); 
+
+
+Win32.ADDRINFOEX6 = foreign.named_struct( "Windows.Win32.Networking.WinSock.ADDRINFOEX6", [ 
+    "ai_flags:int", 
+    "ai_family:int", 
+    "ai_socktype:int", 
+    "ai_protocol:int", 
+    "ai_addrlen:ptr", 
+    "ai_canonname:wstr", 
+    "ai_addr:ptr", 
+    "ai_blob:ptr", 
+    "ai_bloblen:ptr", 
+    "ai_provider:ptr", 
+    "ai_next:ptr", 
+    "ai_version:int", 
+    "ai_fqdn:wstr", 
+    "ai_interfaceindex:int", 
+    "ai_resolutionhandle:Windows.Win32.Foundation.HANDLE", 
+    "ai_ttl:uint", 
+    "ai_numservers:uint", 
+    "ai_servers:ptr", 
+    "ai_responseflags:ulong"
+]); 
+
+
+Win32.FD_SET = foreign.named_struct( "Windows.Win32.Networking.WinSock.FD_SET", [ 
+    "fd_count:uint", 
+    "fd_array[64]:Windows.Win32.Networking.WinSock.SOCKET"
+]); 
+
+
+Win32.TIMEVAL = foreign.named_struct( "Windows.Win32.Networking.WinSock.TIMEVAL", [ 
+    "tv_sec:int", 
+    "tv_usec:int"
+]); 
+
+
+Win32.HOSTENT = foreign.named_struct( "Windows.Win32.Networking.WinSock.HOSTENT", [ 
+    "h_name:str", 
+    "h_aliases:ptr", 
+    "h_addrtype:short", 
+    "h_length:short", 
+    "h_addr_list:ptr"
+]); 
+
+
+Win32.netent = foreign.named_struct( "Windows.Win32.Networking.WinSock.netent", [ 
+    "n_name:str", 
+    "n_aliases:ptr", 
+    "n_addrtype:short", 
+    "n_net:uint"
+]); 
+
+
+Win32.PROTOENT = foreign.named_struct( "Windows.Win32.Networking.WinSock.PROTOENT", [ 
+    "p_name:str", 
+    "p_aliases:ptr", 
+    "p_proto:short"
+]); 
+
+
+Win32.sockproto = foreign.named_struct( "Windows.Win32.Networking.WinSock.sockproto", [ 
+    "sp_family:ushort", 
+    "sp_protocol:ushort"
+]); 
+
+
+Win32.LINGER = foreign.named_struct( "Windows.Win32.Networking.WinSock.LINGER", [ 
+    "l_onoff:ushort", 
+    "l_linger:ushort"
+]); 
+
+
+Win32.QOS = foreign.named_struct( "Windows.Win32.Networking.WinSock.QOS", [ 
+    "SendingFlowspec:Windows.Win32.Networking.WinSock.FLOWSPEC", 
+    "ReceivingFlowspec:Windows.Win32.Networking.WinSock.FLOWSPEC", 
+    "ProviderSpecific:Windows.Win32.Networking.WinSock.WSABUF"
+]); 
+
+
+Win32.WSANETWORKEVENTS = foreign.named_struct( "Windows.Win32.Networking.WinSock.WSANETWORKEVENTS", [ 
+    "lNetworkEvents:int", 
+    "iErrorCode[10]:int"
+]); 
+
+
+Win32.WSAPROTOCOLCHAIN = foreign.named_struct( "Windows.Win32.Networking.WinSock.WSAPROTOCOLCHAIN", [ 
+    "ChainLen:int", 
+    "ChainEntries[7]:uint"
+]); 
+
+
+Win32.WSAPROTOCOL_INFOA = foreign.named_struct( "Windows.Win32.Networking.WinSock.WSAPROTOCOL_INFOA", [ 
+    "dwServiceFlags1:uint", 
+    "dwServiceFlags2:uint", 
+    "dwServiceFlags3:uint", 
+    "dwServiceFlags4:uint", 
+    "dwProviderFlags:uint", 
+    "ProviderId:ptr", 
+    "dwCatalogEntryId:uint", 
+    "ProtocolChain:Windows.Win32.Networking.WinSock.WSAPROTOCOLCHAIN", 
+    "iVersion:int", 
+    "iAddressFamily:int", 
+    "iMaxSockAddr:int", 
+    "iMinSockAddr:int", 
+    "iSocketType:int", 
+    "iProtocol:int", 
+    "iProtocolMaxOffset:int", 
+    "iNetworkByteOrder:int", 
+    "iSecurityScheme:int", 
+    "dwMessageSize:uint", 
+    "dwProviderReserved:uint", 
+    "szProtocol[256]:Windows.Win32.Foundation.CHAR"
+]); 
+
+
+Win32.WSAPROTOCOL_INFOW = foreign.named_struct( "Windows.Win32.Networking.WinSock.WSAPROTOCOL_INFOW", [ 
+    "dwServiceFlags1:uint", 
+    "dwServiceFlags2:uint", 
+    "dwServiceFlags3:uint", 
+    "dwServiceFlags4:uint", 
+    "dwProviderFlags:uint", 
+    "ProviderId:ptr", 
+    "dwCatalogEntryId:uint", 
+    "ProtocolChain:Windows.Win32.Networking.WinSock.WSAPROTOCOLCHAIN", 
+    "iVersion:int", 
+    "iAddressFamily:int", 
+    "iMaxSockAddr:int", 
+    "iMinSockAddr:int", 
+    "iSocketType:int", 
+    "iProtocol:int", 
+    "iProtocolMaxOffset:int", 
+    "iNetworkByteOrder:int", 
+    "iSecurityScheme:int", 
+    "dwMessageSize:uint", 
+    "dwProviderReserved:uint", 
+    "szProtocol[256]:short"
+]); 
+
+
+Win32.WSACOMPLETION = foreign.named_struct( "Windows.Win32.Networking.WinSock.WSACOMPLETION", [ 
+    "Type:int", 
+    "Parameters:._Parameters_e__Union"
+]); 
+
+
+Win32.AFPROTOCOLS = foreign.named_struct( "Windows.Win32.Networking.WinSock.AFPROTOCOLS", [ 
+    "iAddressFamily:int", 
+    "iProtocol:int"
+]); 
+
+
+Win32.WSAVERSION = foreign.named_struct( "Windows.Win32.Networking.WinSock.WSAVERSION", [ 
+    "dwVersion:uint", 
+    "ecHow:int"
+]); 
+
+
+Win32.WSAQUERYSETA = foreign.named_struct( "Windows.Win32.Networking.WinSock.WSAQUERYSETA", [ 
+    "dwSize:uint", 
+    "lpszServiceInstanceName:str", 
+    "lpServiceClassId:ptr", 
+    "lpVersion:ptr", 
+    "lpszComment:str", 
+    "dwNameSpace:uint", 
+    "lpNSProviderId:ptr", 
+    "lpszContext:str", 
+    "dwNumberOfProtocols:uint", 
+    "lpafpProtocols:ptr", 
+    "lpszQueryString:str", 
+    "dwNumberOfCsAddrs:uint", 
+    "lpcsaBuffer:ptr", 
+    "dwOutputFlags:uint", 
+    "lpBlob:ptr"
+]); 
+
+
+Win32.WSAQUERYSETW = foreign.named_struct( "Windows.Win32.Networking.WinSock.WSAQUERYSETW", [ 
+    "dwSize:uint", 
+    "lpszServiceInstanceName:wstr", 
+    "lpServiceClassId:ptr", 
+    "lpVersion:ptr", 
+    "lpszComment:wstr", 
+    "dwNameSpace:uint", 
+    "lpNSProviderId:ptr", 
+    "lpszContext:wstr", 
+    "dwNumberOfProtocols:uint", 
+    "lpafpProtocols:ptr", 
+    "lpszQueryString:wstr", 
+    "dwNumberOfCsAddrs:uint", 
+    "lpcsaBuffer:ptr", 
+    "dwOutputFlags:uint", 
+    "lpBlob:ptr"
+]); 
+
+
+Win32.WSAQUERYSET2A = foreign.named_struct( "Windows.Win32.Networking.WinSock.WSAQUERYSET2A", [ 
+    "dwSize:uint", 
+    "lpszServiceInstanceName:str", 
+    "lpVersion:ptr", 
+    "lpszComment:str", 
+    "dwNameSpace:uint", 
+    "lpNSProviderId:ptr", 
+    "lpszContext:str", 
+    "dwNumberOfProtocols:uint", 
+    "lpafpProtocols:ptr", 
+    "lpszQueryString:str", 
+    "dwNumberOfCsAddrs:uint", 
+    "lpcsaBuffer:ptr", 
+    "dwOutputFlags:uint", 
+    "lpBlob:ptr"
+]); 
+
+
+Win32.WSAQUERYSET2W = foreign.named_struct( "Windows.Win32.Networking.WinSock.WSAQUERYSET2W", [ 
+    "dwSize:uint", 
+    "lpszServiceInstanceName:wstr", 
+    "lpVersion:ptr", 
+    "lpszComment:wstr", 
+    "dwNameSpace:uint", 
+    "lpNSProviderId:ptr", 
+    "lpszContext:wstr", 
+    "dwNumberOfProtocols:uint", 
+    "lpafpProtocols:ptr", 
+    "lpszQueryString:wstr", 
+    "dwNumberOfCsAddrs:uint", 
+    "lpcsaBuffer:ptr", 
+    "dwOutputFlags:uint", 
+    "lpBlob:ptr"
+]); 
+
+
+Win32.WSANSCLASSINFOA = foreign.named_struct( "Windows.Win32.Networking.WinSock.WSANSCLASSINFOA", [ 
+    "lpszName:str", 
+    "dwNameSpace:uint", 
+    "dwValueType:uint", 
+    "dwValueSize:uint", 
+    "lpValue:ptr"
+]); 
+
+
+Win32.WSANSCLASSINFOW = foreign.named_struct( "Windows.Win32.Networking.WinSock.WSANSCLASSINFOW", [ 
+    "lpszName:wstr", 
+    "dwNameSpace:uint", 
+    "dwValueType:uint", 
+    "dwValueSize:uint", 
+    "lpValue:ptr"
+]); 
+
+
+Win32.WSASERVICECLASSINFOA = foreign.named_struct( "Windows.Win32.Networking.WinSock.WSASERVICECLASSINFOA", [ 
+    "lpServiceClassId:ptr", 
+    "lpszServiceClassName:str", 
+    "dwCount:uint", 
+    "lpClassInfos:ptr"
+]); 
+
+
+Win32.WSASERVICECLASSINFOW = foreign.named_struct( "Windows.Win32.Networking.WinSock.WSASERVICECLASSINFOW", [ 
+    "lpServiceClassId:ptr", 
+    "lpszServiceClassName:wstr", 
+    "dwCount:uint", 
+    "lpClassInfos:ptr"
+]); 
+
+
+Win32.WSANAMESPACE_INFOA = foreign.named_struct( "Windows.Win32.Networking.WinSock.WSANAMESPACE_INFOA", [ 
+    "NSProviderId:ptr", 
+    "dwNameSpace:uint", 
+    "fActive:Windows.Win32.Foundation.BOOL", 
+    "dwVersion:uint", 
+    "lpszIdentifier:str"
+]); 
+
+
+Win32.WSANAMESPACE_INFOW = foreign.named_struct( "Windows.Win32.Networking.WinSock.WSANAMESPACE_INFOW", [ 
+    "NSProviderId:ptr", 
+    "dwNameSpace:uint", 
+    "fActive:Windows.Win32.Foundation.BOOL", 
+    "dwVersion:uint", 
+    "lpszIdentifier:wstr"
+]); 
+
+
+Win32.WSANAMESPACE_INFOEXA = foreign.named_struct( "Windows.Win32.Networking.WinSock.WSANAMESPACE_INFOEXA", [ 
+    "NSProviderId:ptr", 
+    "dwNameSpace:uint", 
+    "fActive:Windows.Win32.Foundation.BOOL", 
+    "dwVersion:uint", 
+    "lpszIdentifier:str", 
+    "ProviderSpecific:Windows.Win32.System.Com.BLOB"
+]); 
+
+
+Win32.WSANAMESPACE_INFOEXW = foreign.named_struct( "Windows.Win32.Networking.WinSock.WSANAMESPACE_INFOEXW", [ 
+    "NSProviderId:ptr", 
+    "dwNameSpace:uint", 
+    "fActive:Windows.Win32.Foundation.BOOL", 
+    "dwVersion:uint", 
+    "lpszIdentifier:wstr", 
+    "ProviderSpecific:Windows.Win32.System.Com.BLOB"
+]); 
+
+
+Win32.WSAPOLLFD = foreign.named_struct( "Windows.Win32.Networking.WinSock.WSAPOLLFD", [ 
+    "fd:Windows.Win32.Networking.WinSock.SOCKET", 
+    "events:short", 
+    "revents:short"
+]); 
+
+
+Win32.SOCK_NOTIFY_REGISTRATION = foreign.named_struct( "Windows.Win32.Networking.WinSock.SOCK_NOTIFY_REGISTRATION", [ 
+    "socket:Windows.Win32.Networking.WinSock.SOCKET", 
+    "completionKey:ptr", 
+    "eventFilter:ushort", 
+    "operation:ubyte", 
+    "triggerFlags:ubyte", 
+    "registrationResult:uint"
+]); 
+
+
+Win32.IN6_ADDR = foreign.named_struct( "Windows.Win32.Networking.WinSock.IN6_ADDR", [ 
+    "u:._u_e__Union"
+]); 
+
+
+Win32.sockaddr_in6_old = foreign.named_struct( "Windows.Win32.Networking.WinSock.sockaddr_in6_old", [ 
+    "sin6_family:short", 
+    "sin6_port:ushort", 
+    "sin6_flowinfo:uint", 
+    "sin6_addr:Windows.Win32.Networking.WinSock.IN6_ADDR"
+]); 
+
+
+Win32.sockaddr_gen = foreign.named_struct( "Windows.Win32.Networking.WinSock.sockaddr_gen", [ 
+    "Address:Windows.Win32.Networking.WinSock.SOCKADDR", 
+    "AddressIn:Windows.Win32.Networking.WinSock.SOCKADDR_IN", 
+    "AddressIn6:Windows.Win32.Networking.WinSock.sockaddr_in6_old"
+]); 
+
+
+Win32.INTERFACE_INFO = foreign.named_struct( "Windows.Win32.Networking.WinSock.INTERFACE_INFO", [ 
+    "iiFlags:uint", 
+    "iiAddress:Windows.Win32.Networking.WinSock.sockaddr_gen", 
+    "iiBroadcastAddress:Windows.Win32.Networking.WinSock.sockaddr_gen", 
+    "iiNetmask:Windows.Win32.Networking.WinSock.sockaddr_gen"
+]); 
+
+
+Win32.INTERFACE_INFO_EX = foreign.named_struct( "Windows.Win32.Networking.WinSock.INTERFACE_INFO_EX", [ 
+    "iiFlags:uint", 
+    "iiAddress:Windows.Win32.Networking.WinSock.SOCKET_ADDRESS", 
+    "iiBroadcastAddress:Windows.Win32.Networking.WinSock.SOCKET_ADDRESS", 
+    "iiNetmask:Windows.Win32.Networking.WinSock.SOCKET_ADDRESS"
+]); 
+
+
+Win32.SOCKADDR_IN6 = foreign.named_struct( "Windows.Win32.Networking.WinSock.SOCKADDR_IN6", [ 
+    "sin6_family:ushort", 
+    "sin6_port:ushort", 
+    "sin6_flowinfo:uint", 
+    "sin6_addr:Windows.Win32.Networking.WinSock.IN6_ADDR", 
+    "Anonymous:._Anonymous_e__Union"
+]); 
+
+
+Win32.SOCKADDR_IN6_W2KSP1 = foreign.named_struct( "Windows.Win32.Networking.WinSock.SOCKADDR_IN6_W2KSP1", [ 
+    "sin6_family:short", 
+    "sin6_port:ushort", 
+    "sin6_flowinfo:uint", 
+    "sin6_addr:Windows.Win32.Networking.WinSock.IN6_ADDR", 
+    "sin6_scope_id:uint"
+]); 
+
+
+Win32.SOCKADDR_INET = foreign.named_struct( "Windows.Win32.Networking.WinSock.SOCKADDR_INET", [ 
+    "Ipv4:Windows.Win32.Networking.WinSock.SOCKADDR_IN", 
+    "Ipv6:Windows.Win32.Networking.WinSock.SOCKADDR_IN6", 
+    "si_family:ushort"
+]); 
+
+
+Win32.SOCKADDR_IN6_PAIR = foreign.named_struct( "Windows.Win32.Networking.WinSock.SOCKADDR_IN6_PAIR", [ 
+    "SourceAddress:ptr", 
+    "DestinationAddress:ptr"
+]); 
+
+
+Win32.IP_MREQ = foreign.named_struct( "Windows.Win32.Networking.WinSock.IP_MREQ", [ 
+    "imr_multiaddr:Windows.Win32.Networking.WinSock.IN_ADDR", 
+    "imr_interface:Windows.Win32.Networking.WinSock.IN_ADDR"
+]); 
+
+
+Win32.IP_MREQ_SOURCE = foreign.named_struct( "Windows.Win32.Networking.WinSock.IP_MREQ_SOURCE", [ 
+    "imr_multiaddr:Windows.Win32.Networking.WinSock.IN_ADDR", 
+    "imr_sourceaddr:Windows.Win32.Networking.WinSock.IN_ADDR", 
+    "imr_interface:Windows.Win32.Networking.WinSock.IN_ADDR"
+]); 
+
+
+Win32.IP_MSFILTER = foreign.named_struct( "Windows.Win32.Networking.WinSock.IP_MSFILTER", [ 
+    "imsf_multiaddr:Windows.Win32.Networking.WinSock.IN_ADDR", 
+    "imsf_interface:Windows.Win32.Networking.WinSock.IN_ADDR", 
+    "imsf_fmode:int", 
+    "imsf_numsrc:uint", 
+    "imsf_slist[1]:Windows.Win32.Networking.WinSock.IN_ADDR"
+]); 
+
+
+Win32.IPV6_MREQ = foreign.named_struct( "Windows.Win32.Networking.WinSock.IPV6_MREQ", [ 
+    "ipv6mr_multiaddr:Windows.Win32.Networking.WinSock.IN6_ADDR", 
+    "ipv6mr_interface:uint"
+]); 
+
+
+Win32.GROUP_REQ = foreign.named_struct( "Windows.Win32.Networking.WinSock.GROUP_REQ", [ 
+    "gr_interface:uint", 
+    "gr_group:Windows.Win32.Networking.WinSock.SOCKADDR_STORAGE"
+]); 
+
+
+Win32.GROUP_SOURCE_REQ = foreign.named_struct( "Windows.Win32.Networking.WinSock.GROUP_SOURCE_REQ", [ 
+    "gsr_interface:uint", 
+    "gsr_group:Windows.Win32.Networking.WinSock.SOCKADDR_STORAGE", 
+    "gsr_source:Windows.Win32.Networking.WinSock.SOCKADDR_STORAGE"
+]); 
+
+
+Win32.GROUP_FILTER = foreign.named_struct( "Windows.Win32.Networking.WinSock.GROUP_FILTER", [ 
+    "gf_interface:uint", 
+    "gf_group:Windows.Win32.Networking.WinSock.SOCKADDR_STORAGE", 
+    "gf_fmode:int", 
+    "gf_numsrc:uint", 
+    "gf_slist[1]:Windows.Win32.Networking.WinSock.SOCKADDR_STORAGE"
+]); 
+
+
+Win32.IN_PKTINFO = foreign.named_struct( "Windows.Win32.Networking.WinSock.IN_PKTINFO", [ 
+    "ipi_addr:Windows.Win32.Networking.WinSock.IN_ADDR", 
+    "ipi_ifindex:uint"
+]); 
+
+
+Win32.IN6_PKTINFO = foreign.named_struct( "Windows.Win32.Networking.WinSock.IN6_PKTINFO", [ 
+    "ipi6_addr:Windows.Win32.Networking.WinSock.IN6_ADDR", 
+    "ipi6_ifindex:uint"
+]); 
+
+
+Win32.IN_PKTINFO_EX = foreign.named_struct( "Windows.Win32.Networking.WinSock.IN_PKTINFO_EX", [ 
+    "pkt_info:Windows.Win32.Networking.WinSock.IN_PKTINFO", 
+    "scope_id:Windows.Win32.Networking.WinSock.SCOPE_ID"
+]); 
+
+
+Win32.IN6_PKTINFO_EX = foreign.named_struct( "Windows.Win32.Networking.WinSock.IN6_PKTINFO_EX", [ 
+    "pkt_info:Windows.Win32.Networking.WinSock.IN6_PKTINFO", 
+    "scope_id:Windows.Win32.Networking.WinSock.SCOPE_ID"
+]); 
+
+
+Win32.IN_RECVERR = foreign.named_struct( "Windows.Win32.Networking.WinSock.IN_RECVERR", [ 
+    "protocol:int", 
+    "info:uint", 
+    "type:ubyte", 
+    "code:ubyte"
+]); 
+
+
+Win32.ICMP_ERROR_INFO = foreign.named_struct( "Windows.Win32.Networking.WinSock.ICMP_ERROR_INFO", [ 
+    "srcaddress:Windows.Win32.Networking.WinSock.SOCKADDR_INET", 
+    "protocol:int", 
+    "type:ubyte", 
+    "code:ubyte"
+]); 
+
+
+Win32.RM_SEND_WINDOW = foreign.named_struct( "Windows.Win32.Networking.WinSock.RM_SEND_WINDOW", [ 
+    "RateKbitsPerSec:uint", 
+    "WindowSizeInMSecs:uint", 
+    "WindowSizeInBytes:uint"
+]); 
+
+
+Win32.RM_SENDER_STATS = foreign.named_struct( "Windows.Win32.Networking.WinSock.RM_SENDER_STATS", [ 
+    "DataBytesSent:ulong", 
+    "TotalBytesSent:ulong", 
+    "NaksReceived:ulong", 
+    "NaksReceivedTooLate:ulong", 
+    "NumOutstandingNaks:ulong", 
+    "NumNaksAfterRData:ulong", 
+    "RepairPacketsSent:ulong", 
+    "BufferSpaceAvailable:ulong", 
+    "TrailingEdgeSeqId:ulong", 
+    "LeadingEdgeSeqId:ulong", 
+    "RateKBitsPerSecOverall:ulong", 
+    "RateKBitsPerSecLast:ulong", 
+    "TotalODataPacketsSent:ulong"
+]); 
+
+
+Win32.RM_RECEIVER_STATS = foreign.named_struct( "Windows.Win32.Networking.WinSock.RM_RECEIVER_STATS", [ 
+    "NumODataPacketsReceived:ulong", 
+    "NumRDataPacketsReceived:ulong", 
+    "NumDuplicateDataPackets:ulong", 
+    "DataBytesReceived:ulong", 
+    "TotalBytesReceived:ulong", 
+    "RateKBitsPerSecOverall:ulong", 
+    "RateKBitsPerSecLast:ulong", 
+    "TrailingEdgeSeqId:ulong", 
+    "LeadingEdgeSeqId:ulong", 
+    "AverageSequencesInWindow:ulong", 
+    "MinSequencesInWindow:ulong", 
+    "MaxSequencesInWindow:ulong", 
+    "FirstNakSequenceNumber:ulong", 
+    "NumPendingNaks:ulong", 
+    "NumOutstandingNaks:ulong", 
+    "NumDataPacketsBuffered:ulong", 
+    "TotalSelectiveNaksSent:ulong", 
+    "TotalParityNaksSent:ulong"
+]); 
+
+
+Win32.RM_FEC_INFO = foreign.named_struct( "Windows.Win32.Networking.WinSock.RM_FEC_INFO", [ 
+    "FECBlockSize:ushort", 
+    "FECProActivePackets:ushort", 
+    "FECGroupSize:ubyte", 
+    "fFECOnDemandParityEnabled:Windows.Win32.Foundation.BOOLEAN"
+]); 
+
+
+Win32.IPX_ADDRESS_DATA = foreign.named_struct( "Windows.Win32.Networking.WinSock.IPX_ADDRESS_DATA", [ 
+    "adapternum:int", 
+    "netnum[4]:ubyte", 
+    "nodenum[6]:ubyte", 
+    "wan:Windows.Win32.Foundation.BOOLEAN", 
+    "status:Windows.Win32.Foundation.BOOLEAN", 
+    "maxpkt:int", 
+    "linkspeed:uint"
+]); 
+
+
+Win32.IPX_NETNUM_DATA = foreign.named_struct( "Windows.Win32.Networking.WinSock.IPX_NETNUM_DATA", [ 
+    "netnum[4]:ubyte", 
+    "hopcount:ushort", 
+    "netdelay:ushort", 
+    "cardnum:int", 
+    "router[6]:ubyte"
+]); 
+
+
+Win32.IPX_SPXCONNSTATUS_DATA = foreign.named_struct( "Windows.Win32.Networking.WinSock.IPX_SPXCONNSTATUS_DATA", [ 
+    "ConnectionState:ubyte", 
+    "WatchDogActive:ubyte", 
+    "LocalConnectionId:ushort", 
+    "RemoteConnectionId:ushort", 
+    "LocalSequenceNumber:ushort", 
+    "LocalAckNumber:ushort", 
+    "LocalAllocNumber:ushort", 
+    "RemoteAckNumber:ushort", 
+    "RemoteAllocNumber:ushort", 
+    "LocalSocket:ushort", 
+    "ImmediateAddress[6]:ubyte", 
+    "RemoteNetwork[4]:ubyte", 
+    "RemoteNode[6]:ubyte", 
+    "RemoteSocket:ushort", 
+    "RetransmissionCount:ushort", 
+    "EstimatedRoundTripDelay:ushort", 
+    "RetransmittedPackets:ushort", 
+    "SuppressedPacket:ushort"
+]); 
+
+
+Win32.LM_IRPARMS = foreign.named_struct( "Windows.Win32.Networking.WinSock.LM_IRPARMS", [ 
+    "nTXDataBytes:uint", 
+    "nRXDataBytes:uint", 
+    "nBaudRate:uint", 
+    "thresholdTime:uint", 
+    "discTime:uint", 
+    "nMSLinkTurn:ushort", 
+    "nTXPackets:ubyte", 
+    "nRXPackets:ubyte"
+]); 
+
+
+Win32.SOCKADDR_IRDA = foreign.named_struct( "Windows.Win32.Networking.WinSock.SOCKADDR_IRDA", [ 
+    "irdaAddressFamily:ushort", 
+    "irdaDeviceID[4]:ubyte", 
+    "irdaServiceName[25]:Windows.Win32.Foundation.CHAR"
+]); 
+
+
+Win32.WINDOWS_IRDA_DEVICE_INFO = foreign.named_struct( "Windows.Win32.Networking.WinSock.WINDOWS_IRDA_DEVICE_INFO", [ 
+    "irdaDeviceID[4]:ubyte", 
+    "irdaDeviceName[22]:Windows.Win32.Foundation.CHAR", 
+    "irdaDeviceHints1:ubyte", 
+    "irdaDeviceHints2:ubyte", 
+    "irdaCharSet:ubyte"
+]); 
+
+
+Win32.WCE_IRDA_DEVICE_INFO = foreign.named_struct( "Windows.Win32.Networking.WinSock.WCE_IRDA_DEVICE_INFO", [ 
+    "irdaDeviceID[4]:ubyte", 
+    "irdaDeviceName[22]:Windows.Win32.Foundation.CHAR", 
+    "Reserved[2]:ubyte"
+]); 
+
+
+Win32.WINDOWS_DEVICELIST = foreign.named_struct( "Windows.Win32.Networking.WinSock.WINDOWS_DEVICELIST", [ 
+    "numDevice:uint", 
+    "Device[1]:Windows.Win32.Networking.WinSock.WINDOWS_IRDA_DEVICE_INFO"
+]); 
+
+
+Win32.WCE_DEVICELIST = foreign.named_struct( "Windows.Win32.Networking.WinSock.WCE_DEVICELIST", [ 
+    "numDevice:uint", 
+    "Device[1]:Windows.Win32.Networking.WinSock.WCE_IRDA_DEVICE_INFO"
+]); 
+
+
+Win32.WINDOWS_IAS_SET = foreign.named_struct( "Windows.Win32.Networking.WinSock.WINDOWS_IAS_SET", [ 
+    "irdaClassName[64]:Windows.Win32.Foundation.CHAR", 
+    "irdaAttribName[256]:Windows.Win32.Foundation.CHAR", 
+    "irdaAttribType:uint", 
+    "irdaAttribute:._irdaAttribute_e__Union"
+]); 
+
+
+Win32.WINDOWS_IAS_QUERY = foreign.named_struct( "Windows.Win32.Networking.WinSock.WINDOWS_IAS_QUERY", [ 
+    "irdaDeviceID[4]:ubyte", 
+    "irdaClassName[64]:Windows.Win32.Foundation.CHAR", 
+    "irdaAttribName[256]:Windows.Win32.Foundation.CHAR", 
+    "irdaAttribType:uint", 
+    "irdaAttribute:._irdaAttribute_e__Union"
+]); 
+
+
+Win32.NL_INTERFACE_OFFLOAD_ROD = foreign.named_struct( "Windows.Win32.Networking.WinSock.NL_INTERFACE_OFFLOAD_ROD", [ 
+    "_bitfield:ubyte"
+]); 
+
+
+Win32.NL_PATH_BANDWIDTH_ROD = foreign.named_struct( "Windows.Win32.Networking.WinSock.NL_PATH_BANDWIDTH_ROD", [ 
+    "Bandwidth:ulong", 
+    "Instability:ulong", 
+    "BandwidthPeaked:Windows.Win32.Foundation.BOOLEAN"
+]); 
+
+
+Win32.NL_NETWORK_CONNECTIVITY_HINT = foreign.named_struct( "Windows.Win32.Networking.WinSock.NL_NETWORK_CONNECTIVITY_HINT", [ 
+    "ConnectivityLevel:int", 
+    "ConnectivityCost:int", 
+    "ApproachingDataLimit:Windows.Win32.Foundation.BOOLEAN", 
+    "OverDataLimit:Windows.Win32.Foundation.BOOLEAN", 
+    "Roaming:Windows.Win32.Foundation.BOOLEAN"
+]); 
+
+
+Win32.NL_BANDWIDTH_INFORMATION = foreign.named_struct( "Windows.Win32.Networking.WinSock.NL_BANDWIDTH_INFORMATION", [ 
+    "Bandwidth:ulong", 
+    "Instability:ulong", 
+    "BandwidthPeaked:Windows.Win32.Foundation.BOOLEAN"
+]); 
+
+
+Win32.TRANSPORT_SETTING_ID = foreign.named_struct( "Windows.Win32.Networking.WinSock.TRANSPORT_SETTING_ID", [ 
+    "Guid:ptr"
+]); 
+
+
+Win32.tcp_keepalive = foreign.named_struct( "Windows.Win32.Networking.WinSock.tcp_keepalive", [ 
+    "onoff:uint", 
+    "keepalivetime:uint", 
+    "keepaliveinterval:uint"
+]); 
+
+
+Win32.REAL_TIME_NOTIFICATION_SETTING_INPUT = foreign.named_struct( "Windows.Win32.Networking.WinSock.REAL_TIME_NOTIFICATION_SETTING_INPUT", [ 
+    "TransportSettingId:Windows.Win32.Networking.WinSock.TRANSPORT_SETTING_ID", 
+    "BrokerEventGuid:ptr"
+]); 
+
+
+Win32.REAL_TIME_NOTIFICATION_SETTING_INPUT_EX = foreign.named_struct( "Windows.Win32.Networking.WinSock.REAL_TIME_NOTIFICATION_SETTING_INPUT_EX", [ 
+    "TransportSettingId:Windows.Win32.Networking.WinSock.TRANSPORT_SETTING_ID", 
+    "BrokerEventGuid:ptr", 
+    "Unmark:Windows.Win32.Foundation.BOOLEAN"
+]); 
+
+
+Win32.REAL_TIME_NOTIFICATION_SETTING_OUTPUT = foreign.named_struct( "Windows.Win32.Networking.WinSock.REAL_TIME_NOTIFICATION_SETTING_OUTPUT", [ 
+    "ChannelStatus:int"
+]); 
+
+
+Win32.ASSOCIATE_NAMERES_CONTEXT_INPUT = foreign.named_struct( "Windows.Win32.Networking.WinSock.ASSOCIATE_NAMERES_CONTEXT_INPUT", [ 
+    "TransportSettingId:Windows.Win32.Networking.WinSock.TRANSPORT_SETTING_ID", 
+    "Handle:ulong"
+]); 
+
+
+Win32.TIMESTAMPING_CONFIG = foreign.named_struct( "Windows.Win32.Networking.WinSock.TIMESTAMPING_CONFIG", [ 
+    "Flags:uint", 
+    "TxTimestampsBuffered:ushort"
+]); 
+
+
+Win32.PRIORITY_STATUS = foreign.named_struct( "Windows.Win32.Networking.WinSock.PRIORITY_STATUS", [ 
+    "Sender:int", 
+    "Receiver:int"
+]); 
+
+
+Win32.RCVALL_IF = foreign.named_struct( "Windows.Win32.Networking.WinSock.RCVALL_IF", [ 
+    "Mode:int", 
+    "Interface:uint"
+]); 
+
+
+Win32.TCP_INITIAL_RTO_PARAMETERS = foreign.named_struct( "Windows.Win32.Networking.WinSock.TCP_INITIAL_RTO_PARAMETERS", [ 
+    "Rtt:ushort", 
+    "MaxSynRetransmissions:ubyte"
+]); 
+
+
+Win32.TCP_ICW_PARAMETERS = foreign.named_struct( "Windows.Win32.Networking.WinSock.TCP_ICW_PARAMETERS", [ 
+    "Level:int"
+]); 
+
+
+Win32.TCP_ACK_FREQUENCY_PARAMETERS = foreign.named_struct( "Windows.Win32.Networking.WinSock.TCP_ACK_FREQUENCY_PARAMETERS", [ 
+    "TcpDelayedAckFrequency:ubyte"
+]); 
+
+
+Win32.TCP_INFO_v0 = foreign.named_struct( "Windows.Win32.Networking.WinSock.TCP_INFO_v0", [ 
+    "State:int", 
+    "Mss:uint", 
+    "ConnectionTimeMs:ulong", 
+    "TimestampsEnabled:Windows.Win32.Foundation.BOOLEAN", 
+    "RttUs:uint", 
+    "MinRttUs:uint", 
+    "BytesInFlight:uint", 
+    "Cwnd:uint", 
+    "SndWnd:uint", 
+    "RcvWnd:uint", 
+    "RcvBuf:uint", 
+    "BytesOut:ulong", 
+    "BytesIn:ulong", 
+    "BytesReordered:uint", 
+    "BytesRetrans:uint", 
+    "FastRetrans:uint", 
+    "DupAcksIn:uint", 
+    "TimeoutEpisodes:uint", 
+    "SynRetrans:ubyte"
+]); 
+
+
+Win32.TCP_INFO_v1 = foreign.named_struct( "Windows.Win32.Networking.WinSock.TCP_INFO_v1", [ 
+    "State:int", 
+    "Mss:uint", 
+    "ConnectionTimeMs:ulong", 
+    "TimestampsEnabled:Windows.Win32.Foundation.BOOLEAN", 
+    "RttUs:uint", 
+    "MinRttUs:uint", 
+    "BytesInFlight:uint", 
+    "Cwnd:uint", 
+    "SndWnd:uint", 
+    "RcvWnd:uint", 
+    "RcvBuf:uint", 
+    "BytesOut:ulong", 
+    "BytesIn:ulong", 
+    "BytesReordered:uint", 
+    "BytesRetrans:uint", 
+    "FastRetrans:uint", 
+    "DupAcksIn:uint", 
+    "TimeoutEpisodes:uint", 
+    "SynRetrans:ubyte", 
+    "SndLimTransRwin:uint", 
+    "SndLimTimeRwin:uint", 
+    "SndLimBytesRwin:ulong", 
+    "SndLimTransCwnd:uint", 
+    "SndLimTimeCwnd:uint", 
+    "SndLimBytesCwnd:ulong", 
+    "SndLimTransSnd:uint", 
+    "SndLimTimeSnd:uint", 
+    "SndLimBytesSnd:ulong"
+]); 
+
+
+Win32.INET_PORT_RANGE = foreign.named_struct( "Windows.Win32.Networking.WinSock.INET_PORT_RANGE", [ 
+    "StartPort:ushort", 
+    "NumberOfPorts:ushort"
+]); 
+
+
+Win32.INET_PORT_RESERVATION_TOKEN = foreign.named_struct( "Windows.Win32.Networking.WinSock.INET_PORT_RESERVATION_TOKEN", [ 
+    "Token:ulong"
+]); 
+
+
+Win32.INET_PORT_RESERVATION_INSTANCE = foreign.named_struct( "Windows.Win32.Networking.WinSock.INET_PORT_RESERVATION_INSTANCE", [ 
+    "Reservation:Windows.Win32.Networking.WinSock.INET_PORT_RANGE", 
+    "Token:Windows.Win32.Networking.WinSock.INET_PORT_RESERVATION_TOKEN"
+]); 
+
+
+Win32.INET_PORT_RESERVATION_INFORMATION = foreign.named_struct( "Windows.Win32.Networking.WinSock.INET_PORT_RESERVATION_INFORMATION", [ 
+    "OwningPid:uint"
+]); 
+
+
+Win32.SOCKET_SECURITY_SETTINGS = foreign.named_struct( "Windows.Win32.Networking.WinSock.SOCKET_SECURITY_SETTINGS", [ 
+    "SecurityProtocol:int", 
+    "SecurityFlags:uint"
+]); 
+
+
+Win32.SOCKET_SECURITY_SETTINGS_IPSEC = foreign.named_struct( "Windows.Win32.Networking.WinSock.SOCKET_SECURITY_SETTINGS_IPSEC", [ 
+    "SecurityProtocol:int", 
+    "SecurityFlags:uint", 
+    "IpsecFlags:uint", 
+    "AuthipMMPolicyKey:ptr", 
+    "AuthipQMPolicyKey:ptr", 
+    "Reserved:ptr", 
+    "Reserved2:ulong", 
+    "UserNameStringLen:uint", 
+    "DomainNameStringLen:uint", 
+    "PasswordStringLen:uint", 
+    "AllStrings[1]:short"
+]); 
+
+
+Win32.SOCKET_PEER_TARGET_NAME = foreign.named_struct( "Windows.Win32.Networking.WinSock.SOCKET_PEER_TARGET_NAME", [ 
+    "SecurityProtocol:int", 
+    "PeerAddress:Windows.Win32.Networking.WinSock.SOCKADDR_STORAGE", 
+    "PeerTargetNameStringLen:uint", 
+    "AllStrings[1]:short"
+]); 
+
+
+Win32.SOCKET_SECURITY_QUERY_TEMPLATE = foreign.named_struct( "Windows.Win32.Networking.WinSock.SOCKET_SECURITY_QUERY_TEMPLATE", [ 
+    "SecurityProtocol:int", 
+    "PeerAddress:Windows.Win32.Networking.WinSock.SOCKADDR_STORAGE", 
+    "PeerTokenAccessMask:uint"
+]); 
+
+
+Win32.SOCKET_SECURITY_QUERY_TEMPLATE_IPSEC2 = foreign.named_struct( "Windows.Win32.Networking.WinSock.SOCKET_SECURITY_QUERY_TEMPLATE_IPSEC2", [ 
+    "SecurityProtocol:int", 
+    "PeerAddress:Windows.Win32.Networking.WinSock.SOCKADDR_STORAGE", 
+    "PeerTokenAccessMask:uint", 
+    "Flags:uint", 
+    "FieldMask:uint"
+]); 
+
+
+Win32.SOCKET_SECURITY_QUERY_INFO = foreign.named_struct( "Windows.Win32.Networking.WinSock.SOCKET_SECURITY_QUERY_INFO", [ 
+    "SecurityProtocol:int", 
+    "Flags:uint", 
+    "PeerApplicationAccessTokenHandle:ulong", 
+    "PeerMachineAccessTokenHandle:ulong"
+]); 
+
+
+Win32.SOCKET_SECURITY_QUERY_INFO_IPSEC2 = foreign.named_struct( "Windows.Win32.Networking.WinSock.SOCKET_SECURITY_QUERY_INFO_IPSEC2", [ 
+    "SecurityProtocol:int", 
+    "Flags:uint", 
+    "PeerApplicationAccessTokenHandle:ulong", 
+    "PeerMachineAccessTokenHandle:ulong", 
+    "MmSaId:ulong", 
+    "QmSaId:ulong", 
+    "NegotiationWinerr:uint", 
+    "SaLookupContext:ptr"
+]); 
+
+
+Win32.RSS_SCALABILITY_INFO = foreign.named_struct( "Windows.Win32.Networking.WinSock.RSS_SCALABILITY_INFO", [ 
+    "RssEnabled:Windows.Win32.Foundation.BOOLEAN"
+]); 
+
+
+Win32.WSA_COMPATIBILITY_MODE = foreign.named_struct( "Windows.Win32.Networking.WinSock.WSA_COMPATIBILITY_MODE", [ 
+    "BehaviorId:int", 
+    "TargetOsVersion:uint"
+]); 
+
+
+Win32.RIORESULT = foreign.named_struct( "Windows.Win32.Networking.WinSock.RIORESULT", [ 
+    "Status:int", 
+    "BytesTransferred:uint", 
+    "SocketContext:ulong", 
+    "RequestContext:ulong"
+]); 
+
+
+Win32.RIO_BUF = foreign.named_struct( "Windows.Win32.Networking.WinSock.RIO_BUF", [ 
+    "BufferId:ptr", 
+    "Offset:uint", 
+    "Length:uint"
+]); 
+
+
+Win32.RIO_CMSG_BUFFER = foreign.named_struct( "Windows.Win32.Networking.WinSock.RIO_CMSG_BUFFER", [ 
+    "TotalLength:uint"
+]); 
+
+
+Win32.ATM_ADDRESS = foreign.named_struct( "Windows.Win32.Networking.WinSock.ATM_ADDRESS", [ 
+    "AddressType:uint", 
+    "NumofDigits:uint", 
+    "Addr[20]:ubyte"
+]); 
+
+
+Win32.ATM_BLLI = foreign.named_struct( "Windows.Win32.Networking.WinSock.ATM_BLLI", [ 
+    "Layer2Protocol:uint", 
+    "Layer2UserSpecifiedProtocol:uint", 
+    "Layer3Protocol:uint", 
+    "Layer3UserSpecifiedProtocol:uint", 
+    "Layer3IPI:uint", 
+    "SnapID[5]:ubyte"
+]); 
+
+
+Win32.ATM_BHLI = foreign.named_struct( "Windows.Win32.Networking.WinSock.ATM_BHLI", [ 
+    "HighLayerInfoType:uint", 
+    "HighLayerInfoLength:uint", 
+    "HighLayerInfo[8]:ubyte"
+]); 
+
+
+Win32.SOCKADDR_ATM = foreign.named_struct( "Windows.Win32.Networking.WinSock.SOCKADDR_ATM", [ 
+    "satm_family:ushort", 
+    "satm_number:Windows.Win32.Networking.WinSock.ATM_ADDRESS", 
+    "satm_blli:Windows.Win32.Networking.WinSock.ATM_BLLI", 
+    "satm_bhli:Windows.Win32.Networking.WinSock.ATM_BHLI"
+]); 
+
+
+Win32.Q2931_IE = foreign.named_struct( "Windows.Win32.Networking.WinSock.Q2931_IE", [ 
+    "IEType:int", 
+    "IELength:uint", 
+    "IE[1]:ubyte"
+]); 
+
+
+Win32.AAL5_PARAMETERS = foreign.named_struct( "Windows.Win32.Networking.WinSock.AAL5_PARAMETERS", [ 
+    "ForwardMaxCPCSSDUSize:uint", 
+    "BackwardMaxCPCSSDUSize:uint", 
+    "Mode:ubyte", 
+    "SSCSType:ubyte"
+]); 
+
+
+Win32.AALUSER_PARAMETERS = foreign.named_struct( "Windows.Win32.Networking.WinSock.AALUSER_PARAMETERS", [ 
+    "UserDefined:uint"
+]); 
+
+
+Win32.AAL_PARAMETERS_IE = foreign.named_struct( "Windows.Win32.Networking.WinSock.AAL_PARAMETERS_IE", [ 
+    "AALType:int", 
+    "AALSpecificParameters:._AALSpecificParameters_e__Union"
+]); 
+
+
+Win32.ATM_TD = foreign.named_struct( "Windows.Win32.Networking.WinSock.ATM_TD", [ 
+    "PeakCellRate_CLP0:uint", 
+    "PeakCellRate_CLP01:uint", 
+    "SustainableCellRate_CLP0:uint", 
+    "SustainableCellRate_CLP01:uint", 
+    "MaxBurstSize_CLP0:uint", 
+    "MaxBurstSize_CLP01:uint", 
+    "Tagging:Windows.Win32.Foundation.BOOL"
+]); 
+
+
+Win32.ATM_TRAFFIC_DESCRIPTOR_IE = foreign.named_struct( "Windows.Win32.Networking.WinSock.ATM_TRAFFIC_DESCRIPTOR_IE", [ 
+    "Forward:Windows.Win32.Networking.WinSock.ATM_TD", 
+    "Backward:Windows.Win32.Networking.WinSock.ATM_TD", 
+    "BestEffort:Windows.Win32.Foundation.BOOL"
+]); 
+
+
+Win32.ATM_BROADBAND_BEARER_CAPABILITY_IE = foreign.named_struct( "Windows.Win32.Networking.WinSock.ATM_BROADBAND_BEARER_CAPABILITY_IE", [ 
+    "BearerClass:ubyte", 
+    "TrafficType:ubyte", 
+    "TimingRequirements:ubyte", 
+    "ClippingSusceptability:ubyte", 
+    "UserPlaneConnectionConfig:ubyte"
+]); 
+
+
+Win32.ATM_BLLI_IE = foreign.named_struct( "Windows.Win32.Networking.WinSock.ATM_BLLI_IE", [ 
+    "Layer2Protocol:uint", 
+    "Layer2Mode:ubyte", 
+    "Layer2WindowSize:ubyte", 
+    "Layer2UserSpecifiedProtocol:uint", 
+    "Layer3Protocol:uint", 
+    "Layer3Mode:ubyte", 
+    "Layer3DefaultPacketSize:ubyte", 
+    "Layer3PacketWindowSize:ubyte", 
+    "Layer3UserSpecifiedProtocol:uint", 
+    "Layer3IPI:uint", 
+    "SnapID[5]:ubyte"
+]); 
+
+
+Win32.ATM_CALLING_PARTY_NUMBER_IE = foreign.named_struct( "Windows.Win32.Networking.WinSock.ATM_CALLING_PARTY_NUMBER_IE", [ 
+    "ATM_Number:Windows.Win32.Networking.WinSock.ATM_ADDRESS", 
+    "Presentation_Indication:ubyte", 
+    "Screening_Indicator:ubyte"
+]); 
+
+
+Win32.ATM_CAUSE_IE = foreign.named_struct( "Windows.Win32.Networking.WinSock.ATM_CAUSE_IE", [ 
+    "Location:ubyte", 
+    "Cause:ubyte", 
+    "DiagnosticsLength:ubyte", 
+    "Diagnostics[4]:ubyte"
+]); 
+
+
+Win32.ATM_QOS_CLASS_IE = foreign.named_struct( "Windows.Win32.Networking.WinSock.ATM_QOS_CLASS_IE", [ 
+    "QOSClassForward:ubyte", 
+    "QOSClassBackward:ubyte"
+]); 
+
+
+Win32.ATM_TRANSIT_NETWORK_SELECTION_IE = foreign.named_struct( "Windows.Win32.Networking.WinSock.ATM_TRANSIT_NETWORK_SELECTION_IE", [ 
+    "TypeOfNetworkId:ubyte", 
+    "NetworkIdPlan:ubyte", 
+    "NetworkIdLength:ubyte", 
+    "NetworkId[1]:ubyte"
+]); 
+
+
+Win32.ATM_CONNECTION_ID = foreign.named_struct( "Windows.Win32.Networking.WinSock.ATM_CONNECTION_ID", [ 
+    "DeviceNumber:uint", 
+    "VPI:uint", 
+    "VCI:uint"
+]); 
+
+
+Win32.ATM_PVC_PARAMS = foreign.named_struct( "Windows.Win32.Networking.WinSock.ATM_PVC_PARAMS", [ 
+    "PvcConnectionId:Windows.Win32.Networking.WinSock.ATM_CONNECTION_ID", 
+    "PvcQos:Windows.Win32.Networking.WinSock.QOS"
+]); 
+
+
+Win32.NAPI_DOMAIN_DESCRIPTION_BLOB = foreign.named_struct( "Windows.Win32.Networking.WinSock.NAPI_DOMAIN_DESCRIPTION_BLOB", [ 
+    "AuthLevel:uint", 
+    "cchDomainName:uint", 
+    "OffsetNextDomainDescription:uint", 
+    "OffsetThisDomainName:uint"
+]); 
+
+
+Win32.NAPI_PROVIDER_INSTALLATION_BLOB = foreign.named_struct( "Windows.Win32.Networking.WinSock.NAPI_PROVIDER_INSTALLATION_BLOB", [ 
+    "dwVersion:uint", 
+    "dwProviderType:uint", 
+    "fSupportsWildCard:uint", 
+    "cDomains:uint", 
+    "OffsetFirstDomain:uint"
+]); 
+
+
+Win32.TRANSMIT_FILE_BUFFERS = foreign.named_struct( "Windows.Win32.Networking.WinSock.TRANSMIT_FILE_BUFFERS", [ 
+    "Head:ptr", 
+    "HeadLength:uint", 
+    "Tail:ptr", 
+    "TailLength:uint"
+]); 
+
+
+Win32.TRANSMIT_PACKETS_ELEMENT = foreign.named_struct( "Windows.Win32.Networking.WinSock.TRANSMIT_PACKETS_ELEMENT", [ 
+    "dwElFlags:uint", 
+    "cLength:uint", 
+    "Anonymous:._Anonymous_e__Union"
+]); 
+
+
+Win32.NLA_BLOB = foreign.named_struct( "Windows.Win32.Networking.WinSock.NLA_BLOB", [ 
+    "header:._header_e__Struct", 
+    "data:._data_e__Union"
+]); 
+
+
+Win32.WSAPOLLDATA = foreign.named_struct( "Windows.Win32.Networking.WinSock.WSAPOLLDATA", [ 
+    "result:int", 
+    "fds:uint", 
+    "timeout:int", 
+    "fdArray[1]:Windows.Win32.Networking.WinSock.WSAPOLLFD"
+]); 
+
+
+Win32.WSASENDMSG = foreign.named_struct( "Windows.Win32.Networking.WinSock.WSASENDMSG", [ 
+    "lpMsg:ptr", 
+    "dwFlags:uint", 
+    "lpNumberOfBytesSent:ptr", 
+    "lpOverlapped:ptr", 
+    "lpCompletionRoutine:ptr"
+]); 
+
+
+Win32.RIO_NOTIFICATION_COMPLETION = foreign.named_struct( "Windows.Win32.Networking.WinSock.RIO_NOTIFICATION_COMPLETION", [ 
+    "Type:int", 
+    "Anonymous:._Anonymous_e__Union"
+]); 
+
+
+Win32.RIO_EXTENSION_FUNCTION_TABLE = foreign.named_struct( "Windows.Win32.Networking.WinSock.RIO_EXTENSION_FUNCTION_TABLE", [ 
+    "cbSize:uint", 
+    "RIOReceive:ptr", 
+    "RIOReceiveEx:ptr", 
+    "RIOSend:ptr", 
+    "RIOSendEx:ptr", 
+    "RIOCloseCompletionQueue:ptr", 
+    "RIOCreateCompletionQueue:ptr", 
+    "RIOCreateRequestQueue:ptr", 
+    "RIODequeueCompletion:ptr", 
+    "RIODeregisterBuffer:ptr", 
+    "RIONotify:ptr", 
+    "RIORegisterBuffer:ptr", 
+    "RIOResizeCompletionQueue:ptr", 
+    "RIOResizeRequestQueue:ptr"
+]); 
+
+
+Win32.WSPDATA = foreign.named_struct( "Windows.Win32.Networking.WinSock.WSPDATA", [ 
+    "wVersion:ushort", 
+    "wHighVersion:ushort", 
+    "szDescription[256]:short"
+]); 
+
+
+Win32.WSATHREADID = foreign.named_struct( "Windows.Win32.Networking.WinSock.WSATHREADID", [ 
+    "ThreadHandle:Windows.Win32.Foundation.HANDLE", 
+    "Reserved:ptr"
+]); 
+
+
+Win32.WSPPROC_TABLE = foreign.named_struct( "Windows.Win32.Networking.WinSock.WSPPROC_TABLE", [ 
+    "lpWSPAccept:ptr", 
+    "lpWSPAddressToString:ptr", 
+    "lpWSPAsyncSelect:ptr", 
+    "lpWSPBind:ptr", 
+    "lpWSPCancelBlockingCall:ptr", 
+    "lpWSPCleanup:ptr", 
+    "lpWSPCloseSocket:ptr", 
+    "lpWSPConnect:ptr", 
+    "lpWSPDuplicateSocket:ptr", 
+    "lpWSPEnumNetworkEvents:ptr", 
+    "lpWSPEventSelect:ptr", 
+    "lpWSPGetOverlappedResult:ptr", 
+    "lpWSPGetPeerName:ptr", 
+    "lpWSPGetSockName:ptr", 
+    "lpWSPGetSockOpt:ptr", 
+    "lpWSPGetQOSByName:ptr", 
+    "lpWSPIoctl:ptr", 
+    "lpWSPJoinLeaf:ptr", 
+    "lpWSPListen:ptr", 
+    "lpWSPRecv:ptr", 
+    "lpWSPRecvDisconnect:ptr", 
+    "lpWSPRecvFrom:ptr", 
+    "lpWSPSelect:ptr", 
+    "lpWSPSend:ptr", 
+    "lpWSPSendDisconnect:ptr", 
+    "lpWSPSendTo:ptr", 
+    "lpWSPSetSockOpt:ptr", 
+    "lpWSPShutdown:ptr", 
+    "lpWSPSocket:ptr", 
+    "lpWSPStringToAddress:ptr"
+]); 
+
+
+Win32.WSPUPCALLTABLE = foreign.named_struct( "Windows.Win32.Networking.WinSock.WSPUPCALLTABLE", [ 
+    "lpWPUCloseEvent:ptr", 
+    "lpWPUCloseSocketHandle:ptr", 
+    "lpWPUCreateEvent:ptr", 
+    "lpWPUCreateSocketHandle:ptr", 
+    "lpWPUFDIsSet:ptr", 
+    "lpWPUGetProviderPath:ptr", 
+    "lpWPUModifyIFSHandle:ptr", 
+    "lpWPUPostMessage:ptr", 
+    "lpWPUQueryBlockingCallback:ptr", 
+    "lpWPUQuerySocketHandleContext:ptr", 
+    "lpWPUQueueApc:ptr", 
+    "lpWPUResetEvent:ptr", 
+    "lpWPUSetEvent:ptr", 
+    "lpWPUOpenCurrentThread:ptr", 
+    "lpWPUCloseThread:ptr"
+]); 
+
+
+Win32.WSC_PROVIDER_AUDIT_INFO = foreign.named_struct( "Windows.Win32.Networking.WinSock.WSC_PROVIDER_AUDIT_INFO", [ 
+    "RecordSize:uint", 
+    "Reserved:ptr"
+]); 
+
+
+Win32.NSP_ROUTINE = foreign.named_struct( "Windows.Win32.Networking.WinSock.NSP_ROUTINE", [ 
+    "cbSize:uint", 
+    "dwMajorVersion:uint", 
+    "dwMinorVersion:uint", 
+    "NSPCleanup:ptr", 
+    "NSPLookupServiceBegin:ptr", 
+    "NSPLookupServiceNext:ptr", 
+    "NSPLookupServiceEnd:ptr", 
+    "NSPSetService:ptr", 
+    "NSPInstallServiceClass:ptr", 
+    "NSPRemoveServiceClass:ptr", 
+    "NSPGetServiceClassInfo:ptr", 
+    "NSPIoctl:ptr"
+]); 
+
+
+Win32.NSPV2_ROUTINE = foreign.named_struct( "Windows.Win32.Networking.WinSock.NSPV2_ROUTINE", [ 
+    "cbSize:uint", 
+    "dwMajorVersion:uint", 
+    "dwMinorVersion:uint", 
+    "NSPv2Startup:ptr", 
+    "NSPv2Cleanup:ptr", 
+    "NSPv2LookupServiceBegin:ptr", 
+    "NSPv2LookupServiceNextEx:ptr", 
+    "NSPv2LookupServiceEnd:ptr", 
+    "NSPv2SetServiceEx:ptr", 
+    "NSPv2ClientSessionRundown:ptr"
+]); 
+
+
+Win32.NS_INFOA = foreign.named_struct( "Windows.Win32.Networking.WinSock.NS_INFOA", [ 
+    "dwNameSpace:uint", 
+    "dwNameSpaceFlags:uint", 
+    "lpNameSpace:str"
+]); 
+
+
+Win32.NS_INFOW = foreign.named_struct( "Windows.Win32.Networking.WinSock.NS_INFOW", [ 
+    "dwNameSpace:uint", 
+    "dwNameSpaceFlags:uint", 
+    "lpNameSpace:wstr"
+]); 
+
+
+Win32.SERVICE_TYPE_VALUE = foreign.named_struct( "Windows.Win32.Networking.WinSock.SERVICE_TYPE_VALUE", [ 
+    "dwNameSpace:uint", 
+    "dwValueType:uint", 
+    "dwValueSize:uint", 
+    "dwValueNameOffset:uint", 
+    "dwValueOffset:uint"
+]); 
+
+
+Win32.SERVICE_TYPE_VALUE_ABSA = foreign.named_struct( "Windows.Win32.Networking.WinSock.SERVICE_TYPE_VALUE_ABSA", [ 
+    "dwNameSpace:uint", 
+    "dwValueType:uint", 
+    "dwValueSize:uint", 
+    "lpValueName:str", 
+    "lpValue:ptr"
+]); 
+
+
+Win32.SERVICE_TYPE_VALUE_ABSW = foreign.named_struct( "Windows.Win32.Networking.WinSock.SERVICE_TYPE_VALUE_ABSW", [ 
+    "dwNameSpace:uint", 
+    "dwValueType:uint", 
+    "dwValueSize:uint", 
+    "lpValueName:wstr", 
+    "lpValue:ptr"
+]); 
+
+
+Win32.SERVICE_TYPE_INFO = foreign.named_struct( "Windows.Win32.Networking.WinSock.SERVICE_TYPE_INFO", [ 
+    "dwTypeNameOffset:uint", 
+    "dwValueCount:uint", 
+    "Values[1]:Windows.Win32.Networking.WinSock.SERVICE_TYPE_VALUE"
+]); 
+
+
+Win32.SERVICE_TYPE_INFO_ABSA = foreign.named_struct( "Windows.Win32.Networking.WinSock.SERVICE_TYPE_INFO_ABSA", [ 
+    "lpTypeName:str", 
+    "dwValueCount:uint", 
+    "Values[1]:Windows.Win32.Networking.WinSock.SERVICE_TYPE_VALUE_ABSA"
+]); 
+
+
+Win32.SERVICE_TYPE_INFO_ABSW = foreign.named_struct( "Windows.Win32.Networking.WinSock.SERVICE_TYPE_INFO_ABSW", [ 
+    "lpTypeName:wstr", 
+    "dwValueCount:uint", 
+    "Values[1]:Windows.Win32.Networking.WinSock.SERVICE_TYPE_VALUE_ABSW"
+]); 
+
+
+Win32.SERVICE_ADDRESS = foreign.named_struct( "Windows.Win32.Networking.WinSock.SERVICE_ADDRESS", [ 
+    "dwAddressType:uint", 
+    "dwAddressFlags:uint", 
+    "dwAddressLength:uint", 
+    "dwPrincipalLength:uint", 
+    "lpAddress:ptr", 
+    "lpPrincipal:ptr"
+]); 
+
+
+Win32.SERVICE_ADDRESSES = foreign.named_struct( "Windows.Win32.Networking.WinSock.SERVICE_ADDRESSES", [ 
+    "dwAddressCount:uint", 
+    "Addresses[1]:Windows.Win32.Networking.WinSock.SERVICE_ADDRESS"
+]); 
+
+
+Win32.SERVICE_INFOA = foreign.named_struct( "Windows.Win32.Networking.WinSock.SERVICE_INFOA", [ 
+    "lpServiceType:ptr", 
+    "lpServiceName:str", 
+    "lpComment:str", 
+    "lpLocale:str", 
+    "dwDisplayHint:uint", 
+    "dwVersion:uint", 
+    "dwTime:uint", 
+    "lpMachineName:str", 
+    "lpServiceAddress:ptr", 
+    "ServiceSpecificInfo:Windows.Win32.System.Com.BLOB"
+]); 
+
+
+Win32.SERVICE_INFOW = foreign.named_struct( "Windows.Win32.Networking.WinSock.SERVICE_INFOW", [ 
+    "lpServiceType:ptr", 
+    "lpServiceName:wstr", 
+    "lpComment:wstr", 
+    "lpLocale:wstr", 
+    "dwDisplayHint:uint", 
+    "dwVersion:uint", 
+    "dwTime:uint", 
+    "lpMachineName:wstr", 
+    "lpServiceAddress:ptr", 
+    "ServiceSpecificInfo:Windows.Win32.System.Com.BLOB"
+]); 
+
+
+Win32.NS_SERVICE_INFOA = foreign.named_struct( "Windows.Win32.Networking.WinSock.NS_SERVICE_INFOA", [ 
+    "dwNameSpace:uint", 
+    "ServiceInfo:Windows.Win32.Networking.WinSock.SERVICE_INFOA"
+]); 
+
+
+Win32.NS_SERVICE_INFOW = foreign.named_struct( "Windows.Win32.Networking.WinSock.NS_SERVICE_INFOW", [ 
+    "dwNameSpace:uint", 
+    "ServiceInfo:Windows.Win32.Networking.WinSock.SERVICE_INFOW"
+]); 
+
+
+Win32.PROTOCOL_INFOA = foreign.named_struct( "Windows.Win32.Networking.WinSock.PROTOCOL_INFOA", [ 
+    "dwServiceFlags:uint", 
+    "iAddressFamily:int", 
+    "iMaxSockAddr:int", 
+    "iMinSockAddr:int", 
+    "iSocketType:int", 
+    "iProtocol:int", 
+    "dwMessageSize:uint", 
+    "lpProtocol:str"
+]); 
+
+
+Win32.PROTOCOL_INFOW = foreign.named_struct( "Windows.Win32.Networking.WinSock.PROTOCOL_INFOW", [ 
+    "dwServiceFlags:uint", 
+    "iAddressFamily:int", 
+    "iMaxSockAddr:int", 
+    "iMinSockAddr:int", 
+    "iSocketType:int", 
+    "iProtocol:int", 
+    "dwMessageSize:uint", 
+    "lpProtocol:wstr"
+]); 
+
+
+Win32.NETRESOURCE2A = foreign.named_struct( "Windows.Win32.Networking.WinSock.NETRESOURCE2A", [ 
+    "dwScope:uint", 
+    "dwType:uint", 
+    "dwUsage:uint", 
+    "dwDisplayType:uint", 
+    "lpLocalName:str", 
+    "lpRemoteName:str", 
+    "lpComment:str", 
+    "ns_info:Windows.Win32.Networking.WinSock.NS_INFOA", 
+    "ServiceType:ptr", 
+    "dwProtocols:uint", 
+    "lpiProtocols:ptr"
+]); 
+
+
+Win32.NETRESOURCE2W = foreign.named_struct( "Windows.Win32.Networking.WinSock.NETRESOURCE2W", [ 
+    "dwScope:uint", 
+    "dwType:uint", 
+    "dwUsage:uint", 
+    "dwDisplayType:uint", 
+    "lpLocalName:wstr", 
+    "lpRemoteName:wstr", 
+    "lpComment:wstr", 
+    "ns_info:Windows.Win32.Networking.WinSock.NS_INFOA", 
+    "ServiceType:ptr", 
+    "dwProtocols:uint", 
+    "lpiProtocols:ptr"
+]); 
+
+
+Win32.SERVICE_ASYNC_INFO = foreign.named_struct( "Windows.Win32.Networking.WinSock.SERVICE_ASYNC_INFO", [ 
+    "lpServiceCallbackProc:ptr", 
+    "lParam:Windows.Win32.Foundation.LPARAM", 
+    "hAsyncTaskHandle:Windows.Win32.Foundation.HANDLE"
+]); 
+
+
+Win32.SOCKADDR_UN = foreign.named_struct( "Windows.Win32.Networking.WinSock.SOCKADDR_UN", [ 
+    "sun_family:ushort", 
+    "sun_path[108]:Windows.Win32.Foundation.CHAR"
+]); 
+
+
+Win32.SOCKADDR_IPX = foreign.named_struct( "Windows.Win32.Networking.WinSock.SOCKADDR_IPX", [ 
+    "sa_family:short", 
+    "sa_netnum[4]:Windows.Win32.Foundation.CHAR", 
+    "sa_nodenum[6]:Windows.Win32.Foundation.CHAR", 
+    "sa_socket:ushort"
+]); 
+
+
+Win32.SOCKADDR_TP = foreign.named_struct( "Windows.Win32.Networking.WinSock.SOCKADDR_TP", [ 
+    "tp_family:ushort", 
+    "tp_addr_type:ushort", 
+    "tp_taddr_len:ushort", 
+    "tp_tsel_len:ushort", 
+    "tp_addr[64]:ubyte"
+]); 
+
+
+Win32.SOCKADDR_NB = foreign.named_struct( "Windows.Win32.Networking.WinSock.SOCKADDR_NB", [ 
+    "snb_family:short", 
+    "snb_type:ushort", 
+    "snb_name[16]:Windows.Win32.Foundation.CHAR"
+]); 
+
+
+Win32.SOCKADDR_VNS = foreign.named_struct( "Windows.Win32.Networking.WinSock.SOCKADDR_VNS", [ 
+    "sin_family:ushort", 
+    "net_address[4]:ubyte", 
+    "subnet_addr[2]:ubyte", 
+    "port[2]:ubyte", 
+    "hops:ubyte", 
+    "filler[5]:ubyte"
+]); 
+
+
+Win32.DL_OUI = foreign.named_struct( "Windows.Win32.Networking.WinSock.DL_OUI", [ 
+    "Byte[3]:ubyte", 
+    "Anonymous:._Anonymous_e__Struct"
+]); 
+
+
+Win32.DL_EI48 = foreign.named_struct( "Windows.Win32.Networking.WinSock.DL_EI48", [ 
+    "Byte[3]:ubyte"
+]); 
+
+
+Win32.DL_EUI48 = foreign.named_struct( "Windows.Win32.Networking.WinSock.DL_EUI48", [ 
+    "Byte[6]:ubyte", 
+    "Anonymous:._Anonymous_e__Struct"
+]); 
+
+
+Win32.DL_EI64 = foreign.named_struct( "Windows.Win32.Networking.WinSock.DL_EI64", [ 
+    "Byte[5]:ubyte"
+]); 
+
+
+Win32.DL_EUI64 = foreign.named_struct( "Windows.Win32.Networking.WinSock.DL_EUI64", [ 
+    "Byte[8]:ubyte", 
+    "Value:ulong", 
+    "Anonymous:._Anonymous_e__Struct"
+]); 
+
+
+Win32.SNAP_HEADER = foreign.named_struct( "Windows.Win32.Networking.WinSock.SNAP_HEADER", [ 
+    "Dsap:ubyte", 
+    "Ssap:ubyte", 
+    "Control:ubyte", 
+    "Oui[3]:ubyte", 
+    "Type:ushort"
+]); 
+
+
+Win32.ETHERNET_HEADER = foreign.named_struct( "Windows.Win32.Networking.WinSock.ETHERNET_HEADER", [ 
+    "Destination:Windows.Win32.Networking.WinSock.DL_EUI48", 
+    "Source:Windows.Win32.Networking.WinSock.DL_EUI48", 
+    "Anonymous:._Anonymous_e__Union"
+]); 
+
+
+Win32.VLAN_TAG = foreign.named_struct( "Windows.Win32.Networking.WinSock.VLAN_TAG", [ 
+    "Anonymous:._Anonymous_e__Union", 
+    "Type:ushort"
+]); 
+
+
+Win32.ICMP_HEADER = foreign.named_struct( "Windows.Win32.Networking.WinSock.ICMP_HEADER", [ 
+    "Type:ubyte", 
+    "Code:ubyte", 
+    "Checksum:ushort"
+]); 
+
+
+Win32.ICMP_MESSAGE = foreign.named_struct( "Windows.Win32.Networking.WinSock.ICMP_MESSAGE", [ 
+    "Header:Windows.Win32.Networking.WinSock.ICMP_HEADER", 
+    "Data:._Data_e__Union"
+]); 
+
+
+Win32.IPV4_HEADER = foreign.named_struct( "Windows.Win32.Networking.WinSock.IPV4_HEADER", [ 
+    "Anonymous1:._Anonymous1_e__Union", 
+    "Anonymous2:._Anonymous2_e__Union", 
+    "TotalLength:ushort", 
+    "Identification:ushort", 
+    "Anonymous3:._Anonymous3_e__Union", 
+    "TimeToLive:ubyte", 
+    "Protocol:ubyte", 
+    "HeaderChecksum:ushort", 
+    "SourceAddress:Windows.Win32.Networking.WinSock.IN_ADDR", 
+    "DestinationAddress:Windows.Win32.Networking.WinSock.IN_ADDR"
+]); 
+
+
+Win32.IPV4_OPTION_HEADER = foreign.named_struct( "Windows.Win32.Networking.WinSock.IPV4_OPTION_HEADER", [ 
+    "Anonymous:._Anonymous_e__Union", 
+    "OptionLength:ubyte"
+]); 
+
+
+Win32.IPV4_TIMESTAMP_OPTION = foreign.named_struct( "Windows.Win32.Networking.WinSock.IPV4_TIMESTAMP_OPTION", [ 
+    "OptionHeader:Windows.Win32.Networking.WinSock.IPV4_OPTION_HEADER", 
+    "Pointer:ubyte", 
+    "Anonymous:._Anonymous_e__Union"
+]); 
+
+
+Win32.IPV4_ROUTING_HEADER = foreign.named_struct( "Windows.Win32.Networking.WinSock.IPV4_ROUTING_HEADER", [ 
+    "OptionHeader:Windows.Win32.Networking.WinSock.IPV4_OPTION_HEADER", 
+    "Pointer:ubyte"
+]); 
+
+
+Win32.ICMPV4_ROUTER_SOLICIT = foreign.named_struct( "Windows.Win32.Networking.WinSock.ICMPV4_ROUTER_SOLICIT", [ 
+    "RsHeader:Windows.Win32.Networking.WinSock.ICMP_MESSAGE"
+]); 
+
+
+Win32.ICMPV4_ROUTER_ADVERT_HEADER = foreign.named_struct( "Windows.Win32.Networking.WinSock.ICMPV4_ROUTER_ADVERT_HEADER", [ 
+    "RaHeader:Windows.Win32.Networking.WinSock.ICMP_MESSAGE"
+]); 
+
+
+Win32.ICMPV4_ROUTER_ADVERT_ENTRY = foreign.named_struct( "Windows.Win32.Networking.WinSock.ICMPV4_ROUTER_ADVERT_ENTRY", [ 
+    "RouterAdvertAddr:Windows.Win32.Networking.WinSock.IN_ADDR", 
+    "PreferenceLevel:int"
+]); 
+
+
+Win32.ICMPV4_TIMESTAMP_MESSAGE = foreign.named_struct( "Windows.Win32.Networking.WinSock.ICMPV4_TIMESTAMP_MESSAGE", [ 
+    "Header:Windows.Win32.Networking.WinSock.ICMP_MESSAGE", 
+    "OriginateTimestamp:uint", 
+    "ReceiveTimestamp:uint", 
+    "TransmitTimestamp:uint"
+]); 
+
+
+Win32.ICMPV4_ADDRESS_MASK_MESSAGE = foreign.named_struct( "Windows.Win32.Networking.WinSock.ICMPV4_ADDRESS_MASK_MESSAGE", [ 
+    "Header:Windows.Win32.Networking.WinSock.ICMP_MESSAGE", 
+    "AddressMask:uint"
+]); 
+
+
+Win32.ARP_HEADER = foreign.named_struct( "Windows.Win32.Networking.WinSock.ARP_HEADER", [ 
+    "HardwareAddressSpace:ushort", 
+    "ProtocolAddressSpace:ushort", 
+    "HardwareAddressLength:ubyte", 
+    "ProtocolAddressLength:ubyte", 
+    "Opcode:ushort", 
+    "SenderHardwareAddress[1]:ubyte"
+]); 
+
+
+Win32.IGMP_HEADER = foreign.named_struct( "Windows.Win32.Networking.WinSock.IGMP_HEADER", [ 
+    "Anonymous1:._Anonymous1_e__Union", 
+    "Anonymous2:._Anonymous2_e__Union", 
+    "Checksum:ushort", 
+    "MulticastAddress:Windows.Win32.Networking.WinSock.IN_ADDR"
+]); 
+
+
+Win32.IGMPV3_QUERY_HEADER = foreign.named_struct( "Windows.Win32.Networking.WinSock.IGMPV3_QUERY_HEADER", [ 
+    "Type:ubyte", 
+    "Anonymous1:._Anonymous1_e__Union", 
+    "Checksum:ushort", 
+    "MulticastAddress:Windows.Win32.Networking.WinSock.IN_ADDR", 
+    "_bitfield:ubyte", 
+    "Anonymous2:._Anonymous2_e__Union", 
+    "SourceCount:ushort"
+]); 
+
+
+Win32.IGMPV3_REPORT_RECORD_HEADER = foreign.named_struct( "Windows.Win32.Networking.WinSock.IGMPV3_REPORT_RECORD_HEADER", [ 
+    "Type:ubyte", 
+    "AuxillaryDataLength:ubyte", 
+    "SourceCount:ushort", 
+    "MulticastAddress:Windows.Win32.Networking.WinSock.IN_ADDR"
+]); 
+
+
+Win32.IGMPV3_REPORT_HEADER = foreign.named_struct( "Windows.Win32.Networking.WinSock.IGMPV3_REPORT_HEADER", [ 
+    "Type:ubyte", 
+    "Reserved:ubyte", 
+    "Checksum:ushort", 
+    "Reserved2:ushort", 
+    "RecordCount:ushort"
+]); 
+
+
+Win32.IPV6_HEADER = foreign.named_struct( "Windows.Win32.Networking.WinSock.IPV6_HEADER", [ 
+    "Anonymous:._Anonymous_e__Union", 
+    "PayloadLength:ushort", 
+    "NextHeader:ubyte", 
+    "HopLimit:ubyte", 
+    "SourceAddress:Windows.Win32.Networking.WinSock.IN6_ADDR", 
+    "DestinationAddress:Windows.Win32.Networking.WinSock.IN6_ADDR"
+]); 
+
+
+Win32.IPV6_FRAGMENT_HEADER = foreign.named_struct( "Windows.Win32.Networking.WinSock.IPV6_FRAGMENT_HEADER", [ 
+    "NextHeader:ubyte", 
+    "Reserved:ubyte", 
+    "Anonymous:._Anonymous_e__Union", 
+    "Id:uint"
+]); 
+
+
+Win32.IPV6_EXTENSION_HEADER = foreign.named_struct( "Windows.Win32.Networking.WinSock.IPV6_EXTENSION_HEADER", [ 
+    "NextHeader:ubyte", 
+    "Length:ubyte"
+]); 
+
+
+Win32.IPV6_OPTION_HEADER = foreign.named_struct( "Windows.Win32.Networking.WinSock.IPV6_OPTION_HEADER", [ 
+    "Type:ubyte", 
+    "DataLength:ubyte"
+]); 
+
+
+Win32.IPV6_OPTION_JUMBOGRAM = foreign.named_struct( "Windows.Win32.Networking.WinSock.IPV6_OPTION_JUMBOGRAM", [ 
+    "Header:Windows.Win32.Networking.WinSock.IPV6_OPTION_HEADER", 
+    "JumbogramLength[4]:ubyte"
+]); 
+
+
+Win32.IPV6_OPTION_ROUTER_ALERT = foreign.named_struct( "Windows.Win32.Networking.WinSock.IPV6_OPTION_ROUTER_ALERT", [ 
+    "Header:Windows.Win32.Networking.WinSock.IPV6_OPTION_HEADER", 
+    "Value[2]:ubyte"
+]); 
+
+
+Win32.IPV6_ROUTING_HEADER = foreign.named_struct( "Windows.Win32.Networking.WinSock.IPV6_ROUTING_HEADER", [ 
+    "NextHeader:ubyte", 
+    "Length:ubyte", 
+    "RoutingType:ubyte", 
+    "SegmentsLeft:ubyte", 
+    "Reserved[4]:ubyte"
+]); 
+
+
+Win32.ND_ROUTER_SOLICIT_HEADER = foreign.named_struct( "Windows.Win32.Networking.WinSock.ND_ROUTER_SOLICIT_HEADER", [ 
+    "nd_rs_hdr:Windows.Win32.Networking.WinSock.ICMP_MESSAGE"
+]); 
+
+
+Win32.ND_ROUTER_ADVERT_HEADER = foreign.named_struct( "Windows.Win32.Networking.WinSock.ND_ROUTER_ADVERT_HEADER", [ 
+    "nd_ra_hdr:Windows.Win32.Networking.WinSock.ICMP_MESSAGE", 
+    "nd_ra_reachable:uint", 
+    "nd_ra_retransmit:uint"
+]); 
+
+
+Win32.IPV6_ROUTER_ADVERTISEMENT_FLAGS = foreign.named_struct( "Windows.Win32.Networking.WinSock.IPV6_ROUTER_ADVERTISEMENT_FLAGS", [ 
+    "Anonymous:._Anonymous_e__Struct", 
+    "Value:ubyte"
+]); 
+
+
+Win32.ND_NEIGHBOR_SOLICIT_HEADER = foreign.named_struct( "Windows.Win32.Networking.WinSock.ND_NEIGHBOR_SOLICIT_HEADER", [ 
+    "nd_ns_hdr:Windows.Win32.Networking.WinSock.ICMP_MESSAGE", 
+    "nd_ns_target:Windows.Win32.Networking.WinSock.IN6_ADDR"
+]); 
+
+
+Win32.ND_NEIGHBOR_ADVERT_HEADER = foreign.named_struct( "Windows.Win32.Networking.WinSock.ND_NEIGHBOR_ADVERT_HEADER", [ 
+    "nd_na_hdr:Windows.Win32.Networking.WinSock.ICMP_MESSAGE", 
+    "nd_na_target:Windows.Win32.Networking.WinSock.IN6_ADDR"
+]); 
+
+
+Win32.IPV6_NEIGHBOR_ADVERTISEMENT_FLAGS = foreign.named_struct( "Windows.Win32.Networking.WinSock.IPV6_NEIGHBOR_ADVERTISEMENT_FLAGS", [ 
+    "Anonymous:._Anonymous_e__Struct", 
+    "Value:uint"
+]); 
+
+
+Win32.ND_REDIRECT_HEADER = foreign.named_struct( "Windows.Win32.Networking.WinSock.ND_REDIRECT_HEADER", [ 
+    "nd_rd_hdr:Windows.Win32.Networking.WinSock.ICMP_MESSAGE", 
+    "nd_rd_target:Windows.Win32.Networking.WinSock.IN6_ADDR", 
+    "nd_rd_dst:Windows.Win32.Networking.WinSock.IN6_ADDR"
+]); 
+
+
+Win32.ND_OPTION_HDR = foreign.named_struct( "Windows.Win32.Networking.WinSock.ND_OPTION_HDR", [ 
+    "nd_opt_type:ubyte", 
+    "nd_opt_len:ubyte"
+]); 
+
+
+Win32.ND_OPTION_PREFIX_INFO = foreign.named_struct( "Windows.Win32.Networking.WinSock.ND_OPTION_PREFIX_INFO", [ 
+    "nd_opt_pi_type:ubyte", 
+    "nd_opt_pi_len:ubyte", 
+    "nd_opt_pi_prefix_len:ubyte", 
+    "Anonymous1:._Anonymous1_e__Union", 
+    "nd_opt_pi_valid_time:uint", 
+    "nd_opt_pi_preferred_time:uint", 
+    "Anonymous2:._Anonymous2_e__Union", 
+    "nd_opt_pi_prefix:Windows.Win32.Networking.WinSock.IN6_ADDR"
+]); 
+
+
+Win32.ND_OPTION_RD_HDR = foreign.named_struct( "Windows.Win32.Networking.WinSock.ND_OPTION_RD_HDR", [ 
+    "nd_opt_rh_type:ubyte", 
+    "nd_opt_rh_len:ubyte", 
+    "nd_opt_rh_reserved1:ushort", 
+    "nd_opt_rh_reserved2:uint"
+]); 
+
+
+Win32.ND_OPTION_MTU = foreign.named_struct( "Windows.Win32.Networking.WinSock.ND_OPTION_MTU", [ 
+    "nd_opt_mtu_type:ubyte", 
+    "nd_opt_mtu_len:ubyte", 
+    "nd_opt_mtu_reserved:ushort", 
+    "nd_opt_mtu_mtu:uint"
+]); 
+
+
+Win32.ND_OPTION_ROUTE_INFO = foreign.named_struct( "Windows.Win32.Networking.WinSock.ND_OPTION_ROUTE_INFO", [ 
+    "nd_opt_ri_type:ubyte", 
+    "nd_opt_ri_len:ubyte", 
+    "nd_opt_ri_prefix_len:ubyte", 
+    "Anonymous:._Anonymous_e__Union", 
+    "nd_opt_ri_route_lifetime:uint", 
+    "nd_opt_ri_prefix:Windows.Win32.Networking.WinSock.IN6_ADDR"
+]); 
+
+
+Win32.ND_OPTION_RDNSS = foreign.named_struct( "Windows.Win32.Networking.WinSock.ND_OPTION_RDNSS", [ 
+    "nd_opt_rdnss_type:ubyte", 
+    "nd_opt_rdnss_len:ubyte", 
+    "nd_opt_rdnss_reserved:ushort", 
+    "nd_opt_rdnss_lifetime:uint"
+]); 
+
+
+Win32.ND_OPTION_DNSSL = foreign.named_struct( "Windows.Win32.Networking.WinSock.ND_OPTION_DNSSL", [ 
+    "nd_opt_dnssl_type:ubyte", 
+    "nd_opt_dnssl_len:ubyte", 
+    "nd_opt_dnssl_reserved:ushort", 
+    "nd_opt_dnssl_lifetime:uint"
+]); 
+
+
+Win32.MLD_HEADER = foreign.named_struct( "Windows.Win32.Networking.WinSock.MLD_HEADER", [ 
+    "IcmpHeader:Windows.Win32.Networking.WinSock.ICMP_HEADER", 
+    "MaxRespTime:ushort", 
+    "Reserved:ushort", 
+    "MulticastAddress:Windows.Win32.Networking.WinSock.IN6_ADDR"
+]); 
+
+
+Win32.MLDV2_QUERY_HEADER = foreign.named_struct( "Windows.Win32.Networking.WinSock.MLDV2_QUERY_HEADER", [ 
+    "IcmpHeader:Windows.Win32.Networking.WinSock.ICMP_HEADER", 
+    "Anonymous1:._Anonymous1_e__Union", 
+    "Reserved:ushort", 
+    "MulticastAddress:Windows.Win32.Networking.WinSock.IN6_ADDR", 
+    "_bitfield:ubyte", 
+    "Anonymous2:._Anonymous2_e__Union", 
+    "SourceCount:ushort"
+]); 
+
+
+Win32.MLDV2_REPORT_RECORD_HEADER = foreign.named_struct( "Windows.Win32.Networking.WinSock.MLDV2_REPORT_RECORD_HEADER", [ 
+    "Type:ubyte", 
+    "AuxillaryDataLength:ubyte", 
+    "SourceCount:ushort", 
+    "MulticastAddress:Windows.Win32.Networking.WinSock.IN6_ADDR"
+]); 
+
+
+Win32.MLDV2_REPORT_HEADER = foreign.named_struct( "Windows.Win32.Networking.WinSock.MLDV2_REPORT_HEADER", [ 
+    "IcmpHeader:Windows.Win32.Networking.WinSock.ICMP_HEADER", 
+    "Reserved:ushort", 
+    "RecordCount:ushort"
+]); 
+
+
+Win32.TCP_HDR = foreign.named_struct( "Windows.Win32.Networking.WinSock.TCP_HDR", [ 
+    "th_sport:ushort", 
+    "th_dport:ushort", 
+    "th_seq:uint", 
+    "th_ack:uint", 
+    "_bitfield:ubyte", 
+    "th_flags:ubyte", 
+    "th_win:ushort", 
+    "th_sum:ushort", 
+    "th_urp:ushort"
+]); 
+
+
+Win32.TCP_OPT_MSS = foreign.named_struct( "Windows.Win32.Networking.WinSock.TCP_OPT_MSS", [ 
+    "Kind:ubyte", 
+    "Length:ubyte", 
+    "Mss:ushort"
+]); 
+
+
+Win32.TCP_OPT_WS = foreign.named_struct( "Windows.Win32.Networking.WinSock.TCP_OPT_WS", [ 
+    "Kind:ubyte", 
+    "Length:ubyte", 
+    "ShiftCnt:ubyte"
+]); 
+
+
+Win32.TCP_OPT_SACK_PERMITTED = foreign.named_struct( "Windows.Win32.Networking.WinSock.TCP_OPT_SACK_PERMITTED", [ 
+    "Kind:ubyte", 
+    "Length:ubyte"
+]); 
+
+
+Win32.TCP_OPT_SACK = foreign.named_struct( "Windows.Win32.Networking.WinSock.TCP_OPT_SACK", [ 
+    "Kind:ubyte", 
+    "Length:ubyte", 
+    "Block[1]:.tcp_opt_sack_block"
+]); 
+
+
+Win32.TCP_OPT_TS = foreign.named_struct( "Windows.Win32.Networking.WinSock.TCP_OPT_TS", [ 
+    "Kind:ubyte", 
+    "Length:ubyte", 
+    "Val:uint", 
+    "EcR:uint"
+]); 
+
+
+Win32.TCP_OPT_UNKNOWN = foreign.named_struct( "Windows.Win32.Networking.WinSock.TCP_OPT_UNKNOWN", [ 
+    "Kind:ubyte", 
+    "Length:ubyte"
+]); 
+
+
+Win32.TCP_OPT_FASTOPEN = foreign.named_struct( "Windows.Win32.Networking.WinSock.TCP_OPT_FASTOPEN", [ 
+    "Kind:ubyte", 
+    "Length:ubyte", 
+    "Cookie[1]:ubyte"
+]); 
+
+
+Win32.DL_TUNNEL_ADDRESS = foreign.named_struct( "Windows.Win32.Networking.WinSock.DL_TUNNEL_ADDRESS", [ 
+    "CompartmentId:int", 
+    "ScopeId:Windows.Win32.Networking.WinSock.SCOPE_ID", 
+    "IpAddress[1]:ubyte"
+]); 
+
+
+Win32.DL_TEREDO_ADDRESS = foreign.named_struct( "Windows.Win32.Networking.WinSock.DL_TEREDO_ADDRESS", [ 
+    "Reserved[6]:ubyte", 
+    "Anonymous:._Anonymous_e__Union"
+]); 
+
+
+Win32.DL_TEREDO_ADDRESS_PRV = foreign.named_struct( "Windows.Win32.Networking.WinSock.DL_TEREDO_ADDRESS_PRV", [ 
+    "Reserved[6]:ubyte", 
+    "Anonymous:._Anonymous_e__Union"
+]); 
+
+
+Win32.IPTLS_METADATA = foreign.named_struct( "Windows.Win32.Networking.WinSock.IPTLS_METADATA", [ 
+    "SequenceNumber:ulong"
+]); 
+
+
+Win32.NPI_MODULEID = foreign.named_struct( "Windows.Win32.Networking.WinSock.NPI_MODULEID", [ 
+    "Length:ushort", 
+    "Type:int", 
+    "Anonymous:._Anonymous_e__Union"
+]); 
+
+Win32.SOCKET_DEFAULT2_QM_POLICY = "ptr";
+Win32.REAL_TIME_NOTIFICATION_CAPABILITY = "ptr";
+Win32.REAL_TIME_NOTIFICATION_CAPABILITY_EX = "ptr";
+Win32.ASSOCIATE_NAMERES_CONTEXT = "ptr";
+Win32.SIO_RCVALL = 2550136833;
+Win32.SIO_RCVALL_MCAST = 2550136834;
+Win32.SIO_RCVALL_IGMPMCAST = 2550136835;
+Win32.SIO_KEEPALIVE_VALS = 2550136836;
+Win32.SIO_ABSORB_RTRALERT = 2550136837;
+Win32.SIO_UCAST_IF = 2550136838;
+Win32.SIO_LIMIT_BROADCASTS = 2550136839;
+Win32.SIO_INDEX_BIND = 2550136840;
+Win32.SIO_INDEX_MCASTIF = 2550136841;
+Win32.SIO_INDEX_ADD_MCAST = 2550136842;
+Win32.SIO_INDEX_DEL_MCAST = 2550136843;
+Win32.SIO_RCVALL_MCAST_IF = 2550136845;
+Win32.SIO_RCVALL_IF = 2550136846;
+Win32.SIO_LOOPBACK_FAST_PATH = 2550136848;
+Win32.SIO_TCP_INITIAL_RTO = 2550136849;
+Win32.SIO_APPLY_TRANSPORT_SETTING = 2550136851;
+Win32.SIO_QUERY_TRANSPORT_SETTING = 2550136852;
+Win32.SIO_TCP_SET_ICW = 2550136854;
+Win32.SIO_TCP_SET_ACK_FREQUENCY = 2550136855;
+Win32.SIO_SET_PRIORITY_HINT = 2550136856;
+Win32.SIO_PRIORITY_HINT = 2550136856;
+Win32.SIO_TCP_INFO = 3623878695;
+Win32.SIO_CPU_AFFINITY = 2550136853;
+Win32.SIO_TIMESTAMPING = 2550137067;
+Win32.TIMESTAMPING_FLAG_RX = 1;
+Win32.TIMESTAMPING_FLAG_TX = 2;
+Win32.SO_TIMESTAMP = 12298;
+Win32.SO_TIMESTAMP_ID = 12299;
+Win32.SIO_GET_TX_TIMESTAMP = 2550137066;
+Win32.TCP_INITIAL_RTO_DEFAULT_RTT = 0;
+Win32.TCP_INITIAL_RTO_DEFAULT_MAX_SYN_RETRANSMISSIONS = 0;
+Win32.SIO_ACQUIRE_PORT_RESERVATION = 2550136932;
+Win32.SIO_RELEASE_PORT_RESERVATION = 2550136933;
+Win32.SIO_ASSOCIATE_PORT_RESERVATION = 2550136934;
+Win32.SIO_SET_SECURITY = 2550137032;
+Win32.SIO_QUERY_SECURITY = 3623878857;
+Win32.SIO_SET_PEER_TARGET_NAME = 2550137034;
+Win32.SIO_DELETE_PEER_TARGET_NAME = 2550137035;
+Win32.SIO_QUERY_WFP_CONNECTION_REDIRECT_RECORDS = 2550137052;
+Win32.SIO_QUERY_WFP_CONNECTION_REDIRECT_CONTEXT = 2550137053;
+Win32.SIO_SET_WFP_CONNECTION_REDIRECT_RECORDS = 2550137054;
+Win32.SIO_SOCKET_USAGE_NOTIFICATION = 2550137036;
+Win32.SOCKET_SETTINGS_GUARANTEE_ENCRYPTION = 1;
+Win32.SOCKET_SETTINGS_ALLOW_INSECURE = 2;
+Win32.SOCKET_SETTINGS_IPSEC_SKIP_FILTER_INSTANTIATION = 1;
+Win32.SOCKET_SETTINGS_IPSEC_OPTIONAL_PEER_NAME_VERIFICATION = 2;
+Win32.SOCKET_SETTINGS_IPSEC_ALLOW_FIRST_INBOUND_PKT_UNENCRYPTED = 4;
+Win32.SOCKET_SETTINGS_IPSEC_PEER_NAME_IS_RAW_FORMAT = 8;
+Win32.SOCKET_QUERY_IPSEC2_ABORT_CONNECTION_ON_FIELD_CHANGE = 1;
+Win32.SOCKET_QUERY_IPSEC2_FIELD_MASK_MM_SA_ID = 1;
+Win32.SOCKET_QUERY_IPSEC2_FIELD_MASK_QM_SA_ID = 2;
+Win32.SOCKET_INFO_CONNECTION_SECURED = 1;
+Win32.SOCKET_INFO_CONNECTION_ENCRYPTED = 2;
+Win32.SOCKET_INFO_CONNECTION_IMPERSONATED = 4;
+Win32.SIO_QUERY_WFP_ALE_ENDPOINT_HANDLE = 1476395213;
+Win32.SIO_QUERY_RSS_SCALABILITY_INFO = 1476395218;
+Win32.IN4ADDR_LOOPBACK = 16777343;
+Win32.IN4ADDR_LOOPBACKPREFIX_LENGTH = 8;
+Win32.IN4ADDR_LINKLOCALPREFIX_LENGTH = 16;
+Win32.IN4ADDR_MULTICASTPREFIX_LENGTH = 4;
+Win32.SIO_SET_COMPATIBILITY_MODE = 2550137132;
+Win32.RIO_MSG_DONT_NOTIFY = 1;
+Win32.RIO_MSG_DEFER = 2;
+Win32.RIO_MSG_WAITALL = 4;
+Win32.RIO_MSG_COMMIT_ONLY = 8;
+Win32.RIO_MAX_CQ_SIZE = 134217728;
+Win32.RIO_CORRUPT_CQ = 4294967295;
+Win32.AF_UNIX = 1;
+Win32.AF_IMPLINK = 3;
+Win32.AF_PUP = 4;
+Win32.AF_CHAOS = 5;
+Win32.AF_NS = 6;
+Win32.AF_IPX = 6;
+Win32.AF_ISO = 7;
+Win32.AF_OSI = 7;
+Win32.AF_ECMA = 8;
+Win32.AF_DATAKIT = 9;
+Win32.AF_CCITT = 10;
+Win32.AF_SNA = 11;
+Win32.AF_DECnet = 12;
+Win32.AF_DLI = 13;
+Win32.AF_LAT = 14;
+Win32.AF_HYLINK = 15;
+Win32.AF_APPLETALK = 16;
+Win32.AF_NETBIOS = 17;
+Win32.AF_VOICEVIEW = 18;
+Win32.AF_FIREFOX = 19;
+Win32.AF_UNKNOWN1 = 20;
+Win32.AF_BAN = 21;
+Win32.AF_ATM = 22;
+Win32.AF_CLUSTER = 24;
+Win32.AF_12844 = 25;
+Win32.AF_IRDA = 26;
+Win32.AF_NETDES = 28;
+Win32.AF_MAX = 29;
+Win32.AF_TCNPROCESS = 29;
+Win32.AF_TCNMESSAGE = 30;
+Win32.AF_ICLFXBM = 31;
+Win32.AF_LINK = 33;
+Win32.AF_HYPERV = 34;
+Win32.SOCK_STREAM = 1;
+Win32.SOCK_DGRAM = 2;
+Win32.SOCK_RAW = 3;
+Win32.SOCK_RDM = 4;
+Win32.SOCK_SEQPACKET = 5;
+Win32.SOL_SOCKET = 65535;
+Win32.SO_DEBUG = 1;
+Win32.SO_ACCEPTCONN = 2;
+Win32.SO_REUSEADDR = 4;
+Win32.SO_KEEPALIVE = 8;
+Win32.SO_DONTROUTE = 16;
+Win32.SO_BROADCAST = 32;
+Win32.SO_USELOOPBACK = 64;
+Win32.SO_LINGER = 128;
+Win32.SO_OOBINLINE = 256;
+Win32.SO_SNDBUF = 4097;
+Win32.SO_RCVBUF = 4098;
+Win32.SO_SNDLOWAT = 4099;
+Win32.SO_RCVLOWAT = 4100;
+Win32.SO_SNDTIMEO = 4101;
+Win32.SO_RCVTIMEO = 4102;
+Win32.SO_ERROR = 4103;
+Win32.SO_TYPE = 4104;
+Win32.SO_BSP_STATE = 4105;
+Win32.SO_GROUP_ID = 8193;
+Win32.SO_GROUP_PRIORITY = 8194;
+Win32.SO_MAX_MSG_SIZE = 8195;
+Win32.SO_CONDITIONAL_ACCEPT = 12290;
+Win32.SO_PAUSE_ACCEPT = 12291;
+Win32.SO_COMPARTMENT_ID = 12292;
+Win32.SO_RANDOMIZE_PORT = 12293;
+Win32.SO_PORT_SCALABILITY = 12294;
+Win32.SO_REUSE_UNICASTPORT = 12295;
+Win32.SO_REUSE_MULTICASTPORT = 12296;
+Win32.SO_ORIGINAL_DST = 12303;
+Win32.IP6T_SO_ORIGINAL_DST = 12303;
+Win32.WSK_SO_BASE = 16384;
+Win32.TCP_NODELAY = 1;
+Win32.IOC_UNIX = 0;
+Win32.IOC_WS2 = 134217728;
+Win32.IOC_PROTOCOL = 268435456;
+Win32.IOC_VENDOR = 402653184;
+Win32.SIO_ASSOCIATE_HANDLE = 2281701377;
+Win32.SIO_ENABLE_CIRCULAR_QUEUEING = 671088642;
+Win32.SIO_FIND_ROUTE = 1207959555;
+Win32.SIO_FLUSH = 671088644;
+Win32.SIO_GET_BROADCAST_ADDRESS = 1207959557;
+Win32.SIO_GET_EXTENSION_FUNCTION_POINTER = 3355443206;
+Win32.SIO_GET_QOS = 3355443207;
+Win32.SIO_GET_GROUP_QOS = 3355443208;
+Win32.SIO_MULTIPOINT_LOOPBACK = 2281701385;
+Win32.SIO_MULTICAST_SCOPE = 2281701386;
+Win32.SIO_SET_QOS = 2281701387;
+Win32.SIO_SET_GROUP_QOS = 2281701388;
+Win32.SIO_TRANSLATE_HANDLE = 3355443213;
+Win32.SIO_ROUTING_INTERFACE_QUERY = 3355443220;
+Win32.SIO_ROUTING_INTERFACE_CHANGE = 2281701397;
+Win32.SIO_ADDRESS_LIST_QUERY = 1207959574;
+Win32.SIO_ADDRESS_LIST_CHANGE = 671088663;
+Win32.SIO_QUERY_TARGET_PNP_HANDLE = 1207959576;
+Win32.SIO_QUERY_RSS_PROCESSOR_INFO = 1207959589;
+Win32.SIO_ADDRESS_LIST_SORT = 3355443225;
+Win32.SIO_RESERVED_1 = 2281701402;
+Win32.SIO_RESERVED_2 = 2281701409;
+Win32.SIO_GET_MULTIPLE_EXTENSION_FUNCTION_POINTER = 3355443236;
+Win32.IPPROTO_IP = 0;
+Win32.IPPORT_TCPMUX = 1;
+Win32.IPPORT_ECHO = 7;
+Win32.IPPORT_DISCARD = 9;
+Win32.IPPORT_SYSTAT = 11;
+Win32.IPPORT_DAYTIME = 13;
+Win32.IPPORT_NETSTAT = 15;
+Win32.IPPORT_QOTD = 17;
+Win32.IPPORT_MSP = 18;
+Win32.IPPORT_CHARGEN = 19;
+Win32.IPPORT_FTP_DATA = 20;
+Win32.IPPORT_FTP = 21;
+Win32.IPPORT_TELNET = 23;
+Win32.IPPORT_SMTP = 25;
+Win32.IPPORT_TIMESERVER = 37;
+Win32.IPPORT_NAMESERVER = 42;
+Win32.IPPORT_WHOIS = 43;
+Win32.IPPORT_MTP = 57;
+Win32.IPPORT_TFTP = 69;
+Win32.IPPORT_RJE = 77;
+Win32.IPPORT_FINGER = 79;
+Win32.IPPORT_TTYLINK = 87;
+Win32.IPPORT_SUPDUP = 95;
+Win32.IPPORT_POP3 = 110;
+Win32.IPPORT_NTP = 123;
+Win32.IPPORT_EPMAP = 135;
+Win32.IPPORT_NETBIOS_NS = 137;
+Win32.IPPORT_NETBIOS_DGM = 138;
+Win32.IPPORT_NETBIOS_SSN = 139;
+Win32.IPPORT_IMAP = 143;
+Win32.IPPORT_SNMP = 161;
+Win32.IPPORT_SNMP_TRAP = 162;
+Win32.IPPORT_IMAP3 = 220;
+Win32.IPPORT_LDAP = 389;
+Win32.IPPORT_HTTPS = 443;
+Win32.IPPORT_MICROSOFT_DS = 445;
+Win32.IPPORT_EXECSERVER = 512;
+Win32.IPPORT_LOGINSERVER = 513;
+Win32.IPPORT_CMDSERVER = 514;
+Win32.IPPORT_EFSSERVER = 520;
+Win32.IPPORT_BIFFUDP = 512;
+Win32.IPPORT_WHOSERVER = 513;
+Win32.IPPORT_ROUTESERVER = 520;
+Win32.IPPORT_RESERVED = 1024;
+Win32.IPPORT_REGISTERED_MIN = 1024;
+Win32.IPPORT_REGISTERED_MAX = 49151;
+Win32.IPPORT_DYNAMIC_MIN = 49152;
+Win32.IPPORT_DYNAMIC_MAX = 65535;
+Win32.IN_CLASSA_NET = 4278190080;
+Win32.IN_CLASSA_NSHIFT = 24;
+Win32.IN_CLASSA_HOST = 16777215;
+Win32.IN_CLASSA_MAX = 128;
+Win32.IN_CLASSB_NET = 4294901760;
+Win32.IN_CLASSB_NSHIFT = 16;
+Win32.IN_CLASSB_HOST = 65535;
+Win32.IN_CLASSB_MAX = 65536;
+Win32.IN_CLASSC_NET = 4294967040;
+Win32.IN_CLASSC_NSHIFT = 8;
+Win32.IN_CLASSC_HOST = 255;
+Win32.IN_CLASSD_NET = 4026531840;
+Win32.IN_CLASSD_NSHIFT = 28;
+Win32.IN_CLASSD_HOST = 268435455;
+Win32.INADDR_LOOPBACK = 2130706433;
+Win32.INADDR_NONE = 4294967295;
+Win32.IOCPARM_MASK = 127;
+Win32.IOC_VOID = 536870912;
+Win32.IOC_OUT = 1073741824;
+Win32.IOC_IN = 2147483648;
+Win32.MSG_TRUNC = 256;
+Win32.MSG_CTRUNC = 512;
+Win32.MSG_BCAST = 1024;
+Win32.MSG_MCAST = 2048;
+Win32.MSG_ERRQUEUE = 4096;
+Win32.AI_PASSIVE = 1;
+Win32.AI_CANONNAME = 2;
+Win32.AI_NUMERICHOST = 4;
+Win32.AI_NUMERICSERV = 8;
+Win32.AI_DNS_ONLY = 16;
+Win32.AI_FORCE_CLEAR_TEXT = 32;
+Win32.AI_BYPASS_DNS_CACHE = 64;
+Win32.AI_RETURN_TTL = 128;
+Win32.AI_ALL = 256;
+Win32.AI_ADDRCONFIG = 1024;
+Win32.AI_V4MAPPED = 2048;
+Win32.AI_NON_AUTHORITATIVE = 16384;
+Win32.AI_SECURE = 32768;
+Win32.AI_RETURN_PREFERRED_NAMES = 65536;
+Win32.AI_FQDN = 131072;
+Win32.AI_FILESERVER = 262144;
+Win32.AI_DISABLE_IDN_ENCODING = 524288;
+Win32.AI_SECURE_WITH_FALLBACK = 1048576;
+Win32.AI_EXCLUSIVE_CUSTOM_SERVERS = 2097152;
+Win32.AI_RETURN_RESPONSE_FLAGS = 268435456;
+Win32.AI_REQUIRE_SECURE = 536870912;
+Win32.AI_RESOLUTION_HANDLE = 1073741824;
+Win32.AI_EXTENDED = 2147483648;
+Win32.ADDRINFOEX_VERSION_2 = 2;
+Win32.ADDRINFOEX_VERSION_3 = 3;
+Win32.ADDRINFOEX_VERSION_4 = 4;
+Win32.ADDRINFOEX_VERSION_5 = 5;
+Win32.ADDRINFOEX_VERSION_6 = 6;
+Win32.AI_DNS_SERVER_TYPE_UDP = 1;
+Win32.AI_DNS_SERVER_TYPE_DOH = 2;
+Win32.AI_DNS_SERVER_UDP_FALLBACK = 1;
+Win32.AI_DNS_RESPONSE_SECURE = 1;
+Win32.AI_DNS_RESPONSE_HOSTFILE = 2;
+Win32.NS_ALL = 0;
+Win32.NS_SAP = 1;
+Win32.NS_NDS = 2;
+Win32.NS_PEER_BROWSE = 3;
+Win32.NS_SLP = 5;
+Win32.NS_DHCP = 6;
+Win32.NS_TCPIP_LOCAL = 10;
+Win32.NS_TCPIP_HOSTS = 11;
+Win32.NS_DNS = 12;
+Win32.NS_NETBT = 13;
+Win32.NS_WINS = 14;
+Win32.NS_NLA = 15;
+Win32.NS_NBP = 20;
+Win32.NS_MS = 30;
+Win32.NS_STDA = 31;
+Win32.NS_NTDS = 32;
+Win32.NS_EMAIL = 37;
+Win32.NS_X500 = 40;
+Win32.NS_NIS = 41;
+Win32.NS_NISPLUS = 42;
+Win32.NS_WRQ = 50;
+Win32.NS_NETDES = 60;
+Win32.NI_NOFQDN = 1;
+Win32.NI_NUMERICHOST = 2;
+Win32.NI_NAMEREQD = 4;
+Win32.NI_NUMERICSERV = 8;
+Win32.NI_DGRAM = 16;
+Win32.NI_MAXHOST = 1025;
+Win32.NI_MAXSERV = 32;
+Win32.IFF_UP = 1;
+Win32.IFF_BROADCAST = 2;
+Win32.IFF_LOOPBACK = 4;
+Win32.IFF_POINTTOPOINT = 8;
+Win32.IFF_MULTICAST = 16;
+Win32.IP_OPTIONS = 1;
+Win32.IP_HDRINCL = 2;
+Win32.IP_TOS = 3;
+Win32.IP_TTL = 4;
+Win32.IP_MULTICAST_IF = 9;
+Win32.IP_MULTICAST_TTL = 10;
+Win32.IP_MULTICAST_LOOP = 11;
+Win32.IP_ADD_MEMBERSHIP = 12;
+Win32.IP_DROP_MEMBERSHIP = 13;
+Win32.IP_DONTFRAGMENT = 14;
+Win32.IP_ADD_SOURCE_MEMBERSHIP = 15;
+Win32.IP_DROP_SOURCE_MEMBERSHIP = 16;
+Win32.IP_BLOCK_SOURCE = 17;
+Win32.IP_UNBLOCK_SOURCE = 18;
+Win32.IP_PKTINFO = 19;
+Win32.IP_HOPLIMIT = 21;
+Win32.IP_RECVTTL = 21;
+Win32.IP_RECEIVE_BROADCAST = 22;
+Win32.IP_RECVIF = 24;
+Win32.IP_RECVDSTADDR = 25;
+Win32.IP_IFLIST = 28;
+Win32.IP_ADD_IFLIST = 29;
+Win32.IP_DEL_IFLIST = 30;
+Win32.IP_UNICAST_IF = 31;
+Win32.IP_RTHDR = 32;
+Win32.IP_GET_IFLIST = 33;
+Win32.IP_RECVRTHDR = 38;
+Win32.IP_TCLASS = 39;
+Win32.IP_RECVTCLASS = 40;
+Win32.IP_RECVTOS = 40;
+Win32.IP_ORIGINAL_ARRIVAL_IF = 47;
+Win32.IP_ECN = 50;
+Win32.IP_RECVECN = 50;
+Win32.IP_PKTINFO_EX = 51;
+Win32.IP_WFP_REDIRECT_RECORDS = 60;
+Win32.IP_WFP_REDIRECT_CONTEXT = 70;
+Win32.IP_MTU_DISCOVER = 71;
+Win32.IP_MTU = 73;
+Win32.IP_NRT_INTERFACE = 74;
+Win32.IP_RECVERR = 75;
+Win32.IP_USER_MTU = 76;
+Win32.IP_UNSPECIFIED_TYPE_OF_SERVICE = -1;
+Win32.IP_UNSPECIFIED_USER_MTU = 4294967295;
+Win32.IN6ADDR_LINKLOCALPREFIX_LENGTH = 64;
+Win32.IN6ADDR_MULTICASTPREFIX_LENGTH = 8;
+Win32.IN6ADDR_SOLICITEDNODEMULTICASTPREFIX_LENGTH = 104;
+Win32.IN6ADDR_V4MAPPEDPREFIX_LENGTH = 96;
+Win32.IN6ADDR_6TO4PREFIX_LENGTH = 16;
+Win32.IN6ADDR_TEREDOPREFIX_LENGTH = 32;
+Win32.MCAST_JOIN_GROUP = 41;
+Win32.MCAST_LEAVE_GROUP = 42;
+Win32.MCAST_BLOCK_SOURCE = 43;
+Win32.MCAST_UNBLOCK_SOURCE = 44;
+Win32.MCAST_JOIN_SOURCE_GROUP = 45;
+Win32.MCAST_LEAVE_SOURCE_GROUP = 46;
+Win32.IPV6_HOPOPTS = 1;
+Win32.IPV6_HDRINCL = 2;
+Win32.IPV6_UNICAST_HOPS = 4;
+Win32.IPV6_MULTICAST_IF = 9;
+Win32.IPV6_MULTICAST_HOPS = 10;
+Win32.IPV6_MULTICAST_LOOP = 11;
+Win32.IPV6_ADD_MEMBERSHIP = 12;
+Win32.IPV6_JOIN_GROUP = 12;
+Win32.IPV6_DROP_MEMBERSHIP = 13;
+Win32.IPV6_LEAVE_GROUP = 13;
+Win32.IPV6_DONTFRAG = 14;
+Win32.IPV6_PKTINFO = 19;
+Win32.IPV6_HOPLIMIT = 21;
+Win32.IPV6_PROTECTION_LEVEL = 23;
+Win32.IPV6_RECVIF = 24;
+Win32.IPV6_RECVDSTADDR = 25;
+Win32.IPV6_CHECKSUM = 26;
+Win32.IPV6_V6ONLY = 27;
+Win32.IPV6_IFLIST = 28;
+Win32.IPV6_ADD_IFLIST = 29;
+Win32.IPV6_DEL_IFLIST = 30;
+Win32.IPV6_UNICAST_IF = 31;
+Win32.IPV6_RTHDR = 32;
+Win32.IPV6_GET_IFLIST = 33;
+Win32.IPV6_RECVRTHDR = 38;
+Win32.IPV6_TCLASS = 39;
+Win32.IPV6_RECVTCLASS = 40;
+Win32.IPV6_ECN = 50;
+Win32.IPV6_RECVECN = 50;
+Win32.IPV6_PKTINFO_EX = 51;
+Win32.IPV6_WFP_REDIRECT_RECORDS = 60;
+Win32.IPV6_WFP_REDIRECT_CONTEXT = 70;
+Win32.IPV6_MTU_DISCOVER = 71;
+Win32.IPV6_MTU = 72;
+Win32.IPV6_NRT_INTERFACE = 74;
+Win32.IPV6_RECVERR = 75;
+Win32.IPV6_USER_MTU = 76;
+Win32.IP_UNSPECIFIED_HOP_LIMIT = -1;
+Win32.IP_PROTECTION_LEVEL = 23;
+Win32.PROTECTION_LEVEL_UNRESTRICTED = 10;
+Win32.PROTECTION_LEVEL_EDGERESTRICTED = 20;
+Win32.PROTECTION_LEVEL_RESTRICTED = 30;
+Win32.PROTECTION_LEVEL_DEFAULT = 20;
+Win32.INET_ADDRSTRLEN = 22;
+Win32.INET6_ADDRSTRLEN = 65;
+Win32.TCP_OFFLOAD_NO_PREFERENCE = 0;
+Win32.TCP_OFFLOAD_NOT_PREFERRED = 1;
+Win32.TCP_OFFLOAD_PREFERRED = 2;
+Win32.TCP_EXPEDITED_1122 = 2;
+Win32.TCP_KEEPALIVE = 3;
+Win32.TCP_MAXSEG = 4;
+Win32.TCP_MAXRT = 5;
+Win32.TCP_STDURG = 6;
+Win32.TCP_NOURG = 7;
+Win32.TCP_ATMARK = 8;
+Win32.TCP_NOSYNRETRIES = 9;
+Win32.TCP_TIMESTAMPS = 10;
+Win32.TCP_OFFLOAD_PREFERENCE = 11;
+Win32.TCP_CONGESTION_ALGORITHM = 12;
+Win32.TCP_DELAY_FIN_ACK = 13;
+Win32.TCP_MAXRTMS = 14;
+Win32.TCP_FASTOPEN = 15;
+Win32.TCP_KEEPCNT = 16;
+Win32.TCP_KEEPIDLE = 3;
+Win32.TCP_KEEPINTVL = 17;
+Win32.TCP_FAIL_CONNECT_ON_ICMP_ERROR = 18;
+Win32.TCP_ICMP_ERROR_INFO = 19;
+Win32.UDP_SEND_MSG_SIZE = 2;
+Win32.UDP_RECV_MAX_COALESCED_SIZE = 3;
+Win32.UDP_COALESCED_INFO = 3;
+Win32.WINDOWS_AF_IRDA = 26;
+Win32.WINDOWS_PF_IRDA = 26;
+Win32.WCE_AF_IRDA = 22;
+Win32.WCE_PF_IRDA = 22;
+Win32.IRDA_PROTO_SOCK_STREAM = 1;
+Win32.PF_IRDA = 26;
+Win32.SOL_IRLMP = 255;
+Win32.IRLMP_ENUMDEVICES = 16;
+Win32.IRLMP_IAS_SET = 17;
+Win32.IRLMP_IAS_QUERY = 18;
+Win32.IRLMP_SEND_PDU_LEN = 19;
+Win32.IRLMP_EXCLUSIVE_MODE = 20;
+Win32.IRLMP_IRLPT_MODE = 21;
+Win32.IRLMP_9WIRE_MODE = 22;
+Win32.IRLMP_TINYTP_MODE = 23;
+Win32.IRLMP_PARAMETERS = 24;
+Win32.IRLMP_DISCOVERY_MODE = 25;
+Win32.IRLMP_SHARP_MODE = 32;
+Win32.IAS_ATTRIB_NO_CLASS = 16;
+Win32.IAS_ATTRIB_NO_ATTRIB = 0;
+Win32.IAS_ATTRIB_INT = 1;
+Win32.IAS_ATTRIB_OCTETSEQ = 2;
+Win32.IAS_ATTRIB_STR = 3;
+Win32.IAS_MAX_USER_STRING = 256;
+Win32.IAS_MAX_OCTET_STRING = 1024;
+Win32.IAS_MAX_CLASSNAME = 64;
+Win32.IAS_MAX_ATTRIBNAME = 256;
+Win32.LmCharSetASCII = 0;
+Win32.LmCharSetISO_8859_1 = 1;
+Win32.LmCharSetISO_8859_2 = 2;
+Win32.LmCharSetISO_8859_3 = 3;
+Win32.LmCharSetISO_8859_4 = 4;
+Win32.LmCharSetISO_8859_5 = 5;
+Win32.LmCharSetISO_8859_6 = 6;
+Win32.LmCharSetISO_8859_7 = 7;
+Win32.LmCharSetISO_8859_8 = 8;
+Win32.LmCharSetISO_8859_9 = 9;
+Win32.LmCharSetUNICODE = 255;
+Win32.LM_BAUD_1200 = 1200;
+Win32.LM_BAUD_2400 = 2400;
+Win32.LM_BAUD_9600 = 9600;
+Win32.LM_BAUD_19200 = 19200;
+Win32.LM_BAUD_38400 = 38400;
+Win32.LM_BAUD_57600 = 57600;
+Win32.LM_BAUD_115200 = 115200;
+Win32.LM_BAUD_576K = 576000;
+Win32.LM_BAUD_1152K = 1152000;
+Win32.LM_BAUD_4M = 4000000;
+Win32.LM_BAUD_16M = 16000000;
+Win32.SO_CONNDATA = 28672;
+Win32.SO_CONNOPT = 28673;
+Win32.SO_DISCDATA = 28674;
+Win32.SO_DISCOPT = 28675;
+Win32.SO_CONNDATALEN = 28676;
+Win32.SO_CONNOPTLEN = 28677;
+Win32.SO_DISCDATALEN = 28678;
+Win32.SO_DISCOPTLEN = 28679;
+Win32.SO_OPENTYPE = 28680;
+Win32.SO_SYNCHRONOUS_ALERT = 16;
+Win32.SO_SYNCHRONOUS_NONALERT = 32;
+Win32.SO_MAXDG = 28681;
+Win32.SO_MAXPATHDG = 28682;
+Win32.SO_UPDATE_ACCEPT_CONTEXT = 28683;
+Win32.SO_CONNECT_TIME = 28684;
+Win32.SO_UPDATE_CONNECT_CONTEXT = 28688;
+Win32.TCP_BSDURGENT = 28672;
+Win32.SIO_UDP_CONNRESET = 2550136844;
+Win32.SIO_SOCKET_CLOSE_NOTIFY = 2550136845;
+Win32.SIO_UDP_NETRESET = 2550136847;
+Win32.TF_DISCONNECT = 1;
+Win32.TF_REUSE_SOCKET = 2;
+Win32.TF_WRITE_BEHIND = 4;
+Win32.TF_USE_DEFAULT_WORKER = 0;
+Win32.TF_USE_SYSTEM_THREAD = 16;
+Win32.TF_USE_KERNEL_APC = 32;
+Win32.TP_ELEMENT_MEMORY = 1;
+Win32.TP_ELEMENT_FILE = 2;
+Win32.TP_ELEMENT_EOP = 4;
+Win32.TP_DISCONNECT = 1;
+Win32.TP_REUSE_SOCKET = 2;
+Win32.TP_USE_DEFAULT_WORKER = 0;
+Win32.TP_USE_SYSTEM_THREAD = 16;
+Win32.TP_USE_KERNEL_APC = 32;
+Win32.DE_REUSE_SOCKET = 2;
+Win32.NLA_ALLUSERS_NETWORK = 1;
+Win32.NLA_FRIENDLY_NAME = 2;
+Win32.SIO_BSP_HANDLE = 1207959579;
+Win32.SIO_BSP_HANDLE_SELECT = 1207959580;
+Win32.SIO_BSP_HANDLE_POLL = 1207959581;
+Win32.SIO_BASE_HANDLE = 1207959586;
+Win32.SIO_EXT_SELECT = 3355443230;
+Win32.SIO_EXT_POLL = 3355443231;
+Win32.SIO_EXT_SENDMSG = 3355443232;
+Win32.SERVICE_RESOURCE = 1;
+Win32.SERVICE_SERVICE = 2;
+Win32.SERVICE_LOCAL = 4;
+Win32.SERVICE_FLAG_DEFER = 1;
+Win32.SERVICE_FLAG_HARD = 2;
+Win32.PROP_COMMENT = 1;
+Win32.PROP_LOCALE = 2;
+Win32.PROP_DISPLAY_HINT = 4;
+Win32.PROP_VERSION = 8;
+Win32.PROP_START_TIME = 16;
+Win32.PROP_MACHINE = 32;
+Win32.PROP_ADDRESSES = 256;
+Win32.PROP_SD = 512;
+Win32.PROP_ALL = 2147483648;
+Win32.SERVICE_ADDRESS_FLAG_RPC_CN = 1;
+Win32.SERVICE_ADDRESS_FLAG_RPC_DG = 2;
+Win32.SERVICE_ADDRESS_FLAG_RPC_NB = 4;
+Win32.NS_DEFAULT = 0;
+Win32.NS_VNS = 50;
+Win32.NSTYPE_HIERARCHICAL = 1;
+Win32.NSTYPE_DYNAMIC = 2;
+Win32.NSTYPE_ENUMERABLE = 4;
+Win32.NSTYPE_WORKGROUP = 8;
+Win32.XP_CONNECTIONLESS = 1;
+Win32.XP_GUARANTEED_DELIVERY = 2;
+Win32.XP_GUARANTEED_ORDER = 4;
+Win32.XP_MESSAGE_ORIENTED = 8;
+Win32.XP_PSEUDO_STREAM = 16;
+Win32.XP_GRACEFUL_CLOSE = 32;
+Win32.XP_EXPEDITED_DATA = 64;
+Win32.XP_CONNECT_DATA = 128;
+Win32.XP_DISCONNECT_DATA = 256;
+Win32.XP_SUPPORTS_BROADCAST = 512;
+Win32.XP_SUPPORTS_MULTICAST = 1024;
+Win32.XP_BANDWIDTH_ALLOCATION = 2048;
+Win32.XP_FRAGMENTATION = 4096;
+Win32.XP_ENCRYPTS = 8192;
+Win32.RES_SOFT_SEARCH = 1;
+Win32.RES_FIND_MULTIPLE = 2;
+Win32.RES_SERVICE = 4;
+Win32.SERVICE_TYPE_VALUE_SAPIDA = "SapId";
+Win32.SERVICE_TYPE_VALUE_SAPIDW = "SapId";
+Win32.SERVICE_TYPE_VALUE_CONNA = "ConnectionOriented";
+Win32.SERVICE_TYPE_VALUE_CONNW = "ConnectionOriented";
+Win32.SERVICE_TYPE_VALUE_TCPPORTA = "TcpPort";
+Win32.SERVICE_TYPE_VALUE_TCPPORTW = "TcpPort";
+Win32.SERVICE_TYPE_VALUE_UDPPORTA = "UdpPort";
+Win32.SERVICE_TYPE_VALUE_UDPPORTW = "UdpPort";
+Win32.SERVICE_TYPE_VALUE_SAPID = "SapId";
+Win32.SERVICE_TYPE_VALUE_CONN = "ConnectionOriented";
+Win32.SERVICE_TYPE_VALUE_TCPPORT = "TcpPort";
+Win32.SERVICE_TYPE_VALUE_UDPPORT = "UdpPort";
+Win32.SET_SERVICE_PARTIAL_SUCCESS = 1;
+Win32.FD_SETSIZE = 64;
+Win32.IMPLINK_IP = 155;
+Win32.IMPLINK_LOWEXPER = 156;
+Win32.IMPLINK_HIGHEXPER = 158;
+Win32.WSADESCRIPTION_LEN = 256;
+Win32.WSASYS_STATUS_LEN = 128;
+Win32.IP_DEFAULT_MULTICAST_TTL = 1;
+Win32.IP_DEFAULT_MULTICAST_LOOP = 1;
+Win32.IP_MAX_MEMBERSHIPS = 20;
+Win32.SOCKET_ERROR = -1;
+Win32.PF_UNIX = 1;
+Win32.PF_IMPLINK = 3;
+Win32.PF_PUP = 4;
+Win32.PF_CHAOS = 5;
+Win32.PF_NS = 6;
+Win32.PF_IPX = 6;
+Win32.PF_ISO = 7;
+Win32.PF_OSI = 7;
+Win32.PF_ECMA = 8;
+Win32.PF_DATAKIT = 9;
+Win32.PF_CCITT = 10;
+Win32.PF_SNA = 11;
+Win32.PF_DECnet = 12;
+Win32.PF_DLI = 13;
+Win32.PF_LAT = 14;
+Win32.PF_HYLINK = 15;
+Win32.PF_APPLETALK = 16;
+Win32.PF_VOICEVIEW = 18;
+Win32.PF_FIREFOX = 19;
+Win32.PF_UNKNOWN1 = 20;
+Win32.PF_BAN = 21;
+Win32.PF_MAX = 29;
+Win32.SOMAXCONN = 5;
+Win32.MSG_MAXIOVLEN = 16;
+Win32.MSG_PARTIAL = 32768;
+Win32.MAXGETHOSTSTRUCT = 1024;
+Win32.FD_READ = 1;
+Win32.FD_WRITE = 2;
+Win32.FD_OOB = 4;
+Win32.FD_ACCEPT = 8;
+Win32.FD_CONNECT = 16;
+Win32.FD_CLOSE = 32;
+Win32.INCL_WINSOCK_API_PROTOTYPES = 1;
+Win32.INCL_WINSOCK_API_TYPEDEFS = 0;
+Win32.FROM_PROTOCOL_INFO = -1;
+Win32.SO_PROTOCOL_INFOA = 8196;
+Win32.SO_PROTOCOL_INFOW = 8197;
+Win32.SO_PROTOCOL_INFO = 8197;
+Win32.PVD_CONFIG = 12289;
+Win32.PF_ATM = 22;
+Win32.MSG_INTERRUPT = 16;
+Win32.FD_READ_BIT = 0;
+Win32.FD_WRITE_BIT = 1;
+Win32.FD_OOB_BIT = 2;
+Win32.FD_ACCEPT_BIT = 3;
+Win32.FD_CONNECT_BIT = 4;
+Win32.FD_CLOSE_BIT = 5;
+Win32.FD_QOS_BIT = 6;
+Win32.FD_GROUP_QOS_BIT = 7;
+Win32.FD_ROUTING_INTERFACE_CHANGE_BIT = 8;
+Win32.FD_ADDRESS_LIST_CHANGE_BIT = 9;
+Win32.FD_MAX_EVENTS = 10;
+Win32.WSA_MAXIMUM_WAIT_EVENTS = 64;
+Win32.WSA_WAIT_FAILED = 4294967295;
+Win32.CF_ACCEPT = 0;
+Win32.CF_REJECT = 1;
+Win32.CF_DEFER = 2;
+Win32.SD_RECEIVE = 0;
+Win32.SD_SEND = 1;
+Win32.SD_BOTH = 2;
+Win32.SG_UNCONSTRAINED_GROUP = 1;
+Win32.SG_CONSTRAINED_GROUP = 2;
+Win32.MAX_PROTOCOL_CHAIN = 7;
+Win32.BASE_PROTOCOL = 1;
+Win32.LAYERED_PROTOCOL = 0;
+Win32.WSAPROTOCOL_LEN = 255;
+Win32.PFL_MULTIPLE_PROTO_ENTRIES = 1;
+Win32.PFL_RECOMMENDED_PROTO_ENTRY = 2;
+Win32.PFL_HIDDEN = 4;
+Win32.PFL_MATCHES_PROTOCOL_ZERO = 8;
+Win32.PFL_NETWORKDIRECT_PROVIDER = 16;
+Win32.XP1_CONNECTIONLESS = 1;
+Win32.XP1_GUARANTEED_DELIVERY = 2;
+Win32.XP1_GUARANTEED_ORDER = 4;
+Win32.XP1_MESSAGE_ORIENTED = 8;
+Win32.XP1_PSEUDO_STREAM = 16;
+Win32.XP1_GRACEFUL_CLOSE = 32;
+Win32.XP1_EXPEDITED_DATA = 64;
+Win32.XP1_CONNECT_DATA = 128;
+Win32.XP1_DISCONNECT_DATA = 256;
+Win32.XP1_SUPPORT_BROADCAST = 512;
+Win32.XP1_SUPPORT_MULTIPOINT = 1024;
+Win32.XP1_MULTIPOINT_CONTROL_PLANE = 2048;
+Win32.XP1_MULTIPOINT_DATA_PLANE = 4096;
+Win32.XP1_QOS_SUPPORTED = 8192;
+Win32.XP1_INTERRUPT = 16384;
+Win32.XP1_UNI_SEND = 32768;
+Win32.XP1_UNI_RECV = 65536;
+Win32.XP1_IFS_HANDLES = 131072;
+Win32.XP1_PARTIAL_MESSAGE = 262144;
+Win32.XP1_SAN_SUPPORT_SDP = 524288;
+Win32.BIGENDIAN = 0;
+Win32.LITTLEENDIAN = 1;
+Win32.SECURITY_PROTOCOL_NONE = 0;
+Win32.JL_SENDER_ONLY = 1;
+Win32.JL_RECEIVER_ONLY = 2;
+Win32.JL_BOTH = 4;
+Win32.WSA_FLAG_OVERLAPPED = 1;
+Win32.WSA_FLAG_MULTIPOINT_C_ROOT = 2;
+Win32.WSA_FLAG_MULTIPOINT_C_LEAF = 4;
+Win32.WSA_FLAG_MULTIPOINT_D_ROOT = 8;
+Win32.WSA_FLAG_MULTIPOINT_D_LEAF = 16;
+Win32.WSA_FLAG_ACCESS_SYSTEM_SECURITY = 64;
+Win32.WSA_FLAG_NO_HANDLE_INHERIT = 128;
+Win32.WSA_FLAG_REGISTERED_IO = 256;
+Win32.SIO_NSP_NOTIFY_CHANGE = 2281701401;
+Win32.TH_NETDEV = 1;
+Win32.TH_TAPI = 2;
+Win32.SERVICE_MULTIPLE = 1;
+Win32.NS_LOCALNAME = 19;
+Win32.RES_UNUSED_1 = 1;
+Win32.RES_FLUSH_CACHE = 2;
+Win32.SERVICE_TYPE_VALUE_IPXPORTA = "IpxSocket";
+Win32.SERVICE_TYPE_VALUE_IPXPORTW = "IpxSocket";
+Win32.SERVICE_TYPE_VALUE_OBJECTIDA = "ObjectId";
+Win32.SERVICE_TYPE_VALUE_OBJECTIDW = "ObjectId";
+Win32.SERVICE_TYPE_VALUE_OBJECTID = "ObjectId";
+Win32.LUP_DEEP = 1;
+Win32.LUP_CONTAINERS = 2;
+Win32.LUP_NOCONTAINERS = 4;
+Win32.LUP_NEAREST = 8;
+Win32.LUP_RETURN_NAME = 16;
+Win32.LUP_RETURN_TYPE = 32;
+Win32.LUP_RETURN_VERSION = 64;
+Win32.LUP_RETURN_COMMENT = 128;
+Win32.LUP_RETURN_ADDR = 256;
+Win32.LUP_RETURN_BLOB = 512;
+Win32.LUP_RETURN_ALIASES = 1024;
+Win32.LUP_RETURN_QUERY_STRING = 2048;
+Win32.LUP_RETURN_ALL = 4080;
+Win32.LUP_RES_SERVICE = 32768;
+Win32.LUP_FLUSHCACHE = 4096;
+Win32.LUP_FLUSHPREVIOUS = 8192;
+Win32.LUP_NON_AUTHORITATIVE = 16384;
+Win32.LUP_SECURE = 32768;
+Win32.LUP_RETURN_PREFERRED_NAMES = 65536;
+Win32.LUP_DNS_ONLY = 131072;
+Win32.LUP_RETURN_RESPONSE_FLAGS = 262144;
+Win32.LUP_ADDRCONFIG = 1048576;
+Win32.LUP_DUAL_ADDR = 2097152;
+Win32.LUP_FILESERVER = 4194304;
+Win32.LUP_DISABLE_IDN_ENCODING = 8388608;
+Win32.LUP_API_ANSI = 16777216;
+Win32.LUP_EXTENDED_QUERYSET = 33554432;
+Win32.LUP_SECURE_WITH_FALLBACK = 67108864;
+Win32.LUP_EXCLUSIVE_CUSTOM_SERVERS = 134217728;
+Win32.LUP_REQUIRE_SECURE = 268435456;
+Win32.LUP_RETURN_TTL = 536870912;
+Win32.LUP_FORCE_CLEAR_TEXT = 1073741824;
+Win32.LUP_RESOLUTION_HANDLE = 2147483648;
+Win32.RESULT_IS_ALIAS = 1;
+Win32.RESULT_IS_ADDED = 16;
+Win32.RESULT_IS_CHANGED = 32;
+Win32.RESULT_IS_DELETED = 64;
+Win32.POLLRDNORM = 256;
+Win32.POLLRDBAND = 512;
+Win32.POLLPRI = 1024;
+Win32.POLLWRNORM = 16;
+Win32.POLLOUT = 16;
+Win32.POLLWRBAND = 32;
+Win32.POLLERR = 1;
+Win32.POLLHUP = 2;
+Win32.POLLNVAL = 4;
+Win32.SOCK_NOTIFY_REGISTER_EVENT_NONE = 0;
+Win32.SOCK_NOTIFY_REGISTER_EVENT_IN = 1;
+Win32.SOCK_NOTIFY_REGISTER_EVENT_OUT = 2;
+Win32.SOCK_NOTIFY_REGISTER_EVENT_HANGUP = 4;
+Win32.SOCK_NOTIFY_EVENT_IN = 1;
+Win32.SOCK_NOTIFY_EVENT_OUT = 2;
+Win32.SOCK_NOTIFY_EVENT_HANGUP = 4;
+Win32.SOCK_NOTIFY_EVENT_ERR = 64;
+Win32.SOCK_NOTIFY_EVENT_REMOVE = 128;
+Win32.SOCK_NOTIFY_OP_NONE = 0;
+Win32.SOCK_NOTIFY_OP_ENABLE = 1;
+Win32.SOCK_NOTIFY_OP_DISABLE = 2;
+Win32.SOCK_NOTIFY_OP_REMOVE = 4;
+Win32.SOCK_NOTIFY_TRIGGER_ONESHOT = 1;
+Win32.SOCK_NOTIFY_TRIGGER_PERSISTENT = 2;
+Win32.SOCK_NOTIFY_TRIGGER_LEVEL = 4;
+Win32.SOCK_NOTIFY_TRIGGER_EDGE = 8;
+Win32.ATMPROTO_AALUSER = 0;
+Win32.ATMPROTO_AAL1 = 1;
+Win32.ATMPROTO_AAL2 = 2;
+Win32.ATMPROTO_AAL34 = 3;
+Win32.ATMPROTO_AAL5 = 5;
+Win32.SAP_FIELD_ABSENT = 4294967294;
+Win32.SAP_FIELD_ANY = 4294967295;
+Win32.SAP_FIELD_ANY_AESA_SEL = 4294967290;
+Win32.SAP_FIELD_ANY_AESA_REST = 4294967291;
+Win32.ATM_E164 = 1;
+Win32.ATM_NSAP = 2;
+Win32.ATM_AESA = 2;
+Win32.ATM_ADDR_SIZE = 20;
+Win32.BLLI_L2_ISO_1745 = 1;
+Win32.BLLI_L2_Q921 = 2;
+Win32.BLLI_L2_X25L = 6;
+Win32.BLLI_L2_X25M = 7;
+Win32.BLLI_L2_ELAPB = 8;
+Win32.BLLI_L2_HDLC_ARM = 9;
+Win32.BLLI_L2_HDLC_NRM = 10;
+Win32.BLLI_L2_HDLC_ABM = 11;
+Win32.BLLI_L2_LLC = 12;
+Win32.BLLI_L2_X75 = 13;
+Win32.BLLI_L2_Q922 = 14;
+Win32.BLLI_L2_USER_SPECIFIED = 16;
+Win32.BLLI_L2_ISO_7776 = 17;
+Win32.BLLI_L3_X25 = 6;
+Win32.BLLI_L3_ISO_8208 = 7;
+Win32.BLLI_L3_X223 = 8;
+Win32.BLLI_L3_SIO_8473 = 9;
+Win32.BLLI_L3_T70 = 10;
+Win32.BLLI_L3_ISO_TR9577 = 11;
+Win32.BLLI_L3_USER_SPECIFIED = 16;
+Win32.BLLI_L3_IPI_SNAP = 128;
+Win32.BLLI_L3_IPI_IP = 204;
+Win32.BHLI_ISO = 0;
+Win32.BHLI_UserSpecific = 1;
+Win32.BHLI_HighLayerProfile = 2;
+Win32.BHLI_VendorSpecificAppId = 3;
+Win32.AAL5_MODE_MESSAGE = 1;
+Win32.AAL5_MODE_STREAMING = 2;
+Win32.AAL5_SSCS_NULL = 0;
+Win32.AAL5_SSCS_SSCOP_ASSURED = 1;
+Win32.AAL5_SSCS_SSCOP_NON_ASSURED = 2;
+Win32.AAL5_SSCS_FRAME_RELAY = 4;
+Win32.BCOB_A = 1;
+Win32.BCOB_C = 3;
+Win32.BCOB_X = 16;
+Win32.TT_NOIND = 0;
+Win32.TT_CBR = 4;
+Win32.TT_VBR = 8;
+Win32.TR_NOIND = 0;
+Win32.TR_END_TO_END = 1;
+Win32.TR_NO_END_TO_END = 2;
+Win32.CLIP_NOT = 0;
+Win32.CLIP_SUS = 32;
+Win32.UP_P2P = 0;
+Win32.UP_P2MP = 1;
+Win32.BLLI_L2_MODE_NORMAL = 64;
+Win32.BLLI_L2_MODE_EXT = 128;
+Win32.BLLI_L3_MODE_NORMAL = 64;
+Win32.BLLI_L3_MODE_EXT = 128;
+Win32.BLLI_L3_PACKET_16 = 4;
+Win32.BLLI_L3_PACKET_32 = 5;
+Win32.BLLI_L3_PACKET_64 = 6;
+Win32.BLLI_L3_PACKET_128 = 7;
+Win32.BLLI_L3_PACKET_256 = 8;
+Win32.BLLI_L3_PACKET_512 = 9;
+Win32.BLLI_L3_PACKET_1024 = 10;
+Win32.BLLI_L3_PACKET_2048 = 11;
+Win32.BLLI_L3_PACKET_4096 = 12;
+Win32.PI_ALLOWED = 0;
+Win32.PI_RESTRICTED = 64;
+Win32.PI_NUMBER_NOT_AVAILABLE = 128;
+Win32.SI_USER_NOT_SCREENED = 0;
+Win32.SI_USER_PASSED = 1;
+Win32.SI_USER_FAILED = 2;
+Win32.SI_NETWORK = 3;
+Win32.CAUSE_LOC_USER = 0;
+Win32.CAUSE_LOC_PRIVATE_LOCAL = 1;
+Win32.CAUSE_LOC_PUBLIC_LOCAL = 2;
+Win32.CAUSE_LOC_TRANSIT_NETWORK = 3;
+Win32.CAUSE_LOC_PUBLIC_REMOTE = 4;
+Win32.CAUSE_LOC_PRIVATE_REMOTE = 5;
+Win32.CAUSE_LOC_INTERNATIONAL_NETWORK = 7;
+Win32.CAUSE_LOC_BEYOND_INTERWORKING = 10;
+Win32.CAUSE_UNALLOCATED_NUMBER = 1;
+Win32.CAUSE_NO_ROUTE_TO_TRANSIT_NETWORK = 2;
+Win32.CAUSE_NO_ROUTE_TO_DESTINATION = 3;
+Win32.CAUSE_VPI_VCI_UNACCEPTABLE = 10;
+Win32.CAUSE_NORMAL_CALL_CLEARING = 16;
+Win32.CAUSE_USER_BUSY = 17;
+Win32.CAUSE_NO_USER_RESPONDING = 18;
+Win32.CAUSE_CALL_REJECTED = 21;
+Win32.CAUSE_NUMBER_CHANGED = 22;
+Win32.CAUSE_USER_REJECTS_CLIR = 23;
+Win32.CAUSE_DESTINATION_OUT_OF_ORDER = 27;
+Win32.CAUSE_INVALID_NUMBER_FORMAT = 28;
+Win32.CAUSE_STATUS_ENQUIRY_RESPONSE = 30;
+Win32.CAUSE_NORMAL_UNSPECIFIED = 31;
+Win32.CAUSE_VPI_VCI_UNAVAILABLE = 35;
+Win32.CAUSE_NETWORK_OUT_OF_ORDER = 38;
+Win32.CAUSE_TEMPORARY_FAILURE = 41;
+Win32.CAUSE_ACCESS_INFORMAION_DISCARDED = 43;
+Win32.CAUSE_NO_VPI_VCI_AVAILABLE = 45;
+Win32.CAUSE_RESOURCE_UNAVAILABLE = 47;
+Win32.CAUSE_QOS_UNAVAILABLE = 49;
+Win32.CAUSE_USER_CELL_RATE_UNAVAILABLE = 51;
+Win32.CAUSE_BEARER_CAPABILITY_UNAUTHORIZED = 57;
+Win32.CAUSE_BEARER_CAPABILITY_UNAVAILABLE = 58;
+Win32.CAUSE_OPTION_UNAVAILABLE = 63;
+Win32.CAUSE_BEARER_CAPABILITY_UNIMPLEMENTED = 65;
+Win32.CAUSE_UNSUPPORTED_TRAFFIC_PARAMETERS = 73;
+Win32.CAUSE_INVALID_CALL_REFERENCE = 81;
+Win32.CAUSE_CHANNEL_NONEXISTENT = 82;
+Win32.CAUSE_INCOMPATIBLE_DESTINATION = 88;
+Win32.CAUSE_INVALID_ENDPOINT_REFERENCE = 89;
+Win32.CAUSE_INVALID_TRANSIT_NETWORK_SELECTION = 91;
+Win32.CAUSE_TOO_MANY_PENDING_ADD_PARTY = 92;
+Win32.CAUSE_AAL_PARAMETERS_UNSUPPORTED = 93;
+Win32.CAUSE_MANDATORY_IE_MISSING = 96;
+Win32.CAUSE_UNIMPLEMENTED_MESSAGE_TYPE = 97;
+Win32.CAUSE_UNIMPLEMENTED_IE = 99;
+Win32.CAUSE_INVALID_IE_CONTENTS = 100;
+Win32.CAUSE_INVALID_STATE_FOR_MESSAGE = 101;
+Win32.CAUSE_RECOVERY_ON_TIMEOUT = 102;
+Win32.CAUSE_INCORRECT_MESSAGE_LENGTH = 104;
+Win32.CAUSE_PROTOCOL_ERROR = 111;
+Win32.CAUSE_COND_UNKNOWN = 0;
+Win32.CAUSE_COND_PERMANENT = 1;
+Win32.CAUSE_COND_TRANSIENT = 2;
+Win32.CAUSE_REASON_USER = 0;
+Win32.CAUSE_REASON_IE_MISSING = 4;
+Win32.CAUSE_REASON_IE_INSUFFICIENT = 8;
+Win32.CAUSE_PU_PROVIDER = 0;
+Win32.CAUSE_PU_USER = 8;
+Win32.CAUSE_NA_NORMAL = 0;
+Win32.CAUSE_NA_ABNORMAL = 4;
+Win32.QOS_CLASS0 = 0;
+Win32.QOS_CLASS1 = 1;
+Win32.QOS_CLASS2 = 2;
+Win32.QOS_CLASS3 = 3;
+Win32.QOS_CLASS4 = 4;
+Win32.TNS_TYPE_NATIONAL = 64;
+Win32.TNS_PLAN_CARRIER_ID_CODE = 1;
+Win32.SIO_GET_NUMBER_OF_ATM_DEVICES = 1343619073;
+Win32.SIO_GET_ATM_ADDRESS = 3491102722;
+Win32.SIO_ASSOCIATE_PVC = 2417360899;
+Win32.SIO_GET_ATM_CONNECTION_ID = 1343619076;
+Win32.WSPDESCRIPTION_LEN = 255;
+Win32.WSS_OPERATION_IN_PROGRESS = 259;
+Win32.LSP_SYSTEM = 2147483648;
+Win32.LSP_INSPECTOR = 1;
+Win32.LSP_REDIRECTOR = 2;
+Win32.LSP_PROXY = 4;
+Win32.LSP_FIREWALL = 8;
+Win32.LSP_INBOUND_MODIFY = 16;
+Win32.LSP_OUTBOUND_MODIFY = 32;
+Win32.LSP_CRYPTO_COMPRESS = 64;
+Win32.LSP_LOCAL_CACHE = 128;
+Win32.UDP_NOCHECKSUM = 1;
+Win32.UDP_CHECKSUM_COVERAGE = 20;
+Win32.GAI_STRERROR_BUFFER_SIZE = 1024;
+Win32.IPX_PTYPE = 16384;
+Win32.IPX_FILTERPTYPE = 16385;
+Win32.IPX_STOPFILTERPTYPE = 16387;
+Win32.IPX_DSTYPE = 16386;
+Win32.IPX_EXTENDED_ADDRESS = 16388;
+Win32.IPX_RECVHDR = 16389;
+Win32.IPX_MAXSIZE = 16390;
+Win32.IPX_ADDRESS = 16391;
+Win32.IPX_GETNETINFO = 16392;
+Win32.IPX_GETNETINFO_NORIP = 16393;
+Win32.IPX_SPXGETCONNECTIONSTATUS = 16395;
+Win32.IPX_ADDRESS_NOTIFY = 16396;
+Win32.IPX_MAX_ADAPTER_NUM = 16397;
+Win32.IPX_RERIPNETNUMBER = 16398;
+Win32.IPX_RECEIVE_BROADCAST = 16399;
+Win32.IPX_IMMEDIATESPXACK = 16400;
+Win32.IPPROTO_RM = 113;
+Win32.MAX_MCAST_TTL = 255;
+Win32.RM_OPTIONSBASE = 1000;
+Win32.RM_RATE_WINDOW_SIZE = 1001;
+Win32.RM_SET_MESSAGE_BOUNDARY = 1002;
+Win32.RM_FLUSHCACHE = 1003;
+Win32.RM_SENDER_WINDOW_ADVANCE_METHOD = 1004;
+Win32.RM_SENDER_STATISTICS = 1005;
+Win32.RM_LATEJOIN = 1006;
+Win32.RM_SET_SEND_IF = 1007;
+Win32.RM_ADD_RECEIVE_IF = 1008;
+Win32.RM_DEL_RECEIVE_IF = 1009;
+Win32.RM_SEND_WINDOW_ADV_RATE = 1010;
+Win32.RM_USE_FEC = 1011;
+Win32.RM_SET_MCAST_TTL = 1012;
+Win32.RM_RECEIVER_STATISTICS = 1013;
+Win32.RM_HIGH_SPEED_INTRANET_OPT = 1014;
+Win32.SENDER_DEFAULT_RATE_KBITS_PER_SEC = 56;
+Win32.SENDER_DEFAULT_WINDOW_ADV_PERCENTAGE = 15;
+Win32.MAX_WINDOW_INCREMENT_PERCENTAGE = 25;
+Win32.SENDER_DEFAULT_LATE_JOINER_PERCENTAGE = 0;
+Win32.SENDER_MAX_LATE_JOINER_PERCENTAGE = 75;
+Win32.BITS_PER_BYTE = 8;
+Win32.LOG2_BITS_PER_BYTE = 3;
+Win32.UNIX_PATH_MAX = 108;
+Win32.SIO_AF_UNIX_GETPEERPID = 1476395264;
+Win32.SIO_AF_UNIX_SETBINDPARENTPATH = 2550137089;
+Win32.SIO_AF_UNIX_SETCONNPARENTPATH = 2550137090;
+Win32.ISOPROTO_TP0 = 25;
+Win32.ISOPROTO_TP1 = 26;
+Win32.ISOPROTO_TP2 = 27;
+Win32.ISOPROTO_TP3 = 28;
+Win32.ISOPROTO_TP4 = 29;
+Win32.ISOPROTO_TP = 29;
+Win32.ISOPROTO_CLTP = 30;
+Win32.ISOPROTO_CLNP = 31;
+Win32.ISOPROTO_X25 = 32;
+Win32.ISOPROTO_INACT_NL = 33;
+Win32.ISOPROTO_ESIS = 34;
+Win32.ISOPROTO_INTRAISIS = 35;
+Win32.ISO_MAX_ADDR_LENGTH = 64;
+Win32.ISO_HIERARCHICAL = 0;
+Win32.ISO_NON_HIERARCHICAL = 1;
+Win32.ISO_EXP_DATA_USE = 0;
+Win32.ISO_EXP_DATA_NUSE = 1;
+Win32.NSPROTO_IPX = 1000;
+Win32.NSPROTO_SPX = 1256;
+Win32.NSPROTO_SPXII = 1257;
+Win32.NETBIOS_NAME_LENGTH = 16;
+Win32.NETBIOS_UNIQUE_NAME = 0;
+Win32.NETBIOS_GROUP_NAME = 1;
+Win32.NETBIOS_TYPE_QUICK_UNIQUE = 2;
+Win32.NETBIOS_TYPE_QUICK_GROUP = 3;
+Win32.VNSPROTO_IPC = 1;
+Win32.VNSPROTO_RELIABLE_IPC = 2;
+Win32.VNSPROTO_SPP = 3;
+Win32.BYTE_ORDER = 1234;
+Win32.DL_ADDRESS_LENGTH_MAXIMUM = 32;
+Win32.DL_HEADER_LENGTH_MAXIMUM = 64;
+Win32.SNAP_DSAP = 170;
+Win32.SNAP_SSAP = 170;
+Win32.SNAP_CONTROL = 3;
+Win32.SNAP_OUI = 0;
+Win32.ETH_LENGTH_OF_HEADER = 14;
+Win32.ETH_LENGTH_OF_VLAN_HEADER = 4;
+Win32.ETH_LENGTH_OF_SNAP_HEADER = 8;
+Win32.ETHERNET_TYPE_MINIMUM = 1536;
+Win32.ETHERNET_TYPE_IPV4 = 2048;
+Win32.ETHERNET_TYPE_ARP = 2054;
+Win32.ETHERNET_TYPE_IPV6 = 34525;
+Win32.ETHERNET_TYPE_802_1Q = 33024;
+Win32.ETHERNET_TYPE_802_1AD = 34984;
+Win32.IP_VER_MASK = 240;
+Win32.IPV4_VERSION = 4;
+Win32.MAX_IPV4_PACKET = 65535;
+Win32.MAX_IPV4_HLEN = 60;
+Win32.IPV4_MINIMUM_MTU = 576;
+Win32.IPV4_MIN_MINIMUM_MTU = 352;
+Win32.IPV4_MAX_MINIMUM_MTU = 576;
+Win32.SIZEOF_IP_OPT_ROUTING_HEADER = 3;
+Win32.SIZEOF_IP_OPT_TIMESTAMP_HEADER = 4;
+Win32.SIZEOF_IP_OPT_SECURITY = 11;
+Win32.SIZEOF_IP_OPT_STREAMIDENTIFIER = 4;
+Win32.SIZEOF_IP_OPT_ROUTERALERT = 4;
+Win32.IP4_OFF_MASK = 65311;
+Win32.ICMPV4_INVALID_PREFERENCE_LEVEL = 2147483648;
+Win32.IGMP_QUERY_TYPE = 17;
+Win32.IGMP_VERSION1_REPORT_TYPE = 18;
+Win32.IGMP_VERSION2_REPORT_TYPE = 22;
+Win32.IGMP_LEAVE_GROUP_TYPE = 23;
+Win32.IGMP_VERSION3_REPORT_TYPE = 34;
+Win32.IPV6_VERSION = 96;
+Win32.IPV6_TRAFFIC_CLASS_MASK = 49167;
+Win32.IPV6_FULL_TRAFFIC_CLASS_MASK = 61455;
+Win32.IPV6_ECN_MASK = 12288;
+Win32.IPV6_FLOW_LABEL_MASK = 4294905600;
+Win32.MAX_IPV6_PAYLOAD = 65535;
+Win32.IPV6_ECN_SHIFT = 12;
+Win32.IPV6_MINIMUM_MTU = 1280;
+Win32.IP6F_OFF_MASK = 63743;
+Win32.IP6F_RESERVED_MASK = 1536;
+Win32.IP6F_MORE_FRAG = 256;
+Win32.EXT_LEN_UNIT = 8;
+Win32.IP6OPT_TYPE_SKIP = 0;
+Win32.IP6OPT_TYPE_DISCARD = 64;
+Win32.IP6OPT_TYPE_FORCEICMP = 128;
+Win32.IP6OPT_TYPE_ICMP = 192;
+Win32.IP6OPT_MUTABLE = 32;
+Win32.ICMP6_DST_UNREACH_NOROUTE = 0;
+Win32.ICMP6_DST_UNREACH_ADMIN = 1;
+Win32.ICMP6_DST_UNREACH_BEYONDSCOPE = 2;
+Win32.ICMP6_DST_UNREACH_ADDR = 3;
+Win32.ICMP6_DST_UNREACH_NOPORT = 4;
+Win32.ICMP6_TIME_EXCEED_TRANSIT = 0;
+Win32.ICMP6_TIME_EXCEED_REASSEMBLY = 1;
+Win32.ICMP6_PARAMPROB_HEADER = 0;
+Win32.ICMP6_PARAMPROB_NEXTHEADER = 1;
+Win32.ICMP6_PARAMPROB_OPTION = 2;
+Win32.ICMPV6_ECHO_REQUEST_FLAG_REVERSE = 1;
+Win32.ND_RA_FLAG_MANAGED = 128;
+Win32.ND_RA_FLAG_OTHER = 64;
+Win32.ND_RA_FLAG_HOME_AGENT = 32;
+Win32.ND_RA_FLAG_PREFERENCE = 24;
+Win32.ND_NA_FLAG_ROUTER = 2147483648;
+Win32.ND_NA_FLAG_SOLICITED = 1073741824;
+Win32.ND_NA_FLAG_OVERRIDE = 536870912;
+Win32.ND_OPT_PI_FLAG_ONLINK = 128;
+Win32.ND_OPT_PI_FLAG_AUTO = 64;
+Win32.ND_OPT_PI_FLAG_ROUTER_ADDR = 32;
+Win32.ND_OPT_PI_FLAG_SITE_PREFIX = 16;
+Win32.ND_OPT_PI_FLAG_ROUTE = 1;
+Win32.ND_OPT_RI_FLAG_PREFERENCE = 24;
+Win32.ND_OPT_RDNSS_MIN_LEN = 24;
+Win32.ND_OPT_DNSSL_MIN_LEN = 16;
+Win32.IN6_EMBEDDEDV4_UOCTET_POSITION = 8;
+Win32.IN6_EMBEDDEDV4_BITS_IN_BYTE = 8;
+Win32.TH_FIN = 1;
+Win32.TH_SYN = 2;
+Win32.TH_RST = 4;
+Win32.TH_PSH = 8;
+Win32.TH_ACK = 16;
+Win32.TH_URG = 32;
+Win32.TH_ECE = 64;
+Win32.TH_CWR = 128;
+Win32.TH_OPT_EOL = 0;
+Win32.TH_OPT_NOP = 1;
+Win32.TH_OPT_MSS = 2;
+Win32.TH_OPT_WS = 3;
+Win32.TH_OPT_SACK_PERMITTED = 4;
+Win32.TH_OPT_SACK = 5;
+Win32.TH_OPT_TS = 8;
+Win32.TH_OPT_FASTOPEN = 34;
+Win32.INVALID_SOCKET = -1;
+Win32.WSA_INFINITE = 4294967295;
+Win32.IOC_INOUT = 3221225472;
+Win32.FIONREAD = 1074030207;
+Win32.FIONBIO = -2147195266;
+Win32.FIOASYNC = -2147195267;
+Win32.SIOCSHIWAT = -2147192064;
+Win32.SIOCGHIWAT = 1074033409;
+Win32.SIOCSLOWAT = -2147192062;
+Win32.SIOCGLOWAT = 1074033411;
+Win32.SIOCATMARK = 1074033415;
+Win32.POLLIN = 768;
+Win32.LM_HB_Extension = 128;
+Win32.LM_HB1_PnP = 1;
+Win32.LM_HB1_PDA_Palmtop = 2;
+Win32.LM_HB1_Computer = 4;
+Win32.LM_HB1_Printer = 8;
+Win32.LM_HB1_Modem = 16;
+Win32.LM_HB1_Fax = 32;
+Win32.LM_HB1_LANAccess = 64;
+Win32.LM_HB2_Telephony = 1;
+Win32.LM_HB2_FileServer = 2;
+Win32.WSCEnumProtocols32 = foreign.native( "WS2_32.dll", "int", "WSCEnumProtocols32", [ "ptr", "ptr", "ptr", "ptr" ] ); 
+Win32.WSCDeinstallProvider32 = foreign.native( "WS2_32.dll", "int", "WSCDeinstallProvider32", [ "ptr", "ptr" ] ); 
+Win32.WSCInstallProvider64_32 = foreign.native( "WS2_32.dll", "int", "WSCInstallProvider64_32", [ "ptr", "wstr", "ptr", "uint", "ptr" ] ); 
+Win32.WSCGetProviderPath32 = foreign.native( "WS2_32.dll", "int", "WSCGetProviderPath32", [ "ptr", "wstr", "ptr", "ptr" ] ); 
+Win32.WSCUpdateProvider32 = foreign.native( "WS2_32.dll", "int", "WSCUpdateProvider32", [ "ptr", "wstr", "ptr", "uint", "ptr" ] ); 
+Win32.WSCSetProviderInfo32 = foreign.native( "WS2_32.dll", "int", "WSCSetProviderInfo32", [ "ptr", "int", "ptr", "ptr", "uint", "ptr" ] ); 
+Win32.WSCGetProviderInfo32 = foreign.native( "WS2_32.dll", "int", "WSCGetProviderInfo32", [ "ptr", "int", "ptr", "ptr", "uint", "ptr" ] ); 
+Win32.WSCEnumNameSpaceProviders32 = foreign.native( "WS2_32.dll", "int", "WSCEnumNameSpaceProviders32", [ "ptr", "ptr" ] ); 
+Win32.WSCEnumNameSpaceProvidersEx32 = foreign.native( "WS2_32.dll", "int", "WSCEnumNameSpaceProvidersEx32", [ "ptr", "ptr" ] ); 
+Win32.WSCInstallNameSpace32 = foreign.native( "WS2_32.dll", "int", "WSCInstallNameSpace32", [ "wstr", "wstr", "uint", "uint", "ptr" ] ); 
+Win32.WSCInstallNameSpaceEx32 = foreign.native( "WS2_32.dll", "int", "WSCInstallNameSpaceEx32", [ "wstr", "wstr", "uint", "uint", "ptr", "ptr" ] ); 
+Win32.WSCUnInstallNameSpace32 = foreign.native( "WS2_32.dll", "int", "WSCUnInstallNameSpace32", [ "ptr" ] ); 
+Win32.WSCEnableNSProvider32 = foreign.native( "WS2_32.dll", "int", "WSCEnableNSProvider32", [ "ptr", "int" ] ); 
+Win32.WSCInstallProviderAndChains64_32 = foreign.native( "WS2_32.dll", "int", "WSCInstallProviderAndChains64_32", [ "ptr", "wstr", "wstr", "wstr", "uint", "ptr", "uint", "ptr", "ptr" ] ); 
+Win32.WSCWriteProviderOrder32 = foreign.native( "WS2_32.dll", "int", "WSCWriteProviderOrder32", [ "ptr", "uint" ] ); 
+Win32.WSCWriteNameSpaceOrder32 = foreign.native( "WS2_32.dll", "int", "WSCWriteNameSpaceOrder32", [ "ptr", "uint" ] ); 
+Win32.WSAFDIsSet = foreign.native( "WS2_32.dll", "int", "__WSAFDIsSet", [ "ptr", "ptr" ] ); 
+Win32.accept = foreign.native( "WS2_32.dll", "ptr", "accept", [ "ptr", "ptr", "ptr" ] ); 
+Win32.bind = foreign.native( "WS2_32.dll", "int", "bind", [ "ptr", "ptr", "int" ] ); 
+Win32.closesocket = foreign.native( "WS2_32.dll", "int", "closesocket", [ "ptr" ] ); 
+Win32.connect = foreign.native( "WS2_32.dll", "int", "connect", [ "ptr", "ptr", "int" ] ); 
+Win32.ioctlsocket = foreign.native( "WS2_32.dll", "int", "ioctlsocket", [ "ptr", "int", "ptr" ] ); 
+Win32.getpeername = foreign.native( "WS2_32.dll", "int", "getpeername", [ "ptr", "ptr", "ptr" ] ); 
+Win32.getsockname = foreign.native( "WS2_32.dll", "int", "getsockname", [ "ptr", "ptr", "ptr" ] ); 
+Win32.getsockopt = foreign.native( "WS2_32.dll", "int", "getsockopt", [ "ptr", "int", "int", "ptr", "ptr" ] ); 
+Win32.htonl = foreign.native( "WS2_32.dll", "uint", "htonl", [ "uint" ] ); 
+Win32.htons = foreign.native( "WS2_32.dll", "ushort", "htons", [ "ushort" ] ); 
+Win32.inet_addr = foreign.native( "WS2_32.dll", "uint", "inet_addr", [ "ptr" ] ); 
+Win32.inet_ntoa = foreign.native( "WS2_32.dll", "ptr", "inet_ntoa", [ "ptr" ] ); 
+Win32.listen = foreign.native( "WS2_32.dll", "int", "listen", [ "ptr", "int" ] ); 
+Win32.ntohl = foreign.native( "WS2_32.dll", "uint", "ntohl", [ "uint" ] ); 
+Win32.ntohs = foreign.native( "WS2_32.dll", "ushort", "ntohs", [ "ushort" ] ); 
+Win32.recv = foreign.native( "WS2_32.dll", "int", "recv", [ "ptr", "ptr", "int", "int" ] ); 
+Win32.recvfrom = foreign.native( "WS2_32.dll", "int", "recvfrom", [ "ptr", "ptr", "int", "int", "ptr", "ptr" ] ); 
+Win32.select = foreign.native( "WS2_32.dll", "int", "select", [ "int", "ptr", "ptr", "ptr", "ptr" ] ); 
+Win32.send = foreign.native( "WS2_32.dll", "int", "send", [ "ptr", "ptr", "int", "int" ] ); 
+Win32.sendto = foreign.native( "WS2_32.dll", "int", "sendto", [ "ptr", "ptr", "int", "int", "ptr", "int" ] ); 
+Win32.setsockopt = foreign.native( "WS2_32.dll", "int", "setsockopt", [ "ptr", "int", "int", "ptr", "int" ] ); 
+Win32.shutdown = foreign.native( "WS2_32.dll", "int", "shutdown", [ "ptr", "int" ] ); 
+Win32.socket = foreign.native( "WS2_32.dll", "ptr", "socket", [ "int", "int", "int" ] ); 
+Win32.gethostbyaddr = foreign.native( "WS2_32.dll", "ptr", "gethostbyaddr", [ "ptr", "int", "int" ] ); 
+Win32.gethostbyname = foreign.native( "WS2_32.dll", "ptr", "gethostbyname", [ "ptr" ] ); 
+Win32.gethostname = foreign.native( "WS2_32.dll", "int", "gethostname", [ "ptr", "int" ] ); 
+Win32.GetHostNameW = foreign.native( "WS2_32.dll", "int", "GetHostNameW", [ "wstr", "int" ] ); 
+Win32.getservbyport = foreign.native( "WS2_32.dll", "ptr", "getservbyport", [ "int", "ptr" ] ); 
+Win32.getservbyname = foreign.native( "WS2_32.dll", "ptr", "getservbyname", [ "ptr", "ptr" ] ); 
+Win32.getprotobynumber = foreign.native( "WS2_32.dll", "ptr", "getprotobynumber", [ "int" ] ); 
+Win32.getprotobyname = foreign.native( "WS2_32.dll", "ptr", "getprotobyname", [ "ptr" ] ); 
+Win32.WSAStartup = foreign.native( "WS2_32.dll", "int", "WSAStartup", [ "ushort", "ptr" ] ); 
+Win32.WSACleanup = foreign.native( "WS2_32.dll", "int", "WSACleanup", [  ] ); 
+Win32.WSASetLastError = foreign.native( "WS2_32.dll", "void", "WSASetLastError", [ "int" ] ); 
+Win32.WSAGetLastError = foreign.native( "WS2_32.dll", "int", "WSAGetLastError", [  ] ); 
+Win32.WSAIsBlocking = foreign.native( "WS2_32.dll", "int", "WSAIsBlocking", [  ] ); 
+Win32.WSAUnhookBlockingHook = foreign.native( "WS2_32.dll", "int", "WSAUnhookBlockingHook", [  ] ); 
+Win32.WSASetBlockingHook = foreign.native( "WS2_32.dll", "ptr", "WSASetBlockingHook", [ "ptr" ] ); 
+Win32.WSACancelBlockingCall = foreign.native( "WS2_32.dll", "int", "WSACancelBlockingCall", [  ] ); 
+Win32.WSAAsyncGetServByName = foreign.native( "WS2_32.dll", "ptr", "WSAAsyncGetServByName", [ "ptr", "uint", "ptr", "ptr", "ptr", "int" ] ); 
+Win32.WSAAsyncGetServByPort = foreign.native( "WS2_32.dll", "ptr", "WSAAsyncGetServByPort", [ "ptr", "uint", "int", "ptr", "ptr", "int" ] ); 
+Win32.WSAAsyncGetProtoByName = foreign.native( "WS2_32.dll", "ptr", "WSAAsyncGetProtoByName", [ "ptr", "uint", "ptr", "ptr", "int" ] ); 
+Win32.WSAAsyncGetProtoByNumber = foreign.native( "WS2_32.dll", "ptr", "WSAAsyncGetProtoByNumber", [ "ptr", "uint", "int", "ptr", "int" ] ); 
+Win32.WSAAsyncGetHostByName = foreign.native( "WS2_32.dll", "ptr", "WSAAsyncGetHostByName", [ "ptr", "uint", "ptr", "ptr", "int" ] ); 
+Win32.WSAAsyncGetHostByAddr = foreign.native( "WS2_32.dll", "ptr", "WSAAsyncGetHostByAddr", [ "ptr", "uint", "ptr", "int", "int", "ptr", "int" ] ); 
+Win32.WSACancelAsyncRequest = foreign.native( "WS2_32.dll", "int", "WSACancelAsyncRequest", [ "ptr" ] ); 
+Win32.WSAAsyncSelect = foreign.native( "WS2_32.dll", "int", "WSAAsyncSelect", [ "ptr", "ptr", "uint", "int" ] ); 
+Win32.WSAAccept = foreign.native( "WS2_32.dll", "ptr", "WSAAccept", [ "ptr", "ptr", "ptr", "ptr", "ptr" ] ); 
+Win32.WSACloseEvent = foreign.native( "WS2_32.dll", "int", "WSACloseEvent", [ "ptr" ] ); 
+Win32.WSAConnect = foreign.native( "WS2_32.dll", "int", "WSAConnect", [ "ptr", "ptr", "int", "ptr", "ptr", "ptr", "ptr" ] ); 
+Win32.WSAConnectByNameW = foreign.native( "WS2_32.dll", "int", "WSAConnectByNameW", [ "ptr", "wstr", "wstr", "ptr", "ptr", "ptr", "ptr", "ptr", "ptr" ] ); 
+Win32.WSAConnectByNameA = foreign.native( "WS2_32.dll", "int", "WSAConnectByNameA", [ "ptr", "ptr", "ptr", "ptr", "ptr", "ptr", "ptr", "ptr", "ptr" ] ); 
+Win32.WSAConnectByList = foreign.native( "WS2_32.dll", "int", "WSAConnectByList", [ "ptr", "ptr", "ptr", "ptr", "ptr", "ptr", "ptr", "ptr" ] ); 
+Win32.WSACreateEvent = foreign.native( "WS2_32.dll", "ptr", "WSACreateEvent", [  ] ); 
+Win32.WSADuplicateSocketA = foreign.native( "WS2_32.dll", "int", "WSADuplicateSocketA", [ "ptr", "uint", "ptr" ] ); 
+Win32.WSADuplicateSocketW = foreign.native( "WS2_32.dll", "int", "WSADuplicateSocketW", [ "ptr", "uint", "ptr" ] ); 
+Win32.WSAEnumNetworkEvents = foreign.native( "WS2_32.dll", "int", "WSAEnumNetworkEvents", [ "ptr", "ptr", "ptr" ] ); 
+Win32.WSAEnumProtocolsA = foreign.native( "WS2_32.dll", "int", "WSAEnumProtocolsA", [ "ptr", "ptr", "ptr" ] ); 
+Win32.WSAEnumProtocolsW = foreign.native( "WS2_32.dll", "int", "WSAEnumProtocolsW", [ "ptr", "ptr", "ptr" ] ); 
+Win32.WSAEventSelect = foreign.native( "WS2_32.dll", "int", "WSAEventSelect", [ "ptr", "ptr", "int" ] ); 
+Win32.WSAGetOverlappedResult = foreign.native( "WS2_32.dll", "int", "WSAGetOverlappedResult", [ "ptr", "ptr", "ptr", "int", "ptr" ] ); 
+Win32.WSAGetQOSByName = foreign.native( "WS2_32.dll", "int", "WSAGetQOSByName", [ "ptr", "ptr", "ptr" ] ); 
+Win32.WSAHtonl = foreign.native( "WS2_32.dll", "int", "WSAHtonl", [ "ptr", "uint", "ptr" ] ); 
+Win32.WSAHtons = foreign.native( "WS2_32.dll", "int", "WSAHtons", [ "ptr", "ushort", "ptr" ] ); 
+Win32.WSAIoctl = foreign.native( "WS2_32.dll", "int", "WSAIoctl", [ "ptr", "uint", "ptr", "uint", "ptr", "uint", "ptr", "ptr", "ptr" ] ); 
+Win32.WSAJoinLeaf = foreign.native( "WS2_32.dll", "ptr", "WSAJoinLeaf", [ "ptr", "ptr", "int", "ptr", "ptr", "ptr", "ptr", "uint" ] ); 
+Win32.WSANtohl = foreign.native( "WS2_32.dll", "int", "WSANtohl", [ "ptr", "uint", "ptr" ] ); 
+Win32.WSANtohs = foreign.native( "WS2_32.dll", "int", "WSANtohs", [ "ptr", "ushort", "ptr" ] ); 
+Win32.WSARecv = foreign.native( "WS2_32.dll", "int", "WSARecv", [ "ptr", "ptr", "uint", "ptr", "ptr", "ptr", "ptr" ] ); 
+Win32.WSARecvDisconnect = foreign.native( "WS2_32.dll", "int", "WSARecvDisconnect", [ "ptr", "ptr" ] ); 
+Win32.WSARecvFrom = foreign.native( "WS2_32.dll", "int", "WSARecvFrom", [ "ptr", "ptr", "uint", "ptr", "ptr", "ptr", "ptr", "ptr", "ptr" ] ); 
+Win32.WSAResetEvent = foreign.native( "WS2_32.dll", "int", "WSAResetEvent", [ "ptr" ] ); 
+Win32.WSASend = foreign.native( "WS2_32.dll", "int", "WSASend", [ "ptr", "ptr", "uint", "ptr", "uint", "ptr", "ptr" ] ); 
+Win32.WSASendMsg = foreign.native( "WS2_32.dll", "int", "WSASendMsg", [ "ptr", "ptr", "uint", "ptr", "ptr", "ptr" ] ); 
+Win32.WSASendDisconnect = foreign.native( "WS2_32.dll", "int", "WSASendDisconnect", [ "ptr", "ptr" ] ); 
+Win32.WSASendTo = foreign.native( "WS2_32.dll", "int", "WSASendTo", [ "ptr", "ptr", "uint", "ptr", "uint", "ptr", "int", "ptr", "ptr" ] ); 
+Win32.WSASetEvent = foreign.native( "WS2_32.dll", "int", "WSASetEvent", [ "ptr" ] ); 
+Win32.WSASocketA = foreign.native( "WS2_32.dll", "ptr", "WSASocketA", [ "int", "int", "int", "ptr", "uint", "uint" ] ); 
+Win32.WSASocketW = foreign.native( "WS2_32.dll", "ptr", "WSASocketW", [ "int", "int", "int", "ptr", "uint", "uint" ] ); 
+Win32.WSAWaitForMultipleEvents = foreign.native( "WS2_32.dll", "uint", "WSAWaitForMultipleEvents", [ "uint", "ptr", "int", "uint", "int" ] ); 
+Win32.WSAAddressToStringA = foreign.native( "WS2_32.dll", "int", "WSAAddressToStringA", [ "ptr", "uint", "ptr", "ptr", "ptr" ] ); 
+Win32.WSAAddressToStringW = foreign.native( "WS2_32.dll", "int", "WSAAddressToStringW", [ "ptr", "uint", "ptr", "wstr", "ptr" ] ); 
+Win32.WSAStringToAddressA = foreign.native( "WS2_32.dll", "int", "WSAStringToAddressA", [ "ptr", "int", "ptr", "ptr", "ptr" ] ); 
+Win32.WSAStringToAddressW = foreign.native( "WS2_32.dll", "int", "WSAStringToAddressW", [ "wstr", "int", "ptr", "ptr", "ptr" ] ); 
+Win32.WSALookupServiceBeginA = foreign.native( "WS2_32.dll", "int", "WSALookupServiceBeginA", [ "ptr", "uint", "ptr" ] ); 
+Win32.WSALookupServiceBeginW = foreign.native( "WS2_32.dll", "int", "WSALookupServiceBeginW", [ "ptr", "uint", "ptr" ] ); 
+Win32.WSALookupServiceNextA = foreign.native( "WS2_32.dll", "int", "WSALookupServiceNextA", [ "ptr", "uint", "ptr", "ptr" ] ); 
+Win32.WSALookupServiceNextW = foreign.native( "WS2_32.dll", "int", "WSALookupServiceNextW", [ "ptr", "uint", "ptr", "ptr" ] ); 
+Win32.WSANSPIoctl = foreign.native( "WS2_32.dll", "int", "WSANSPIoctl", [ "ptr", "uint", "ptr", "uint", "ptr", "uint", "ptr", "ptr" ] ); 
+Win32.WSALookupServiceEnd = foreign.native( "WS2_32.dll", "int", "WSALookupServiceEnd", [ "ptr" ] ); 
+Win32.WSAInstallServiceClassA = foreign.native( "WS2_32.dll", "int", "WSAInstallServiceClassA", [ "ptr" ] ); 
+Win32.WSAInstallServiceClassW = foreign.native( "WS2_32.dll", "int", "WSAInstallServiceClassW", [ "ptr" ] ); 
+Win32.WSARemoveServiceClass = foreign.native( "WS2_32.dll", "int", "WSARemoveServiceClass", [ "ptr" ] ); 
+Win32.WSAGetServiceClassInfoA = foreign.native( "WS2_32.dll", "int", "WSAGetServiceClassInfoA", [ "ptr", "ptr", "ptr", "ptr" ] ); 
+Win32.WSAGetServiceClassInfoW = foreign.native( "WS2_32.dll", "int", "WSAGetServiceClassInfoW", [ "ptr", "ptr", "ptr", "ptr" ] ); 
+Win32.WSAEnumNameSpaceProvidersA = foreign.native( "WS2_32.dll", "int", "WSAEnumNameSpaceProvidersA", [ "ptr", "ptr" ] ); 
+Win32.WSAEnumNameSpaceProvidersW = foreign.native( "WS2_32.dll", "int", "WSAEnumNameSpaceProvidersW", [ "ptr", "ptr" ] ); 
+Win32.WSAEnumNameSpaceProvidersExA = foreign.native( "WS2_32.dll", "int", "WSAEnumNameSpaceProvidersExA", [ "ptr", "ptr" ] ); 
+Win32.WSAEnumNameSpaceProvidersExW = foreign.native( "WS2_32.dll", "int", "WSAEnumNameSpaceProvidersExW", [ "ptr", "ptr" ] ); 
+Win32.WSAGetServiceClassNameByClassIdA = foreign.native( "WS2_32.dll", "int", "WSAGetServiceClassNameByClassIdA", [ "ptr", "ptr", "ptr" ] ); 
+Win32.WSAGetServiceClassNameByClassIdW = foreign.native( "WS2_32.dll", "int", "WSAGetServiceClassNameByClassIdW", [ "ptr", "wstr", "ptr" ] ); 
+Win32.WSASetServiceA = foreign.native( "WS2_32.dll", "int", "WSASetServiceA", [ "ptr", "int", "uint" ] ); 
+Win32.WSASetServiceW = foreign.native( "WS2_32.dll", "int", "WSASetServiceW", [ "ptr", "int", "uint" ] ); 
+Win32.WSAProviderConfigChange = foreign.native( "WS2_32.dll", "int", "WSAProviderConfigChange", [ "ptr", "ptr", "ptr" ] ); 
+Win32.WSAPoll = foreign.native( "WS2_32.dll", "int", "WSAPoll", [ "ptr", "uint", "int" ] ); 
+Win32.ProcessSocketNotifications = foreign.native( "WS2_32.dll", "uint", "ProcessSocketNotifications", [ "ptr", "uint", "ptr", "uint", "uint", "ptr", "ptr" ] ); 
+Win32.RtlIpv4AddressToStringA = foreign.native( "ntdll.dll", "ptr", "RtlIpv4AddressToStringA", [ "ptr", "ptr" ] ); 
+Win32.RtlIpv4AddressToStringExA = foreign.native( "ntdll.dll", "int", "RtlIpv4AddressToStringExA", [ "ptr", "ushort", "ptr", "ptr" ] ); 
+Win32.RtlIpv4AddressToStringW = foreign.native( "ntdll.dll", "wstr", "RtlIpv4AddressToStringW", [ "ptr", "wstr" ] ); 
+Win32.RtlIpv4AddressToStringExW = foreign.native( "ntdll.dll", "int", "RtlIpv4AddressToStringExW", [ "ptr", "ushort", "wstr", "ptr" ] ); 
+Win32.RtlIpv4StringToAddressA = foreign.native( "ntdll.dll", "int", "RtlIpv4StringToAddressA", [ "ptr", "ubyte", "ptr", "ptr" ] ); 
+Win32.RtlIpv4StringToAddressExA = foreign.native( "ntdll.dll", "int", "RtlIpv4StringToAddressExA", [ "ptr", "ubyte", "ptr", "ptr" ] ); 
+Win32.RtlIpv4StringToAddressW = foreign.native( "ntdll.dll", "int", "RtlIpv4StringToAddressW", [ "wstr", "ubyte", "ptr", "ptr" ] ); 
+Win32.RtlIpv4StringToAddressExW = foreign.native( "ntdll.dll", "int", "RtlIpv4StringToAddressExW", [ "wstr", "ubyte", "ptr", "ptr" ] ); 
+Win32.RtlIpv6AddressToStringA = foreign.native( "ntdll.dll", "ptr", "RtlIpv6AddressToStringA", [ "ptr", "ptr" ] ); 
+Win32.RtlIpv6AddressToStringExA = foreign.native( "ntdll.dll", "int", "RtlIpv6AddressToStringExA", [ "ptr", "uint", "ushort", "ptr", "ptr" ] ); 
+Win32.RtlIpv6AddressToStringW = foreign.native( "ntdll.dll", "wstr", "RtlIpv6AddressToStringW", [ "ptr", "wstr" ] ); 
+Win32.RtlIpv6AddressToStringExW = foreign.native( "ntdll.dll", "int", "RtlIpv6AddressToStringExW", [ "ptr", "uint", "ushort", "wstr", "ptr" ] ); 
+Win32.RtlIpv6StringToAddressA = foreign.native( "ntdll.dll", "int", "RtlIpv6StringToAddressA", [ "ptr", "ptr", "ptr" ] ); 
+Win32.RtlIpv6StringToAddressExA = foreign.native( "ntdll.dll", "int", "RtlIpv6StringToAddressExA", [ "ptr", "ptr", "ptr", "ptr" ] ); 
+Win32.RtlIpv6StringToAddressW = foreign.native( "ntdll.dll", "int", "RtlIpv6StringToAddressW", [ "wstr", "ptr", "ptr" ] ); 
+Win32.RtlIpv6StringToAddressExW = foreign.native( "ntdll.dll", "int", "RtlIpv6StringToAddressExW", [ "wstr", "ptr", "ptr", "ptr" ] ); 
+Win32.RtlEthernetAddressToStringA = foreign.native( "ntdll.dll", "ptr", "RtlEthernetAddressToStringA", [ "ptr", "ptr" ] ); 
+Win32.RtlEthernetAddressToStringW = foreign.native( "ntdll.dll", "wstr", "RtlEthernetAddressToStringW", [ "ptr", "wstr" ] ); 
+Win32.RtlEthernetStringToAddressA = foreign.native( "ntdll.dll", "int", "RtlEthernetStringToAddressA", [ "ptr", "ptr", "ptr" ] ); 
+Win32.RtlEthernetStringToAddressW = foreign.native( "ntdll.dll", "int", "RtlEthernetStringToAddressW", [ "wstr", "ptr", "ptr" ] ); 
+Win32.WSARecvEx = foreign.native( "MSWSOCK.dll", "int", "WSARecvEx", [ "ptr", "ptr", "int", "ptr" ] ); 
+Win32.TransmitFile = foreign.native( "MSWSOCK.dll", "int", "TransmitFile", [ "ptr", "ptr", "uint", "uint", "ptr", "ptr", "uint" ] ); 
+Win32.AcceptEx = foreign.native( "MSWSOCK.dll", "int", "AcceptEx", [ "ptr", "ptr", "ptr", "uint", "uint", "uint", "ptr", "ptr" ] ); 
+Win32.GetAcceptExSockaddrs = foreign.native( "MSWSOCK.dll", "void", "GetAcceptExSockaddrs", [ "ptr", "uint", "uint", "uint", "ptr", "ptr", "ptr", "ptr" ] ); 
+Win32.WSCEnumProtocols = foreign.native( "WS2_32.dll", "int", "WSCEnumProtocols", [ "ptr", "ptr", "ptr", "ptr" ] ); 
+Win32.WSCDeinstallProvider = foreign.native( "WS2_32.dll", "int", "WSCDeinstallProvider", [ "ptr", "ptr" ] ); 
+Win32.WSCInstallProvider = foreign.native( "WS2_32.dll", "int", "WSCInstallProvider", [ "ptr", "wstr", "ptr", "uint", "ptr" ] ); 
+Win32.WSCGetProviderPath = foreign.native( "WS2_32.dll", "int", "WSCGetProviderPath", [ "ptr", "wstr", "ptr", "ptr" ] ); 
+Win32.WSCUpdateProvider = foreign.native( "WS2_32.dll", "int", "WSCUpdateProvider", [ "ptr", "wstr", "ptr", "uint", "ptr" ] ); 
+Win32.WSCSetProviderInfo = foreign.native( "WS2_32.dll", "int", "WSCSetProviderInfo", [ "ptr", "int", "ptr", "ptr", "uint", "ptr" ] ); 
+Win32.WSCGetProviderInfo = foreign.native( "WS2_32.dll", "int", "WSCGetProviderInfo", [ "ptr", "int", "ptr", "ptr", "uint", "ptr" ] ); 
+Win32.WSCSetApplicationCategory = foreign.native( "WS2_32.dll", "int", "WSCSetApplicationCategory", [ "wstr", "uint", "wstr", "uint", "uint", "ptr", "ptr" ] ); 
+Win32.WSCGetApplicationCategory = foreign.native( "WS2_32.dll", "int", "WSCGetApplicationCategory", [ "wstr", "uint", "wstr", "uint", "ptr", "ptr" ] ); 
+Win32.WPUCompleteOverlappedRequest = foreign.native( "WS2_32.dll", "int", "WPUCompleteOverlappedRequest", [ "ptr", "ptr", "uint", "uint", "ptr" ] ); 
+Win32.WSCInstallNameSpace = foreign.native( "WS2_32.dll", "int", "WSCInstallNameSpace", [ "wstr", "wstr", "uint", "uint", "ptr" ] ); 
+Win32.WSCUnInstallNameSpace = foreign.native( "WS2_32.dll", "int", "WSCUnInstallNameSpace", [ "ptr" ] ); 
+Win32.WSCInstallNameSpaceEx = foreign.native( "WS2_32.dll", "int", "WSCInstallNameSpaceEx", [ "wstr", "wstr", "uint", "uint", "ptr", "ptr" ] ); 
+Win32.WSCEnableNSProvider = foreign.native( "WS2_32.dll", "int", "WSCEnableNSProvider", [ "ptr", "int" ] ); 
+Win32.WSAAdvertiseProvider = foreign.native( "WS2_32.dll", "int", "WSAAdvertiseProvider", [ "ptr", "ptr" ] ); 
+Win32.WSAUnadvertiseProvider = foreign.native( "WS2_32.dll", "int", "WSAUnadvertiseProvider", [ "ptr" ] ); 
+Win32.WSAProviderCompleteAsyncCall = foreign.native( "WS2_32.dll", "int", "WSAProviderCompleteAsyncCall", [ "ptr", "int" ] ); 
+Win32.EnumProtocolsA = foreign.native( "MSWSOCK.dll", "int", "EnumProtocolsA", [ "ptr", "ptr", "ptr" ] ); 
+Win32.EnumProtocolsW = foreign.native( "MSWSOCK.dll", "int", "EnumProtocolsW", [ "ptr", "ptr", "ptr" ] ); 
+Win32.GetAddressByNameA = foreign.native( "MSWSOCK.dll", "int", "GetAddressByNameA", [ "uint", "ptr", "ptr", "ptr", "uint", "ptr", "ptr", "ptr", "ptr", "ptr" ] ); 
+Win32.GetAddressByNameW = foreign.native( "MSWSOCK.dll", "int", "GetAddressByNameW", [ "uint", "ptr", "wstr", "ptr", "uint", "ptr", "ptr", "ptr", "wstr", "ptr" ] ); 
+Win32.GetTypeByNameA = foreign.native( "MSWSOCK.dll", "int", "GetTypeByNameA", [ "ptr", "ptr" ] ); 
+Win32.GetTypeByNameW = foreign.native( "MSWSOCK.dll", "int", "GetTypeByNameW", [ "wstr", "ptr" ] ); 
+Win32.GetNameByTypeA = foreign.native( "MSWSOCK.dll", "int", "GetNameByTypeA", [ "ptr", "ptr", "uint" ] ); 
+Win32.GetNameByTypeW = foreign.native( "MSWSOCK.dll", "int", "GetNameByTypeW", [ "ptr", "wstr", "uint" ] ); 
+Win32.SetServiceA = foreign.native( "MSWSOCK.dll", "int", "SetServiceA", [ "uint", "uint", "uint", "ptr", "ptr", "ptr" ] ); 
+Win32.SetServiceW = foreign.native( "MSWSOCK.dll", "int", "SetServiceW", [ "uint", "uint", "uint", "ptr", "ptr", "ptr" ] ); 
+Win32.GetServiceA = foreign.native( "MSWSOCK.dll", "int", "GetServiceA", [ "uint", "ptr", "ptr", "uint", "ptr", "ptr", "ptr" ] ); 
+Win32.GetServiceW = foreign.native( "MSWSOCK.dll", "int", "GetServiceW", [ "uint", "ptr", "wstr", "uint", "ptr", "ptr", "ptr" ] ); 
+Win32.getaddrinfo = foreign.native( "WS2_32.dll", "int", "getaddrinfo", [ "ptr", "ptr", "ptr", "ptr" ] ); 
+Win32.GetAddrInfoW = foreign.native( "WS2_32.dll", "int", "GetAddrInfoW", [ "wstr", "wstr", "ptr", "ptr" ] ); 
+Win32.GetAddrInfoExA = foreign.native( "WS2_32.dll", "int", "GetAddrInfoExA", [ "ptr", "ptr", "uint", "ptr", "ptr", "ptr", "ptr", "ptr", "ptr", "ptr" ] ); 
+Win32.GetAddrInfoExW = foreign.native( "WS2_32.dll", "int", "GetAddrInfoExW", [ "wstr", "wstr", "uint", "ptr", "ptr", "ptr", "ptr", "ptr", "ptr", "ptr" ] ); 
+Win32.GetAddrInfoExCancel = foreign.native( "WS2_32.dll", "int", "GetAddrInfoExCancel", [ "ptr" ] ); 
+Win32.GetAddrInfoExOverlappedResult = foreign.native( "WS2_32.dll", "int", "GetAddrInfoExOverlappedResult", [ "ptr" ] ); 
+Win32.SetAddrInfoExA = foreign.native( "WS2_32.dll", "int", "SetAddrInfoExA", [ "ptr", "ptr", "ptr", "uint", "ptr", "uint", "uint", "ptr", "ptr", "ptr", "ptr", "ptr" ] ); 
+Win32.SetAddrInfoExW = foreign.native( "WS2_32.dll", "int", "SetAddrInfoExW", [ "wstr", "wstr", "ptr", "uint", "ptr", "uint", "uint", "ptr", "ptr", "ptr", "ptr", "ptr" ] ); 
+Win32.freeaddrinfo = foreign.native( "WS2_32.dll", "void", "freeaddrinfo", [ "ptr" ] ); 
+Win32.FreeAddrInfoW = foreign.native( "WS2_32.dll", "void", "FreeAddrInfoW", [ "ptr" ] ); 
+Win32.FreeAddrInfoEx = foreign.native( "WS2_32.dll", "void", "FreeAddrInfoEx", [ "ptr" ] ); 
+Win32.FreeAddrInfoExW = foreign.native( "WS2_32.dll", "void", "FreeAddrInfoExW", [ "ptr" ] ); 
+Win32.getnameinfo = foreign.native( "WS2_32.dll", "int", "getnameinfo", [ "ptr", "int", "ptr", "uint", "ptr", "uint", "int" ] ); 
+Win32.GetNameInfoW = foreign.native( "WS2_32.dll", "int", "GetNameInfoW", [ "ptr", "int", "wstr", "uint", "wstr", "uint", "int" ] ); 
+Win32.inet_pton = foreign.native( "WS2_32.dll", "int", "inet_pton", [ "int", "ptr", "ptr" ] ); 
+Win32.InetPtonW = foreign.native( "WS2_32.dll", "int", "InetPtonW", [ "int", "wstr", "ptr" ] ); 
+Win32.inet_ntop = foreign.native( "WS2_32.dll", "ptr", "inet_ntop", [ "int", "ptr", "ptr", "ptr" ] ); 
+Win32.InetNtopW = foreign.native( "WS2_32.dll", "wstr", "InetNtopW", [ "int", "ptr", "wstr", "ptr" ] ); 
+Win32.WSASetSocketSecurity = foreign.native( "fwpuclnt.dll", "int", "WSASetSocketSecurity", [ "ptr", "ptr", "uint", "ptr", "ptr" ] ); 
+Win32.WSAQuerySocketSecurity = foreign.native( "fwpuclnt.dll", "int", "WSAQuerySocketSecurity", [ "ptr", "ptr", "uint", "ptr", "ptr", "ptr", "ptr" ] ); 
+Win32.WSASetSocketPeerTargetName = foreign.native( "fwpuclnt.dll", "int", "WSASetSocketPeerTargetName", [ "ptr", "ptr", "uint", "ptr", "ptr" ] ); 
+Win32.WSADeleteSocketPeerTargetName = foreign.native( "fwpuclnt.dll", "int", "WSADeleteSocketPeerTargetName", [ "ptr", "ptr", "uint", "ptr", "ptr" ] ); 
+Win32.WSAImpersonateSocketPeer = foreign.native( "fwpuclnt.dll", "int", "WSAImpersonateSocketPeer", [ "ptr", "ptr", "uint" ] ); 
+Win32.WSARevertImpersonation = foreign.native( "fwpuclnt.dll", "int", "WSARevertImpersonation", [  ] ); 
+Win32.SetSocketMediaStreamingMode = foreign.native( "Windows.Networking.dll", "int", "SetSocketMediaStreamingMode", [ "int" ] ); 
+Win32.WSCWriteProviderOrder = foreign.native( "WS2_32.dll", "int", "WSCWriteProviderOrder", [ "ptr", "uint" ] ); 
+Win32.WSCWriteNameSpaceOrder = foreign.native( "WS2_32.dll", "int", "WSCWriteNameSpaceOrder", [ "ptr", "uint" ] ); 
+Win32.LPCONDITIONPROC = foreign.callback( "int", [ "ptr", "ptr", "ptr", "ptr", "ptr", "ptr", "ptr", "ptr"] );
+Win32.LPWSAOVERLAPPED_COMPLETION_ROUTINE = foreign.callback( "void", [ "uint", "uint", "ptr", "uint"] );
+Win32.LPFN_TRANSMITFILE = foreign.callback( "int", [ "ptr", "ptr", "uint", "uint", "ptr", "ptr", "uint"] );
+Win32.LPFN_ACCEPTEX = foreign.callback( "int", [ "ptr", "ptr", "ptr", "uint", "uint", "uint", "ptr", "ptr"] );
+Win32.LPFN_GETACCEPTEXSOCKADDRS = foreign.callback( "void", [ "ptr", "uint", "uint", "uint", "ptr", "ptr", "ptr", "ptr"] );
+Win32.LPFN_TRANSMITPACKETS = foreign.callback( "int", [ "ptr", "ptr", "uint", "uint", "ptr", "uint"] );
+Win32.LPFN_CONNECTEX = foreign.callback( "int", [ "ptr", "ptr", "int", "ptr", "uint", "ptr", "ptr"] );
+Win32.LPFN_DISCONNECTEX = foreign.callback( "int", [ "ptr", "ptr", "uint", "uint"] );
+Win32.LPFN_WSARECVMSG = foreign.callback( "int", [ "ptr", "ptr", "ptr", "ptr", "ptr"] );
+Win32.LPFN_WSASENDMSG = foreign.callback( "int", [ "ptr", "ptr", "uint", "ptr", "ptr", "ptr"] );
+Win32.LPFN_WSAPOLL = foreign.callback( "int", [ "ptr", "uint", "int"] );
+Win32.LPFN_RIORECEIVE = foreign.callback( "int", [ "ptr", "ptr", "uint", "uint", "ptr"] );
+Win32.LPFN_RIORECEIVEEX = foreign.callback( "int", [ "ptr", "ptr", "uint", "ptr", "ptr", "ptr", "ptr", "uint", "ptr"] );
+Win32.LPFN_RIOSEND = foreign.callback( "int", [ "ptr", "ptr", "uint", "uint", "ptr"] );
+Win32.LPFN_RIOSENDEX = foreign.callback( "int", [ "ptr", "ptr", "uint", "ptr", "ptr", "ptr", "ptr", "uint", "ptr"] );
+Win32.LPFN_RIOCLOSECOMPLETIONQUEUE = foreign.callback( "void", [ "ptr"] );
+Win32.LPFN_RIOCREATECOMPLETIONQUEUE = foreign.callback( "ptr", [ "uint", "ptr"] );
+Win32.LPFN_RIOCREATEREQUESTQUEUE = foreign.callback( "ptr", [ "ptr", "uint", "uint", "uint", "uint", "ptr", "ptr", "ptr"] );
+Win32.LPFN_RIODEQUEUECOMPLETION = foreign.callback( "uint", [ "ptr", "ptr", "uint"] );
+Win32.LPFN_RIODEREGISTERBUFFER = foreign.callback( "void", [ "ptr"] );
+Win32.LPFN_RIONOTIFY = foreign.callback( "int", [ "ptr"] );
+Win32.LPFN_RIOREGISTERBUFFER = foreign.callback( "ptr", [ "ptr", "uint"] );
+Win32.LPFN_RIORESIZECOMPLETIONQUEUE = foreign.callback( "int", [ "ptr", "uint"] );
+Win32.LPFN_RIORESIZEREQUESTQUEUE = foreign.callback( "int", [ "ptr", "uint", "uint"] );
+Win32.LPBLOCKINGCALLBACK = foreign.callback( "int", [ "ptr"] );
+Win32.LPWSAUSERAPC = foreign.callback( "void", [ "ptr"] );
+Win32.LPWSPACCEPT = foreign.callback( "ptr", [ "ptr", "ptr", "ptr", "ptr", "ptr", "ptr"] );
+Win32.LPWSPADDRESSTOSTRING = foreign.callback( "int", [ "ptr", "uint", "ptr", "wstr", "ptr", "ptr"] );
+Win32.LPWSPASYNCSELECT = foreign.callback( "int", [ "ptr", "ptr", "uint", "int", "ptr"] );
+Win32.LPWSPBIND = foreign.callback( "int", [ "ptr", "ptr", "int", "ptr"] );
+Win32.LPWSPCANCELBLOCKINGCALL = foreign.callback( "int", [ "ptr"] );
+Win32.LPWSPCLEANUP = foreign.callback( "int", [ "ptr"] );
+Win32.LPWSPCLOSESOCKET = foreign.callback( "int", [ "ptr", "ptr"] );
+Win32.LPWSPCONNECT = foreign.callback( "int", [ "ptr", "ptr", "int", "ptr", "ptr", "ptr", "ptr", "ptr"] );
+Win32.LPWSPDUPLICATESOCKET = foreign.callback( "int", [ "ptr", "uint", "ptr", "ptr"] );
+Win32.LPWSPENUMNETWORKEVENTS = foreign.callback( "int", [ "ptr", "ptr", "ptr", "ptr"] );
+Win32.LPWSPEVENTSELECT = foreign.callback( "int", [ "ptr", "ptr", "int", "ptr"] );
+Win32.LPWSPGETOVERLAPPEDRESULT = foreign.callback( "int", [ "ptr", "ptr", "ptr", "int", "ptr", "ptr"] );
+Win32.LPWSPGETPEERNAME = foreign.callback( "int", [ "ptr", "ptr", "ptr", "ptr"] );
+Win32.LPWSPGETSOCKNAME = foreign.callback( "int", [ "ptr", "ptr", "ptr", "ptr"] );
+Win32.LPWSPGETSOCKOPT = foreign.callback( "int", [ "ptr", "int", "int", "ptr", "ptr", "ptr"] );
+Win32.LPWSPGETQOSBYNAME = foreign.callback( "int", [ "ptr", "ptr", "ptr", "ptr"] );
+Win32.LPWSPIOCTL = foreign.callback( "int", [ "ptr", "uint", "ptr", "uint", "ptr", "uint", "ptr", "ptr", "ptr", "ptr", "ptr"] );
+Win32.LPWSPJOINLEAF = foreign.callback( "ptr", [ "ptr", "ptr", "int", "ptr", "ptr", "ptr", "ptr", "uint", "ptr"] );
+Win32.LPWSPLISTEN = foreign.callback( "int", [ "ptr", "int", "ptr"] );
+Win32.LPWSPRECV = foreign.callback( "int", [ "ptr", "ptr", "uint", "ptr", "ptr", "ptr", "ptr", "ptr", "ptr"] );
+Win32.LPWSPRECVDISCONNECT = foreign.callback( "int", [ "ptr", "ptr", "ptr"] );
+Win32.LPWSPRECVFROM = foreign.callback( "int", [ "ptr", "ptr", "uint", "ptr", "ptr", "ptr", "ptr", "ptr", "ptr", "ptr", "ptr"] );
+Win32.LPWSPSELECT = foreign.callback( "int", [ "int", "ptr", "ptr", "ptr", "ptr", "ptr"] );
+Win32.LPWSPSEND = foreign.callback( "int", [ "ptr", "ptr", "uint", "ptr", "uint", "ptr", "ptr", "ptr", "ptr"] );
+Win32.LPWSPSENDDISCONNECT = foreign.callback( "int", [ "ptr", "ptr", "ptr"] );
+Win32.LPWSPSENDTO = foreign.callback( "int", [ "ptr", "ptr", "uint", "ptr", "uint", "ptr", "int", "ptr", "ptr", "ptr", "ptr"] );
+Win32.LPWSPSETSOCKOPT = foreign.callback( "int", [ "ptr", "int", "int", "ptr", "int", "ptr"] );
+Win32.LPWSPSHUTDOWN = foreign.callback( "int", [ "ptr", "int", "ptr"] );
+Win32.LPWSPSOCKET = foreign.callback( "ptr", [ "int", "int", "int", "ptr", "uint", "uint", "ptr"] );
+Win32.LPWSPSTRINGTOADDRESS = foreign.callback( "int", [ "wstr", "int", "ptr", "ptr", "ptr", "ptr"] );
+Win32.LPWPUCLOSEEVENT = foreign.callback( "int", [ "ptr", "ptr"] );
+Win32.LPWPUCLOSESOCKETHANDLE = foreign.callback( "int", [ "ptr", "ptr"] );
+Win32.LPWPUCREATEEVENT = foreign.callback( "ptr", [ "ptr"] );
+Win32.LPWPUCREATESOCKETHANDLE = foreign.callback( "ptr", [ "uint", "ptr", "ptr"] );
+Win32.LPWPUFDISSET = foreign.callback( "int", [ "ptr", "ptr"] );
+Win32.LPWPUGETPROVIDERPATH = foreign.callback( "int", [ "ptr", "wstr", "ptr", "ptr"] );
+Win32.LPWPUMODIFYIFSHANDLE = foreign.callback( "ptr", [ "uint", "ptr", "ptr"] );
+Win32.LPWPUPOSTMESSAGE = foreign.callback( "int", [ "ptr", "uint", "ptr", "ptr"] );
+Win32.LPWPUQUERYBLOCKINGCALLBACK = foreign.callback( "int", [ "uint", "ptr", "ptr", "ptr"] );
+Win32.LPWPUQUERYSOCKETHANDLECONTEXT = foreign.callback( "int", [ "ptr", "ptr", "ptr"] );
+Win32.LPWPUQUEUEAPC = foreign.callback( "int", [ "ptr", "ptr", "ptr", "ptr"] );
+Win32.LPWPURESETEVENT = foreign.callback( "int", [ "ptr", "ptr"] );
+Win32.LPWPUSETEVENT = foreign.callback( "int", [ "ptr", "ptr"] );
+Win32.LPWPUOPENCURRENTTHREAD = foreign.callback( "int", [ "ptr", "ptr"] );
+Win32.LPWPUCLOSETHREAD = foreign.callback( "int", [ "ptr", "ptr"] );
+Win32.LPWPUCOMPLETEOVERLAPPEDREQUEST = foreign.callback( "int", [ "ptr", "ptr", "uint", "uint", "ptr"] );
+Win32.LPWSPSTARTUP = foreign.callback( "int", [ "ushort", "ptr", "ptr", "ptr", "ptr"] );
+Win32.LPWSCENUMPROTOCOLS = foreign.callback( "int", [ "ptr", "ptr", "ptr", "ptr"] );
+Win32.LPWSCDEINSTALLPROVIDER = foreign.callback( "int", [ "ptr", "ptr"] );
+Win32.LPWSCINSTALLPROVIDER = foreign.callback( "int", [ "ptr", "wstr", "ptr", "uint", "ptr"] );
+Win32.LPWSCGETPROVIDERPATH = foreign.callback( "int", [ "ptr", "wstr", "ptr", "ptr"] );
+Win32.LPWSCUPDATEPROVIDER = foreign.callback( "int", [ "ptr", "wstr", "ptr", "uint", "ptr"] );
+Win32.LPWSCINSTALLNAMESPACE = foreign.callback( "int", [ "wstr", "wstr", "uint", "uint", "ptr"] );
+Win32.LPWSCUNINSTALLNAMESPACE = foreign.callback( "int", [ "ptr"] );
+Win32.LPWSCENABLENSPROVIDER = foreign.callback( "int", [ "ptr", "int"] );
+Win32.LPNSPCLEANUP = foreign.callback( "int", [ "ptr"] );
+Win32.LPNSPLOOKUPSERVICEBEGIN = foreign.callback( "int", [ "ptr", "ptr", "ptr", "uint", "ptr"] );
+Win32.LPNSPLOOKUPSERVICENEXT = foreign.callback( "int", [ "ptr", "uint", "ptr", "ptr"] );
+Win32.LPNSPIOCTL = foreign.callback( "int", [ "ptr", "uint", "ptr", "uint", "ptr", "uint", "ptr", "ptr", "ptr"] );
+Win32.LPNSPLOOKUPSERVICEEND = foreign.callback( "int", [ "ptr"] );
+Win32.LPNSPSETSERVICE = foreign.callback( "int", [ "ptr", "ptr", "ptr", "int", "uint"] );
+Win32.LPNSPINSTALLSERVICECLASS = foreign.callback( "int", [ "ptr", "ptr"] );
+Win32.LPNSPREMOVESERVICECLASS = foreign.callback( "int", [ "ptr", "ptr"] );
+Win32.LPNSPGETSERVICECLASSINFO = foreign.callback( "int", [ "ptr", "ptr", "ptr"] );
+Win32.LPNSPSTARTUP = foreign.callback( "int", [ "ptr", "ptr"] );
+Win32.LPNSPV2STARTUP = foreign.callback( "int", [ "ptr", "ptr"] );
+Win32.LPNSPV2CLEANUP = foreign.callback( "int", [ "ptr", "ptr"] );
+Win32.LPNSPV2LOOKUPSERVICEBEGIN = foreign.callback( "int", [ "ptr", "ptr", "uint", "ptr", "ptr"] );
+Win32.LPNSPV2LOOKUPSERVICENEXTEX = foreign.callback( "void", [ "ptr", "ptr", "uint", "ptr", "ptr"] );
+Win32.LPNSPV2LOOKUPSERVICEEND = foreign.callback( "int", [ "ptr"] );
+Win32.LPNSPV2SETSERVICEEX = foreign.callback( "void", [ "ptr", "ptr", "ptr", "int", "uint", "ptr"] );
+Win32.LPNSPV2CLIENTSESSIONRUNDOWN = foreign.callback( "void", [ "ptr", "ptr"] );
+Win32.LPFN_NSPAPI = foreign.callback( "uint", [ ] );
+Win32.LPSERVICE_CALLBACK_PROC = foreign.callback( "void", [ "ptr", "ptr"] );
+Win32.LPLOOKUPSERVICE_COMPLETION_ROUTINE = foreign.callback( "void", [ "uint", "uint", "ptr"] );
+Win32.LPWSCWRITEPROVIDERORDER = foreign.callback( "int", [ "ptr", "uint"] );
+Win32.LPWSCWRITENAMESPACEORDER = foreign.callback( "int", [ "ptr", "uint"] );
+
+}
+

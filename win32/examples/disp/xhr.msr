@@ -1,0 +1,31 @@
+com.init();
+
+var xhr = com.createObject("MSXML2.ServerXMLHTTP.6.0");
+
+xhr.open("GET", "http://www.google.de/", false, nil, nil);
+
+xhr.setRequestHeader("Accept", "text/plain");  
+xhr.setRequestHeader("Accept-Encoding", "identity");
+
+// need a msg loop :(
+xhr.onreadystatechange  = fun (e) {
+  if (xhr.readyState == 4) {
+    if (xhr.status == 200) {
+      print xhr.responseText;
+    } else {
+      print xhr.statusText;
+    }
+  }
+};
+
+xhr.send(nil);
+
+while(xhr.readyState != 4) {
+  print "wait";
+}
+
+if (xhr.status == 200) {
+    print xhr.responseText;
+} else {
+    print xhr.statusText;
+}

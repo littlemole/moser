@@ -1,0 +1,254 @@
+import("promise");
+import("gir/gir");
+
+var gir = GIR( [ "Gio:2.0", "GLib:2.0", "Gdk:3.0", "Gtk:3.0", "GObject:2.0", "GtkSource:3.0", "WebKit2:4.0", "JavaScriptCore:4.0" ] );
+
+import("mtkdirtree");
+import("mtkwebview");
+import("gtk3ui");
+
+
+class Git 
+{
+    Git(path)
+    {
+        this.path = path;
+        this.is_dir = io.is_directory(path);
+
+        this.filename = io.basename(path);
+        this.dirname = io.dirname(path);
+
+        this.cd = this.dirname;
+        if(this.is_dir) this.cd = path;
+
+        this.target = this.filename;
+        if(this.is_dir) this.target = ".";
+    }
+ 
+    diff()
+    {
+        var txt = this.bash( this.cmd_target("git rev-parse --show-toplevel && git diff") );
+       // print txt;
+        var lines = txt.split("\n");
+        //print lines;
+        if(lines.length == 0)
+        {
+            return ["",""];
+        }
+        var line = lines[0];
+        if(!lines.length == 1)
+        {
+            return [line,""];
+        }
+
+        var body = txt[line.length+1:];
+        return [ line, body ];
+    }
+
+    status()
+    {
+        var txt = this.bash( this.cmd_target("git rev-parse --show-toplevel && git status") );
+        var lines = txt.split("\n");
+        if(lines.length == 0)
+        {
+            return ["",""];
+        }
+        var line = lines[0];
+        if(!lines.length == 1)
+        {
+            return [line,""];
+        }
+
+        var body = txt[line.length+1:];
+        return [ line, body ];
+    }
+
+    bash(cmd)
+    {
+        var cli = "bash -c \"" + cmd + "\" 2>&1";
+        // print cli;
+        return sys.popen(cli);
+    }
+
+    cmd_target(cmd)
+    {
+        return this.cmd(cmd) + this.target;
+    }
+
+    cmd(c)
+    {
+        return "cd " + this.cd + " && " + c + " ";
+    }
+}
+
+//////////////////////////////////////////
+
+
+@Proxy("GObjInterceptor")
+class DiffModel : GObj
+{
+    DiffModel(ptr)
+    {
+        var parent = GObject.Object;        
+        super.GObj(parent.typelib,ptr,parent.info);
+    }
+
+    static init_instance(ptr)
+    {
+        var that = DiffModel.factory.that(ptr);
+        var wrapper = DiffModel(ptr);
+
+    }
+    
+    static new()
+    {
+        return DiffModel.factory.new();
+    }
+}
+
+DiffModel.factory = GObjectFactory(DiffModel,GObject.Object);
+
+DiffModel.properties = [ 
+    GObject.param_spec_string( "root", "", "", "/", GObject.ParamFlags.readwrite ),
+    GObject.param_spec_string( "path", "", "", "/", GObject.ParamFlags.readwrite ),
+    GObject.param_spec_string( "onOff", "", "", "on", GObject.ParamFlags.readwrite ),
+];
+
+g_register_types( MtkDirTree, MtkWebView, DiffModel);
+
+//////////////////////////////////////////
+
+
+class Controller
+{
+    Controller()
+    {
+        this.model = DiffModel.new();
+
+        this.propertyActions = [
+            ["setRoot", this.model, "root"]
+        ];
+    }
+
+    activate()
+    {
+                this.ui.webView.load_uri("file://" + io.dirname(io.self()) + "/diff.html");
+
+
+        this.model.bind_property_full("root", this.model, "path", 0, 0,0);
+        this.model.bind_property_full("root", this.ui.fileTree, "root", 0, 0,0);
+        this.ui.fileTree.bind_property_full("path", this.model, "path", 0, 0,0);
+
+        var f = File(io.cwd()+"/");
+        this.model.root = f.path;
+        this.model.path = f.path;
+
+        this.model.signal_connect("notify::path", this.onSelect);
+
+
+        //var settings = this.ui.webView.get_settings();
+        //settings.set_javascript_can_open_windows_automatically(true);
+    }
+
+    doGit(path)
+    {
+        var git = Git(path);
+
+        if ( this.model.onOff == "on" )
+        {
+            var diff = git.diff();
+
+            this.ui.webView.invoke_javascript("setDiff", {
+                "dir" : diff[0],
+                "output" : diff[1]
+            });        
+        }
+        else
+        {
+            var status = git.status();
+
+            this.ui.webView.invoke_javascript("setPlainText", {
+                "dir" : status[0],
+                "output" : status[1]
+            });        
+
+        }
+    }
+
+    @connect( "model","notify::path")
+    onSelect()
+    {
+        var path = this.model.path;
+        this.ui.status_bar(path);
+        this.doGit(path);  
+    }
+
+    @action
+    openDir() 
+    {
+        var path = this.ui.openDir();
+
+        if(path)
+        {
+            if(io.is_directory(path)) path = path + "/";
+
+            this.model.root = path;
+        }
+    }
+
+    @action("s")
+    quit(ptr,target)
+    {
+        var v = GLib.Variant(target);
+        print v.get_string(0);
+        this.wnd.destroy();
+    }
+
+
+    @action("s","on")
+    onOff(ptr,target)
+    {
+        var v = GLib.Variant(target);
+        this.ui.actions.onOff.change_state(v);
+
+        this.model.onOff = v.get_string(0);
+
+        var path = this.model.path;
+        this.doGit(path);  
+    }    
+
+    @WebViewCallback(host=webView)
+    onWebView(msg)
+    {
+        if(msg.cmd == "onload")
+        {
+            this.doGit(this.model.path);
+        }
+    }
+
+    onContext(widget,ptr,ptr2)
+    {
+        var event = Gdk.EventButton(ptr);
+        var r = event.button;
+
+        var f = this.ui.fileTree.file_at_pos(event.x,event.y);
+
+        if(!f) return;
+
+        print f.path;
+
+        if(r == 3)
+        {
+            this.ui.fileMenu.popup_at_pointer(event);
+        }
+        return false;
+    }
+}
+
+
+var controller = Controller();
+
+var gtkUi = GtkUI("diff.ui");
+
+gtkUi.run("moc.app",controller);
+

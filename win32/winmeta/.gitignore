@@ -1,0 +1,10 @@
+*~
+*.cof
+build/
+.vs/
+#.vscode/
+vcpkg/
+vcpkg_installed/
+x64/
+Debug/
+Release/

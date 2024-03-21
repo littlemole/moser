@@ -1,0 +1,32 @@
+
+extern {
+    ptr fopen( str, str );
+    ulong fread( ptr, ulong, ulong, ptr );
+    int fclose( ptr );
+}
+
+var buf = sys.buffer(1024);
+
+var filename = io.dirname(io.self()) 
+    + os.pathsep + ".." 
+    + os.pathsep + ".." 
+    + os.pathsep + "vcpkg.json";
+
+var file = fopen(filename, "rb" );
+
+var r = 1;
+var content = "";
+while(r != 0)
+{
+    r = fread( buf, 1, 1024, file);
+    content = content + buf.asString(r);
+}
+
+//print content;
+
+fclose(file);
+
+var d = JSON.parse(content);
+print JSON.stringify(d.dependencies);
+
+// expect: [{"name":"winmdparser"},{"name":"libffi"},{"name":"nlohmann-json"},{"name":"dirent"}]

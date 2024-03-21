@@ -1,0 +1,171 @@
+import("openssl/crypto");
+import("openssl/digest");
+
+import("glib/gobject");
+import("glib/glib");
+import("glib/gio");
+import("gtk3/gtk");
+
+extern from "libgobject-2.0.so" {
+    ulong g_signal_connect_data( ptr, str, ptr, ptr, ptr, int );
+}
+
+                print g_variant_new_string;
+
+///////////////////////////////////////////
+
+class MenuMaker
+{
+    MenuMaker(data)
+    {
+        this.lookup = {};
+        this.items = [];
+        this.callbacks = [];
+
+        data.forEach( fun(k,v) 
+        {
+            var mainMenuItem = gtk_menu_item_new_with_label(k);
+
+            var subMenu = this.add_submenu_items(v);
+            gtk_menu_item_set_submenu( mainMenuItem, subMenu);
+
+            this.lookup[k] = subMenu;
+            this.items.push(mainMenuItem);
+        });
+    }
+
+    populate(menubar)
+    {
+        this.items.forEach( fun(v) {
+            gtk_menu_shell_append(menubar,v);
+        });
+    }
+
+    add_submenu_items(data)
+    {
+        var subMenu = gtk_menu_new();
+
+        data.forEach( fun(entry) 
+        {
+            if(typeof(entry[1]) == "str" )
+            {
+                var subMenuItem = gtk_menu_item_new_with_label(entry[0]);
+                var menu = this.add_submenu_items( entry[1]);
+
+                gtk_menu_shell_append(subMenu,menu);
+            }
+            else
+            {
+                var subMenuItem = gtk_menu_item_new_with_label(entry[0]);
+
+
+                var v = g_variant_new_string( entry[0]);
+                gtk_actionable_set_action_target_value( subMenuItem, v);
+
+                gtk_menu_shell_append( subMenu, subMenuItem );
+
+                var cb = GtkCallback( entry[1]);
+                this.callbacks.push(cb);
+
+                g_signal_connect_data(subMenuItem, "activate", cb, 0, 0, 0);
+            }
+        });
+        return subMenu;
+    }
+
+    menu(name)
+    {
+        return this.lookup[name];
+    }
+
+    popup(name,event)
+    {
+        var m = this.menu(name);
+        gtk_menu_popup_at_pointer(m,event);   
+    }
+
+}
+
+var window;
+var output;
+var buffer;
+
+
+fun quit()
+{
+    g_application_quit(app);
+}
+
+
+fun open(widget,ptr) 
+{
+    var dlg = gtk_file_chooser_native_new(
+        "Open File",
+        window,
+        0, // Open
+        "ok",
+        "cancel"
+    );
+
+    var r = gtk_native_dialog_run ( dlg );
+    if(r == -3) // accept
+    {
+        var path = gtk_file_chooser_get_filename(dlg).string();
+
+        var content = sys.popen("hexdump -C " + path);
+
+        gtk_text_buffer_set_text(buffer,content,content.length);
+    }
+}
+
+var hexdump = GtkCallback( fun(widget,ptr) 
+{
+    open();
+});
+
+var activate = GtkCallback( fun(app,ptr) 
+{
+    window = gtk_application_window_new (app);
+    gtk_window_set_title ( window, "HEXDUMP");
+    gtk_window_set_default_size (window, 720, 400);
+
+    var box = gtk_box_new(1,5);
+
+    var menuBar = gtk_menu_bar_new();
+
+//    var button = gtk_button_new_with_label ("show hexdump");
+  //  g_signal_connect_data (button, "clicked", hexdump, 0, 0, 0);
+
+    var output = gtk_text_view_new();
+    gtk_text_view_set_monospace(output,true);
+    gtk_text_view_set_wrap_mode(output,false);
+
+    var scroll = gtk_scrolled_window_new(0,0);
+    gtk_container_add(scroll,output);
+
+    gtk_box_pack_start(box,menuBar,false,false,5);
+    gtk_box_pack_start(box,scroll,true,true,5);
+
+    gtk_container_add (window, box);
+
+    buffer = gtk_text_view_get_buffer(output);
+
+    var menuMaker = MenuMaker(
+    {
+        "File" :  [
+            [ "Open", open ],
+            [ "Quit", quit ]
+        ]
+    });
+
+    menuMaker.populate(menuBar);
+    gtk_widget_show_all(window);
+
+});
+
+
+var app = gtk_application_new ("org.gtk.example", 0);
+g_signal_connect_data (app, "activate", activate, 0, 0, 0);
+
+
+var status = g_application_run (app, 0,0);

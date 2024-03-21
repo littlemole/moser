@@ -1,0 +1,52 @@
+
+class Interceptor
+{
+    getter(target,name)
+    {
+        print "GET:" + target{name};
+        return target{name};
+    }
+
+    setter(target,name, val)
+    {
+        target{name} = val;
+    }
+
+    invoke(target,name)
+    {
+        var args = arguments();
+        var r = runtime.invoke(target,name,args[2:]);
+        print r+1;
+        return r;
+    }
+}
+
+@Proxy("Interceptor")
+class Test
+{
+    Test()
+    {
+        var arg = arguments();
+        this.value = 4711;
+    }
+
+    test()
+    {
+        print this.value;
+        return this.value;
+    }
+}
+
+{
+var t = Test();
+print t.test(); // expect: 4711
+// expect: 4712
+// expect: 4711
+
+print t.value;
+// expect: GET:4711
+// expect: 4711
+
+}
+
+

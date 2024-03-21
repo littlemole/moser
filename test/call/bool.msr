@@ -1,0 +1,3 @@
+true(); // expect: non-callable called as function. 'true'.
+
+// expect: [line 1] in script

@@ -1,0 +1,5 @@
+fun foo() {}
+
+foo.bar = "value"; // expect: Only instances have fields.
+
+// expect: [line 3] in script

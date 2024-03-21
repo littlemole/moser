@@ -1,0 +1,4 @@
+fun foo() {}
+print foo; // expect: <fn foo>
+
+print sys.clock; // expect: <nativeFun>

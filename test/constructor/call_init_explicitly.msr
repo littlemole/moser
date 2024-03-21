@@ -1,0 +1,15 @@
+class Foo {
+  Foo(arg) {
+    print "Foo.Foo(" + arg + ")";
+    this.field = "init";
+  }
+}
+
+var foo = Foo("one"); // expect: Foo.Foo(one)
+foo.field = "field";
+
+var foo2 = foo.Foo("two"); // expect: Foo.Foo(two)
+print foo2; // expect: Foo instance
+
+// Make sure init() doesn't create a fresh instance.
+print foo.field; // expect: init

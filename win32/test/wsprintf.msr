@@ -1,0 +1,19 @@
+
+extern from "User32.dll" {
+
+    int wsprintfA( ptr, str, ...) as wsprintf;
+}
+
+var buf = sys.buffer();
+wsprintf( buf, "some text with %i %s", 1, "placeholder");
+
+print buf.asString();
+
+// expect: some text with 1 placeholder
+
+
+wsprintf( buf, "some text with %i %s", 2, "placeholders");
+
+print buf.asString();
+
+// expect: some text with 2 placeholders

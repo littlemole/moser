@@ -1,0 +1,17 @@
+fun test()
+{
+    throw 4711;
+}
+
+try {
+    test();
+}
+catch(e)
+{
+    print e; // expect: 4711
+}
+finally {
+    print "final"; // expect: final
+}
+
+print arguments(); // expect: array [ ]

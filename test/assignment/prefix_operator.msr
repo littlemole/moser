@@ -1,0 +1,3 @@
+var a = "a";
+print !a = "value"; // expect: [line 2] Error at '=': Invalid assignment target.
+

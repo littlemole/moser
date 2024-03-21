@@ -1,0 +1,18 @@
+
+
+var cwd = foreign.native("libc.so", "ptr", "getcwd", [ "ptr", "long"]);
+
+var buf = sys.buffer();
+var r = cwd(buf,buf.length);
+var dir = string(buf);
+print dir == io.cwd(); // expect: true
+
+var sprintf = foreign.variadic("libc.so", "int", "sprintf", [ "ptr", "str", "...", "int", "str"]);
+
+buf = sys.buffer();
+r = sprintf(buf,"got %i of \"%s", 4711, "strings");
+print buf.asString(); // expect: got 4711 of "strings
+
+var sin = foreign.native("libm.so.6", "double", "sin", [ "double"]);
+var s = sin(10);
+print s; // expect: -0.544021

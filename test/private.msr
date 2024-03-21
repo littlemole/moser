@@ -1,0 +1,51 @@
+class Base 
+{
+    _test()
+    {
+        print this._value;
+    }
+
+    get chunk()
+    {
+        return this._chunk;
+    }
+
+    set chunk(val)
+    {
+        this._chunk = val;
+    }
+
+    get data()
+    {
+        return this._value;
+    }
+
+    set data(val)
+    {
+        this._value = val;
+    }
+
+}
+
+class Test : Base
+{
+    doTest()
+    {
+        this._test();
+    }
+
+    get data()
+    {
+        return this._value;
+    }
+
+    set data(val)
+    {
+        this._value = val;
+    }
+    
+}
+
+var t = Test();
+
+print t._value; // expect: [line 51] Error at '_value': use of private _ method without this

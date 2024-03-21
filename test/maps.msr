@@ -1,0 +1,48 @@
+var m = { "key1" : 23, "key2" : 4711 };
+print m.key1; // expect: 23
+print m.key2; // expect: 4711
+print m{"key1"}; // expect: 23
+print m.keys().sort(); // expect: array [ key1, key2, ]
+
+
+
+var tricky = { "keys" : "other", "value" : "some" };
+print tricky.keys; // expect: other
+print tricky.value; // expect: some
+print tricky.keys().sort(); // expect: array [ keys, value, ]
+print tricky{"keys"}; // expect: other
+
+var keys = [];
+var vals = [];
+tricky.forEach( fun(k,v) {
+
+    keys.push(k);
+    vals.push(v);
+});
+
+print keys.sort(); // expect: array [ keys, value, ]
+print vals.sort(); // expect: array [ other, some, ]
+
+var r = tricky.filter( fun(k,v) {
+    if(k != "keys")
+    {
+        return true;
+    }
+});
+
+print r.keys().sort(); // expect: array [ value, ]
+
+r = m.transform( fun(k,v) 
+{
+    return { k : v*2  };
+});
+
+vals = [];
+r.forEach( fun(k,v) {
+    vals.push(v);
+});
+
+print vals.sort(); // expect: array [ 46, 9422, ]
+
+delete "key1" from r;
+print r; // expect: map { key2 : 9422, }

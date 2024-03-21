@@ -1,0 +1,33 @@
+extern from "libc.so" {
+    long stat(str,ptr) as fileinfo;
+}
+
+extern struct STAT {
+
+    ulong st_dev,
+    ulong st_ino,
+    ulong st_nlink,
+    uint  st_mode,
+    uint  st_uid,
+    uint  st_gid,
+    int   __pad0,
+    ulong st_rdev,
+    long  st_size,
+    long  blksize,
+    long  blocks,
+    long  st_atim_sec,
+    long  st_atim_nsec,
+    long  st_mtim_sec,
+    long  st_mtim_nsec,
+    long  st_ctim_sec,
+    long  st_ctim_nsec,
+    long glibcreserved1,
+    long glibcreserved2,
+    long glibcreserved3
+}
+
+var stat = STAT();
+
+var r = fileinfo("stat.msr",stat);
+print r; // expect: 0
+print stat.st_size; // expect: 619

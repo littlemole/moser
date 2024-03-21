@@ -1,0 +1,142 @@
+import("win32/base");
+import("win32/lib");
+import("win32/gdi");
+import("win32/user");
+import("win32/env");
+import("win32/shell");
+import("win32/sysinfo");
+
+import("win/rt/Windows.Foundation");
+import("win/rt/Windows.Foundation.Collections");
+import("win/rt/Windows.Storage");
+import("win/rt/Windows.Storage.Streams");
+import("win/rt/Windows.Storage.Pickers");
+import("win/rt/Windows.UI");
+import("win/rt/Windows.UI.Xaml");
+import("win/rt/Windows.UI.Xaml.Hosting");
+import("rt/Windows.UI.Xaml.Markup");
+import("win/rt/Windows.UI.Xaml.Interop");
+import("win/rt/Windows.UI.Xaml.Data");
+import("win/rt/Windows.UI.Xaml.Input");
+import("win/rt/Windows.UI.Xaml.Controls");
+import("win/rt/Windows.UI.Xaml.Controls.Primitives");
+
+import("win/rt/Microsoft.Web.WebView2.Core");
+import("win/rt/Microsoft.UI.Xaml.Controls");
+
+import("win/rt/moxaml");
+
+import("windows");
+import("winrt");
+import("xaml");
+
+var main_xaml = "
+
+<Page Name='thePage' xmlns='http://schemas.microsoft.com/winfx/2006/xaml/presentation' 
+    xmlns:x='http://schemas.microsoft.com/winfx/2006/xaml'
+    xmlns:mux='using:Microsoft.UI.Xaml.Controls'
+    xmlns:m='using:moxaml'>
+    <Grid Name='theGrid'>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width='1*'/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height='1*'/>
+        </Grid.RowDefinitions>
+
+        <mux:WebView2 Grid.Row='1' Grid.Column='1' x:Name='MyWebView'  
+            HorizontalAlignment='Stretch' VerticalAlignment='Stretch' /> 
+    </Grid>
+</Page>
+";
+
+
+var ID_FILE_EXIT = 1001;
+var ID_STUFF_GO = 1002;
+var ID_STUFF_GO2 = 1003;
+
+class MyWindow : Window 
+{
+    MyWindow()
+    {
+        super.Window();
+
+        this.menu = [
+            [ "File",  [ "Exit", ID_FILE_EXIT ]],
+            [ "Msg", 
+                [ "Send Msg to Browser View",   ID_STUFF_GO ]
+            ]
+        ];
+    }
+
+    navigate2localFile( file )
+    {
+        var uri = "file:///" + io.dirname(io.self()) + file;
+        this.webView.Source = Windows.Foundation.Uri.CreateUri(uri);
+    }
+
+    @msg(WM_CREATE)
+    onCreate(wParam,lParam)
+    {    
+        this.xamlWnd = XamlWindow( this, main_xaml );
+
+        this.webView = this.xamlWnd.find("MyWebView");
+
+        this.navigate2localFile("/mo.html");
+    }
+
+    @cmd(ID_STUFF_GO)
+    onMenuGoClick()
+    {
+        var coreView = this.webView.CoreWebView2;
+        coreView.PostWebMessageAsString("Message to the Browser!");
+    }
+    
+    @Xaml(Element=MyWebView,Event=NavigationStarting)
+    onNavigationStarting( s, e )
+    {
+        //var ev =  Microsoft.Web.WebView2.Core.CoreWebView2NavigationStartingEventArgs(e);
+        print e.Uri;
+        //ev.Cancel = true;
+    }
+
+    @Xaml(Element=MyWebView,Event=WebMessageReceived)
+    onWebMessageReceived( s, e )
+    {
+        var ev =  Microsoft.Web.WebView2.Core.CoreWebView2WebMessageReceivedEventArgs(e);
+        var msg = e.TryGetWebMessageAsString();
+        Win32.MessageBoxW( this.hwnd, wstring(msg), wstring("from Javascript:"),0);
+    }
+
+    @cmd(ID_FILE_EXIT)
+    onExit(wParam,lParam)
+    {
+        Win32.DestroyWindow(this.hwnd);
+        return 0;
+    }
+
+    @msg(WM_SIZE)
+    onSize(wParam,lParam)
+    {
+        this.resizeChild( this.xamlWnd);
+        return 0;
+    }
+    
+    @msg(WM_DESTROY)
+    onDestroy(wParam,lParam)
+    {
+        Win32.PostQuitMessage(0);
+        return 0;
+    }
+}
+
+set_webview_user_data_folder("\\moser\\moser\\udf");
+
+var wnd = MyWindow();
+
+wnd.create( "my xaml webview window");
+wnd.show();
+run(wnd);
+
+print "OK";

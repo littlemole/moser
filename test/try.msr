@@ -1,0 +1,50 @@
+
+try {
+    throw 4711;
+}
+catch(e)
+{
+    print e; // expect: 4711
+}
+
+fun t(x)
+{
+    throw x;
+}
+
+try {
+    t("23");
+}
+catch(e)
+{
+    print e; // expect: 23
+}
+
+
+fun g(y)
+{
+    t(y);
+}
+
+try {
+    g(42);
+}
+catch(e)
+{
+    print e; // expect: 42
+}
+
+try {
+
+    for( var i = 0; i < 2; i++)
+    {
+            throw "a";
+    }
+}
+catch(e)
+{
+    print e; // expect: a
+}
+
+
+print "OK"; // expect: OK 

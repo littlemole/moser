@@ -1,0 +1,59 @@
+import("win32/base");
+import("win32/lib");
+import("win32/uni");
+import("win32/user");
+import("win32/uni");
+import("windows");
+
+// mocres.dll is a pure resource only dll
+
+// integer ids from resource.h of mocres.dll
+
+var IDD_ENCODING = 201;
+var IDC_ENCODING = 1001;
+
+class EncodingDlg : Dialog
+{
+    EncodingDlg()
+    {
+        // load dialog from mocres.dll
+        super.Dialog("mocres.dll");
+
+        // available code pages
+        this.encodings = Encodings();
+    }
+
+    @msg(WM_INITDIALOG)
+    onInitDialog()
+    {
+        // populate encoding combo box values
+        this.encodings.codePagesDesc.forEach(fun(v)
+        {
+            Win32.SendDlgItemMessageW( this.hwnd, IDC_ENCODING, Win32.CB_ADDSTRING, 0, wstring(v) );
+        });
+
+        // select default item 0 (UTF-8)
+        Win32.SendDlgItemMessageW( this.hwnd, IDC_ENCODING, Win32.CB_SETCURSEL, 0, 0 );        
+    }
+
+    @cmd(IDOK)
+    onOk()
+    {
+        // get current selection of encoding combo box
+        var r = int( Win32.SendDlgItemMessageW( this.hwnd, IDC_ENCODING, Win32.CB_GETCURSEL, 0, 0) );
+        return r;
+    }
+}
+
+// show the Dialog
+
+var dlg = EncodingDlg();
+var r = dlg.show( IDD_ENCODING );
+
+// show result of dialog selection:
+
+print "chosen encoding is: " + 
+      dlg.encodings.codePages[r] + 
+      " (" + 
+      dlg.encodings.codePagesDesc[r] + 
+      ")";

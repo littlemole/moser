@@ -1,0 +1,112 @@
+import("promise");
+import("win32/base");
+import("win32/lib");
+import("win32/gdi");
+import("win32/user");
+import("win32/sysinfo");
+
+import("rt\Windows.Foundation");
+import("rt\Windows.Foundation.Collections");
+import("rt\Windows.UI");
+import("rt\Windows.UI.Xaml");
+import("rt/Windows.UI.Xaml.Hosting");
+import("rt/Windows.UI.Xaml.Markup");
+import("rt\Windows.UI.Xaml.Interop");
+import("rt\Windows.UI.Xaml.Data");
+import("rt\Windows.UI.Xaml.Input");
+import("rt\Windows.UI.Xaml.Controls");
+import("rt\Windows.UI.Xaml.Controls.Primitives");
+import("rt\moxaml");
+
+import("winrt");
+import("windows");
+import("xaml");
+
+
+var my_xaml = "
+
+<Page Name='thePage' xmlns='http://schemas.microsoft.com/winfx/2006/xaml/presentation' 
+    xmlns:x='http://schemas.microsoft.com/winfx/2006/xaml'>
+    <Grid Name='theGrid'>
+     <Image Name='theImage' Source='https://littlemole.neocities.org/uioo.jpg' />
+    </Grid>
+</Page>
+";
+
+var ID_FILE_EXIT = 1001;
+var ID_STUFF_GO = 1002;
+
+class MyWindow : Window 
+{
+    MyWindow()
+    {
+        super.Window();
+
+        this.menu = [
+            [ "File",  [ "Exit", ID_FILE_EXIT ]],
+            [ "Stuff", [ "Go",   ID_STUFF_GO ]]
+        ];
+
+        this.dataContext = DataContext( 
+        {
+            "prop"      : "THE STRING"
+        });
+    }
+
+    @msg(WM_CREATE)
+    onCreate(wParam,lParam)
+    {
+        this.xamlWnd = XamlWindow( this, my_xaml );
+    }
+
+    @Xaml(Element=theImage,Event=PointerPressed)
+    theImage_PointerPressed()
+    {
+        print "image_clicked";
+    }
+
+    @msg(WM_SIZE)
+    onSize(wParam,lParam)
+    {
+        this.resizeChild( this.xamlWnd);
+        return 0;
+    }
+    
+    @msg(WM_DESTROY)
+    onDestroy(wParam,lParam)
+    {
+        Win32.PostQuitMessage(0);
+        return 0;
+    }
+
+    @cmd(ID_FILE_EXIT)
+    onExit(wParam,lParam)
+    {
+        Win32.DestroyWindow(this.hwnd);
+        return 0;
+    }
+
+    @cmd(ID_STUFF_GO)
+    onGo(wParam,lParam)
+    {
+        this.xamlWnd.contentDialog({ 
+            "Title" : "hohoho",
+            "Xaml" : "<Button Name='theButt' Content='butt' xmlns='http://schemas.microsoft.com/winfx/2006/xaml/presentation' />"
+        }, 
+        fun(s,result)
+        {
+            print result;
+        });
+
+        return;
+    }
+}
+
+var wnd = MyWindow();
+
+wnd.create( "my xaml window");
+wnd.show(Win32.SHOW_WINDOW_CMD.SW_SHOW);
+
+run(wnd);
+
+print "OK";

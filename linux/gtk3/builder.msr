@@ -1,0 +1,96 @@
+import("glib/gobject");
+import("glib/glib");
+import("glib/gio");
+import("gtk3/gtk");
+
+extern from "libgobject-2.0.so" {
+    ulong g_signal_connect_data( ptr, str, ptr, ptr, ptr, int );
+    void g_object_set ( ptr, str, ... , ptr, ptr );
+}
+
+
+///////////////////////////////////////////////////////////
+
+var callbacks = [];
+
+var bind = GtkBuilderConnectFunc( fun( builder, obj, signal, handler, target, flags, data) 
+{
+    //print signal + ": " + handler;
+
+    var controller = data.object();
+    var methods = controller.methods();
+
+    methods
+        .filter( fun(k,v) { return k == handler; } )
+        .forEach( fun(k,v) {   
+            //print "  connect " + k + ": " + v;
+            var cb = GtkCallback( v );
+            callbacks.push(cb);  // prevent GC
+            g_signal_connect_data (obj, signal, cb, 0, 0, 0);
+        } );
+});
+
+///////////////////////////////////////////////////////////
+
+class Controller
+{
+    test() {
+        print "Controller.:test()";
+    }
+
+    onClick(widget,ptr) {
+        print "Controller::onClick";
+    }
+
+    buttClick(widget,ptr,ptr2)
+    {
+        print "Controller::action";
+    }
+
+    onDestroy(widget,ptr) {
+        print "Controller::onDestroy";
+    }
+
+    quit()
+    {
+        print "QUIT!";
+        g_application_quit(app);
+    }
+}
+
+
+var controller = Controller();
+
+var actionCb = GioSimpleAction_signal_activate( controller.buttClick );
+
+
+var activate = GtkCallback( fun(app,ptr) 
+{
+    //setup actions 
+    var action = g_simple_action_new("buttClick",0);
+    g_action_map_add_action(app,action);
+    g_signal_connect_data (action, "activate", GioSimpleAction_signal_activate( controller.buttClick ), 0, 0, 0);
+
+    action = g_simple_action_new("quit",0);
+    g_action_map_add_action(app,action);
+    g_signal_connect_data (action, "activate", GioSimpleAction_signal_activate( controller.quit ), 0, 0, 0);
+
+    // lod ui from xml
+
+    var builder = gtk_builder_new();
+
+    var r = gtk_builder_add_from_file(builder,"builder.xml",0);
+
+    var mainWnd = gtk_builder_get_object(builder,"mainWindow");
+    gtk_builder_connect_signals_full(builder,bind,controller);
+
+    g_object_set(mainWnd, "application", app, 0);
+    gtk_widget_show(mainWnd);
+});
+
+
+var app = gtk_application_new("moc.app",0);
+g_signal_connect_data (app, "activate", activate, 0, 0, 0);
+g_application_run(app,0,0);
+
+

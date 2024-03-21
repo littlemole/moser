@@ -1,0 +1,4 @@
+if (true) fun foo() {}
+
+// expect: [line 1] Error at 'foo': Expect '(' after function name.
+// expect: [line 5] Error at end: Expect '}' after block.

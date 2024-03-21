@@ -1,0 +1,33 @@
+@attr
+fun test()
+{}
+
+print $test.exists("attr"); // expect: true
+
+@attr1
+@attr2
+fun test2()
+{}
+
+print $test2.exists("attr1"); // expect: true
+print $test2.exists("attr2"); // expect: true
+
+@attr("value")
+fun test3()
+{}
+
+print $test3{"attr"}; // expect: value
+
+@attr("value","value2")
+fun test4()
+{}
+
+print $test4{"attr"}[0]; // expect: value
+print $test4{"attr"}[1]; // expect: value2
+
+@attr(key="value",other="value2")
+fun test5()
+{}
+
+print $test5.attr.key; // expect: value
+print $test5.attr.other; // expect: value2

@@ -1,0 +1,37 @@
+var GTK = import("gtk");
+
+class Controller
+{
+    @accel("<ctrl>a","<ctrl><shift>b")
+    test(widget,ptr, key, data) 
+    {
+        print "Controller::test " + key + ":" + data;
+    }
+
+    onClick(widget,ptr) 
+    {
+        print "Controller::onClick";
+    }
+
+    onNew(widget,ptr) 
+    {
+        print "Controller::onNew";
+    }
+
+    onDestroy(widget,ptr) 
+    {
+        print "Controller::onDestroy";
+        //gtk_main_quit();
+    }
+
+    onQuit(widget,ptr)
+    {
+        print "Controller::onQuit";
+        this.ui.quit();
+    }
+}
+
+var controller = Controller();
+
+var ui = UI("ui.xml");
+ui.run("moc.app",controller);

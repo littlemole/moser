@@ -1,0 +1,31 @@
+
+extern {
+    double sin(double);
+}
+
+fun test() { print "test()"; return 1; }
+fun test1(a) { print "test1(" + a + ")"; return 2; }
+fun test2(a,b) { print "test2("+a+","+b+")"; return 3; }
+
+{
+    print arguments(); // expect: array [ ]
+    print runtime.invoke(test); // expect: test()
+    // expect: 1
+
+    print arguments(); // expect: array [ ]
+    print runtime.invoke(test1,["a1"]);  // expect: test1(a1)
+    // expect: 2
+
+    print arguments(); // expect: array [ ]
+    print runtime.invoke(test2, ["a1", "b2"]);  // expect: test2(a1,b2)
+    // expect: 3
+
+    print arguments(); // expect: array [ ]
+
+    print sin(1); // expect: 0.841471
+
+    print arguments(); // expect: array [ ]
+
+    print runtime.invoke(sin,[1]); // expect: 0.841471
+
+}

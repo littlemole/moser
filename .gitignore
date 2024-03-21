@@ -1,0 +1,19 @@
+*~
+*.mbc
+build/
+.vs/
+.vscode/
+vcpkg/
+vcpkg_installed/
+packages/
+Generated\ Files/
+AppPackages/
+obj/
+x64/
+Debug/
+Release/
+x64-Release/
+x64-Debug/
+dlldeps/
+
+win32/Microsoft.WindowsAppRuntime.lib

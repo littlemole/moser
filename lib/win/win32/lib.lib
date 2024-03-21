@@ -1,0 +1,117 @@
+{
+
+if( runtime.global("Win32") == nil ) { runtime.global("Win32", {}); }
+var Win32 = runtime.global("Win32");
+
+Win32.LOAD_LIBRARY_FLAGS = {
+    "DONT_RESOLVE_DLL_REFERENCES" : 1, 
+    "LOAD_LIBRARY_AS_DATAFILE" : 2, 
+    "LOAD_WITH_ALTERED_SEARCH_PATH" : 8, 
+    "LOAD_IGNORE_CODE_AUTHZ_LEVEL" : 16, 
+    "LOAD_LIBRARY_AS_IMAGE_RESOURCE" : 32, 
+    "LOAD_LIBRARY_AS_DATAFILE_EXCLUSIVE" : 64, 
+    "LOAD_LIBRARY_REQUIRE_SIGNED_TARGET" : 128, 
+    "LOAD_LIBRARY_SEARCH_DLL_LOAD_DIR" : 256, 
+    "LOAD_LIBRARY_SEARCH_APPLICATION_DIR" : 512, 
+    "LOAD_LIBRARY_SEARCH_USER_DIRS" : 1024, 
+    "LOAD_LIBRARY_SEARCH_SYSTEM32" : 2048, 
+    "LOAD_LIBRARY_SEARCH_DEFAULT_DIRS" : 4096, 
+    "LOAD_LIBRARY_SAFE_CURRENT_DIRS" : 8192, 
+    "LOAD_LIBRARY_SEARCH_SYSTEM32_NO_FORWARDER" : 16384
+};
+
+
+Win32.ENUMUILANG = foreign.named_struct( "Windows.Win32.System.LibraryLoader.ENUMUILANG", [ 
+    "NumOfEnumUILang:uint", 
+    "SizeOfEnumUIBuffer:uint", 
+    "pEnumUIBuffer:ptr"
+]); 
+
+
+Win32.REDIRECTION_FUNCTION_DESCRIPTOR = foreign.named_struct( "Windows.Win32.System.LibraryLoader.REDIRECTION_FUNCTION_DESCRIPTOR", [ 
+    "DllName:str", 
+    "FunctionName:str", 
+    "RedirectionTarget:ptr"
+]); 
+
+
+Win32.REDIRECTION_DESCRIPTOR = foreign.named_struct( "Windows.Win32.System.LibraryLoader.REDIRECTION_DESCRIPTOR", [ 
+    "Version:uint", 
+    "FunctionCount:uint", 
+    "Redirections:ptr"
+]); 
+
+Win32.FIND_RESOURCE_DIRECTORY_TYPES = 256;
+Win32.FIND_RESOURCE_DIRECTORY_NAMES = 512;
+Win32.FIND_RESOURCE_DIRECTORY_LANGUAGES = 1024;
+Win32.RESOURCE_ENUM_LN = 1;
+Win32.RESOURCE_ENUM_MUI = 2;
+Win32.RESOURCE_ENUM_MUI_SYSTEM = 4;
+Win32.RESOURCE_ENUM_VALIDATE = 8;
+Win32.RESOURCE_ENUM_MODULE_EXACT = 16;
+Win32.SUPPORT_LANG_NUMBER = 32;
+Win32.GET_MODULE_HANDLE_EX_FLAG_PIN = 1;
+Win32.GET_MODULE_HANDLE_EX_FLAG_UNCHANGED_REFCOUNT = 2;
+Win32.GET_MODULE_HANDLE_EX_FLAG_FROM_ADDRESS = 4;
+Win32.CURRENT_IMPORT_REDIRECTION_VERSION = 1;
+Win32.LOAD_LIBRARY_OS_INTEGRITY_CONTINUITY = 32768;
+Win32.DisableThreadLibraryCalls = foreign.native( "KERNEL32.dll", "int", "DisableThreadLibraryCalls", [ "ptr" ] ); 
+Win32.FindResourceExW = foreign.native( "KERNEL32.dll", "ptr", "FindResourceExW", [ "ptr", "wstr", "wstr", "ushort" ] ); 
+Win32.FreeLibrary = foreign.native( "KERNEL32.dll", "int", "FreeLibrary", [ "ptr" ] ); 
+Win32.FreeLibraryAndExitThread = foreign.native( "KERNEL32.dll", "void", "FreeLibraryAndExitThread", [ "ptr", "uint" ] ); 
+Win32.FreeResource = foreign.native( "KERNEL32.dll", "int", "FreeResource", [ "ptr" ] ); 
+Win32.GetModuleFileNameA = foreign.native( "KERNEL32.dll", "uint", "GetModuleFileNameA", [ "ptr", "ptr", "uint" ] ); 
+Win32.GetModuleFileNameW = foreign.native( "KERNEL32.dll", "uint", "GetModuleFileNameW", [ "ptr", "wstr", "uint" ] ); 
+Win32.GetModuleHandleA = foreign.native( "KERNEL32.dll", "ptr", "GetModuleHandleA", [ "ptr" ] ); 
+Win32.GetModuleHandleW = foreign.native( "KERNEL32.dll", "ptr", "GetModuleHandleW", [ "wstr" ] ); 
+Win32.GetModuleHandleExA = foreign.native( "KERNEL32.dll", "int", "GetModuleHandleExA", [ "uint", "ptr", "ptr" ] ); 
+Win32.GetModuleHandleExW = foreign.native( "KERNEL32.dll", "int", "GetModuleHandleExW", [ "uint", "wstr", "ptr" ] ); 
+Win32.GetProcAddress = foreign.native( "KERNEL32.dll", "ptr", "GetProcAddress", [ "ptr", "ptr" ] ); 
+Win32.LoadLibraryExA = foreign.native( "KERNEL32.dll", "ptr", "LoadLibraryExA", [ "ptr", "ptr", "uint" ] ); 
+Win32.LoadLibraryExW = foreign.native( "KERNEL32.dll", "ptr", "LoadLibraryExW", [ "wstr", "ptr", "uint" ] ); 
+Win32.LoadResource = foreign.native( "KERNEL32.dll", "ptr", "LoadResource", [ "ptr", "ptr" ] ); 
+Win32.LockResource = foreign.native( "KERNEL32.dll", "ptr", "LockResource", [ "ptr" ] ); 
+Win32.SizeofResource = foreign.native( "KERNEL32.dll", "uint", "SizeofResource", [ "ptr", "ptr" ] ); 
+Win32.AddDllDirectory = foreign.native( "KERNEL32.dll", "ptr", "AddDllDirectory", [ "wstr" ] ); 
+Win32.RemoveDllDirectory = foreign.native( "KERNEL32.dll", "int", "RemoveDllDirectory", [ "ptr" ] ); 
+Win32.SetDefaultDllDirectories = foreign.native( "KERNEL32.dll", "int", "SetDefaultDllDirectories", [ "uint" ] ); 
+Win32.EnumResourceLanguagesExA = foreign.native( "KERNEL32.dll", "int", "EnumResourceLanguagesExA", [ "ptr", "ptr", "ptr", "ptr", "ptr", "uint", "ushort" ] ); 
+Win32.EnumResourceLanguagesExW = foreign.native( "KERNEL32.dll", "int", "EnumResourceLanguagesExW", [ "ptr", "wstr", "wstr", "ptr", "ptr", "uint", "ushort" ] ); 
+Win32.EnumResourceNamesExA = foreign.native( "KERNEL32.dll", "int", "EnumResourceNamesExA", [ "ptr", "ptr", "ptr", "ptr", "uint", "ushort" ] ); 
+Win32.EnumResourceNamesExW = foreign.native( "KERNEL32.dll", "int", "EnumResourceNamesExW", [ "ptr", "wstr", "ptr", "ptr", "uint", "ushort" ] ); 
+Win32.EnumResourceTypesExA = foreign.native( "KERNEL32.dll", "int", "EnumResourceTypesExA", [ "ptr", "ptr", "ptr", "uint", "ushort" ] ); 
+Win32.EnumResourceTypesExW = foreign.native( "KERNEL32.dll", "int", "EnumResourceTypesExW", [ "ptr", "ptr", "ptr", "uint", "ushort" ] ); 
+Win32.FindResourceW = foreign.native( "KERNEL32.dll", "ptr", "FindResourceW", [ "ptr", "wstr", "wstr" ] ); 
+Win32.LoadLibraryA = foreign.native( "KERNEL32.dll", "ptr", "LoadLibraryA", [ "ptr" ] ); 
+Win32.LoadLibraryW = foreign.native( "KERNEL32.dll", "ptr", "LoadLibraryW", [ "wstr" ] ); 
+Win32.EnumResourceNamesW = foreign.native( "KERNEL32.dll", "int", "EnumResourceNamesW", [ "ptr", "wstr", "ptr", "ptr" ] ); 
+Win32.EnumResourceNamesA = foreign.native( "KERNEL32.dll", "int", "EnumResourceNamesA", [ "ptr", "ptr", "ptr", "ptr" ] ); 
+Win32.LoadModule = foreign.native( "KERNEL32.dll", "uint", "LoadModule", [ "ptr", "ptr" ] ); 
+Win32.LoadPackagedLibrary = foreign.native( "KERNEL32.dll", "ptr", "LoadPackagedLibrary", [ "wstr", "uint" ] ); 
+Win32.FindResourceA = foreign.native( "KERNEL32.dll", "ptr", "FindResourceA", [ "ptr", "ptr", "ptr" ] ); 
+Win32.FindResourceExA = foreign.native( "KERNEL32.dll", "ptr", "FindResourceExA", [ "ptr", "ptr", "ptr", "ushort" ] ); 
+Win32.EnumResourceTypesA = foreign.native( "KERNEL32.dll", "int", "EnumResourceTypesA", [ "ptr", "ptr", "ptr" ] ); 
+Win32.EnumResourceTypesW = foreign.native( "KERNEL32.dll", "int", "EnumResourceTypesW", [ "ptr", "ptr", "ptr" ] ); 
+Win32.EnumResourceLanguagesA = foreign.native( "KERNEL32.dll", "int", "EnumResourceLanguagesA", [ "ptr", "ptr", "ptr", "ptr", "ptr" ] ); 
+Win32.EnumResourceLanguagesW = foreign.native( "KERNEL32.dll", "int", "EnumResourceLanguagesW", [ "ptr", "wstr", "wstr", "ptr", "ptr" ] ); 
+Win32.BeginUpdateResourceA = foreign.native( "KERNEL32.dll", "ptr", "BeginUpdateResourceA", [ "ptr", "int" ] ); 
+Win32.BeginUpdateResourceW = foreign.native( "KERNEL32.dll", "ptr", "BeginUpdateResourceW", [ "wstr", "int" ] ); 
+Win32.UpdateResourceA = foreign.native( "KERNEL32.dll", "int", "UpdateResourceA", [ "ptr", "ptr", "ptr", "ushort", "ptr", "uint" ] ); 
+Win32.UpdateResourceW = foreign.native( "KERNEL32.dll", "int", "UpdateResourceW", [ "ptr", "wstr", "wstr", "ushort", "ptr", "uint" ] ); 
+Win32.EndUpdateResourceA = foreign.native( "KERNEL32.dll", "int", "EndUpdateResourceA", [ "ptr", "int" ] ); 
+Win32.EndUpdateResourceW = foreign.native( "KERNEL32.dll", "int", "EndUpdateResourceW", [ "ptr", "int" ] ); 
+Win32.SetDllDirectoryA = foreign.native( "KERNEL32.dll", "int", "SetDllDirectoryA", [ "ptr" ] ); 
+Win32.SetDllDirectoryW = foreign.native( "KERNEL32.dll", "int", "SetDllDirectoryW", [ "wstr" ] ); 
+Win32.GetDllDirectoryA = foreign.native( "KERNEL32.dll", "uint", "GetDllDirectoryA", [ "uint", "ptr" ] ); 
+Win32.GetDllDirectoryW = foreign.native( "KERNEL32.dll", "uint", "GetDllDirectoryW", [ "uint", "wstr" ] ); 
+Win32.ENUMRESLANGPROCA = foreign.callback( "int", [ "ptr", "ptr", "ptr", "ushort", "ptr"] );
+Win32.ENUMRESLANGPROCW = foreign.callback( "int", [ "ptr", "wstr", "wstr", "ushort", "ptr"] );
+Win32.ENUMRESNAMEPROCA = foreign.callback( "int", [ "ptr", "ptr", "ptr", "ptr"] );
+Win32.ENUMRESNAMEPROCW = foreign.callback( "int", [ "ptr", "wstr", "wstr", "ptr"] );
+Win32.ENUMRESTYPEPROCA = foreign.callback( "int", [ "ptr", "ptr", "ptr"] );
+Win32.ENUMRESTYPEPROCW = foreign.callback( "int", [ "ptr", "wstr", "ptr"] );
+Win32.PGET_MODULE_HANDLE_EXA = foreign.callback( "int", [ "uint", "ptr", "ptr"] );
+Win32.PGET_MODULE_HANDLE_EXW = foreign.callback( "int", [ "uint", "wstr", "ptr"] );
+
+}
+

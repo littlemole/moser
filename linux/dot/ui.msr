@@ -1,0 +1,106 @@
+import("promise");
+import("gir/gir");
+import("gtk3ui");
+
+var gir = GIR( [ "Gio:2.0", "GLib:2.0", "Gtk:3.0", "GObject:2.0", "GtkSource:3.0",
+"WebKit2:4.0", "JavaScriptCore:4.0" ] );
+
+class Controller
+{
+    activate()
+    {
+        this.webView = WebKit2.WebView( this.ui.widget("webView"));
+        this.webView.load_uri("file://" + io.dirname(io.self()) + "/dot.html");
+        var settings = this.webView.get_settings();
+        settings.set_javascript_can_open_windows_automatically(true);
+
+        this.path = "";
+        this.sourcefile = GtkSource.File.new();
+
+        this.lang_manager = GtkSource.LanguageManager.get_default();
+        var lang = this.lang_manager.get_language("dot");
+
+        this.buffer = GtkSource.Buffer.new_with_language(lang);
+        this.buffer.signal_connect( "changed", this.onChanged );
+
+        this.editor = GtkSource.View( this.ui.widget("editor"));
+        this.editor.set_buffer(this.buffer);
+
+
+    }
+
+    @accel("<ctrl>o")
+    openFile() 
+    {
+        var path = this.ui.openFile();
+        if(path)
+        {
+            this.load(path);
+        }
+    }
+
+    @accel("<ctrl>s")
+    saveFile() 
+    {
+        var path = this.ui.saveFile(this.path);
+        if(path)
+        {
+            this.save(path);
+        }
+    }
+
+    @accel("<ctrl>q")
+    onQuit()
+    {
+        this.wnd.destroy();
+    }
+
+    load(path)
+    {
+        this.path = path;
+                
+        var file = Gio.File.new_for_path(path);
+        this.sourcefile.set_location(file);
+
+        var loader = GtkSource.FileLoader.new( this.buffer, this.sourcefile);
+        loader.load_async(0, 0, 0, 0, 0, 0, 0);
+
+        this.ui.status_bar(path);
+    }
+
+    save(path)
+    {
+        this.path = path;
+
+        var txt = this.get_text();
+        io.flush(path,txt);
+    }
+
+    onChanged()
+    {
+        var txt = this.get_text();
+        GtkUI.invoke_javascript( this.webView, "render", txt );
+    }
+
+    get_text()
+    {
+        var startIter = Gtk.TextIter();
+        this.buffer.get_start_iter(startIter);
+
+        var endIter = Gtk.TextIter();
+        this.buffer.get_end_iter(endIter);
+
+        return this.buffer.get_text( startIter, endIter,false);
+    }
+
+    set_text(txt)
+    {
+        return this.buffer.set_text( txt, -1);
+    }
+}
+
+var controller = Controller();
+
+var gtkUi = GtkUI("dot.ui");
+gtkUi.run("moc.app",controller);
+

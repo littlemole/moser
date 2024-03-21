@@ -1,0 +1,9 @@
+print sys.popen("cmd /C type test.xml");
+
+// expect: <root>
+// expect: <object id="itsMe">
+// expect:   <data value="a"/>
+// expect:   <data value="b"/>
+// expect:   <data value="c"/>
+// expect:  </object>
+// expect: </root>

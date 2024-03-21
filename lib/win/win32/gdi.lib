@@ -1,0 +1,4105 @@
+{
+
+if( runtime.global("Win32") == nil ) { runtime.global("Win32", {}); }
+var Win32 = runtime.global("Win32");
+
+Win32.R2_MODE = {
+    "R2_BLACK" : 1, 
+    "R2_NOTMERGEPEN" : 2, 
+    "R2_MASKNOTPEN" : 3, 
+    "R2_NOTCOPYPEN" : 4, 
+    "R2_MASKPENNOT" : 5, 
+    "R2_NOT" : 6, 
+    "R2_XORPEN" : 7, 
+    "R2_NOTMASKPEN" : 8, 
+    "R2_MASKPEN" : 9, 
+    "R2_NOTXORPEN" : 10, 
+    "R2_NOP" : 11, 
+    "R2_MERGENOTPEN" : 12, 
+    "R2_COPYPEN" : 13, 
+    "R2_MERGEPENNOT" : 14, 
+    "R2_MERGEPEN" : 15, 
+    "R2_WHITE" : 16, 
+    "R2_LAST" : 16
+};
+
+
+Win32.RGN_COMBINE_MODE = {
+    "RGN_AND" : 1, 
+    "RGN_OR" : 2, 
+    "RGN_XOR" : 3, 
+    "RGN_DIFF" : 4, 
+    "RGN_COPY" : 5, 
+    "RGN_MIN" : 1, 
+    "RGN_MAX" : 5
+};
+
+
+Win32.ETO_OPTIONS = {
+    "ETO_OPAQUE" : 2, 
+    "ETO_CLIPPED" : 4, 
+    "ETO_GLYPH_INDEX" : 16, 
+    "ETO_RTLREADING" : 128, 
+    "ETO_NUMERICSLOCAL" : 1024, 
+    "ETO_NUMERICSLATIN" : 2048, 
+    "ETO_IGNORELANGUAGE" : 4096, 
+    "ETO_PDY" : 8192, 
+    "ETO_REVERSE_INDEX_MAP" : 65536
+};
+
+
+Win32.OBJ_TYPE = {
+    "OBJ_PEN" : 1, 
+    "OBJ_BRUSH" : 2, 
+    "OBJ_DC" : 3, 
+    "OBJ_METADC" : 4, 
+    "OBJ_PAL" : 5, 
+    "OBJ_FONT" : 6, 
+    "OBJ_BITMAP" : 7, 
+    "OBJ_REGION" : 8, 
+    "OBJ_METAFILE" : 9, 
+    "OBJ_MEMDC" : 10, 
+    "OBJ_EXTPEN" : 11, 
+    "OBJ_ENHMETADC" : 12, 
+    "OBJ_ENHMETAFILE" : 13, 
+    "OBJ_COLORSPACE" : 14
+};
+
+
+Win32.DIB_USAGE = {
+    "DIB_RGB_COLORS" : 0, 
+    "DIB_PAL_COLORS" : 1
+};
+
+
+Win32.DRAWEDGE_FLAGS = {
+    "BDR_RAISEDOUTER" : 1, 
+    "BDR_SUNKENOUTER" : 2, 
+    "BDR_RAISEDINNER" : 4, 
+    "BDR_SUNKENINNER" : 8, 
+    "BDR_OUTER" : 3, 
+    "BDR_INNER" : 12, 
+    "BDR_RAISED" : 5, 
+    "BDR_SUNKEN" : 10, 
+    "EDGE_RAISED" : 5, 
+    "EDGE_SUNKEN" : 10, 
+    "EDGE_ETCHED" : 6, 
+    "EDGE_BUMP" : 9
+};
+
+
+Win32.DFC_TYPE = {
+    "DFC_CAPTION" : 1, 
+    "DFC_MENU" : 2, 
+    "DFC_SCROLL" : 3, 
+    "DFC_BUTTON" : 4, 
+    "DFC_POPUPMENU" : 5
+};
+
+
+Win32.DFCS_STATE = {
+    "DFCS_CAPTIONCLOSE" : 0, 
+    "DFCS_CAPTIONMIN" : 1, 
+    "DFCS_CAPTIONMAX" : 2, 
+    "DFCS_CAPTIONRESTORE" : 3, 
+    "DFCS_CAPTIONHELP" : 4, 
+    "DFCS_MENUARROW" : 0, 
+    "DFCS_MENUCHECK" : 1, 
+    "DFCS_MENUBULLET" : 2, 
+    "DFCS_MENUARROWRIGHT" : 4, 
+    "DFCS_SCROLLUP" : 0, 
+    "DFCS_SCROLLDOWN" : 1, 
+    "DFCS_SCROLLLEFT" : 2, 
+    "DFCS_SCROLLRIGHT" : 3, 
+    "DFCS_SCROLLCOMBOBOX" : 5, 
+    "DFCS_SCROLLSIZEGRIP" : 8, 
+    "DFCS_SCROLLSIZEGRIPRIGHT" : 16, 
+    "DFCS_BUTTONCHECK" : 0, 
+    "DFCS_BUTTONRADIOIMAGE" : 1, 
+    "DFCS_BUTTONRADIOMASK" : 2, 
+    "DFCS_BUTTONRADIO" : 4, 
+    "DFCS_BUTTON3STATE" : 8, 
+    "DFCS_BUTTONPUSH" : 16, 
+    "DFCS_INACTIVE" : 256, 
+    "DFCS_PUSHED" : 512, 
+    "DFCS_CHECKED" : 1024, 
+    "DFCS_TRANSPARENT" : 2048, 
+    "DFCS_HOT" : 4096, 
+    "DFCS_ADJUSTRECT" : 8192, 
+    "DFCS_FLAT" : 16384, 
+    "DFCS_MONO" : 32768
+};
+
+
+Win32.CDS_TYPE = {
+    "CDS_FULLSCREEN" : 4, 
+    "CDS_GLOBAL" : 8, 
+    "CDS_NORESET" : 268435456, 
+    "CDS_RESET" : 1073741824, 
+    "CDS_SET_PRIMARY" : 16, 
+    "CDS_TEST" : 2, 
+    "CDS_UPDATEREGISTRY" : 1, 
+    "CDS_VIDEOPARAMETERS" : 32, 
+    "CDS_ENABLE_UNSAFE_MODES" : 256, 
+    "CDS_DISABLE_UNSAFE_MODES" : 512, 
+    "CDS_RESET_EX" : 536870912
+};
+
+
+Win32.DISP_CHANGE = {
+    "DISP_CHANGE_SUCCESSFUL" : 0, 
+    "DISP_CHANGE_RESTART" : 1, 
+    "DISP_CHANGE_FAILED" : -1, 
+    "DISP_CHANGE_BADMODE" : -2, 
+    "DISP_CHANGE_NOTUPDATED" : -3, 
+    "DISP_CHANGE_BADFLAGS" : -4, 
+    "DISP_CHANGE_BADPARAM" : -5, 
+    "DISP_CHANGE_BADDUALVIEW" : -6
+};
+
+
+Win32.DRAWSTATE_FLAGS = {
+    "DST_COMPLEX" : 0, 
+    "DST_TEXT" : 1, 
+    "DST_PREFIXTEXT" : 2, 
+    "DST_ICON" : 3, 
+    "DST_BITMAP" : 4, 
+    "DSS_NORMAL" : 0, 
+    "DSS_UNION" : 16, 
+    "DSS_DISABLED" : 32, 
+    "DSS_MONO" : 128, 
+    "DSS_HIDEPREFIX" : 512, 
+    "DSS_PREFIXONLY" : 1024, 
+    "DSS_RIGHT" : 32768
+};
+
+
+Win32.REDRAW_WINDOW_FLAGS = {
+    "RDW_INVALIDATE" : 1, 
+    "RDW_INTERNALPAINT" : 2, 
+    "RDW_ERASE" : 4, 
+    "RDW_VALIDATE" : 8, 
+    "RDW_NOINTERNALPAINT" : 16, 
+    "RDW_NOERASE" : 32, 
+    "RDW_NOCHILDREN" : 64, 
+    "RDW_ALLCHILDREN" : 128, 
+    "RDW_UPDATENOW" : 256, 
+    "RDW_ERASENOW" : 512, 
+    "RDW_FRAME" : 1024, 
+    "RDW_NOFRAME" : 2048
+};
+
+
+Win32.ENUM_DISPLAY_SETTINGS_MODE = {
+    "ENUM_CURRENT_SETTINGS" : 4294967295, 
+    "ENUM_REGISTRY_SETTINGS" : 4294967294
+};
+
+
+Win32.TEXT_ALIGN_OPTIONS = {
+    "TA_NOUPDATECP" : 0, 
+    "TA_UPDATECP" : 1, 
+    "TA_LEFT" : 0, 
+    "TA_RIGHT" : 2, 
+    "TA_CENTER" : 6, 
+    "TA_TOP" : 0, 
+    "TA_BOTTOM" : 8, 
+    "TA_BASELINE" : 24, 
+    "TA_RTLREADING" : 256, 
+    "TA_MASK" : 287, 
+    "VTA_BASELINE" : 24, 
+    "VTA_LEFT" : 8, 
+    "VTA_RIGHT" : 0, 
+    "VTA_CENTER" : 6, 
+    "VTA_BOTTOM" : 2, 
+    "VTA_TOP" : 0
+};
+
+
+Win32.PEN_STYLE = {
+    "PS_GEOMETRIC" : 65536, 
+    "PS_COSMETIC" : 0, 
+    "PS_SOLID" : 0, 
+    "PS_DASH" : 1, 
+    "PS_DOT" : 2, 
+    "PS_DASHDOT" : 3, 
+    "PS_DASHDOTDOT" : 4, 
+    "PS_NULL" : 5, 
+    "PS_INSIDEFRAME" : 6, 
+    "PS_USERSTYLE" : 7, 
+    "PS_ALTERNATE" : 8, 
+    "PS_STYLE_MASK" : 15, 
+    "PS_ENDCAP_ROUND" : 0, 
+    "PS_ENDCAP_SQUARE" : 256, 
+    "PS_ENDCAP_FLAT" : 512, 
+    "PS_ENDCAP_MASK" : 3840, 
+    "PS_JOIN_ROUND" : 0, 
+    "PS_JOIN_BEVEL" : 4096, 
+    "PS_JOIN_MITER" : 8192, 
+    "PS_JOIN_MASK" : 61440, 
+    "PS_TYPE_MASK" : 983040
+};
+
+
+Win32.TTEMBED_FLAGS = {
+    "TTEMBED_EMBEDEUDC" : 32, 
+    "TTEMBED_RAW" : 0, 
+    "TTEMBED_SUBSET" : 1, 
+    "TTEMBED_TTCOMPRESSED" : 4
+};
+
+
+Win32.DRAW_TEXT_FORMAT = {
+    "DT_BOTTOM" : 8, 
+    "DT_CALCRECT" : 1024, 
+    "DT_CENTER" : 1, 
+    "DT_EDITCONTROL" : 8192, 
+    "DT_END_ELLIPSIS" : 32768, 
+    "DT_EXPANDTABS" : 64, 
+    "DT_EXTERNALLEADING" : 512, 
+    "DT_HIDEPREFIX" : 1048576, 
+    "DT_INTERNAL" : 4096, 
+    "DT_LEFT" : 0, 
+    "DT_MODIFYSTRING" : 65536, 
+    "DT_NOCLIP" : 256, 
+    "DT_NOFULLWIDTHCHARBREAK" : 524288, 
+    "DT_NOPREFIX" : 2048, 
+    "DT_PATH_ELLIPSIS" : 16384, 
+    "DT_PREFIXONLY" : 2097152, 
+    "DT_RIGHT" : 2, 
+    "DT_RTLREADING" : 131072, 
+    "DT_SINGLELINE" : 32, 
+    "DT_TABSTOP" : 128, 
+    "DT_TOP" : 0, 
+    "DT_VCENTER" : 4, 
+    "DT_WORDBREAK" : 16, 
+    "DT_WORD_ELLIPSIS" : 262144
+};
+
+
+Win32.EMBED_FONT_CHARSET = {
+    "CHARSET_UNICODE" : 1, 
+    "CHARSET_SYMBOL" : 2
+};
+
+
+Win32.GET_DCX_FLAGS = {
+    "DCX_WINDOW" : 1, 
+    "DCX_CACHE" : 2, 
+    "DCX_PARENTCLIP" : 32, 
+    "DCX_CLIPSIBLINGS" : 16, 
+    "DCX_CLIPCHILDREN" : 8, 
+    "DCX_NORESETATTRS" : 4, 
+    "DCX_LOCKWINDOWUPDATE" : 1024, 
+    "DCX_EXCLUDERGN" : 64, 
+    "DCX_INTERSECTRGN" : 128, 
+    "DCX_INTERSECTUPDATE" : 512, 
+    "DCX_VALIDATE" : 2097152
+};
+
+
+Win32.GET_GLYPH_OUTLINE_FORMAT = {
+    "GGO_BEZIER" : 3, 
+    "GGO_BITMAP" : 1, 
+    "GGO_GLYPH_INDEX" : 128, 
+    "GGO_GRAY2_BITMAP" : 4, 
+    "GGO_GRAY4_BITMAP" : 5, 
+    "GGO_GRAY8_BITMAP" : 6, 
+    "GGO_METRICS" : 0, 
+    "GGO_NATIVE" : 2, 
+    "GGO_UNHINTED" : 256
+};
+
+
+Win32.SET_BOUNDS_RECT_FLAGS = {
+    "DCB_ACCUMULATE" : 2, 
+    "DCB_DISABLE" : 8, 
+    "DCB_ENABLE" : 4, 
+    "DCB_RESET" : 1
+};
+
+
+Win32.GET_STOCK_OBJECT_FLAGS = {
+    "BLACK_BRUSH" : 4, 
+    "DKGRAY_BRUSH" : 3, 
+    "DC_BRUSH" : 18, 
+    "GRAY_BRUSH" : 2, 
+    "HOLLOW_BRUSH" : 5, 
+    "LTGRAY_BRUSH" : 1, 
+    "NULL_BRUSH" : 5, 
+    "WHITE_BRUSH" : 0, 
+    "BLACK_PEN" : 7, 
+    "DC_PEN" : 19, 
+    "NULL_PEN" : 8, 
+    "WHITE_PEN" : 6, 
+    "ANSI_FIXED_FONT" : 11, 
+    "ANSI_VAR_FONT" : 12, 
+    "DEVICE_DEFAULT_FONT" : 14, 
+    "DEFAULT_GUI_FONT" : 17, 
+    "OEM_FIXED_FONT" : 10, 
+    "SYSTEM_FONT" : 13, 
+    "SYSTEM_FIXED_FONT" : 16, 
+    "DEFAULT_PALETTE" : 15
+};
+
+
+Win32.MODIFY_WORLD_TRANSFORM_MODE = {
+    "MWT_IDENTITY" : 1, 
+    "MWT_LEFTMULTIPLY" : 2, 
+    "MWT_RIGHTMULTIPLY" : 3
+};
+
+
+Win32.FONT_CLIP_PRECISION = {
+    "CLIP_DEFAULT_PRECIS" : 0, 
+    "CLIP_CHARACTER_PRECIS" : 1, 
+    "CLIP_STROKE_PRECIS" : 2, 
+    "CLIP_MASK" : 15, 
+    "CLIP_LH_ANGLES" : 16, 
+    "CLIP_TT_ALWAYS" : 32, 
+    "CLIP_DFA_DISABLE" : 64, 
+    "CLIP_EMBEDDED" : 128, 
+    "CLIP_DFA_OVERRIDE" : 64
+};
+
+
+Win32.CREATE_POLYGON_RGN_MODE = {
+    "ALTERNATE" : 1, 
+    "WINDING" : 2
+};
+
+
+Win32.EMBEDDED_FONT_PRIV_STATUS = {
+    "EMBED_PREVIEWPRINT" : 1, 
+    "EMBED_EDITABLE" : 2, 
+    "EMBED_INSTALLABLE" : 3, 
+    "EMBED_NOEMBEDDING" : 4
+};
+
+
+Win32.MONITOR_FROM_FLAGS = {
+    "MONITOR_DEFAULTTONEAREST" : 2, 
+    "MONITOR_DEFAULTTONULL" : 0, 
+    "MONITOR_DEFAULTTOPRIMARY" : 1
+};
+
+
+Win32.FONT_RESOURCE_CHARACTERISTICS = {
+    "FR_PRIVATE" : 16, 
+    "FR_NOT_ENUM" : 32
+};
+
+
+Win32.DC_LAYOUT = {
+    "LAYOUT_BITMAPORIENTATIONPRESERVED" : 8, 
+    "LAYOUT_RTL" : 1
+};
+
+
+Win32.GET_DEVICE_CAPS_INDEX = {
+    "DRIVERVERSION" : 0, 
+    "TECHNOLOGY" : 2, 
+    "HORZSIZE" : 4, 
+    "VERTSIZE" : 6, 
+    "HORZRES" : 8, 
+    "VERTRES" : 10, 
+    "BITSPIXEL" : 12, 
+    "PLANES" : 14, 
+    "NUMBRUSHES" : 16, 
+    "NUMPENS" : 18, 
+    "NUMMARKERS" : 20, 
+    "NUMFONTS" : 22, 
+    "NUMCOLORS" : 24, 
+    "PDEVICESIZE" : 26, 
+    "CURVECAPS" : 28, 
+    "LINECAPS" : 30, 
+    "POLYGONALCAPS" : 32, 
+    "TEXTCAPS" : 34, 
+    "CLIPCAPS" : 36, 
+    "RASTERCAPS" : 38, 
+    "ASPECTX" : 40, 
+    "ASPECTY" : 42, 
+    "ASPECTXY" : 44, 
+    "LOGPIXELSX" : 88, 
+    "LOGPIXELSY" : 90, 
+    "SIZEPALETTE" : 104, 
+    "NUMRESERVED" : 106, 
+    "COLORRES" : 108, 
+    "PHYSICALWIDTH" : 110, 
+    "PHYSICALHEIGHT" : 111, 
+    "PHYSICALOFFSETX" : 112, 
+    "PHYSICALOFFSETY" : 113, 
+    "SCALINGFACTORX" : 114, 
+    "SCALINGFACTORY" : 115, 
+    "VREFRESH" : 116, 
+    "DESKTOPVERTRES" : 117, 
+    "DESKTOPHORZRES" : 118, 
+    "BLTALIGNMENT" : 119, 
+    "SHADEBLENDCAPS" : 120, 
+    "COLORMGMTCAPS" : 121
+};
+
+
+Win32.FONT_OUTPUT_PRECISION = {
+    "OUT_DEFAULT_PRECIS" : 0, 
+    "OUT_STRING_PRECIS" : 1, 
+    "OUT_CHARACTER_PRECIS" : 2, 
+    "OUT_STROKE_PRECIS" : 3, 
+    "OUT_TT_PRECIS" : 4, 
+    "OUT_DEVICE_PRECIS" : 5, 
+    "OUT_RASTER_PRECIS" : 6, 
+    "OUT_TT_ONLY_PRECIS" : 7, 
+    "OUT_OUTLINE_PRECIS" : 8, 
+    "OUT_SCREEN_OUTLINE_PRECIS" : 9, 
+    "OUT_PS_ONLY_PRECIS" : 10
+};
+
+
+Win32.FONT_WEIGHT = {
+    "FW_DONTCARE" : 0, 
+    "FW_THIN" : 100, 
+    "FW_EXTRALIGHT" : 200, 
+    "FW_LIGHT" : 300, 
+    "FW_NORMAL" : 400, 
+    "FW_MEDIUM" : 500, 
+    "FW_SEMIBOLD" : 600, 
+    "FW_BOLD" : 700, 
+    "FW_EXTRABOLD" : 800, 
+    "FW_HEAVY" : 900, 
+    "FW_ULTRALIGHT" : 200, 
+    "FW_REGULAR" : 400, 
+    "FW_DEMIBOLD" : 600, 
+    "FW_ULTRABOLD" : 800, 
+    "FW_BLACK" : 900
+};
+
+
+Win32.FONT_CHARSET = {
+    "ANSI_CHARSET" : 0, 
+    "DEFAULT_CHARSET" : 1, 
+    "SYMBOL_CHARSET" : 2, 
+    "SHIFTJIS_CHARSET" : 128, 
+    "HANGEUL_CHARSET" : 129, 
+    "HANGUL_CHARSET" : 129, 
+    "GB2312_CHARSET" : 134, 
+    "CHINESEBIG5_CHARSET" : 136, 
+    "OEM_CHARSET" : 255, 
+    "JOHAB_CHARSET" : 130, 
+    "HEBREW_CHARSET" : 177, 
+    "ARABIC_CHARSET" : 178, 
+    "GREEK_CHARSET" : 161, 
+    "TURKISH_CHARSET" : 162, 
+    "VIETNAMESE_CHARSET" : 163, 
+    "THAI_CHARSET" : 222, 
+    "EASTEUROPE_CHARSET" : 238, 
+    "RUSSIAN_CHARSET" : 204, 
+    "MAC_CHARSET" : 77, 
+    "BALTIC_CHARSET" : 186
+};
+
+
+Win32.ARC_DIRECTION = {
+    "AD_COUNTERCLOCKWISE" : 1, 
+    "AD_CLOCKWISE" : 2
+};
+
+
+Win32.TTLOAD_EMBEDDED_FONT_STATUS = {
+    "TTLOAD_FONT_SUBSETTED" : 1, 
+    "TTLOAD_FONT_IN_SYSSTARTUP" : 2
+};
+
+
+Win32.STRETCH_BLT_MODE = {
+    "BLACKONWHITE" : 1, 
+    "COLORONCOLOR" : 3, 
+    "HALFTONE" : 4, 
+    "STRETCH_ANDSCANS" : 1, 
+    "STRETCH_DELETESCANS" : 3, 
+    "STRETCH_HALFTONE" : 4, 
+    "STRETCH_ORSCANS" : 2, 
+    "WHITEONBLACK" : 2
+};
+
+
+Win32.FONT_QUALITY = {
+    "DEFAULT_QUALITY" : 0, 
+    "DRAFT_QUALITY" : 1, 
+    "PROOF_QUALITY" : 2, 
+    "NONANTIALIASED_QUALITY" : 3, 
+    "ANTIALIASED_QUALITY" : 4, 
+    "CLEARTYPE_QUALITY" : 5
+};
+
+
+Win32.BACKGROUND_MODE = {
+    "OPAQUE" : 2, 
+    "TRANSPARENT" : 1
+};
+
+
+Win32.GET_CHARACTER_PLACEMENT_FLAGS = {
+    "GCP_CLASSIN" : 524288, 
+    "GCP_DIACRITIC" : 256, 
+    "GCP_DISPLAYZWG" : 4194304, 
+    "GCP_GLYPHSHAPE" : 16, 
+    "GCP_JUSTIFY" : 65536, 
+    "GCP_KASHIDA" : 1024, 
+    "GCP_LIGATE" : 32, 
+    "GCP_MAXEXTENT" : 1048576, 
+    "GCP_NEUTRALOVERRIDE" : 33554432, 
+    "GCP_NUMERICOVERRIDE" : 16777216, 
+    "GCP_NUMERICSLATIN" : 67108864, 
+    "GCP_NUMERICSLOCAL" : 134217728, 
+    "GCP_REORDER" : 2, 
+    "GCP_SYMSWAPOFF" : 8388608, 
+    "GCP_USEKERNING" : 8
+};
+
+
+Win32.DRAW_EDGE_FLAGS = {
+    "BF_ADJUST" : 8192, 
+    "BF_BOTTOM" : 8, 
+    "BF_BOTTOMLEFT" : 9, 
+    "BF_BOTTOMRIGHT" : 12, 
+    "BF_DIAGONAL" : 16, 
+    "BF_DIAGONAL_ENDBOTTOMLEFT" : 25, 
+    "BF_DIAGONAL_ENDBOTTOMRIGHT" : 28, 
+    "BF_DIAGONAL_ENDTOPLEFT" : 19, 
+    "BF_DIAGONAL_ENDTOPRIGHT" : 22, 
+    "BF_FLAT" : 16384, 
+    "BF_LEFT" : 1, 
+    "BF_MIDDLE" : 2048, 
+    "BF_MONO" : 32768, 
+    "BF_RECT" : 15, 
+    "BF_RIGHT" : 4, 
+    "BF_SOFT" : 4096, 
+    "BF_TOP" : 2, 
+    "BF_TOPLEFT" : 3, 
+    "BF_TOPRIGHT" : 6
+};
+
+
+Win32.SYS_COLOR_INDEX = {
+    "COLOR_SCROLLBAR" : 0, 
+    "COLOR_BACKGROUND" : 1, 
+    "COLOR_ACTIVECAPTION" : 2, 
+    "COLOR_INACTIVECAPTION" : 3, 
+    "COLOR_MENU" : 4, 
+    "COLOR_WINDOW" : 5, 
+    "COLOR_WINDOWFRAME" : 6, 
+    "COLOR_MENUTEXT" : 7, 
+    "COLOR_WINDOWTEXT" : 8, 
+    "COLOR_CAPTIONTEXT" : 9, 
+    "COLOR_ACTIVEBORDER" : 10, 
+    "COLOR_INACTIVEBORDER" : 11, 
+    "COLOR_APPWORKSPACE" : 12, 
+    "COLOR_HIGHLIGHT" : 13, 
+    "COLOR_HIGHLIGHTTEXT" : 14, 
+    "COLOR_BTNFACE" : 15, 
+    "COLOR_BTNSHADOW" : 16, 
+    "COLOR_GRAYTEXT" : 17, 
+    "COLOR_BTNTEXT" : 18, 
+    "COLOR_INACTIVECAPTIONTEXT" : 19, 
+    "COLOR_BTNHIGHLIGHT" : 20, 
+    "COLOR_3DDKSHADOW" : 21, 
+    "COLOR_3DLIGHT" : 22, 
+    "COLOR_INFOTEXT" : 23, 
+    "COLOR_INFOBK" : 24, 
+    "COLOR_HOTLIGHT" : 26, 
+    "COLOR_GRADIENTACTIVECAPTION" : 27, 
+    "COLOR_GRADIENTINACTIVECAPTION" : 28, 
+    "COLOR_MENUHILIGHT" : 29, 
+    "COLOR_MENUBAR" : 30, 
+    "COLOR_DESKTOP" : 1, 
+    "COLOR_3DFACE" : 15, 
+    "COLOR_3DSHADOW" : 16, 
+    "COLOR_3DHIGHLIGHT" : 20, 
+    "COLOR_3DHILIGHT" : 20, 
+    "COLOR_BTNHILIGHT" : 20
+};
+
+
+Win32.FONT_LICENSE_PRIVS = {
+    "LICENSE_PREVIEWPRINT" : 4, 
+    "LICENSE_EDITABLE" : 8, 
+    "LICENSE_INSTALLABLE" : 0, 
+    "LICENSE_NOEMBEDDING" : 2, 
+    "LICENSE_DEFAULT" : 0
+};
+
+
+Win32.GRADIENT_FILL = {
+    "GRADIENT_FILL_RECT_H" : 0, 
+    "GRADIENT_FILL_RECT_V" : 1, 
+    "GRADIENT_FILL_TRIANGLE" : 2
+};
+
+
+Win32.CREATE_FONT_PACKAGE_SUBSET_ENCODING = {
+    "TTFCFP_STD_MAC_CHAR_SET" : 0, 
+    "TTFCFP_SYMBOL_CHAR_SET" : 0, 
+    "TTFCFP_UNICODE_CHAR_SET" : 1
+};
+
+
+Win32.EXT_FLOOD_FILL_TYPE = {
+    "FLOODFILLBORDER" : 0, 
+    "FLOODFILLSURFACE" : 1
+};
+
+
+Win32.HATCH_BRUSH_STYLE = {
+    "HS_BDIAGONAL" : 3, 
+    "HS_CROSS" : 4, 
+    "HS_DIAGCROSS" : 5, 
+    "HS_FDIAGONAL" : 2, 
+    "HS_HORIZONTAL" : 0, 
+    "HS_VERTICAL" : 1
+};
+
+
+Win32.DRAW_CAPTION_FLAGS = {
+    "DC_ACTIVE" : 1, 
+    "DC_BUTTONS" : 4096, 
+    "DC_GRADIENT" : 32, 
+    "DC_ICON" : 4, 
+    "DC_INBUTTON" : 16, 
+    "DC_SMALLCAP" : 2, 
+    "DC_TEXT" : 8
+};
+
+
+Win32.SYSTEM_PALETTE_USE = {
+    "SYSPAL_NOSTATIC" : 2, 
+    "SYSPAL_NOSTATIC256" : 3, 
+    "SYSPAL_STATIC" : 1
+};
+
+
+Win32.GRAPHICS_MODE = {
+    "GM_COMPATIBLE" : 1, 
+    "GM_ADVANCED" : 2
+};
+
+
+Win32.FONT_PITCH = {
+    "DEFAULT_PITCH" : 0, 
+    "FIXED_PITCH" : 1, 
+    "VARIABLE_PITCH" : 2
+};
+
+
+Win32.FONT_FAMILY = {
+    "FF_DECORATIVE" : 80, 
+    "FF_DONTCARE" : 0, 
+    "FF_MODERN" : 48, 
+    "FF_ROMAN" : 16, 
+    "FF_SCRIPT" : 64, 
+    "FF_SWISS" : 32
+};
+
+
+Win32.ROP_CODE = {
+    "BLACKNESS" : 66, 
+    "NOTSRCERASE" : 1114278, 
+    "NOTSRCCOPY" : 3342344, 
+    "SRCERASE" : 4457256, 
+    "DSTINVERT" : 5570569, 
+    "PATINVERT" : 5898313, 
+    "SRCINVERT" : 6684742, 
+    "SRCAND" : 8913094, 
+    "MERGEPAINT" : 12255782, 
+    "MERGECOPY" : 12583114, 
+    "SRCCOPY" : 13369376, 
+    "SRCPAINT" : 15597702, 
+    "PATCOPY" : 15728673, 
+    "PATPAINT" : 16452105, 
+    "WHITENESS" : 16711778, 
+    "CAPTUREBLT" : 1073741824, 
+    "NOMIRRORBITMAP" : 2147483648
+};
+
+
+Win32.CREATE_FONT_PACKAGE_SUBSET_PLATFORM = {
+    "TTFCFP_UNICODE_PLATFORMID" : 0, 
+    "TTFCFP_ISO_PLATFORMID" : 2
+};
+
+
+Win32.HDC_MAP_MODE = {
+    "MM_ANISOTROPIC" : 8, 
+    "MM_HIENGLISH" : 5, 
+    "MM_HIMETRIC" : 3, 
+    "MM_ISOTROPIC" : 7, 
+    "MM_LOENGLISH" : 4, 
+    "MM_LOMETRIC" : 2, 
+    "MM_TEXT" : 1, 
+    "MM_TWIPS" : 6
+};
+
+
+Win32.GDI_REGION_TYPE = {
+    "RGN_ERROR" : 0, 
+    "NULLREGION" : 1, 
+    "SIMPLEREGION" : 2, 
+    "COMPLEXREGION" : 3
+};
+
+
+Win32.BRUSH_STYLE = {
+    "BS_SOLID" : 0, 
+    "BS_NULL" : 1, 
+    "BS_HOLLOW" : 1, 
+    "BS_HATCHED" : 2, 
+    "BS_PATTERN" : 3, 
+    "BS_INDEXED" : 4, 
+    "BS_DIBPATTERN" : 5, 
+    "BS_DIBPATTERNPT" : 6, 
+    "BS_PATTERN8X8" : 7, 
+    "BS_DIBPATTERN8X8" : 8, 
+    "BS_MONOPATTERN" : 9
+};
+
+
+Win32.TMPF_FLAGS = {
+    "TMPF_FIXED_PITCH" : 1, 
+    "TMPF_VECTOR" : 2, 
+    "TMPF_DEVICE" : 8, 
+    "TMPF_TRUETYPE" : 4
+};
+
+
+Win32.BI_COMPRESSION = {
+    "BI_RGB" : 0, 
+    "BI_RLE8" : 1, 
+    "BI_RLE4" : 2, 
+    "BI_BITFIELDS" : 3, 
+    "BI_JPEG" : 4, 
+    "BI_PNG" : 5
+};
+
+
+Win32.ENHANCED_METAFILE_RECORD_TYPE = {
+    "EMR_HEADER" : 1, 
+    "EMR_POLYBEZIER" : 2, 
+    "EMR_POLYGON" : 3, 
+    "EMR_POLYLINE" : 4, 
+    "EMR_POLYBEZIERTO" : 5, 
+    "EMR_POLYLINETO" : 6, 
+    "EMR_POLYPOLYLINE" : 7, 
+    "EMR_POLYPOLYGON" : 8, 
+    "EMR_SETWINDOWEXTEX" : 9, 
+    "EMR_SETWINDOWORGEX" : 10, 
+    "EMR_SETVIEWPORTEXTEX" : 11, 
+    "EMR_SETVIEWPORTORGEX" : 12, 
+    "EMR_SETBRUSHORGEX" : 13, 
+    "EMR_EOF" : 14, 
+    "EMR_SETPIXELV" : 15, 
+    "EMR_SETMAPPERFLAGS" : 16, 
+    "EMR_SETMAPMODE" : 17, 
+    "EMR_SETBKMODE" : 18, 
+    "EMR_SETPOLYFILLMODE" : 19, 
+    "EMR_SETROP2" : 20, 
+    "EMR_SETSTRETCHBLTMODE" : 21, 
+    "EMR_SETTEXTALIGN" : 22, 
+    "EMR_SETCOLORADJUSTMENT" : 23, 
+    "EMR_SETTEXTCOLOR" : 24, 
+    "EMR_SETBKCOLOR" : 25, 
+    "EMR_OFFSETCLIPRGN" : 26, 
+    "EMR_MOVETOEX" : 27, 
+    "EMR_SETMETARGN" : 28, 
+    "EMR_EXCLUDECLIPRECT" : 29, 
+    "EMR_INTERSECTCLIPRECT" : 30, 
+    "EMR_SCALEVIEWPORTEXTEX" : 31, 
+    "EMR_SCALEWINDOWEXTEX" : 32, 
+    "EMR_SAVEDC" : 33, 
+    "EMR_RESTOREDC" : 34, 
+    "EMR_SETWORLDTRANSFORM" : 35, 
+    "EMR_MODIFYWORLDTRANSFORM" : 36, 
+    "EMR_SELECTOBJECT" : 37, 
+    "EMR_CREATEPEN" : 38, 
+    "EMR_CREATEBRUSHINDIRECT" : 39, 
+    "EMR_DELETEOBJECT" : 40, 
+    "EMR_ANGLEARC" : 41, 
+    "EMR_ELLIPSE" : 42, 
+    "EMR_RECTANGLE" : 43, 
+    "EMR_ROUNDRECT" : 44, 
+    "EMR_ARC" : 45, 
+    "EMR_CHORD" : 46, 
+    "EMR_PIE" : 47, 
+    "EMR_SELECTPALETTE" : 48, 
+    "EMR_CREATEPALETTE" : 49, 
+    "EMR_SETPALETTEENTRIES" : 50, 
+    "EMR_RESIZEPALETTE" : 51, 
+    "EMR_REALIZEPALETTE" : 52, 
+    "EMR_EXTFLOODFILL" : 53, 
+    "EMR_LINETO" : 54, 
+    "EMR_ARCTO" : 55, 
+    "EMR_POLYDRAW" : 56, 
+    "EMR_SETARCDIRECTION" : 57, 
+    "EMR_SETMITERLIMIT" : 58, 
+    "EMR_BEGINPATH" : 59, 
+    "EMR_ENDPATH" : 60, 
+    "EMR_CLOSEFIGURE" : 61, 
+    "EMR_FILLPATH" : 62, 
+    "EMR_STROKEANDFILLPATH" : 63, 
+    "EMR_STROKEPATH" : 64, 
+    "EMR_FLATTENPATH" : 65, 
+    "EMR_WIDENPATH" : 66, 
+    "EMR_SELECTCLIPPATH" : 67, 
+    "EMR_ABORTPATH" : 68, 
+    "EMR_GDICOMMENT" : 70, 
+    "EMR_FILLRGN" : 71, 
+    "EMR_FRAMERGN" : 72, 
+    "EMR_INVERTRGN" : 73, 
+    "EMR_PAINTRGN" : 74, 
+    "EMR_EXTSELECTCLIPRGN" : 75, 
+    "EMR_BITBLT" : 76, 
+    "EMR_STRETCHBLT" : 77, 
+    "EMR_MASKBLT" : 78, 
+    "EMR_PLGBLT" : 79, 
+    "EMR_SETDIBITSTODEVICE" : 80, 
+    "EMR_STRETCHDIBITS" : 81, 
+    "EMR_EXTCREATEFONTINDIRECTW" : 82, 
+    "EMR_EXTTEXTOUTA" : 83, 
+    "EMR_EXTTEXTOUTW" : 84, 
+    "EMR_POLYBEZIER16" : 85, 
+    "EMR_POLYGON16" : 86, 
+    "EMR_POLYLINE16" : 87, 
+    "EMR_POLYBEZIERTO16" : 88, 
+    "EMR_POLYLINETO16" : 89, 
+    "EMR_POLYPOLYLINE16" : 90, 
+    "EMR_POLYPOLYGON16" : 91, 
+    "EMR_POLYDRAW16" : 92, 
+    "EMR_CREATEMONOBRUSH" : 93, 
+    "EMR_CREATEDIBPATTERNBRUSHPT" : 94, 
+    "EMR_EXTCREATEPEN" : 95, 
+    "EMR_POLYTEXTOUTA" : 96, 
+    "EMR_POLYTEXTOUTW" : 97, 
+    "EMR_SETICMMODE" : 98, 
+    "EMR_CREATECOLORSPACE" : 99, 
+    "EMR_SETCOLORSPACE" : 100, 
+    "EMR_DELETECOLORSPACE" : 101, 
+    "EMR_GLSRECORD" : 102, 
+    "EMR_GLSBOUNDEDRECORD" : 103, 
+    "EMR_PIXELFORMAT" : 104, 
+    "EMR_RESERVED_105" : 105, 
+    "EMR_RESERVED_106" : 106, 
+    "EMR_RESERVED_107" : 107, 
+    "EMR_RESERVED_108" : 108, 
+    "EMR_RESERVED_109" : 109, 
+    "EMR_RESERVED_110" : 110, 
+    "EMR_COLORCORRECTPALETTE" : 111, 
+    "EMR_SETICMPROFILEA" : 112, 
+    "EMR_SETICMPROFILEW" : 113, 
+    "EMR_ALPHABLEND" : 114, 
+    "EMR_SETLAYOUT" : 115, 
+    "EMR_TRANSPARENTBLT" : 116, 
+    "EMR_RESERVED_117" : 117, 
+    "EMR_GRADIENTFILL" : 118, 
+    "EMR_RESERVED_119" : 119, 
+    "EMR_RESERVED_120" : 120, 
+    "EMR_COLORMATCHTOTARGETW" : 121, 
+    "EMR_CREATECOLORSPACEW" : 122, 
+    "EMR_MIN" : 1, 
+    "EMR_MAX" : 122
+};
+
+
+Win32.DEVMODE_FIELD_FLAGS = {
+    "DM_SPECVERSION" : 1025, 
+    "DM_ORIENTATION" : 1, 
+    "DM_PAPERSIZE" : 2, 
+    "DM_PAPERLENGTH" : 4, 
+    "DM_PAPERWIDTH" : 8, 
+    "DM_SCALE" : 16, 
+    "DM_POSITION" : 32, 
+    "DM_NUP" : 64, 
+    "DM_DISPLAYORIENTATION" : 128, 
+    "DM_COPIES" : 256, 
+    "DM_DEFAULTSOURCE" : 512, 
+    "DM_PRINTQUALITY" : 1024, 
+    "DM_COLOR" : 2048, 
+    "DM_DUPLEX" : 4096, 
+    "DM_YRESOLUTION" : 8192, 
+    "DM_TTOPTION" : 16384, 
+    "DM_COLLATE" : 32768, 
+    "DM_FORMNAME" : 65536, 
+    "DM_LOGPIXELS" : 131072, 
+    "DM_BITSPERPEL" : 262144, 
+    "DM_PELSWIDTH" : 524288, 
+    "DM_PELSHEIGHT" : 1048576, 
+    "DM_DISPLAYFLAGS" : 2097152, 
+    "DM_DISPLAYFREQUENCY" : 4194304, 
+    "DM_ICMMETHOD" : 8388608, 
+    "DM_ICMINTENT" : 16777216, 
+    "DM_MEDIATYPE" : 33554432, 
+    "DM_DITHERTYPE" : 67108864, 
+    "DM_PANNINGWIDTH" : 134217728, 
+    "DM_PANNINGHEIGHT" : 268435456, 
+    "DM_DISPLAYFIXEDOUTPUT" : 536870912, 
+    "DM_INTERLACED" : 2, 
+    "DM_UPDATE" : 1, 
+    "DM_COPY" : 2, 
+    "DM_PROMPT" : 4, 
+    "DM_MODIFY" : 8, 
+    "DM_IN_BUFFER" : 8, 
+    "DM_IN_PROMPT" : 4, 
+    "DM_OUT_BUFFER" : 2, 
+    "DM_OUT_DEFAULT" : 1
+};
+
+
+Win32.DEVMODE_COLOR = {
+    "DMCOLOR_MONOCHROME" : 1, 
+    "DMCOLOR_COLOR" : 2
+};
+
+
+Win32.DEVMODE_DUPLEX = {
+    "DMDUP_SIMPLEX" : 1, 
+    "DMDUP_VERTICAL" : 2, 
+    "DMDUP_HORIZONTAL" : 3
+};
+
+
+Win32.DEVMODE_COLLATE = {
+    "DMCOLLATE_FALSE" : 0, 
+    "DMCOLLATE_TRUE" : 1
+};
+
+
+Win32.DEVMODE_TRUETYPE_OPTION = {
+    "DMTT_BITMAP" : 1, 
+    "DMTT_DOWNLOAD" : 2, 
+    "DMTT_SUBDEV" : 3, 
+    "DMTT_DOWNLOAD_OUTLINE" : 4
+};
+
+
+Win32.PAN_FAMILY_TYPE = {
+    "PAN_FAMILY_ANY" : 0, 
+    "PAN_FAMILY_NO_FIT" : 1, 
+    "PAN_FAMILY_TEXT_DISPLAY" : 2, 
+    "PAN_FAMILY_SCRIPT" : 3, 
+    "PAN_FAMILY_DECORATIVE" : 4, 
+    "PAN_FAMILY_PICTORIAL" : 5
+};
+
+
+Win32.PAN_SERIF_STYLE = {
+    "PAN_SERIF_ANY" : 0, 
+    "PAN_SERIF_NO_FIT" : 1, 
+    "PAN_SERIF_COVE" : 2, 
+    "PAN_SERIF_OBTUSE_COVE" : 3, 
+    "PAN_SERIF_SQUARE_COVE" : 4, 
+    "PAN_SERIF_OBTUSE_SQUARE_COVE" : 5, 
+    "PAN_SERIF_SQUARE" : 6, 
+    "PAN_SERIF_THIN" : 7, 
+    "PAN_SERIF_BONE" : 8, 
+    "PAN_SERIF_EXAGGERATED" : 9, 
+    "PAN_SERIF_TRIANGLE" : 10, 
+    "PAN_SERIF_NORMAL_SANS" : 11, 
+    "PAN_SERIF_OBTUSE_SANS" : 12, 
+    "PAN_SERIF_PERP_SANS" : 13, 
+    "PAN_SERIF_FLARED" : 14, 
+    "PAN_SERIF_ROUNDED" : 15
+};
+
+
+Win32.PAN_WEIGHT = {
+    "PAN_WEIGHT_ANY" : 0, 
+    "PAN_WEIGHT_NO_FIT" : 1, 
+    "PAN_WEIGHT_INDEX" : 2, 
+    "PAN_WEIGHT_VERY_LIGHT" : 2, 
+    "PAN_WEIGHT_LIGHT" : 3, 
+    "PAN_WEIGHT_THIN" : 4, 
+    "PAN_WEIGHT_BOOK" : 5, 
+    "PAN_WEIGHT_MEDIUM" : 6, 
+    "PAN_WEIGHT_DEMI" : 7, 
+    "PAN_WEIGHT_BOLD" : 8, 
+    "PAN_WEIGHT_HEAVY" : 9, 
+    "PAN_WEIGHT_BLACK" : 10, 
+    "PAN_WEIGHT_NORD" : 11
+};
+
+
+Win32.PAN_STROKE_VARIATION = {
+    "PAN_STROKE_ANY" : 0, 
+    "PAN_STROKE_NO_FIT" : 1, 
+    "PAN_STROKE_GRADUAL_DIAG" : 2, 
+    "PAN_STROKE_GRADUAL_TRAN" : 3, 
+    "PAN_STROKE_GRADUAL_VERT" : 4, 
+    "PAN_STROKE_GRADUAL_HORZ" : 5, 
+    "PAN_STROKE_RAPID_VERT" : 6, 
+    "PAN_STROKE_RAPID_HORZ" : 7, 
+    "PAN_STROKE_INSTANT_VERT" : 8
+};
+
+
+Win32.PAN_PROPORTION = {
+    "PAN_PROP_ANY" : 0, 
+    "PAN_PROP_NO_FIT" : 1, 
+    "PAN_PROP_OLD_STYLE" : 2, 
+    "PAN_PROP_MODERN" : 3, 
+    "PAN_PROP_EVEN_WIDTH" : 4, 
+    "PAN_PROP_EXPANDED" : 5, 
+    "PAN_PROP_CONDENSED" : 6, 
+    "PAN_PROP_VERY_EXPANDED" : 7, 
+    "PAN_PROP_VERY_CONDENSED" : 8, 
+    "PAN_PROP_MONOSPACED" : 9
+};
+
+
+Win32.PAN_CONTRAST = {
+    "PAN_CONTRAST_ANY" : 0, 
+    "PAN_CONTRAST_NO_FIT" : 1, 
+    "PAN_CONTRAST_INDEX" : 4, 
+    "PAN_CONTRAST_NONE" : 2, 
+    "PAN_CONTRAST_VERY_LOW" : 3, 
+    "PAN_CONTRAST_LOW" : 4, 
+    "PAN_CONTRAST_MEDIUM_LOW" : 5, 
+    "PAN_CONTRAST_MEDIUM" : 6, 
+    "PAN_CONTRAST_MEDIUM_HIGH" : 7, 
+    "PAN_CONTRAST_HIGH" : 8, 
+    "PAN_CONTRAST_VERY_HIGH" : 9
+};
+
+
+Win32.PAN_ARM_STYLE = {
+    "PAN_ARM_ANY" : 0, 
+    "PAN_ARM_NO_FIT" : 1, 
+    "PAN_STRAIGHT_ARMS_HORZ" : 2, 
+    "PAN_STRAIGHT_ARMS_WEDGE" : 3, 
+    "PAN_STRAIGHT_ARMS_VERT" : 4, 
+    "PAN_STRAIGHT_ARMS_SINGLE_SERIF" : 5, 
+    "PAN_STRAIGHT_ARMS_DOUBLE_SERIF" : 6, 
+    "PAN_BENT_ARMS_HORZ" : 7, 
+    "PAN_BENT_ARMS_WEDGE" : 8, 
+    "PAN_BENT_ARMS_VERT" : 9, 
+    "PAN_BENT_ARMS_SINGLE_SERIF" : 10, 
+    "PAN_BENT_ARMS_DOUBLE_SERIF" : 11
+};
+
+
+Win32.PAN_LETT_FORM = {
+    "PAN_LETT_FORM_ANY" : 0, 
+    "PAN_LETT_FORM_NO_FIT" : 1, 
+    "PAN_LETT_NORMAL_CONTACT" : 2, 
+    "PAN_LETT_NORMAL_WEIGHTED" : 3, 
+    "PAN_LETT_NORMAL_BOXED" : 4, 
+    "PAN_LETT_NORMAL_FLATTENED" : 5, 
+    "PAN_LETT_NORMAL_ROUNDED" : 6, 
+    "PAN_LETT_NORMAL_OFF_CENTER" : 7, 
+    "PAN_LETT_NORMAL_SQUARE" : 8, 
+    "PAN_LETT_OBLIQUE_CONTACT" : 9, 
+    "PAN_LETT_OBLIQUE_WEIGHTED" : 10, 
+    "PAN_LETT_OBLIQUE_BOXED" : 11, 
+    "PAN_LETT_OBLIQUE_FLATTENED" : 12, 
+    "PAN_LETT_OBLIQUE_ROUNDED" : 13, 
+    "PAN_LETT_OBLIQUE_OFF_CENTER" : 14, 
+    "PAN_LETT_OBLIQUE_SQUARE" : 15
+};
+
+
+Win32.PAN_MIDLINE = {
+    "PAN_MIDLINE_ANY" : 0, 
+    "PAN_MIDLINE_NO_FIT" : 1, 
+    "PAN_MIDLINE_INDEX" : 8, 
+    "PAN_MIDLINE_STANDARD_TRIMMED" : 2, 
+    "PAN_MIDLINE_STANDARD_POINTED" : 3, 
+    "PAN_MIDLINE_STANDARD_SERIFED" : 4, 
+    "PAN_MIDLINE_HIGH_TRIMMED" : 5, 
+    "PAN_MIDLINE_HIGH_POINTED" : 6, 
+    "PAN_MIDLINE_HIGH_SERIFED" : 7, 
+    "PAN_MIDLINE_CONSTANT_TRIMMED" : 8, 
+    "PAN_MIDLINE_CONSTANT_POINTED" : 9, 
+    "PAN_MIDLINE_CONSTANT_SERIFED" : 10, 
+    "PAN_MIDLINE_LOW_TRIMMED" : 11, 
+    "PAN_MIDLINE_LOW_POINTED" : 12, 
+    "PAN_MIDLINE_LOW_SERIFED" : 13
+};
+
+
+Win32.PAN_XHEIGHT = {
+    "PAN_XHEIGHT_ANY" : 0, 
+    "PAN_XHEIGHT_NO_FIT" : 1, 
+    "PAN_XHEIGHT_INDEX" : 9, 
+    "PAN_XHEIGHT_CONSTANT_SMALL" : 2, 
+    "PAN_XHEIGHT_CONSTANT_STD" : 3, 
+    "PAN_XHEIGHT_CONSTANT_LARGE" : 4, 
+    "PAN_XHEIGHT_DUCKING_SMALL" : 5, 
+    "PAN_XHEIGHT_DUCKING_STD" : 6, 
+    "PAN_XHEIGHT_DUCKING_LARGE" : 7
+};
+
+
+Win32.DISPLAYCONFIG_COLOR_ENCODING = {
+    "DISPLAYCONFIG_COLOR_ENCODING_RGB" : 0, 
+    "DISPLAYCONFIG_COLOR_ENCODING_YCBCR444" : 1, 
+    "DISPLAYCONFIG_COLOR_ENCODING_YCBCR422" : 2, 
+    "DISPLAYCONFIG_COLOR_ENCODING_YCBCR420" : 3, 
+    "DISPLAYCONFIG_COLOR_ENCODING_INTENSITY" : 4, 
+    "DISPLAYCONFIG_COLOR_ENCODING_FORCE_UINT32" : -1
+};
+
+
+Win32.MONITORINFOEXA = foreign.named_struct( "Windows.Win32.Graphics.Gdi.MONITORINFOEXA", [ 
+    "monitorInfo:Windows.Win32.Graphics.Gdi.MONITORINFO", 
+    "szDevice[32]:Windows.Win32.Foundation.CHAR"
+]); 
+
+
+Win32.MONITORINFOEXW = foreign.named_struct( "Windows.Win32.Graphics.Gdi.MONITORINFOEXW", [ 
+    "monitorInfo:Windows.Win32.Graphics.Gdi.MONITORINFO", 
+    "szDevice[32]:short"
+]); 
+
+
+Win32.HDC = foreign.named_struct( "Windows.Win32.Graphics.Gdi.HDC", [ 
+    "Value:ptr"
+]); 
+
+
+Win32.CreatedHDC = foreign.named_struct( "Windows.Win32.Graphics.Gdi.CreatedHDC", [ 
+    "Value:ptr"
+]); 
+
+
+Win32.HBITMAP = foreign.named_struct( "Windows.Win32.Graphics.Gdi.HBITMAP", [ 
+    "Value:ptr"
+]); 
+
+
+Win32.HRGN = foreign.named_struct( "Windows.Win32.Graphics.Gdi.HRGN", [ 
+    "Value:ptr"
+]); 
+
+
+Win32.HPEN = foreign.named_struct( "Windows.Win32.Graphics.Gdi.HPEN", [ 
+    "Value:ptr"
+]); 
+
+
+Win32.HBRUSH = foreign.named_struct( "Windows.Win32.Graphics.Gdi.HBRUSH", [ 
+    "Value:ptr"
+]); 
+
+
+Win32.HFONT = foreign.named_struct( "Windows.Win32.Graphics.Gdi.HFONT", [ 
+    "Value:ptr"
+]); 
+
+
+Win32.HMETAFILE = foreign.named_struct( "Windows.Win32.Graphics.Gdi.HMETAFILE", [ 
+    "Value:ptr"
+]); 
+
+
+Win32.HENHMETAFILE = foreign.named_struct( "Windows.Win32.Graphics.Gdi.HENHMETAFILE", [ 
+    "Value:ptr"
+]); 
+
+
+Win32.HPALETTE = foreign.named_struct( "Windows.Win32.Graphics.Gdi.HPALETTE", [ 
+    "Value:ptr"
+]); 
+
+
+Win32.HdcMetdataFileHandle = foreign.named_struct( "Windows.Win32.Graphics.Gdi.HdcMetdataFileHandle", [ 
+    "Value:ptr"
+]); 
+
+
+Win32.HdcMetdataEnhFileHandle = foreign.named_struct( "Windows.Win32.Graphics.Gdi.HdcMetdataEnhFileHandle", [ 
+    "Value:ptr"
+]); 
+
+
+Win32.HGDIOBJ = foreign.named_struct( "Windows.Win32.Graphics.Gdi.HGDIOBJ", [ 
+    "Value:ptr"
+]); 
+
+
+Win32.HMONITOR = foreign.named_struct( "Windows.Win32.Graphics.Gdi.HMONITOR", [ 
+    "Value:ptr"
+]); 
+
+
+Win32.XFORM = foreign.named_struct( "Windows.Win32.Graphics.Gdi.XFORM", [ 
+    "eM11:float", 
+    "eM12:float", 
+    "eM21:float", 
+    "eM22:float", 
+    "eDx:float", 
+    "eDy:float"
+]); 
+
+
+Win32.BITMAP = foreign.named_struct( "Windows.Win32.Graphics.Gdi.BITMAP", [ 
+    "bmType:int", 
+    "bmWidth:int", 
+    "bmHeight:int", 
+    "bmWidthBytes:int", 
+    "bmPlanes:ushort", 
+    "bmBitsPixel:ushort", 
+    "bmBits:ptr"
+]); 
+
+
+Win32.RGBTRIPLE = foreign.named_struct( "Windows.Win32.Graphics.Gdi.RGBTRIPLE", [ 
+    "rgbtBlue:ubyte", 
+    "rgbtGreen:ubyte", 
+    "rgbtRed:ubyte"
+]); 
+
+
+Win32.RGBQUAD = foreign.named_struct( "Windows.Win32.Graphics.Gdi.RGBQUAD", [ 
+    "rgbBlue:ubyte", 
+    "rgbGreen:ubyte", 
+    "rgbRed:ubyte", 
+    "rgbReserved:ubyte"
+]); 
+
+
+Win32.CIEXYZ = foreign.named_struct( "Windows.Win32.Graphics.Gdi.CIEXYZ", [ 
+    "ciexyzX:int", 
+    "ciexyzY:int", 
+    "ciexyzZ:int"
+]); 
+
+
+Win32.CIEXYZTRIPLE = foreign.named_struct( "Windows.Win32.Graphics.Gdi.CIEXYZTRIPLE", [ 
+    "ciexyzRed:Windows.Win32.Graphics.Gdi.CIEXYZ", 
+    "ciexyzGreen:Windows.Win32.Graphics.Gdi.CIEXYZ", 
+    "ciexyzBlue:Windows.Win32.Graphics.Gdi.CIEXYZ"
+]); 
+
+
+Win32.BITMAPCOREHEADER = foreign.named_struct( "Windows.Win32.Graphics.Gdi.BITMAPCOREHEADER", [ 
+    "bcSize:uint", 
+    "bcWidth:ushort", 
+    "bcHeight:ushort", 
+    "bcPlanes:ushort", 
+    "bcBitCount:ushort"
+]); 
+
+
+Win32.BITMAPINFOHEADER = foreign.named_struct( "Windows.Win32.Graphics.Gdi.BITMAPINFOHEADER", [ 
+    "biSize:uint", 
+    "biWidth:int", 
+    "biHeight:int", 
+    "biPlanes:ushort", 
+    "biBitCount:ushort", 
+    "biCompression:int", 
+    "biSizeImage:uint", 
+    "biXPelsPerMeter:int", 
+    "biYPelsPerMeter:int", 
+    "biClrUsed:uint", 
+    "biClrImportant:uint"
+]); 
+
+
+Win32.BITMAPV4HEADER = foreign.named_struct( "Windows.Win32.Graphics.Gdi.BITMAPV4HEADER", [ 
+    "bV4Size:uint", 
+    "bV4Width:int", 
+    "bV4Height:int", 
+    "bV4Planes:ushort", 
+    "bV4BitCount:ushort", 
+    "bV4V4Compression:int", 
+    "bV4SizeImage:uint", 
+    "bV4XPelsPerMeter:int", 
+    "bV4YPelsPerMeter:int", 
+    "bV4ClrUsed:uint", 
+    "bV4ClrImportant:uint", 
+    "bV4RedMask:uint", 
+    "bV4GreenMask:uint", 
+    "bV4BlueMask:uint", 
+    "bV4AlphaMask:uint", 
+    "bV4CSType:uint", 
+    "bV4Endpoints:Windows.Win32.Graphics.Gdi.CIEXYZTRIPLE", 
+    "bV4GammaRed:uint", 
+    "bV4GammaGreen:uint", 
+    "bV4GammaBlue:uint"
+]); 
+
+
+Win32.BITMAPV5HEADER = foreign.named_struct( "Windows.Win32.Graphics.Gdi.BITMAPV5HEADER", [ 
+    "bV5Size:uint", 
+    "bV5Width:int", 
+    "bV5Height:int", 
+    "bV5Planes:ushort", 
+    "bV5BitCount:ushort", 
+    "bV5Compression:int", 
+    "bV5SizeImage:uint", 
+    "bV5XPelsPerMeter:int", 
+    "bV5YPelsPerMeter:int", 
+    "bV5ClrUsed:uint", 
+    "bV5ClrImportant:uint", 
+    "bV5RedMask:uint", 
+    "bV5GreenMask:uint", 
+    "bV5BlueMask:uint", 
+    "bV5AlphaMask:uint", 
+    "bV5CSType:uint", 
+    "bV5Endpoints:Windows.Win32.Graphics.Gdi.CIEXYZTRIPLE", 
+    "bV5GammaRed:uint", 
+    "bV5GammaGreen:uint", 
+    "bV5GammaBlue:uint", 
+    "bV5Intent:uint", 
+    "bV5ProfileData:uint", 
+    "bV5ProfileSize:uint", 
+    "bV5Reserved:uint"
+]); 
+
+
+Win32.BITMAPINFO = foreign.named_struct( "Windows.Win32.Graphics.Gdi.BITMAPINFO", [ 
+    "bmiHeader:Windows.Win32.Graphics.Gdi.BITMAPINFOHEADER", 
+    "bmiColors[1]:Windows.Win32.Graphics.Gdi.RGBQUAD"
+]); 
+
+
+Win32.BITMAPCOREINFO = foreign.named_struct( "Windows.Win32.Graphics.Gdi.BITMAPCOREINFO", [ 
+    "bmciHeader:Windows.Win32.Graphics.Gdi.BITMAPCOREHEADER", 
+    "bmciColors[1]:Windows.Win32.Graphics.Gdi.RGBTRIPLE"
+]); 
+
+
+Win32.BITMAPFILEHEADER = foreign.named_struct( "Windows.Win32.Graphics.Gdi.BITMAPFILEHEADER", [ 
+    "bfType:ushort", 
+    "bfSize:uint", 
+    "bfReserved1:ushort", 
+    "bfReserved2:ushort", 
+    "bfOffBits:uint"
+]); 
+
+
+Win32.HANDLETABLE = foreign.named_struct( "Windows.Win32.Graphics.Gdi.HANDLETABLE", [ 
+    "objectHandle[1]:Windows.Win32.Graphics.Gdi.HGDIOBJ"
+]); 
+
+
+Win32.METARECORD = foreign.named_struct( "Windows.Win32.Graphics.Gdi.METARECORD", [ 
+    "rdSize:uint", 
+    "rdFunction:ushort", 
+    "rdParm[1]:ushort"
+]); 
+
+
+Win32.METAHEADER = foreign.named_struct( "Windows.Win32.Graphics.Gdi.METAHEADER", [ 
+    "mtType:ushort", 
+    "mtHeaderSize:ushort", 
+    "mtVersion:ushort", 
+    "mtSize:uint", 
+    "mtNoObjects:ushort", 
+    "mtMaxRecord:uint", 
+    "mtNoParameters:ushort"
+]); 
+
+
+Win32.ENHMETARECORD = foreign.named_struct( "Windows.Win32.Graphics.Gdi.ENHMETARECORD", [ 
+    "iType:uint", 
+    "nSize:uint", 
+    "dParm[1]:uint"
+]); 
+
+
+Win32.ENHMETAHEADER = foreign.named_struct( "Windows.Win32.Graphics.Gdi.ENHMETAHEADER", [ 
+    "iType:uint", 
+    "nSize:uint", 
+    "rclBounds:Windows.Win32.Foundation.RECTL", 
+    "rclFrame:Windows.Win32.Foundation.RECTL", 
+    "dSignature:uint", 
+    "nVersion:uint", 
+    "nBytes:uint", 
+    "nRecords:uint", 
+    "nHandles:ushort", 
+    "sReserved:ushort", 
+    "nDescription:uint", 
+    "offDescription:uint", 
+    "nPalEntries:uint", 
+    "szlDevice:Windows.Win32.Foundation.SIZE", 
+    "szlMillimeters:Windows.Win32.Foundation.SIZE", 
+    "cbPixelFormat:uint", 
+    "offPixelFormat:uint", 
+    "bOpenGL:uint", 
+    "szlMicrometers:Windows.Win32.Foundation.SIZE"
+]); 
+
+
+Win32.TEXTMETRICA = foreign.named_struct( "Windows.Win32.Graphics.Gdi.TEXTMETRICA", [ 
+    "tmHeight:int", 
+    "tmAscent:int", 
+    "tmDescent:int", 
+    "tmInternalLeading:int", 
+    "tmExternalLeading:int", 
+    "tmAveCharWidth:int", 
+    "tmMaxCharWidth:int", 
+    "tmWeight:int", 
+    "tmOverhang:int", 
+    "tmDigitizedAspectX:int", 
+    "tmDigitizedAspectY:int", 
+    "tmFirstChar:ubyte", 
+    "tmLastChar:ubyte", 
+    "tmDefaultChar:ubyte", 
+    "tmBreakChar:ubyte", 
+    "tmItalic:ubyte", 
+    "tmUnderlined:ubyte", 
+    "tmStruckOut:ubyte", 
+    "tmPitchAndFamily:ubyte", 
+    "tmCharSet:ubyte"
+]); 
+
+
+Win32.TEXTMETRICW = foreign.named_struct( "Windows.Win32.Graphics.Gdi.TEXTMETRICW", [ 
+    "tmHeight:int", 
+    "tmAscent:int", 
+    "tmDescent:int", 
+    "tmInternalLeading:int", 
+    "tmExternalLeading:int", 
+    "tmAveCharWidth:int", 
+    "tmMaxCharWidth:int", 
+    "tmWeight:int", 
+    "tmOverhang:int", 
+    "tmDigitizedAspectX:int", 
+    "tmDigitizedAspectY:int", 
+    "tmFirstChar:short", 
+    "tmLastChar:short", 
+    "tmDefaultChar:short", 
+    "tmBreakChar:short", 
+    "tmItalic:ubyte", 
+    "tmUnderlined:ubyte", 
+    "tmStruckOut:ubyte", 
+    "tmPitchAndFamily:ubyte", 
+    "tmCharSet:ubyte"
+]); 
+
+
+Win32.NEWTEXTMETRICA = foreign.named_struct( "Windows.Win32.Graphics.Gdi.NEWTEXTMETRICA", [ 
+    "tmHeight:int", 
+    "tmAscent:int", 
+    "tmDescent:int", 
+    "tmInternalLeading:int", 
+    "tmExternalLeading:int", 
+    "tmAveCharWidth:int", 
+    "tmMaxCharWidth:int", 
+    "tmWeight:int", 
+    "tmOverhang:int", 
+    "tmDigitizedAspectX:int", 
+    "tmDigitizedAspectY:int", 
+    "tmFirstChar:ubyte", 
+    "tmLastChar:ubyte", 
+    "tmDefaultChar:ubyte", 
+    "tmBreakChar:ubyte", 
+    "tmItalic:ubyte", 
+    "tmUnderlined:ubyte", 
+    "tmStruckOut:ubyte", 
+    "tmPitchAndFamily:ubyte", 
+    "tmCharSet:ubyte", 
+    "ntmFlags:uint", 
+    "ntmSizeEM:uint", 
+    "ntmCellHeight:uint", 
+    "ntmAvgWidth:uint"
+]); 
+
+
+Win32.NEWTEXTMETRICW = foreign.named_struct( "Windows.Win32.Graphics.Gdi.NEWTEXTMETRICW", [ 
+    "tmHeight:int", 
+    "tmAscent:int", 
+    "tmDescent:int", 
+    "tmInternalLeading:int", 
+    "tmExternalLeading:int", 
+    "tmAveCharWidth:int", 
+    "tmMaxCharWidth:int", 
+    "tmWeight:int", 
+    "tmOverhang:int", 
+    "tmDigitizedAspectX:int", 
+    "tmDigitizedAspectY:int", 
+    "tmFirstChar:short", 
+    "tmLastChar:short", 
+    "tmDefaultChar:short", 
+    "tmBreakChar:short", 
+    "tmItalic:ubyte", 
+    "tmUnderlined:ubyte", 
+    "tmStruckOut:ubyte", 
+    "tmPitchAndFamily:ubyte", 
+    "tmCharSet:ubyte", 
+    "ntmFlags:uint", 
+    "ntmSizeEM:uint", 
+    "ntmCellHeight:uint", 
+    "ntmAvgWidth:uint"
+]); 
+
+
+Win32.PELARRAY = foreign.named_struct( "Windows.Win32.Graphics.Gdi.PELARRAY", [ 
+    "paXCount:int", 
+    "paYCount:int", 
+    "paXExt:int", 
+    "paYExt:int", 
+    "paRGBs:ubyte"
+]); 
+
+
+Win32.LOGBRUSH = foreign.named_struct( "Windows.Win32.Graphics.Gdi.LOGBRUSH", [ 
+    "lbStyle:uint", 
+    "lbColor:Windows.Win32.Foundation.COLORREF", 
+    "lbHatch:ptr"
+]); 
+
+
+Win32.LOGBRUSH32 = foreign.named_struct( "Windows.Win32.Graphics.Gdi.LOGBRUSH32", [ 
+    "lbStyle:uint", 
+    "lbColor:Windows.Win32.Foundation.COLORREF", 
+    "lbHatch:uint"
+]); 
+
+
+Win32.LOGPEN = foreign.named_struct( "Windows.Win32.Graphics.Gdi.LOGPEN", [ 
+    "lopnStyle:uint", 
+    "lopnWidth:Windows.Win32.Foundation.POINT", 
+    "lopnColor:Windows.Win32.Foundation.COLORREF"
+]); 
+
+
+Win32.EXTLOGPEN = foreign.named_struct( "Windows.Win32.Graphics.Gdi.EXTLOGPEN", [ 
+    "elpPenStyle:uint", 
+    "elpWidth:uint", 
+    "elpBrushStyle:uint", 
+    "elpColor:Windows.Win32.Foundation.COLORREF", 
+    "elpHatch:ptr", 
+    "elpNumEntries:uint", 
+    "elpStyleEntry[1]:uint"
+]); 
+
+
+Win32.EXTLOGPEN32 = foreign.named_struct( "Windows.Win32.Graphics.Gdi.EXTLOGPEN32", [ 
+    "elpPenStyle:uint", 
+    "elpWidth:uint", 
+    "elpBrushStyle:uint", 
+    "elpColor:Windows.Win32.Foundation.COLORREF", 
+    "elpHatch:uint", 
+    "elpNumEntries:uint", 
+    "elpStyleEntry[1]:uint"
+]); 
+
+
+Win32.PALETTEENTRY = foreign.named_struct( "Windows.Win32.Graphics.Gdi.PALETTEENTRY", [ 
+    "peRed:ubyte", 
+    "peGreen:ubyte", 
+    "peBlue:ubyte", 
+    "peFlags:ubyte"
+]); 
+
+
+Win32.LOGPALETTE = foreign.named_struct( "Windows.Win32.Graphics.Gdi.LOGPALETTE", [ 
+    "palVersion:ushort", 
+    "palNumEntries:ushort", 
+    "palPalEntry[1]:Windows.Win32.Graphics.Gdi.PALETTEENTRY"
+]); 
+
+
+Win32.LOGFONTA = foreign.named_struct( "Windows.Win32.Graphics.Gdi.LOGFONTA", [ 
+    "lfHeight:int", 
+    "lfWidth:int", 
+    "lfEscapement:int", 
+    "lfOrientation:int", 
+    "lfWeight:int", 
+    "lfItalic:ubyte", 
+    "lfUnderline:ubyte", 
+    "lfStrikeOut:ubyte", 
+    "lfCharSet:ubyte", 
+    "lfOutPrecision:ubyte", 
+    "lfClipPrecision:ubyte", 
+    "lfQuality:ubyte", 
+    "lfPitchAndFamily:ubyte", 
+    "lfFaceName[32]:Windows.Win32.Foundation.CHAR"
+]); 
+
+
+Win32.LOGFONTW = foreign.named_struct( "Windows.Win32.Graphics.Gdi.LOGFONTW", [ 
+    "lfHeight:int", 
+    "lfWidth:int", 
+    "lfEscapement:int", 
+    "lfOrientation:int", 
+    "lfWeight:int", 
+    "lfItalic:ubyte", 
+    "lfUnderline:ubyte", 
+    "lfStrikeOut:ubyte", 
+    "lfCharSet:ubyte", 
+    "lfOutPrecision:ubyte", 
+    "lfClipPrecision:ubyte", 
+    "lfQuality:ubyte", 
+    "lfPitchAndFamily:ubyte", 
+    "lfFaceName[32]:short"
+]); 
+
+
+Win32.ENUMLOGFONTA = foreign.named_struct( "Windows.Win32.Graphics.Gdi.ENUMLOGFONTA", [ 
+    "elfLogFont:Windows.Win32.Graphics.Gdi.LOGFONTA", 
+    "elfFullName[64]:ubyte", 
+    "elfStyle[32]:ubyte"
+]); 
+
+
+Win32.ENUMLOGFONTW = foreign.named_struct( "Windows.Win32.Graphics.Gdi.ENUMLOGFONTW", [ 
+    "elfLogFont:Windows.Win32.Graphics.Gdi.LOGFONTW", 
+    "elfFullName[64]:short", 
+    "elfStyle[32]:short"
+]); 
+
+
+Win32.ENUMLOGFONTEXA = foreign.named_struct( "Windows.Win32.Graphics.Gdi.ENUMLOGFONTEXA", [ 
+    "elfLogFont:Windows.Win32.Graphics.Gdi.LOGFONTA", 
+    "elfFullName[64]:ubyte", 
+    "elfStyle[32]:ubyte", 
+    "elfScript[32]:ubyte"
+]); 
+
+
+Win32.ENUMLOGFONTEXW = foreign.named_struct( "Windows.Win32.Graphics.Gdi.ENUMLOGFONTEXW", [ 
+    "elfLogFont:Windows.Win32.Graphics.Gdi.LOGFONTW", 
+    "elfFullName[64]:short", 
+    "elfStyle[32]:short", 
+    "elfScript[32]:short"
+]); 
+
+
+Win32.PANOSE = foreign.named_struct( "Windows.Win32.Graphics.Gdi.PANOSE", [ 
+    "bFamilyType:uint", 
+    "bSerifStyle:uint", 
+    "bWeight:uint", 
+    "bProportion:uint", 
+    "bContrast:uint", 
+    "bStrokeVariation:uint", 
+    "bArmStyle:uint", 
+    "bLetterform:uint", 
+    "bMidline:uint", 
+    "bXHeight:uint"
+]); 
+
+
+Win32.EXTLOGFONTA = foreign.named_struct( "Windows.Win32.Graphics.Gdi.EXTLOGFONTA", [ 
+    "elfLogFont:Windows.Win32.Graphics.Gdi.LOGFONTA", 
+    "elfFullName[64]:ubyte", 
+    "elfStyle[32]:ubyte", 
+    "elfVersion:uint", 
+    "elfStyleSize:uint", 
+    "elfMatch:uint", 
+    "elfReserved:uint", 
+    "elfVendorId[4]:ubyte", 
+    "elfCulture:uint", 
+    "elfPanose:Windows.Win32.Graphics.Gdi.PANOSE"
+]); 
+
+
+Win32.EXTLOGFONTW = foreign.named_struct( "Windows.Win32.Graphics.Gdi.EXTLOGFONTW", [ 
+    "elfLogFont:Windows.Win32.Graphics.Gdi.LOGFONTW", 
+    "elfFullName[64]:short", 
+    "elfStyle[32]:short", 
+    "elfVersion:uint", 
+    "elfStyleSize:uint", 
+    "elfMatch:uint", 
+    "elfReserved:uint", 
+    "elfVendorId[4]:ubyte", 
+    "elfCulture:uint", 
+    "elfPanose:Windows.Win32.Graphics.Gdi.PANOSE"
+]); 
+
+
+Win32.DEVMODEA = foreign.named_struct( "Windows.Win32.Graphics.Gdi.DEVMODEA", [ 
+    "dmDeviceName[32]:ubyte", 
+    "dmSpecVersion:ushort", 
+    "dmDriverVersion:ushort", 
+    "dmSize:ushort", 
+    "dmDriverExtra:ushort", 
+    "dmFields:uint", 
+    "Anonymous1:._Anonymous1_e__Union", 
+    "dmColor:uint", 
+    "dmDuplex:short", 
+    "dmYResolution:short", 
+    "dmTTOption:uint", 
+    "dmCollate:uint", 
+    "dmFormName[32]:ubyte", 
+    "dmLogPixels:ushort", 
+    "dmBitsPerPel:uint", 
+    "dmPelsWidth:uint", 
+    "dmPelsHeight:uint", 
+    "Anonymous2:._Anonymous2_e__Union", 
+    "dmDisplayFrequency:uint", 
+    "dmICMMethod:uint", 
+    "dmICMIntent:uint", 
+    "dmMediaType:uint", 
+    "dmDitherType:uint", 
+    "dmReserved1:uint", 
+    "dmReserved2:uint", 
+    "dmPanningWidth:uint", 
+    "dmPanningHeight:uint"
+]); 
+
+
+Win32.DEVMODEW = foreign.named_struct( "Windows.Win32.Graphics.Gdi.DEVMODEW", [ 
+    "dmDeviceName[32]:short", 
+    "dmSpecVersion:ushort", 
+    "dmDriverVersion:ushort", 
+    "dmSize:ushort", 
+    "dmDriverExtra:ushort", 
+    "dmFields:uint", 
+    "Anonymous1:._Anonymous1_e__Union", 
+    "dmColor:uint", 
+    "dmDuplex:short", 
+    "dmYResolution:short", 
+    "dmTTOption:uint", 
+    "dmCollate:uint", 
+    "dmFormName[32]:short", 
+    "dmLogPixels:ushort", 
+    "dmBitsPerPel:uint", 
+    "dmPelsWidth:uint", 
+    "dmPelsHeight:uint", 
+    "Anonymous2:._Anonymous2_e__Union", 
+    "dmDisplayFrequency:uint", 
+    "dmICMMethod:uint", 
+    "dmICMIntent:uint", 
+    "dmMediaType:uint", 
+    "dmDitherType:uint", 
+    "dmReserved1:uint", 
+    "dmReserved2:uint", 
+    "dmPanningWidth:uint", 
+    "dmPanningHeight:uint"
+]); 
+
+
+Win32.DISPLAY_DEVICEA = foreign.named_struct( "Windows.Win32.Graphics.Gdi.DISPLAY_DEVICEA", [ 
+    "cb:uint", 
+    "DeviceName[32]:Windows.Win32.Foundation.CHAR", 
+    "DeviceString[128]:Windows.Win32.Foundation.CHAR", 
+    "StateFlags:uint", 
+    "DeviceID[128]:Windows.Win32.Foundation.CHAR", 
+    "DeviceKey[128]:Windows.Win32.Foundation.CHAR"
+]); 
+
+
+Win32.DISPLAY_DEVICEW = foreign.named_struct( "Windows.Win32.Graphics.Gdi.DISPLAY_DEVICEW", [ 
+    "cb:uint", 
+    "DeviceName[32]:short", 
+    "DeviceString[128]:short", 
+    "StateFlags:uint", 
+    "DeviceID[128]:short", 
+    "DeviceKey[128]:short"
+]); 
+
+
+Win32.RGNDATAHEADER = foreign.named_struct( "Windows.Win32.Graphics.Gdi.RGNDATAHEADER", [ 
+    "dwSize:uint", 
+    "iType:uint", 
+    "nCount:uint", 
+    "nRgnSize:uint", 
+    "rcBound:Windows.Win32.Foundation.RECT"
+]); 
+
+
+Win32.RGNDATA = foreign.named_struct( "Windows.Win32.Graphics.Gdi.RGNDATA", [ 
+    "rdh:Windows.Win32.Graphics.Gdi.RGNDATAHEADER", 
+    "Buffer[1]:Windows.Win32.Foundation.CHAR"
+]); 
+
+
+Win32.ABC = foreign.named_struct( "Windows.Win32.Graphics.Gdi.ABC", [ 
+    "abcA:int", 
+    "abcB:uint", 
+    "abcC:int"
+]); 
+
+
+Win32.ABCFLOAT = foreign.named_struct( "Windows.Win32.Graphics.Gdi.ABCFLOAT", [ 
+    "abcfA:float", 
+    "abcfB:float", 
+    "abcfC:float"
+]); 
+
+
+Win32.OUTLINETEXTMETRICA = foreign.named_struct( "Windows.Win32.Graphics.Gdi.OUTLINETEXTMETRICA", [ 
+    "otmSize:uint", 
+    "otmTextMetrics:Windows.Win32.Graphics.Gdi.TEXTMETRICA", 
+    "otmFiller:ubyte", 
+    "otmPanoseNumber:Windows.Win32.Graphics.Gdi.PANOSE", 
+    "otmfsSelection:uint", 
+    "otmfsType:uint", 
+    "otmsCharSlopeRise:int", 
+    "otmsCharSlopeRun:int", 
+    "otmItalicAngle:int", 
+    "otmEMSquare:uint", 
+    "otmAscent:int", 
+    "otmDescent:int", 
+    "otmLineGap:uint", 
+    "otmsCapEmHeight:uint", 
+    "otmsXHeight:uint", 
+    "otmrcFontBox:Windows.Win32.Foundation.RECT", 
+    "otmMacAscent:int", 
+    "otmMacDescent:int", 
+    "otmMacLineGap:uint", 
+    "otmusMinimumPPEM:uint", 
+    "otmptSubscriptSize:Windows.Win32.Foundation.POINT", 
+    "otmptSubscriptOffset:Windows.Win32.Foundation.POINT", 
+    "otmptSuperscriptSize:Windows.Win32.Foundation.POINT", 
+    "otmptSuperscriptOffset:Windows.Win32.Foundation.POINT", 
+    "otmsStrikeoutSize:uint", 
+    "otmsStrikeoutPosition:int", 
+    "otmsUnderscoreSize:int", 
+    "otmsUnderscorePosition:int", 
+    "otmpFamilyName:str", 
+    "otmpFaceName:str", 
+    "otmpStyleName:str", 
+    "otmpFullName:str"
+]); 
+
+
+Win32.OUTLINETEXTMETRICW = foreign.named_struct( "Windows.Win32.Graphics.Gdi.OUTLINETEXTMETRICW", [ 
+    "otmSize:uint", 
+    "otmTextMetrics:Windows.Win32.Graphics.Gdi.TEXTMETRICW", 
+    "otmFiller:ubyte", 
+    "otmPanoseNumber:Windows.Win32.Graphics.Gdi.PANOSE", 
+    "otmfsSelection:uint", 
+    "otmfsType:uint", 
+    "otmsCharSlopeRise:int", 
+    "otmsCharSlopeRun:int", 
+    "otmItalicAngle:int", 
+    "otmEMSquare:uint", 
+    "otmAscent:int", 
+    "otmDescent:int", 
+    "otmLineGap:uint", 
+    "otmsCapEmHeight:uint", 
+    "otmsXHeight:uint", 
+    "otmrcFontBox:Windows.Win32.Foundation.RECT", 
+    "otmMacAscent:int", 
+    "otmMacDescent:int", 
+    "otmMacLineGap:uint", 
+    "otmusMinimumPPEM:uint", 
+    "otmptSubscriptSize:Windows.Win32.Foundation.POINT", 
+    "otmptSubscriptOffset:Windows.Win32.Foundation.POINT", 
+    "otmptSuperscriptSize:Windows.Win32.Foundation.POINT", 
+    "otmptSuperscriptOffset:Windows.Win32.Foundation.POINT", 
+    "otmsStrikeoutSize:uint", 
+    "otmsStrikeoutPosition:int", 
+    "otmsUnderscoreSize:int", 
+    "otmsUnderscorePosition:int", 
+    "otmpFamilyName:str", 
+    "otmpFaceName:str", 
+    "otmpStyleName:str", 
+    "otmpFullName:str"
+]); 
+
+
+Win32.POLYTEXTA = foreign.named_struct( "Windows.Win32.Graphics.Gdi.POLYTEXTA", [ 
+    "x:int", 
+    "y:int", 
+    "n:uint", 
+    "lpstr:str", 
+    "uiFlags:uint", 
+    "rcl:Windows.Win32.Foundation.RECT", 
+    "pdx:ptr"
+]); 
+
+
+Win32.POLYTEXTW = foreign.named_struct( "Windows.Win32.Graphics.Gdi.POLYTEXTW", [ 
+    "x:int", 
+    "y:int", 
+    "n:uint", 
+    "lpstr:wstr", 
+    "uiFlags:uint", 
+    "rcl:Windows.Win32.Foundation.RECT", 
+    "pdx:ptr"
+]); 
+
+
+Win32.FIXED = foreign.named_struct( "Windows.Win32.Graphics.Gdi.FIXED", [ 
+    "fract:ushort", 
+    "value:short"
+]); 
+
+
+Win32.MAT2 = foreign.named_struct( "Windows.Win32.Graphics.Gdi.MAT2", [ 
+    "eM11:Windows.Win32.Graphics.Gdi.FIXED", 
+    "eM12:Windows.Win32.Graphics.Gdi.FIXED", 
+    "eM21:Windows.Win32.Graphics.Gdi.FIXED", 
+    "eM22:Windows.Win32.Graphics.Gdi.FIXED"
+]); 
+
+
+Win32.GLYPHMETRICS = foreign.named_struct( "Windows.Win32.Graphics.Gdi.GLYPHMETRICS", [ 
+    "gmBlackBoxX:uint", 
+    "gmBlackBoxY:uint", 
+    "gmptGlyphOrigin:Windows.Win32.Foundation.POINT", 
+    "gmCellIncX:short", 
+    "gmCellIncY:short"
+]); 
+
+
+Win32.POINTFX = foreign.named_struct( "Windows.Win32.Graphics.Gdi.POINTFX", [ 
+    "x:Windows.Win32.Graphics.Gdi.FIXED", 
+    "y:Windows.Win32.Graphics.Gdi.FIXED"
+]); 
+
+
+Win32.TTPOLYCURVE = foreign.named_struct( "Windows.Win32.Graphics.Gdi.TTPOLYCURVE", [ 
+    "wType:ushort", 
+    "cpfx:ushort", 
+    "apfx[1]:Windows.Win32.Graphics.Gdi.POINTFX"
+]); 
+
+
+Win32.TTPOLYGONHEADER = foreign.named_struct( "Windows.Win32.Graphics.Gdi.TTPOLYGONHEADER", [ 
+    "cb:uint", 
+    "dwType:uint", 
+    "pfxStart:Windows.Win32.Graphics.Gdi.POINTFX"
+]); 
+
+
+Win32.GCP_RESULTSA = foreign.named_struct( "Windows.Win32.Graphics.Gdi.GCP_RESULTSA", [ 
+    "lStructSize:uint", 
+    "lpOutString:str", 
+    "lpOrder:ptr", 
+    "lpDx:ptr", 
+    "lpCaretPos:ptr", 
+    "lpClass:str", 
+    "lpGlyphs:wstr", 
+    "nGlyphs:uint", 
+    "nMaxFit:int"
+]); 
+
+
+Win32.GCP_RESULTSW = foreign.named_struct( "Windows.Win32.Graphics.Gdi.GCP_RESULTSW", [ 
+    "lStructSize:uint", 
+    "lpOutString:wstr", 
+    "lpOrder:ptr", 
+    "lpDx:ptr", 
+    "lpCaretPos:ptr", 
+    "lpClass:str", 
+    "lpGlyphs:wstr", 
+    "nGlyphs:uint", 
+    "nMaxFit:int"
+]); 
+
+
+Win32.RASTERIZER_STATUS = foreign.named_struct( "Windows.Win32.Graphics.Gdi.RASTERIZER_STATUS", [ 
+    "nSize:short", 
+    "wFlags:short", 
+    "nLanguageID:short"
+]); 
+
+
+Win32.WCRANGE = foreign.named_struct( "Windows.Win32.Graphics.Gdi.WCRANGE", [ 
+    "wcLow:short", 
+    "cGlyphs:ushort"
+]); 
+
+
+Win32.GLYPHSET = foreign.named_struct( "Windows.Win32.Graphics.Gdi.GLYPHSET", [ 
+    "cbThis:uint", 
+    "flAccel:uint", 
+    "cGlyphsSupported:uint", 
+    "cRanges:uint", 
+    "ranges[1]:Windows.Win32.Graphics.Gdi.WCRANGE"
+]); 
+
+
+Win32.DESIGNVECTOR = foreign.named_struct( "Windows.Win32.Graphics.Gdi.DESIGNVECTOR", [ 
+    "dvReserved:uint", 
+    "dvNumAxes:uint", 
+    "dvValues[16]:int"
+]); 
+
+
+Win32.AXISINFOA = foreign.named_struct( "Windows.Win32.Graphics.Gdi.AXISINFOA", [ 
+    "axMinValue:int", 
+    "axMaxValue:int", 
+    "axAxisName[16]:ubyte"
+]); 
+
+
+Win32.AXISINFOW = foreign.named_struct( "Windows.Win32.Graphics.Gdi.AXISINFOW", [ 
+    "axMinValue:int", 
+    "axMaxValue:int", 
+    "axAxisName[16]:short"
+]); 
+
+
+Win32.AXESLISTA = foreign.named_struct( "Windows.Win32.Graphics.Gdi.AXESLISTA", [ 
+    "axlReserved:uint", 
+    "axlNumAxes:uint", 
+    "axlAxisInfo[16]:Windows.Win32.Graphics.Gdi.AXISINFOA"
+]); 
+
+
+Win32.AXESLISTW = foreign.named_struct( "Windows.Win32.Graphics.Gdi.AXESLISTW", [ 
+    "axlReserved:uint", 
+    "axlNumAxes:uint", 
+    "axlAxisInfo[16]:Windows.Win32.Graphics.Gdi.AXISINFOW"
+]); 
+
+
+Win32.ENUMLOGFONTEXDVA = foreign.named_struct( "Windows.Win32.Graphics.Gdi.ENUMLOGFONTEXDVA", [ 
+    "elfEnumLogfontEx:Windows.Win32.Graphics.Gdi.ENUMLOGFONTEXA", 
+    "elfDesignVector:Windows.Win32.Graphics.Gdi.DESIGNVECTOR"
+]); 
+
+
+Win32.ENUMLOGFONTEXDVW = foreign.named_struct( "Windows.Win32.Graphics.Gdi.ENUMLOGFONTEXDVW", [ 
+    "elfEnumLogfontEx:Windows.Win32.Graphics.Gdi.ENUMLOGFONTEXW", 
+    "elfDesignVector:Windows.Win32.Graphics.Gdi.DESIGNVECTOR"
+]); 
+
+
+Win32.TRIVERTEX = foreign.named_struct( "Windows.Win32.Graphics.Gdi.TRIVERTEX", [ 
+    "x:int", 
+    "y:int", 
+    "Red:ushort", 
+    "Green:ushort", 
+    "Blue:ushort", 
+    "Alpha:ushort"
+]); 
+
+
+Win32.GRADIENT_TRIANGLE = foreign.named_struct( "Windows.Win32.Graphics.Gdi.GRADIENT_TRIANGLE", [ 
+    "Vertex1:uint", 
+    "Vertex2:uint", 
+    "Vertex3:uint"
+]); 
+
+
+Win32.GRADIENT_RECT = foreign.named_struct( "Windows.Win32.Graphics.Gdi.GRADIENT_RECT", [ 
+    "UpperLeft:uint", 
+    "LowerRight:uint"
+]); 
+
+
+Win32.BLENDFUNCTION = foreign.named_struct( "Windows.Win32.Graphics.Gdi.BLENDFUNCTION", [ 
+    "BlendOp:ubyte", 
+    "BlendFlags:ubyte", 
+    "SourceConstantAlpha:ubyte", 
+    "AlphaFormat:ubyte"
+]); 
+
+
+Win32.DIBSECTION = foreign.named_struct( "Windows.Win32.Graphics.Gdi.DIBSECTION", [ 
+    "dsBm:Windows.Win32.Graphics.Gdi.BITMAP", 
+    "dsBmih:Windows.Win32.Graphics.Gdi.BITMAPINFOHEADER", 
+    "dsBitfields[3]:uint", 
+    "dshSection:Windows.Win32.Foundation.HANDLE", 
+    "dsOffset:uint"
+]); 
+
+
+Win32.COLORADJUSTMENT = foreign.named_struct( "Windows.Win32.Graphics.Gdi.COLORADJUSTMENT", [ 
+    "caSize:ushort", 
+    "caFlags:ushort", 
+    "caIlluminantIndex:ushort", 
+    "caRedGamma:ushort", 
+    "caGreenGamma:ushort", 
+    "caBlueGamma:ushort", 
+    "caReferenceBlack:ushort", 
+    "caReferenceWhite:ushort", 
+    "caContrast:short", 
+    "caBrightness:short", 
+    "caColorfulness:short", 
+    "caRedGreenTint:short"
+]); 
+
+
+Win32.KERNINGPAIR = foreign.named_struct( "Windows.Win32.Graphics.Gdi.KERNINGPAIR", [ 
+    "wFirst:ushort", 
+    "wSecond:ushort", 
+    "iKernAmount:int"
+]); 
+
+
+Win32.EMR = foreign.named_struct( "Windows.Win32.Graphics.Gdi.EMR", [ 
+    "iType:uint", 
+    "nSize:uint"
+]); 
+
+
+Win32.EMRTEXT = foreign.named_struct( "Windows.Win32.Graphics.Gdi.EMRTEXT", [ 
+    "ptlReference:Windows.Win32.Foundation.POINTL", 
+    "nChars:uint", 
+    "offString:uint", 
+    "fOptions:uint", 
+    "rcl:Windows.Win32.Foundation.RECTL", 
+    "offDx:uint"
+]); 
+
+
+Win32.ABORTPATH = foreign.named_struct( "Windows.Win32.Graphics.Gdi.ABORTPATH", [ 
+    "emr:Windows.Win32.Graphics.Gdi.EMR"
+]); 
+
+
+Win32.EMRSELECTCLIPPATH = foreign.named_struct( "Windows.Win32.Graphics.Gdi.EMRSELECTCLIPPATH", [ 
+    "emr:Windows.Win32.Graphics.Gdi.EMR", 
+    "iMode:uint"
+]); 
+
+
+Win32.EMRSETMITERLIMIT = foreign.named_struct( "Windows.Win32.Graphics.Gdi.EMRSETMITERLIMIT", [ 
+    "emr:Windows.Win32.Graphics.Gdi.EMR", 
+    "eMiterLimit:float"
+]); 
+
+
+Win32.EMRRESTOREDC = foreign.named_struct( "Windows.Win32.Graphics.Gdi.EMRRESTOREDC", [ 
+    "emr:Windows.Win32.Graphics.Gdi.EMR", 
+    "iRelative:int"
+]); 
+
+
+Win32.EMRSETARCDIRECTION = foreign.named_struct( "Windows.Win32.Graphics.Gdi.EMRSETARCDIRECTION", [ 
+    "emr:Windows.Win32.Graphics.Gdi.EMR", 
+    "iArcDirection:uint"
+]); 
+
+
+Win32.EMRSETMAPPERFLAGS = foreign.named_struct( "Windows.Win32.Graphics.Gdi.EMRSETMAPPERFLAGS", [ 
+    "emr:Windows.Win32.Graphics.Gdi.EMR", 
+    "dwFlags:uint"
+]); 
+
+
+Win32.EMRSETTEXTCOLOR = foreign.named_struct( "Windows.Win32.Graphics.Gdi.EMRSETTEXTCOLOR", [ 
+    "emr:Windows.Win32.Graphics.Gdi.EMR", 
+    "crColor:Windows.Win32.Foundation.COLORREF"
+]); 
+
+
+Win32.EMRSELECTOBJECT = foreign.named_struct( "Windows.Win32.Graphics.Gdi.EMRSELECTOBJECT", [ 
+    "emr:Windows.Win32.Graphics.Gdi.EMR", 
+    "ihObject:uint"
+]); 
+
+
+Win32.EMRSELECTPALETTE = foreign.named_struct( "Windows.Win32.Graphics.Gdi.EMRSELECTPALETTE", [ 
+    "emr:Windows.Win32.Graphics.Gdi.EMR", 
+    "ihPal:uint"
+]); 
+
+
+Win32.EMRRESIZEPALETTE = foreign.named_struct( "Windows.Win32.Graphics.Gdi.EMRRESIZEPALETTE", [ 
+    "emr:Windows.Win32.Graphics.Gdi.EMR", 
+    "ihPal:uint", 
+    "cEntries:uint"
+]); 
+
+
+Win32.EMRSETPALETTEENTRIES = foreign.named_struct( "Windows.Win32.Graphics.Gdi.EMRSETPALETTEENTRIES", [ 
+    "emr:Windows.Win32.Graphics.Gdi.EMR", 
+    "ihPal:uint", 
+    "iStart:uint", 
+    "cEntries:uint", 
+    "aPalEntries[1]:Windows.Win32.Graphics.Gdi.PALETTEENTRY"
+]); 
+
+
+Win32.EMRSETCOLORADJUSTMENT = foreign.named_struct( "Windows.Win32.Graphics.Gdi.EMRSETCOLORADJUSTMENT", [ 
+    "emr:Windows.Win32.Graphics.Gdi.EMR", 
+    "ColorAdjustment:Windows.Win32.Graphics.Gdi.COLORADJUSTMENT"
+]); 
+
+
+Win32.EMRGDICOMMENT = foreign.named_struct( "Windows.Win32.Graphics.Gdi.EMRGDICOMMENT", [ 
+    "emr:Windows.Win32.Graphics.Gdi.EMR", 
+    "cbData:uint", 
+    "Data[1]:ubyte"
+]); 
+
+
+Win32.EMREOF = foreign.named_struct( "Windows.Win32.Graphics.Gdi.EMREOF", [ 
+    "emr:Windows.Win32.Graphics.Gdi.EMR", 
+    "nPalEntries:uint", 
+    "offPalEntries:uint", 
+    "nSizeLast:uint"
+]); 
+
+
+Win32.EMRLINETO = foreign.named_struct( "Windows.Win32.Graphics.Gdi.EMRLINETO", [ 
+    "emr:Windows.Win32.Graphics.Gdi.EMR", 
+    "ptl:Windows.Win32.Foundation.POINTL"
+]); 
+
+
+Win32.EMROFFSETCLIPRGN = foreign.named_struct( "Windows.Win32.Graphics.Gdi.EMROFFSETCLIPRGN", [ 
+    "emr:Windows.Win32.Graphics.Gdi.EMR", 
+    "ptlOffset:Windows.Win32.Foundation.POINTL"
+]); 
+
+
+Win32.EMRFILLPATH = foreign.named_struct( "Windows.Win32.Graphics.Gdi.EMRFILLPATH", [ 
+    "emr:Windows.Win32.Graphics.Gdi.EMR", 
+    "rclBounds:Windows.Win32.Foundation.RECTL"
+]); 
+
+
+Win32.EMREXCLUDECLIPRECT = foreign.named_struct( "Windows.Win32.Graphics.Gdi.EMREXCLUDECLIPRECT", [ 
+    "emr:Windows.Win32.Graphics.Gdi.EMR", 
+    "rclClip:Windows.Win32.Foundation.RECTL"
+]); 
+
+
+Win32.EMRSETVIEWPORTORGEX = foreign.named_struct( "Windows.Win32.Graphics.Gdi.EMRSETVIEWPORTORGEX", [ 
+    "emr:Windows.Win32.Graphics.Gdi.EMR", 
+    "ptlOrigin:Windows.Win32.Foundation.POINTL"
+]); 
+
+
+Win32.EMRSETVIEWPORTEXTEX = foreign.named_struct( "Windows.Win32.Graphics.Gdi.EMRSETVIEWPORTEXTEX", [ 
+    "emr:Windows.Win32.Graphics.Gdi.EMR", 
+    "szlExtent:Windows.Win32.Foundation.SIZE"
+]); 
+
+
+Win32.EMRSCALEVIEWPORTEXTEX = foreign.named_struct( "Windows.Win32.Graphics.Gdi.EMRSCALEVIEWPORTEXTEX", [ 
+    "emr:Windows.Win32.Graphics.Gdi.EMR", 
+    "xNum:int", 
+    "xDenom:int", 
+    "yNum:int", 
+    "yDenom:int"
+]); 
+
+
+Win32.EMRSETWORLDTRANSFORM = foreign.named_struct( "Windows.Win32.Graphics.Gdi.EMRSETWORLDTRANSFORM", [ 
+    "emr:Windows.Win32.Graphics.Gdi.EMR", 
+    "xform:Windows.Win32.Graphics.Gdi.XFORM"
+]); 
+
+
+Win32.EMRMODIFYWORLDTRANSFORM = foreign.named_struct( "Windows.Win32.Graphics.Gdi.EMRMODIFYWORLDTRANSFORM", [ 
+    "emr:Windows.Win32.Graphics.Gdi.EMR", 
+    "xform:Windows.Win32.Graphics.Gdi.XFORM", 
+    "iMode:uint"
+]); 
+
+
+Win32.EMRSETPIXELV = foreign.named_struct( "Windows.Win32.Graphics.Gdi.EMRSETPIXELV", [ 
+    "emr:Windows.Win32.Graphics.Gdi.EMR", 
+    "ptlPixel:Windows.Win32.Foundation.POINTL", 
+    "crColor:Windows.Win32.Foundation.COLORREF"
+]); 
+
+
+Win32.EMREXTFLOODFILL = foreign.named_struct( "Windows.Win32.Graphics.Gdi.EMREXTFLOODFILL", [ 
+    "emr:Windows.Win32.Graphics.Gdi.EMR", 
+    "ptlStart:Windows.Win32.Foundation.POINTL", 
+    "crColor:Windows.Win32.Foundation.COLORREF", 
+    "iMode:uint"
+]); 
+
+
+Win32.EMRELLIPSE = foreign.named_struct( "Windows.Win32.Graphics.Gdi.EMRELLIPSE", [ 
+    "emr:Windows.Win32.Graphics.Gdi.EMR", 
+    "rclBox:Windows.Win32.Foundation.RECTL"
+]); 
+
+
+Win32.EMRROUNDRECT = foreign.named_struct( "Windows.Win32.Graphics.Gdi.EMRROUNDRECT", [ 
+    "emr:Windows.Win32.Graphics.Gdi.EMR", 
+    "rclBox:Windows.Win32.Foundation.RECTL", 
+    "szlCorner:Windows.Win32.Foundation.SIZE"
+]); 
+
+
+Win32.EMRARC = foreign.named_struct( "Windows.Win32.Graphics.Gdi.EMRARC", [ 
+    "emr:Windows.Win32.Graphics.Gdi.EMR", 
+    "rclBox:Windows.Win32.Foundation.RECTL", 
+    "ptlStart:Windows.Win32.Foundation.POINTL", 
+    "ptlEnd:Windows.Win32.Foundation.POINTL"
+]); 
+
+
+Win32.EMRANGLEARC = foreign.named_struct( "Windows.Win32.Graphics.Gdi.EMRANGLEARC", [ 
+    "emr:Windows.Win32.Graphics.Gdi.EMR", 
+    "ptlCenter:Windows.Win32.Foundation.POINTL", 
+    "nRadius:uint", 
+    "eStartAngle:float", 
+    "eSweepAngle:float"
+]); 
+
+
+Win32.EMRPOLYLINE = foreign.named_struct( "Windows.Win32.Graphics.Gdi.EMRPOLYLINE", [ 
+    "emr:Windows.Win32.Graphics.Gdi.EMR", 
+    "rclBounds:Windows.Win32.Foundation.RECTL", 
+    "cptl:uint", 
+    "aptl[1]:Windows.Win32.Foundation.POINTL"
+]); 
+
+
+Win32.EMRPOLYLINE16 = foreign.named_struct( "Windows.Win32.Graphics.Gdi.EMRPOLYLINE16", [ 
+    "emr:Windows.Win32.Graphics.Gdi.EMR", 
+    "rclBounds:Windows.Win32.Foundation.RECTL", 
+    "cpts:uint", 
+    "apts[1]:Windows.Win32.Foundation.POINTS"
+]); 
+
+
+Win32.EMRPOLYDRAW = foreign.named_struct( "Windows.Win32.Graphics.Gdi.EMRPOLYDRAW", [ 
+    "emr:Windows.Win32.Graphics.Gdi.EMR", 
+    "rclBounds:Windows.Win32.Foundation.RECTL", 
+    "cptl:uint", 
+    "aptl[1]:Windows.Win32.Foundation.POINTL", 
+    "abTypes[1]:ubyte"
+]); 
+
+
+Win32.EMRPOLYDRAW16 = foreign.named_struct( "Windows.Win32.Graphics.Gdi.EMRPOLYDRAW16", [ 
+    "emr:Windows.Win32.Graphics.Gdi.EMR", 
+    "rclBounds:Windows.Win32.Foundation.RECTL", 
+    "cpts:uint", 
+    "apts[1]:Windows.Win32.Foundation.POINTS", 
+    "abTypes[1]:ubyte"
+]); 
+
+
+Win32.EMRPOLYPOLYLINE = foreign.named_struct( "Windows.Win32.Graphics.Gdi.EMRPOLYPOLYLINE", [ 
+    "emr:Windows.Win32.Graphics.Gdi.EMR", 
+    "rclBounds:Windows.Win32.Foundation.RECTL", 
+    "nPolys:uint", 
+    "cptl:uint", 
+    "aPolyCounts[1]:uint", 
+    "aptl[1]:Windows.Win32.Foundation.POINTL"
+]); 
+
+
+Win32.EMRPOLYPOLYLINE16 = foreign.named_struct( "Windows.Win32.Graphics.Gdi.EMRPOLYPOLYLINE16", [ 
+    "emr:Windows.Win32.Graphics.Gdi.EMR", 
+    "rclBounds:Windows.Win32.Foundation.RECTL", 
+    "nPolys:uint", 
+    "cpts:uint", 
+    "aPolyCounts[1]:uint", 
+    "apts[1]:Windows.Win32.Foundation.POINTS"
+]); 
+
+
+Win32.EMRINVERTRGN = foreign.named_struct( "Windows.Win32.Graphics.Gdi.EMRINVERTRGN", [ 
+    "emr:Windows.Win32.Graphics.Gdi.EMR", 
+    "rclBounds:Windows.Win32.Foundation.RECTL", 
+    "cbRgnData:uint", 
+    "RgnData[1]:ubyte"
+]); 
+
+
+Win32.EMRFILLRGN = foreign.named_struct( "Windows.Win32.Graphics.Gdi.EMRFILLRGN", [ 
+    "emr:Windows.Win32.Graphics.Gdi.EMR", 
+    "rclBounds:Windows.Win32.Foundation.RECTL", 
+    "cbRgnData:uint", 
+    "ihBrush:uint", 
+    "RgnData[1]:ubyte"
+]); 
+
+
+Win32.EMRFRAMERGN = foreign.named_struct( "Windows.Win32.Graphics.Gdi.EMRFRAMERGN", [ 
+    "emr:Windows.Win32.Graphics.Gdi.EMR", 
+    "rclBounds:Windows.Win32.Foundation.RECTL", 
+    "cbRgnData:uint", 
+    "ihBrush:uint", 
+    "szlStroke:Windows.Win32.Foundation.SIZE", 
+    "RgnData[1]:ubyte"
+]); 
+
+
+Win32.EMREXTSELECTCLIPRGN = foreign.named_struct( "Windows.Win32.Graphics.Gdi.EMREXTSELECTCLIPRGN", [ 
+    "emr:Windows.Win32.Graphics.Gdi.EMR", 
+    "cbRgnData:uint", 
+    "iMode:int", 
+    "RgnData[1]:ubyte"
+]); 
+
+
+Win32.EMREXTTEXTOUTA = foreign.named_struct( "Windows.Win32.Graphics.Gdi.EMREXTTEXTOUTA", [ 
+    "emr:Windows.Win32.Graphics.Gdi.EMR", 
+    "rclBounds:Windows.Win32.Foundation.RECTL", 
+    "iGraphicsMode:uint", 
+    "exScale:float", 
+    "eyScale:float", 
+    "emrtext:Windows.Win32.Graphics.Gdi.EMRTEXT"
+]); 
+
+
+Win32.EMRPOLYTEXTOUTA = foreign.named_struct( "Windows.Win32.Graphics.Gdi.EMRPOLYTEXTOUTA", [ 
+    "emr:Windows.Win32.Graphics.Gdi.EMR", 
+    "rclBounds:Windows.Win32.Foundation.RECTL", 
+    "iGraphicsMode:uint", 
+    "exScale:float", 
+    "eyScale:float", 
+    "cStrings:int", 
+    "aemrtext[1]:Windows.Win32.Graphics.Gdi.EMRTEXT"
+]); 
+
+
+Win32.EMRBITBLT = foreign.named_struct( "Windows.Win32.Graphics.Gdi.EMRBITBLT", [ 
+    "emr:Windows.Win32.Graphics.Gdi.EMR", 
+    "rclBounds:Windows.Win32.Foundation.RECTL", 
+    "xDest:int", 
+    "yDest:int", 
+    "cxDest:int", 
+    "cyDest:int", 
+    "dwRop:uint", 
+    "xSrc:int", 
+    "ySrc:int", 
+    "xformSrc:Windows.Win32.Graphics.Gdi.XFORM", 
+    "crBkColorSrc:Windows.Win32.Foundation.COLORREF", 
+    "iUsageSrc:uint", 
+    "offBmiSrc:uint", 
+    "cbBmiSrc:uint", 
+    "offBitsSrc:uint", 
+    "cbBitsSrc:uint"
+]); 
+
+
+Win32.EMRSTRETCHBLT = foreign.named_struct( "Windows.Win32.Graphics.Gdi.EMRSTRETCHBLT", [ 
+    "emr:Windows.Win32.Graphics.Gdi.EMR", 
+    "rclBounds:Windows.Win32.Foundation.RECTL", 
+    "xDest:int", 
+    "yDest:int", 
+    "cxDest:int", 
+    "cyDest:int", 
+    "dwRop:uint", 
+    "xSrc:int", 
+    "ySrc:int", 
+    "xformSrc:Windows.Win32.Graphics.Gdi.XFORM", 
+    "crBkColorSrc:Windows.Win32.Foundation.COLORREF", 
+    "iUsageSrc:uint", 
+    "offBmiSrc:uint", 
+    "cbBmiSrc:uint", 
+    "offBitsSrc:uint", 
+    "cbBitsSrc:uint", 
+    "cxSrc:int", 
+    "cySrc:int"
+]); 
+
+
+Win32.EMRMASKBLT = foreign.named_struct( "Windows.Win32.Graphics.Gdi.EMRMASKBLT", [ 
+    "emr:Windows.Win32.Graphics.Gdi.EMR", 
+    "rclBounds:Windows.Win32.Foundation.RECTL", 
+    "xDest:int", 
+    "yDest:int", 
+    "cxDest:int", 
+    "cyDest:int", 
+    "dwRop:uint", 
+    "xSrc:int", 
+    "ySrc:int", 
+    "xformSrc:Windows.Win32.Graphics.Gdi.XFORM", 
+    "crBkColorSrc:Windows.Win32.Foundation.COLORREF", 
+    "iUsageSrc:uint", 
+    "offBmiSrc:uint", 
+    "cbBmiSrc:uint", 
+    "offBitsSrc:uint", 
+    "cbBitsSrc:uint", 
+    "xMask:int", 
+    "yMask:int", 
+    "iUsageMask:uint", 
+    "offBmiMask:uint", 
+    "cbBmiMask:uint", 
+    "offBitsMask:uint", 
+    "cbBitsMask:uint"
+]); 
+
+
+Win32.EMRPLGBLT = foreign.named_struct( "Windows.Win32.Graphics.Gdi.EMRPLGBLT", [ 
+    "emr:Windows.Win32.Graphics.Gdi.EMR", 
+    "rclBounds:Windows.Win32.Foundation.RECTL", 
+    "aptlDest[3]:Windows.Win32.Foundation.POINTL", 
+    "xSrc:int", 
+    "ySrc:int", 
+    "cxSrc:int", 
+    "cySrc:int", 
+    "xformSrc:Windows.Win32.Graphics.Gdi.XFORM", 
+    "crBkColorSrc:Windows.Win32.Foundation.COLORREF", 
+    "iUsageSrc:uint", 
+    "offBmiSrc:uint", 
+    "cbBmiSrc:uint", 
+    "offBitsSrc:uint", 
+    "cbBitsSrc:uint", 
+    "xMask:int", 
+    "yMask:int", 
+    "iUsageMask:uint", 
+    "offBmiMask:uint", 
+    "cbBmiMask:uint", 
+    "offBitsMask:uint", 
+    "cbBitsMask:uint"
+]); 
+
+
+Win32.EMRSETDIBITSTODEVICE = foreign.named_struct( "Windows.Win32.Graphics.Gdi.EMRSETDIBITSTODEVICE", [ 
+    "emr:Windows.Win32.Graphics.Gdi.EMR", 
+    "rclBounds:Windows.Win32.Foundation.RECTL", 
+    "xDest:int", 
+    "yDest:int", 
+    "xSrc:int", 
+    "ySrc:int", 
+    "cxSrc:int", 
+    "cySrc:int", 
+    "offBmiSrc:uint", 
+    "cbBmiSrc:uint", 
+    "offBitsSrc:uint", 
+    "cbBitsSrc:uint", 
+    "iUsageSrc:uint", 
+    "iStartScan:uint", 
+    "cScans:uint"
+]); 
+
+
+Win32.EMRSTRETCHDIBITS = foreign.named_struct( "Windows.Win32.Graphics.Gdi.EMRSTRETCHDIBITS", [ 
+    "emr:Windows.Win32.Graphics.Gdi.EMR", 
+    "rclBounds:Windows.Win32.Foundation.RECTL", 
+    "xDest:int", 
+    "yDest:int", 
+    "xSrc:int", 
+    "ySrc:int", 
+    "cxSrc:int", 
+    "cySrc:int", 
+    "offBmiSrc:uint", 
+    "cbBmiSrc:uint", 
+    "offBitsSrc:uint", 
+    "cbBitsSrc:uint", 
+    "iUsageSrc:uint", 
+    "dwRop:uint", 
+    "cxDest:int", 
+    "cyDest:int"
+]); 
+
+
+Win32.EMREXTCREATEFONTINDIRECTW = foreign.named_struct( "Windows.Win32.Graphics.Gdi.EMREXTCREATEFONTINDIRECTW", [ 
+    "emr:Windows.Win32.Graphics.Gdi.EMR", 
+    "ihFont:uint", 
+    "elfw:Windows.Win32.Graphics.Gdi.EXTLOGFONTW"
+]); 
+
+
+Win32.EMRCREATEPALETTE = foreign.named_struct( "Windows.Win32.Graphics.Gdi.EMRCREATEPALETTE", [ 
+    "emr:Windows.Win32.Graphics.Gdi.EMR", 
+    "ihPal:uint", 
+    "lgpl:Windows.Win32.Graphics.Gdi.LOGPALETTE"
+]); 
+
+
+Win32.EMRCREATEPEN = foreign.named_struct( "Windows.Win32.Graphics.Gdi.EMRCREATEPEN", [ 
+    "emr:Windows.Win32.Graphics.Gdi.EMR", 
+    "ihPen:uint", 
+    "lopn:Windows.Win32.Graphics.Gdi.LOGPEN"
+]); 
+
+
+Win32.EMREXTCREATEPEN = foreign.named_struct( "Windows.Win32.Graphics.Gdi.EMREXTCREATEPEN", [ 
+    "emr:Windows.Win32.Graphics.Gdi.EMR", 
+    "ihPen:uint", 
+    "offBmi:uint", 
+    "cbBmi:uint", 
+    "offBits:uint", 
+    "cbBits:uint", 
+    "elp:Windows.Win32.Graphics.Gdi.EXTLOGPEN32"
+]); 
+
+
+Win32.EMRCREATEBRUSHINDIRECT = foreign.named_struct( "Windows.Win32.Graphics.Gdi.EMRCREATEBRUSHINDIRECT", [ 
+    "emr:Windows.Win32.Graphics.Gdi.EMR", 
+    "ihBrush:uint", 
+    "lb:Windows.Win32.Graphics.Gdi.LOGBRUSH32"
+]); 
+
+
+Win32.EMRCREATEMONOBRUSH = foreign.named_struct( "Windows.Win32.Graphics.Gdi.EMRCREATEMONOBRUSH", [ 
+    "emr:Windows.Win32.Graphics.Gdi.EMR", 
+    "ihBrush:uint", 
+    "iUsage:uint", 
+    "offBmi:uint", 
+    "cbBmi:uint", 
+    "offBits:uint", 
+    "cbBits:uint"
+]); 
+
+
+Win32.EMRCREATEDIBPATTERNBRUSHPT = foreign.named_struct( "Windows.Win32.Graphics.Gdi.EMRCREATEDIBPATTERNBRUSHPT", [ 
+    "emr:Windows.Win32.Graphics.Gdi.EMR", 
+    "ihBrush:uint", 
+    "iUsage:uint", 
+    "offBmi:uint", 
+    "cbBmi:uint", 
+    "offBits:uint", 
+    "cbBits:uint"
+]); 
+
+
+Win32.EMRFORMAT = foreign.named_struct( "Windows.Win32.Graphics.Gdi.EMRFORMAT", [ 
+    "dSignature:uint", 
+    "nVersion:uint", 
+    "cbData:uint", 
+    "offData:uint"
+]); 
+
+
+Win32.EMRGLSRECORD = foreign.named_struct( "Windows.Win32.Graphics.Gdi.EMRGLSRECORD", [ 
+    "emr:Windows.Win32.Graphics.Gdi.EMR", 
+    "cbData:uint", 
+    "Data[1]:ubyte"
+]); 
+
+
+Win32.EMRGLSBOUNDEDRECORD = foreign.named_struct( "Windows.Win32.Graphics.Gdi.EMRGLSBOUNDEDRECORD", [ 
+    "emr:Windows.Win32.Graphics.Gdi.EMR", 
+    "rclBounds:Windows.Win32.Foundation.RECTL", 
+    "cbData:uint", 
+    "Data[1]:ubyte"
+]); 
+
+
+Win32.EMRSETCOLORSPACE = foreign.named_struct( "Windows.Win32.Graphics.Gdi.EMRSETCOLORSPACE", [ 
+    "emr:Windows.Win32.Graphics.Gdi.EMR", 
+    "ihCS:uint"
+]); 
+
+
+Win32.EMREXTESCAPE = foreign.named_struct( "Windows.Win32.Graphics.Gdi.EMREXTESCAPE", [ 
+    "emr:Windows.Win32.Graphics.Gdi.EMR", 
+    "iEscape:int", 
+    "cbEscData:int", 
+    "EscData[1]:ubyte"
+]); 
+
+
+Win32.EMRNAMEDESCAPE = foreign.named_struct( "Windows.Win32.Graphics.Gdi.EMRNAMEDESCAPE", [ 
+    "emr:Windows.Win32.Graphics.Gdi.EMR", 
+    "iEscape:int", 
+    "cbDriver:int", 
+    "cbEscData:int", 
+    "EscData[1]:ubyte"
+]); 
+
+
+Win32.EMRSETICMPROFILE = foreign.named_struct( "Windows.Win32.Graphics.Gdi.EMRSETICMPROFILE", [ 
+    "emr:Windows.Win32.Graphics.Gdi.EMR", 
+    "dwFlags:uint", 
+    "cbName:uint", 
+    "cbData:uint", 
+    "Data[1]:ubyte"
+]); 
+
+
+Win32.EMRCOLORMATCHTOTARGET = foreign.named_struct( "Windows.Win32.Graphics.Gdi.EMRCOLORMATCHTOTARGET", [ 
+    "emr:Windows.Win32.Graphics.Gdi.EMR", 
+    "dwAction:uint", 
+    "dwFlags:uint", 
+    "cbName:uint", 
+    "cbData:uint", 
+    "Data[1]:ubyte"
+]); 
+
+
+Win32.EMRCOLORCORRECTPALETTE = foreign.named_struct( "Windows.Win32.Graphics.Gdi.EMRCOLORCORRECTPALETTE", [ 
+    "emr:Windows.Win32.Graphics.Gdi.EMR", 
+    "ihPalette:uint", 
+    "nFirstEntry:uint", 
+    "nPalEntries:uint", 
+    "nReserved:uint"
+]); 
+
+
+Win32.EMRALPHABLEND = foreign.named_struct( "Windows.Win32.Graphics.Gdi.EMRALPHABLEND", [ 
+    "emr:Windows.Win32.Graphics.Gdi.EMR", 
+    "rclBounds:Windows.Win32.Foundation.RECTL", 
+    "xDest:int", 
+    "yDest:int", 
+    "cxDest:int", 
+    "cyDest:int", 
+    "dwRop:uint", 
+    "xSrc:int", 
+    "ySrc:int", 
+    "xformSrc:Windows.Win32.Graphics.Gdi.XFORM", 
+    "crBkColorSrc:Windows.Win32.Foundation.COLORREF", 
+    "iUsageSrc:uint", 
+    "offBmiSrc:uint", 
+    "cbBmiSrc:uint", 
+    "offBitsSrc:uint", 
+    "cbBitsSrc:uint", 
+    "cxSrc:int", 
+    "cySrc:int"
+]); 
+
+
+Win32.EMRGRADIENTFILL = foreign.named_struct( "Windows.Win32.Graphics.Gdi.EMRGRADIENTFILL", [ 
+    "emr:Windows.Win32.Graphics.Gdi.EMR", 
+    "rclBounds:Windows.Win32.Foundation.RECTL", 
+    "nVer:uint", 
+    "nTri:uint", 
+    "ulMode:uint", 
+    "Ver[1]:Windows.Win32.Graphics.Gdi.TRIVERTEX"
+]); 
+
+
+Win32.EMRTRANSPARENTBLT = foreign.named_struct( "Windows.Win32.Graphics.Gdi.EMRTRANSPARENTBLT", [ 
+    "emr:Windows.Win32.Graphics.Gdi.EMR", 
+    "rclBounds:Windows.Win32.Foundation.RECTL", 
+    "xDest:int", 
+    "yDest:int", 
+    "cxDest:int", 
+    "cyDest:int", 
+    "dwRop:uint", 
+    "xSrc:int", 
+    "ySrc:int", 
+    "xformSrc:Windows.Win32.Graphics.Gdi.XFORM", 
+    "crBkColorSrc:Windows.Win32.Foundation.COLORREF", 
+    "iUsageSrc:uint", 
+    "offBmiSrc:uint", 
+    "cbBmiSrc:uint", 
+    "offBitsSrc:uint", 
+    "cbBitsSrc:uint", 
+    "cxSrc:int", 
+    "cySrc:int"
+]); 
+
+
+Win32.WGLSWAP = foreign.named_struct( "Windows.Win32.Graphics.Gdi.WGLSWAP", [ 
+    "hdc:Windows.Win32.Graphics.Gdi.HDC", 
+    "uiFlags:uint"
+]); 
+
+
+Win32.TTLOADINFO = foreign.named_struct( "Windows.Win32.Graphics.Gdi.TTLOADINFO", [ 
+    "usStructSize:ushort", 
+    "usRefStrSize:ushort", 
+    "pusRefStr:ptr"
+]); 
+
+
+Win32.TTEMBEDINFO = foreign.named_struct( "Windows.Win32.Graphics.Gdi.TTEMBEDINFO", [ 
+    "usStructSize:ushort", 
+    "usRootStrSize:ushort", 
+    "pusRootStr:ptr"
+]); 
+
+
+Win32.TTVALIDATIONTESTSPARAMS = foreign.named_struct( "Windows.Win32.Graphics.Gdi.TTVALIDATIONTESTSPARAMS", [ 
+    "ulStructSize:uint", 
+    "lTestFromSize:int", 
+    "lTestToSize:int", 
+    "ulCharSet:uint", 
+    "usReserved1:ushort", 
+    "usCharCodeCount:ushort", 
+    "pusCharCodeSet:ptr"
+]); 
+
+
+Win32.TTVALIDATIONTESTSPARAMSEX = foreign.named_struct( "Windows.Win32.Graphics.Gdi.TTVALIDATIONTESTSPARAMSEX", [ 
+    "ulStructSize:uint", 
+    "lTestFromSize:int", 
+    "lTestToSize:int", 
+    "ulCharSet:uint", 
+    "usReserved1:ushort", 
+    "usCharCodeCount:ushort", 
+    "pulCharCodeSet:ptr"
+]); 
+
+
+Win32.PAINTSTRUCT = foreign.named_struct( "Windows.Win32.Graphics.Gdi.PAINTSTRUCT", [ 
+    "hdc:Windows.Win32.Graphics.Gdi.HDC", 
+    "fErase:Windows.Win32.Foundation.BOOL", 
+    "rcPaint:Windows.Win32.Foundation.RECT", 
+    "fRestore:Windows.Win32.Foundation.BOOL", 
+    "fIncUpdate:Windows.Win32.Foundation.BOOL", 
+    "rgbReserved[32]:ubyte"
+]); 
+
+
+Win32.DRAWTEXTPARAMS = foreign.named_struct( "Windows.Win32.Graphics.Gdi.DRAWTEXTPARAMS", [ 
+    "cbSize:uint", 
+    "iTabLength:int", 
+    "iLeftMargin:int", 
+    "iRightMargin:int", 
+    "uiLengthDrawn:uint"
+]); 
+
+
+Win32.MONITORINFO = foreign.named_struct( "Windows.Win32.Graphics.Gdi.MONITORINFO", [ 
+    "cbSize:uint", 
+    "rcMonitor:Windows.Win32.Foundation.RECT", 
+    "rcWork:Windows.Win32.Foundation.RECT", 
+    "dwFlags:uint"
+]); 
+
+Win32.GDI_ERROR = -1;
+Win32.ERROR = 0;
+Win32.MAXSTRETCHBLTMODE = 4;
+Win32.POLYFILL_LAST = 2;
+Win32.LAYOUT_BTT = 2;
+Win32.LAYOUT_VBH = 4;
+Win32.ASPECT_FILTERING = 1;
+Win32.META_SETBKCOLOR = 513;
+Win32.META_SETBKMODE = 258;
+Win32.META_SETMAPMODE = 259;
+Win32.META_SETROP2 = 260;
+Win32.META_SETRELABS = 261;
+Win32.META_SETPOLYFILLMODE = 262;
+Win32.META_SETSTRETCHBLTMODE = 263;
+Win32.META_SETTEXTCHAREXTRA = 264;
+Win32.META_SETTEXTCOLOR = 521;
+Win32.META_SETTEXTJUSTIFICATION = 522;
+Win32.META_SETWINDOWORG = 523;
+Win32.META_SETWINDOWEXT = 524;
+Win32.META_SETVIEWPORTORG = 525;
+Win32.META_SETVIEWPORTEXT = 526;
+Win32.META_OFFSETWINDOWORG = 527;
+Win32.META_SCALEWINDOWEXT = 1040;
+Win32.META_OFFSETVIEWPORTORG = 529;
+Win32.META_SCALEVIEWPORTEXT = 1042;
+Win32.META_LINETO = 531;
+Win32.META_MOVETO = 532;
+Win32.META_EXCLUDECLIPRECT = 1045;
+Win32.META_INTERSECTCLIPRECT = 1046;
+Win32.META_ARC = 2071;
+Win32.META_ELLIPSE = 1048;
+Win32.META_FLOODFILL = 1049;
+Win32.META_PIE = 2074;
+Win32.META_RECTANGLE = 1051;
+Win32.META_ROUNDRECT = 1564;
+Win32.META_PATBLT = 1565;
+Win32.META_SAVEDC = 30;
+Win32.META_SETPIXEL = 1055;
+Win32.META_OFFSETCLIPRGN = 544;
+Win32.META_TEXTOUT = 1313;
+Win32.META_BITBLT = 2338;
+Win32.META_STRETCHBLT = 2851;
+Win32.META_POLYGON = 804;
+Win32.META_POLYLINE = 805;
+Win32.META_ESCAPE = 1574;
+Win32.META_RESTOREDC = 295;
+Win32.META_FILLREGION = 552;
+Win32.META_FRAMEREGION = 1065;
+Win32.META_INVERTREGION = 298;
+Win32.META_PAINTREGION = 299;
+Win32.META_SELECTCLIPREGION = 300;
+Win32.META_SELECTOBJECT = 301;
+Win32.META_SETTEXTALIGN = 302;
+Win32.META_CHORD = 2096;
+Win32.META_SETMAPPERFLAGS = 561;
+Win32.META_EXTTEXTOUT = 2610;
+Win32.META_SETDIBTODEV = 3379;
+Win32.META_SELECTPALETTE = 564;
+Win32.META_REALIZEPALETTE = 53;
+Win32.META_ANIMATEPALETTE = 1078;
+Win32.META_SETPALENTRIES = 55;
+Win32.META_POLYPOLYGON = 1336;
+Win32.META_RESIZEPALETTE = 313;
+Win32.META_DIBBITBLT = 2368;
+Win32.META_DIBSTRETCHBLT = 2881;
+Win32.META_DIBCREATEPATTERNBRUSH = 322;
+Win32.META_STRETCHDIB = 3907;
+Win32.META_EXTFLOODFILL = 1352;
+Win32.META_SETLAYOUT = 329;
+Win32.META_DELETEOBJECT = 496;
+Win32.META_CREATEPALETTE = 247;
+Win32.META_CREATEPATTERNBRUSH = 505;
+Win32.META_CREATEPENINDIRECT = 762;
+Win32.META_CREATEFONTINDIRECT = 763;
+Win32.META_CREATEBRUSHINDIRECT = 764;
+Win32.META_CREATEREGION = 1791;
+Win32.NEWFRAME = 1;
+Win32.ABORTDOC = 2;
+Win32.NEXTBAND = 3;
+Win32.SETCOLORTABLE = 4;
+Win32.GETCOLORTABLE = 5;
+Win32.FLUSHOUTPUT = 6;
+Win32.DRAFTMODE = 7;
+Win32.QUERYESCSUPPORT = 8;
+Win32.SETABORTPROC = 9;
+Win32.STARTDOC = 10;
+Win32.ENDDOC = 11;
+Win32.GETPHYSPAGESIZE = 12;
+Win32.GETPRINTINGOFFSET = 13;
+Win32.GETSCALINGFACTOR = 14;
+Win32.MFCOMMENT = 15;
+Win32.GETPENWIDTH = 16;
+Win32.SETCOPYCOUNT = 17;
+Win32.SELECTPAPERSOURCE = 18;
+Win32.DEVICEDATA = 19;
+Win32.PASSTHROUGH = 19;
+Win32.GETTECHNOLGY = 20;
+Win32.GETTECHNOLOGY = 20;
+Win32.SETLINECAP = 21;
+Win32.SETLINEJOIN = 22;
+Win32.SETMITERLIMIT = 23;
+Win32.BANDINFO = 24;
+Win32.DRAWPATTERNRECT = 25;
+Win32.GETVECTORPENSIZE = 26;
+Win32.GETVECTORBRUSHSIZE = 27;
+Win32.ENABLEDUPLEX = 28;
+Win32.GETSETPAPERBINS = 29;
+Win32.GETSETPRINTORIENT = 30;
+Win32.ENUMPAPERBINS = 31;
+Win32.SETDIBSCALING = 32;
+Win32.EPSPRINTING = 33;
+Win32.ENUMPAPERMETRICS = 34;
+Win32.GETSETPAPERMETRICS = 35;
+Win32.POSTSCRIPT_DATA = 37;
+Win32.POSTSCRIPT_IGNORE = 38;
+Win32.MOUSETRAILS = 39;
+Win32.GETDEVICEUNITS = 42;
+Win32.GETEXTENDEDTEXTMETRICS = 256;
+Win32.GETEXTENTTABLE = 257;
+Win32.GETPAIRKERNTABLE = 258;
+Win32.GETTRACKKERNTABLE = 259;
+Win32.EXTTEXTOUT = 512;
+Win32.GETFACENAME = 513;
+Win32.DOWNLOADFACE = 514;
+Win32.ENABLERELATIVEWIDTHS = 768;
+Win32.ENABLEPAIRKERNING = 769;
+Win32.SETKERNTRACK = 770;
+Win32.SETALLJUSTVALUES = 771;
+Win32.SETCHARSET = 772;
+Win32.STRETCHBLT = 2048;
+Win32.METAFILE_DRIVER = 2049;
+Win32.GETSETSCREENPARAMS = 3072;
+Win32.QUERYDIBSUPPORT = 3073;
+Win32.BEGIN_PATH = 4096;
+Win32.CLIP_TO_PATH = 4097;
+Win32.END_PATH = 4098;
+Win32.EXT_DEVICE_CAPS = 4099;
+Win32.RESTORE_CTM = 4100;
+Win32.SAVE_CTM = 4101;
+Win32.SET_ARC_DIRECTION = 4102;
+Win32.SET_BACKGROUND_COLOR = 4103;
+Win32.SET_POLY_MODE = 4104;
+Win32.SET_SCREEN_ANGLE = 4105;
+Win32.SET_SPREAD = 4106;
+Win32.TRANSFORM_CTM = 4107;
+Win32.SET_CLIP_BOX = 4108;
+Win32.SET_BOUNDS = 4109;
+Win32.SET_MIRROR_MODE = 4110;
+Win32.OPENCHANNEL = 4110;
+Win32.DOWNLOADHEADER = 4111;
+Win32.CLOSECHANNEL = 4112;
+Win32.POSTSCRIPT_PASSTHROUGH = 4115;
+Win32.ENCAPSULATED_POSTSCRIPT = 4116;
+Win32.POSTSCRIPT_IDENTIFY = 4117;
+Win32.POSTSCRIPT_INJECTION = 4118;
+Win32.CHECKJPEGFORMAT = 4119;
+Win32.CHECKPNGFORMAT = 4120;
+Win32.GET_PS_FEATURESETTING = 4121;
+Win32.GDIPLUS_TS_QUERYVER = 4122;
+Win32.GDIPLUS_TS_RECORD = 4123;
+Win32.MILCORE_TS_QUERYVER_RESULT_FALSE = 0;
+Win32.MILCORE_TS_QUERYVER_RESULT_TRUE = 2147483647;
+Win32.SPCLPASSTHROUGH2 = 4568;
+Win32.PSIDENT_GDICENTRIC = 0;
+Win32.PSIDENT_PSCENTRIC = 1;
+Win32.PSINJECT_DLFONT = 3722304989;
+Win32.FEATURESETTING_NUP = 0;
+Win32.FEATURESETTING_OUTPUT = 1;
+Win32.FEATURESETTING_PSLEVEL = 2;
+Win32.FEATURESETTING_CUSTPAPER = 3;
+Win32.FEATURESETTING_MIRROR = 4;
+Win32.FEATURESETTING_NEGATIVE = 5;
+Win32.FEATURESETTING_PROTOCOL = 6;
+Win32.FEATURESETTING_PRIVATE_BEGIN = 4096;
+Win32.FEATURESETTING_PRIVATE_END = 8191;
+Win32.PSPROTOCOL_ASCII = 0;
+Win32.PSPROTOCOL_BCP = 1;
+Win32.PSPROTOCOL_TBCP = 2;
+Win32.PSPROTOCOL_BINARY = 3;
+Win32.QDI_SETDIBITS = 1;
+Win32.QDI_GETDIBITS = 2;
+Win32.QDI_DIBTOSCREEN = 4;
+Win32.QDI_STRETCHDIB = 8;
+Win32.SP_NOTREPORTED = 16384;
+Win32.SP_ERROR = -1;
+Win32.SP_APPABORT = -2;
+Win32.SP_USERABORT = -3;
+Win32.SP_OUTOFDISK = -4;
+Win32.SP_OUTOFMEMORY = -5;
+Win32.PR_JOBSTATUS = 0;
+Win32.LCS_CALIBRATED_RGB = 0;
+Win32.LCS_GM_BUSINESS = 1;
+Win32.LCS_GM_GRAPHICS = 2;
+Win32.LCS_GM_IMAGES = 4;
+Win32.LCS_GM_ABS_COLORIMETRIC = 8;
+Win32.CM_OUT_OF_GAMUT = 255;
+Win32.CM_IN_GAMUT = 0;
+Win32.NTM_REGULAR = 64;
+Win32.NTM_BOLD = 32;
+Win32.NTM_ITALIC = 1;
+Win32.NTM_NONNEGATIVE_AC = 65536;
+Win32.NTM_PS_OPENTYPE = 131072;
+Win32.NTM_TT_OPENTYPE = 262144;
+Win32.NTM_MULTIPLEMASTER = 524288;
+Win32.NTM_TYPE1 = 1048576;
+Win32.NTM_DSIG = 2097152;
+Win32.LF_FACESIZE = 32;
+Win32.LF_FULLFACESIZE = 64;
+Win32.CLEARTYPE_NATURAL_QUALITY = 6;
+Win32.MONO_FONT = 8;
+Win32.FS_LATIN1 = 1;
+Win32.FS_LATIN2 = 2;
+Win32.FS_CYRILLIC = 4;
+Win32.FS_GREEK = 8;
+Win32.FS_TURKISH = 16;
+Win32.FS_HEBREW = 32;
+Win32.FS_ARABIC = 64;
+Win32.FS_BALTIC = 128;
+Win32.FS_VIETNAMESE = 256;
+Win32.FS_THAI = 65536;
+Win32.FS_JISJAPAN = 131072;
+Win32.FS_CHINESESIMP = 262144;
+Win32.FS_WANSUNG = 524288;
+Win32.FS_CHINESETRAD = 1048576;
+Win32.FS_JOHAB = 2097152;
+Win32.FS_SYMBOL = -2147483648;
+Win32.PANOSE_COUNT = 10;
+Win32.PAN_FAMILYTYPE_INDEX = 0;
+Win32.PAN_SERIFSTYLE_INDEX = 1;
+Win32.PAN_PROPORTION_INDEX = 3;
+Win32.PAN_STROKEVARIATION_INDEX = 5;
+Win32.PAN_ARMSTYLE_INDEX = 6;
+Win32.PAN_LETTERFORM_INDEX = 7;
+Win32.PAN_CULTURE_LATIN = 0;
+Win32.PAN_ANY = 0;
+Win32.PAN_NO_FIT = 1;
+Win32.ELF_VENDOR_SIZE = 4;
+Win32.ELF_VERSION = 0;
+Win32.ELF_CULTURE_LATIN = 0;
+Win32.RASTER_FONTTYPE = 1;
+Win32.DEVICE_FONTTYPE = 2;
+Win32.TRUETYPE_FONTTYPE = 4;
+Win32.PC_RESERVED = 1;
+Win32.PC_EXPLICIT = 2;
+Win32.PC_NOCOLLAPSE = 4;
+Win32.BKMODE_LAST = 2;
+Win32.GM_LAST = 2;
+Win32.PT_CLOSEFIGURE = 1;
+Win32.PT_LINETO = 2;
+Win32.PT_BEZIERTO = 4;
+Win32.PT_MOVETO = 6;
+Win32.ABSOLUTE = 1;
+Win32.RELATIVE = 2;
+Win32.STOCK_LAST = 19;
+Win32.CLR_INVALID = 4294967295;
+Win32.HS_API_MAX = 12;
+Win32.DT_PLOTTER = 0;
+Win32.DT_RASDISPLAY = 1;
+Win32.DT_RASPRINTER = 2;
+Win32.DT_RASCAMERA = 3;
+Win32.DT_CHARSTREAM = 4;
+Win32.DT_METAFILE = 5;
+Win32.DT_DISPFILE = 6;
+Win32.CC_NONE = 0;
+Win32.CC_CIRCLES = 1;
+Win32.CC_PIE = 2;
+Win32.CC_CHORD = 4;
+Win32.CC_ELLIPSES = 8;
+Win32.CC_WIDE = 16;
+Win32.CC_STYLED = 32;
+Win32.CC_WIDESTYLED = 64;
+Win32.CC_INTERIORS = 128;
+Win32.CC_ROUNDRECT = 256;
+Win32.LC_NONE = 0;
+Win32.LC_POLYLINE = 2;
+Win32.LC_MARKER = 4;
+Win32.LC_POLYMARKER = 8;
+Win32.LC_WIDE = 16;
+Win32.LC_STYLED = 32;
+Win32.LC_WIDESTYLED = 64;
+Win32.LC_INTERIORS = 128;
+Win32.PC_NONE = 0;
+Win32.PC_POLYGON = 1;
+Win32.PC_RECTANGLE = 2;
+Win32.PC_WINDPOLYGON = 4;
+Win32.PC_TRAPEZOID = 4;
+Win32.PC_SCANLINE = 8;
+Win32.PC_WIDE = 16;
+Win32.PC_STYLED = 32;
+Win32.PC_WIDESTYLED = 64;
+Win32.PC_INTERIORS = 128;
+Win32.PC_POLYPOLYGON = 256;
+Win32.PC_PATHS = 512;
+Win32.CP_NONE = 0;
+Win32.CP_RECTANGLE = 1;
+Win32.CP_REGION = 2;
+Win32.TC_OP_CHARACTER = 1;
+Win32.TC_OP_STROKE = 2;
+Win32.TC_CP_STROKE = 4;
+Win32.TC_CR_90 = 8;
+Win32.TC_CR_ANY = 16;
+Win32.TC_SF_X_YINDEP = 32;
+Win32.TC_SA_DOUBLE = 64;
+Win32.TC_SA_INTEGER = 128;
+Win32.TC_SA_CONTIN = 256;
+Win32.TC_EA_DOUBLE = 512;
+Win32.TC_IA_ABLE = 1024;
+Win32.TC_UA_ABLE = 2048;
+Win32.TC_SO_ABLE = 4096;
+Win32.TC_RA_ABLE = 8192;
+Win32.TC_VA_ABLE = 16384;
+Win32.TC_RESERVED = 32768;
+Win32.TC_SCROLLBLT = 65536;
+Win32.RC_BITBLT = 1;
+Win32.RC_BANDING = 2;
+Win32.RC_SCALING = 4;
+Win32.RC_BITMAP64 = 8;
+Win32.RC_GDI20_OUTPUT = 16;
+Win32.RC_GDI20_STATE = 32;
+Win32.RC_SAVEBITMAP = 64;
+Win32.RC_DI_BITMAP = 128;
+Win32.RC_PALETTE = 256;
+Win32.RC_DIBTODEV = 512;
+Win32.RC_BIGFONT = 1024;
+Win32.RC_STRETCHBLT = 2048;
+Win32.RC_FLOODFILL = 4096;
+Win32.RC_STRETCHDIB = 8192;
+Win32.RC_OP_DX_OUTPUT = 16384;
+Win32.RC_DEVBITS = 32768;
+Win32.SB_NONE = 0;
+Win32.SB_CONST_ALPHA = 1;
+Win32.SB_PIXEL_ALPHA = 2;
+Win32.SB_PREMULT_ALPHA = 4;
+Win32.SB_GRAD_RECT = 16;
+Win32.SB_GRAD_TRI = 32;
+Win32.CM_NONE = 0;
+Win32.CM_DEVICE_ICM = 1;
+Win32.CM_GAMMA_RAMP = 2;
+Win32.CM_CMYK_COLOR = 4;
+Win32.SYSPAL_ERROR = 0;
+Win32.CBM_INIT = 4;
+Win32.CCHFORMNAME = 32;
+Win32.DMORIENT_PORTRAIT = 1;
+Win32.DMORIENT_LANDSCAPE = 2;
+Win32.DMPAPER_LETTER = 1;
+Win32.DMPAPER_LETTERSMALL = 2;
+Win32.DMPAPER_TABLOID = 3;
+Win32.DMPAPER_LEDGER = 4;
+Win32.DMPAPER_LEGAL = 5;
+Win32.DMPAPER_STATEMENT = 6;
+Win32.DMPAPER_EXECUTIVE = 7;
+Win32.DMPAPER_A3 = 8;
+Win32.DMPAPER_A4 = 9;
+Win32.DMPAPER_A4SMALL = 10;
+Win32.DMPAPER_A5 = 11;
+Win32.DMPAPER_B4 = 12;
+Win32.DMPAPER_B5 = 13;
+Win32.DMPAPER_FOLIO = 14;
+Win32.DMPAPER_QUARTO = 15;
+Win32.DMPAPER_10X14 = 16;
+Win32.DMPAPER_11X17 = 17;
+Win32.DMPAPER_NOTE = 18;
+Win32.DMPAPER_ENV_9 = 19;
+Win32.DMPAPER_ENV_10 = 20;
+Win32.DMPAPER_ENV_11 = 21;
+Win32.DMPAPER_ENV_12 = 22;
+Win32.DMPAPER_ENV_14 = 23;
+Win32.DMPAPER_CSHEET = 24;
+Win32.DMPAPER_DSHEET = 25;
+Win32.DMPAPER_ESHEET = 26;
+Win32.DMPAPER_ENV_DL = 27;
+Win32.DMPAPER_ENV_C5 = 28;
+Win32.DMPAPER_ENV_C3 = 29;
+Win32.DMPAPER_ENV_C4 = 30;
+Win32.DMPAPER_ENV_C6 = 31;
+Win32.DMPAPER_ENV_C65 = 32;
+Win32.DMPAPER_ENV_B4 = 33;
+Win32.DMPAPER_ENV_B5 = 34;
+Win32.DMPAPER_ENV_B6 = 35;
+Win32.DMPAPER_ENV_ITALY = 36;
+Win32.DMPAPER_ENV_MONARCH = 37;
+Win32.DMPAPER_ENV_PERSONAL = 38;
+Win32.DMPAPER_FANFOLD_US = 39;
+Win32.DMPAPER_FANFOLD_STD_GERMAN = 40;
+Win32.DMPAPER_FANFOLD_LGL_GERMAN = 41;
+Win32.DMPAPER_ISO_B4 = 42;
+Win32.DMPAPER_JAPANESE_POSTCARD = 43;
+Win32.DMPAPER_9X11 = 44;
+Win32.DMPAPER_10X11 = 45;
+Win32.DMPAPER_15X11 = 46;
+Win32.DMPAPER_ENV_INVITE = 47;
+Win32.DMPAPER_RESERVED_48 = 48;
+Win32.DMPAPER_RESERVED_49 = 49;
+Win32.DMPAPER_LETTER_EXTRA = 50;
+Win32.DMPAPER_LEGAL_EXTRA = 51;
+Win32.DMPAPER_TABLOID_EXTRA = 52;
+Win32.DMPAPER_A4_EXTRA = 53;
+Win32.DMPAPER_LETTER_TRANSVERSE = 54;
+Win32.DMPAPER_A4_TRANSVERSE = 55;
+Win32.DMPAPER_LETTER_EXTRA_TRANSVERSE = 56;
+Win32.DMPAPER_A_PLUS = 57;
+Win32.DMPAPER_B_PLUS = 58;
+Win32.DMPAPER_LETTER_PLUS = 59;
+Win32.DMPAPER_A4_PLUS = 60;
+Win32.DMPAPER_A5_TRANSVERSE = 61;
+Win32.DMPAPER_B5_TRANSVERSE = 62;
+Win32.DMPAPER_A3_EXTRA = 63;
+Win32.DMPAPER_A5_EXTRA = 64;
+Win32.DMPAPER_B5_EXTRA = 65;
+Win32.DMPAPER_A2 = 66;
+Win32.DMPAPER_A3_TRANSVERSE = 67;
+Win32.DMPAPER_A3_EXTRA_TRANSVERSE = 68;
+Win32.DMPAPER_DBL_JAPANESE_POSTCARD = 69;
+Win32.DMPAPER_A6 = 70;
+Win32.DMPAPER_JENV_KAKU2 = 71;
+Win32.DMPAPER_JENV_KAKU3 = 72;
+Win32.DMPAPER_JENV_CHOU3 = 73;
+Win32.DMPAPER_JENV_CHOU4 = 74;
+Win32.DMPAPER_LETTER_ROTATED = 75;
+Win32.DMPAPER_A3_ROTATED = 76;
+Win32.DMPAPER_A4_ROTATED = 77;
+Win32.DMPAPER_A5_ROTATED = 78;
+Win32.DMPAPER_B4_JIS_ROTATED = 79;
+Win32.DMPAPER_B5_JIS_ROTATED = 80;
+Win32.DMPAPER_JAPANESE_POSTCARD_ROTATED = 81;
+Win32.DMPAPER_DBL_JAPANESE_POSTCARD_ROTATED = 82;
+Win32.DMPAPER_A6_ROTATED = 83;
+Win32.DMPAPER_JENV_KAKU2_ROTATED = 84;
+Win32.DMPAPER_JENV_KAKU3_ROTATED = 85;
+Win32.DMPAPER_JENV_CHOU3_ROTATED = 86;
+Win32.DMPAPER_JENV_CHOU4_ROTATED = 87;
+Win32.DMPAPER_B6_JIS = 88;
+Win32.DMPAPER_B6_JIS_ROTATED = 89;
+Win32.DMPAPER_12X11 = 90;
+Win32.DMPAPER_JENV_YOU4 = 91;
+Win32.DMPAPER_JENV_YOU4_ROTATED = 92;
+Win32.DMPAPER_P16K = 93;
+Win32.DMPAPER_P32K = 94;
+Win32.DMPAPER_P32KBIG = 95;
+Win32.DMPAPER_PENV_1 = 96;
+Win32.DMPAPER_PENV_2 = 97;
+Win32.DMPAPER_PENV_3 = 98;
+Win32.DMPAPER_PENV_4 = 99;
+Win32.DMPAPER_PENV_5 = 100;
+Win32.DMPAPER_PENV_6 = 101;
+Win32.DMPAPER_PENV_7 = 102;
+Win32.DMPAPER_PENV_8 = 103;
+Win32.DMPAPER_PENV_9 = 104;
+Win32.DMPAPER_PENV_10 = 105;
+Win32.DMPAPER_P16K_ROTATED = 106;
+Win32.DMPAPER_P32K_ROTATED = 107;
+Win32.DMPAPER_P32KBIG_ROTATED = 108;
+Win32.DMPAPER_PENV_1_ROTATED = 109;
+Win32.DMPAPER_PENV_2_ROTATED = 110;
+Win32.DMPAPER_PENV_3_ROTATED = 111;
+Win32.DMPAPER_PENV_4_ROTATED = 112;
+Win32.DMPAPER_PENV_5_ROTATED = 113;
+Win32.DMPAPER_PENV_6_ROTATED = 114;
+Win32.DMPAPER_PENV_7_ROTATED = 115;
+Win32.DMPAPER_PENV_8_ROTATED = 116;
+Win32.DMPAPER_PENV_9_ROTATED = 117;
+Win32.DMPAPER_PENV_10_ROTATED = 118;
+Win32.DMPAPER_LAST = 118;
+Win32.DMPAPER_USER = 256;
+Win32.DMBIN_UPPER = 1;
+Win32.DMBIN_ONLYONE = 1;
+Win32.DMBIN_LOWER = 2;
+Win32.DMBIN_MIDDLE = 3;
+Win32.DMBIN_MANUAL = 4;
+Win32.DMBIN_ENVELOPE = 5;
+Win32.DMBIN_ENVMANUAL = 6;
+Win32.DMBIN_AUTO = 7;
+Win32.DMBIN_TRACTOR = 8;
+Win32.DMBIN_SMALLFMT = 9;
+Win32.DMBIN_LARGEFMT = 10;
+Win32.DMBIN_LARGECAPACITY = 11;
+Win32.DMBIN_CASSETTE = 14;
+Win32.DMBIN_FORMSOURCE = 15;
+Win32.DMBIN_LAST = 15;
+Win32.DMBIN_USER = 256;
+Win32.DMRES_DRAFT = -1;
+Win32.DMRES_LOW = -2;
+Win32.DMRES_MEDIUM = -3;
+Win32.DMRES_HIGH = -4;
+Win32.DMDO_DEFAULT = 0;
+Win32.DMDO_90 = 1;
+Win32.DMDO_180 = 2;
+Win32.DMDO_270 = 3;
+Win32.DMDFO_DEFAULT = 0;
+Win32.DMDFO_STRETCH = 1;
+Win32.DMDFO_CENTER = 2;
+Win32.DMDISPLAYFLAGS_TEXTMODE = 4;
+Win32.DMNUP_SYSTEM = 1;
+Win32.DMNUP_ONEUP = 2;
+Win32.DMICMMETHOD_NONE = 1;
+Win32.DMICMMETHOD_SYSTEM = 2;
+Win32.DMICMMETHOD_DRIVER = 3;
+Win32.DMICMMETHOD_DEVICE = 4;
+Win32.DMICMMETHOD_USER = 256;
+Win32.DMICM_SATURATE = 1;
+Win32.DMICM_CONTRAST = 2;
+Win32.DMICM_COLORIMETRIC = 3;
+Win32.DMICM_ABS_COLORIMETRIC = 4;
+Win32.DMICM_USER = 256;
+Win32.DMMEDIA_STANDARD = 1;
+Win32.DMMEDIA_TRANSPARENCY = 2;
+Win32.DMMEDIA_GLOSSY = 3;
+Win32.DMMEDIA_USER = 256;
+Win32.DMDITHER_NONE = 1;
+Win32.DMDITHER_COARSE = 2;
+Win32.DMDITHER_FINE = 3;
+Win32.DMDITHER_LINEART = 4;
+Win32.DMDITHER_ERRORDIFFUSION = 5;
+Win32.DMDITHER_RESERVED6 = 6;
+Win32.DMDITHER_RESERVED7 = 7;
+Win32.DMDITHER_RESERVED8 = 8;
+Win32.DMDITHER_RESERVED9 = 9;
+Win32.DMDITHER_GRAYSCALE = 10;
+Win32.DMDITHER_USER = 256;
+Win32.DISPLAY_DEVICE_ATTACHED_TO_DESKTOP = 1;
+Win32.DISPLAY_DEVICE_MULTI_DRIVER = 2;
+Win32.DISPLAY_DEVICE_PRIMARY_DEVICE = 4;
+Win32.DISPLAY_DEVICE_MIRRORING_DRIVER = 8;
+Win32.DISPLAY_DEVICE_VGA_COMPATIBLE = 16;
+Win32.DISPLAY_DEVICE_REMOVABLE = 32;
+Win32.DISPLAY_DEVICE_ACC_DRIVER = 64;
+Win32.DISPLAY_DEVICE_MODESPRUNED = 134217728;
+Win32.DISPLAY_DEVICE_RDPUDD = 16777216;
+Win32.DISPLAY_DEVICE_REMOTE = 67108864;
+Win32.DISPLAY_DEVICE_DISCONNECT = 33554432;
+Win32.DISPLAY_DEVICE_TS_COMPATIBLE = 2097152;
+Win32.DISPLAY_DEVICE_UNSAFE_MODES_ON = 524288;
+Win32.DISPLAY_DEVICE_ACTIVE = 1;
+Win32.DISPLAY_DEVICE_ATTACHED = 2;
+Win32.DISPLAYCONFIG_MAXPATH = 1024;
+Win32.DISPLAYCONFIG_PATH_MODE_IDX_INVALID = 4294967295;
+Win32.DISPLAYCONFIG_PATH_TARGET_MODE_IDX_INVALID = 65535;
+Win32.DISPLAYCONFIG_PATH_DESKTOP_IMAGE_IDX_INVALID = 65535;
+Win32.DISPLAYCONFIG_PATH_SOURCE_MODE_IDX_INVALID = 65535;
+Win32.DISPLAYCONFIG_PATH_CLONE_GROUP_INVALID = 65535;
+Win32.DISPLAYCONFIG_SOURCE_IN_USE = 1;
+Win32.DISPLAYCONFIG_TARGET_IN_USE = 1;
+Win32.DISPLAYCONFIG_TARGET_FORCIBLE = 2;
+Win32.DISPLAYCONFIG_TARGET_FORCED_AVAILABILITY_BOOT = 4;
+Win32.DISPLAYCONFIG_TARGET_FORCED_AVAILABILITY_PATH = 8;
+Win32.DISPLAYCONFIG_TARGET_FORCED_AVAILABILITY_SYSTEM = 16;
+Win32.DISPLAYCONFIG_TARGET_IS_HMD = 32;
+Win32.DISPLAYCONFIG_PATH_ACTIVE = 1;
+Win32.DISPLAYCONFIG_PATH_PREFERRED_UNSCALED = 4;
+Win32.DISPLAYCONFIG_PATH_SUPPORT_VIRTUAL_MODE = 8;
+Win32.DISPLAYCONFIG_PATH_VALID_FLAGS = 29;
+Win32.QDC_ALL_PATHS = 1;
+Win32.QDC_ONLY_ACTIVE_PATHS = 2;
+Win32.QDC_DATABASE_CURRENT = 4;
+Win32.QDC_VIRTUAL_MODE_AWARE = 16;
+Win32.QDC_INCLUDE_HMD = 32;
+Win32.QDC_VIRTUAL_REFRESH_RATE_AWARE = 64;
+Win32.SDC_TOPOLOGY_INTERNAL = 1;
+Win32.SDC_TOPOLOGY_CLONE = 2;
+Win32.SDC_TOPOLOGY_EXTEND = 4;
+Win32.SDC_TOPOLOGY_EXTERNAL = 8;
+Win32.SDC_TOPOLOGY_SUPPLIED = 16;
+Win32.SDC_USE_SUPPLIED_DISPLAY_CONFIG = 32;
+Win32.SDC_VALIDATE = 64;
+Win32.SDC_APPLY = 128;
+Win32.SDC_NO_OPTIMIZATION = 256;
+Win32.SDC_SAVE_TO_DATABASE = 512;
+Win32.SDC_ALLOW_CHANGES = 1024;
+Win32.SDC_PATH_PERSIST_IF_REQUIRED = 2048;
+Win32.SDC_FORCE_MODE_ENUMERATION = 4096;
+Win32.SDC_ALLOW_PATH_ORDER_CHANGES = 8192;
+Win32.SDC_VIRTUAL_MODE_AWARE = 32768;
+Win32.SDC_VIRTUAL_REFRESH_RATE_AWARE = 131072;
+Win32.RDH_RECTANGLES = 1;
+Win32.SYSRGN = 4;
+Win32.TT_POLYGON_TYPE = 24;
+Win32.TT_PRIM_LINE = 1;
+Win32.TT_PRIM_QSPLINE = 2;
+Win32.TT_PRIM_CSPLINE = 3;
+Win32.GCP_DBCS = 1;
+Win32.GCP_ERROR = 32768;
+Win32.FLI_MASK = 4155;
+Win32.FLI_GLYPHS = 262144;
+Win32.GCP_JUSTIFYIN = 2097152;
+Win32.GCPCLASS_LATIN = 1;
+Win32.GCPCLASS_HEBREW = 2;
+Win32.GCPCLASS_ARABIC = 2;
+Win32.GCPCLASS_NEUTRAL = 3;
+Win32.GCPCLASS_LOCALNUMBER = 4;
+Win32.GCPCLASS_LATINNUMBER = 5;
+Win32.GCPCLASS_LATINNUMERICTERMINATOR = 6;
+Win32.GCPCLASS_LATINNUMERICSEPARATOR = 7;
+Win32.GCPCLASS_NUMERICSEPARATOR = 8;
+Win32.GCPCLASS_PREBOUNDLTR = 128;
+Win32.GCPCLASS_PREBOUNDRTL = 64;
+Win32.GCPCLASS_POSTBOUNDLTR = 32;
+Win32.GCPCLASS_POSTBOUNDRTL = 16;
+Win32.GCPGLYPH_LINKBEFORE = 32768;
+Win32.GCPGLYPH_LINKAFTER = 16384;
+Win32.TT_AVAILABLE = 1;
+Win32.TT_ENABLED = 2;
+Win32.DC_BINADJUST = 19;
+Win32.DC_EMF_COMPLIANT = 20;
+Win32.DC_DATATYPE_PRODUCED = 21;
+Win32.DC_MANUFACTURER = 23;
+Win32.DC_MODEL = 24;
+Win32.PRINTRATEUNIT_PPM = 1;
+Win32.PRINTRATEUNIT_CPS = 2;
+Win32.PRINTRATEUNIT_LPM = 3;
+Win32.PRINTRATEUNIT_IPM = 4;
+Win32.DCTT_BITMAP = 1;
+Win32.DCTT_DOWNLOAD = 2;
+Win32.DCTT_SUBDEV = 4;
+Win32.DCTT_DOWNLOAD_OUTLINE = 8;
+Win32.DCBA_FACEUPNONE = 0;
+Win32.DCBA_FACEUPCENTER = 1;
+Win32.DCBA_FACEUPLEFT = 2;
+Win32.DCBA_FACEUPRIGHT = 3;
+Win32.DCBA_FACEDOWNNONE = 256;
+Win32.DCBA_FACEDOWNCENTER = 257;
+Win32.DCBA_FACEDOWNLEFT = 258;
+Win32.DCBA_FACEDOWNRIGHT = 259;
+Win32.GS_8BIT_INDICES = 1;
+Win32.GGI_MARK_NONEXISTING_GLYPHS = 1;
+Win32.MM_MAX_NUMAXES = 16;
+Win32.MM_MAX_AXES_NAMELEN = 16;
+Win32.GDIREGISTERDDRAWPACKETVERSION = 1;
+Win32.AC_SRC_OVER = 0;
+Win32.AC_SRC_ALPHA = 1;
+Win32.GRADIENT_FILL_OP_FLAG = 255;
+Win32.CA_NEGATIVE = 1;
+Win32.CA_LOG_FILTER = 2;
+Win32.ILLUMINANT_DEVICE_DEFAULT = 0;
+Win32.ILLUMINANT_A = 1;
+Win32.ILLUMINANT_B = 2;
+Win32.ILLUMINANT_C = 3;
+Win32.ILLUMINANT_D50 = 4;
+Win32.ILLUMINANT_D55 = 5;
+Win32.ILLUMINANT_D65 = 6;
+Win32.ILLUMINANT_D75 = 7;
+Win32.ILLUMINANT_F2 = 8;
+Win32.ILLUMINANT_MAX_INDEX = 8;
+Win32.ILLUMINANT_TUNGSTEN = 1;
+Win32.ILLUMINANT_DAYLIGHT = 3;
+Win32.ILLUMINANT_FLUORESCENT = 8;
+Win32.ILLUMINANT_NTSC = 3;
+Win32.DI_APPBANDING = 1;
+Win32.DI_ROPS_READ_DESTINATION = 2;
+Win32.FONTMAPPER_MAX = 10;
+Win32.ENHMETA_SIGNATURE = 1179469088;
+Win32.ENHMETA_STOCK_OBJECT = 2147483648;
+Win32.SETICMPROFILE_EMBEDED = 1;
+Win32.CREATECOLORSPACE_EMBEDED = 1;
+Win32.COLORMATCHTOTARGET_EMBEDED = 1;
+Win32.GDICOMMENT_IDENTIFIER = 1128875079;
+Win32.GDICOMMENT_WINDOWS_METAFILE = 2147483649;
+Win32.GDICOMMENT_BEGINGROUP = 2;
+Win32.GDICOMMENT_ENDGROUP = 3;
+Win32.GDICOMMENT_MULTIFORMATS = 1073741828;
+Win32.EPS_SIGNATURE = 1179865157;
+Win32.GDICOMMENT_UNICODE_STRING = 64;
+Win32.GDICOMMENT_UNICODE_END = 128;
+Win32.WGL_FONT_LINES = 0;
+Win32.WGL_FONT_POLYGONS = 1;
+Win32.LPD_DOUBLEBUFFER = 1;
+Win32.LPD_STEREO = 2;
+Win32.LPD_SUPPORT_GDI = 16;
+Win32.LPD_SUPPORT_OPENGL = 32;
+Win32.LPD_SHARE_DEPTH = 64;
+Win32.LPD_SHARE_STENCIL = 128;
+Win32.LPD_SHARE_ACCUM = 256;
+Win32.LPD_SWAP_EXCHANGE = 512;
+Win32.LPD_SWAP_COPY = 1024;
+Win32.LPD_TRANSPARENT = 4096;
+Win32.LPD_TYPE_RGBA = 0;
+Win32.LPD_TYPE_COLORINDEX = 1;
+Win32.WGL_SWAP_MAIN_PLANE = 1;
+Win32.WGL_SWAP_OVERLAY1 = 2;
+Win32.WGL_SWAP_OVERLAY2 = 4;
+Win32.WGL_SWAP_OVERLAY3 = 8;
+Win32.WGL_SWAP_OVERLAY4 = 16;
+Win32.WGL_SWAP_OVERLAY5 = 32;
+Win32.WGL_SWAP_OVERLAY6 = 64;
+Win32.WGL_SWAP_OVERLAY7 = 128;
+Win32.WGL_SWAP_OVERLAY8 = 256;
+Win32.WGL_SWAP_OVERLAY9 = 512;
+Win32.WGL_SWAP_OVERLAY10 = 1024;
+Win32.WGL_SWAP_OVERLAY11 = 2048;
+Win32.WGL_SWAP_OVERLAY12 = 4096;
+Win32.WGL_SWAP_OVERLAY13 = 8192;
+Win32.WGL_SWAP_OVERLAY14 = 16384;
+Win32.WGL_SWAP_OVERLAY15 = 32768;
+Win32.WGL_SWAP_UNDERLAY1 = 65536;
+Win32.WGL_SWAP_UNDERLAY2 = 131072;
+Win32.WGL_SWAP_UNDERLAY3 = 262144;
+Win32.WGL_SWAP_UNDERLAY4 = 524288;
+Win32.WGL_SWAP_UNDERLAY5 = 1048576;
+Win32.WGL_SWAP_UNDERLAY6 = 2097152;
+Win32.WGL_SWAP_UNDERLAY7 = 4194304;
+Win32.WGL_SWAP_UNDERLAY8 = 8388608;
+Win32.WGL_SWAP_UNDERLAY9 = 16777216;
+Win32.WGL_SWAP_UNDERLAY10 = 33554432;
+Win32.WGL_SWAP_UNDERLAY11 = 67108864;
+Win32.WGL_SWAP_UNDERLAY12 = 134217728;
+Win32.WGL_SWAP_UNDERLAY13 = 268435456;
+Win32.WGL_SWAP_UNDERLAY14 = 536870912;
+Win32.WGL_SWAP_UNDERLAY15 = 1073741824;
+Win32.WGL_SWAPMULTIPLE_MAX = 16;
+Win32.NEWTRANSPARENT = 3;
+Win32.QUERYROPSUPPORT = 40;
+Win32.SELECTDIB = 41;
+Win32.SC_SCREENSAVE = 61760;
+Win32.TTFCFP_SUBSET = 0;
+Win32.TTFCFP_SUBSET1 = 1;
+Win32.TTFCFP_DELTA = 2;
+Win32.TTFCFP_APPLE_PLATFORMID = 1;
+Win32.TTFCFP_MS_PLATFORMID = 3;
+Win32.TTFCFP_DONT_CARE = 65535;
+Win32.TTFCFP_LANG_KEEP_ALL = 0;
+Win32.TTFCFP_FLAGS_SUBSET = 1;
+Win32.TTFCFP_FLAGS_COMPRESS = 2;
+Win32.TTFCFP_FLAGS_TTC = 4;
+Win32.TTFCFP_FLAGS_GLYPHLIST = 8;
+Win32.TTFMFP_SUBSET = 0;
+Win32.TTFMFP_SUBSET1 = 1;
+Win32.TTFMFP_DELTA = 2;
+Win32.ERR_GENERIC = 1000;
+Win32.ERR_READOUTOFBOUNDS = 1001;
+Win32.ERR_WRITEOUTOFBOUNDS = 1002;
+Win32.ERR_READCONTROL = 1003;
+Win32.ERR_WRITECONTROL = 1004;
+Win32.ERR_MEM = 1005;
+Win32.ERR_FORMAT = 1006;
+Win32.ERR_WOULD_GROW = 1007;
+Win32.ERR_VERSION = 1008;
+Win32.ERR_NO_GLYPHS = 1009;
+Win32.ERR_INVALID_MERGE_FORMATS = 1010;
+Win32.ERR_INVALID_MERGE_CHECKSUMS = 1011;
+Win32.ERR_INVALID_MERGE_NUMGLYPHS = 1012;
+Win32.ERR_INVALID_DELTA_FORMAT = 1013;
+Win32.ERR_NOT_TTC = 1014;
+Win32.ERR_INVALID_TTC_INDEX = 1015;
+Win32.ERR_MISSING_CMAP = 1030;
+Win32.ERR_MISSING_GLYF = 1031;
+Win32.ERR_MISSING_HEAD = 1032;
+Win32.ERR_MISSING_HHEA = 1033;
+Win32.ERR_MISSING_HMTX = 1034;
+Win32.ERR_MISSING_LOCA = 1035;
+Win32.ERR_MISSING_MAXP = 1036;
+Win32.ERR_MISSING_NAME = 1037;
+Win32.ERR_MISSING_POST = 1038;
+Win32.ERR_MISSING_OS2 = 1039;
+Win32.ERR_MISSING_VHEA = 1040;
+Win32.ERR_MISSING_VMTX = 1041;
+Win32.ERR_MISSING_HHEA_OR_VHEA = 1042;
+Win32.ERR_MISSING_HMTX_OR_VMTX = 1043;
+Win32.ERR_MISSING_EBDT = 1044;
+Win32.ERR_INVALID_CMAP = 1060;
+Win32.ERR_INVALID_GLYF = 1061;
+Win32.ERR_INVALID_HEAD = 1062;
+Win32.ERR_INVALID_HHEA = 1063;
+Win32.ERR_INVALID_HMTX = 1064;
+Win32.ERR_INVALID_LOCA = 1065;
+Win32.ERR_INVALID_MAXP = 1066;
+Win32.ERR_INVALID_NAME = 1067;
+Win32.ERR_INVALID_POST = 1068;
+Win32.ERR_INVALID_OS2 = 1069;
+Win32.ERR_INVALID_VHEA = 1070;
+Win32.ERR_INVALID_VMTX = 1071;
+Win32.ERR_INVALID_HHEA_OR_VHEA = 1072;
+Win32.ERR_INVALID_HMTX_OR_VMTX = 1073;
+Win32.ERR_INVALID_TTO = 1080;
+Win32.ERR_INVALID_GSUB = 1081;
+Win32.ERR_INVALID_GPOS = 1082;
+Win32.ERR_INVALID_GDEF = 1083;
+Win32.ERR_INVALID_JSTF = 1084;
+Win32.ERR_INVALID_BASE = 1085;
+Win32.ERR_INVALID_EBLC = 1086;
+Win32.ERR_INVALID_LTSH = 1087;
+Win32.ERR_INVALID_VDMX = 1088;
+Win32.ERR_INVALID_HDMX = 1089;
+Win32.ERR_PARAMETER0 = 1100;
+Win32.ERR_PARAMETER1 = 1101;
+Win32.ERR_PARAMETER2 = 1102;
+Win32.ERR_PARAMETER3 = 1103;
+Win32.ERR_PARAMETER4 = 1104;
+Win32.ERR_PARAMETER5 = 1105;
+Win32.ERR_PARAMETER6 = 1106;
+Win32.ERR_PARAMETER7 = 1107;
+Win32.ERR_PARAMETER8 = 1108;
+Win32.ERR_PARAMETER9 = 1109;
+Win32.ERR_PARAMETER10 = 1110;
+Win32.ERR_PARAMETER11 = 1111;
+Win32.ERR_PARAMETER12 = 1112;
+Win32.ERR_PARAMETER13 = 1113;
+Win32.ERR_PARAMETER14 = 1114;
+Win32.ERR_PARAMETER15 = 1115;
+Win32.ERR_PARAMETER16 = 1116;
+Win32.CHARSET_DEFAULT = 1;
+Win32.CHARSET_GLYPHIDX = 3;
+Win32.TTEMBED_FAILIFVARIATIONSIMULATED = 16;
+Win32.TTEMBED_WEBOBJECT = 128;
+Win32.TTEMBED_XORENCRYPTDATA = 268435456;
+Win32.TTEMBED_VARIATIONSIMULATED = 1;
+Win32.TTEMBED_EUDCEMBEDDED = 2;
+Win32.TTEMBED_SUBSETCANCEL = 4;
+Win32.TTLOAD_PRIVATE = 1;
+Win32.TTLOAD_EUDC_OVERWRITE = 2;
+Win32.TTLOAD_EUDC_SET = 4;
+Win32.TTDELETE_DONTREMOVEFONT = 1;
+Win32.E_NONE = 0;
+Win32.E_API_NOTIMPL = 1;
+Win32.E_CHARCODECOUNTINVALID = 2;
+Win32.E_CHARCODESETINVALID = 3;
+Win32.E_DEVICETRUETYPEFONT = 4;
+Win32.E_HDCINVALID = 6;
+Win32.E_NOFREEMEMORY = 7;
+Win32.E_FONTREFERENCEINVALID = 8;
+Win32.E_NOTATRUETYPEFONT = 10;
+Win32.E_ERRORACCESSINGFONTDATA = 12;
+Win32.E_ERRORACCESSINGFACENAME = 13;
+Win32.E_ERRORUNICODECONVERSION = 17;
+Win32.E_ERRORCONVERTINGCHARS = 18;
+Win32.E_EXCEPTION = 19;
+Win32.E_RESERVEDPARAMNOTNULL = 20;
+Win32.E_CHARSETINVALID = 21;
+Win32.E_FILE_NOT_FOUND = 23;
+Win32.E_TTC_INDEX_OUT_OF_RANGE = 24;
+Win32.E_INPUTPARAMINVALID = 25;
+Win32.E_ERRORCOMPRESSINGFONTDATA = 256;
+Win32.E_FONTDATAINVALID = 258;
+Win32.E_NAMECHANGEFAILED = 259;
+Win32.E_FONTNOTEMBEDDABLE = 260;
+Win32.E_PRIVSINVALID = 261;
+Win32.E_SUBSETTINGFAILED = 262;
+Win32.E_READFROMSTREAMFAILED = 263;
+Win32.E_SAVETOSTREAMFAILED = 264;
+Win32.E_NOOS2 = 265;
+Win32.E_T2NOFREEMEMORY = 266;
+Win32.E_ERRORREADINGFONTDATA = 267;
+Win32.E_FLAGSINVALID = 268;
+Win32.E_ERRORCREATINGFONTFILE = 269;
+Win32.E_FONTALREADYEXISTS = 270;
+Win32.E_FONTNAMEALREADYEXISTS = 271;
+Win32.E_FONTINSTALLFAILED = 272;
+Win32.E_ERRORDECOMPRESSINGFONTDATA = 273;
+Win32.E_ERRORACCESSINGEXCLUDELIST = 274;
+Win32.E_FACENAMEINVALID = 275;
+Win32.E_STREAMINVALID = 276;
+Win32.E_STATUSINVALID = 277;
+Win32.E_PRIVSTATUSINVALID = 278;
+Win32.E_PERMISSIONSINVALID = 279;
+Win32.E_PBENABLEDINVALID = 280;
+Win32.E_SUBSETTINGEXCEPTION = 281;
+Win32.E_SUBSTRING_TEST_FAIL = 282;
+Win32.E_FONTVARIATIONSIMULATED = 283;
+Win32.E_FONTFAMILYNAMENOTINFULL = 285;
+Win32.E_ADDFONTFAILED = 512;
+Win32.E_COULDNTCREATETEMPFILE = 513;
+Win32.E_FONTFILECREATEFAILED = 515;
+Win32.E_WINDOWSAPI = 516;
+Win32.E_FONTFILENOTFOUND = 517;
+Win32.E_RESOURCEFILECREATEFAILED = 518;
+Win32.E_ERROREXPANDINGFONTDATA = 519;
+Win32.E_ERRORGETTINGDC = 520;
+Win32.E_EXCEPTIONINDECOMPRESSION = 521;
+Win32.E_EXCEPTIONINCOMPRESSION = 522;
+Win32.GetObjectA = foreign.native( "GDI32.dll", "int", "GetObjectA", [ "ptr", "int", "ptr" ] ); 
+Win32.AddFontResourceA = foreign.native( "GDI32.dll", "int", "AddFontResourceA", [ "ptr" ] ); 
+Win32.AddFontResourceW = foreign.native( "GDI32.dll", "int", "AddFontResourceW", [ "wstr" ] ); 
+Win32.AnimatePalette = foreign.native( "GDI32.dll", "int", "AnimatePalette", [ "ptr", "uint", "uint", "ptr" ] ); 
+Win32.Arc = foreign.native( "GDI32.dll", "int", "Arc", [ "ptr", "int", "int", "int", "int", "int", "int", "int", "int" ] ); 
+Win32.BitBlt = foreign.native( "GDI32.dll", "int", "BitBlt", [ "ptr", "int", "int", "int", "int", "ptr", "int", "int", "uint" ] ); 
+Win32.CancelDC = foreign.native( "GDI32.dll", "int", "CancelDC", [ "ptr" ] ); 
+Win32.Chord = foreign.native( "GDI32.dll", "int", "Chord", [ "ptr", "int", "int", "int", "int", "int", "int", "int", "int" ] ); 
+Win32.CloseMetaFile = foreign.native( "GDI32.dll", "ptr", "CloseMetaFile", [ "ptr" ] ); 
+Win32.CombineRgn = foreign.native( "GDI32.dll", "int", "CombineRgn", [ "ptr", "ptr", "ptr", "int" ] ); 
+Win32.CopyMetaFileA = foreign.native( "GDI32.dll", "ptr", "CopyMetaFileA", [ "ptr", "ptr" ] ); 
+Win32.CopyMetaFileW = foreign.native( "GDI32.dll", "ptr", "CopyMetaFileW", [ "ptr", "wstr" ] ); 
+Win32.CreateBitmap = foreign.native( "GDI32.dll", "ptr", "CreateBitmap", [ "int", "int", "uint", "uint", "ptr" ] ); 
+Win32.CreateBitmapIndirect = foreign.native( "GDI32.dll", "ptr", "CreateBitmapIndirect", [ "ptr" ] ); 
+Win32.CreateBrushIndirect = foreign.native( "GDI32.dll", "ptr", "CreateBrushIndirect", [ "ptr" ] ); 
+Win32.CreateCompatibleBitmap = foreign.native( "GDI32.dll", "ptr", "CreateCompatibleBitmap", [ "ptr", "int", "int" ] ); 
+Win32.CreateDiscardableBitmap = foreign.native( "GDI32.dll", "ptr", "CreateDiscardableBitmap", [ "ptr", "int", "int" ] ); 
+Win32.CreateCompatibleDC = foreign.native( "GDI32.dll", "ptr", "CreateCompatibleDC", [ "ptr" ] ); 
+Win32.CreateDCA = foreign.native( "GDI32.dll", "ptr", "CreateDCA", [ "ptr", "ptr", "ptr", "ptr" ] ); 
+Win32.CreateDCW = foreign.native( "GDI32.dll", "ptr", "CreateDCW", [ "wstr", "wstr", "wstr", "ptr" ] ); 
+Win32.CreateDIBitmap = foreign.native( "GDI32.dll", "ptr", "CreateDIBitmap", [ "ptr", "ptr", "uint", "ptr", "ptr", "uint" ] ); 
+Win32.CreateDIBPatternBrush = foreign.native( "GDI32.dll", "ptr", "CreateDIBPatternBrush", [ "ptr", "uint" ] ); 
+Win32.CreateDIBPatternBrushPt = foreign.native( "GDI32.dll", "ptr", "CreateDIBPatternBrushPt", [ "ptr", "uint" ] ); 
+Win32.CreateEllipticRgn = foreign.native( "GDI32.dll", "ptr", "CreateEllipticRgn", [ "int", "int", "int", "int" ] ); 
+Win32.CreateEllipticRgnIndirect = foreign.native( "GDI32.dll", "ptr", "CreateEllipticRgnIndirect", [ "ptr" ] ); 
+Win32.CreateFontIndirectA = foreign.native( "GDI32.dll", "ptr", "CreateFontIndirectA", [ "ptr" ] ); 
+Win32.CreateFontIndirectW = foreign.native( "GDI32.dll", "ptr", "CreateFontIndirectW", [ "ptr" ] ); 
+Win32.CreateFontA = foreign.native( "GDI32.dll", "ptr", "CreateFontA", [ "int", "int", "int", "int", "int", "uint", "uint", "uint", "uint", "uint", "uint", "uint", "uint", "ptr" ] ); 
+Win32.CreateFontW = foreign.native( "GDI32.dll", "ptr", "CreateFontW", [ "int", "int", "int", "int", "int", "uint", "uint", "uint", "uint", "uint", "uint", "uint", "uint", "wstr" ] ); 
+Win32.CreateHatchBrush = foreign.native( "GDI32.dll", "ptr", "CreateHatchBrush", [ "uint", "uint" ] ); 
+Win32.CreateICA = foreign.native( "GDI32.dll", "ptr", "CreateICA", [ "ptr", "ptr", "ptr", "ptr" ] ); 
+Win32.CreateICW = foreign.native( "GDI32.dll", "ptr", "CreateICW", [ "wstr", "wstr", "wstr", "ptr" ] ); 
+Win32.CreateMetaFileA = foreign.native( "GDI32.dll", "ptr", "CreateMetaFileA", [ "ptr" ] ); 
+Win32.CreateMetaFileW = foreign.native( "GDI32.dll", "ptr", "CreateMetaFileW", [ "wstr" ] ); 
+Win32.CreatePalette = foreign.native( "GDI32.dll", "ptr", "CreatePalette", [ "ptr" ] ); 
+Win32.CreatePen = foreign.native( "GDI32.dll", "ptr", "CreatePen", [ "uint", "int", "uint" ] ); 
+Win32.CreatePenIndirect = foreign.native( "GDI32.dll", "ptr", "CreatePenIndirect", [ "ptr" ] ); 
+Win32.CreatePolyPolygonRgn = foreign.native( "GDI32.dll", "ptr", "CreatePolyPolygonRgn", [ "ptr", "ptr", "int", "uint" ] ); 
+Win32.CreatePatternBrush = foreign.native( "GDI32.dll", "ptr", "CreatePatternBrush", [ "ptr" ] ); 
+Win32.CreateRectRgn = foreign.native( "GDI32.dll", "ptr", "CreateRectRgn", [ "int", "int", "int", "int" ] ); 
+Win32.CreateRectRgnIndirect = foreign.native( "GDI32.dll", "ptr", "CreateRectRgnIndirect", [ "ptr" ] ); 
+Win32.CreateRoundRectRgn = foreign.native( "GDI32.dll", "ptr", "CreateRoundRectRgn", [ "int", "int", "int", "int", "int", "int" ] ); 
+Win32.CreateScalableFontResourceA = foreign.native( "GDI32.dll", "int", "CreateScalableFontResourceA", [ "uint", "ptr", "ptr", "ptr" ] ); 
+Win32.CreateScalableFontResourceW = foreign.native( "GDI32.dll", "int", "CreateScalableFontResourceW", [ "uint", "wstr", "wstr", "wstr" ] ); 
+Win32.CreateSolidBrush = foreign.native( "GDI32.dll", "ptr", "CreateSolidBrush", [ "uint" ] ); 
+Win32.DeleteDC = foreign.native( "GDI32.dll", "int", "DeleteDC", [ "ptr" ] ); 
+Win32.DeleteMetaFile = foreign.native( "GDI32.dll", "int", "DeleteMetaFile", [ "ptr" ] ); 
+Win32.DeleteObject = foreign.native( "GDI32.dll", "int", "DeleteObject", [ "ptr" ] ); 
+Win32.DrawEscape = foreign.native( "GDI32.dll", "int", "DrawEscape", [ "ptr", "int", "int", "ptr" ] ); 
+Win32.Ellipse = foreign.native( "GDI32.dll", "int", "Ellipse", [ "ptr", "int", "int", "int", "int" ] ); 
+Win32.EnumFontFamiliesExA = foreign.native( "GDI32.dll", "int", "EnumFontFamiliesExA", [ "ptr", "ptr", "ptr", "ptr", "uint" ] ); 
+Win32.EnumFontFamiliesExW = foreign.native( "GDI32.dll", "int", "EnumFontFamiliesExW", [ "ptr", "ptr", "ptr", "ptr", "uint" ] ); 
+Win32.EnumFontFamiliesA = foreign.native( "GDI32.dll", "int", "EnumFontFamiliesA", [ "ptr", "ptr", "ptr", "ptr" ] ); 
+Win32.EnumFontFamiliesW = foreign.native( "GDI32.dll", "int", "EnumFontFamiliesW", [ "ptr", "wstr", "ptr", "ptr" ] ); 
+Win32.EnumFontsA = foreign.native( "GDI32.dll", "int", "EnumFontsA", [ "ptr", "ptr", "ptr", "ptr" ] ); 
+Win32.EnumFontsW = foreign.native( "GDI32.dll", "int", "EnumFontsW", [ "ptr", "wstr", "ptr", "ptr" ] ); 
+Win32.EnumObjects = foreign.native( "GDI32.dll", "int", "EnumObjects", [ "ptr", "int", "ptr", "ptr" ] ); 
+Win32.EqualRgn = foreign.native( "GDI32.dll", "int", "EqualRgn", [ "ptr", "ptr" ] ); 
+Win32.ExcludeClipRect = foreign.native( "GDI32.dll", "int", "ExcludeClipRect", [ "ptr", "int", "int", "int", "int" ] ); 
+Win32.ExtCreateRegion = foreign.native( "GDI32.dll", "ptr", "ExtCreateRegion", [ "ptr", "uint", "ptr" ] ); 
+Win32.ExtFloodFill = foreign.native( "GDI32.dll", "int", "ExtFloodFill", [ "ptr", "int", "int", "uint", "uint" ] ); 
+Win32.FillRgn = foreign.native( "GDI32.dll", "int", "FillRgn", [ "ptr", "ptr", "ptr" ] ); 
+Win32.FloodFill = foreign.native( "GDI32.dll", "int", "FloodFill", [ "ptr", "int", "int", "uint" ] ); 
+Win32.FrameRgn = foreign.native( "GDI32.dll", "int", "FrameRgn", [ "ptr", "ptr", "ptr", "int", "int" ] ); 
+Win32.GetROP2 = foreign.native( "GDI32.dll", "int", "GetROP2", [ "ptr" ] ); 
+Win32.GetAspectRatioFilterEx = foreign.native( "GDI32.dll", "int", "GetAspectRatioFilterEx", [ "ptr", "ptr" ] ); 
+Win32.GetBkColor = foreign.native( "GDI32.dll", "uint", "GetBkColor", [ "ptr" ] ); 
+Win32.GetDCBrushColor = foreign.native( "GDI32.dll", "uint", "GetDCBrushColor", [ "ptr" ] ); 
+Win32.GetDCPenColor = foreign.native( "GDI32.dll", "uint", "GetDCPenColor", [ "ptr" ] ); 
+Win32.GetBkMode = foreign.native( "GDI32.dll", "uint", "GetBkMode", [ "ptr" ] ); 
+Win32.GetBitmapBits = foreign.native( "GDI32.dll", "int", "GetBitmapBits", [ "ptr", "int", "ptr" ] ); 
+Win32.GetBitmapDimensionEx = foreign.native( "GDI32.dll", "int", "GetBitmapDimensionEx", [ "ptr", "ptr" ] ); 
+Win32.GetBoundsRect = foreign.native( "GDI32.dll", "uint", "GetBoundsRect", [ "ptr", "ptr", "uint" ] ); 
+Win32.GetBrushOrgEx = foreign.native( "GDI32.dll", "int", "GetBrushOrgEx", [ "ptr", "ptr" ] ); 
+Win32.GetCharWidthA = foreign.native( "GDI32.dll", "int", "GetCharWidthA", [ "ptr", "uint", "uint", "ptr" ] ); 
+Win32.GetCharWidthW = foreign.native( "GDI32.dll", "int", "GetCharWidthW", [ "ptr", "uint", "uint", "ptr" ] ); 
+Win32.GetCharWidth32A = foreign.native( "GDI32.dll", "int", "GetCharWidth32A", [ "ptr", "uint", "uint", "ptr" ] ); 
+Win32.GetCharWidth32W = foreign.native( "GDI32.dll", "int", "GetCharWidth32W", [ "ptr", "uint", "uint", "ptr" ] ); 
+Win32.GetCharWidthFloatA = foreign.native( "GDI32.dll", "int", "GetCharWidthFloatA", [ "ptr", "uint", "uint", "ptr" ] ); 
+Win32.GetCharWidthFloatW = foreign.native( "GDI32.dll", "int", "GetCharWidthFloatW", [ "ptr", "uint", "uint", "ptr" ] ); 
+Win32.GetCharABCWidthsA = foreign.native( "GDI32.dll", "int", "GetCharABCWidthsA", [ "ptr", "uint", "uint", "ptr" ] ); 
+Win32.GetCharABCWidthsW = foreign.native( "GDI32.dll", "int", "GetCharABCWidthsW", [ "ptr", "uint", "uint", "ptr" ] ); 
+Win32.GetCharABCWidthsFloatA = foreign.native( "GDI32.dll", "int", "GetCharABCWidthsFloatA", [ "ptr", "uint", "uint", "ptr" ] ); 
+Win32.GetCharABCWidthsFloatW = foreign.native( "GDI32.dll", "int", "GetCharABCWidthsFloatW", [ "ptr", "uint", "uint", "ptr" ] ); 
+Win32.GetClipBox = foreign.native( "GDI32.dll", "int", "GetClipBox", [ "ptr", "ptr" ] ); 
+Win32.GetClipRgn = foreign.native( "GDI32.dll", "int", "GetClipRgn", [ "ptr", "ptr" ] ); 
+Win32.GetMetaRgn = foreign.native( "GDI32.dll", "int", "GetMetaRgn", [ "ptr", "ptr" ] ); 
+Win32.GetCurrentObject = foreign.native( "GDI32.dll", "ptr", "GetCurrentObject", [ "ptr", "int" ] ); 
+Win32.GetCurrentPositionEx = foreign.native( "GDI32.dll", "int", "GetCurrentPositionEx", [ "ptr", "ptr" ] ); 
+Win32.GetDeviceCaps = foreign.native( "GDI32.dll", "int", "GetDeviceCaps", [ "ptr", "uint" ] ); 
+Win32.GetDIBits = foreign.native( "GDI32.dll", "int", "GetDIBits", [ "ptr", "ptr", "uint", "uint", "ptr", "ptr", "uint" ] ); 
+Win32.GetFontData = foreign.native( "GDI32.dll", "uint", "GetFontData", [ "ptr", "uint", "uint", "ptr", "uint" ] ); 
+Win32.GetGlyphOutlineA = foreign.native( "GDI32.dll", "uint", "GetGlyphOutlineA", [ "ptr", "uint", "uint", "ptr", "uint", "ptr", "ptr" ] ); 
+Win32.GetGlyphOutlineW = foreign.native( "GDI32.dll", "uint", "GetGlyphOutlineW", [ "ptr", "uint", "uint", "ptr", "uint", "ptr", "ptr" ] ); 
+Win32.GetGraphicsMode = foreign.native( "GDI32.dll", "int", "GetGraphicsMode", [ "ptr" ] ); 
+Win32.GetMapMode = foreign.native( "GDI32.dll", "uint", "GetMapMode", [ "ptr" ] ); 
+Win32.GetMetaFileBitsEx = foreign.native( "GDI32.dll", "uint", "GetMetaFileBitsEx", [ "ptr", "uint", "ptr" ] ); 
+Win32.GetMetaFileA = foreign.native( "GDI32.dll", "ptr", "GetMetaFileA", [ "ptr" ] ); 
+Win32.GetMetaFileW = foreign.native( "GDI32.dll", "ptr", "GetMetaFileW", [ "wstr" ] ); 
+Win32.GetNearestColor = foreign.native( "GDI32.dll", "uint", "GetNearestColor", [ "ptr", "uint" ] ); 
+Win32.GetNearestPaletteIndex = foreign.native( "GDI32.dll", "uint", "GetNearestPaletteIndex", [ "ptr", "uint" ] ); 
+Win32.GetObjectType = foreign.native( "GDI32.dll", "uint", "GetObjectType", [ "ptr" ] ); 
+Win32.GetOutlineTextMetricsA = foreign.native( "GDI32.dll", "uint", "GetOutlineTextMetricsA", [ "ptr", "uint", "ptr" ] ); 
+Win32.GetOutlineTextMetricsW = foreign.native( "GDI32.dll", "uint", "GetOutlineTextMetricsW", [ "ptr", "uint", "ptr" ] ); 
+Win32.GetPaletteEntries = foreign.native( "GDI32.dll", "uint", "GetPaletteEntries", [ "ptr", "uint", "uint", "ptr" ] ); 
+Win32.GetPixel = foreign.native( "GDI32.dll", "uint", "GetPixel", [ "ptr", "int", "int" ] ); 
+Win32.GetPolyFillMode = foreign.native( "GDI32.dll", "int", "GetPolyFillMode", [ "ptr" ] ); 
+Win32.GetRasterizerCaps = foreign.native( "GDI32.dll", "int", "GetRasterizerCaps", [ "ptr", "uint" ] ); 
+Win32.GetRandomRgn = foreign.native( "GDI32.dll", "int", "GetRandomRgn", [ "ptr", "ptr", "int" ] ); 
+Win32.GetRegionData = foreign.native( "GDI32.dll", "uint", "GetRegionData", [ "ptr", "uint", "ptr" ] ); 
+Win32.GetRgnBox = foreign.native( "GDI32.dll", "int", "GetRgnBox", [ "ptr", "ptr" ] ); 
+Win32.GetStockObject = foreign.native( "GDI32.dll", "ptr", "GetStockObject", [ "uint" ] ); 
+Win32.GetStretchBltMode = foreign.native( "GDI32.dll", "int", "GetStretchBltMode", [ "ptr" ] ); 
+Win32.GetSystemPaletteEntries = foreign.native( "GDI32.dll", "uint", "GetSystemPaletteEntries", [ "ptr", "uint", "uint", "ptr" ] ); 
+Win32.GetSystemPaletteUse = foreign.native( "GDI32.dll", "uint", "GetSystemPaletteUse", [ "ptr" ] ); 
+Win32.GetTextCharacterExtra = foreign.native( "GDI32.dll", "int", "GetTextCharacterExtra", [ "ptr" ] ); 
+Win32.GetTextAlign = foreign.native( "GDI32.dll", "uint", "GetTextAlign", [ "ptr" ] ); 
+Win32.GetTextColor = foreign.native( "GDI32.dll", "uint", "GetTextColor", [ "ptr" ] ); 
+Win32.GetTextExtentPointA = foreign.native( "GDI32.dll", "int", "GetTextExtentPointA", [ "ptr", "ptr", "int", "ptr" ] ); 
+Win32.GetTextExtentPointW = foreign.native( "GDI32.dll", "int", "GetTextExtentPointW", [ "ptr", "wstr", "int", "ptr" ] ); 
+Win32.GetTextExtentPoint32A = foreign.native( "GDI32.dll", "int", "GetTextExtentPoint32A", [ "ptr", "ptr", "int", "ptr" ] ); 
+Win32.GetTextExtentPoint32W = foreign.native( "GDI32.dll", "int", "GetTextExtentPoint32W", [ "ptr", "wstr", "int", "ptr" ] ); 
+Win32.GetTextExtentExPointA = foreign.native( "GDI32.dll", "int", "GetTextExtentExPointA", [ "ptr", "ptr", "int", "int", "ptr", "ptr", "ptr" ] ); 
+Win32.GetTextExtentExPointW = foreign.native( "GDI32.dll", "int", "GetTextExtentExPointW", [ "ptr", "wstr", "int", "int", "ptr", "ptr", "ptr" ] ); 
+Win32.GetFontLanguageInfo = foreign.native( "GDI32.dll", "uint", "GetFontLanguageInfo", [ "ptr" ] ); 
+Win32.GetCharacterPlacementA = foreign.native( "GDI32.dll", "uint", "GetCharacterPlacementA", [ "ptr", "ptr", "int", "int", "ptr", "uint" ] ); 
+Win32.GetCharacterPlacementW = foreign.native( "GDI32.dll", "uint", "GetCharacterPlacementW", [ "ptr", "wstr", "int", "int", "ptr", "uint" ] ); 
+Win32.GetFontUnicodeRanges = foreign.native( "GDI32.dll", "uint", "GetFontUnicodeRanges", [ "ptr", "ptr" ] ); 
+Win32.GetGlyphIndicesA = foreign.native( "GDI32.dll", "uint", "GetGlyphIndicesA", [ "ptr", "ptr", "int", "ptr", "uint" ] ); 
+Win32.GetGlyphIndicesW = foreign.native( "GDI32.dll", "uint", "GetGlyphIndicesW", [ "ptr", "wstr", "int", "ptr", "uint" ] ); 
+Win32.GetTextExtentPointI = foreign.native( "GDI32.dll", "int", "GetTextExtentPointI", [ "ptr", "ptr", "int", "ptr" ] ); 
+Win32.GetTextExtentExPointI = foreign.native( "GDI32.dll", "int", "GetTextExtentExPointI", [ "ptr", "ptr", "int", "int", "ptr", "ptr", "ptr" ] ); 
+Win32.GetCharWidthI = foreign.native( "GDI32.dll", "int", "GetCharWidthI", [ "ptr", "uint", "uint", "ptr", "ptr" ] ); 
+Win32.GetCharABCWidthsI = foreign.native( "GDI32.dll", "int", "GetCharABCWidthsI", [ "ptr", "uint", "uint", "ptr", "ptr" ] ); 
+Win32.AddFontResourceExA = foreign.native( "GDI32.dll", "int", "AddFontResourceExA", [ "ptr", "uint", "ptr" ] ); 
+Win32.AddFontResourceExW = foreign.native( "GDI32.dll", "int", "AddFontResourceExW", [ "wstr", "uint", "ptr" ] ); 
+Win32.RemoveFontResourceExA = foreign.native( "GDI32.dll", "int", "RemoveFontResourceExA", [ "ptr", "uint", "ptr" ] ); 
+Win32.RemoveFontResourceExW = foreign.native( "GDI32.dll", "int", "RemoveFontResourceExW", [ "wstr", "uint", "ptr" ] ); 
+Win32.AddFontMemResourceEx = foreign.native( "GDI32.dll", "ptr", "AddFontMemResourceEx", [ "ptr", "uint", "ptr", "ptr" ] ); 
+Win32.RemoveFontMemResourceEx = foreign.native( "GDI32.dll", "int", "RemoveFontMemResourceEx", [ "ptr" ] ); 
+Win32.CreateFontIndirectExA = foreign.native( "GDI32.dll", "ptr", "CreateFontIndirectExA", [ "ptr" ] ); 
+Win32.CreateFontIndirectExW = foreign.native( "GDI32.dll", "ptr", "CreateFontIndirectExW", [ "ptr" ] ); 
+Win32.GetViewportExtEx = foreign.native( "GDI32.dll", "int", "GetViewportExtEx", [ "ptr", "ptr" ] ); 
+Win32.GetViewportOrgEx = foreign.native( "GDI32.dll", "int", "GetViewportOrgEx", [ "ptr", "ptr" ] ); 
+Win32.GetWindowExtEx = foreign.native( "GDI32.dll", "int", "GetWindowExtEx", [ "ptr", "ptr" ] ); 
+Win32.GetWindowOrgEx = foreign.native( "GDI32.dll", "int", "GetWindowOrgEx", [ "ptr", "ptr" ] ); 
+Win32.IntersectClipRect = foreign.native( "GDI32.dll", "int", "IntersectClipRect", [ "ptr", "int", "int", "int", "int" ] ); 
+Win32.InvertRgn = foreign.native( "GDI32.dll", "int", "InvertRgn", [ "ptr", "ptr" ] ); 
+Win32.LineDDA = foreign.native( "GDI32.dll", "int", "LineDDA", [ "int", "int", "int", "int", "ptr", "ptr" ] ); 
+Win32.LineTo = foreign.native( "GDI32.dll", "int", "LineTo", [ "ptr", "int", "int" ] ); 
+Win32.MaskBlt = foreign.native( "GDI32.dll", "int", "MaskBlt", [ "ptr", "int", "int", "int", "int", "ptr", "int", "int", "ptr", "int", "int", "uint" ] ); 
+Win32.PlgBlt = foreign.native( "GDI32.dll", "int", "PlgBlt", [ "ptr", "ptr", "ptr", "int", "int", "int", "int", "ptr", "int", "int" ] ); 
+Win32.OffsetClipRgn = foreign.native( "GDI32.dll", "int", "OffsetClipRgn", [ "ptr", "int", "int" ] ); 
+Win32.OffsetRgn = foreign.native( "GDI32.dll", "int", "OffsetRgn", [ "ptr", "int", "int" ] ); 
+Win32.PatBlt = foreign.native( "GDI32.dll", "int", "PatBlt", [ "ptr", "int", "int", "int", "int", "uint" ] ); 
+Win32.Pie = foreign.native( "GDI32.dll", "int", "Pie", [ "ptr", "int", "int", "int", "int", "int", "int", "int", "int" ] ); 
+Win32.PlayMetaFile = foreign.native( "GDI32.dll", "int", "PlayMetaFile", [ "ptr", "ptr" ] ); 
+Win32.PaintRgn = foreign.native( "GDI32.dll", "int", "PaintRgn", [ "ptr", "ptr" ] ); 
+Win32.PolyPolygon = foreign.native( "GDI32.dll", "int", "PolyPolygon", [ "ptr", "ptr", "ptr", "int" ] ); 
+Win32.PtInRegion = foreign.native( "GDI32.dll", "int", "PtInRegion", [ "ptr", "int", "int" ] ); 
+Win32.PtVisible = foreign.native( "GDI32.dll", "int", "PtVisible", [ "ptr", "int", "int" ] ); 
+Win32.RectInRegion = foreign.native( "GDI32.dll", "int", "RectInRegion", [ "ptr", "ptr" ] ); 
+Win32.RectVisible = foreign.native( "GDI32.dll", "int", "RectVisible", [ "ptr", "ptr" ] ); 
+Win32.Rectangle = foreign.native( "GDI32.dll", "int", "Rectangle", [ "ptr", "int", "int", "int", "int" ] ); 
+Win32.RestoreDC = foreign.native( "GDI32.dll", "int", "RestoreDC", [ "ptr", "int" ] ); 
+Win32.ResetDCA = foreign.native( "GDI32.dll", "ptr", "ResetDCA", [ "ptr", "ptr" ] ); 
+Win32.ResetDCW = foreign.native( "GDI32.dll", "ptr", "ResetDCW", [ "ptr", "ptr" ] ); 
+Win32.RealizePalette = foreign.native( "GDI32.dll", "uint", "RealizePalette", [ "ptr" ] ); 
+Win32.RemoveFontResourceA = foreign.native( "GDI32.dll", "int", "RemoveFontResourceA", [ "ptr" ] ); 
+Win32.RemoveFontResourceW = foreign.native( "GDI32.dll", "int", "RemoveFontResourceW", [ "wstr" ] ); 
+Win32.RoundRect = foreign.native( "GDI32.dll", "int", "RoundRect", [ "ptr", "int", "int", "int", "int", "int", "int" ] ); 
+Win32.ResizePalette = foreign.native( "GDI32.dll", "int", "ResizePalette", [ "ptr", "uint" ] ); 
+Win32.SaveDC = foreign.native( "GDI32.dll", "int", "SaveDC", [ "ptr" ] ); 
+Win32.SelectClipRgn = foreign.native( "GDI32.dll", "int", "SelectClipRgn", [ "ptr", "ptr" ] ); 
+Win32.ExtSelectClipRgn = foreign.native( "GDI32.dll", "int", "ExtSelectClipRgn", [ "ptr", "ptr", "int" ] ); 
+Win32.SetMetaRgn = foreign.native( "GDI32.dll", "int", "SetMetaRgn", [ "ptr" ] ); 
+Win32.SelectObject = foreign.native( "GDI32.dll", "ptr", "SelectObject", [ "ptr", "ptr" ] ); 
+Win32.SelectPalette = foreign.native( "GDI32.dll", "ptr", "SelectPalette", [ "ptr", "ptr", "int" ] ); 
+Win32.SetBkColor = foreign.native( "GDI32.dll", "uint", "SetBkColor", [ "ptr", "uint" ] ); 
+Win32.SetDCBrushColor = foreign.native( "GDI32.dll", "uint", "SetDCBrushColor", [ "ptr", "uint" ] ); 
+Win32.SetDCPenColor = foreign.native( "GDI32.dll", "uint", "SetDCPenColor", [ "ptr", "uint" ] ); 
+Win32.SetBkMode = foreign.native( "GDI32.dll", "int", "SetBkMode", [ "ptr", "uint" ] ); 
+Win32.SetBitmapBits = foreign.native( "GDI32.dll", "int", "SetBitmapBits", [ "ptr", "uint", "ptr" ] ); 
+Win32.SetBoundsRect = foreign.native( "GDI32.dll", "uint", "SetBoundsRect", [ "ptr", "ptr", "uint" ] ); 
+Win32.SetDIBits = foreign.native( "GDI32.dll", "int", "SetDIBits", [ "ptr", "ptr", "uint", "uint", "ptr", "ptr", "uint" ] ); 
+Win32.SetDIBitsToDevice = foreign.native( "GDI32.dll", "int", "SetDIBitsToDevice", [ "ptr", "int", "int", "uint", "uint", "int", "int", "uint", "uint", "ptr", "ptr", "uint" ] ); 
+Win32.SetMapperFlags = foreign.native( "GDI32.dll", "uint", "SetMapperFlags", [ "ptr", "uint" ] ); 
+Win32.SetGraphicsMode = foreign.native( "GDI32.dll", "int", "SetGraphicsMode", [ "ptr", "uint" ] ); 
+Win32.SetMapMode = foreign.native( "GDI32.dll", "int", "SetMapMode", [ "ptr", "uint" ] ); 
+Win32.SetLayout = foreign.native( "GDI32.dll", "uint", "SetLayout", [ "ptr", "uint" ] ); 
+Win32.GetLayout = foreign.native( "GDI32.dll", "uint", "GetLayout", [ "ptr" ] ); 
+Win32.SetMetaFileBitsEx = foreign.native( "GDI32.dll", "ptr", "SetMetaFileBitsEx", [ "uint", "ptr" ] ); 
+Win32.SetPaletteEntries = foreign.native( "GDI32.dll", "uint", "SetPaletteEntries", [ "ptr", "uint", "uint", "ptr" ] ); 
+Win32.SetPixel = foreign.native( "GDI32.dll", "uint", "SetPixel", [ "ptr", "int", "int", "uint" ] ); 
+Win32.SetPixelV = foreign.native( "GDI32.dll", "int", "SetPixelV", [ "ptr", "int", "int", "uint" ] ); 
+Win32.SetPolyFillMode = foreign.native( "GDI32.dll", "int", "SetPolyFillMode", [ "ptr", "uint" ] ); 
+Win32.StretchBlt = foreign.native( "GDI32.dll", "int", "StretchBlt", [ "ptr", "int", "int", "int", "int", "ptr", "int", "int", "int", "int", "uint" ] ); 
+Win32.SetRectRgn = foreign.native( "GDI32.dll", "int", "SetRectRgn", [ "ptr", "int", "int", "int", "int" ] ); 
+Win32.StretchDIBits = foreign.native( "GDI32.dll", "int", "StretchDIBits", [ "ptr", "int", "int", "int", "int", "int", "int", "int", "int", "ptr", "ptr", "uint", "uint" ] ); 
+Win32.SetROP2 = foreign.native( "GDI32.dll", "int", "SetROP2", [ "ptr", "int" ] ); 
+Win32.SetStretchBltMode = foreign.native( "GDI32.dll", "int", "SetStretchBltMode", [ "ptr", "uint" ] ); 
+Win32.SetSystemPaletteUse = foreign.native( "GDI32.dll", "uint", "SetSystemPaletteUse", [ "ptr", "uint" ] ); 
+Win32.SetTextCharacterExtra = foreign.native( "GDI32.dll", "int", "SetTextCharacterExtra", [ "ptr", "int" ] ); 
+Win32.SetTextColor = foreign.native( "GDI32.dll", "uint", "SetTextColor", [ "ptr", "uint" ] ); 
+Win32.SetTextAlign = foreign.native( "GDI32.dll", "uint", "SetTextAlign", [ "ptr", "uint" ] ); 
+Win32.SetTextJustification = foreign.native( "GDI32.dll", "int", "SetTextJustification", [ "ptr", "int", "int" ] ); 
+Win32.UpdateColors = foreign.native( "GDI32.dll", "int", "UpdateColors", [ "ptr" ] ); 
+Win32.AlphaBlend = foreign.native( "MSIMG32.dll", "int", "AlphaBlend", [ "ptr", "int", "int", "int", "int", "ptr", "int", "int", "int", "int", "ptr" ] ); 
+Win32.TransparentBlt = foreign.native( "MSIMG32.dll", "int", "TransparentBlt", [ "ptr", "int", "int", "int", "int", "ptr", "int", "int", "int", "int", "uint" ] ); 
+Win32.GradientFill = foreign.native( "MSIMG32.dll", "int", "GradientFill", [ "ptr", "ptr", "uint", "ptr", "uint", "uint" ] ); 
+Win32.GdiAlphaBlend = foreign.native( "GDI32.dll", "int", "GdiAlphaBlend", [ "ptr", "int", "int", "int", "int", "ptr", "int", "int", "int", "int", "ptr" ] ); 
+Win32.GdiTransparentBlt = foreign.native( "GDI32.dll", "int", "GdiTransparentBlt", [ "ptr", "int", "int", "int", "int", "ptr", "int", "int", "int", "int", "uint" ] ); 
+Win32.GdiGradientFill = foreign.native( "GDI32.dll", "int", "GdiGradientFill", [ "ptr", "ptr", "uint", "ptr", "uint", "uint" ] ); 
+Win32.PlayMetaFileRecord = foreign.native( "GDI32.dll", "int", "PlayMetaFileRecord", [ "ptr", "ptr", "ptr", "uint" ] ); 
+Win32.EnumMetaFile = foreign.native( "GDI32.dll", "int", "EnumMetaFile", [ "ptr", "ptr", "ptr", "ptr" ] ); 
+Win32.CloseEnhMetaFile = foreign.native( "GDI32.dll", "ptr", "CloseEnhMetaFile", [ "ptr" ] ); 
+Win32.CopyEnhMetaFileA = foreign.native( "GDI32.dll", "ptr", "CopyEnhMetaFileA", [ "ptr", "ptr" ] ); 
+Win32.CopyEnhMetaFileW = foreign.native( "GDI32.dll", "ptr", "CopyEnhMetaFileW", [ "ptr", "wstr" ] ); 
+Win32.CreateEnhMetaFileA = foreign.native( "GDI32.dll", "ptr", "CreateEnhMetaFileA", [ "ptr", "ptr", "ptr", "ptr" ] ); 
+Win32.CreateEnhMetaFileW = foreign.native( "GDI32.dll", "ptr", "CreateEnhMetaFileW", [ "ptr", "wstr", "ptr", "wstr" ] ); 
+Win32.DeleteEnhMetaFile = foreign.native( "GDI32.dll", "int", "DeleteEnhMetaFile", [ "ptr" ] ); 
+Win32.EnumEnhMetaFile = foreign.native( "GDI32.dll", "int", "EnumEnhMetaFile", [ "ptr", "ptr", "ptr", "ptr", "ptr" ] ); 
+Win32.GetEnhMetaFileA = foreign.native( "GDI32.dll", "ptr", "GetEnhMetaFileA", [ "ptr" ] ); 
+Win32.GetEnhMetaFileW = foreign.native( "GDI32.dll", "ptr", "GetEnhMetaFileW", [ "wstr" ] ); 
+Win32.GetEnhMetaFileBits = foreign.native( "GDI32.dll", "uint", "GetEnhMetaFileBits", [ "ptr", "uint", "ptr" ] ); 
+Win32.GetEnhMetaFileDescriptionA = foreign.native( "GDI32.dll", "uint", "GetEnhMetaFileDescriptionA", [ "ptr", "uint", "ptr" ] ); 
+Win32.GetEnhMetaFileDescriptionW = foreign.native( "GDI32.dll", "uint", "GetEnhMetaFileDescriptionW", [ "ptr", "uint", "wstr" ] ); 
+Win32.GetEnhMetaFileHeader = foreign.native( "GDI32.dll", "uint", "GetEnhMetaFileHeader", [ "ptr", "uint", "ptr" ] ); 
+Win32.GetEnhMetaFilePaletteEntries = foreign.native( "GDI32.dll", "uint", "GetEnhMetaFilePaletteEntries", [ "ptr", "uint", "ptr" ] ); 
+Win32.GetWinMetaFileBits = foreign.native( "GDI32.dll", "uint", "GetWinMetaFileBits", [ "ptr", "uint", "ptr", "int", "ptr" ] ); 
+Win32.PlayEnhMetaFile = foreign.native( "GDI32.dll", "int", "PlayEnhMetaFile", [ "ptr", "ptr", "ptr" ] ); 
+Win32.PlayEnhMetaFileRecord = foreign.native( "GDI32.dll", "int", "PlayEnhMetaFileRecord", [ "ptr", "ptr", "ptr", "uint" ] ); 
+Win32.SetEnhMetaFileBits = foreign.native( "GDI32.dll", "ptr", "SetEnhMetaFileBits", [ "uint", "ptr" ] ); 
+Win32.GdiComment = foreign.native( "GDI32.dll", "int", "GdiComment", [ "ptr", "uint", "ptr" ] ); 
+Win32.GetTextMetricsA = foreign.native( "GDI32.dll", "int", "GetTextMetricsA", [ "ptr", "ptr" ] ); 
+Win32.GetTextMetricsW = foreign.native( "GDI32.dll", "int", "GetTextMetricsW", [ "ptr", "ptr" ] ); 
+Win32.AngleArc = foreign.native( "GDI32.dll", "int", "AngleArc", [ "ptr", "int", "int", "uint", "float", "float" ] ); 
+Win32.PolyPolyline = foreign.native( "GDI32.dll", "int", "PolyPolyline", [ "ptr", "ptr", "ptr", "uint" ] ); 
+Win32.GetWorldTransform = foreign.native( "GDI32.dll", "int", "GetWorldTransform", [ "ptr", "ptr" ] ); 
+Win32.SetWorldTransform = foreign.native( "GDI32.dll", "int", "SetWorldTransform", [ "ptr", "ptr" ] ); 
+Win32.ModifyWorldTransform = foreign.native( "GDI32.dll", "int", "ModifyWorldTransform", [ "ptr", "ptr", "uint" ] ); 
+Win32.CombineTransform = foreign.native( "GDI32.dll", "int", "CombineTransform", [ "ptr", "ptr", "ptr" ] ); 
+Win32.CreateDIBSection = foreign.native( "GDI32.dll", "ptr", "CreateDIBSection", [ "ptr", "ptr", "uint", "ptr", "ptr", "uint" ] ); 
+Win32.GetDIBColorTable = foreign.native( "GDI32.dll", "uint", "GetDIBColorTable", [ "ptr", "uint", "uint", "ptr" ] ); 
+Win32.SetDIBColorTable = foreign.native( "GDI32.dll", "uint", "SetDIBColorTable", [ "ptr", "uint", "uint", "ptr" ] ); 
+Win32.SetColorAdjustment = foreign.native( "GDI32.dll", "int", "SetColorAdjustment", [ "ptr", "ptr" ] ); 
+Win32.GetColorAdjustment = foreign.native( "GDI32.dll", "int", "GetColorAdjustment", [ "ptr", "ptr" ] ); 
+Win32.CreateHalftonePalette = foreign.native( "GDI32.dll", "ptr", "CreateHalftonePalette", [ "ptr" ] ); 
+Win32.AbortPath = foreign.native( "GDI32.dll", "int", "AbortPath", [ "ptr" ] ); 
+Win32.ArcTo = foreign.native( "GDI32.dll", "int", "ArcTo", [ "ptr", "int", "int", "int", "int", "int", "int", "int", "int" ] ); 
+Win32.BeginPath = foreign.native( "GDI32.dll", "int", "BeginPath", [ "ptr" ] ); 
+Win32.CloseFigure = foreign.native( "GDI32.dll", "int", "CloseFigure", [ "ptr" ] ); 
+Win32.EndPath = foreign.native( "GDI32.dll", "int", "EndPath", [ "ptr" ] ); 
+Win32.FillPath = foreign.native( "GDI32.dll", "int", "FillPath", [ "ptr" ] ); 
+Win32.FlattenPath = foreign.native( "GDI32.dll", "int", "FlattenPath", [ "ptr" ] ); 
+Win32.GetPath = foreign.native( "GDI32.dll", "int", "GetPath", [ "ptr", "ptr", "ptr", "int" ] ); 
+Win32.PathToRegion = foreign.native( "GDI32.dll", "ptr", "PathToRegion", [ "ptr" ] ); 
+Win32.PolyDraw = foreign.native( "GDI32.dll", "int", "PolyDraw", [ "ptr", "ptr", "ptr", "int" ] ); 
+Win32.SelectClipPath = foreign.native( "GDI32.dll", "int", "SelectClipPath", [ "ptr", "int" ] ); 
+Win32.SetArcDirection = foreign.native( "GDI32.dll", "int", "SetArcDirection", [ "ptr", "uint" ] ); 
+Win32.SetMiterLimit = foreign.native( "GDI32.dll", "int", "SetMiterLimit", [ "ptr", "float", "ptr" ] ); 
+Win32.StrokeAndFillPath = foreign.native( "GDI32.dll", "int", "StrokeAndFillPath", [ "ptr" ] ); 
+Win32.StrokePath = foreign.native( "GDI32.dll", "int", "StrokePath", [ "ptr" ] ); 
+Win32.WidenPath = foreign.native( "GDI32.dll", "int", "WidenPath", [ "ptr" ] ); 
+Win32.ExtCreatePen = foreign.native( "GDI32.dll", "ptr", "ExtCreatePen", [ "uint", "uint", "ptr", "uint", "ptr" ] ); 
+Win32.GetMiterLimit = foreign.native( "GDI32.dll", "int", "GetMiterLimit", [ "ptr", "ptr" ] ); 
+Win32.GetArcDirection = foreign.native( "GDI32.dll", "int", "GetArcDirection", [ "ptr" ] ); 
+Win32.GetObjectW = foreign.native( "GDI32.dll", "int", "GetObjectW", [ "ptr", "int", "ptr" ] ); 
+Win32.MoveToEx = foreign.native( "GDI32.dll", "int", "MoveToEx", [ "ptr", "int", "int", "ptr" ] ); 
+Win32.TextOutA = foreign.native( "GDI32.dll", "int", "TextOutA", [ "ptr", "int", "int", "ptr", "int" ] ); 
+Win32.TextOutW = foreign.native( "GDI32.dll", "int", "TextOutW", [ "ptr", "int", "int", "wstr", "int" ] ); 
+Win32.ExtTextOutA = foreign.native( "GDI32.dll", "int", "ExtTextOutA", [ "ptr", "int", "int", "uint", "ptr", "ptr", "uint", "ptr" ] ); 
+Win32.ExtTextOutW = foreign.native( "GDI32.dll", "int", "ExtTextOutW", [ "ptr", "int", "int", "uint", "ptr", "wstr", "uint", "ptr" ] ); 
+Win32.PolyTextOutA = foreign.native( "GDI32.dll", "int", "PolyTextOutA", [ "ptr", "ptr", "int" ] ); 
+Win32.PolyTextOutW = foreign.native( "GDI32.dll", "int", "PolyTextOutW", [ "ptr", "ptr", "int" ] ); 
+Win32.CreatePolygonRgn = foreign.native( "GDI32.dll", "ptr", "CreatePolygonRgn", [ "ptr", "int", "uint" ] ); 
+Win32.DPtoLP = foreign.native( "GDI32.dll", "int", "DPtoLP", [ "ptr", "ptr", "int" ] ); 
+Win32.LPtoDP = foreign.native( "GDI32.dll", "int", "LPtoDP", [ "ptr", "ptr", "int" ] ); 
+Win32.Polygon = foreign.native( "GDI32.dll", "int", "Polygon", [ "ptr", "ptr", "int" ] ); 
+Win32.Polyline = foreign.native( "GDI32.dll", "int", "Polyline", [ "ptr", "ptr", "int" ] ); 
+Win32.PolyBezier = foreign.native( "GDI32.dll", "int", "PolyBezier", [ "ptr", "ptr", "uint" ] ); 
+Win32.PolyBezierTo = foreign.native( "GDI32.dll", "int", "PolyBezierTo", [ "ptr", "ptr", "uint" ] ); 
+Win32.PolylineTo = foreign.native( "GDI32.dll", "int", "PolylineTo", [ "ptr", "ptr", "uint" ] ); 
+Win32.SetViewportExtEx = foreign.native( "GDI32.dll", "int", "SetViewportExtEx", [ "ptr", "int", "int", "ptr" ] ); 
+Win32.SetViewportOrgEx = foreign.native( "GDI32.dll", "int", "SetViewportOrgEx", [ "ptr", "int", "int", "ptr" ] ); 
+Win32.SetWindowExtEx = foreign.native( "GDI32.dll", "int", "SetWindowExtEx", [ "ptr", "int", "int", "ptr" ] ); 
+Win32.SetWindowOrgEx = foreign.native( "GDI32.dll", "int", "SetWindowOrgEx", [ "ptr", "int", "int", "ptr" ] ); 
+Win32.OffsetViewportOrgEx = foreign.native( "GDI32.dll", "int", "OffsetViewportOrgEx", [ "ptr", "int", "int", "ptr" ] ); 
+Win32.OffsetWindowOrgEx = foreign.native( "GDI32.dll", "int", "OffsetWindowOrgEx", [ "ptr", "int", "int", "ptr" ] ); 
+Win32.ScaleViewportExtEx = foreign.native( "GDI32.dll", "int", "ScaleViewportExtEx", [ "ptr", "int", "int", "int", "int", "ptr" ] ); 
+Win32.ScaleWindowExtEx = foreign.native( "GDI32.dll", "int", "ScaleWindowExtEx", [ "ptr", "int", "int", "int", "int", "ptr" ] ); 
+Win32.SetBitmapDimensionEx = foreign.native( "GDI32.dll", "int", "SetBitmapDimensionEx", [ "ptr", "int", "int", "ptr" ] ); 
+Win32.SetBrushOrgEx = foreign.native( "GDI32.dll", "int", "SetBrushOrgEx", [ "ptr", "int", "int", "ptr" ] ); 
+Win32.GetTextFaceA = foreign.native( "GDI32.dll", "int", "GetTextFaceA", [ "ptr", "int", "ptr" ] ); 
+Win32.GetTextFaceW = foreign.native( "GDI32.dll", "int", "GetTextFaceW", [ "ptr", "int", "wstr" ] ); 
+Win32.GetKerningPairsA = foreign.native( "GDI32.dll", "uint", "GetKerningPairsA", [ "ptr", "uint", "ptr" ] ); 
+Win32.GetKerningPairsW = foreign.native( "GDI32.dll", "uint", "GetKerningPairsW", [ "ptr", "uint", "ptr" ] ); 
+Win32.GetDCOrgEx = foreign.native( "GDI32.dll", "int", "GetDCOrgEx", [ "ptr", "ptr" ] ); 
+Win32.FixBrushOrgEx = foreign.native( "GDI32.dll", "int", "FixBrushOrgEx", [ "ptr", "int", "int", "ptr" ] ); 
+Win32.UnrealizeObject = foreign.native( "GDI32.dll", "int", "UnrealizeObject", [ "ptr" ] ); 
+Win32.GdiFlush = foreign.native( "GDI32.dll", "int", "GdiFlush", [  ] ); 
+Win32.GdiSetBatchLimit = foreign.native( "GDI32.dll", "uint", "GdiSetBatchLimit", [ "uint" ] ); 
+Win32.GdiGetBatchLimit = foreign.native( "GDI32.dll", "uint", "GdiGetBatchLimit", [  ] ); 
+Win32.wglSwapMultipleBuffers = foreign.native( "OPENGL32.dll", "uint", "wglSwapMultipleBuffers", [ "uint", "ptr" ] ); 
+Win32.CreateFontPackage = foreign.native( "FONTSUB.dll", "uint", "CreateFontPackage", [ "ptr", "uint", "ptr", "ptr", "ptr", "ushort", "ushort", "ushort", "ushort", "ushort", "ushort", "ptr", "ushort", "ptr", "ptr", "ptr", "ptr" ] ); 
+Win32.MergeFontPackage = foreign.native( "FONTSUB.dll", "uint", "MergeFontPackage", [ "ptr", "uint", "ptr", "uint", "ptr", "ptr", "ptr", "ushort", "ptr", "ptr", "ptr", "ptr" ] ); 
+Win32.TTEmbedFont = foreign.native( "t2embed.dll", "int", "TTEmbedFont", [ "ptr", "uint", "uint", "ptr", "ptr", "ptr", "ptr", "ptr", "ushort", "ushort", "ptr" ] ); 
+Win32.TTEmbedFontFromFileA = foreign.native( "t2embed.dll", "int", "TTEmbedFontFromFileA", [ "ptr", "ptr", "ushort", "uint", "uint", "ptr", "ptr", "ptr", "ptr", "ptr", "ushort", "ushort", "ptr" ] ); 
+Win32.TTLoadEmbeddedFont = foreign.native( "t2embed.dll", "int", "TTLoadEmbeddedFont", [ "ptr", "uint", "ptr", "uint", "ptr", "ptr", "ptr", "wstr", "ptr", "ptr" ] ); 
+Win32.TTGetEmbeddedFontInfo = foreign.native( "t2embed.dll", "int", "TTGetEmbeddedFontInfo", [ "uint", "ptr", "uint", "ptr", "ptr", "ptr", "ptr" ] ); 
+Win32.TTDeleteEmbeddedFont = foreign.native( "t2embed.dll", "int", "TTDeleteEmbeddedFont", [ "ptr", "uint", "ptr" ] ); 
+Win32.TTGetEmbeddingType = foreign.native( "t2embed.dll", "int", "TTGetEmbeddingType", [ "ptr", "ptr" ] ); 
+Win32.TTCharToUnicode = foreign.native( "t2embed.dll", "int", "TTCharToUnicode", [ "ptr", "ptr", "uint", "ptr", "uint", "uint" ] ); 
+Win32.TTRunValidationTests = foreign.native( "t2embed.dll", "int", "TTRunValidationTests", [ "ptr", "ptr" ] ); 
+Win32.TTIsEmbeddingEnabled = foreign.native( "t2embed.dll", "int", "TTIsEmbeddingEnabled", [ "ptr", "ptr" ] ); 
+Win32.TTIsEmbeddingEnabledForFacename = foreign.native( "t2embed.dll", "int", "TTIsEmbeddingEnabledForFacename", [ "ptr", "ptr" ] ); 
+Win32.TTEnableEmbeddingForFacename = foreign.native( "t2embed.dll", "int", "TTEnableEmbeddingForFacename", [ "ptr", "int" ] ); 
+Win32.TTEmbedFontEx = foreign.native( "t2embed.dll", "int", "TTEmbedFontEx", [ "ptr", "uint", "uint", "ptr", "ptr", "ptr", "ptr", "ptr", "ushort", "ushort", "ptr" ] ); 
+Win32.TTRunValidationTestsEx = foreign.native( "t2embed.dll", "int", "TTRunValidationTestsEx", [ "ptr", "ptr" ] ); 
+Win32.TTGetNewFontName = foreign.native( "t2embed.dll", "int", "TTGetNewFontName", [ "ptr", "wstr", "int", "ptr", "int" ] ); 
+Win32.DrawEdge = foreign.native( "USER32.dll", "int", "DrawEdge", [ "ptr", "ptr", "uint", "uint" ] ); 
+Win32.DrawFrameControl = foreign.native( "USER32.dll", "int", "DrawFrameControl", [ "ptr", "ptr", "uint", "uint" ] ); 
+Win32.DrawCaption = foreign.native( "USER32.dll", "int", "DrawCaption", [ "ptr", "ptr", "ptr", "uint" ] ); 
+Win32.DrawAnimatedRects = foreign.native( "USER32.dll", "int", "DrawAnimatedRects", [ "ptr", "int", "ptr", "ptr" ] ); 
+Win32.DrawTextA = foreign.native( "USER32.dll", "int", "DrawTextA", [ "ptr", "ptr", "int", "ptr", "uint" ] ); 
+Win32.DrawTextW = foreign.native( "USER32.dll", "int", "DrawTextW", [ "ptr", "wstr", "int", "ptr", "uint" ] ); 
+Win32.DrawTextExA = foreign.native( "USER32.dll", "int", "DrawTextExA", [ "ptr", "ptr", "int", "ptr", "uint", "ptr" ] ); 
+Win32.DrawTextExW = foreign.native( "USER32.dll", "int", "DrawTextExW", [ "ptr", "wstr", "int", "ptr", "uint", "ptr" ] ); 
+Win32.GrayStringA = foreign.native( "USER32.dll", "int", "GrayStringA", [ "ptr", "ptr", "ptr", "ptr", "int", "int", "int", "int", "int" ] ); 
+Win32.GrayStringW = foreign.native( "USER32.dll", "int", "GrayStringW", [ "ptr", "ptr", "ptr", "ptr", "int", "int", "int", "int", "int" ] ); 
+Win32.DrawStateA = foreign.native( "USER32.dll", "int", "DrawStateA", [ "ptr", "ptr", "ptr", "ptr", "ptr", "int", "int", "int", "int", "uint" ] ); 
+Win32.DrawStateW = foreign.native( "USER32.dll", "int", "DrawStateW", [ "ptr", "ptr", "ptr", "ptr", "ptr", "int", "int", "int", "int", "uint" ] ); 
+Win32.TabbedTextOutA = foreign.native( "USER32.dll", "int", "TabbedTextOutA", [ "ptr", "int", "int", "ptr", "int", "int", "ptr", "int" ] ); 
+Win32.TabbedTextOutW = foreign.native( "USER32.dll", "int", "TabbedTextOutW", [ "ptr", "int", "int", "wstr", "int", "int", "ptr", "int" ] ); 
+Win32.GetTabbedTextExtentA = foreign.native( "USER32.dll", "uint", "GetTabbedTextExtentA", [ "ptr", "ptr", "int", "int", "ptr" ] ); 
+Win32.GetTabbedTextExtentW = foreign.native( "USER32.dll", "uint", "GetTabbedTextExtentW", [ "ptr", "wstr", "int", "int", "ptr" ] ); 
+Win32.UpdateWindow = foreign.native( "USER32.dll", "int", "UpdateWindow", [ "ptr" ] ); 
+Win32.PaintDesktop = foreign.native( "USER32.dll", "int", "PaintDesktop", [ "ptr" ] ); 
+Win32.WindowFromDC = foreign.native( "USER32.dll", "ptr", "WindowFromDC", [ "ptr" ] ); 
+Win32.GetDC = foreign.native( "USER32.dll", "ptr", "GetDC", [ "ptr" ] ); 
+Win32.GetDCEx = foreign.native( "USER32.dll", "ptr", "GetDCEx", [ "ptr", "ptr", "uint" ] ); 
+Win32.GetWindowDC = foreign.native( "USER32.dll", "ptr", "GetWindowDC", [ "ptr" ] ); 
+Win32.ReleaseDC = foreign.native( "USER32.dll", "int", "ReleaseDC", [ "ptr", "ptr" ] ); 
+Win32.BeginPaint = foreign.native( "USER32.dll", "ptr", "BeginPaint", [ "ptr", "ptr" ] ); 
+Win32.EndPaint = foreign.native( "USER32.dll", "int", "EndPaint", [ "ptr", "ptr" ] ); 
+Win32.GetUpdateRect = foreign.native( "USER32.dll", "int", "GetUpdateRect", [ "ptr", "ptr", "int" ] ); 
+Win32.GetUpdateRgn = foreign.native( "USER32.dll", "int", "GetUpdateRgn", [ "ptr", "ptr", "int" ] ); 
+Win32.SetWindowRgn = foreign.native( "USER32.dll", "int", "SetWindowRgn", [ "ptr", "ptr", "int" ] ); 
+Win32.GetWindowRgn = foreign.native( "USER32.dll", "int", "GetWindowRgn", [ "ptr", "ptr" ] ); 
+Win32.GetWindowRgnBox = foreign.native( "USER32.dll", "int", "GetWindowRgnBox", [ "ptr", "ptr" ] ); 
+Win32.ExcludeUpdateRgn = foreign.native( "USER32.dll", "int", "ExcludeUpdateRgn", [ "ptr", "ptr" ] ); 
+Win32.InvalidateRect = foreign.native( "USER32.dll", "int", "InvalidateRect", [ "ptr", "ptr", "int" ] ); 
+Win32.ValidateRect = foreign.native( "USER32.dll", "int", "ValidateRect", [ "ptr", "ptr" ] ); 
+Win32.InvalidateRgn = foreign.native( "USER32.dll", "int", "InvalidateRgn", [ "ptr", "ptr", "int" ] ); 
+Win32.ValidateRgn = foreign.native( "USER32.dll", "int", "ValidateRgn", [ "ptr", "ptr" ] ); 
+Win32.RedrawWindow = foreign.native( "USER32.dll", "int", "RedrawWindow", [ "ptr", "ptr", "ptr", "uint" ] ); 
+Win32.LockWindowUpdate = foreign.native( "USER32.dll", "int", "LockWindowUpdate", [ "ptr" ] ); 
+Win32.ClientToScreen = foreign.native( "USER32.dll", "int", "ClientToScreen", [ "ptr", "ptr" ] ); 
+Win32.ScreenToClient = foreign.native( "USER32.dll", "int", "ScreenToClient", [ "ptr", "ptr" ] ); 
+Win32.MapWindowPoints = foreign.native( "USER32.dll", "int", "MapWindowPoints", [ "ptr", "ptr", "ptr", "uint" ] ); 
+Win32.GetSysColor = foreign.native( "USER32.dll", "uint", "GetSysColor", [ "int" ] ); 
+Win32.GetSysColorBrush = foreign.native( "USER32.dll", "ptr", "GetSysColorBrush", [ "int" ] ); 
+Win32.SetSysColors = foreign.native( "USER32.dll", "int", "SetSysColors", [ "int", "ptr", "ptr" ] ); 
+Win32.DrawFocusRect = foreign.native( "USER32.dll", "int", "DrawFocusRect", [ "ptr", "ptr" ] ); 
+Win32.FillRect = foreign.native( "USER32.dll", "int", "FillRect", [ "ptr", "ptr", "ptr" ] ); 
+Win32.FrameRect = foreign.native( "USER32.dll", "int", "FrameRect", [ "ptr", "ptr", "ptr" ] ); 
+Win32.InvertRect = foreign.native( "USER32.dll", "int", "InvertRect", [ "ptr", "ptr" ] ); 
+Win32.SetRect = foreign.native( "USER32.dll", "int", "SetRect", [ "ptr", "int", "int", "int", "int" ] ); 
+Win32.SetRectEmpty = foreign.native( "USER32.dll", "int", "SetRectEmpty", [ "ptr" ] ); 
+Win32.CopyRect = foreign.native( "USER32.dll", "int", "CopyRect", [ "ptr", "ptr" ] ); 
+Win32.InflateRect = foreign.native( "USER32.dll", "int", "InflateRect", [ "ptr", "int", "int" ] ); 
+Win32.IntersectRect = foreign.native( "USER32.dll", "int", "IntersectRect", [ "ptr", "ptr", "ptr" ] ); 
+Win32.UnionRect = foreign.native( "USER32.dll", "int", "UnionRect", [ "ptr", "ptr", "ptr" ] ); 
+Win32.SubtractRect = foreign.native( "USER32.dll", "int", "SubtractRect", [ "ptr", "ptr", "ptr" ] ); 
+Win32.OffsetRect = foreign.native( "USER32.dll", "int", "OffsetRect", [ "ptr", "int", "int" ] ); 
+Win32.IsRectEmpty = foreign.native( "USER32.dll", "int", "IsRectEmpty", [ "ptr" ] ); 
+Win32.EqualRect = foreign.native( "USER32.dll", "int", "EqualRect", [ "ptr", "ptr" ] ); 
+Win32.PtInRect = foreign.native( "USER32.dll", "int", "PtInRect", [ "ptr", "ptr" ] ); 
+Win32.LoadBitmapA = foreign.native( "USER32.dll", "ptr", "LoadBitmapA", [ "ptr", "ptr" ] ); 
+Win32.LoadBitmapW = foreign.native( "USER32.dll", "ptr", "LoadBitmapW", [ "ptr", "wstr" ] ); 
+Win32.ChangeDisplaySettingsA = foreign.native( "USER32.dll", "int", "ChangeDisplaySettingsA", [ "ptr", "uint" ] ); 
+Win32.ChangeDisplaySettingsW = foreign.native( "USER32.dll", "int", "ChangeDisplaySettingsW", [ "ptr", "uint" ] ); 
+Win32.ChangeDisplaySettingsExA = foreign.native( "USER32.dll", "int", "ChangeDisplaySettingsExA", [ "ptr", "ptr", "ptr", "uint", "ptr" ] ); 
+Win32.ChangeDisplaySettingsExW = foreign.native( "USER32.dll", "int", "ChangeDisplaySettingsExW", [ "wstr", "ptr", "ptr", "uint", "ptr" ] ); 
+Win32.EnumDisplaySettingsA = foreign.native( "USER32.dll", "int", "EnumDisplaySettingsA", [ "ptr", "uint", "ptr" ] ); 
+Win32.EnumDisplaySettingsW = foreign.native( "USER32.dll", "int", "EnumDisplaySettingsW", [ "wstr", "uint", "ptr" ] ); 
+Win32.EnumDisplaySettingsExA = foreign.native( "USER32.dll", "int", "EnumDisplaySettingsExA", [ "ptr", "uint", "ptr", "uint" ] ); 
+Win32.EnumDisplaySettingsExW = foreign.native( "USER32.dll", "int", "EnumDisplaySettingsExW", [ "wstr", "uint", "ptr", "uint" ] ); 
+Win32.EnumDisplayDevicesA = foreign.native( "USER32.dll", "int", "EnumDisplayDevicesA", [ "ptr", "uint", "ptr", "uint" ] ); 
+Win32.EnumDisplayDevicesW = foreign.native( "USER32.dll", "int", "EnumDisplayDevicesW", [ "wstr", "uint", "ptr", "uint" ] ); 
+Win32.MonitorFromPoint = foreign.native( "USER32.dll", "ptr", "MonitorFromPoint", [ "ptr", "uint" ] ); 
+Win32.MonitorFromRect = foreign.native( "USER32.dll", "ptr", "MonitorFromRect", [ "ptr", "uint" ] ); 
+Win32.MonitorFromWindow = foreign.native( "USER32.dll", "ptr", "MonitorFromWindow", [ "ptr", "uint" ] ); 
+Win32.GetMonitorInfoA = foreign.native( "USER32.dll", "int", "GetMonitorInfoA", [ "ptr", "ptr" ] ); 
+Win32.GetMonitorInfoW = foreign.native( "USER32.dll", "int", "GetMonitorInfoW", [ "ptr", "ptr" ] ); 
+Win32.EnumDisplayMonitors = foreign.native( "USER32.dll", "int", "EnumDisplayMonitors", [ "ptr", "ptr", "ptr", "ptr" ] ); 
+Win32.FONTENUMPROCA = foreign.callback( "int", [ "ptr", "ptr", "uint", "ptr"] );
+Win32.FONTENUMPROCW = foreign.callback( "int", [ "ptr", "ptr", "uint", "ptr"] );
+Win32.GOBJENUMPROC = foreign.callback( "int", [ "ptr", "ptr"] );
+Win32.LINEDDAPROC = foreign.callback( "void", [ "int", "int", "ptr"] );
+Win32.LPFNDEVMODE = foreign.callback( "uint", [ "ptr", "ptr", "ptr", "ptr", "ptr", "ptr", "ptr", "uint"] );
+Win32.LPFNDEVCAPS = foreign.callback( "uint", [ "ptr", "ptr", "uint", "ptr", "ptr"] );
+Win32.MFENUMPROC = foreign.callback( "int", [ "ptr", "ptr", "ptr", "int", "ptr"] );
+Win32.ENHMFENUMPROC = foreign.callback( "int", [ "ptr", "ptr", "ptr", "int", "ptr"] );
+Win32.CFP_ALLOCPROC = foreign.callback( "ptr", [ "ptr"] );
+Win32.CFP_REALLOCPROC = foreign.callback( "ptr", [ "ptr", "ptr"] );
+Win32.CFP_FREEPROC = foreign.callback( "void", [ "ptr"] );
+Win32.READEMBEDPROC = foreign.callback( "uint", [ "ptr", "ptr", "uint"] );
+Win32.WRITEEMBEDPROC = foreign.callback( "uint", [ "ptr", "ptr", "uint"] );
+Win32.GRAYSTRINGPROC = foreign.callback( "int", [ "ptr", "ptr", "int"] );
+Win32.DRAWSTATEPROC = foreign.callback( "int", [ "ptr", "ptr", "ptr", "int", "int"] );
+Win32.MONITORENUMPROC = foreign.callback( "int", [ "ptr", "ptr", "ptr", "ptr"] );
+
+}
+

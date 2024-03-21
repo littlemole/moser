@@ -1,0 +1,5 @@
+print "Load";
+import("win32/User");
+print "GO";
+Win32.MessageBoxW( 0, wstring("Hello!"), wstring("WORLD"),0);
+print "OK";

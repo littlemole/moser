@@ -1,0 +1,10 @@
+
+var a = ["a","story","to","be","told"];
+
+print a.join("_");
+// expect: a_story_to_be_told
+
+var b = [1,2,3,4,5];
+
+print b.join("-");
+// expect: 1-2-3-4-5

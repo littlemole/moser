@@ -1,0 +1,235 @@
+extern from "libgtk-3.so" {
+    ptr gtk_application_new( str, int );
+
+    ptr gtk_application_window_new( ptr );
+    void gtk_widget_show( ptr );
+    void gtk_widget_show_all( ptr );
+    void gtk_window_set_title( ptr, str );
+    void gtk_window_set_default_size( ptr, int, int );
+    ptr gtk_button_new_with_label( str );
+    void gtk_container_add( ptr, ptr );
+    void gtk_window_add_accel_group( ptr, ptr );
+
+    ptr gtk_text_view_get_buffer( ptr );
+    void gtk_text_buffer_get_bounds( ptr, ptr, ptr);
+    void gtk_text_buffer_get_end_iter( ptr, ptr);
+    void gtk_text_buffer_get_start_iter( ptr, ptr );
+    int gtk_text_buffer_get_selection_bounds( ptr, ptr, ptr );
+    ptr gtk_text_buffer_get_text( ptr, ptr, ptr, int);
+    void gtk_text_buffer_insert_at_cursor( ptr, str, int );
+    void gtk_text_buffer_insert( ptr, ptr, str, int );
+    int gtk_text_iter_get_line(ptr);
+    int gtk_text_iter_forward_line(ptr);
+    ptr gtk_text_iter_copy( ptr );
+    int gtk_text_iter_backward_line( ptr );
+    int gtk_text_iter_forward_char( ptr );
+
+    ptr gtk_text_buffer_get_insert(ptr);
+    void gtk_text_buffer_get_iter_at_mark( ptr, ptr, ptr);
+    void gtk_text_buffer_select_range( ptr, ptr, ptr);
+
+    ptr gtk_accel_group_new();
+    void gtk_accelerator_parse( str, ptr, ptr );
+    void gtk_accel_group_connect( ptr, uint, int, int, ptr);
+
+    ptr gtk_builder_new();
+    uint gtk_builder_add_from_file(ptr, str,ptr);
+    ptr gtk_builder_get_object(ptr, str);
+    void gtk_builder_connect_signals_full( ptr, ptr, ptr);
+
+    void gtk_main();
+    void gtk_init( ptr,ptr);    
+    void gtk_main_quit();
+}
+
+extern from "libgio-2.0.so" {
+    int g_application_run( ptr, int, ptr);
+    void g_application_quit( ptr );
+}
+
+extern from "libgobject-2.0.so" {
+    ulong g_signal_connect_data( ptr, str, ptr, ptr, ptr, int );
+    void g_object_set ( ptr, str, ... , ptr, ptr );
+    void g_object_set_property( ptr, str, ptr );
+
+    ptr g_value_init( ptr, ulong );
+    void g_value_set_pointer( ptr, ptr );
+    void g_value_set_object( ptr, ptr );
+
+    ptr g_cclosure_new( ptr, ptr, ptr);
+}
+
+extern from "libglib-2.0.so" {
+    void g_free ( ptr );
+}
+
+
+extern struct GError {
+  uint domain,
+  int code,
+  str message
+}
+
+extern struct GtkTextIter {
+  ptr dummy1,
+  ptr dummy2,
+  int dummy3,
+  int dummy4,
+  int dummy5,
+  int dummy6,
+  int dummy7,
+  int dummy8,
+  ptr dummy9,
+  ptr dummy10,
+  int dummy11,
+  int dummy12,
+  int dummy13,
+  ptr dummy14
+}
+
+
+
+extern struct GValue {
+    ulong type,
+    ulong data
+}
+
+var G_TYPE_POINTER = 68;
+var G_TYPE_OBJECT = 80;
+
+var GDK_SHIFT_MASK = 1;
+var GDK_LOCK_MASK = 2;
+var GDK_CONTROL_MASK = 4;
+
+extern callback void GtkBuilderConnectFunc( ptr, ptr, str,str,ptr,int,ptr);
+extern callback void GtkCallback( ptr, ptr);
+extern callback void AccelCallback(ptr,ptr,uint,int);
+
+class UI {
+
+    UI(src) {
+        this.callbacks = [];
+        this.src = src;
+        this.mainWndName = "mainWindow";
+    }
+
+    widget(name)
+    {
+        return gtk_builder_get_object(this.builder,name);
+    }
+
+    run(name,controller) 
+    {
+        this.controller = controller;
+        this.app = gtk_application_new(name,0);
+        controller.ui = this;
+
+        var cb = GtkCallback(this.activate);
+        this.callbacks.push(cb); // prevent GC
+
+        g_signal_connect_data( 
+            this.app, 
+            "activate", 
+            cb, 
+            0, 0, 0
+        );
+
+        g_application_run(this.app,0,0);        
+    }
+
+    quit()
+    {
+        g_application_quit(this.app);
+    }
+    
+    activate(app,ptr) 
+    {
+        // load ui.xml
+        this.builder = gtk_builder_new();
+
+        var r = gtk_builder_add_from_file(this.builder,this.src,0);
+
+        // connect signals
+        var cb = GtkBuilderConnectFunc(this.connect);
+        this.callbacks.push(cb); // prevent GC
+
+        gtk_builder_connect_signals_full(
+            this.builder,
+            cb,
+            this.controller
+        );
+
+        // mainWindow
+        this.mainWnd = gtk_builder_get_object(this.builder,this.mainWndName);
+
+//        g_object_set(this.mainWnd, "application", app, 0);
+
+        var gval = GValue();
+        g_value_init(gval, G_TYPE_OBJECT );
+        g_value_set_object(gval,app);
+        g_object_set_property(this.mainWnd, "application", gval);
+
+        gtk_widget_show(this.mainWnd);
+
+        // accelerators
+        this.ag = gtk_accel_group_new();
+
+        this.controller.methods()
+            .filter( fun(k,v) 
+            { 
+                var m = runtime.meta(v); 
+                if(!m) return false; 
+                return $v.exists("accel");
+                //return meta(v).exists("accel"); 
+            })
+            .forEach( fun(k,v) 
+            {   
+                var ctrls = $v.accel;// meta(v){"accel"};
+                if(typeof(ctrls) == "array")
+                {
+                    ctrls.forEach( fun(ctrl)
+                    {
+                        this.accel(ctrl,v);
+                    });
+                }
+                else
+                {
+                    this.accel(ctrls,v);
+                }
+            });
+        gtk_window_add_accel_group(this.mainWnd,this.ag);
+    }
+
+
+    connect( builder, obj, signal, handler, target, flags, data) 
+    {
+        //print signal + ": " + handler;
+
+        var controller = data.object();
+        var methods = controller.methods();
+
+        methods
+            .filter( fun(k,v) { return k == handler; } )
+            .forEach( fun(k,v) {   
+                var cb = GtkCallback( v );
+                this.callbacks.push(cb);  // prevent GC
+                g_signal_connect_data( obj, signal, cb, 0, 0, 0);
+            } );
+    }
+
+    accel(str,method) 
+    {
+        var i = 0;
+        var p = 0;
+        gtk_accelerator_parse(str, &p, &i );
+        var key = p;
+        var mod = i;
+
+        var cb = AccelCallback(method);
+        this.callbacks.push(cb);
+        var closure = g_cclosure_new( cb,0,0);
+        gtk_accel_group_connect(this.ag,key,mod,0,closure);
+    }
+
+}
+

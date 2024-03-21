@@ -1,0 +1,26 @@
+import("openssl/crypto");
+import("openssl/base64");
+import("openssl/digest");
+
+
+var test = io.slurp(io.self());
+
+var b64 = Base64_encode(test,true);
+print b64;
+
+var decoded = Base64_decode(b64);
+print decoded;
+
+var hash_md5 = md5(test);
+print io.toHex(hash_md5);
+
+var hash_sha1 = sha1(test);
+print io.toHex(hash_sha1);
+
+var hash_sha256 = sha256(test);
+print io.toHex(hash_sha256);
+
+var hash_sha512 = sha512(test);
+print io.toHex(hash_sha512);
+
+print "OK";

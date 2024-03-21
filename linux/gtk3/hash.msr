@@ -1,0 +1,85 @@
+import("openssl/crypto");
+import("openssl/digest");
+
+import("glib/gobject");
+import("glib/gio");
+import("gtk3/gtk");
+
+
+extern from "libgobject-2.0.so" {
+    ulong g_signal_connect_data( ptr, str, ptr, ptr, ptr, int );
+}
+
+///////////////////////////////////////////
+
+var window;
+var output;
+var buffer;
+
+
+var hash = GtkCallback( fun(widget,ptr) 
+{
+    var dlg = gtk_file_chooser_native_new(
+        "Open File",
+        window,
+        0, // Open
+        "ok",
+        "cancel"
+    );
+
+    var r = gtk_native_dialog_run ( dlg );
+    if(r == -3) // accept
+    {
+        var path = gtk_file_chooser_get_filename(dlg).string();
+
+        print path;
+
+        var content = "file: " + path;
+        content += "\r\n\r\n";
+
+        var hash_md5 = "md5: " + io.toHex(md5(path));
+        content += hash_md5; 
+        content += "\r\n\r\n";
+
+        var hash_sha1 = "sha1: " + io.toHex(sha1(path));
+        content += hash_sha1; 
+        content += "\r\n\r\n";
+
+        var hash_sha256 = "sha256: " + io.toHex(sha256(path));
+        content += hash_sha256; 
+        content += "\r\n\r\n";
+
+        var hash_sha512 = "sha512: " + io.toHex(sha512(path));
+        content += hash_sha512; 
+
+        gtk_text_buffer_set_text(buffer,content,content.length);
+    }
+});
+
+var activate = GtkCallback( fun(app,ptr) 
+{
+    window = gtk_application_window_new (app);
+    gtk_window_set_title ( window, "HASHING");
+    gtk_window_set_default_size (window, 300, 400);
+
+    var box = gtk_box_new(1,5);
+
+    var button = gtk_button_new_with_label ("compute hashes");
+    g_signal_connect_data (button, "clicked", hash, 0, 0, 0);
+
+    var output = gtk_text_view_new();
+    gtk_text_view_set_monospace(output,true);
+    gtk_text_view_set_wrap_mode(output,true);
+
+    gtk_box_pack_start(box,button,false,false,5);
+    gtk_box_pack_start(box,output,false,true,5);
+
+    gtk_container_add (window, box);
+    gtk_widget_show_all(window);
+
+    buffer = gtk_text_view_get_buffer(output);
+});
+
+var app = gtk_application_new ("org.gtk.example", 0);
+g_signal_connect_data (app, "activate", activate, 0, 0, 0);
+var status = g_application_run (app, 0,0);

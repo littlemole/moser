@@ -1,0 +1,56 @@
+{
+
+if( runtime.global("Win32") == nil ) { runtime.global("Win32", {}); }
+var Win32 = runtime.global("Win32");
+
+Win32.TIME_ZONE_INFORMATION = foreign.named_struct( "Windows.Win32.System.Time.TIME_ZONE_INFORMATION", [ 
+    "Bias:int", 
+    "StandardName[32]:short", 
+    "StandardDate:Windows.Win32.Foundation.SYSTEMTIME", 
+    "StandardBias:int", 
+    "DaylightName[32]:short", 
+    "DaylightDate:Windows.Win32.Foundation.SYSTEMTIME", 
+    "DaylightBias:int"
+]); 
+
+
+Win32.DYNAMIC_TIME_ZONE_INFORMATION = foreign.named_struct( "Windows.Win32.System.Time.DYNAMIC_TIME_ZONE_INFORMATION", [ 
+    "Bias:int", 
+    "StandardName[32]:short", 
+    "StandardDate:Windows.Win32.Foundation.SYSTEMTIME", 
+    "StandardBias:int", 
+    "DaylightName[32]:short", 
+    "DaylightDate:Windows.Win32.Foundation.SYSTEMTIME", 
+    "DaylightBias:int", 
+    "TimeZoneKeyName[128]:short", 
+    "DynamicDaylightTimeDisabled:Windows.Win32.Foundation.BOOLEAN"
+]); 
+
+Win32.wszW32TimeRegKeyTimeProviders = "System\\CurrentControlSet\\Services\\W32Time\\TimeProviders";
+Win32.wszW32TimeRegKeyPolicyTimeProviders = "Software\\Policies\\Microsoft\\W32Time\\TimeProviders";
+Win32.wszW32TimeRegValueEnabled = "Enabled";
+Win32.wszW32TimeRegValueDllName = "DllName";
+Win32.wszW32TimeRegValueInputProvider = "InputProvider";
+Win32.wszW32TimeRegValueMetaDataProvider = "MetaDataProvider";
+Win32.TSF_Hardware = 1;
+Win32.TSF_Authenticated = 2;
+Win32.TSF_IPv6 = 4;
+Win32.TSF_SignatureAuthenticated = 8;
+Win32.SystemTimeToTzSpecificLocalTime = foreign.native( "KERNEL32.dll", "int", "SystemTimeToTzSpecificLocalTime", [ "ptr", "ptr", "ptr" ] ); 
+Win32.TzSpecificLocalTimeToSystemTime = foreign.native( "KERNEL32.dll", "int", "TzSpecificLocalTimeToSystemTime", [ "ptr", "ptr", "ptr" ] ); 
+Win32.FileTimeToSystemTime = foreign.native( "KERNEL32.dll", "int", "FileTimeToSystemTime", [ "ptr", "ptr" ] ); 
+Win32.SystemTimeToFileTime = foreign.native( "KERNEL32.dll", "int", "SystemTimeToFileTime", [ "ptr", "ptr" ] ); 
+Win32.GetTimeZoneInformation = foreign.native( "KERNEL32.dll", "uint", "GetTimeZoneInformation", [ "ptr" ] ); 
+Win32.SetTimeZoneInformation = foreign.native( "KERNEL32.dll", "int", "SetTimeZoneInformation", [ "ptr" ] ); 
+Win32.SetDynamicTimeZoneInformation = foreign.native( "KERNEL32.dll", "int", "SetDynamicTimeZoneInformation", [ "ptr" ] ); 
+Win32.GetDynamicTimeZoneInformation = foreign.native( "KERNEL32.dll", "uint", "GetDynamicTimeZoneInformation", [ "ptr" ] ); 
+Win32.GetTimeZoneInformationForYear = foreign.native( "KERNEL32.dll", "int", "GetTimeZoneInformationForYear", [ "ushort", "ptr", "ptr" ] ); 
+Win32.EnumDynamicTimeZoneInformation = foreign.native( "ADVAPI32.dll", "uint", "EnumDynamicTimeZoneInformation", [ "uint", "ptr" ] ); 
+Win32.GetDynamicTimeZoneInformationEffectiveYears = foreign.native( "ADVAPI32.dll", "uint", "GetDynamicTimeZoneInformationEffectiveYears", [ "ptr", "ptr", "ptr" ] ); 
+Win32.SystemTimeToTzSpecificLocalTimeEx = foreign.native( "KERNEL32.dll", "int", "SystemTimeToTzSpecificLocalTimeEx", [ "ptr", "ptr", "ptr" ] ); 
+Win32.TzSpecificLocalTimeToSystemTimeEx = foreign.native( "KERNEL32.dll", "int", "TzSpecificLocalTimeToSystemTimeEx", [ "ptr", "ptr", "ptr" ] ); 
+Win32.LocalFileTimeToLocalSystemTime = foreign.native( "KERNEL32.dll", "int", "LocalFileTimeToLocalSystemTime", [ "ptr", "ptr", "ptr" ] ); 
+Win32.LocalSystemTimeToLocalFileTime = foreign.native( "KERNEL32.dll", "int", "LocalSystemTimeToLocalFileTime", [ "ptr", "ptr", "ptr" ] ); 
+
+}
+

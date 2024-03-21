@@ -1,0 +1,295 @@
+
+class File
+{
+    File(path)
+    {
+        var args = arguments();
+        this.path = path;
+        this.file_name = io.basename(path);
+        this.placeholder = false;
+        this.directory = io.is_directory(path);
+        this.empty = false;
+
+        if(args.length > 1)
+        {
+            var opts = args[1];
+            opts.forEach( fun(k,v){ this{k} = v; });
+        }
+    }
+
+    get_children()
+    {
+        var children = io.glob(this.path);
+        var result = [];
+        children.forEach( fun(c) {
+            if(c == ".") return;
+            if(c == "..") return;
+            var child_path = this.path  + c;
+            var isDir = io.is_directory(child_path);
+            if(isDir)
+            {
+                child_path += "/";
+            }
+            var f = File( child_path );
+            result.push(f);
+        });
+        return result;
+    }
+
+}
+
+
+extern callback void row_activated ( ptr, ptr, ptr );
+
+
+
+@Proxy("GObjInterceptor")
+class MtkDirTree : GObj
+{
+    MtkDirTree(ptr)
+    {
+        var parent = Gtk.TreeView;
+        super.GObj(parent.typelib,ptr,parent.info);
+    }
+
+    
+    static init_class(ptr)
+    {
+        var klazz = Gtk.TreeViewClass(ptr);
+        
+        MtkDirTree.row_activated = row_activated(fun(ptr,path,col){
+            print "Override!";
+            var parentKlazz =  Gtk.TreeViewClass( MtkDirTree.parentClass );
+            var chain = parentKlazz.row_activated;
+            var f = row_activated(chain);
+            f(ptr,path,col);
+        });
+
+        klazz.row_activated = MtkDirTree.row_activated ;        
+    }
+
+    static init_instance(ptr)
+    {
+        var that = MtkDirTree.factory.that(ptr);
+        var wrapper = MtkDirTree(ptr);
+
+        that.file_name_column = Gtk.TreeViewColumn.new();
+        that.file_name_renderer = Gtk.CellRendererText.new();
+        that.file_type_renderer = Gtk.CellRendererPixbuf.new();
+        that.file_name_column.pack_start(that.file_type_renderer, false);
+        that.file_name_column.pack_start(that.file_name_renderer, false);
+
+        that.file_name_column.add_attribute(that.file_name_renderer,"text",0);
+        that.file_name_column.add_attribute(that.file_type_renderer,"stock-id",2);
+
+        wrapper.append_column( that.file_name_column );
+
+        wrapper.signal_connect( "row-expanded", wrapper.onExpand);
+        wrapper.signal_connect( "row-activated", wrapper.onSelect);
+        wrapper.signal_connect( "notify::root", wrapper.onRoot);
+    }
+    
+    static new()
+    {
+        return MtkDirTree.factory.new();
+    }
+
+    add_root( file ) 
+    {
+        var that = MtkDirTree.factory.that(this.object);
+        var wrapper = MtkDirTree(this.object);
+
+        wrapper.clear();
+        
+        //wrapper.root = file.path;
+        wrapper.add_entry(file,0);
+    }
+
+    add_entry(file,root_iter)
+    {
+        var that = MtkDirTree.factory.that(this.object);
+        var wrapper = MtkDirTree(this.object);
+
+        var model = Gtk.TreeStore(wrapper.get_model());
+
+        var iter = Gtk.TreeIter();
+        model.append( iter, root_iter);
+
+        var gv = gvalue(file.file_name);
+        model.set_value( iter, 0, gv);
+        gv.unset();
+
+        gv = gvalue(file.path);
+        model.set_value( iter, 1, gv);
+
+        gv.unset();
+        var id = Gtk.STOCK_OPEN;
+
+        if(file.directory)
+        {
+            gv = gvalue(Gtk.STOCK_OPEN);
+        }
+        else
+        {
+            gv = gvalue(Gtk.STOCK_FILE);
+        }
+        
+        model.set_value( iter, 2, gv);
+        gv.unset();
+
+        if(file.directory)
+        {
+            var treeIter = Gtk.TreeIter();
+            model.append( treeIter, iter);
+
+            gv = gvalue("");
+            model.set_value( treeIter, 0, gv);
+            model.set_value( treeIter, 1, gv);
+            model.set_value( treeIter, 2, gv);
+            gv.unset();
+        }        
+    }
+
+    onExpand( widget, tree_iter, path)
+    {        
+        var that = MtkDirTree.factory.that(this.object);
+        var wrapper = MtkDirTree(this.object);
+
+        var model = Gtk.TreeStore(wrapper.get_model());
+
+        var place_holder_iter = Gtk.TreeIter();
+        model.iter_children(place_holder_iter,tree_iter);
+
+        var gv = gvalue();
+        model.get_value(place_holder_iter,0,gv);
+        var file = gv.get_string();
+        gv.unset();
+
+        if( file != "") return;
+
+        // resolve placeholder
+
+        model.get_value(tree_iter,1,gv);
+        var filepath = gv.get_string();
+        gv.unset();
+        wrapper.freeze_notify();
+        model.freeze_notify();
+
+        var rgx = regex(wrapper.filter);
+        var current_dir = File( filepath);
+        var children = current_dir.get_children(tree_iter);
+        children.forEach( fun(child)
+        {
+            if(rgx.match(child.file_name))
+            {
+                this.add_entry(child,tree_iter);
+            }
+        });
+        model.remove(place_holder_iter);
+
+        model.thaw_notify();
+        wrapper.thaw_notify();
+    }
+
+    onRoot()
+    {
+        var wrapper = MtkDirTree(this.object);
+        var file = File(wrapper.root);
+        //this.add_entry(file,0);
+        wrapper.add_root(file);
+    }
+
+    onSelect(widget,selection)
+    {
+        var wrapper = MtkDirTree(this.object);
+
+        wrapper.path = this.get_selected_file();
+    }
+    
+    get_selected_file()
+    {
+        var that = MtkDirTree.factory.that(this.object);
+        var wrapper = MtkDirTree(this.object);
+
+        var selection = wrapper.get_selection();
+        if(!selection) return nil;
+        
+        var iter = Gtk.TreeIter();
+        var b = selection.get_selected(0,iter);
+        if(!b) return nil;
+
+        var model = Gtk.TreeStore(wrapper.get_model());
+
+        var gv = gvalue();
+        model.get_value(iter,1,gv);
+        var file = gv.get_string();
+        gv.cunset();
+
+        return file;
+    }    
+
+    clear()
+    {
+        var wrapper = MtkDirTree(this.object);
+        var model = Gtk.TreeStore(wrapper.get_model());
+        
+        model.clear();
+    }
+
+    path_at_pos(x,y)
+    {
+        var wrapper = MtkDirTree(this.object);
+        var model = Gtk.TreeStore(wrapper.get_model());
+
+        var pathPtr = sys.pointer();
+
+        var exists = wrapper.get_path_at_pos(int(x),int(y),&pathPtr,0,0,0);
+        if(exists && pathPtr && int(pathPtr))
+        {
+            var treePath = Gtk.TreePath(pathPtr);
+            return treePath;
+        }
+
+        return nil;
+    }
+
+    file_at_pos(x,y)
+    {
+        var wrapper = MtkDirTree(this.object);
+        var model = Gtk.TreeStore(wrapper.get_model());
+
+        var treePath = this.path_at_pos(x,y);
+        if(treePath)
+        {
+            var iter = Gtk.TreeIter();
+            model.get_iter(iter,treePath);
+            treePath.free();
+
+            var gv = GObject.Value();
+            model.get_value(iter,1,gv);
+            var path = gv.get_string();
+            gv.unset();
+
+            return File(path);
+        }
+
+        return nil;
+    }
+}
+
+MtkDirTree.factory = GObjectFactory(MtkDirTree,Gtk.TreeView);
+
+MtkDirTree.properties = [ 
+    GObject.param_spec_string( "path", "", "", ".", GObject.ParamFlags.readwrite ),
+    GObject.param_spec_string( "root", "", "", ".", GObject.ParamFlags.readwrite ),
+    GObject.param_spec_string( "filter", "", "", ".*", GObject.ParamFlags.readwrite ),
+];
+
+MtkDirTree.signals = [
+    { 
+        "name" : "testSignal", 
+        "ret_gtype" : GIRDEF.GTYPE_NONE, 
+        "param_gtypes" : [ GIRDEF.GTYPE_STRING ] 
+    }
+];
+

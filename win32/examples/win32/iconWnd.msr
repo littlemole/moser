@@ -1,0 +1,112 @@
+import("win32/base");
+import("win32/uni");
+import("win32/lib");
+import("win32/gdi");
+import("win32/user");
+import("win32/shell");
+import("windows");
+
+var ID_FILE_EXIT = 1001;
+var ID_STUFF_GO = 1002;
+
+//var res = Module("mocres.dll");
+
+var IDI_MOLE = 101;
+
+//
+
+class MyWindow : Window 
+{
+    MyWindow()
+    {
+        super.Window();
+
+        this.menu = [
+            [ "File",  [ "Exit", ID_FILE_EXIT ]],
+            [ "Stuff", [ "Go",   ID_STUFF_GO ]]
+        ];
+
+        //this.icon = Win32.LoadImageA(res.handle,win32.MAKEINTRESOURCE(IDI_MOLE),Win32.GDI_IMAGE_TYPE.IMAGE_ICON,128,128,0);
+
+        this.icon = Win32.ExtractIconW(0,wstring("moe.ico"),0);
+    }
+     
+    windowProcedure( hWnd, msg, wParam, lParam) 
+    {
+        if( msg == Win32.WM_CREATE) 
+        {
+            var hMenu =  win32.menue(this.menu);
+            Win32.SetMenu(hWnd, hMenu);
+            Win32.SendMessageW(hWnd, Win32.WM_SETICON, 0, this.icon);
+
+            this.timer = setTimeout( fun()
+            {
+                var hdc = Win32.GetDC(this.hwnd);
+
+                Win32.GetClientRect( this.hwnd, this.clientRect );
+                for(var i = 0; i < 50; i++)
+                {
+                    var x = sys.rand(-64,this.clientRect.right);
+                    var y = sys.rand(-64,this.clientRect.bottom);
+
+                    Win32.DrawIcon(hdc,x,y,this.icon);
+                }
+                Win32.ReleaseDC(this.hwnd,hdc);
+                return true;
+            }, 
+            33
+            );
+            return 0;
+        }
+        if( msg == Win32.WM_DESTROY ) 
+        {
+            Win32.PostQuitMessage(0);
+            return 0;
+        }
+        if( msg == Win32.WM_PAINT ) 
+        {
+            var hdc = Win32.BeginPaint(hWnd, this.ps);
+            var txt = wstring("HELLO WINDOWS");
+            Win32.TextOutW( hdc, 50,50, txt, txt.length);
+            Win32.DrawIcon(hdc,100,100,this.icon);
+            Win32.EndPaint(hWnd, this.ps);
+            return 0;
+        }
+        if( msg == Win32.WM_COMMAND ) 
+        {
+            print int(wParam) + ":" + int(lParam);
+            if(int(wParam) == ID_FILE_EXIT)
+            {
+                Win32.PostQuitMessage(0);
+            }
+            if(int(lParam) == int(butt.hwnd) )
+            {
+                print "Butt clicked";
+            }
+        }
+        return Win32.DefWindowProcW(hWnd, msg, wParam, lParam);
+    }
+}
+
+
+var wnd = MyWindow();
+
+wnd.create( "attack of the moles!");
+wnd.show(Win32.SHOW_WINDOW_CMD.SW_SHOW);
+
+var butt = Control("BUTTON");
+butt.style = Win32.WINDOW_STYLE.WS_VISIBLE | Win32.WINDOW_STYLE.WS_CHILD | Win32.BS_DEFPUSHBUTTON;
+wnd.add(butt);
+butt.create("ehlo");
+butt.setPos(0,200,100,100);
+
+
+var msg = Win32.MSG();
+while (int(Win32.GetMessageW(msg, 0, 0, 0)))
+{
+	Win32.TranslateMessage(msg);
+	Win32.DispatchMessageW(msg);
+}
+
+
+print "OK";

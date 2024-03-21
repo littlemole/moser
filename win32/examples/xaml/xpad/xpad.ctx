@@ -1,0 +1,28 @@
+class Controller
+{
+    /* @Xaml(Element=theButt,Event=Click) */
+    theButt_Click()
+    {
+        this.xamlWnd.contentDialog(
+          {
+             "Title"   : "XamlPad Dialog",
+             "Content" : "A Message in a Content!"
+          })
+        .then(
+          fun(e) 
+          {
+             print e;
+          }
+        );
+    }
+}
+
+return {
+
+"name"      : "mike2",
+"selected"  : " ",
+"selectedIndex" : 1,
+"prop"      : "Click Me!",
+"theList"   : [ "one", "two", "three" ],
+"controller" : Controller()
+};

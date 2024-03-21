@@ -1,0 +1,7 @@
+
+import("promise");
+import("gir/gir");
+
+var gir = GIR( [ "Gio:2.0", "GLib:2.0", "GObject:2.0", "Soup:3.0" ] );
+
+import("gengir");

@@ -1,0 +1,103 @@
+
+extern {
+    ptr fopen( str, str );
+    ulong fread( ptr, ulong, ulong, ptr );
+    int fclose( ptr );
+    ptr _fdopen( ulong, str );
+
+    long feof(ptr);
+    long ferror(ptr);
+
+
+    long fseek(ptr,long,long);
+    long ftell(ptr);
+    long fflush(ptr);
+
+    long remove(str);
+    long rename(str,str);
+    ptr tmpfile();
+
+    ptr tmpnam( ptr );
+
+    long fprintf( ptr, str, ...);
+    long printf( str, ...);
+    long sprintf( ptr, str, ...);
+
+    /* inline in msvc
+    int f scanf( ptr, str, ...);
+    int s canf( str, ...);
+    int s scanf( str, str, ...);
+    */
+
+    int fgetc(ptr);
+    ptr fgets( ptr, long, ptr);
+    long fputc( long, ptr);
+    long fputs( str, ptr);
+    int getchar();
+    ptr gets(ptr);
+    long puts(str);
+    long ungetc( long, ptr);
+
+    void rewind(ptr);
+    int fgetpos(ptr, ptr);
+    int fsetpos( ptr, ptr);
+
+    ptr memcpy(ptr,ptr,long);
+}
+
+
+var EOF      = 0xffffffffffffffff;
+var STDIN    = 0;
+var STDOUT   = 1;
+var STDERR   = 2;
+var SEEK_SET = 0;
+var SEEK_CUR = 1;
+var SEEK_END = 2;
+var L_tmpnam = 100;
+
+fun has_data(file)
+{
+    fseek(file, 0, SEEK_END);
+    if ( ftell(file) > 0) return true;
+    return false;
+}
+
+var file = _fdopen(STDIN,"r+");
+
+
+/*
+var buf = sys.buffer(1024);
+
+
+var r = 1;
+r = has_data(file);
+print r;
+var content = "";
+while(r != 0)
+{
+    r = fread( buf, 1, 1024, file);
+    content = content + buf.asString(r);
+}
+
+print content;
+*/
+
+var buf = sys.buffer(L_tmpnam);
+//tmpnam(buf);
+//print string(buf);
+/*
+r = 1;
+while(r)
+{
+    var r = getchar();
+    print char(r);
+    if(r == EOF) break;
+}
+*/
+
+//fflush(file);
+print "GO " + fgets;
+fgets(buf,99,file);
+print string(buf);
+
+fclose(file);

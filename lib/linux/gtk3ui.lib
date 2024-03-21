@@ -1,0 +1,500 @@
+
+
+
+class UIInterceptor
+{
+    invoke(target,name)
+    {
+        var args = arguments().transform(fun(v){ return g_unwrap(v);  });
+
+        var m = target.methods();
+        if(m.exists(name))
+        {
+            //print "invoke " + name + " " + args;
+            return runtime.invoke(target,name,args[2:]);
+        }
+    }
+
+    getter(target,name)
+    {
+        var args = arguments().transform(fun(v){ return g_unwrap(v);  });
+
+        if(target{name}) return target{name};
+
+        return target.object(name);
+    }
+}
+
+
+@Proxy("UIInterceptor")
+class GtkUI {
+
+    GtkUI(src) {
+        this.src = src;
+        this.mainWndName = "mainWindow";
+        this.actions = {};
+    }
+
+    widget(name)
+    {
+        return this.builder.get_object(name);
+    }
+
+    object(name)
+    {
+        var widget = this.builder.get_object(name);
+        var g_type = g_type_from_obj(widget); 
+        
+        var type = GIR.find(g_type);
+        if(type && int(type))
+        {
+            var ns = g_base_info_get_namespace(type);
+            var typname = g_base_info_get_name(type);
+            var r =  GIMPL.makeObjFromClazz(ns,typname,widget);
+            g_base_info_unref(type);
+            return r;
+        }
+        var typename = g_type_name_from_instance(g_unwrap(widget));
+        if(typename)
+        {
+            typename = string(typename);
+            var clazz = runtime.global(typename);
+            if(clazz)
+            {
+                var r = clazz(g_unwrap(widget));
+                return r;
+            }
+        }
+        return widget;
+    }
+
+    run(name,controller) 
+    {
+        this.app = Gtk.Application.new(name,0);
+        this.controller = controller;
+
+        controller.ui = runtime.RuntimeProxy(this,UIInterceptor());
+        this.app.activate = this.activate;
+
+        this.app.run(0,0);
+    }
+    
+    activate(app) 
+    {
+        //this.app = app;
+
+        // load ui.xml
+        this.builder = Gtk.Builder.new_from_file(this.src);
+     
+        // actions
+        this.controller.methods()
+            .filter( fun(k,v) 
+            { 
+                var m = runtime.meta(v); 
+                if(!m) return false; 
+                return $v.exists("action");
+            })
+            .forEach( fun(k,v) 
+            {   
+                var m = runtime.meta(v); 
+                var actiontarget = m.action;
+
+                if(!actiontarget)
+                {
+                    var action = Gio.SimpleAction.new(k,0);
+                    g_action_map_add_action(app,g_unwrap(action));
+                    action.signal_connect("activate",v);
+                }
+                else 
+                {
+                    if(typeof(actiontarget) == "array")
+                    {
+                        var state = g_variant_new(actiontarget[0], actiontarget[1]);
+
+                        var vt = GLib.VariantType.new(actiontarget[0]);
+                        var action = Gio.SimpleAction.new_stateful(k,vt,state);
+                        vt.free();
+
+                        g_action_map_add_action(app,g_unwrap(action));
+                        action.signal_connect("activate",v);
+                        this.actions{k} = action;
+                    }
+                    else
+                    {
+                        var vt = GLib.VariantType.new(actiontarget);
+                        var action = Gio.SimpleAction.new(k,vt);
+                        vt.free();
+
+                        g_action_map_add_action(app,g_unwrap(action));
+                        action.signal_connect("activate",v);
+                    }
+                }
+            });
+
+        // property actions
+
+        if(this.controller.propertyActions)
+        {
+            this.controller.propertyActions.forEach( fun(prop){
+                
+                this.add_property_action( prop[0], prop[1], prop[2] );
+            });
+        }
+
+        // connect signals
+        var cb = Gtk.BuilderConnectFunc(this.connect);
+        GtkUI.callbacks.push(cb); // prevent GC
+        this.builder.connect_signals_full(cb,this.controller);
+
+        // main window
+        var mainWnd = this.builder.get_object(this.mainWndName);
+        var wnd = Gtk.ApplicationWindow(mainWnd);
+        wnd.application = g_unwrap(app);
+        wnd.show();
+
+        this.wnd = wnd;
+
+        // accelerators
+        var ag = Gtk.AccelGroup.new();
+        this.ag = ag;
+
+        this.controller.methods()
+            .filter( fun(k,v) 
+            { 
+                var m = runtime.meta(v); 
+                if(!m) return false; 
+                return $v.exists("accel");
+            })
+            .forEach( fun(k,v) 
+            {   
+                var ctrls = $v.accel;
+                if(typeof(ctrls) == "array")
+                {
+                    ctrls.forEach( fun(ctrl)
+                    {
+                        this.accel(ctrl,v);
+                    });
+                }
+                else
+                {
+                    this.accel(ctrls,v);
+                }
+            });
+
+        wnd.add_accel_group(this.ag);
+
+
+        // init webviews, if any
+        this.controller.methods()
+            .filter( fun(k,v) 
+            { 
+                var m = runtime.meta(v); 
+                if(!m) return false; 
+                return $v.exists("WebViewCallback");
+            })
+            .forEach( fun(k,v) 
+            {   
+                var wvcb = $v.WebViewCallback;
+                if(typeof(wvcb) == "map")
+                {
+                    wvcb.forEach( fun(mk,mv)
+                    {
+                        var wv = WebKit2.WebView( this.widget(mv) );
+                        GtkUI.WebKitScriptMsgCallback( wv, mk, v );
+                    });
+                }
+            });
+
+        // init done
+        this.controller.wnd = wnd;
+        this.controller.activate();
+
+    }
+
+    add_property_action(actionName, obj, propName)
+    {
+        var action = Gio.PropertyAction.new(actionName,obj,propName);
+
+        g_action_map_add_action(g_unwrap(this.app),g_unwrap(action));
+        this.actions{actionName} = action;
+    }
+
+    connect( builder, obj, signal, handler, target, flags, data) 
+    {
+        //print "SIGNAL: " + signal + ": " + handler;
+
+        var controller = data.object();
+        var methods = controller.methods();
+
+        methods
+            .filter( fun(k,v) { return k == handler; } )
+            .forEach( fun(k,v) {   
+                GIMPL.connect(obj,signal,v);
+            } );
+    }
+
+    accel(str,method) 
+    {
+        //print "ACCEL " + str + method;
+        var key = 0;
+        var mod = 0;
+        Gtk.accelerator_parse(str, &key, &mod );
+        
+        var cb = Gtk.AccelGroupActivate( fun(){
+
+            GtkUI.add_idle(method,key,mod);
+        });
+
+        GtkUI.callbacks.push(cb);
+        var closure = g_closure(cb);
+        GtkUI.callbacks.push(closure);
+        this.ag.connect(key,mod,0,closure);
+        return cb;
+    }
+
+    static alert()
+    {
+        var args = arguments();
+        var parent = args[0];
+        var action = Gtk.MessageType.info;
+        var title = "Alert!";
+        var button = Gtk.ButtonsType.close;
+        if(args.length > 1) title = args[1];
+        if(args.length > 2) button = args[2];
+        if(args.length > 3) action = args[3];
+
+        var p = gtk_message_dialog_new(
+            g_unwrap(parent), 
+            0,//3,
+            action,
+            button,
+            title
+        );
+
+        GtkUI.d = Gtk.MessageDialog( p );
+        var rr = GtkUI.d.run();
+        GtkUI.d.hide();
+        //GtkUI.d.unref();
+        return rr;
+    }
+
+    status_bar(txt)
+    {
+        var args = arguments();
+
+        var id = "statusBar";
+        if(args.length > 1)
+        {
+            id = args[1];
+        }
+
+        var statusBar = this.object(id);
+        if(!this.statusCtx)
+        {
+            this.statusCtx = statusBar.get_context_id("status ctx");
+        }
+        statusBar.pop(this.statusCtx);
+        statusBar.push(this.statusCtx,txt);
+    }
+
+    openFile() 
+    {
+        var args = arguments();
+
+        var dlg = Gtk.FileChooserNative.new(
+            "Open File", 
+            this.wnd, 
+            Gtk.FileChooserAction.open,
+            "OK",
+            "Cancel"
+        );
+
+        if(args.length>0)
+        {
+            var path = args[0];
+            if(path)
+            {
+                if(io.is_directory(path))
+                {
+                    dlg.set_current_folder(path);
+                }   
+                else
+                {
+                    dlg.select_filename(path);
+                }         
+            }
+        }
+
+        var r = dlg.run();
+        if(r == Gtk.ResponseType.accept )
+        {
+            var path = dlg.get_filename();
+            return path;
+        }
+        return nil;
+    }
+
+    saveFile() 
+    {
+        var args = arguments();
+
+        var dlg = Gtk.FileChooserNative.new(
+            "Save File", 
+            this.wnd, 
+            Gtk.FileChooserAction.save,
+            "OK",
+            "Cancel"
+        );
+
+        if(args.length>0)
+        {
+            var path = args[0];
+            if(path)
+            {
+                if(io.is_directory(path))
+                {
+                    dlg.set_current_folder(path);
+                }   
+                else
+                {
+                    dlg.select_filename(path);
+                }         
+            }
+        }
+
+        var r = dlg.run();
+        if(r == Gtk.ResponseType.accept )
+        {
+            var path = dlg.get_filename();
+            return path;
+        }
+        return nil;
+    }    
+
+    openDir() 
+    {
+        var args = arguments();
+
+        var dlg = Gtk.FileChooserNative.new(
+            "Open Directory", 
+            this.wnd, 
+            Gtk.FileChooserAction.select_folder,
+            "OK",
+            "Cancel"
+        );
+
+        if(args.length>0)
+        {
+            var path = args[0];
+            if(path)
+            {
+                if(io.is_directory(path))
+                {
+                    dlg.set_current_folder(path);
+                }   
+            }
+        }
+
+        var r = dlg.run();
+        if(r == Gtk.ResponseType.accept )
+        {
+            var path = dlg.get_filename();
+            //print path;
+
+            return path;
+        }
+        return nil;
+    }    
+
+    static WebKitScriptMsgCallback( webView, name, cb )
+    {
+        var handler = fun(w,ptr,data)
+        {
+            var r = WebKit2.JavascriptResult(ptr);
+            var v = r.get_js_value();
+            if(v)
+            {
+                var json = v.to_json(0);                
+                if(json && json.length)
+                {
+                    //print "JSON:" + json;
+
+                    var obj = JSON.parse(json);
+                    if(obj)
+                    {
+                        GtkUI.add_idle(fun() {
+                            cb( obj );
+                        });
+                    }
+                }
+            }
+        };
+
+        var m = webView.get_user_content_manager ();
+        m{"script-message-received::" + name} = handler;
+        m.register_script_message_handler(name);
+        GtkUI.callbacks.push(handler);
+        return handler;
+    }
+
+    static invoke_javascript( webView, name, arg )
+    {
+        var p = Future();
+        var addr = int(&p);
+
+        var cb = g_async( fun(res) 
+        {
+            var js = webView.run_javascript_finish(res);
+            var v = js.get_js_value();
+            if(v)
+            {
+                var json = v.to_json(0);
+                if(json && json.length)
+                {
+                    //print "JSON:" + json;
+                    var obj = JSON.parse(json);
+                    if(obj)
+                    {
+                        GtkUI.add_idle(fun() {
+
+                            p.resolve( obj );
+                        });
+                    }
+                }
+            }
+
+            delete addr from GtkUI.asyncCallbacks;
+        });
+
+        GtkUI.asyncCallbacks{addr} = cb;
+
+        GtkUI.add_idle(fun() {
+
+            webView.run_javascript( name + "(" + JSON.stringify(arg) + ");",0,cb,0);
+        });
+
+        return p;
+    }
+
+    static add_idle( handler )
+    {
+        var args = arguments();
+        var params = args[1:];
+        var addr = int(&handler);
+
+        var srcHandler = g_source( fun(d) {
+            runtime.invoke(handler,params);
+            delete addr from GtkUI.asyncCallbacks;
+        });
+
+        GtkUI.asyncCallbacks{addr} = srcHandler;
+
+        GLib.idle_add( 0, srcHandler , 0,0);
+    }
+}
+
+GtkUI.callbacks = [];
+GtkUI.asyncCallbacks = {};
+
+
+

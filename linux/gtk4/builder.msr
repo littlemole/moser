@@ -1,0 +1,144 @@
+extern from "libgtk-4.so.1" {
+    ptr gtk_application_new( str, int );
+    ptr gtk_application_window_new( ptr );
+    void gtk_application_set_menubar ( ptr, ptr );
+
+    void gtk_widget_show( ptr );
+    void gtk_window_set_title( ptr, str );
+    void gtk_window_set_default_size( ptr, int, int );
+    ptr gtk_button_new_with_label( str );
+    void gtk_window_set_child ( ptr, ptr );
+    ptr gtk_text_view_new ();
+
+    void gtk_widget_set_vexpand ( ptr, int );
+
+    ptr gtk_text_view_get_buffer ( ptr );
+    ptr gtk_box_new ( int, int );
+    void gtk_box_append ( ptr, ptr );
+    void gtk_box_set_homogeneous ( ptr, int );
+    void gtk_widget_set_halign( ptr, int );
+    void gtk_widget_set_valign( ptr, int );
+
+    void gtk_text_buffer_set_text ( ptr, str, uint );
+    void gtk_text_view_set_monospace ( ptr, int );
+
+    ptr gtk_file_chooser_native_new ( str, ptr, int, str, str);
+
+    void gtk_native_dialog_show ( ptr );
+
+    ptr gtk_file_chooser_get_file  ( ptr );
+    void gtk_window_present ( ptr );
+
+    void gtk_widget_set_margin_start ( ptr, int );
+
+    ptr gtk_builder_new();
+    uint gtk_builder_add_from_file(ptr, str,ptr);
+    ptr gtk_builder_get_object(ptr, str);
+    ptr gtk_builder_cscope_new ();
+    void gtk_builder_set_scope ( ptr, ptr );
+    void gtk_builder_cscope_add_callback_symbol ( ptr, str, ptr );
+
+    void gtk_application_window_set_show_menubar ( ptr, int );
+
+}
+
+extern from "libgio-2.0.so" {
+    int g_application_run( ptr, int, ptr);
+
+    ptr g_simple_action_new ( str, ptr );
+    void g_action_map_add_action ( ptr, ptr );
+}
+
+extern from "libgobject-2.0.so" {
+    ulong g_signal_connect_data( ptr, str, ptr, ptr, ptr, int );
+    void g_object_set ( ptr, str, ... , ptr, ptr );
+}
+
+extern struct GError {
+  uint domain,
+  int code,
+  str message
+}
+
+extern callback void GtkCallback( ptr, ptr);
+extern callback void GtkActionCallback( ptr, ptr, ptr);
+
+///////////////////////////////////////////////////////////
+
+var callbacks = [];
+
+
+///////////////////////////////////////////////////////////
+
+class Controller
+{
+    test() {
+        print "Controller.:test()";
+    }
+
+    onClick(widget,ptr) {
+        print "Controller::onClick";
+    }
+
+    @accel
+    @action
+    buttClick(widget,ptr)
+    {
+        print "Controller::action";
+    }
+
+    onDestroy(widget,ptr) {
+        print "Controller::onDestroy";
+    }
+
+    @action
+    quit()
+    {
+        print "QUIT!";
+        g_application_quit(app);
+    }
+}
+
+
+var controller = Controller();
+
+var actionCb = GtkActionCallback( controller.buttClick );
+
+var builder = nil;
+
+var activate = GtkCallback( fun(app,ptr) 
+{
+    var mainWnd = gtk_builder_get_object(builder,"mainWindow");
+    g_object_set(mainWnd, "application", app, 0);
+    gtk_application_window_set_show_menubar( mainWnd, true);
+    gtk_widget_show(mainWnd);
+
+});
+
+var startup = GtkCallback( fun (app)
+{
+    // manually connect action
+    var action = g_simple_action_new("buttClick",0);
+    g_action_map_add_action(app,action);
+    g_signal_connect_data (action, "activate", actionCb, 0, 0, 0);
+
+    builder = gtk_builder_new();
+
+    var scope = gtk_builder_cscope_new();
+
+    Controller.cb = GtkCallback( fun(ptr,d) { print "X";} );
+    gtk_builder_cscope_add_callback_symbol(scope,"onClick", Controller.cb );
+
+    gtk_builder_set_scope(builder,scope);
+    var r = gtk_builder_add_from_file(builder,"builder.ui",0);
+
+    var menubar = gtk_builder_get_object(builder, "menubar");
+    gtk_application_set_menubar ( app, menubar);
+});
+
+
+var app = gtk_application_new("moc.app",0);
+g_signal_connect_data (app, "activate", activate, 0, 0, 0);
+g_signal_connect_data (app, "startup", startup, 0, 0, 0);
+
+g_application_run(app,0,0);

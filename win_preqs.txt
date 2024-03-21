@@ -1,0 +1,9 @@
+
+
+
+get visual studio (latest)
+ install c++ desktop and UWP workloads, install windows sdk 10.0.19041.0
+get nuget.exe and place it in path
+get windowsappsdk and install locally
+mkdir out\build\x64-Release
+

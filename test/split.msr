@@ -1,0 +1,6 @@
+
+var s = "a_story_to_be_told";
+
+print s.split("_");
+// expect: array [ a, story, to, be, told, ]
+

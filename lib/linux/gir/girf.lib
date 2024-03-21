@@ -1,0 +1,1068 @@
+import("gir/girdef");
+
+class GIMPL {
+
+/*
+static connect_signal( target, signal,closure)
+{
+    var signame = signal;
+    if(signame.find("::") != -1)
+    {
+        var sa = signame.split("::");
+        signame = sa[0];
+    }
+
+
+    var sig = GIMPL.find_signal(target.info,signame);
+    if(sig && int(sig))
+    {
+        //print "connect: " + signal + " (" + signame + ")";
+        var sigcb = GIMPL.make_cb(0,sig,signame,true); 
+        GtkUI.callbacks.push(sigcb);
+        var cb = sigcb(closure);
+        GtkUI.callbacks.push(cb);
+        g_base_info_unref(sig);
+        var r = g_signal_connect_data( target.object, signal, cb, 0, 0, 0);        
+        return r;
+    }
+}
+*/
+static get_type_from_gtype(gtyp)
+{
+    switch(gtyp)
+    {
+        case 0 /* "GTYPE_INVALID" */ : {
+            return "void";
+        }
+        case 4 /* "GTYPE_NONE" */ : {
+            return "void";
+        }
+        case 8 /* "GTYPE_INTERFACE" */ : {
+            return "ptr";
+        }
+        case 12 /* "GTYPE_CHAR" */ : {
+            return "byte";
+        }
+        case 16 /* "GTYPE_UCHAR" */ : {
+            return "ubyte";
+        }
+        case 20 /* "GTYPE_BOOLEAN" */ : {
+            return "int";
+        }
+        case 24 /* "GTYPE_INT" */ : {
+            return "int";
+        }
+        case 28 /* "GTYPE_UINT" */ : {
+            return "uint";
+        }
+        case 32 /* "GTYPE_LONG" */ : {
+            return "long";
+        }
+        case 36 /* "GTYPE_ULONG" */ : {
+            return "ulong";
+        }
+        case 40 /* "GTYPE_INT64" */ : {
+            return "long";
+        }
+        case 44 /* "GTYPE_UINT64" */ : {
+            return "ulong";
+        }
+        case 48 /* "GTYPE_ENUM" */ : {
+            return "int";
+        }
+        case 52 /* "GTYPE_FLAGS" */ : {
+            return "int";
+        }
+        case 56 /* "GTYPE_FLOAT" */ : {
+            return "float";
+        }
+        case 60 /* "GTYPE_DOUBLE" */ : {
+            return "double";
+        }
+        case 64 /* "GTYPE_STRING" */ : {
+            return "str";
+        }
+        case 68 /* "GTYPE_POINTER" */ : {
+            return "ptr";
+        }
+    }
+    return "ptr";
+}
+
+static make_cb_from_gtypes( ret, name, nArgs, args)
+{
+    var retType = GIMPL.get_type_from_gtype(ret);
+    var params = [ "ptr" ];
+    var size = 8;
+    for( var i = 0; i < nArgs; i++)
+    {
+        var addr = int(args);
+        var ptr = sys.pointer( addr + (i*size));
+        var gtype = ptr.integer();
+        var argType = GIMPL.get_type_from_gtype(gtype);
+        params.push(argType);
+    }
+    params.push("ptr");
+    var fn = foreign.callback(name,retType,params);
+    return fn;
+}
+
+static get_type(isPtr,type_info,transfer)
+{
+    var tag = g_type_info_get_tag(type_info);
+
+    if(tag == 13)
+    {
+       if(transfer == GIRDEF.GI_TRANSFER_NOTHING)
+            return "str";
+    } 
+    if(isPtr) return "ptr";
+    switch(tag)
+    {
+        case 0 /*GI_TYPE_TAG_VOID*/ : return "void";
+        case 1 /*GI_TYPE_TAG_BOOLEAN*/ : return "int";
+        case 2 /*GI_TYPE_TAG_INT8*/ : return "byte";
+        case 3 /*GI_TYPE_TAG_UINT8*/ : return "ubyte";
+        case 4 /*GI_TYPE_TAG_INT16*/ : return "short";
+        case 5 /*GI_TYPE_TAG_UINT16*/ : return "ushort";
+        case 6 /*GI_TYPE_TAG_INT32*/ : return "int";
+        case 7 /*GI_TYPE_TAG_UINT32*/ : return "uint";
+        case 8 /*GI_TYPE_TAG_INT64*/ : return "long";
+        case 9 /*GI_TYPE_TAG_UINT64*/ : return "ulong";
+        case 10 /*GI_TYPE_TAG_FLOAT*/ : return "float";
+        case 11 /*GI_TYPE_TAG_DOUBLE*/ : return "double";
+        case 12 /*GI_TYPE_TAG_GTYPE*/ : return "ulong";
+        case 13 /*GI_TYPE_TAG_UTF8*/ : return "ptr";
+        case 14 /*GI_TYPE_TAG_FILENAME*/ : return "ptr";
+    }
+    if(tag == 16)
+    {
+        var iface = g_type_info_get_interface(type_info);
+        if(iface && int(iface))
+        {
+            var t = g_base_info_get_type(iface);
+            g_base_info_unref(iface);        
+            if( t == GIRDEF.GI_INFO_TYPE_ENUM)
+            {
+                return "int";
+            }
+            if( t == GIRDEF.GI_INFO_TYPE_FLAGS)
+            {
+                return "int";
+            }
+        }
+    }
+    return "ptr";
+}
+
+static get_struct_type(isPtr,type_info,transfer)
+{
+    var type = GIMPL.get_type(isPtr,type_info,transfer);
+    if(type != "ptr") return [ type, nil ];
+
+    if(isPtr) return ["ptr", nil];
+
+    var tag = g_type_info_get_tag(type_info);
+    if(tag == 16)
+    {
+        var iface = g_type_info_get_interface(type_info);
+        if(iface && int(iface))
+        {
+            var t = g_base_info_get_type(iface);
+            if( t == GIRDEF.GI_INFO_TYPE_STRUCT)
+            {
+                var s = g_struct_info_get_size(iface);
+                g_base_info_unref(iface);        
+                return [ "byte",  s ];
+            }
+            g_base_info_unref(iface);        
+        }
+    }
+    return [ "ptr", nil ] ;
+
+}
+
+static getClazz(ns,name)
+{
+    return runtime.global(ns){name};
+}
+
+static makeObjFromClazz(ns,name,obj)
+{
+//    print "makeObjFromClazz " + ns + "." + name;
+    return runtime.invoke( runtime.global(ns), name, [obj] ); 
+}
+
+static wrap_obj(ptr)
+{
+    print "UNWRAP" + int(ptr);
+
+    if(!ptr) return ptr;
+
+    print "xxx";
+
+    var raw = g_unwrap(ptr);
+
+    print "---";
+
+    print int(raw);
+    var g_type = g_type_from_obj(raw);
+
+    print "WRAP: " + int(raw) + "  " + g_type;
+
+    var info = GIR.find(g_type);
+    print info;
+    if( info && (int(info) ))
+    {
+        var namespace = g_base_info_get_namespace(info);
+        var type_name = g_base_info_get_name(info);
+
+        print namespace + "." + type_name;
+
+        var wrapper = runtime.invoke( runtime.global(namespace), type_name, [raw] ); 
+
+        print wrapper;
+        print wrapper.target;
+        print int(wrapper.target.object);
+
+        g_base_info_unref(info);
+        return wrapper;
+
+    }
+    else
+    {
+        var classname = g_type_name_from_instance(g_unwrap(raw));
+        if(classname)
+        {
+            classname = string(classname);
+            print classname;
+            var clazz = runtime.global(classname);
+            if(clazz)
+            {
+                var obj = clazz(raw);
+                return obj;
+            }
+        }
+
+    }
+    return ptr;
+}
+
+static make_fun(target,info,name,isMethod)
+{
+    var sym = target.symbol(info);
+    var ret = g_callable_info_get_return_type(info);
+    var isPtr = g_type_info_is_pointer(ret);
+    var retTag = g_type_info_get_tag(ret);
+    var transfer = g_callable_info_get_caller_owns(info);
+    var retType = GIMPL.get_type(isPtr,ret,transfer); 
+    var throws = g_callable_info_can_throw_gerror(info);
+
+
+    var n = g_callable_info_get_n_args(info);
+    var params = []; 
+    if(isMethod == true)
+    {
+        params.push("ptr");
+    }
+    for( var i = 0; i < n; i++)
+    {
+        var arg = g_callable_info_get_arg(info,i);
+        if(!arg)
+        {
+            params.push("ptr");
+            continue;
+        } 
+        var dir = g_arg_info_get_direction(arg);
+        var argType = g_arg_info_get_type(arg);
+        var isPtr = g_type_info_is_pointer(argType) || dir >0;
+        var tag = g_type_info_get_tag(argType);
+        var transfer = g_arg_info_get_ownership_transfer(arg);
+
+        var type = GIMPL.get_type(isPtr,argType,transfer); 
+        params.push(type);
+        g_base_info_unref(argType);
+        g_base_info_unref(arg);
+    }
+
+    if(throws)
+    {
+        params.push("ptr");
+    }
+
+    //print sym + " " + retType + "(" + params + ") " + isMethod + " " + retTag + " / " + transfer;
+    var fn = foreign.native("",retType,sym,params);
+    GIR{sym} = fn;
+    if(transfer == GIRDEF.GI_TRANSFER_NOTHING)
+    {
+        if(retTag ==GIRDEF.GI_TYPE_TAG_INTERFACE)
+        {
+            var i = g_type_info_get_interface(ret);
+            var name = g_base_info_get_name(i);
+            var ns = g_base_info_get_namespace(i);
+
+            g_base_info_unref(i);
+            g_base_info_unref(ret);
+
+            return fun()
+            {
+                var args = arguments();
+                var r = runtime.invoke(fn,args);
+                if(ns && name)
+                {
+                    var obj = GIMPL.makeObjFromClazz(ns,name,r);
+                    return obj;
+                };
+                var typename = g_type_name_from_instance(g_unwrap(r));
+                if(typename)
+                {
+                    typename = string(typename);
+                    var clazz = runtime.global(typename);
+                    if(clazz)
+                    {
+                        var obj = clazz(r);
+                        return obj;
+                    }
+                }
+                return r;
+            };
+            
+        }
+        g_base_info_unref(ret);
+        return fn;
+    }
+    if(retTag == GIRDEF.GI_TYPE_TAG_UTF8 || retTag == GIRDEF.GI_TYPE_TAG_FILENAME )
+    {
+        g_base_info_unref(ret);
+        return fun()
+        {
+            var args = arguments();
+            var r = runtime.invoke(fn,args);
+            var result = r.string();
+            GLib.free(r);
+            return result;
+        };
+    }
+    if(retTag ==GIRDEF.GI_TYPE_TAG_INTERFACE)
+    {
+        var ns = g_base_info_get_namespace(ret);
+        var i = g_type_info_get_interface(ret);
+//        var ti = g_base_info_get_type(i);
+        var n = g_base_info_get_name(i);
+
+        var git = g_base_info_get_type(i);
+
+        g_base_info_unref(i);
+        g_base_info_unref(ret);
+        return fun()
+        {
+            var args = arguments();
+            var r = runtime.invoke(fn,args);
+            if(!r) return r;
+            
+            if(n && ns)
+            {
+                var obj = GIMPL.makeObjFromClazz(ns,n,r); 
+                if(!obj) return r;
+                if(!obj.target) return r;
+                return obj;
+
+                if( obj.target isa GObj )
+                {
+                    g_object_unref(g_unwrap(obj));
+                }
+                
+                return obj;
+            }
+            
+            var typename = g_type_name_from_instance(g_unwrap(r));
+            if(typename)
+            {
+                typename = string(typename);
+                var clazz = runtime.global(typename);
+                if(clazz)
+                {
+                    var obj = clazz(r);
+                    return obj;
+                }
+            }            
+            return r;
+        };
+        
+    }
+    g_base_info_unref(ret);
+    return fn;
+}
+
+static make_cb(target,info,name,isMethod)
+{
+    var ret = g_callable_info_get_return_type(info);
+    var isPtr = g_type_info_is_pointer(ret);
+    var retTag = g_type_info_get_tag(ret);
+    var transfer =  g_callable_info_get_caller_owns(info);
+    var retType = GIMPL.get_type(isPtr,ret,transfer); 
+
+    var n = g_callable_info_get_n_args(info);
+    var params = []; 
+    if(isMethod == true)
+    {
+        params.push("ptr");
+    }
+    for( var i = 0; i < n; i++)
+    {
+        var arg = g_callable_info_get_arg(info,i);
+        if( (!arg) || (int(arg) == 0) )
+        {
+            params.push("ptr");
+            continue;
+        }
+
+        var argType = g_arg_info_get_type(arg);
+        var dir = g_arg_info_get_direction(arg);
+        var isPtr = g_type_info_is_pointer(argType) || dir > 0;
+
+        var tag = g_type_info_get_tag(argType);
+        var transfer = g_arg_info_get_ownership_transfer(arg);
+        var type = GIMPL.get_type(isPtr,argType,transfer); 
+        params.push(type);
+        g_base_info_unref(arg);
+        g_base_info_unref(argType);
+    }
+    //print "CB:" + name + " " + params;
+    var fn = foreign.callback(name,retType,params);
+    g_base_info_unref(ret);
+    return fn;
+}
+
+static make_struct(info,name)
+{
+    var n =  g_struct_info_get_n_fields(info);
+    var fields = [];
+    for(var i = 0; i < n ; i++)
+    {
+        var fi = g_struct_info_get_field( info, i);
+        var c = g_base_info_get_name(fi);
+
+        var ti = g_field_info_get_type(fi);
+        var isPtr = g_type_info_is_pointer(ti);
+        var tag = g_type_info_get_tag(ti);
+        var len = g_type_info_get_array_fixed_size(ti);
+        // var fn = g_type_tag_to_string(tag).string();
+
+        //var type = GIMPL.get_type(isPtr,ti,GIRDEF.GI_TRANSFER_NOTHING);
+        var type = GIMPL.get_struct_type(isPtr,ti,GIRDEF.GI_TRANSFER_NOTHING);
+
+        if(type[1] != nil )
+        {
+            fields.push( c + "[" + type[1] + "]:" +type[0]);            
+        }
+        else if(len == -1)
+        {
+            fields.push(c+":"+type[0]);
+        }
+        else
+        {
+            for(var j = 0; j < len; j++)
+            {
+                fields.push( c + "_" + j + ":" + type[0] );
+            }
+        }
+        g_base_info_unref(fi);
+        g_base_info_unref(ti);
+    }
+
+    //print name + ": " + fields;
+
+    var s = foreign.struct(fields);
+
+    //print "SIZE:" + s.size;
+    return s;
+}
+
+static find_method(typelib,info,name)
+{
+    var n = g_object_info_get_n_methods(info);
+    var m;
+    var fname;
+    for( var i = 0; i < n; i++)
+    {
+        m = g_object_info_get_method(info,i);
+        if(!m) continue;
+        fname = g_base_info_get_name(m);
+        if(name == fname)
+        {
+            var fn = GIMPL.make_fun(typelib,m,name,true);
+            g_base_info_unref(m);
+            return fn;
+        }
+        g_base_info_unref(m);        
+    }
+    var parent = g_object_info_get_parent(info);
+    if(parent != nil && parent.integer() != 0)
+    {
+        var r = GIMPL.find_method(typelib,parent,name);
+        g_base_info_unref(parent);
+        return r;
+    }
+
+    return nil;
+}
+
+static find_virtual(typelib,info,name)
+{
+    var v = g_object_info_find_vfunc( info, name );
+    if( v && int(v))
+    {
+        var fn = GIMPL.make_cb(typelib,v,name,true);
+        g_base_info_unref(v);
+        return fn;
+    }
+
+    var parent = g_object_info_get_parent(info);
+    if(parent != nil && parent.integer() != 0)
+    {
+        var r = GIMPL.find_virtual(typelib,parent,name);
+        g_base_info_unref(parent);
+        return r;
+    }
+
+    return nil;
+}
+
+static find_iface_method(typelib,info,name)
+{
+    var n = g_interface_info_get_n_methods(info);
+    var m;
+    var fname;
+    for( var i = 0; i < n; i++)
+    {
+        m = g_interface_info_get_method(info,i);
+        fname = g_base_info_get_name(m);
+        if(name == fname)
+        {
+            var fn = GIMPL.make_fun(typelib,m,name,true);
+            g_base_info_unref(m);
+            return fn;
+        }
+        g_base_info_unref(m);        
+    }
+    return nil;
+}
+
+static find_signal(info,name)
+{
+    var sigInfo = g_object_info_find_signal(info,name);
+
+    if(sigInfo != nil && sigInfo.integer() != 0)
+    {
+        return sigInfo;
+    }   
+    var parent = g_object_info_get_parent(info);
+    if(parent != nil && parent.integer() != 0)
+    {
+        var r = GIMPL.find_signal(parent,name);
+        g_base_info_unref(parent);
+        return r;
+    }
+    return nil;
+}
+
+static find_properties(target)
+{
+    var info = target;
+    var props = {};
+
+    var parents = [];
+    while(info != nil && info.integer() != 0)
+    {
+        var n = g_object_info_get_n_properties(info);
+        for(var i = 0; i < n; i++)
+        {
+            var prop = g_object_info_get_property(info,i);
+            var pname = g_base_info_get_name(prop);
+            var pi = g_property_info_get_type(prop);
+            var tag = g_type_info_get_tag(pi);
+
+            if( props.exists(pname))
+            {
+                g_base_info_unref(prop);
+                g_base_info_unref(pi);
+                continue;
+            } 
+            if(tag == GIRDEF.GI_TYPE_TAG_INTERFACE)
+            {
+                var poi = g_type_info_get_interface(pi);
+
+                var propType = g_base_info_get_name(poi);
+
+                var propNs = g_base_info_get_namespace(poi);
+                props{pname} = {
+                    "tag" : tag,
+                    "ns" : propNs,
+                    "type" : propType
+                } ;
+                g_base_info_unref(poi);
+            }
+            else
+            {
+                props{pname} ={
+                    "tag" : tag,
+                    "ns" : nil,
+                    "type" : nil
+                } ;
+            }
+            g_base_info_unref(prop);
+            g_base_info_unref(pi);
+        }
+        info = g_object_info_get_parent(info);
+        if( info != nil && info.integer() != 0)
+            parents.push(info);
+    }
+    parents.forEach(fun(p) { g_base_info_unref(p); });
+    return props;
+}
+
+static find_obj_constants(info)
+{
+    var result = {};
+    var parents = [];
+    while(info != nil && info.integer() != 0)
+    {
+        var n = g_object_info_get_n_constants(info);
+        for( var i = 0; i < n; i++)
+        {
+            var cnst = g_object_info_get_constant(info,i);
+
+            var val = sys.buffer(16);
+            g_constant_info_get_value( cnst, val );
+            var cname = g_base_info_get_name(cnst);
+
+            var ptr = &val;
+            var r = ptr.integer();
+            result{cname} = r;               
+        }
+        info = g_object_info_get_parent(info);
+        if( info != nil && info.integer() != 0)
+            parents.push(info);
+    }
+    parents.forEach(fun(p) { g_base_info_unref(p); });
+    return result;
+}
+
+
+static get_gvalue_property(object,name,prop)
+{   
+    var value = GObject.Value();
+
+    g_object_get_property(object,name,g_unwrap(value));
+
+    if(prop.tag == GIRDEF.GI_TYPE_TAG_UTF8)
+    {
+        var r = value.get_string();
+        value.unset();
+        return r;
+    }
+    if(prop.tag == GIRDEF.GI_TYPE_TAG_FLOAT || prop.tag == GIRDEF.GI_TYPE_TAG_DOUBLE)
+    {
+        var r = value.get_double();
+        value.unset();
+        return r;
+    }
+    if(prop.tag == GIRDEF.GI_TYPE_TAG_INTERFACE)
+    {
+        var ptr = value.get_object();
+        var obj = GIMPL.makeObjFromClazz(prop.ns,prop.type,ptr);
+        value.unset();
+        return obj;
+    }
+    if(prop.tag == GIRDEF.GI_TYPE_TAG_BOOLEAN)
+    {
+        var r = value.get_boolean();
+        value.unset();
+        return r;
+    }
+    if(prop.tag == GIRDEF.GI_TYPE_TAG_POINTER)
+    {
+        var r = value.val.get_pointer();
+        value.unset();
+        return r;
+    }
+    var r = value.val.get_int();
+    value.unset();
+    return r;
+}
+
+static connect(obj,name, handler)
+{
+    var ptr = g_unwrap(obj);
+    var g_type = g_type_from_obj(obj);
+
+    var signame = name;
+    if(signame.find("::") != -1)
+    {
+        var sa = signame.split("::");
+        signame = sa[0];
+    }
+    var id = g_signal_lookup(signame,g_type);
+    if(id == 0) 
+    {
+        print "warn: signal " + name + " not found";
+        return id;
+    }
+
+    var query = GObject.SignalQuery();
+    GObject.signal_query(id,query);
+
+    if(query.signal_id == 0)
+    {
+        print "warn: query signal " + name + " failed.";
+        return 0;
+    }
+
+    var retType = query.return_type;
+    var nArgs = query.n_params;
+    var args = query.param_types;
+
+    var cb = GIMPL.make_cb_from_gtypes( retType, name, nArgs, args);
+    GtkUI.callbacks.push(cb);
+    var sighandler = cb(handler);
+    GtkUI.callbacks.push(sighandler);
+
+    g_signal_connect_data( ptr, name, sighandler,0,0,0);
+
+    //print "CONNECT: " + name + " " + g_type;
+}
+
+static install_signal( obj_gtype, name, ret_gtype, param_gtypes )
+{
+    var flags = GObject.SignalFlags.G_SIGNAL_RUN_FIRST;
+    //print "install signal " + name + " " + flags;
+
+    var ptypes = os.malloc( 8 * param_gtypes.length); 
+
+    for(var i = 0; i < param_gtypes.length; i++)
+    {
+        var p = sys.pointer( int(ptypes) + (i*8) );
+        var gtype = GType_( p );
+        gtype.value = param_gtypes[i];
+    }
+
+    var r = g_signal_newv(
+        name,
+        obj_gtype,
+        flags,
+        0,
+        0,
+        0,
+        0,
+        ret_gtype,
+        param_gtypes.length,
+        ptypes
+    );
+
+    os.free(ptypes);
+    return r;
+}
+
+
+} // end class GIMPL
+
+
+class GObjectFactory
+{
+    GObjectFactory( clazz, parent )
+    {
+        this.clazz = clazz;
+        this.name = string(clazz);
+        this.parent = parent;
+        this.parent_gtype = parent.g_type;
+        this.private_offset = 0;
+        this.instances = {};
+
+        this.init_class_ptr = GObject.ClassInitFunc(this.init_class);
+        this.init_instance_ptr = GObject.InstanceInitFunc(this.init_instance);
+        this.finalize_ptr = GObject.ObjectFinalizeFunc(this.finalize);
+        this.dispose_ptr = GObject.ObjectFinalizeFunc(this.dispose);
+
+        this.get_property_ptr = GObject.ObjectGetPropertyFunc( this.get_property);
+        this.set_property_ptr = GObject.ObjectSetPropertyFunc( this.set_property);
+    }
+
+    new()
+    {
+        var o = g_object_new(this.get_type(),0);
+
+        var clazz = this.clazz;
+        var wrapper = clazz(o);
+        g_object_unref(o);
+        return wrapper;
+    }
+
+    get_type()
+    {
+        if( !GObjectFactory.type_ids.exists(this.name))
+        {
+            var query = GObject.TypeQuery();
+            GObject.type_query(this.parent_gtype,query);
+
+            var parent_class_size = query.class_size;
+            var parent_instance_size = query.instance_size;
+/*
+            print this.name;
+            print "parent_class_size = " + parent_class_size;
+            print "parent_instance_size = " + parent_instance_size;
+*/
+            GObjectFactory.type_ids{this.name} = 
+            g_type_register_static_simple (
+              this.parent_gtype, // Parent
+              this.name,  //Typename
+              parent_class_size,
+              this.init_class_ptr,
+              parent_instance_size+4,
+              this.init_instance_ptr,
+              0 //GObject.TypeFlags.final
+           );
+           //print "TYPE: " + this.name + " " + GObjectFactory.type_ids{this.name};
+           this.clazz.g_type = GObjectFactory.type_ids{this.name};
+        };
+
+        this.private_offset = g_type_add_instance_private( GObjectFactory.type_ids{this.name}, 4);
+        return GObjectFactory.type_ids{this.name} ;
+    }
+
+    init_class(ptr)
+    {
+        //print "INIT CLASS: " + this.name;
+        this.clazz.parentClass = g_type_class_peek_parent(ptr);
+        if(this.private_offset != 0)
+        {
+            var offset = this.private_offset;
+            g_type_class_adjust_private_offset(ptr, &offset);
+            this.private_offset = offset;
+        }
+
+        var klazz = GObject.ObjectClass(ptr);
+        klazz.get_property = this.get_property_ptr;
+        klazz.set_property = this.set_property_ptr;
+        klazz.dispose = this.dispose_ptr;
+        klazz.finalize = this.finalize_ptr;
+
+        var ms = this.clazz.methods();
+        ms.forEach( fun(mn) 
+        {
+           var m = this.clazz{mn};
+           if(m)
+           {
+               if(typeof(m) == "closure")
+               {
+                    var meta = runtime.meta(m);
+                    if(meta)
+                    {
+                       if( typeof(meta) == "map" )
+                       {
+                           if(meta.exists("virtual"))
+                           {
+                               var parentClazzType= runtime.eval("return " + meta.virtual + ";" );
+
+                               var s = parentClazzType.target.struct;
+                               var parentClazz = s(ptr);
+
+                               var vfp = this.parent{mn};
+
+                               this.clazz{mn} = vfp(m);
+                               parentClazz{mn} = this.clazz{mn};
+
+                           }
+                           if(meta.exists("signal"))
+                           {
+                                var retType = "NONE";
+                                if(meta.signal) 
+                                   retType = meta.signal;
+                                var params = [];
+                                if(meta.exists("params"))
+                                {
+                                   if(typeof(meta.params) == "array")
+                                       params = meta.params;
+                                    else
+                                       params.push(meta.params);
+                                }               
+
+                                retType = runtime.global( "GIRDEF" ){ "GTYPE_" + retType };
+                                params = params.transform( fun(val) { 
+                                    return runtime.global("GIRDEF"){"GTYPE_" + val}; 
+                                });
+
+                                //print "signal " + mn + " " + retType + " " + params;
+
+                                var clazz = GObject.TypeClass(klazz.g_type_class);
+                                GIMPL.install_signal(
+                                    int(clazz.g_type), 
+                                    mn, 
+                                    retType,
+                                    params
+                                );        
+                            }      
+                        }
+                    }
+               }
+           }
+        });
+
+        if(this.clazz.init_properties)
+        {
+            var p = this.clazz.init_properties();
+            this.install_properties(ptr, p);
+        }
+
+        if(this.clazz.init_class)
+        {
+            this.clazz.init_class(ptr);
+        }
+
+        if(this.clazz.properties)
+        {
+            this.install_properties(ptr, this.clazz.properties);
+        }
+
+        if(this.clazz.signals)
+        {
+            this.install_signals(klazz, this.clazz.signals);
+        }
+    }
+
+    init_instance(ptr)
+    {
+        //print "INIT INSTANCE " + this.name;
+          
+        var addr = int(ptr);
+
+        var props = {};
+        this.properties{addr} = props;
+
+        var instance = { 
+            "ptr" : ptr,
+            "properties" : props
+        };
+
+        this.instances{addr} = instance;
+
+        if(this.clazz.init_instance)
+        {
+            this.clazz.init_instance(ptr,instance);
+        }
+
+        var ms = this.clazz.methods();
+        ms.forEach( fun(mn) 
+        {
+           var m = this.clazz{mn};
+           if(m)
+           {
+               if(typeof(m) == "closure")
+               {
+                    var meta = runtime.meta(m);
+                    if(meta)
+                    {
+                       if( typeof(meta) == "map" )
+                       {
+                           if(meta.exists("connect"))
+                           {
+                               var signame = meta.connect;
+                               GIMPL.connect(ptr,signame,m);
+                           }
+                       }
+                    }
+               }
+           }
+        });
+    }
+
+    that(ptr)
+    {
+        var addr = int(ptr);
+        return this.instances{addr};
+    }
+
+    dispose(ptr)
+    {
+        //print "DISPOSE " + this.name;
+
+        var parent_class = GObject.ObjectClass(this.clazz.parentClass);
+        var dispose_ptr = parent_class.dispose;
+
+        var dispose_fun = GObject.ObjectFinalizeFunc(dispose_ptr);
+        dispose_fun(ptr);
+    }
+
+    finalize(ptr)
+    {
+        //print "FINALIZE" + this.name;
+
+        var addr = int(ptr);
+        delete addr from this.properties;
+        delete addr from this.instances;
+
+        var parent_class = GObject.ObjectClass(this.clazz.parentClass);
+        var finalize_ptr = parent_class.finalize;
+
+        var finalize_fun = GObject.ObjectFinalizeFunc(finalize_ptr);
+        finalize_fun(ptr);
+    }
+
+    set_property(ptr,id,val,spec)
+    {
+        var addr = int(ptr);
+        var props = this.that(ptr).properties;
+        if(props.exists(id))
+        {
+            props{id}.unset();
+        }
+        var value = GObject.Value(val);
+        var v = GObject.Value();
+        v.init(value.g_type);
+        value.copy(v);
+
+        props{id} = v;
+    }
+
+
+    get_property( ptr,id,val,spec)
+    {
+        var addr = int(ptr);
+        var props = this.that(ptr).properties;
+        if(!props.exists(id))
+        {
+            var pspec = GObject.ParamSpec(spec);
+            var value = pspec.get_default_value();
+            props{id} = value;
+        }
+        var v = props{id};
+        v.copy(val);
+    }
+
+    install_properties(ptr,specs)
+    {
+       var id = 1;
+       specs.forEach( fun(spec)
+       {
+           g_object_class_install_property(ptr,id,g_unwrap(spec));        
+           id++;
+       });
+    }
+
+    install_signals(klazz,signals)
+    {
+        var clazz = GObject.TypeClass(klazz.g_type_class);
+
+        signals.forEach( fun(signal){
+
+          GIMPL.install_signal(
+            int(clazz.g_type), 
+            signal.name, 
+            signal.ret_gtype,
+            signal.param_gtypes
+          );        
+        });
+    }
+}
+
+GObjectFactory.type_ids = {};

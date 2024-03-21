@@ -1,0 +1,24 @@
+fun test()
+{
+    try {
+        throw 4711;
+    }
+    finally {
+        print "inner final"; // expect: inner final
+    }
+
+    print "not reached";
+}
+
+try {
+    test();
+}
+catch(e)
+{
+    print e; // expect: 4711
+}
+finally {
+    print "outer final"; // expect: outer final
+}
+
+print arguments(); // expect: array [ ]

@@ -1,0 +1,4 @@
+var p = io.self();
+var d = io.dirname(p);
+var b = io.basename(p);
+print b; // expect: io_self.msr

@@ -1,0 +1,3 @@
+"str"(); // expect: Can only call functions and classes.
+
+// expect: [line 1] in script

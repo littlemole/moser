@@ -1,0 +1,180 @@
+
+import("win32/base");
+import("win32/lib");
+import("win32/gdi");
+import("win32/user");
+import("win32/uni");
+import("win32/ctrl");
+import("win32/dlg");
+import("windows");
+
+var ID_FILE_EXIT  = 1001;
+var ID_FILE_OPEN  = 1002;
+var ID_FILE_SAVE  = 1003;
+var ID_EDIT_CUT   = 2001;
+var ID_EDIT_COPY  = 2002;
+var ID_EDIT_PASTE = 2003;
+var ID_DOS2UNIX   = 4001;
+var ID_UNIX2DOS   = 4002;
+
+var ID_EDIT       = 5001;
+
+class MyWindow : Window 
+{
+    MyWindow()
+    {
+        super.Window();
+
+        this.menu = [
+            [ "File",  
+                [ "Open", ID_FILE_OPEN ],
+                [ "Save", ID_FILE_SAVE ],
+                [ "Exit", ID_FILE_EXIT ]               
+            ],
+            [ "Edit",  
+                [ "Cut", ID_EDIT_CUT ],
+                [ "Copy", ID_EDIT_COPY ],
+                [ "Paste", ID_EDIT_PASTE ]               
+            ],
+            [ "Convert", 
+                [ "Dos to Unix",   ID_DOS2UNIX ],
+                [ "Unix to Dos",   ID_UNIX2DOS ]
+            ]
+        ];
+    }
+
+    getText()
+    {
+        var len = int( Win32.SendMessageW(this.edit.hwnd, Win32.WM_GETTEXTLENGTH,0,0));
+        var buf = sys.buffer( (len+1)*2);
+        Win32.SendMessageW(this.edit.hwnd, Win32.WM_GETTEXT,len+1,buf);
+        var txt = string(buf.asWideString());
+        return txt;
+    }
+
+    setText(txt)
+    {
+        Win32.SendMessageW(this.edit.hwnd, Win32.WM_SETTEXT,0,wstring(txt));
+    }
+
+    @msg(WM_CREATE)
+    onCreate()
+    {
+        this.edit = Control("EDIT",ID_EDIT);
+        this.edit.style =     Win32.WINDOW_STYLE.WS_CHILD|Win32.WINDOW_STYLE.WS_BORDER| 
+                              Win32.WINDOW_STYLE.WS_VISIBLE | Win32.WINDOW_STYLE.WS_VSCROLL | 
+                              Win32.WINDOW_STYLE.WS_HSCROLL| Win32.ES_LEFT | 
+                              Win32.ES_MULTILINE | Win32.ES_AUTOVSCROLL;
+                                
+        this.add(this.edit);
+        this.edit.create("");
+
+        this.font = Font("Consolas").create();
+        Win32.SendMessageW(this.edit.hwnd, Win32.WM_SETFONT,this.font,1);
+
+        return 1;
+    }
+
+
+    @cmd(ID_FILE_OPEN)
+    @accel(key=O,flag=FCONTROL)
+    onOpen(wParam,lParam)
+    {
+        var dlg = FileDialog(this.hwnd);
+        var fn = dlg.open();
+
+        if(!fn) return;
+
+        var txt = io.slurp(fn);
+        this.setText(txt);
+    }
+    
+    @cmd(ID_FILE_SAVE)
+    @accel(key=S,flag=FCONTROL)
+    onSaven(wParam,lParam)
+    {
+        var dlg = FileDialog(this.hwnd);
+        var fn = dlg.save();
+
+        if(!fn) return;
+
+        var txt = this.getText();
+        io.flush(fn,txt);
+
+    }
+
+    @cmd(ID_EDIT_CUT)
+    onCut(wParam,lParam)
+    {
+        Win32.SendMessageW(this.edit.hwnd, Win32.WM_CUT,0,0);
+    }
+
+    @cmd(ID_EDIT_COPY)
+    onCopy(wParam,lParam)
+    {
+        Win32.SendMessageW(this.edit.hwnd, Win32.WM_COPY,0,0);
+    }
+
+    @cmd(ID_EDIT_PASTE)
+    onPaste(wParam,lParam)
+    {
+        Win32.SendMessageW(this.edit.hwnd, Win32.WM_PASTE,0,0);
+    }
+
+    @cmd(ID_FILE_EXIT)
+    onExit(wParam,lParam)
+    {
+        Win32.DestroyWindow(this.hwnd);
+    }
+
+    @cmd(ID_DOS2UNIX)
+    onDos2Unix(wParam,lParam)
+    {
+        var txt = this.getText();
+
+        var r = os.toUnix(txt);        
+        this.setText(r);
+    }
+    
+    @cmd(ID_UNIX2DOS)
+    onUnix2Dos(wParam,lParam)
+    {
+        var txt = this.getText();
+
+        var r = os.toDos(txt);        
+        this.setText(r);
+    }
+
+    @msg(WM_DESTROY)
+    onDestroy(wParam,lParam)
+    {
+        Win32.PostQuitMessage(0);
+        return 0;
+    }
+
+    @msg(WM_SIZE)
+    onSize()
+    {
+        if(this.edit)
+            this.resizeChild(this.edit.hwnd);
+    }
+}
+
+
+var wnd = MyWindow();
+
+wnd.create( "mocpad" );
+wnd.show(Win32.SHOW_WINDOW_CMD.SW_SHOW);
+
+
+var msg = Win32.MSG();
+while ( Win32.GetMessageW(msg, 0, 0, 0))
+{
+    if ( !int(Win32.TranslateAcceleratorW(wnd.hwnd, wnd.accels, msg)) )
+    {
+	    Win32.TranslateMessage(msg);
+	    Win32.DispatchMessageW(msg);
+    }
+}
+
+print "OK";

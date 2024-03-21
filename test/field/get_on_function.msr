@@ -1,0 +1,5 @@
+fun foo() {}
+foo.bar; 
+
+// expect: Only instances have properties.
+// expect: [line 2] in script

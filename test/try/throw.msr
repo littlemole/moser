@@ -1,0 +1,9 @@
+try {
+    throw 4711;
+}
+catch(e)
+{
+    print e; // expect: 4711
+}
+
+print arguments(); // expect: array [ ]

@@ -1,0 +1,301 @@
+
+extern {
+    ptr memcpy( ptr, ptr, int );
+}
+
+extern struct PLAINTEXTKEYBLOB {
+  byte   bType,
+  byte   bVersion,
+  short  reserved,
+  int    aiKeyAlg,
+  int    dwKeySize,
+  byte   rgbKeyData[1024]
+} 
+
+var CALG_MD5 = 0x00008003;
+var CALG_SHA1 = 0x00008004;
+var CALG_SHA_256 = 0x0000800c;
+var CALG_SHA_512 = 0x0000800e;
+var CALG_RC4 = 0x00006801;
+var CALG_HMAC = 0x00008009;
+var CALG_NO_SIGN = 0x00002000;
+var CALG_RC2 = 0x00006602;
+var CALG_RC4 = 0x00006801;
+
+var MD5LEN = 16;
+var SHA1LEN = 20;
+var SHA256LEN = 64;
+var SHA512LEN = 128;
+
+var PLAINTEXTBLOB = 0x8;
+
+var HASH = {
+	"MD5" : {
+		"alg" : CALG_MD5,
+		"len" : MD5LEN
+	},
+	"SHA1" : {
+		"alg" : CALG_SHA1,
+		"len" : SHA1LEN
+	},
+	"SHA_256" : {
+		"alg" : CALG_SHA_256,
+		"len" : SHA256LEN
+	},
+	"SHA_512" : {
+		"alg" : CALG_SHA_512,
+		"len" : SHA512LEN
+	},
+	"HMAC"	  : {
+		"alg" : CALG_HMAC,
+		"len" : 0
+	},
+	"PLAIN"   : {
+		"alg" : CALG_NO_SIGN,
+		"len" : 0
+	},
+	"RC2"   : {
+		"alg" : CALG_RC2,
+		"len" : 0
+	},
+	"RC4"   : {
+		"alg" : CALG_RC4,
+		"len" : 0
+	}
+};
+
+class CryptoKey
+{
+	CryptoKey()
+	{
+		var args = arguments();
+		this.key = 0;
+		this.ctx = nil;
+		this.alg = nil;
+
+		if(args.length>0)
+		{
+			this.ctx = args[0];
+		}
+		if(args.length>1)
+		{
+			this.alg = args[1];
+		}
+		if(args.length>2)
+		{
+			this.key = args[2];
+		}
+	}
+
+	derive( secret )
+	{
+		var h = Hash( this.ctx, this.alg );
+		h.hash( secret );
+
+		var key = 0;
+		if( Win32.CryptDeriveKey( this.ctx.hctx, CALG_RC4, h.hhash, 0, &key) )
+		{
+			this.key = key;
+		}
+	}
+
+	import( secret )
+	{
+		var blob = PLAINTEXTKEYBLOB();
+		blob.bType = PLAINTEXTBLOB;
+		blob.reserved = 0;
+		blob.bVersion = Win32.CUR_BLOB_VERSION;
+		blob.aiKeyAlg = CALG_RC2;
+		blob.dwKeySize = secret.length;
+		memcpy(blob.rgbKeyData ,sys.pointer(secret),secret.length);
+
+		var key = 0;
+		if(Win32.CryptImportKey( this.ctx.hctx, blob, PLAINTEXTKEYBLOB.size, 0, Win32.CRYPT_KEY_FLAGS.CRYPT_IPSEC_HMAC_KEY, &key) )
+		{		
+			this.key = key;
+		}
+		return this.key;
+	}
+
+	~CryptoKey()
+	{
+		if(this.key != 0)
+		{
+			Win32.CryptDestroyKey(this.key);
+			this.key = 0;
+		}
+	}
+
+	value()
+	{
+
+	}
+}
+
+class Hash
+{
+	Hash(ctx, alg)
+	{
+		var args = arguments();
+		this.ctx = ctx;
+		this.type = alg;
+		this.hhash = 0;
+
+		this.secret = CryptoKey();
+		if ( args.length > 2)
+		{
+			this.secret = args[2];
+			return;
+		}
+
+		var h = 0;
+		if( Win32.CryptCreateHash( this.ctx.hctx, this.type.alg, this.secret.key, 0, &h) )
+		{
+			this.hhash = h;
+		}
+	}
+
+	~Hash()
+	{
+		if(this.hhash != 0)
+		{
+			Win32.CryptDestroyHash(this.hhash);
+			this.hhash = 0;
+		}
+	}
+
+	hmac( msg )
+	{
+		this.info = Win32.HMAC_INFO();
+		this.info.HashAlgid = this.type.alg;
+
+		var hmac = 0;
+		if( Win32.CryptCreateHash( this.ctx.hctx, CALG_HMAC, this.secret.key, 0, &hmac))
+		{
+			this.hhash = hmac;
+
+			if( Win32.CryptSetHashParam( hmac, Win32.CRYPT_SET_HASH_PARAM.HP_HMAC_INFO, this.info,0))
+			{
+				if( Win32.CryptHashData( hmac, msg, msg.length, 0))
+				{
+					var len = 0;
+					
+					if( Win32.CryptGetHashParam( hmac, Win32.CRYPT_SET_HASH_PARAM.HP_HASHVAL,0,&len,0))
+					{
+						var buf = sys.buffer(len+1);
+						if( Win32.CryptGetHashParam( hmac, Win32.CRYPT_SET_HASH_PARAM.HP_HASHVAL, buf, &len, 0))
+						{
+							return buf.asString(len);
+						}
+					}
+				}
+			}
+		}
+	}
+
+	hash(str)
+	{
+		if(int(Win32.CryptHashData(this.hhash, str, str.length, 0) ) )
+        {
+
+            var len = 0;
+			if (Win32.CryptGetHashParam(this.hhash, Win32.CRYPT_SET_HASH_PARAM.HP_HASHVAL, 0, &len, 0))
+			{
+	            var buf = sys.buffer(len);
+				if (Win32.CryptGetHashParam(this.hhash, Win32.CRYPT_SET_HASH_PARAM.HP_HASHVAL, buf, &len, 0))
+				{
+					return buf.asString(len);
+				}
+			}
+        }		
+	}
+}
+
+
+class CryptoCtx
+{
+	CryptoCtx()
+	{
+		var args = arguments();
+		this.provider = Win32.PROV_RSA_AES;
+		if(args.length > 0)
+		{
+			this.provider = args[0];
+		}
+
+		this.hctx = 0;
+
+		var ctx = 0;
+		if( Win32.CryptAcquireContextW( &ctx, 0, 0, this.provider, Win32.CRYPT_VERIFYCONTEXT) )
+		{
+			this.hctx = ctx;
+		}
+	}
+
+	~CryptoCtx()
+	{
+		if(this.hctx != 0)
+		{
+			Win32.CryptReleaseContext(this.hctx,0);
+			this.hctx = 0;
+		}
+	}
+
+	hash( alg, str )
+	{
+		var h = Hash(this, alg);
+		return h.hash(str);
+	}
+
+	hmac(algo, secret, msg)
+	{
+		var cryptoKey = CryptoKey( this, HASH.RC2 );
+		cryptoKey.import(secret);
+
+		var hmac = Hash( this, algo, cryptoKey);
+		var buf = hmac.hmac(msg);
+		return buf;
+	}
+}
+
+class CryptoString
+{
+    CryptoString(algo)
+    {
+        this.algo = algo;
+    }
+
+    toBinary( str)
+    {
+        var ws = wstring( str );
+        var len = 0;
+        var r = Win32.CryptStringToBinaryW(ws,ws.length, this.algo, 0, &len, 0, 0 );
+        if(int(r))
+        {
+            var buf = sys.buffer( len );
+            if(Win32.CryptStringToBinaryW(ws,ws.length, this.algo, buf, &len, 0, 0 ))
+            {
+                key = buf.asString();
+                return key;
+            }                
+        }
+        print Win32.GetLastError();
+    }
+
+    toString( bin )
+    {
+        var len = 0;
+        if( Win32.CryptBinaryToStringW( bin, bin.length, this.algo, 0, &len))
+        {
+            var buf = sys.buffer( (len+1)*2 );
+            if( Win32.CryptBinaryToStringW( bin, bin.length, this.algo, buf, &len))
+            {
+                var ws = buf.asWideString();
+                var s = string(ws);
+                s = s.substr(0,s.length-2);
+                return s;
+            }
+        }
+        print Win32.GetLastError();
+    }
+}

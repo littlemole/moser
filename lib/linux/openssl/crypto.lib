@@ -1,0 +1,56 @@
+
+extern from "libcrypto.so" {
+
+    void OPENSSL_init();
+
+    ptr BIO_new(ptr);
+    ptr BIO_new_mem_buf(ptr,long);
+
+    long BIO_free(ptr);
+    void BIO_free_all(ptr);
+    ptr BIO_push(ptr,ptr);
+
+    ptr BIO_f_base64();
+    ptr BIO_s_mem();
+    void BIO_set_flags(ptr,long);
+
+    long BIO_read( ptr, ptr, long);
+    long BIO_write( ptr, ptr, long);
+
+    long BIO_ctrl( ptr, int, long, ptr);
+
+    ptr EVP_md5();
+    ptr EVP_sha1();
+    ptr EVP_sha256();
+    ptr EVP_sha512();
+
+    ptr EVP_MD_CTX_new();
+    void EVP_MD_CTX_free(ptr);
+
+    int EVP_DigestInit_ex( ptr, ptr, ptr );
+    int EVP_DigestUpdate( ptr, ptr ,long );
+    int EVP_DigestFinal_ex( ptr, ptr, ptr);
+}
+
+
+var BIO_NOCLOSE = 0;
+var BIO_CTRL_INFO = 3;
+var BIO_CTRL_SET_CLOSE = 9;
+var BIO_CTRL_FLUSH = 11;
+var BIO_FLAGS_BASE64_NO_NL = 0x100;
+
+fun BIO_flush(bio)
+{
+    BIO_ctrl(bio,BIO_CTRL_FLUSH,0,0);
+}
+
+fun BIO_set_close(bio,c)
+{
+    BIO_ctrl( bio, BIO_CTRL_SET_CLOSE, c, 0);
+}
+
+fun BIO_get_mem_data(bio,pp)
+{
+    return BIO_ctrl( bio, BIO_CTRL_INFO, 0, pp);
+}
+

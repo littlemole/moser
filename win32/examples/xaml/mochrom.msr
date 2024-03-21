@@ -1,0 +1,143 @@
+import("win32/base");
+import("win32/env");
+import("win32/shell");
+import("win32/lib");
+import("win32/gdi");
+import("win32/user");
+import("win32/sysinfo");
+import("promise");
+import("win/rt/Windows.Foundation");
+import("win/rt/Windows.Foundation.Collections");
+import("win/rt/Windows.Storage");
+import("win/rt/Windows.Storage.Streams");
+import("win/rt/Windows.Storage.Pickers");
+import("win/rt/Windows.UI");
+import("win/rt/Windows.UI.Xaml");
+import("rt/Windows.UI.Xaml.Hosting");
+import("rt/Windows.UI.Xaml.Markup");
+import("win/rt/Windows.UI.Xaml.Interop");
+import("win/rt/Windows.UI.Xaml.Data");
+import("win/rt/Windows.UI.Xaml.Input");
+import("win/rt/Windows.UI.Xaml.Controls");
+import("win/rt/Windows.UI.Xaml.Controls.Primitives");
+
+import("win/rt/Microsoft.Web.WebView2.Core");
+import("win/rt/Microsoft.UI.Xaml.Controls");
+
+import("win/rt/moxaml");
+
+import("windows");
+import("winrt");
+import("xaml");
+
+var main_xaml = "
+
+<Page Name='thePage' xmlns='http://schemas.microsoft.com/winfx/2006/xaml/presentation' 
+    xmlns:x='http://schemas.microsoft.com/winfx/2006/xaml'
+    xmlns:mux='using:Microsoft.UI.Xaml.Controls'
+    xmlns:m='using:moxaml'>
+    <Grid Name='theGrid'>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width='1*'/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height='1*'/>
+        </Grid.RowDefinitions>
+
+        <mux:WebView2 Grid.Row='1' Grid.Column='1' x:Name='MyWebView'  
+                Source='https://www.microsoft.com' 
+                HorizontalAlignment='Stretch' VerticalAlignment='Stretch' /> 
+    </Grid>
+</Page>
+";
+
+
+var ID_FILE_EXIT = 1001;
+var ID_STUFF_GO = 1002;
+var ID_STUFF_GO2 = 1003;
+
+class MyWindow : Window 
+{
+    MyWindow()
+    {
+        super.Window();
+
+        this.menu = [
+            [ "File",  [ "Exit", ID_FILE_EXIT ]],
+            [ "Stuff", 
+                [ "Say Hi!",   ID_STUFF_GO ],
+                [ "Goto Amazonas",   ID_STUFF_GO2 ]
+            ]
+        ];
+    }
+
+    @msg(WM_CREATE)
+    onCreate(wParam,lParam)
+    {    
+	this.xamlWnd = XamlWindow( this, main_xaml ); 
+
+        var myWebView = this.xamlWnd.find("MyWebView");
+       
+	myWebView.add_NavigationStarting(fun(s,ev)
+        {
+		//var ev =  Microsoft.Web.WebView2.Core.CoreWebView2NavigationStartingEventArgs(e);
+        	print ev.Uri;
+	        if(ev.Uri == "https://www.microsoft.com/") return;
+        	if(ev.Uri == "https://www.microsoft.com/de-de/") return;
+            	if(ev.Uri == "https://www.amazon.de/") return;
+
+                ev.Cancel = true;
+        });
+    }
+
+
+    @cmd(ID_STUFF_GO)
+    onMenuGoClick()
+    {
+        var myWebView = this.xamlWnd.find("MyWebView");
+        myWebView.ExecuteScriptAsync("alert('hi!');")
+        .then( fun(s) {});
+    }
+
+
+    @cmd(ID_STUFF_GO2)
+    onMenuGo2Click()
+    {
+        var myWebView = this.xamlWnd.find("MyWebView");
+        var uri = Windows.Foundation.Uri.CreateUri("https://www.amazon.de/");
+        myWebView.Source = uri;
+    }
+
+    @msg(WM_SIZE)
+    onSize(wParam,lParam)
+    {
+        this.resizeChild( this.xamlWnd);
+        return 0;
+    }
+    
+    @msg(WM_DESTROY)
+    onDestroy(wParam,lParam)
+    {
+        //winrt.xaml.dispose();
+        Win32.PostQuitMessage(0);
+        return 0;
+    }
+
+    @cmd(ID_FILE_EXIT)
+    onExit(wParam,lParam)
+    {
+        Win32.DestroyWindow(this.hwnd);
+        return 0;
+    }
+}
+
+
+set_webview_user_data_folder("\\moser\\moser\\udf");
+
+var wnd = MyWindow();
+wnd.create( "my xaml webview window");
+wnd.show();
+run(wnd);
+
+print "OK";

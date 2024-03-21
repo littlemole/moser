@@ -1,0 +1,29 @@
+fun test()
+{
+    try {
+        return 42;
+    }
+    finally {
+        print "inner final"; // expect: inner final
+    }
+
+    print "not reached";
+}
+
+try {
+    try {
+        print test(); // expect: 42
+    }
+    finally {
+        print "middle final"; // expect: middle final
+    }
+}
+catch(e)
+{
+    print e; // not reached
+}
+finally {
+    print "outer final"; // expect: outer final
+}
+
+print arguments(); // expect: array [ ]

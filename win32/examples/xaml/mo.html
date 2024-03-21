@@ -1,0 +1,27 @@
+<html>
+<body>
+    <h1>mohtml</h1>
+
+    <p>Select "Say Hi" from the Window Msg Submenu to send a message to the Browser.</p>
+
+    <p>Or type a msg here and send it to the host app:</p>
+    <form action="#" method="get">
+        <textarea id="input"></textarea>
+        <button onclick="sendMsg()">send</button>
+    </form>
+
+<script>
+    window.chrome.webview.addEventListener('message', function (arg)
+    {
+        alert(arg.data);
+    });
+
+    function sendMsg() {
+        var ta = document.getElementById("input");
+        var msg = ta.value;
+        window.chrome.webview.postMessage(msg);
+        ta.value = "";
+    }
+</script>
+</body>
+</html>

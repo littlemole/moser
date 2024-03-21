@@ -1,0 +1,7 @@
+var m = import("module"); // expect: module global code
+
+m.module("the module"); // expect: a test: the module
+
+f("global"); // expect: hello from module:global
+
+

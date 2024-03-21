@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+ <!-- Configuration -->
+
+ <PropertyGroup Label="Configuration">
+
+  <!-- paths -->
+  <confPath>..\..\out\build\x64-Release</confPath>
+
+  <arch>x64</arch>
+
+  <!-- wix ui helper dll-->
+  <uiext>$(WIX)\bin\WixUIExtension.dll</uiext>
+
+
+  <!-- wix output file -->
+  <msiTarget>.\moserSetup.msi</msiTarget>
+
+ </PropertyGroup>
+
+ <!-- Build -->
+
+ <Target Name="Build">
+
+    <Message Text="Project Configuration = $(Configuration)" />
+    <Message Text="Project Platform = $(Platform)" />
+
+    <ItemGroup>
+        <MySourceFiles Include="..\..\out\build\x64-Release\**\*.*"/>
+    </ItemGroup>
+
+    <PropertyGroup>
+     <FilesSource>..\..\out\build\x64-Release\</FilesSource>
+     <FilesDestination>moser</FilesDestination>
+    </PropertyGroup>
+    <Exec Command="XCOPY &quot;$(FilesSource)&quot; &quot;$(FilesDestination)&quot; /E /I /H /R /K /Y" />
+
+    <Exec Command="rd /s /q moser\.cmake" />
+    <Exec Command="rd /s /q moser\CMakeFiles" />
+    <Exec Command="rd /s /q moser\Testing" />
+    <Exec Command="rd /s /q moser\vcpkg_installed" />
+
+
+    <!-- heat -->
+    <Exec Command='"$(WIX)\bin\heat.exe" dir . -sw5150 -sw5151 -gg -cg "MocCompGroup" -dr INSTALLLOCATION -var var.SourceDir  -o ..\deploy.wxs' 
+	    WorkingDirectory=".\moser" />
+
+    <!-- candle -->
+    <Exec Command='"$(WIX)\bin\candle.exe" -o "obj\deploy.wixobj" deploy.wxs -dSourceDir=".\moser" -dBuildArch=$(arch) -ext "$(uiext)" -arch $(arch)' 
+	    WorkingDirectory="." />
+
+    <Exec Command='"$(WIX)\bin\candle.exe" -o "obj\moser.wixobj" moser.wxs -dSourceDir=".\deploy" -dBuildArch=$(arch) -ext "$(uiext)" -arch $(arch)' 
+	    WorkingDirectory="." />
+
+    <Exec Command='"$(WIX)\bin\candle.exe" -o "obj\mondo.wixobj" "res\MondoNoLicense.wxs" -dSourceDir=".\deploy" -dBuildArch=$(arch) -ext "$(uiext)" -arch $(arch)' 
+ 	    WorkingDirectory="." />
+
+    <!-- light -->
+    <Exec Command='"$(WIX)\bin\light.exe" -ext "$(uiext)" -out "$(msiTarget)" -cultures:en-us -loc .\res\en-us.wxl ".\obj\moser.wixobj" ".\obj\deploy.wixobj" ".\obj\mondo.wixobj"' 
+	    WorkingDirectory="."/>
+
+ </Target>
+
+
+ <Target Name="PerUSer">
+
+	<Exec Command='copy /Y $(msiTarget) moserPerUserSetup.msi' WorkingDirectory="."/>
+	<Exec Command='cscript "patchMSI.wsf" moserPerUserSetup.msi' WorkingDirectory="."/>
+
+ </Target>
+
+
+</Project>

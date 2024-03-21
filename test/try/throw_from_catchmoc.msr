@@ -1,0 +1,23 @@
+fun test()
+{
+    try {
+        throw 4711;
+    }
+    catch(e) {
+        print e; // expect: 4711
+        throw 42;
+    }
+    finally {
+        print "final"; // expect: final
+    }
+}
+
+try {
+    test();
+}
+catch(e)
+{
+    print e; // expect: 42
+}
+
+print arguments(); // expect: array [ ]

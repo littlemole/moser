@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <script src="js/viz.js"></script>
+    <script src="js/full.render.js"></script>
+</head>
+<body>
+    <div id="errorMsg"></div>
+    <div id="dot"></div>
+
+    <script>
+        var viz = new Viz();
+
+        function render(src) {
+            viz.renderSVGElement(src)
+                .then(function (element) {
+                    document.getElementById("errorMsg").innerHTML = "";
+                    document.getElementById("dot").innerHTML = "";
+                    document.getElementById("dot").appendChild(element);
+
+                })
+                .catch(error => {
+                    // Create a new Viz instance (@see Caveats page for more info)
+                    viz = new Viz();
+
+                    document.getElementById("errorMsg").innerHTML = error;
+                });
+        }
+    </script>
+
+
+</body>
+</html>

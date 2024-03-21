@@ -1,0 +1,69 @@
+
+
+class Future
+{
+    Future()
+    {
+        this.result = nil;
+        this.onResolve = fun(result) { this.result = result; };
+        this.onError = fun(e) { this.error = e; };
+    }
+
+    resolve()
+    {
+        var args = arguments();
+        runtime.invoke(this.onResolve,args);
+    }
+
+    reject()
+    {
+        var args = arguments();
+        runtime.invoke(this.onError,args);
+    }
+
+    then(cb)
+    {
+        var f = Future();
+        this.chain = f;
+        this.onResolve = fun()
+        {
+            var args = arguments();
+            var r = runtime.invoke(cb,args);
+            if( r{"then"} == nil )
+            {
+                f.resolve(r);
+                return;
+            }
+            r.then(fun()
+            {
+                var args = arguments();
+                runtime.invoke(f.resolve,args);
+            });
+            r.otherwise( fun() 
+            {
+                var args = arguments();
+                runtime.invoke(f.reject,args);
+            });
+        };
+        this.onError = fun()
+        {
+            var args = arguments();
+            runtime.invoke(f.reject,args);
+        };
+        return f;
+    }
+
+    otherwise(cb)
+    {
+        this.onError = cb;
+        if(this.result) {
+	    this.onResolve(this.result);
+	};
+        if(this.error) {
+	    this.onError(this.error);
+	};
+
+        return this;
+    }
+}
+

@@ -1,0 +1,1645 @@
+{
+class WinRtInterface { 
+    queryInterface(iid) { return this.comPtr.queryInterface(iid); }
+    release() { this.comPtr.release(); this.comPtr = nil; }
+    valid() { return this.comPtr != nil && int(this.comPtr) != 0; }
+}
+
+if( runtime.global("Microsoft") == nil ) { runtime.global("Microsoft", {}); }
+var Microsoft = runtime.global("Microsoft");
+if ( Microsoft.UI == nil ) { Microsoft.UI = {}; }
+if ( Microsoft.UI.Xaml == nil ) { Microsoft.UI.Xaml = {}; }
+if ( Microsoft.UI.Xaml.Media == nil ) { Microsoft.UI.Xaml.Media = {}; }
+
+Microsoft.UI.Xaml.Media.AcrylicBackgroundSource = {
+    "HostBackdrop" : 0, 
+    "Backdrop" : 1
+};
+
+
+Microsoft.UI.Xaml.Media.RevealBrushState = {
+    "Normal" : 0, 
+    "PointerOver" : 1, 
+    "Pressed" : 2
+};
+
+//@Interface("Microsoft.UI.Xaml.Media.IAcrylicBrush")
+//@IID("{26861C81-72F4-5065-B144-E9EC7FCE86A9}")
+class Microsoft_UI_Xaml_Media_IAcrylicBrush : WinRtInterface 
+{
+    Microsoft_UI_Xaml_Media_IAcrylicBrush( comPtr )
+    {
+        var Microsoft = runtime.global("Microsoft");
+        this.comPtr = comPtr.queryInterface( "{26861C81-72F4-5065-B144-E9EC7FCE86A9}");
+    }
+
+    //@VtableIndex(6)
+    //@Async(0)
+    //@Returns("Microsoft.UI.Xaml.Media.AcrylicBackgroundSource")
+    get_BackgroundSource()
+    {
+        var Microsoft = runtime.global("Microsoft");
+        var _r = this.comPtr.invoke( 6, "UInt32", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(7)
+    //@Async(0)
+    //@Returns("void")
+    //@Parameters("Microsoft.UI.Xaml.Media.AcrylicBackgroundSource")
+    put_BackgroundSource(value)
+    {
+        var Microsoft = runtime.global("Microsoft");
+        var p1 = value;
+        this.comPtr.invoke( 7, "void", ["UInt32"], [p1] );
+    }
+
+    //@VtableIndex(8)
+    //@Async(0)
+    //@Returns("Windows.UI.Color")
+    get_TintColor()
+    {
+        var Microsoft = runtime.global("Microsoft");
+        var _r = this.comPtr.invoke( 8, "Windows.UI.Color", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(9)
+    //@Async(0)
+    //@Returns("void")
+    //@Parameters("Windows.UI.Color")
+    put_TintColor(value)
+    {
+        var Microsoft = runtime.global("Microsoft");
+        var p1 = value;
+        this.comPtr.invoke( 9, "void", ["Windows.UI.Color"], [p1] );
+    }
+
+    //@VtableIndex(10)
+    //@Async(0)
+    //@Returns("Double")
+    get_TintOpacity()
+    {
+        var Microsoft = runtime.global("Microsoft");
+        var _r = this.comPtr.invoke( 10, "Double", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(11)
+    //@Async(0)
+    //@Returns("void")
+    //@Parameters("Double")
+    put_TintOpacity(value)
+    {
+        var Microsoft = runtime.global("Microsoft");
+        var p1 = value;
+        this.comPtr.invoke( 11, "void", ["Double"], [p1] );
+    }
+
+    //@VtableIndex(12)
+    //@Async(0)
+    //@Returns("Windows.Foundation.TimeSpan")
+    get_TintTransitionDuration()
+    {
+        var Microsoft = runtime.global("Microsoft");
+        var _r = this.comPtr.invoke( 12, "Windows.Foundation.TimeSpan", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(13)
+    //@Async(0)
+    //@Returns("void")
+    //@Parameters("Windows.Foundation.TimeSpan")
+    put_TintTransitionDuration(value)
+    {
+        var Microsoft = runtime.global("Microsoft");
+        var p1 = value;
+        this.comPtr.invoke( 13, "void", ["Windows.Foundation.TimeSpan"], [p1] );
+    }
+
+    //@VtableIndex(14)
+    //@Async(0)
+    //@Returns("Boolean")
+    get_AlwaysUseFallback()
+    {
+        var Microsoft = runtime.global("Microsoft");
+        var _r = this.comPtr.invoke( 14, "Boolean", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(15)
+    //@Async(0)
+    //@Returns("void")
+    //@Parameters("Boolean")
+    put_AlwaysUseFallback(value)
+    {
+        var Microsoft = runtime.global("Microsoft");
+        var p1 = value;
+        this.comPtr.invoke( 15, "void", ["Boolean"], [p1] );
+    }
+
+
+}
+Microsoft_UI_Xaml_Media_IAcrylicBrush.iid = "{26861C81-72F4-5065-B144-E9EC7FCE86A9}";
+Microsoft.UI.Xaml.Media.IAcrylicBrush = Microsoft_UI_Xaml_Media_IAcrylicBrush;
+
+
+//@Interface("Microsoft.UI.Xaml.Media.IAcrylicBrush2")
+//@IID("{23FAD570-43ED-5A73-9DE7-A303553D5414}")
+class Microsoft_UI_Xaml_Media_IAcrylicBrush2 : WinRtInterface 
+{
+    Microsoft_UI_Xaml_Media_IAcrylicBrush2( comPtr )
+    {
+        var Microsoft = runtime.global("Microsoft");
+        this.comPtr = comPtr.queryInterface( "{23FAD570-43ED-5A73-9DE7-A303553D5414}");
+    }
+
+    //@VtableIndex(6)
+    //@Async(0)
+    //@Returns("Windows.Foundation.IReference`1<Double>")
+    get_TintLuminosityOpacity()
+    {
+        var Microsoft = runtime.global("Microsoft");
+        var _r = Windows.Foundation.IReference_1_Double_(
+            this.comPtr.invoke( 6, "Windows.Foundation.IReference`1<Double>", [], [] )
+        );
+        return _r;
+    }
+
+    //@VtableIndex(7)
+    //@Async(0)
+    //@Returns("void")
+    //@Parameters("Windows.Foundation.IReference`1<Double>")
+    put_TintLuminosityOpacity(value)
+    {
+        var Microsoft = runtime.global("Microsoft");
+        var p1 = Windows.Foundation.IReference_1_Double_( value); 
+        this.comPtr.invoke( 7, "void", ["Windows.Foundation.IReference`1<Double>"], [p1] );
+    }
+
+
+}
+Microsoft_UI_Xaml_Media_IAcrylicBrush2.iid = "{23FAD570-43ED-5A73-9DE7-A303553D5414}";
+Microsoft.UI.Xaml.Media.IAcrylicBrush2 = Microsoft_UI_Xaml_Media_IAcrylicBrush2;
+
+
+//@Interface("Microsoft.UI.Xaml.Media.IAcrylicBrushFactory")
+//@IID("{80173353-611D-5A02-8864-1AAA279DFF1C}")
+class Microsoft_UI_Xaml_Media_IAcrylicBrushFactory : WinRtInterface 
+{
+    Microsoft_UI_Xaml_Media_IAcrylicBrushFactory( comPtr )
+    {
+        var Microsoft = runtime.global("Microsoft");
+        this.comPtr = comPtr.queryInterface( "{80173353-611D-5A02-8864-1AAA279DFF1C}");
+    }
+
+
+}
+Microsoft_UI_Xaml_Media_IAcrylicBrushFactory.iid = "{80173353-611D-5A02-8864-1AAA279DFF1C}";
+Microsoft.UI.Xaml.Media.IAcrylicBrushFactory = Microsoft_UI_Xaml_Media_IAcrylicBrushFactory;
+
+
+//@Interface("Microsoft.UI.Xaml.Media.IAcrylicBrushStatics")
+//@IID("{3162419C-CABC-5B4E-9C64-786354147257}")
+class Microsoft_UI_Xaml_Media_IAcrylicBrushStatics : WinRtInterface 
+{
+    Microsoft_UI_Xaml_Media_IAcrylicBrushStatics( comPtr )
+    {
+        var Microsoft = runtime.global("Microsoft");
+        this.comPtr = comPtr.queryInterface( "{3162419C-CABC-5B4E-9C64-786354147257}");
+    }
+
+    //@VtableIndex(6)
+    //@Async(0)
+    //@Returns("Windows.UI.Xaml.DependencyProperty")
+    get_BackgroundSourceProperty()
+    {
+        var Microsoft = runtime.global("Microsoft");
+        var _r = Windows.UI.Xaml.DependencyProperty(
+            this.comPtr.invoke( 6, "Windows.UI.Xaml.DependencyProperty", [], [] )
+        );
+        return _r;
+    }
+
+    //@VtableIndex(7)
+    //@Async(0)
+    //@Returns("Windows.UI.Xaml.DependencyProperty")
+    get_TintColorProperty()
+    {
+        var Microsoft = runtime.global("Microsoft");
+        var _r = Windows.UI.Xaml.DependencyProperty(
+            this.comPtr.invoke( 7, "Windows.UI.Xaml.DependencyProperty", [], [] )
+        );
+        return _r;
+    }
+
+    //@VtableIndex(8)
+    //@Async(0)
+    //@Returns("Windows.UI.Xaml.DependencyProperty")
+    get_TintOpacityProperty()
+    {
+        var Microsoft = runtime.global("Microsoft");
+        var _r = Windows.UI.Xaml.DependencyProperty(
+            this.comPtr.invoke( 8, "Windows.UI.Xaml.DependencyProperty", [], [] )
+        );
+        return _r;
+    }
+
+    //@VtableIndex(9)
+    //@Async(0)
+    //@Returns("Windows.UI.Xaml.DependencyProperty")
+    get_TintTransitionDurationProperty()
+    {
+        var Microsoft = runtime.global("Microsoft");
+        var _r = Windows.UI.Xaml.DependencyProperty(
+            this.comPtr.invoke( 9, "Windows.UI.Xaml.DependencyProperty", [], [] )
+        );
+        return _r;
+    }
+
+    //@VtableIndex(10)
+    //@Async(0)
+    //@Returns("Windows.UI.Xaml.DependencyProperty")
+    get_AlwaysUseFallbackProperty()
+    {
+        var Microsoft = runtime.global("Microsoft");
+        var _r = Windows.UI.Xaml.DependencyProperty(
+            this.comPtr.invoke( 10, "Windows.UI.Xaml.DependencyProperty", [], [] )
+        );
+        return _r;
+    }
+
+
+}
+Microsoft_UI_Xaml_Media_IAcrylicBrushStatics.iid = "{3162419C-CABC-5B4E-9C64-786354147257}";
+Microsoft.UI.Xaml.Media.IAcrylicBrushStatics = Microsoft_UI_Xaml_Media_IAcrylicBrushStatics;
+
+
+//@Interface("Microsoft.UI.Xaml.Media.IAcrylicBrushStatics2")
+//@IID("{F03EE756-8A99-5AED-BD17-4C7314ACC9FF}")
+class Microsoft_UI_Xaml_Media_IAcrylicBrushStatics2 : WinRtInterface 
+{
+    Microsoft_UI_Xaml_Media_IAcrylicBrushStatics2( comPtr )
+    {
+        var Microsoft = runtime.global("Microsoft");
+        this.comPtr = comPtr.queryInterface( "{F03EE756-8A99-5AED-BD17-4C7314ACC9FF}");
+    }
+
+    //@VtableIndex(6)
+    //@Async(0)
+    //@Returns("Windows.UI.Xaml.DependencyProperty")
+    get_TintLuminosityOpacityProperty()
+    {
+        var Microsoft = runtime.global("Microsoft");
+        var _r = Windows.UI.Xaml.DependencyProperty(
+            this.comPtr.invoke( 6, "Windows.UI.Xaml.DependencyProperty", [], [] )
+        );
+        return _r;
+    }
+
+
+}
+Microsoft_UI_Xaml_Media_IAcrylicBrushStatics2.iid = "{F03EE756-8A99-5AED-BD17-4C7314ACC9FF}";
+Microsoft.UI.Xaml.Media.IAcrylicBrushStatics2 = Microsoft_UI_Xaml_Media_IAcrylicBrushStatics2;
+
+
+//@Interface("Microsoft.UI.Xaml.Media.IRadialGradientBrush")
+//@IID("{11C9DA5D-B928-53AB-BA6E-8F4ACC469B0F}")
+class Microsoft_UI_Xaml_Media_IRadialGradientBrush : WinRtInterface 
+{
+    Microsoft_UI_Xaml_Media_IRadialGradientBrush( comPtr )
+    {
+        var Microsoft = runtime.global("Microsoft");
+        this.comPtr = comPtr.queryInterface( "{11C9DA5D-B928-53AB-BA6E-8F4ACC469B0F}");
+    }
+
+    //@VtableIndex(6)
+    //@Async(0)
+    //@Returns("Windows.Foundation.Point")
+    get_Center()
+    {
+        var Microsoft = runtime.global("Microsoft");
+        var _r = this.comPtr.invoke( 6, "Windows.Foundation.Point", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(7)
+    //@Async(0)
+    //@Returns("void")
+    //@Parameters("Windows.Foundation.Point")
+    put_Center(value)
+    {
+        var Microsoft = runtime.global("Microsoft");
+        var p1 = value;
+        this.comPtr.invoke( 7, "void", ["Windows.Foundation.Point"], [p1] );
+    }
+
+    //@VtableIndex(8)
+    //@Async(0)
+    //@Returns("Double")
+    get_RadiusX()
+    {
+        var Microsoft = runtime.global("Microsoft");
+        var _r = this.comPtr.invoke( 8, "Double", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(9)
+    //@Async(0)
+    //@Returns("void")
+    //@Parameters("Double")
+    put_RadiusX(value)
+    {
+        var Microsoft = runtime.global("Microsoft");
+        var p1 = value;
+        this.comPtr.invoke( 9, "void", ["Double"], [p1] );
+    }
+
+    //@VtableIndex(10)
+    //@Async(0)
+    //@Returns("Double")
+    get_RadiusY()
+    {
+        var Microsoft = runtime.global("Microsoft");
+        var _r = this.comPtr.invoke( 10, "Double", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(11)
+    //@Async(0)
+    //@Returns("void")
+    //@Parameters("Double")
+    put_RadiusY(value)
+    {
+        var Microsoft = runtime.global("Microsoft");
+        var p1 = value;
+        this.comPtr.invoke( 11, "void", ["Double"], [p1] );
+    }
+
+    //@VtableIndex(12)
+    //@Async(0)
+    //@Returns("Windows.Foundation.Point")
+    get_GradientOrigin()
+    {
+        var Microsoft = runtime.global("Microsoft");
+        var _r = this.comPtr.invoke( 12, "Windows.Foundation.Point", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(13)
+    //@Async(0)
+    //@Returns("void")
+    //@Parameters("Windows.Foundation.Point")
+    put_GradientOrigin(value)
+    {
+        var Microsoft = runtime.global("Microsoft");
+        var p1 = value;
+        this.comPtr.invoke( 13, "void", ["Windows.Foundation.Point"], [p1] );
+    }
+
+    //@VtableIndex(14)
+    //@Async(0)
+    //@Returns("Windows.UI.Xaml.Media.BrushMappingMode")
+    get_MappingMode()
+    {
+        var Microsoft = runtime.global("Microsoft");
+        var _r = this.comPtr.invoke( 14, "UInt32", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(15)
+    //@Async(0)
+    //@Returns("void")
+    //@Parameters("Windows.UI.Xaml.Media.BrushMappingMode")
+    put_MappingMode(value)
+    {
+        var Microsoft = runtime.global("Microsoft");
+        var p1 = value;
+        this.comPtr.invoke( 15, "void", ["UInt32"], [p1] );
+    }
+
+    //@VtableIndex(16)
+    //@Async(0)
+    //@Returns("Windows.UI.Composition.CompositionColorSpace")
+    get_InterpolationSpace()
+    {
+        var Microsoft = runtime.global("Microsoft");
+        var _r = this.comPtr.invoke( 16, "UInt32", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(17)
+    //@Async(0)
+    //@Returns("void")
+    //@Parameters("Windows.UI.Composition.CompositionColorSpace")
+    put_InterpolationSpace(value)
+    {
+        var Microsoft = runtime.global("Microsoft");
+        var p1 = value;
+        this.comPtr.invoke( 17, "void", ["UInt32"], [p1] );
+    }
+
+    //@VtableIndex(18)
+    //@Async(0)
+    //@Returns("Windows.UI.Xaml.Media.GradientSpreadMethod")
+    get_SpreadMethod()
+    {
+        var Microsoft = runtime.global("Microsoft");
+        var _r = this.comPtr.invoke( 18, "UInt32", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(19)
+    //@Async(0)
+    //@Returns("void")
+    //@Parameters("Windows.UI.Xaml.Media.GradientSpreadMethod")
+    put_SpreadMethod(value)
+    {
+        var Microsoft = runtime.global("Microsoft");
+        var p1 = value;
+        this.comPtr.invoke( 19, "void", ["UInt32"], [p1] );
+    }
+
+    //@VtableIndex(20)
+    //@Async(0)
+    //@Returns("Windows.Foundation.Collections.IObservableVector`1<Windows.UI.Xaml.Media.GradientStop>")
+    get_GradientStops()
+    {
+        var Microsoft = runtime.global("Microsoft");
+        var _r = Windows.Foundation.Collections.IObservableVector_1_Windows_UI_Xaml_Media_GradientStop_(
+            this.comPtr.invoke( 20, "Windows.Foundation.Collections.IObservableVector`1<Windows.UI.Xaml.Media.GradientStop>", [], [] )
+        );
+        return _r;
+    }
+
+
+}
+Microsoft_UI_Xaml_Media_IRadialGradientBrush.iid = "{11C9DA5D-B928-53AB-BA6E-8F4ACC469B0F}";
+Microsoft.UI.Xaml.Media.IRadialGradientBrush = Microsoft_UI_Xaml_Media_IRadialGradientBrush;
+
+
+//@Interface("Microsoft.UI.Xaml.Media.IRadialGradientBrushFactory")
+//@IID("{D90BA26E-9E67-54BD-A2D9-61C8F9F1D433}")
+class Microsoft_UI_Xaml_Media_IRadialGradientBrushFactory : WinRtInterface 
+{
+    Microsoft_UI_Xaml_Media_IRadialGradientBrushFactory( comPtr )
+    {
+        var Microsoft = runtime.global("Microsoft");
+        this.comPtr = comPtr.queryInterface( "{D90BA26E-9E67-54BD-A2D9-61C8F9F1D433}");
+    }
+
+
+}
+Microsoft_UI_Xaml_Media_IRadialGradientBrushFactory.iid = "{D90BA26E-9E67-54BD-A2D9-61C8F9F1D433}";
+Microsoft.UI.Xaml.Media.IRadialGradientBrushFactory = Microsoft_UI_Xaml_Media_IRadialGradientBrushFactory;
+
+
+//@Interface("Microsoft.UI.Xaml.Media.IRadialGradientBrushStatics")
+//@IID("{4F0F8DDD-CA87-582F-9907-2CC4D57E6336}")
+class Microsoft_UI_Xaml_Media_IRadialGradientBrushStatics : WinRtInterface 
+{
+    Microsoft_UI_Xaml_Media_IRadialGradientBrushStatics( comPtr )
+    {
+        var Microsoft = runtime.global("Microsoft");
+        this.comPtr = comPtr.queryInterface( "{4F0F8DDD-CA87-582F-9907-2CC4D57E6336}");
+    }
+
+    //@VtableIndex(6)
+    //@Async(0)
+    //@Returns("Windows.UI.Xaml.DependencyProperty")
+    get_CenterProperty()
+    {
+        var Microsoft = runtime.global("Microsoft");
+        var _r = Windows.UI.Xaml.DependencyProperty(
+            this.comPtr.invoke( 6, "Windows.UI.Xaml.DependencyProperty", [], [] )
+        );
+        return _r;
+    }
+
+    //@VtableIndex(7)
+    //@Async(0)
+    //@Returns("Windows.UI.Xaml.DependencyProperty")
+    get_RadiusXProperty()
+    {
+        var Microsoft = runtime.global("Microsoft");
+        var _r = Windows.UI.Xaml.DependencyProperty(
+            this.comPtr.invoke( 7, "Windows.UI.Xaml.DependencyProperty", [], [] )
+        );
+        return _r;
+    }
+
+    //@VtableIndex(8)
+    //@Async(0)
+    //@Returns("Windows.UI.Xaml.DependencyProperty")
+    get_RadiusYProperty()
+    {
+        var Microsoft = runtime.global("Microsoft");
+        var _r = Windows.UI.Xaml.DependencyProperty(
+            this.comPtr.invoke( 8, "Windows.UI.Xaml.DependencyProperty", [], [] )
+        );
+        return _r;
+    }
+
+    //@VtableIndex(9)
+    //@Async(0)
+    //@Returns("Windows.UI.Xaml.DependencyProperty")
+    get_GradientOriginProperty()
+    {
+        var Microsoft = runtime.global("Microsoft");
+        var _r = Windows.UI.Xaml.DependencyProperty(
+            this.comPtr.invoke( 9, "Windows.UI.Xaml.DependencyProperty", [], [] )
+        );
+        return _r;
+    }
+
+    //@VtableIndex(10)
+    //@Async(0)
+    //@Returns("Windows.UI.Xaml.DependencyProperty")
+    get_InterpolationSpaceProperty()
+    {
+        var Microsoft = runtime.global("Microsoft");
+        var _r = Windows.UI.Xaml.DependencyProperty(
+            this.comPtr.invoke( 10, "Windows.UI.Xaml.DependencyProperty", [], [] )
+        );
+        return _r;
+    }
+
+    //@VtableIndex(11)
+    //@Async(0)
+    //@Returns("Windows.UI.Xaml.DependencyProperty")
+    get_MappingModeProperty()
+    {
+        var Microsoft = runtime.global("Microsoft");
+        var _r = Windows.UI.Xaml.DependencyProperty(
+            this.comPtr.invoke( 11, "Windows.UI.Xaml.DependencyProperty", [], [] )
+        );
+        return _r;
+    }
+
+    //@VtableIndex(12)
+    //@Async(0)
+    //@Returns("Windows.UI.Xaml.DependencyProperty")
+    get_SpreadMethodProperty()
+    {
+        var Microsoft = runtime.global("Microsoft");
+        var _r = Windows.UI.Xaml.DependencyProperty(
+            this.comPtr.invoke( 12, "Windows.UI.Xaml.DependencyProperty", [], [] )
+        );
+        return _r;
+    }
+
+
+}
+Microsoft_UI_Xaml_Media_IRadialGradientBrushStatics.iid = "{4F0F8DDD-CA87-582F-9907-2CC4D57E6336}";
+Microsoft.UI.Xaml.Media.IRadialGradientBrushStatics = Microsoft_UI_Xaml_Media_IRadialGradientBrushStatics;
+
+
+//@Interface("Microsoft.UI.Xaml.Media.IRevealBackgroundBrush")
+//@IID("{3741D912-FC83-5C92-A22F-EFC29588B373}")
+class Microsoft_UI_Xaml_Media_IRevealBackgroundBrush : WinRtInterface 
+{
+    Microsoft_UI_Xaml_Media_IRevealBackgroundBrush( comPtr )
+    {
+        var Microsoft = runtime.global("Microsoft");
+        this.comPtr = comPtr.queryInterface( "{3741D912-FC83-5C92-A22F-EFC29588B373}");
+    }
+
+
+}
+Microsoft_UI_Xaml_Media_IRevealBackgroundBrush.iid = "{3741D912-FC83-5C92-A22F-EFC29588B373}";
+Microsoft.UI.Xaml.Media.IRevealBackgroundBrush = Microsoft_UI_Xaml_Media_IRevealBackgroundBrush;
+
+
+//@Interface("Microsoft.UI.Xaml.Media.IRevealBackgroundBrushFactory")
+//@IID("{7E6F2B0A-E70D-529F-8097-43E023F2943B}")
+class Microsoft_UI_Xaml_Media_IRevealBackgroundBrushFactory : WinRtInterface 
+{
+    Microsoft_UI_Xaml_Media_IRevealBackgroundBrushFactory( comPtr )
+    {
+        var Microsoft = runtime.global("Microsoft");
+        this.comPtr = comPtr.queryInterface( "{7E6F2B0A-E70D-529F-8097-43E023F2943B}");
+    }
+
+
+}
+Microsoft_UI_Xaml_Media_IRevealBackgroundBrushFactory.iid = "{7E6F2B0A-E70D-529F-8097-43E023F2943B}";
+Microsoft.UI.Xaml.Media.IRevealBackgroundBrushFactory = Microsoft_UI_Xaml_Media_IRevealBackgroundBrushFactory;
+
+
+//@Interface("Microsoft.UI.Xaml.Media.IRevealBorderBrush")
+//@IID("{F85DBFCB-2EC6-5C73-A8BE-3864C980B917}")
+class Microsoft_UI_Xaml_Media_IRevealBorderBrush : WinRtInterface 
+{
+    Microsoft_UI_Xaml_Media_IRevealBorderBrush( comPtr )
+    {
+        var Microsoft = runtime.global("Microsoft");
+        this.comPtr = comPtr.queryInterface( "{F85DBFCB-2EC6-5C73-A8BE-3864C980B917}");
+    }
+
+
+}
+Microsoft_UI_Xaml_Media_IRevealBorderBrush.iid = "{F85DBFCB-2EC6-5C73-A8BE-3864C980B917}";
+Microsoft.UI.Xaml.Media.IRevealBorderBrush = Microsoft_UI_Xaml_Media_IRevealBorderBrush;
+
+
+//@Interface("Microsoft.UI.Xaml.Media.IRevealBorderBrushFactory")
+//@IID("{C677BDC2-F045-532C-BB13-3CEEE19143B2}")
+class Microsoft_UI_Xaml_Media_IRevealBorderBrushFactory : WinRtInterface 
+{
+    Microsoft_UI_Xaml_Media_IRevealBorderBrushFactory( comPtr )
+    {
+        var Microsoft = runtime.global("Microsoft");
+        this.comPtr = comPtr.queryInterface( "{C677BDC2-F045-532C-BB13-3CEEE19143B2}");
+    }
+
+
+}
+Microsoft_UI_Xaml_Media_IRevealBorderBrushFactory.iid = "{C677BDC2-F045-532C-BB13-3CEEE19143B2}";
+Microsoft.UI.Xaml.Media.IRevealBorderBrushFactory = Microsoft_UI_Xaml_Media_IRevealBorderBrushFactory;
+
+
+//@Interface("Microsoft.UI.Xaml.Media.IRevealBrush")
+//@IID("{9D1DDB86-ADFA-5BAE-BF9A-3EDD031E61C2}")
+class Microsoft_UI_Xaml_Media_IRevealBrush : WinRtInterface 
+{
+    Microsoft_UI_Xaml_Media_IRevealBrush( comPtr )
+    {
+        var Microsoft = runtime.global("Microsoft");
+        this.comPtr = comPtr.queryInterface( "{9D1DDB86-ADFA-5BAE-BF9A-3EDD031E61C2}");
+    }
+
+    //@VtableIndex(6)
+    //@Async(0)
+    //@Returns("Windows.UI.Color")
+    get_Color()
+    {
+        var Microsoft = runtime.global("Microsoft");
+        var _r = this.comPtr.invoke( 6, "Windows.UI.Color", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(7)
+    //@Async(0)
+    //@Returns("void")
+    //@Parameters("Windows.UI.Color")
+    put_Color(value)
+    {
+        var Microsoft = runtime.global("Microsoft");
+        var p1 = value;
+        this.comPtr.invoke( 7, "void", ["Windows.UI.Color"], [p1] );
+    }
+
+    //@VtableIndex(8)
+    //@Async(0)
+    //@Returns("Windows.UI.Xaml.ApplicationTheme")
+    get_TargetTheme()
+    {
+        var Microsoft = runtime.global("Microsoft");
+        var _r = this.comPtr.invoke( 8, "UInt32", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(9)
+    //@Async(0)
+    //@Returns("void")
+    //@Parameters("Windows.UI.Xaml.ApplicationTheme")
+    put_TargetTheme(value)
+    {
+        var Microsoft = runtime.global("Microsoft");
+        var p1 = value;
+        this.comPtr.invoke( 9, "void", ["UInt32"], [p1] );
+    }
+
+    //@VtableIndex(10)
+    //@Async(0)
+    //@Returns("Boolean")
+    get_AlwaysUseFallback()
+    {
+        var Microsoft = runtime.global("Microsoft");
+        var _r = this.comPtr.invoke( 10, "Boolean", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(11)
+    //@Async(0)
+    //@Returns("void")
+    //@Parameters("Boolean")
+    put_AlwaysUseFallback(value)
+    {
+        var Microsoft = runtime.global("Microsoft");
+        var p1 = value;
+        this.comPtr.invoke( 11, "void", ["Boolean"], [p1] );
+    }
+
+
+}
+Microsoft_UI_Xaml_Media_IRevealBrush.iid = "{9D1DDB86-ADFA-5BAE-BF9A-3EDD031E61C2}";
+Microsoft.UI.Xaml.Media.IRevealBrush = Microsoft_UI_Xaml_Media_IRevealBrush;
+
+
+//@Interface("Microsoft.UI.Xaml.Media.IRevealBrushProtectedFactory")
+//@IID("{46A94F5B-8ABD-5571-B049-7F76E3F967C9}")
+class Microsoft_UI_Xaml_Media_IRevealBrushProtectedFactory : WinRtInterface 
+{
+    Microsoft_UI_Xaml_Media_IRevealBrushProtectedFactory( comPtr )
+    {
+        var Microsoft = runtime.global("Microsoft");
+        this.comPtr = comPtr.queryInterface( "{46A94F5B-8ABD-5571-B049-7F76E3F967C9}");
+    }
+
+
+}
+Microsoft_UI_Xaml_Media_IRevealBrushProtectedFactory.iid = "{46A94F5B-8ABD-5571-B049-7F76E3F967C9}";
+Microsoft.UI.Xaml.Media.IRevealBrushProtectedFactory = Microsoft_UI_Xaml_Media_IRevealBrushProtectedFactory;
+
+
+//@Interface("Microsoft.UI.Xaml.Media.IRevealBrushStatics")
+//@IID("{0AFEE634-34F3-50F5-A509-21CEF266767E}")
+class Microsoft_UI_Xaml_Media_IRevealBrushStatics : WinRtInterface 
+{
+    Microsoft_UI_Xaml_Media_IRevealBrushStatics( comPtr )
+    {
+        var Microsoft = runtime.global("Microsoft");
+        this.comPtr = comPtr.queryInterface( "{0AFEE634-34F3-50F5-A509-21CEF266767E}");
+    }
+
+    //@VtableIndex(6)
+    //@Async(0)
+    //@Returns("Windows.UI.Xaml.DependencyProperty")
+    get_ColorProperty()
+    {
+        var Microsoft = runtime.global("Microsoft");
+        var _r = Windows.UI.Xaml.DependencyProperty(
+            this.comPtr.invoke( 6, "Windows.UI.Xaml.DependencyProperty", [], [] )
+        );
+        return _r;
+    }
+
+    //@VtableIndex(7)
+    //@Async(0)
+    //@Returns("Windows.UI.Xaml.DependencyProperty")
+    get_TargetThemeProperty()
+    {
+        var Microsoft = runtime.global("Microsoft");
+        var _r = Windows.UI.Xaml.DependencyProperty(
+            this.comPtr.invoke( 7, "Windows.UI.Xaml.DependencyProperty", [], [] )
+        );
+        return _r;
+    }
+
+    //@VtableIndex(8)
+    //@Async(0)
+    //@Returns("Windows.UI.Xaml.DependencyProperty")
+    get_AlwaysUseFallbackProperty()
+    {
+        var Microsoft = runtime.global("Microsoft");
+        var _r = Windows.UI.Xaml.DependencyProperty(
+            this.comPtr.invoke( 8, "Windows.UI.Xaml.DependencyProperty", [], [] )
+        );
+        return _r;
+    }
+
+    //@VtableIndex(9)
+    //@Async(0)
+    //@Returns("Windows.UI.Xaml.DependencyProperty")
+    get_StateProperty()
+    {
+        var Microsoft = runtime.global("Microsoft");
+        var _r = Windows.UI.Xaml.DependencyProperty(
+            this.comPtr.invoke( 9, "Windows.UI.Xaml.DependencyProperty", [], [] )
+        );
+        return _r;
+    }
+
+    //@VtableIndex(10)
+    //@Async(0)
+    //@Returns("void")
+    //@Parameters("Windows.UI.Xaml.UIElement","Microsoft.UI.Xaml.Media.RevealBrushState")
+    SetState(element,value)
+    {
+        var Microsoft = runtime.global("Microsoft");
+        var p1 = Windows.UI.Xaml.UIElement( element); 
+        var p2 = value;
+        this.comPtr.invoke( 10, "void", ["Windows.UI.Xaml.UIElement", "UInt32"], [p1, p2] );
+    }
+
+    //@VtableIndex(11)
+    //@Async(0)
+    //@Returns("Microsoft.UI.Xaml.Media.RevealBrushState")
+    //@Parameters("Windows.UI.Xaml.UIElement")
+    GetState(element)
+    {
+        var Microsoft = runtime.global("Microsoft");
+        var p1 = Windows.UI.Xaml.UIElement( element); 
+        var _r = this.comPtr.invoke( 11, "UInt32", ["Windows.UI.Xaml.UIElement"], [p1] );
+        return _r;
+    }
+
+
+}
+Microsoft_UI_Xaml_Media_IRevealBrushStatics.iid = "{0AFEE634-34F3-50F5-A509-21CEF266767E}";
+Microsoft.UI.Xaml.Media.IRevealBrushStatics = Microsoft_UI_Xaml_Media_IRevealBrushStatics;
+
+
+//@RuntimeClass("Microsoft.UI.Xaml.Media.AcrylicBrush")
+//@Implements("Microsoft.UI.Xaml.Media.IAcrylicBrush","Microsoft.UI.Xaml.Media.IAcrylicBrush2")
+//@DefaultInterface("Microsoft.UI.Xaml.Media.IAcrylicBrush")
+@Proxy("WinRtProxy")
+@Extends("Windows.UI.Xaml.Media.XamlCompositionBrushBase")
+class Microsoft_UI_Xaml_Media_AcrylicBrush : WinRtInterface
+{
+    Microsoft_UI_Xaml_Media_AcrylicBrush( comPtr )
+    {
+        var Microsoft = runtime.global("Microsoft");
+        this.comPtr = comPtr.queryInterface( Microsoft.UI.Xaml.Media.IAcrylicBrush.iid );
+    }
+
+    // s Microsoft.UI.Xaml.Media.IAcrylicBrushStatics
+    //@Async(0)
+    //@Returns("Windows.UI.Xaml.DependencyProperty")
+    static get_BackgroundSourceProperty( )
+    {
+        var Microsoft = runtime.global("Microsoft");
+        var factory = winrt.activationFactory( "Microsoft.UI.Xaml.Media.AcrylicBrush" );
+        var iface = Microsoft.UI.Xaml.Media.IAcrylicBrushStatics( factory );
+        var _r = iface.get_BackgroundSourceProperty( );
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    //@Async(0)
+    //@Returns("Windows.UI.Xaml.DependencyProperty")
+    static get_TintColorProperty( )
+    {
+        var Microsoft = runtime.global("Microsoft");
+        var factory = winrt.activationFactory( "Microsoft.UI.Xaml.Media.AcrylicBrush" );
+        var iface = Microsoft.UI.Xaml.Media.IAcrylicBrushStatics( factory );
+        var _r = iface.get_TintColorProperty( );
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    //@Async(0)
+    //@Returns("Windows.UI.Xaml.DependencyProperty")
+    static get_TintOpacityProperty( )
+    {
+        var Microsoft = runtime.global("Microsoft");
+        var factory = winrt.activationFactory( "Microsoft.UI.Xaml.Media.AcrylicBrush" );
+        var iface = Microsoft.UI.Xaml.Media.IAcrylicBrushStatics( factory );
+        var _r = iface.get_TintOpacityProperty( );
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    //@Async(0)
+    //@Returns("Windows.UI.Xaml.DependencyProperty")
+    static get_TintTransitionDurationProperty( )
+    {
+        var Microsoft = runtime.global("Microsoft");
+        var factory = winrt.activationFactory( "Microsoft.UI.Xaml.Media.AcrylicBrush" );
+        var iface = Microsoft.UI.Xaml.Media.IAcrylicBrushStatics( factory );
+        var _r = iface.get_TintTransitionDurationProperty( );
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    //@Async(0)
+    //@Returns("Windows.UI.Xaml.DependencyProperty")
+    static get_AlwaysUseFallbackProperty( )
+    {
+        var Microsoft = runtime.global("Microsoft");
+        var factory = winrt.activationFactory( "Microsoft.UI.Xaml.Media.AcrylicBrush" );
+        var iface = Microsoft.UI.Xaml.Media.IAcrylicBrushStatics( factory );
+        var _r = iface.get_AlwaysUseFallbackProperty( );
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    // s Microsoft.UI.Xaml.Media.IAcrylicBrushStatics2
+    //@Async(0)
+    //@Returns("Windows.UI.Xaml.DependencyProperty")
+    static get_TintLuminosityOpacityProperty( )
+    {
+        var Microsoft = runtime.global("Microsoft");
+        var factory = winrt.activationFactory( "Microsoft.UI.Xaml.Media.AcrylicBrush" );
+        var iface = Microsoft.UI.Xaml.Media.IAcrylicBrushStatics2( factory );
+        var _r = iface.get_TintLuminosityOpacityProperty( );
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    static Create()
+    {
+        return Microsoft.UI.Xaml.Media.AcrylicBrush(
+            winrt.activate("Microsoft.UI.Xaml.Media.AcrylicBrush")
+        );
+    }
+    //@Returns("Microsoft.UI.Xaml.Media.AcrylicBackgroundSource")
+    get_BackgroundSource()
+    {
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Xaml.Media.IAcrylicBrush( this.comPtr );
+        var _r = iface.get_BackgroundSource(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Parameters("Microsoft.UI.Xaml.Media.AcrylicBackgroundSource")
+    //@Returns("void")
+    //@Parameters("Microsoft.UI.Xaml.Media.AcrylicBackgroundSource")
+    put_BackgroundSource(value)
+    {
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Xaml.Media.IAcrylicBrush( this.comPtr );
+        iface.put_BackgroundSource( value );
+        iface.release();
+    }
+
+    //@Returns("Windows.UI.Color")
+    get_TintColor()
+    {
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Xaml.Media.IAcrylicBrush( this.comPtr );
+        var _r = iface.get_TintColor(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Parameters("Windows.UI.Color")
+    //@Returns("void")
+    //@Parameters("Windows.UI.Color")
+    put_TintColor(value)
+    {
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Xaml.Media.IAcrylicBrush( this.comPtr );
+        iface.put_TintColor( value );
+        iface.release();
+    }
+
+    //@Returns("Double")
+    get_TintOpacity()
+    {
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Xaml.Media.IAcrylicBrush( this.comPtr );
+        var _r = iface.get_TintOpacity(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Parameters("Double")
+    //@Returns("void")
+    //@Parameters("Double")
+    put_TintOpacity(value)
+    {
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Xaml.Media.IAcrylicBrush( this.comPtr );
+        iface.put_TintOpacity( value );
+        iface.release();
+    }
+
+    //@Returns("Windows.Foundation.TimeSpan")
+    get_TintTransitionDuration()
+    {
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Xaml.Media.IAcrylicBrush( this.comPtr );
+        var _r = iface.get_TintTransitionDuration(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Parameters("Windows.Foundation.TimeSpan")
+    //@Returns("void")
+    //@Parameters("Windows.Foundation.TimeSpan")
+    put_TintTransitionDuration(value)
+    {
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Xaml.Media.IAcrylicBrush( this.comPtr );
+        iface.put_TintTransitionDuration( value );
+        iface.release();
+    }
+
+    //@Returns("Boolean")
+    get_AlwaysUseFallback()
+    {
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Xaml.Media.IAcrylicBrush( this.comPtr );
+        var _r = iface.get_AlwaysUseFallback(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Parameters("Boolean")
+    //@Returns("void")
+    //@Parameters("Boolean")
+    put_AlwaysUseFallback(value)
+    {
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Xaml.Media.IAcrylicBrush( this.comPtr );
+        iface.put_AlwaysUseFallback( value );
+        iface.release();
+    }
+
+    //@Returns("Windows.Foundation.IReference`1<Double>")
+    get_TintLuminosityOpacity()
+    {
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Xaml.Media.IAcrylicBrush2( this.comPtr );
+        var _r = iface.get_TintLuminosityOpacity(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Parameters("Windows.Foundation.IReference`1<Double>")
+    //@Returns("void")
+    //@Parameters("Windows.Foundation.IReference`1<Double>")
+    put_TintLuminosityOpacity(value)
+    {
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Xaml.Media.IAcrylicBrush2( this.comPtr );
+        iface.put_TintLuminosityOpacity( value );
+        iface.release();
+    }
+
+
+}
+Microsoft.UI.Xaml.Media.AcrylicBrush = Microsoft_UI_Xaml_Media_AcrylicBrush;
+
+//@RuntimeClass("Microsoft.UI.Xaml.Media.RadialGradientBrush")
+//@Implements("Microsoft.UI.Xaml.Media.IRadialGradientBrush")
+//@DefaultInterface("Microsoft.UI.Xaml.Media.IRadialGradientBrush")
+@Proxy("WinRtProxy")
+@Extends("Windows.UI.Xaml.Media.XamlCompositionBrushBase")
+class Microsoft_UI_Xaml_Media_RadialGradientBrush : WinRtInterface
+{
+    Microsoft_UI_Xaml_Media_RadialGradientBrush( comPtr )
+    {
+        var Microsoft = runtime.global("Microsoft");
+        this.comPtr = comPtr.queryInterface( Microsoft.UI.Xaml.Media.IRadialGradientBrush.iid );
+    }
+
+    // s Microsoft.UI.Xaml.Media.IRadialGradientBrushStatics
+    //@Async(0)
+    //@Returns("Windows.UI.Xaml.DependencyProperty")
+    static get_CenterProperty( )
+    {
+        var Microsoft = runtime.global("Microsoft");
+        var factory = winrt.activationFactory( "Microsoft.UI.Xaml.Media.RadialGradientBrush" );
+        var iface = Microsoft.UI.Xaml.Media.IRadialGradientBrushStatics( factory );
+        var _r = iface.get_CenterProperty( );
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    //@Async(0)
+    //@Returns("Windows.UI.Xaml.DependencyProperty")
+    static get_RadiusXProperty( )
+    {
+        var Microsoft = runtime.global("Microsoft");
+        var factory = winrt.activationFactory( "Microsoft.UI.Xaml.Media.RadialGradientBrush" );
+        var iface = Microsoft.UI.Xaml.Media.IRadialGradientBrushStatics( factory );
+        var _r = iface.get_RadiusXProperty( );
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    //@Async(0)
+    //@Returns("Windows.UI.Xaml.DependencyProperty")
+    static get_RadiusYProperty( )
+    {
+        var Microsoft = runtime.global("Microsoft");
+        var factory = winrt.activationFactory( "Microsoft.UI.Xaml.Media.RadialGradientBrush" );
+        var iface = Microsoft.UI.Xaml.Media.IRadialGradientBrushStatics( factory );
+        var _r = iface.get_RadiusYProperty( );
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    //@Async(0)
+    //@Returns("Windows.UI.Xaml.DependencyProperty")
+    static get_GradientOriginProperty( )
+    {
+        var Microsoft = runtime.global("Microsoft");
+        var factory = winrt.activationFactory( "Microsoft.UI.Xaml.Media.RadialGradientBrush" );
+        var iface = Microsoft.UI.Xaml.Media.IRadialGradientBrushStatics( factory );
+        var _r = iface.get_GradientOriginProperty( );
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    //@Async(0)
+    //@Returns("Windows.UI.Xaml.DependencyProperty")
+    static get_InterpolationSpaceProperty( )
+    {
+        var Microsoft = runtime.global("Microsoft");
+        var factory = winrt.activationFactory( "Microsoft.UI.Xaml.Media.RadialGradientBrush" );
+        var iface = Microsoft.UI.Xaml.Media.IRadialGradientBrushStatics( factory );
+        var _r = iface.get_InterpolationSpaceProperty( );
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    //@Async(0)
+    //@Returns("Windows.UI.Xaml.DependencyProperty")
+    static get_MappingModeProperty( )
+    {
+        var Microsoft = runtime.global("Microsoft");
+        var factory = winrt.activationFactory( "Microsoft.UI.Xaml.Media.RadialGradientBrush" );
+        var iface = Microsoft.UI.Xaml.Media.IRadialGradientBrushStatics( factory );
+        var _r = iface.get_MappingModeProperty( );
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    //@Async(0)
+    //@Returns("Windows.UI.Xaml.DependencyProperty")
+    static get_SpreadMethodProperty( )
+    {
+        var Microsoft = runtime.global("Microsoft");
+        var factory = winrt.activationFactory( "Microsoft.UI.Xaml.Media.RadialGradientBrush" );
+        var iface = Microsoft.UI.Xaml.Media.IRadialGradientBrushStatics( factory );
+        var _r = iface.get_SpreadMethodProperty( );
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    static Create()
+    {
+        return Microsoft.UI.Xaml.Media.RadialGradientBrush(
+            winrt.activate("Microsoft.UI.Xaml.Media.RadialGradientBrush")
+        );
+    }
+    //@Returns("Windows.Foundation.Point")
+    get_Center()
+    {
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Xaml.Media.IRadialGradientBrush( this.comPtr );
+        var _r = iface.get_Center(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Parameters("Windows.Foundation.Point")
+    //@Returns("void")
+    //@Parameters("Windows.Foundation.Point")
+    put_Center(value)
+    {
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Xaml.Media.IRadialGradientBrush( this.comPtr );
+        iface.put_Center( value );
+        iface.release();
+    }
+
+    //@Returns("Double")
+    get_RadiusX()
+    {
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Xaml.Media.IRadialGradientBrush( this.comPtr );
+        var _r = iface.get_RadiusX(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Parameters("Double")
+    //@Returns("void")
+    //@Parameters("Double")
+    put_RadiusX(value)
+    {
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Xaml.Media.IRadialGradientBrush( this.comPtr );
+        iface.put_RadiusX( value );
+        iface.release();
+    }
+
+    //@Returns("Double")
+    get_RadiusY()
+    {
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Xaml.Media.IRadialGradientBrush( this.comPtr );
+        var _r = iface.get_RadiusY(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Parameters("Double")
+    //@Returns("void")
+    //@Parameters("Double")
+    put_RadiusY(value)
+    {
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Xaml.Media.IRadialGradientBrush( this.comPtr );
+        iface.put_RadiusY( value );
+        iface.release();
+    }
+
+    //@Returns("Windows.Foundation.Point")
+    get_GradientOrigin()
+    {
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Xaml.Media.IRadialGradientBrush( this.comPtr );
+        var _r = iface.get_GradientOrigin(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Parameters("Windows.Foundation.Point")
+    //@Returns("void")
+    //@Parameters("Windows.Foundation.Point")
+    put_GradientOrigin(value)
+    {
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Xaml.Media.IRadialGradientBrush( this.comPtr );
+        iface.put_GradientOrigin( value );
+        iface.release();
+    }
+
+    //@Returns("Windows.UI.Xaml.Media.BrushMappingMode")
+    get_MappingMode()
+    {
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Xaml.Media.IRadialGradientBrush( this.comPtr );
+        var _r = iface.get_MappingMode(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Parameters("Windows.UI.Xaml.Media.BrushMappingMode")
+    //@Returns("void")
+    //@Parameters("Windows.UI.Xaml.Media.BrushMappingMode")
+    put_MappingMode(value)
+    {
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Xaml.Media.IRadialGradientBrush( this.comPtr );
+        iface.put_MappingMode( value );
+        iface.release();
+    }
+
+    //@Returns("Windows.UI.Composition.CompositionColorSpace")
+    get_InterpolationSpace()
+    {
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Xaml.Media.IRadialGradientBrush( this.comPtr );
+        var _r = iface.get_InterpolationSpace(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Parameters("Windows.UI.Composition.CompositionColorSpace")
+    //@Returns("void")
+    //@Parameters("Windows.UI.Composition.CompositionColorSpace")
+    put_InterpolationSpace(value)
+    {
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Xaml.Media.IRadialGradientBrush( this.comPtr );
+        iface.put_InterpolationSpace( value );
+        iface.release();
+    }
+
+    //@Returns("Windows.UI.Xaml.Media.GradientSpreadMethod")
+    get_SpreadMethod()
+    {
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Xaml.Media.IRadialGradientBrush( this.comPtr );
+        var _r = iface.get_SpreadMethod(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Parameters("Windows.UI.Xaml.Media.GradientSpreadMethod")
+    //@Returns("void")
+    //@Parameters("Windows.UI.Xaml.Media.GradientSpreadMethod")
+    put_SpreadMethod(value)
+    {
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Xaml.Media.IRadialGradientBrush( this.comPtr );
+        iface.put_SpreadMethod( value );
+        iface.release();
+    }
+
+    //@Returns("Windows.Foundation.Collections.IObservableVector`1<Windows.UI.Xaml.Media.GradientStop>")
+    get_GradientStops()
+    {
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Xaml.Media.IRadialGradientBrush( this.comPtr );
+        var _r = iface.get_GradientStops(  );
+        iface.release();
+        return _r;
+    }
+
+
+}
+Microsoft.UI.Xaml.Media.RadialGradientBrush = Microsoft_UI_Xaml_Media_RadialGradientBrush;
+
+//@RuntimeClass("Microsoft.UI.Xaml.Media.RevealBrush")
+//@Implements("Microsoft.UI.Xaml.Media.IRevealBrush")
+//@DefaultInterface("Microsoft.UI.Xaml.Media.IRevealBrush")
+@Proxy("WinRtProxy")
+@Extends("Windows.UI.Xaml.Media.XamlCompositionBrushBase")
+class Microsoft_UI_Xaml_Media_RevealBrush : WinRtInterface
+{
+    Microsoft_UI_Xaml_Media_RevealBrush( comPtr )
+    {
+        var Microsoft = runtime.global("Microsoft");
+        this.comPtr = comPtr.queryInterface( Microsoft.UI.Xaml.Media.IRevealBrush.iid );
+    }
+
+    // s Microsoft.UI.Xaml.Media.IRevealBrushStatics
+    //@Async(0)
+    //@Returns("Windows.UI.Xaml.DependencyProperty")
+    static get_ColorProperty( )
+    {
+        var Microsoft = runtime.global("Microsoft");
+        var factory = winrt.activationFactory( "Microsoft.UI.Xaml.Media.RevealBrush" );
+        var iface = Microsoft.UI.Xaml.Media.IRevealBrushStatics( factory );
+        var _r = iface.get_ColorProperty( );
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    //@Async(0)
+    //@Returns("Windows.UI.Xaml.DependencyProperty")
+    static get_TargetThemeProperty( )
+    {
+        var Microsoft = runtime.global("Microsoft");
+        var factory = winrt.activationFactory( "Microsoft.UI.Xaml.Media.RevealBrush" );
+        var iface = Microsoft.UI.Xaml.Media.IRevealBrushStatics( factory );
+        var _r = iface.get_TargetThemeProperty( );
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    //@Async(0)
+    //@Returns("Windows.UI.Xaml.DependencyProperty")
+    static get_AlwaysUseFallbackProperty( )
+    {
+        var Microsoft = runtime.global("Microsoft");
+        var factory = winrt.activationFactory( "Microsoft.UI.Xaml.Media.RevealBrush" );
+        var iface = Microsoft.UI.Xaml.Media.IRevealBrushStatics( factory );
+        var _r = iface.get_AlwaysUseFallbackProperty( );
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    //@Async(0)
+    //@Returns("Windows.UI.Xaml.DependencyProperty")
+    static get_StateProperty( )
+    {
+        var Microsoft = runtime.global("Microsoft");
+        var factory = winrt.activationFactory( "Microsoft.UI.Xaml.Media.RevealBrush" );
+        var iface = Microsoft.UI.Xaml.Media.IRevealBrushStatics( factory );
+        var _r = iface.get_StateProperty( );
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    //@Async(0)
+    //@Returns("void")
+    //@Parameters("Windows.UI.Xaml.UIElement","Microsoft.UI.Xaml.Media.RevealBrushState")
+    static SetState( element, value)
+    {
+        var Microsoft = runtime.global("Microsoft");
+        var factory = winrt.activationFactory( "Microsoft.UI.Xaml.Media.RevealBrush" );
+        var iface = Microsoft.UI.Xaml.Media.IRevealBrushStatics( factory );
+        iface.SetState( element, value);
+        iface.release();
+        factory.release();
+    }
+
+
+    //@Async(0)
+    //@Returns("Microsoft.UI.Xaml.Media.RevealBrushState")
+    //@Parameters("Windows.UI.Xaml.UIElement")
+    static GetState( element)
+    {
+        var Microsoft = runtime.global("Microsoft");
+        var factory = winrt.activationFactory( "Microsoft.UI.Xaml.Media.RevealBrush" );
+        var iface = Microsoft.UI.Xaml.Media.IRevealBrushStatics( factory );
+        var _r = iface.GetState( element);
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    static Create()
+    {
+        return Microsoft.UI.Xaml.Media.RevealBrush(
+            winrt.activate("Microsoft.UI.Xaml.Media.RevealBrush")
+        );
+    }
+    //@Returns("Windows.UI.Color")
+    get_Color()
+    {
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Xaml.Media.IRevealBrush( this.comPtr );
+        var _r = iface.get_Color(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Parameters("Windows.UI.Color")
+    //@Returns("void")
+    //@Parameters("Windows.UI.Color")
+    put_Color(value)
+    {
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Xaml.Media.IRevealBrush( this.comPtr );
+        iface.put_Color( value );
+        iface.release();
+    }
+
+    //@Returns("Windows.UI.Xaml.ApplicationTheme")
+    get_TargetTheme()
+    {
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Xaml.Media.IRevealBrush( this.comPtr );
+        var _r = iface.get_TargetTheme(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Parameters("Windows.UI.Xaml.ApplicationTheme")
+    //@Returns("void")
+    //@Parameters("Windows.UI.Xaml.ApplicationTheme")
+    put_TargetTheme(value)
+    {
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Xaml.Media.IRevealBrush( this.comPtr );
+        iface.put_TargetTheme( value );
+        iface.release();
+    }
+
+    //@Returns("Boolean")
+    get_AlwaysUseFallback()
+    {
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Xaml.Media.IRevealBrush( this.comPtr );
+        var _r = iface.get_AlwaysUseFallback(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Parameters("Boolean")
+    //@Returns("void")
+    //@Parameters("Boolean")
+    put_AlwaysUseFallback(value)
+    {
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Xaml.Media.IRevealBrush( this.comPtr );
+        iface.put_AlwaysUseFallback( value );
+        iface.release();
+    }
+
+
+}
+Microsoft.UI.Xaml.Media.RevealBrush = Microsoft_UI_Xaml_Media_RevealBrush;
+
+//@RuntimeClass("Microsoft.UI.Xaml.Media.RevealBackgroundBrush")
+//@Implements("Microsoft.UI.Xaml.Media.IRevealBackgroundBrush")
+//@DefaultInterface("Microsoft.UI.Xaml.Media.IRevealBackgroundBrush")
+@Proxy("WinRtProxy")
+@Extends("Microsoft.UI.Xaml.Media.RevealBrush")
+class Microsoft_UI_Xaml_Media_RevealBackgroundBrush : WinRtInterface
+{
+    Microsoft_UI_Xaml_Media_RevealBackgroundBrush( comPtr )
+    {
+        var Microsoft = runtime.global("Microsoft");
+        this.comPtr = comPtr.queryInterface( Microsoft.UI.Xaml.Media.IRevealBackgroundBrush.iid );
+    }
+
+    static Create()
+    {
+        return Microsoft.UI.Xaml.Media.RevealBackgroundBrush(
+            winrt.activate("Microsoft.UI.Xaml.Media.RevealBackgroundBrush")
+        );
+    }
+
+}
+Microsoft.UI.Xaml.Media.RevealBackgroundBrush = Microsoft_UI_Xaml_Media_RevealBackgroundBrush;
+
+//@RuntimeClass("Microsoft.UI.Xaml.Media.RevealBorderBrush")
+//@Implements("Microsoft.UI.Xaml.Media.IRevealBorderBrush")
+//@DefaultInterface("Microsoft.UI.Xaml.Media.IRevealBorderBrush")
+@Proxy("WinRtProxy")
+@Extends("Microsoft.UI.Xaml.Media.RevealBrush")
+class Microsoft_UI_Xaml_Media_RevealBorderBrush : WinRtInterface
+{
+    Microsoft_UI_Xaml_Media_RevealBorderBrush( comPtr )
+    {
+        var Microsoft = runtime.global("Microsoft");
+        this.comPtr = comPtr.queryInterface( Microsoft.UI.Xaml.Media.IRevealBorderBrush.iid );
+    }
+
+    static Create()
+    {
+        return Microsoft.UI.Xaml.Media.RevealBorderBrush(
+            winrt.activate("Microsoft.UI.Xaml.Media.RevealBorderBrush")
+        );
+    }
+
+}
+Microsoft.UI.Xaml.Media.RevealBorderBrush = Microsoft_UI_Xaml_Media_RevealBorderBrush;
+
+if ( Windows.Foundation == nil ) { Windows.Foundation = {}; }
+//@Interface("Windows.Foundation.IReference`1<Double>")
+//@IID("{2F2D6C29-5473-5F3E-92E7-96572BB990E2}")
+class Windows_Foundation_IReference_1_Double_ : WinRtInterface 
+{
+    Windows_Foundation_IReference_1_Double_( comPtr )
+    {
+        this.comPtr = comPtr.queryInterface( "{2F2D6C29-5473-5F3E-92E7-96572BB990E2}");
+    }
+
+    //@VtableIndex(6)
+    //@Returns("T0")
+    get_Value()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke(6, "Double", [], [] );
+        return _r;
+    }
+
+
+}
+Windows_Foundation_IReference_1_Double_.iid = "{2F2D6C29-5473-5F3E-92E7-96572BB990E2}";
+Windows.Foundation.IReference_1_Double_ = Windows_Foundation_IReference_1_Double_;
+
+
+if ( Windows.Foundation == nil ) { Windows.Foundation = {}; }
+if ( Windows.Foundation.Collections == nil ) { Windows.Foundation.Collections = {}; }
+//@Interface("Windows.Foundation.Collections.IObservableVector`1<Windows.UI.Xaml.Media.GradientStop>")
+//@IID("{0C8A981E-FD45-5A3D-83C9-DA37669DDAD9}")
+class Windows_Foundation_Collections_IObservableVector_1_Windows_UI_Xaml_Media_GradientStop_ : WinRtInterface 
+{
+    Windows_Foundation_Collections_IObservableVector_1_Windows_UI_Xaml_Media_GradientStop_( comPtr )
+    {
+        this.comPtr = comPtr.queryInterface( "{0C8A981E-FD45-5A3D-83C9-DA37669DDAD9}");
+    }
+
+    //@VtableIndex(6)
+    //@Returns("Windows.Foundation.EventRegistrationToken")
+    //@Parameters("Windows.Foundation.Collections.VectorChangedEventHandler`1<T0>")
+    add_VectorChanged(vhnd)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = nil; 
+        if( typeof(vhnd) == "comptr" ) { 
+            p1 = vhnd;
+        } else {
+            p1 = Windows.Foundation.Collections.VectorChangedEventHandler_1_Windows_UI_Xaml_Media_GradientStop_.Create( vhnd); 
+        }
+        var _r = this.comPtr.invoke(6, "Windows.Foundation.EventRegistrationToken", ["Windows.Foundation.Collections.VectorChangedEventHandler`1<Windows.UI.Xaml.Media.GradientStop>"], [p1] );
+        return _r;
+    }
+
+    //@VtableIndex(7)
+    //@Returns("void")
+    //@Parameters("Windows.Foundation.EventRegistrationToken")
+    remove_VectorChanged(token)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = token;
+        this.comPtr.invoke(7, "void", ["Windows.Foundation.EventRegistrationToken"], [p1] );
+    }
+
+
+}
+Windows_Foundation_Collections_IObservableVector_1_Windows_UI_Xaml_Media_GradientStop_.iid = "{0C8A981E-FD45-5A3D-83C9-DA37669DDAD9}";
+Windows.Foundation.Collections.IObservableVector_1_Windows_UI_Xaml_Media_GradientStop_ = Windows_Foundation_Collections_IObservableVector_1_Windows_UI_Xaml_Media_GradientStop_;
+
+
+
+}

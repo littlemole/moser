@@ -1,0 +1,15 @@
+com.init();
+
+var doc = com.createObject("Msxml2.DOMDocument.6.0");
+//doc.setProperty("SelectionNamespaces",    "xmlns:xsl='http://www.w3.org/1999/XSL/Transform'");
+doc.setProperty("SelectionLanguage", "XPath");
+doc.async = false;
+doc.load("..\\..\\..\\t\\test.xml");
+
+print doc.xml;
+
+var objNodeList = doc.selectNodes("//object");
+for(var i = 0; i < objNodeList.length; i++)
+{
+  print objNodeList.item(i).xml;
+}

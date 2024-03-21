@@ -1,0 +1,43 @@
+
+extern {
+
+	double sin(double); 
+	
+	double cos(double);
+	double tan(double);
+	double asin(double);
+	double acos(double);
+	double atan(double);
+
+	/*
+	double atan2(double, x);	
+	*/
+	
+	double sinh(double);
+	double cosh(double);
+	double tanh(double);
+
+	double exp(double);
+	double log(double);
+	double log10(double);
+	double pow(double, double);
+	double sqrt(double);
+	double ceil(double);
+	double floor (double);
+	double fabs(double);
+	double ldexp(double, int);
+	double frexp(double, ptr);
+	double modf(double, ptr);
+	double fmod(double, double);	
+}
+
+print sin(0.5);
+print exp(2);
+print log(2);
+print log10(2);
+print pow(2,2);
+print sqrt(4);
+print ceil(3.6);
+print floor( 3.4);
+print fabs(-4.0);
+print fmod(5.0, 3);

@@ -1,0 +1,41 @@
+var a = [1,2,3,4];
+print a; // expect: array [ 1, 2, 3, 4, ]
+print a[2]; // expect: 3
+print a[1:2]; // expect: array [ 2, 3, ] 
+a.add(0);
+print a; // expect: array [ 1, 2, 3, 4, 0, ]
+print a.length; // expect: 5
+
+a.forEach( fun(it) {
+
+    print it;
+});
+
+// expect: 1
+// expect: 2
+// expect: 3
+// expect: 4
+// expect: 0
+
+print a.filter( fun(it) {
+    return it % 2;
+});
+
+// expect: array [ 1, 3, ]
+
+print a.transform( fun(it) {
+    return it * 2;
+});
+
+// expect: array [ 2, 4, 6, 8, 0, ]
+
+while(a.length)
+{    
+    print a.pop();
+}
+
+// expect: 0
+// expect: 4
+// expect: 3
+// expect: 2
+// expect: 1

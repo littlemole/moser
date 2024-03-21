@@ -1,0 +1,519 @@
+var typelib = sys.args()[2];
+
+fun pick_lib(libstr, ns)
+{
+  var libs = libstr.split(",");
+
+  var rgx = regex( "lib" + ns + ".*","i");
+
+  var result = nil;
+  libs.forEach( fun(lib) {
+    var m = rgx.match(lib);
+    if(m) 
+    {
+      result = m[0];
+    }
+  });
+  return result;
+}
+
+print "// namespace " + typelib;
+
+var d = GIR.deps{typelib};
+
+
+var libs = g_irepository_get_shared_library(GIR.repository, typelib);
+
+print "// libs " + libs;
+
+var lib = pick_lib(libs,typelib);
+
+print "extern from \"" + lib +"\" {";
+
+var nInfos = g_irepository_get_n_infos(GIR.repository, typelib);
+for( var i = 0; i  < nInfos; i++)
+{
+  var info = g_irepository_get_info( GIR.repository, typelib, i);
+  var item = g_base_info_get_name(info);
+  var type = g_base_info_get_type(info);
+
+  if( type == GIRDEF.GI_INFO_TYPE_FUNCTION)
+  {
+      var n = g_base_info_get_name(info);
+      var sym = g_function_info_get_symbol(info);
+
+      var retTypeInfo = g_callable_info_get_return_type(info);
+      var isPtr = g_type_info_is_pointer(retTypeInfo);
+      var transfer = g_callable_info_get_caller_owns(info);
+      var retType = GIMPL.get_type(isPtr,retTypeInfo,transfer);
+      var throws = g_callable_info_can_throw_gerror(info);
+
+      var result = retType + " " + sym.string() + "(";
+      
+      var nArgs = g_callable_info_get_n_args(info);
+      var args = [];
+      for( var j = 0; j  < nArgs; j++)
+      {
+        var argInfo = g_callable_info_get_arg (info,j);
+        var argType = g_arg_info_get_type(argInfo);         
+        var dir = g_arg_info_get_direction(argInfo);
+        var isPtr = g_type_info_is_pointer(argType) || dir > 0;
+        var transfer = g_arg_info_get_ownership_transfer (argInfo);
+
+        var arg = GIMPL.get_type(isPtr,argType,transfer);
+        args.push(arg);
+      }
+
+      if(throws)
+      {
+         args.push("ptr");
+      }
+
+      result += args.join(", ") + ");";
+      print result;
+  }
+  if( type == GIRDEF.GI_INFO_TYPE_OBJECT)
+  {
+      var n = g_base_info_get_name(info);
+
+      var nm = g_object_info_get_n_methods(info);
+      for ( var j = 0; j < nm; j++)
+      {
+        var finfo = g_object_info_get_method(info,j);
+        var sym = g_function_info_get_symbol(finfo);
+        var retTypeInfo = g_callable_info_get_return_type(finfo);
+        var isPtr = g_type_info_is_pointer(retTypeInfo);
+        var transfer = g_callable_info_get_caller_owns(finfo);
+        var retType = GIMPL.get_type(isPtr,retTypeInfo,transfer);
+        var throws = g_callable_info_can_throw_gerror(finfo);
+
+        
+        var nArgs = g_callable_info_get_n_args(finfo);
+
+
+        var args = [ "ptr" ];
+
+        var flags = g_function_info_get_flags(finfo);
+        if(flags & GIRDEF.GI_FUNCTION_IS_CONSTRUCTOR)
+        {
+          args = [];
+        }
+
+        var result = retType + " " + sym.string() + "(";
+
+        for( var k = 0; k  < nArgs; k++)
+        {
+          var argInfo = g_callable_info_get_arg (finfo,k);
+          var argType = g_arg_info_get_type(argInfo);         
+          var dir = g_arg_info_get_direction(argInfo);
+          var isPtr = g_type_info_is_pointer(argType) || dir > 0;
+          var transfer = g_arg_info_get_ownership_transfer (argInfo);
+
+          var arg = GIMPL.get_type(isPtr,argType,transfer);
+          args.push(arg);
+        }
+
+        if(throws)
+        {
+          args.push("ptr");
+        }
+
+        result += args.join(", ") + ");";
+        print result;
+     }
+
+
+     var nConstants = g_object_info_get_n_constants(info);
+     if(nConstants > 0) throw "XXXXXXXXXXX";
+     for ( var j = 0; j < nConstants; j++)
+     {
+       throw "XXX";
+          var constant = g_object_info_get_constant( info , j);
+
+          var val = sys.buffer(16);
+          g_constant_info_get_value( constant, val );
+          var cname = g_base_info_get_name(cnst);
+
+          var ptr = &val;
+          var r = ptr.integer();
+
+          print typelib + "_" + name + "_" + cname + " = " + r + ";" ;
+
+     }
+
+  }
+    if( type == GIRDEF.GI_INFO_TYPE_STRUCT)
+    {
+      var n = g_base_info_get_name(info);
+      var nm = g_struct_info_get_n_methods(info);
+      for ( var j = 0; j < nm; j++)
+      {
+        var finfo = g_struct_info_get_method(info,j);
+        var sym = g_function_info_get_symbol(finfo);
+        var retTypeInfo = g_callable_info_get_return_type(finfo);
+        var isPtr = g_type_info_is_pointer(retTypeInfo);
+        var transfer = g_callable_info_get_caller_owns(finfo);
+        var retType = GIMPL.get_type(isPtr,retTypeInfo,transfer);
+        var throws = g_callable_info_can_throw_gerror(finfo);
+
+        
+        var nArgs = g_callable_info_get_n_args(finfo);
+
+
+        var args = [ "ptr" ];
+
+        var flags = g_function_info_get_flags(finfo);
+        if(flags & GIRDEF.GI_FUNCTION_IS_CONSTRUCTOR)
+        {
+          args = [];
+        }
+        var result = retType + " " + sym.string() + "(";
+
+        for( var k = 0; k  < nArgs; k++)
+        {
+          var argInfo = g_callable_info_get_arg (finfo,k);
+          var argType = g_arg_info_get_type(argInfo);         
+          var dir = g_arg_info_get_direction(argInfo);
+          var isPtr = g_type_info_is_pointer(argType) || dir > 0;
+          var transfer = g_arg_info_get_ownership_transfer (argInfo);
+
+          var arg = GIMPL.get_type(isPtr,argType,transfer);
+          args.push(arg);
+        }
+
+        if(throws)
+        {
+          args.push("ptr");
+        }
+
+        result += args.join(", ") + ");";
+        print result;
+      }
+    }
+
+
+  if( type == GIRDEF.GI_INFO_TYPE_INTERFACE)
+  {
+      var n = g_base_info_get_name(info);
+
+      var nm = g_interface_info_get_n_methods(info);
+      for ( var j = 0; j < nm; j++)
+      {
+        var finfo = g_interface_info_get_method(info,j);
+        var sym = g_function_info_get_symbol(finfo);
+        var retTypeInfo = g_callable_info_get_return_type(finfo);
+        var isPtr = g_type_info_is_pointer(retTypeInfo);
+        var transfer = g_callable_info_get_caller_owns(finfo);
+        var retType = GIMPL.get_type(isPtr,retTypeInfo,transfer);
+        var throws = g_callable_info_can_throw_gerror(finfo);
+
+        var result = retType + " " + sym.string() + "(";
+        
+        var nArgs = g_callable_info_get_n_args(finfo);
+        var args = [ "ptr" ];
+        for( var k = 0; k  < nArgs; k++)
+        {
+          var argInfo = g_callable_info_get_arg (finfo,k);
+          var argType = g_arg_info_get_type(argInfo);         
+          var dir = g_arg_info_get_direction(argInfo);
+          var isPtr = g_type_info_is_pointer(argType) || dir > 0;
+          var transfer = g_arg_info_get_ownership_transfer (argInfo);
+
+          var arg = GIMPL.get_type(isPtr,argType,transfer);
+          args.push(arg);
+        }
+        if(throws)
+        {
+          args.push("ptr");
+        }
+
+        result += args.join(", ") + ");";
+        print result;
+     }
+  }
+
+}
+print "};";
+print "";
+
+var nInfos = g_irepository_get_n_infos(GIR.repository, typelib);
+for( var i = 0; i  < nInfos; i++)
+{
+  var info = g_irepository_get_info( GIR.repository, typelib, i);
+  var type = g_base_info_get_type(info);
+  if( type == GIRDEF.GI_INFO_TYPE_CALLBACK)
+  {
+      var result = "extern callback ";
+      var n = g_base_info_get_name(info);
+      //var sym = g_function_info_get_symbol(info);
+
+      var retTypeInfo = g_callable_info_get_return_type(info);
+      var isPtr = g_type_info_is_pointer(retTypeInfo);
+      var transfer = g_callable_info_get_caller_owns(info);
+      var retType = GIMPL.get_type(isPtr,retTypeInfo,transfer);
+
+      result += retType + " " + typelib + n + "(";
+      
+      var nArgs = g_callable_info_get_n_args(info);
+      var args = [];
+      for( var j = 0; j  < nArgs; j++)
+      {
+        var argInfo = g_callable_info_get_arg (info,j);
+        var argType = g_arg_info_get_type(argInfo);         
+        var dir = g_arg_info_get_direction(argInfo);
+        var isPtr = g_type_info_is_pointer(argType) || dir > 0;
+        var transfer = g_arg_info_get_ownership_transfer (argInfo);
+
+        var arg = GIMPL.get_type(isPtr,argType,transfer);
+        args.push(arg);
+      }
+
+      result += args.join(", ") + ");";
+      print result;
+  }
+}
+
+var nInfos = g_irepository_get_n_infos(GIR.repository, typelib);
+for( var i = 0; i  < nInfos; i++)
+{
+  var info = g_irepository_get_info( GIR.repository, typelib, i);
+  var type = g_base_info_get_type(info);
+  if( type == GIRDEF.GI_INFO_TYPE_STRUCT)
+  {
+      var name = typelib + g_base_info_get_name(info);
+      var namePtr = g_registered_type_info_get_type_name (info);
+      if(namePtr && int(namePtr))
+      {
+        name = namePtr.string();
+        print "// name " + name;
+      }
+      var n =  g_struct_info_get_n_fields(info);
+      print "extern struct " + name + "{";
+      var fields = [];
+      for(var j = 0; j < n ; j++)
+      {
+        var fi = g_struct_info_get_field( info, j);
+        var c = g_base_info_get_name(fi);
+        if(c == "print") c = "print_";
+
+        var ti = g_field_info_get_type(fi);
+        var isPtr = g_type_info_is_pointer(ti);
+        var tag = g_type_info_get_tag(ti);
+        var len = g_type_info_get_array_fixed_size(ti);
+        // var fn = g_type_tag_to_string(tag).string();
+
+        var tn = g_type_tag_to_string(tag).string();
+        if(tag == GIRDEF.GI_TYPE_TAG_INTERFACE)
+        {
+           var tt = g_type_info_get_interface(ti);
+           var typ = g_base_info_get_type(tt);
+           var ns = g_base_info_get_namespace(ti);
+           if(typ == GIRDEF.GI_INFO_TYPE_CALLBACK)
+           {
+             tn =   "::" + g_base_info_get_name(tt);
+           }
+           else if(typ == GIRDEF.GI_INFO_TYPE_STRUCT)
+           {
+             tn =  ns + g_base_info_get_name(tt);
+           }
+           else
+           {
+             tn =  ns + g_base_info_get_name(tt);
+           }
+        }
+        if(isPtr) tn += "*";
+
+
+        //var type = GIMPL.get_type(isPtr,ti,GIRDEF.GI_TRANSFER_NOTHING);
+        var type = GIMPL.get_struct_type(isPtr,ti,GIRDEF.GI_TRANSFER_NOTHING);
+
+        if(type[1] != nil )
+        {
+            fields.push( type[0] + " " + c + "[" + type[1] + "],  // " + tn );            
+        }
+        else if(len == -1)
+        {
+            fields.push( type[0] + " " + c + ",  // " + tn);
+        }
+        else
+        {
+            for(var k = 0; k < len; k++)
+            {
+                fields.push( type[0] + " " + c + "_" + k + ",");
+            }
+        }
+        g_base_info_unref(fi);
+        g_base_info_unref(ti);
+      }
+      print fields.join("\r\n");
+      print "};";
+      print "";
+  }
+}
+
+var nInfos = g_irepository_get_n_infos(GIR.repository, typelib);
+for( var i = 0; i  < nInfos; i++)
+{
+  var info = g_irepository_get_info( GIR.repository, typelib, i);
+  var type = g_base_info_get_type(info);
+  if( type == GIRDEF.GI_INFO_TYPE_ENUM ||
+      type == GIRDEF.GI_INFO_TYPE_FLAGS)
+  {
+      var name = g_base_info_get_name(info);
+      var n = g_enum_info_get_n_values(info);
+      for( var i = 0; i < n; i++)
+      {
+          var vi = g_enum_info_get_value(info,i);
+          var val = g_value_info_get_value(vi);
+          var c = g_base_info_get_name(vi);
+          print "var " + typelib + "_" + name + "_" + c + " = " + val + ";";
+          g_base_info_unref(vi);
+      }
+
+      print "";
+  }
+}
+
+extern struct long_t
+{
+   int value
+};
+
+extern struct str_t
+{
+   str value
+};
+
+var nInfos = g_irepository_get_n_infos(GIR.repository, typelib);
+for( var i = 0; i  < nInfos; i++)
+{
+  var info = g_irepository_get_info( GIR.repository, typelib, i);
+  var type = g_base_info_get_type(info);
+  if( type == GIRDEF.GI_INFO_TYPE_CONSTANT )
+  {
+      var name = g_base_info_get_name(info);
+
+      var val = sys.buffer(16);
+      g_constant_info_get_value( info, val );
+      var cname = g_base_info_get_name(info);
+      var typ = g_constant_info_get_type(info);
+      var tag = g_type_info_get_tag(typ);
+
+     if(tag == GIRDEF.GI_TYPE_TAG_INT32)
+     {
+      var ptr = &val;
+      //var r = ptr.integer();
+      var s = long_t(ptr);
+      var r = s.value;
+
+      print "var " + typelib + "_" + name + "_" + cname + " = " + r + ";" ;
+
+      print "";
+     }
+     if(tag == GIRDEF.GI_TYPE_TAG_UTF8)
+     {
+       var ptr = &val;
+       var s = str_t(ptr);
+       var r = s.value.string();
+
+      print "var " + typelib + "_" + name + "_" + cname + " = \"" + r + "\";" ;
+
+     }
+  }
+}
+
+print "";
+
+var nInfos = g_irepository_get_n_infos(GIR.repository, typelib);
+for( var i = 0; i  < nInfos; i++)
+{
+  var info = g_irepository_get_info( GIR.repository, typelib, i);
+  var type = g_base_info_get_type(info);
+  if( type == GIRDEF.GI_INFO_TYPE_OBJECT)
+  {
+     var name = g_base_info_get_name(info);
+     var nSignals = g_object_info_get_n_signals(info);
+     for ( var j = 0; j < nSignals; j++)
+     {
+        var sigInfo = g_object_info_get_signal(info,j);
+
+        var result = "extern callback ";
+        var n = g_base_info_get_name(sigInfo);
+        //var sym = g_function_info_get_symbol(sigInfo);
+
+        var retTypeInfo = g_callable_info_get_return_type(sigInfo);
+        var isPtr = g_type_info_is_pointer(retTypeInfo);
+        var transfer = g_callable_info_get_caller_owns(sigInfo);
+        var retType = GIMPL.get_type(isPtr,retTypeInfo,transfer);
+
+        result += retType + " " + typelib + name + "_signal_" + n.replace_all("-", "_") + "(";
+        
+        var nArgs = g_callable_info_get_n_args(sigInfo);
+        var args = [ "ptr" ];
+        for( var j = 0; j  < nArgs; j++)
+        {
+          var argInfo = g_callable_info_get_arg (sigInfo,j);
+          var argType = g_arg_info_get_type(argInfo);         
+          var dir = g_arg_info_get_direction(argInfo);
+          var isPtr = g_type_info_is_pointer(argType) || dir > 0;
+          var transfer = g_arg_info_get_ownership_transfer (argInfo);
+
+          var arg = GIMPL.get_type(isPtr,argType,transfer);
+          args.push(arg);
+        }
+        args.push("ptr");
+        result += args.join(", ") + ");";
+        print result;
+
+     }
+
+
+  }
+}
+
+print "////////////////////////";
+
+var nInfos = g_irepository_get_n_infos(GIR.repository, typelib);
+for( var i = 0; i  < nInfos; i++)
+{
+  var info = g_irepository_get_info( GIR.repository, typelib, i);
+  var type = g_base_info_get_type(info);
+  if( type == GIRDEF.GI_INFO_TYPE_OBJECT)
+  {
+      var name = g_base_info_get_name(info);
+      var nVirts = g_object_info_get_n_vfuncs(info);
+      for(var j = 0; j < nVirts; j++)
+      {
+        var vInfo = g_object_info_get_vfunc(info,j);
+
+        var result = "extern callback ";
+        var n = g_base_info_get_name(vInfo);
+        //var sym = g_function_info_get_symbol(vInfo);
+
+        var retTypeInfo = g_callable_info_get_return_type(vInfo);
+        var isPtr = g_type_info_is_pointer(retTypeInfo);
+        var transfer = g_callable_info_get_caller_owns(vInfo);
+        var retType = GIMPL.get_type(isPtr,retTypeInfo,transfer);
+
+        result += retType + " " + typelib + name + "_virtual_" + n.replace_all("-", "_") + "(";
+        
+        var nArgs = g_callable_info_get_n_args(vInfo);
+        var args = [ "ptr" ];
+        for( var j = 0; j  < nArgs; j++)
+        {
+          var argInfo = g_callable_info_get_arg (vInfo,j);
+          var argType = g_arg_info_get_type(argInfo);         
+          var dir = g_arg_info_get_direction(argInfo);
+          var isPtr = g_type_info_is_pointer(argType) || dir > 0;
+          var transfer = g_arg_info_get_ownership_transfer (argInfo);
+
+          var arg = GIMPL.get_type(isPtr,argType,transfer);
+          args.push(arg);
+        }
+        result += args.join(", ") + ");";
+        print result;
+
+      }
+  }
+}
+print "";

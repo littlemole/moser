@@ -1,0 +1,99 @@
+<Page
+  xmlns='http://schemas.microsoft.com/winfx/2006/xaml/presentation'
+  xmlns:x='http://schemas.microsoft.com/winfx/2006/xaml'
+  xmlns:d='http://schemas.microsoft.com/expression/blend/2008'
+  xmlns:mc='http://schemas.openxmlformats.org/markup-compatibility/2006'
+  xmlns:muxc='using:Microsoft.UI.Xaml.Controls'
+  Background='{ThemeResource ApplicationPageBackgroundThemeBrush}'
+  mc:Ignorable='d'>
+	<Grid Name='MasterGrid'>
+		<Grid.RowDefinitions>
+			<RowDefinition Height='auto'/>
+			<RowDefinition Height='1*'/>
+		</Grid.RowDefinitions>
+
+		<StackPanel Orientation='Horizontal' Background='{ThemeResource TopNavigationViewItemSeparatorForeground}'>
+			<AppBarToggleButton Name='OpenButton' IsChecked='True' Icon='More' Label=''/>
+			<AppBarButton Name='FileButton' Icon='Document' Label='File' >
+				<AppBarButton.Flyout>
+					<MenuFlyout>
+						<MenuFlyoutSubItem Text='Open'>
+							<MenuFlyoutItem Name='OpenXaml' Text='Xaml' />
+							<MenuFlyoutItem Name='OpenCtx' Text='Context' />
+						</MenuFlyoutSubItem>
+						<MenuFlyoutSubItem Text='Save'>
+							<MenuFlyoutItem Name='SaveXaml' Text='Xaml' />
+							<MenuFlyoutItem Name='SaveCtx' Text='Context' />
+						</MenuFlyoutSubItem>
+					</MenuFlyout>
+				</AppBarButton.Flyout>
+
+			</AppBarButton>
+			<AppBarSeparator/>
+			<AppBarButton Name='UpdateButton' Icon='Go' Label='Update XAML' />
+		</StackPanel>
+
+		<SplitView Name='CoreSplitView'
+		 Grid.Row='1'
+		 DisplayMode='Inline'
+		 IsPaneOpen='{Binding IsChecked,ElementName=OpenButton}'
+		 VerticalAlignment='Stretch'
+		 OpenPaneLength='{Binding Value, ElementName=MasterSlider, Mode=OneWay}' >
+			<SplitView.Pane>
+				<Grid Name='PaneGrid' VerticalAlignment='Stretch'>
+					<Grid.RowDefinitions>
+						<RowDefinition Name='RowDefinition' Height='*'/>
+					</Grid.RowDefinitions>
+					<Slider Name='MasterSlider'
+					 
+					 MinWidth='880'
+					 VerticalAlignment='Stretch'
+					 Maximum='880'
+					 Minimum='7'
+					 Opacity='0'
+					 Value='450' />
+					<Border BorderBrush='{ThemeResource TopNavigationViewItemSeparatorForeground}' Margin='0,0,10,0'>
+
+						<muxc:TabView Grid.Row='0' HorizontalAlignment='Stretch' IsAddTabButtonVisible='False' VerticalAlignment='Stretch'>
+							<muxc:TabViewItem Header='Source' IsClosable='False'>
+								<muxc:TabViewItem.IconSource>
+									<muxc:SymbolIconSource Symbol='Document' />
+								</muxc:TabViewItem.IconSource>
+
+								<Grid  VerticalAlignment='Stretch'>
+									<Grid.RowDefinitions>
+										<RowDefinition Height='1*'/>
+									</Grid.RowDefinitions>
+
+									<TextBox Grid.Row='0' FontFamily='Consolas' IsSpellCheckEnabled='False' Background='{ThemeResource ApplicationPageBackgroundThemeBrush}' Name='XamlSrc' MaxHeight='1800' VerticalAlignment='Stretch'  AcceptsReturn='True' ScrollViewer.VerticalScrollBarVisibility='Visible' ScrollViewer.HorizontalScrollBarVisibility='Auto' TextWrapping='NoWrap' Text='{Binding Path=[xaml], Mode=TwoWay, UpdateSourceTrigger=PropertyChanged }' />
+
+								</Grid>
+							</muxc:TabViewItem>
+							<muxc:TabViewItem Header='DataCtx' IsClosable='False'>
+								<muxc:TabViewItem.IconSource>
+									<muxc:SymbolIconSource Symbol='Edit' />
+								</muxc:TabViewItem.IconSource>
+
+								<Grid VerticalAlignment='Stretch'>
+
+									<TextBox Grid.Row='0' FontFamily='Consolas' IsSpellCheckEnabled='False' Background='{ThemeResource ApplicationPageBackgroundThemeBrush}' Name='dataContext' MaxHeight='1800' VerticalAlignment='Stretch'  AcceptsReturn='True' ScrollViewer.VerticalScrollBarVisibility='Visible' ScrollViewer.HorizontalScrollBarVisibility='Auto' TextWrapping='NoWrap' Text='{Binding Path=[ctx], Mode=TwoWay, UpdateSourceTrigger=PropertyChanged }' />
+
+								</Grid>
+
+							</muxc:TabViewItem>
+						</muxc:TabView>
+
+					</Border>
+				</Grid>
+			</SplitView.Pane>
+			<Grid Grid.Row='1' VerticalAlignment='Stretch'  >
+				<Grid.RowDefinitions>
+					<RowDefinition Name='RowDefinition2' Height='*'/>
+				</Grid.RowDefinitions>
+				<Border BorderThickness="4" BorderBrush="{ThemeResource PersonPictureEllipseBadgeFillThemeBrush}">
+					<ContentControl HorizontalContentAlignment='Stretch' VerticalContentAlignment='Stretch' Name='XamlOutput' Content='{Binding [xamlSrc]}' />
+				</Border>
+			</Grid>
+		</SplitView>
+	</Grid>
+</Page>

@@ -1,0 +1,148 @@
+extern from "libgtk-3.so" {
+    ptr gtk_application_new( str, int );
+    ptr gtk_application_window_new( ptr );
+    void g_application_quit ( ptr );
+
+    void gtk_widget_show( ptr );
+    void gtk_widget_show_all( ptr );
+    void gtk_window_set_title( ptr, str );
+    void gtk_window_set_default_size( ptr, int, int );
+    ptr gtk_button_new_with_label( str );
+    void gtk_container_add( ptr, ptr );
+
+    ptr gtk_builder_new();
+    uint gtk_builder_add_from_file(ptr, str,ptr);
+    ptr gtk_builder_get_object(ptr, str);
+    void gtk_builder_connect_signals_full( ptr, ptr, ptr);
+
+    void gtk_main();
+    void gtk_init( ptr,ptr);    
+    void gtk_main_quit();
+}
+
+extern from "libgio-2.0.so" {
+    int g_application_run( ptr, int, ptr);
+
+    ptr g_simple_action_new ( str, ptr );
+    void g_action_map_add_action ( ptr, ptr );
+}
+
+extern from "libgobject-2.0.so" {
+    ulong g_signal_connect_data( ptr, str, ptr, ptr, ptr, int );
+    void g_object_set ( ptr, str, ... , ptr, ptr );
+}
+
+extern struct GError {
+  uint domain,
+  int code,
+  str message
+}
+
+extern callback void GtkBuilderConnectFunc( ptr, ptr, str,str,ptr,int,ptr);
+extern callback void GtkCallback( ptr, ptr);
+extern callback void GtkActionCallback( ptr, ptr, ptr);
+
+///////////////////////////////////////////////////////////
+
+var callbacks = [];
+
+var bind = GtkBuilderConnectFunc( fun( builder, obj, signal, handler, target, flags, data) 
+{
+    print signal + ": " + handler;
+
+    var controller = data.object();
+    var methods = controller.methods();
+
+    methods
+        .filter( fun(k,v) { return k == handler; } )
+        .forEach( fun(k,v) {   
+            print "  connect " + k + ": " + v;
+            var cb = GtkCallback( v );
+            callbacks.push(cb);  // prevent GC
+            g_signal_connect_data (obj, signal, cb, 0, 0, 0);
+        } );
+});
+
+///////////////////////////////////////////////////////////
+
+class Controller
+{
+    test() {
+        print "Controller.:test()";
+    }
+
+    onClick(widget,ptr) {
+        print "Controller::onClick";
+    }
+
+    @accel
+    @action
+    buttClick(widget,ptr,ptr2)
+    {
+        print "Controller::action";
+    }
+
+    onDestroy(widget,ptr) {
+        print "Controller::onDestroy";
+        //gtk_main_quit();
+    }
+
+    @action
+    quit()
+    {
+        print "QUIT!";
+        g_application_quit(app);
+    }
+}
+
+
+var controller = Controller();
+
+var actionCb = GtkActionCallback( controller.onAction );
+
+
+var activate = GtkCallback( fun(app,ptr) 
+{
+
+/*  // manually connect action
+    var action = g_simple_action_new("buttClick",0);
+    g_action_map_add_action(app,action);
+    g_signal_connect_data (action, "activate", actionCb, 0, 0, 0);
+*/
+
+    // bind actions via annotations
+    var methods = controller.methods();
+    methods
+        .forEach( fun(k,v) {   
+            var m = $(v);
+
+            if(m)
+            {
+                if (m.exists("action"))
+                {
+                    print "action " + k;
+                    var action = g_simple_action_new(k,0);
+                    g_action_map_add_action(app,action);
+                    var cb = GtkActionCallback(v);
+                    callbacks.push(cb);
+                    g_signal_connect_data (action, "activate", cb, 0, 0, 0);
+                }
+            }
+        } );
+
+
+    // lod ui from xml
+
+    var builder = gtk_builder_new();
+    var r = gtk_builder_add_from_file(builder,"builder.xml",0);
+    gtk_builder_connect_signals_full(builder,bind,controller);
+
+    var mainWnd = gtk_builder_get_object(builder,"mainWindow");
+    g_object_set(mainWnd, "application", app, 0);
+    gtk_widget_show(mainWnd);
+});
+
+
+var app = gtk_application_new("moc.app",0);
+g_signal_connect_data (app, "activate", activate, 0, 0, 0);
+g_application_run(app,0,0);

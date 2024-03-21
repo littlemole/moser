@@ -1,0 +1,95 @@
+import("win32/base");
+import("win32/crypt");
+import("win32/lib");
+import("win32/gdi");
+import("win32/user");
+import("win32/ctrl");
+import("win32/dlg");
+import("wincrypt");
+import("windows");
+
+var ID_FILE_EXIT  = 1001;
+var ID_FILE_OPEN  = 1002;
+var ID_EDIT       = 5001;
+
+class MyWindow : Window 
+{
+    MyWindow()
+    {
+        super.Window();
+
+        this.menu = [
+            [ "File",  
+                [ "Open", ID_FILE_OPEN ],
+                [ "Exit", ID_FILE_EXIT ]
+            ]
+        ];
+    }
+        
+    @msg(WM_CREATE)
+    onCreate(wParam,lParam)
+    {
+        this.edit = this.control( 
+            "EDIT",
+            ID_EDIT,
+            Win32.WINDOW_STYLE.WS_CHILD|Win32.WINDOW_STYLE.WS_BORDER| 
+            Win32.WINDOW_STYLE.WS_VISIBLE | Win32.WINDOW_STYLE.WS_VSCROLL | 
+            Win32.ES_LEFT | Win32.ES_MULTILINE | Win32.ES_READONLY
+        );
+
+        return 1;
+    }
+
+
+    @cmd(ID_FILE_OPEN)
+    onOpen(wParam,lParam)
+    {
+        var dlg = FileDialog(this.hwnd);
+        var fn = dlg.open();
+
+        if(!fn) return;
+
+        var content = io.slurp(fn);
+
+        var cs = CryptoString(Win32.CRYPT_STRING.CRYPT_STRING_HEXASCIIADDR);
+        var b = cs.toString(content);
+
+        if( b.length > 64000 )
+        {
+            b = b.substr(0, 64000);
+        }
+
+        Win32.SendMessageW(this.edit.hwnd, Win32.EM_SETLIMITTEXT, b.length+1, 0);
+        Win32.SendMessageW(this.edit.hwnd, Win32.WM_SETTEXT,0,wstring(b));
+    }
+
+    @cmd(ID_FILE_EXIT)
+    onExit(wParam,lParam)
+    {
+        Win32.DestroyWindow(this.hwnd);
+        return 0;
+    }
+
+    @msg(WM_DESTROY)
+    onDestroy(wParam,lParam)
+    {
+        Win32.PostQuitMessage(0);
+        return 0;
+    }
+
+    @msg(WM_SIZE)
+    onSize()
+    {
+        if(this.edit)
+            this.resizeChild(this.edit.hwnd);
+    }
+}
+
+var wnd = MyWindow();
+wnd.create( "hex it while you can!");
+wnd.show(Win32.SHOW_WINDOW_CMD.SW_SHOW);
+
+run(wnd);
+
+
+print "OK";

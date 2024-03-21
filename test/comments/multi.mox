@@ -1,0 +1,13 @@
+
+/* the multine line 
+comment is ignoreed */ print "X";
+/* the multine line 
+comment is ignoreed */print "Y";
+/* the multine line 
+comment is ignoreed */
+print "Z";
+
+// expect: X
+// expect: Y
+// expect: Z
+

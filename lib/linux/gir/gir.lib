@@ -1,0 +1,1088 @@
+import("gir/girf");
+
+
+class GObjInterceptor
+{
+    GObjInterceptor()
+    {
+        this.methods = {};
+        this.props = nil;
+        this.constants = nil;
+    }
+
+    getter(target,name)
+    {
+        if(name == "target") return target;
+
+        if(target.keys().contains(name))
+            return target{name};
+
+        
+        if(target.methods().exists(name))
+        {
+            var result = nil;
+            target.methods().forEach( fun(k,v) {
+                if(k == name) result = v;
+            });
+            return result;
+        }
+
+        if(name == "g_type")
+        {
+            return g_type_from_obj(target.object);
+        }
+        if(name == "g_type_name")
+        {
+            return g_type_name(g_type_from_obj(target.object));
+        }
+
+        if(this.constants == nil)
+        {
+            this.constants = GIMPL.find_obj_constants(target.info);
+        }
+        if(this.constants.exists(name))
+        {
+            return this.constants{name};
+        }
+
+        if(this.props == nil)
+        {
+            this.props = GIMPL.find_properties(target.info);
+        }
+
+        if(this.props.exists(name))
+        {
+            return GIMPL.get_gvalue_property(target.object,name, this.props{name} );
+        }
+
+        var gv = gvalue();
+        g_object_get_property(target.object,name,g_unwrap(gv));
+        if(gv.g_type == GIRDEF.GTYPE_STRING )
+        {
+            var r = gv.get_string();
+            gv.unset();
+            return r;
+        }
+        if(gv.g_type == GIRDEF.GTYPE_LONG )
+        {
+            var r = gv.get_long();
+            gv.unset();
+            return r;
+        }
+        if(gv.g_type == GIRDEF.GTYPE_ULONG )
+        {
+            var r = gv.get_ulong();
+            gv.unset();
+            return r;
+        }
+        if(gv.g_type == GIRDEF.GTYPE_INT )
+        {
+            var r = gv.get_int();
+            gv.unset();
+            return r;
+        }
+        if(gv.g_type == GIRDEF.GTYPE_UINT )
+        {
+            var r = gv.get_uint();
+            gv.unset();
+            return r;
+        }
+        if(gv.g_type == GIRDEF.GTYPE_FLOAT )
+        {
+            var r = gv.get_float();
+            gv.unset();
+            return r;
+        }
+        if(gv.g_type == GIRDEF.GTYPE_DOUBLE )
+        {
+            var r = gv.get_double();
+            gv.unset();
+            return r;
+        }
+        if(gv.g_type == GIRDEF.GTYPE_OBJECT )
+        {
+            var r = GIMPL.wrap_obj(gv.get_object());
+            gv.unset();
+            return r;
+        }
+        if(gv.g_type == GIRDEF.GTYPE_POINTER )
+        {
+            var r = gv.get_pointer();
+            gv.unset();
+            return r;
+        }
+        return gv;
+    }
+
+    setter(target,name, val)
+    {
+        if(target.keys().contains(name))
+        {
+            target{name} = val;
+            return;
+        }
+
+        if(this.props == nil)
+        {
+            this.props = GIMPL.find_properties(target.info);
+        }
+
+        if(this.props.exists(name))
+        {
+            var value = gvalue(val);
+            g_object_set_property(target.object,name,g_unwrap(value));
+            value.unset();
+            return;
+        }
+
+        var gv = gvalue();
+        var spec = g_find_property(target.object,name);
+        if(spec && int(spec))
+        {
+            gv.unset();
+            var gv2 = gvalue(val);
+            g_object_set_property(target.object,name,g_unwrap(gv2));
+            gv2.unset();
+            return;
+        }
+
+        GIMPL.connect(target.object,name, val);
+    }
+
+    invoke(target,name)
+    {
+        var args = arguments();
+        args = args.transform(fun(v){ return g_unwrap(v);  });
+
+        /*
+        if( target.namespace == "WebKit2" && 
+            target.type_name == "WebView" )
+        {
+            if(name == "invoke_javascript")
+            {
+                var params = [ WebKit2.WebView(target.object) ];
+                args[2:].forEach( fun(a) { params.push(a); });
+                return runtime.invoke( GtkUI.invoke_javascript, params );
+            }
+        }
+        */
+        
+        var m = target.methods();
+        if(m.exists(name))
+        {
+            return runtime.invoke(target,name,args[2:]);
+        }
+
+        if(this.methods.exists(name))
+        {
+            var params = [target.object];
+            args[2:].forEach( fun(arg) { params.push(arg); });
+            return runtime.invoke(this.methods{name},params);
+        }
+
+        var mo = GIMPL.find_method(target.typelib,target.info,name);
+        if(mo != nil)
+        {
+            this.methods{name} = mo;
+
+            var params = [target.object];
+            args[2:].forEach( fun(arg) { params.push(arg); });
+            var r = runtime.invoke(mo,params);
+            return r;
+        }
+
+        var ni = g_object_info_get_n_interfaces(target.info);
+        for( var i = 0; i < ni; i++)
+        {
+            var iface = g_object_info_get_interface(target.info,i);
+
+            var mi = GIMPL.find_iface_method(target.typelib,iface,name);
+            if(mi != nil && int(mi))
+            {
+                this.methods{name} = mi;
+                var params = [target.object];
+                args[2:].forEach( fun(arg) { params.push(arg); });
+                var r = runtime.invoke(mi,params);
+                g_base_info_unref(iface);
+                return r;
+            }
+//            g_base_info_unref(mi);
+            g_base_info_unref(iface);
+        }
+    }
+
+
+}
+
+class GIntefaceInterceptor
+{
+    GIntefaceInterceptor()
+    {
+        this.methods = {};
+    }
+
+    getter(target,name)
+    {
+        if(name == "target") return target;
+
+        if(target.keys().contains(name))
+            return target{name};
+    }
+
+    setter(target,name, val)
+    {
+        if(target.keys().contains(name))
+        {
+            target{name} = val;
+            return;
+        }
+    }
+
+    invoke(target,name)
+    {
+        var args = arguments();
+        
+        var m = target.methods();
+        if(m.exists(name))
+        {
+            return runtime.invoke(target,name,args[2:]);
+        }
+
+        args = args.transform(fun(v){ return g_unwrap(v);  });
+
+        if(this.methods.exists(name))
+        {
+            var params = [g_unwrap(target.object)];
+            args[2:].forEach( fun(arg) { params.push(arg); });
+            return runtime.invoke(this.methods{name},params);
+        }
+
+        var mo = GIMPL.find_iface_method(target.typelib,target.info,name);
+        if(mo != nil)
+        {
+            this.methods{name} = mo;
+            var params = [g_unwrap(target.object)];
+            args[2:].forEach( fun(arg) { params.push(arg); });
+
+            var r = runtime.invoke(mo,params);
+            return r;
+        }
+    }
+}
+
+
+@Proxy("GObjInterceptor")
+class GObj
+{
+    GObj(tl,o,i)
+    {
+        var args = arguments();
+        var weak = false;
+        if(args.length>3)
+        {
+            weak = args[3];
+        }
+
+        this.typelib = tl;
+        if(weak)
+        {
+            this.object = o;
+        }
+        else
+        {
+            var addref = "g_object_ref";
+            var unref = "g_object_unref";
+
+            var addref_str = g_object_info_get_ref_function(i);
+
+            if( int(addref_str) )
+            {
+                addref = string(addref_str);
+            }
+
+            var unref_str = g_object_info_get_unref_function(i);
+            if( int(unref_str) )
+            {
+                unref = string(unref_str);
+            }
+
+            var addref_ptr = runtime.global(addref);
+            var unref_ptr = runtime.global(unref);
+
+            if( o && int(o))
+            {
+              addref_ptr(o);
+              this.object = sys.pointer( int(o),unref_ptr);
+            }
+        }
+        g_base_info_ref(i);
+
+        this.info = sys.pointer( int(i), g_base_info_unref );
+        this.namespace = g_base_info_get_namespace(i);
+        this.type_name = g_base_info_get_name(i);
+    }
+
+    signal_connect(name,handler)
+    {
+        return GIMPL.connect(this.object,name,handler);
+    }
+
+    signal_emit(name)
+    {
+        var args = arguments();
+        var params = [ this.object ];
+        args.forEach( fun(arg) { params.push(arg); });
+        params.push(0);
+        return runtime.invoke(g_signal_emit_by_name, params);
+    }
+
+    bind( propName, target, targetPropName, flags )
+    {
+        return g_object_bind_property_full( this.object, propName, target, targetPropName, flags, 0,0,0,0);        
+    }
+
+    release()
+    {
+        var ptr = sys.pointer(int(this.object));
+        this.object.detach();
+        g_object_unref(ptr);
+    }
+    
+}
+
+@Proxy("GIntefaceInterceptor")
+class GInterface
+{
+    GInterface(tl,o,i)
+    {
+        this.typelib = tl;
+        g_object_ref(o);
+        this.object = sys.pointer( int(o), g_object_unref);
+        this.info = sys.pointer( int(i), g_base_info_unref);
+        g_base_info_ref(i);
+        this.namespace = g_base_info_get_namespace(i);
+        this.type_name = g_base_info_get_name(i);
+    }
+}
+
+
+class GObjClassInterceptor
+{
+    GObjClassInterceptor()
+    {
+        this.constructors = {};
+    }
+
+    getter(target,name)
+    {
+        if(name == "target") return target;
+
+        if(name == "g_type")
+        {
+            return g_registered_type_info_get_g_type(target.info);
+        }
+        if(name == "g_type_name")
+        {
+            return g_type_name(g_registered_type_info_get_g_type(target.info));
+        }
+
+        var virt = GIMPL.find_virtual(target.typelib, target.info, name );
+        if(virt) return virt;
+
+        return target{name};
+    }
+
+    invoke(target,name)
+    {
+        var args = arguments().transform(fun(v){ return g_unwrap(v);  });
+
+        var m = target.methods();
+        if(m.exists(name))
+        {
+            return runtime.invoke(target,name,args[2:]);
+        }
+
+        if(this.constructors.exists(name))
+        {
+            return runtime.invoke(this.constructors{name},args[2:]);
+        }
+
+        var n = g_object_info_get_n_methods(target.info);
+        for( var i = 0; i < n; i++)
+        {
+            var m = g_object_info_get_method(target.info,i);
+            var fname = g_base_info_get_name(m);
+            // var sym = g_function_info_get_symbol(m);
+
+            if(strcmp(name,fname) == 0)
+            {
+                var fn = GIMPL.make_fun(target.typelib,m,name,false);
+                this.constructors{name} = fn;
+                var s;
+                s = runtime.invoke(fn,args[2:]);
+                g_base_info_unref(m);                
+                return s;
+            }
+            g_base_info_unref(m);            
+        }
+    }
+}
+
+class GInterfaceClassInterceptor
+{
+    GInterfaceClassInterceptor()
+    {
+        this.constructors = {};
+    }
+
+    getter(target,name)
+    {
+        if(name == "target") return target;
+
+
+
+        return target{name};
+    }
+
+    invoke(target,name)
+    {
+        var args = arguments().transform(fun(v){ return g_unwrap(v);  });
+
+        var m = target.methods();
+        if(m.exists(name))
+        {
+            return runtime.invoke(target,name,args[2:]);
+        }
+
+        if(this.constructors.exists(name))
+        {
+            return runtime.invoke(this.constructors{name},args[2:]);
+        }
+
+        var n = g_interface_info_get_n_methods(target.info);
+        for( var i = 0; i < n; i++)
+        {
+            var m = g_interface_info_get_method(target.info,i);
+            var fname = g_base_info_get_name(m);
+            // var sym = g_function_info_get_symbol(m);
+
+            if(strcmp(name,fname) == 0)
+            {
+                var fn = GIMPL.make_fun(target.typelib,m,name,false);
+                this.constructors{name} = fn;
+                var s;
+                s = runtime.invoke(fn,args[2:]);
+                g_base_info_unref(m);                
+                return s;
+            }
+            g_base_info_unref(m);            
+        }
+
+    }
+}
+
+
+@Proxy("GObjClassInterceptor")
+class GObjClass
+{
+    GObjClass(tl,i)
+    {
+       // var arg = arguments();
+        this.typelib = tl;
+        this.info = sys.pointer( int(i), g_base_info_unref);
+//        g_base_info_ref(i);
+       g_base_info_ref(i);
+//        this.info = i;
+        this.namespace = g_base_info_get_namespace(i);
+        this.type_name = g_base_info_get_name(i);
+
+    }
+
+}
+
+
+@Proxy("GInterfaceClassInterceptor")
+class GInterfaceClass
+{
+    GInterfaceClass(tl,i)
+    {
+        var arg = arguments();
+        this.typelib = tl;
+        this.info = sys.pointer( int(i), g_base_info_unref);
+        g_base_info_ref(i);
+//        this.info = i;
+    }
+
+}
+
+class GRecordInterceptor
+{
+    GRecordInterceptor()
+    {
+        this.methods = {};
+    }
+
+    getter(target,name)
+    {
+        if(name == "target") return target;
+
+        if(target.keys().contains(name))
+            return target{name};
+
+        return target.record{name};
+    }
+
+    setter(target,name, val)
+    {
+        target.record{name} = val;
+    }
+
+    invoke(target,name)
+    {
+        var args = arguments().transform(fun(v){ return g_unwrap(v);  });
+
+        var m = target.methods();
+        if(m.exists(name))
+        {
+            return runtime.invoke(target,name,args[2:]);
+        }
+
+        if(this.methods.exists(name))
+        {
+            var params = [g_unwrap(target.record)];
+            args[2:].forEach( fun(arg) { params.push(arg); });
+            return runtime.invoke(this.methods{name},params);
+        }
+
+        var n = g_struct_info_get_n_methods(target.info);
+        for( var i = 0; i < n; i++)
+        {
+            var m = g_struct_info_get_method(target.info,i);
+            if(!m) continue;
+            var fname = g_base_info_get_name(m);
+            var sym = g_function_info_get_symbol(m);
+            if(strcmp(name,fname) == 0)
+            {
+                var fn = GIMPL.make_fun(target.typelib,m,name,true);
+                this.methods{name} = fn;
+
+                var params = [g_unwrap(target.record)];
+                args[2:].forEach( fun(arg) { params.push(arg); });
+
+                var r = runtime.invoke(fn,params);
+                g_base_info_unref(m);
+                return r;
+            }
+            g_base_info_unref(m);
+        }
+
+    }
+}
+
+@Proxy("GRecordInterceptor")
+class GRecord
+{
+    GRecord(tl,r,i)
+    {
+        this.typelib = tl;
+        this.record = r;
+        this.info = sys.pointer( int(i), g_base_info_unref);
+        g_base_info_ref(i);
+
+        this.namespace = g_base_info_get_namespace(i);
+        this.type_name = g_base_info_get_name(i);       
+    }
+}
+
+class GStructInterceptor
+{
+    GStructInterceptor()
+    {
+        this.constructors = {};
+    }
+
+    getter(target,name)
+    {
+        if(name == "target") return target;
+
+        if(target.keys().contains(name))
+            return target{name};
+
+
+        if(this.constructors.exists(name))
+        {
+            return this.constructors{name};
+        }
+
+        var n = g_struct_info_get_n_methods(target.info);
+        for( var i = 0; i < n; i++)
+        {
+            var m = g_struct_info_get_method(target.info,i);
+            var fname = g_base_info_get_name(m);
+            // var sym = g_function_info_get_symbol(m);
+
+            if(strcmp(name,fname) == 0)
+            {
+                var fn = GIMPL.make_fun(target.typelib,m,name,false);
+                this.constructors{name} = fn;
+
+                g_base_info_unref(m);                
+                return fn;
+            }
+            g_base_info_unref(m);            
+        }        
+
+        return target{name};
+    }
+
+    invoke(target,name)
+    {
+        var args = arguments().transform(fun(v){ return g_unwrap(v);  });
+
+        var m = target.methods();
+        if(m.exists(name))
+        {
+            return runtime.invoke(target,name,args[2:]);
+        }
+
+        if(this.constructors.exists(name))
+        {
+            return runtime.invoke(this.constructors{name},args[2:]);
+        }
+
+        var n = g_struct_info_get_n_methods(target.info);
+        for( var i = 0; i < n; i++)
+        {
+            var m = g_struct_info_get_method(target.info,i);
+            var fname = g_base_info_get_name(m);
+            // var sym = g_function_info_get_symbol(m);
+
+            if(strcmp(name,fname) == 0)
+            {
+                var fn = GIMPL.make_fun(target.typelib,m,name,false);
+                this.constructors{name} = fn;
+
+                var s = runtime.invoke(fn,args[2:]);
+                g_base_info_unref(m);                
+                return s;
+            }
+            g_base_info_unref(m);            
+        }
+
+    }
+}
+
+
+@Proxy("GStructInterceptor")
+class GStruct 
+{
+    GStruct(tl,s,i)
+    {
+        var arg = arguments();
+        this.typelib = tl;
+        this.struct = s;
+        this.info = sys.pointer( int(i), g_base_info_unref);
+        g_base_info_ref(i);
+
+        this.namespace = g_base_info_get_namespace(i);
+        this.type_name = g_base_info_get_name(i);       
+        
+    }
+}
+
+class TypelibInterceptor
+{
+    TypelibInterceptor()
+    {
+        this.constants = {};
+        this.functions = {};
+        this.enums = {};
+        this.structs = {};
+        this.classes = {};
+        this.callbacks = {};
+    }
+
+
+    invoke(target,name)
+    {
+        var args = arguments().transform( fun(v){ return g_unwrap(v);  });
+
+        var m = target.methods();
+        if(m.exists(name))
+        {
+            return runtime.invoke(target,name,args[2:]);
+        }
+
+        if(this.callbacks.exists(name))
+        {
+            if(args.length>2)
+                return this.callbacks{name}(args[2]);
+            return this.callbacks{name}();
+        }
+        if(this.functions.exists(name))
+        {
+            return runtime.invoke(this.functions{name}, args[2:]);
+        }
+        
+        if(this.structs.exists(name))
+        {
+            var info = target.find(name);
+            var s = this.structs{name}.struct;
+            if(args.length < 3)
+            {
+                var r = GRecord(target,s(),info);               
+                g_base_info_unref(info);
+                return r;
+            }
+            var r = GRecord(target,s(args[2]),info);
+            g_base_info_unref(info);
+            return r;
+        }
+        if(this.classes.exists(name))
+        {
+            var gobj = args[2];
+            var clazz = this.classes{name};
+
+            var obj = GObj(target,gobj,clazz.info);
+            return obj;        
+        }
+
+        var info;
+        var ret;
+        info = target.find(name);
+        if(!info || !int(info))
+        {
+            info = GIR.find_dep(name);
+        }      
+        if(!info || !int(info))
+        {    
+            return;
+        }      
+        var type = g_base_info_get_type(info);
+
+        if(type == GIRDEF.GI_INFO_TYPE_FUNCTION )
+        {
+            var fn = GIMPL.make_fun(target,info,name,false);
+            this.functions{name} = fn;
+            g_base_info_unref(info);
+            return runtime.invoke(fn, args[2:]);
+
+        }
+        if(type == GIRDEF.GI_INFO_TYPE_STRUCT )
+        {
+            var s = GIMPL.make_struct(info,name);
+            this.structs{name} = GStruct(target,s, info);
+
+            var result;
+            if(args.length > 2)
+            {
+                result = GRecord(target,s(args[2]),info);
+            }
+            else 
+            {
+                result = GRecord(target,s(),info);
+            }
+            g_base_info_unref(info);
+            return result;
+        }
+        if(type == GIRDEF.GI_INFO_TYPE_OBJECT )
+        {
+            var gobj = args[2];
+            var clazz = GObjClass(target, info);
+            this.classes[name] = clazz;
+
+            var obj = GObj(target,gobj,info);
+            g_base_info_unref(info);
+            return obj;
+        }
+        if(type == GIRDEF.GI_INFO_TYPE_CALLBACK)
+        {
+            var fn = GIMPL.make_cb(target,info,name,false);
+            g_base_info_unref(info);                
+            this.callbacks{name} = fn;
+            if(args.length>2)
+                return fn(args[2]);
+            return fn;
+        }
+        if(type == GIRDEF.GI_INFO_TYPE_INTERFACE)
+        {
+            var gobj = args[2];
+            var clazz = GInterfaceClass(target, info);
+            this.classes[name] = clazz;
+
+            var iface = GInterface(target,gobj,info);
+            g_base_info_unref(info);                
+            return iface;
+        }
+        g_base_info_unref(info);           
+    }
+
+    getter(target,name)
+    {
+        if(name == "target") return target;
+
+        if(target{name}) return target{name};
+
+        if(this.constants.exists(name))
+        {
+            return this.constants{name};
+        }
+        if(this.enums.exists(name))
+        {
+            return this.enums{name};
+        }
+        if(this.structs.exists(name))
+        {
+            return this.structs{name};
+        }
+        if(this.classes.exists(name))
+        {
+            return this.classes{name};
+        }
+        if(this.callbacks.exists(name))
+        {
+            return this.callbacks{name};
+        }
+
+        var info;
+
+        info = target.find(name);
+        if(!info) 
+        {
+            return;
+        }
+        if(!int(info)) 
+        {
+            return;
+        }
+
+        var type = g_base_info_get_type(info);
+
+        if(type == GIRDEF.GI_INFO_TYPE_CONSTANT )
+        {
+            var ti = g_constant_info_get_type( info );
+            var tag = g_type_info_get_tag(ti);
+
+            var value;
+            if(tag == GIRDEF.GI_TYPE_TAG_UTF8)
+            {
+                var buffer = GIArgumentString();
+                g_constant_info_get_value( info, buffer );
+                value = string(buffer.value);
+            }
+            else
+            {
+                var buffer = GIArgumentLong();
+                g_constant_info_get_value( info, buffer );
+                value = buffer.value;
+            }
+            //print "CONST " + name  + " " + value;
+            g_base_info_unref(ti);
+            this.constants{name} = value;
+            g_base_info_unref(info);            
+            return value;
+        }
+        if(type == GIRDEF.GI_INFO_TYPE_ENUM ||
+            type == GIRDEF.GI_INFO_TYPE_FLAGS )
+        {
+            //print "FLAG: " + name;
+            var enum = {};
+            var n = g_enum_info_get_n_values(info);
+            for( var i = 0; i < n; i++)
+            {
+                var vi = g_enum_info_get_value(info,i);
+                var val = g_value_info_get_value(vi);
+                var c = g_base_info_get_name(vi);
+                enum{c} = val;
+                g_base_info_unref(vi);
+            }
+            this.enums{name} = enum;
+            g_base_info_unref(info);                
+            return enum;
+        }
+
+        if(type == GIRDEF.GI_INFO_TYPE_STRUCT )
+        {
+            var s = GIMPL.make_struct(info,name);
+            this.structs{name} = GStruct(target,s,info);
+            g_base_info_unref(info);
+            return this.structs{name};
+        }
+        if(type == GIRDEF.GI_INFO_TYPE_OBJECT )
+        {
+            var clazz = GObjClass(target,info);
+            this.classes{name} = clazz;
+            g_base_info_unref(info);
+            return clazz;
+        }
+
+        if(type == GIRDEF.GI_INFO_TYPE_CALLBACK)
+        {
+            var fn = GIMPL.make_cb(target,info,name,false);
+            this.callbacks{name} = fn;
+            g_base_info_unref(info);
+            return fn;
+        }
+        if(type == GIRDEF.GI_INFO_TYPE_INTERFACE)
+        {
+            var clazz = GInterfaceClass(target, info);
+            this.classes[name] = clazz;
+            g_base_info_unref(info);
+            return clazz;
+        }        
+        g_base_info_unref(info);
+    }
+}
+
+@Proxy("TypelibInterceptor")
+class TypeLib
+{
+    TypeLib(repo,dep,ver,tl)
+    {
+        this.repository = repo;
+        this.dep = dep;
+        this.ver = ver;
+        this.tl = tl;
+        this.info = {};
+
+        var dlls = g_irepository_get_shared_library(this.repository,this.dep);
+        var paths = string(dlls);
+        var p = paths.split(",");
+
+        p.forEach( fun(path)
+        {
+            var lib = dlopen(path,0x00102);
+            print "// load " + path + ": " + lib.integer();
+        });
+    }
+
+    find(name) 
+    {
+        if(this.info{name})
+        {
+            g_base_info_ref(this.info{name});
+            return this.info{name};
+        }
+
+        var base_info = g_irepository_find_by_name(this.repository, this.dep, name);
+        if(base_info == nil || base_info.integer() == 0)
+        {
+            return nil;
+            var s = "unable to find " + name + " in " + this.dep;
+            print s;
+            throw s;
+        }
+
+        this.info{name} = base_info;//sys.pointer( int(base_info), g_base_info_unref);
+        g_base_info_ref(base_info);
+        return base_info;
+    }
+
+    symbol(info)
+    {
+        var fn = g_function_info_get_symbol(info);
+        return fn.string();
+    }
+
+}
+
+class GirInterceptor
+{
+    GirInterceptor()
+    {}
+
+    invoke(target,name)
+    {
+        var args = arguments().transform(fun(v){ return g_unwrap(v);  });
+
+        var m = target.methods();
+        if(m.exists(name))
+        {
+            return runtime.invoke(target,name,args[2:]);
+        }
+    }
+
+    getter(target,name)
+    {
+        if(name == "target") return target;
+
+        if(target{name}) return target{name};
+
+        if(GIR.deps.exists(name))
+        {
+            var dep = GIR.deps{name};
+            return TypeLib(GIR.repository,name,dep.version,dep.tl);
+        }
+    }
+}
+
+
+extern struct GError {
+  int domain,
+  int code,
+  str message
+};
+
+@Proxy("GirInterceptor")
+class GIR 
+{
+    GIR( dependencies )
+    {
+        GIR.deps = {};
+        GIR.repository = g_irepository_get_default();
+        dependencies.forEach( fun(dependency)
+        {
+            var dep = dependency.split(":");
+            var name = dep[0];
+            var ver  = dep[1];
+
+            var gerr = sys.pointer();
+            var tl = g_irepository_require( GIR.repository, name, ver, 0, &gerr);
+            if(tl == nil || tl.integer() == 0)
+            {
+                var err = GError(gerr);
+                print string(err.message);
+                print "could not load " + name + " version " + ver;
+                throw 1;
+            }
+
+            GIR.deps{name} = {
+                "name" : name,
+                "version" : ver,
+                "typelib" : tl
+            };
+
+            runtime.global(name,TypeLib(GIR.repository,name,ver,dep.tl));
+        });        
+    }
+
+    static find(gtyp)
+    {
+        if(!gtyp) return nil;
+
+        var info = g_irepository_find_by_gtype(GIR.repository,gtyp);
+        return info;
+    }
+
+    static find_dep(name)
+    {
+        if(!name) return nil;
+
+        for( var dep in GIR.deps)
+        {
+            if(!dep.name) continue;
+            print dep.name;
+            var base_info = g_irepository_find_by_name(GIR.repository, dep.name, name);
+            if(base_info == nil || base_info.integer() == 0)
+            {
+                continue;
+            }
+
+            g_base_info_ref(base_info);
+            return base_info;
+
+        };
+        return nil;
+    }
+}
+

@@ -1,0 +1,84 @@
+import("gir/gir");
+
+var gir = GIR( [ "GLib:2.0", "Gtk:3.0", "GObject:2.0", "GtkSource:3.0" ] );
+
+import("gtk3ui");
+
+class Controller
+{
+    @accel("<ctrl>space","<ctrl>r")
+    test(widget,ptr) 
+    {
+        this.onEval(widget,ptr);
+    }
+
+    activate()
+    {
+    }
+
+    @accel("<ctrl>y")
+    selectLine(widget,ptr) 
+    {
+        var buf = this.ui.sourceView.get_buffer();
+        var startIt = Gtk.TextIter();
+        var endIt = nil;
+
+        var mark = buf.get_insert();
+        buf.get_iter_at_mark(startIt,mark);
+        endIt = startIt.copy();
+        if(endIt && int(endIt))
+        if(!endIt.forward_line())
+        {
+            buf.get_end_iter(endIt);
+        }
+
+        var line = startIt.get_line();
+        if( line > 0)
+        {
+            startIt.backward_line();
+            startIt.forward_line();
+        }
+        else
+        {
+            buf.get_start_iter(startIt);
+        }
+
+        line = startIt.get_line();
+        line = endIt.get_line();
+
+        buf.select_range(startIt,endIt);
+    }
+
+    onEval(widget,ptr) 
+    {
+        var buf = this.ui.sourceView.get_buffer();
+
+        var startIt = Gtk.TextIter();
+        var endIt = Gtk.TextIter();
+        var selection = buf.get_selection_bounds(startIt,endIt);
+        if(selection)
+        {
+            var r = buf.get_text(startIt.record,endIt.record,0);
+            // print r.string();
+            var res = string(runtime.eval(r));
+            if(res.length != 0)
+            {
+                var insertText = "\n" + res + "\n";
+                endIt.forward_char();
+                buf.insert(endIt,insertText,-1);
+            }
+        }
+    }
+
+    onDestroy(widget,ptr) 
+    {
+        print "Controller::onDestroy";
+    }
+}
+
+
+var controller = Controller();
+
+var gtkUi = GtkUI("eval.xml");
+gtkUi.run("moc.app",controller);
+

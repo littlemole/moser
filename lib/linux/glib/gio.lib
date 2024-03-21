@@ -1,0 +1,4742 @@
+// load libgio-2.0.so.0: 140698261286912
+// load libgobject-2.0.so.0: 140698265739264
+// load libglib-2.0.so.0: 140698266132480
+// load libgdk-3.so.0: 140698257358848
+// load libgtk-3.so.0: 140698235961344
+// load libgdk-3.so.0: 140698257358848
+// load libgobject-2.0.so.0: 140698265739264
+// load libgtksourceview-3.0.so.1: 140698232659968
+// load libwebkit2gtk-4.0.so.37: 140698133200896
+// load libjavascriptcoregtk-4.0.so.18: 140698105937920
+// load libjavascriptcoregtk-4.0.so.18: 140698105937920
+// namespace Gio
+// libs libgio-2.0.so.0
+extern from "libgio-2.0.so.0" {
+int g_action_name_is_valid(ptr, str);
+int g_action_parse_detailed_name(ptr, str, ptr, ptr, ptr);
+ptr g_action_print_detailed_name(ptr, str, ptr);
+void g_action_activate(ptr, ptr);
+void g_action_change_state(ptr, ptr);
+int g_action_get_enabled(ptr);
+str g_action_get_name(ptr);
+ptr g_action_get_parameter_type(ptr);
+ptr g_action_get_state(ptr);
+ptr g_action_get_state_hint(ptr);
+ptr g_action_get_state_type(ptr);
+void g_action_group_action_added(ptr, str);
+void g_action_group_action_enabled_changed(ptr, str, int);
+void g_action_group_action_removed(ptr, str);
+void g_action_group_action_state_changed(ptr, str, ptr);
+void g_action_group_activate_action(ptr, str, ptr);
+void g_action_group_change_action_state(ptr, str, ptr);
+int g_action_group_get_action_enabled(ptr, str);
+ptr g_action_group_get_action_parameter_type(ptr, str);
+ptr g_action_group_get_action_state(ptr, str);
+ptr g_action_group_get_action_state_hint(ptr, str);
+ptr g_action_group_get_action_state_type(ptr, str);
+int g_action_group_has_action(ptr, str);
+ptr g_action_group_list_actions(ptr);
+int g_action_group_query_action(ptr, str, ptr, ptr, ptr, ptr, ptr);
+void g_action_map_add_action(ptr, ptr);
+void g_action_map_add_action_entries(ptr, ptr, int, ptr);
+ptr g_action_map_lookup_action(ptr, str);
+void g_action_map_remove_action(ptr, str);
+ptr g_app_info_create_from_commandline(ptr, ptr, str, int, ptr);
+ptr g_app_info_get_all(ptr);
+ptr g_app_info_get_all_for_type(ptr, str);
+ptr g_app_info_get_default_for_type(ptr, str, int);
+ptr g_app_info_get_default_for_uri_scheme(ptr, str);
+ptr g_app_info_get_fallback_for_type(ptr, str);
+ptr g_app_info_get_recommended_for_type(ptr, str);
+int g_app_info_launch_default_for_uri(ptr, str, ptr, ptr);
+void g_app_info_launch_default_for_uri_async(ptr, str, ptr, ptr, ptr, ptr);
+int g_app_info_launch_default_for_uri_finish(ptr, ptr, ptr);
+void g_app_info_reset_type_associations(ptr, str);
+int g_app_info_add_supports_type(ptr, str, ptr);
+int g_app_info_can_delete(ptr);
+int g_app_info_can_remove_supports_type(ptr);
+int g_app_info_delete(ptr);
+ptr g_app_info_dup(ptr);
+int g_app_info_equal(ptr, ptr);
+ptr g_app_info_get_commandline(ptr);
+str g_app_info_get_description(ptr);
+str g_app_info_get_display_name(ptr);
+ptr g_app_info_get_executable(ptr);
+ptr g_app_info_get_icon(ptr);
+str g_app_info_get_id(ptr);
+str g_app_info_get_name(ptr);
+ptr g_app_info_get_supported_types(ptr);
+int g_app_info_launch(ptr, ptr, ptr, ptr);
+int g_app_info_launch_uris(ptr, ptr, ptr, ptr);
+void g_app_info_launch_uris_async(ptr, ptr, ptr, ptr, ptr, ptr);
+int g_app_info_launch_uris_finish(ptr, ptr, ptr);
+int g_app_info_remove_supports_type(ptr, str, ptr);
+int g_app_info_set_as_default_for_extension(ptr, ptr, ptr);
+int g_app_info_set_as_default_for_type(ptr, str, ptr);
+int g_app_info_set_as_last_used_for_type(ptr, str, ptr);
+int g_app_info_should_show(ptr);
+int g_app_info_supports_files(ptr);
+int g_app_info_supports_uris(ptr);
+ptr g_app_info_monitor_get(ptr);
+ptr g_app_launch_context_new();
+ptr g_app_launch_context_get_display(ptr, ptr, ptr);
+ptr g_app_launch_context_get_environment(ptr);
+ptr g_app_launch_context_get_startup_notify_id(ptr, ptr, ptr);
+void g_app_launch_context_launch_failed(ptr, str);
+void g_app_launch_context_setenv(ptr, ptr, ptr);
+void g_app_launch_context_unsetenv(ptr, ptr);
+ptr g_application_new(str, int);
+ptr g_application_get_default(ptr);
+int g_application_id_is_valid(ptr, str);
+void g_application_activate(ptr);
+void g_application_add_main_option(ptr, str, byte, int, int, str, str);
+void g_application_add_main_option_entries(ptr, ptr);
+void g_application_add_option_group(ptr, ptr);
+void g_application_bind_busy_property(ptr, ptr, str);
+str g_application_get_application_id(ptr);
+ptr g_application_get_dbus_connection(ptr);
+str g_application_get_dbus_object_path(ptr);
+int g_application_get_flags(ptr);
+uint g_application_get_inactivity_timeout(ptr);
+int g_application_get_is_busy(ptr);
+int g_application_get_is_registered(ptr);
+int g_application_get_is_remote(ptr);
+str g_application_get_resource_base_path(ptr);
+void g_application_hold(ptr);
+void g_application_mark_busy(ptr);
+void g_application_open(ptr, ptr, int, str);
+void g_application_quit(ptr);
+int g_application_register(ptr, ptr, ptr);
+void g_application_release(ptr);
+int g_application_run(ptr, int, ptr);
+void g_application_send_notification(ptr, str, ptr);
+void g_application_set_action_group(ptr, ptr);
+void g_application_set_application_id(ptr, str);
+void g_application_set_default(ptr);
+void g_application_set_flags(ptr, int);
+void g_application_set_inactivity_timeout(ptr, uint);
+void g_application_set_option_context_description(ptr, str);
+void g_application_set_option_context_parameter_string(ptr, str);
+void g_application_set_option_context_summary(ptr, str);
+void g_application_set_resource_base_path(ptr, str);
+void g_application_unbind_busy_property(ptr, ptr, str);
+void g_application_unmark_busy(ptr);
+void g_application_withdraw_notification(ptr, str);
+ptr g_application_command_line_create_file_for_arg(ptr, ptr);
+ptr g_application_command_line_get_arguments(ptr, ptr);
+ptr g_application_command_line_get_cwd(ptr);
+ptr g_application_command_line_get_environ(ptr);
+int g_application_command_line_get_exit_status(ptr);
+int g_application_command_line_get_is_remote(ptr);
+ptr g_application_command_line_get_options_dict(ptr);
+ptr g_application_command_line_get_platform_data(ptr);
+ptr g_application_command_line_get_stdin(ptr);
+str g_application_command_line_getenv(ptr, ptr);
+void g_application_command_line_set_exit_status(ptr, int);
+void g_async_initable_newv_async(ptr, ulong, uint, ptr, int, ptr, ptr, ptr);
+void g_async_initable_init_async(ptr, int, ptr, ptr, ptr);
+int g_async_initable_init_finish(ptr, ptr, ptr);
+ptr g_async_initable_new_finish(ptr, ptr, ptr);
+ptr g_async_result_get_source_object(ptr);
+ptr g_async_result_get_user_data(ptr);
+int g_async_result_is_tagged(ptr, ptr);
+int g_async_result_legacy_propagate_error(ptr, ptr);
+ptr g_buffered_input_stream_new(ptr);
+ptr g_buffered_input_stream_new_sized(ptr, ulong);
+long g_buffered_input_stream_fill(ptr, long, ptr, ptr);
+void g_buffered_input_stream_fill_async(ptr, long, int, ptr, ptr, ptr);
+long g_buffered_input_stream_fill_finish(ptr, ptr, ptr);
+ulong g_buffered_input_stream_get_available(ptr);
+ulong g_buffered_input_stream_get_buffer_size(ptr);
+ulong g_buffered_input_stream_peek(ptr, ptr, ulong, ulong);
+ptr g_buffered_input_stream_peek_buffer(ptr, ptr);
+int g_buffered_input_stream_read_byte(ptr, ptr, ptr);
+void g_buffered_input_stream_set_buffer_size(ptr, ulong);
+ptr g_buffered_output_stream_new(ptr);
+ptr g_buffered_output_stream_new_sized(ptr, ulong);
+int g_buffered_output_stream_get_auto_grow(ptr);
+ulong g_buffered_output_stream_get_buffer_size(ptr);
+void g_buffered_output_stream_set_auto_grow(ptr, int);
+void g_buffered_output_stream_set_buffer_size(ptr, ulong);
+ptr g_bytes_icon_new(ptr);
+ptr g_bytes_icon_get_bytes(ptr);
+ptr g_cancellable_new();
+ptr g_cancellable_get_current(ptr);
+void g_cancellable_cancel(ptr);
+ulong g_cancellable_connect(ptr, ptr, ptr, ptr);
+void g_cancellable_disconnect(ptr, ulong);
+int g_cancellable_get_fd(ptr);
+int g_cancellable_is_cancelled(ptr);
+int g_cancellable_make_pollfd(ptr, ptr);
+void g_cancellable_pop_current(ptr);
+void g_cancellable_push_current(ptr);
+void g_cancellable_release_fd(ptr);
+void g_cancellable_reset(ptr);
+int g_cancellable_set_error_if_cancelled(ptr, ptr);
+ptr g_cancellable_source_new(ptr);
+ptr g_charset_converter_new(str, str, ptr);
+uint g_charset_converter_get_num_fallbacks(ptr);
+int g_charset_converter_get_use_fallback(ptr);
+void g_charset_converter_set_use_fallback(ptr, int);
+int g_converter_convert(ptr, ptr, ulong, ptr, ulong, int, ptr, ptr, ptr);
+void g_converter_reset(ptr);
+ptr g_converter_input_stream_new(ptr, ptr);
+ptr g_converter_input_stream_get_converter(ptr);
+ptr g_converter_output_stream_new(ptr, ptr);
+ptr g_converter_output_stream_get_converter(ptr);
+ptr g_credentials_new();
+int g_credentials_get_unix_pid(ptr, ptr);
+uint g_credentials_get_unix_user(ptr, ptr);
+int g_credentials_is_same_user(ptr, ptr, ptr);
+void g_credentials_set_native(ptr, int, ptr);
+int g_credentials_set_unix_user(ptr, uint, ptr);
+ptr g_credentials_to_string(ptr);
+ptr g_dbus_action_group_get(ptr, ptr, str, str);
+ptr g_dbus_annotation_info_ref(ptr);
+void g_dbus_annotation_info_unref(ptr);
+str g_dbus_annotation_info_lookup(ptr, ptr, str);
+ptr g_dbus_arg_info_ref(ptr);
+void g_dbus_arg_info_unref(ptr);
+ptr g_dbus_auth_observer_new();
+int g_dbus_auth_observer_allow_mechanism(ptr, str);
+int g_dbus_auth_observer_authorize_authenticated_peer(ptr, ptr, ptr);
+ptr g_dbus_connection_new_finish(ptr, ptr);
+ptr g_dbus_connection_new_for_address_finish(ptr, ptr);
+ptr g_dbus_connection_new_for_address_sync(str, int, ptr, ptr, ptr);
+ptr g_dbus_connection_new_sync(ptr, str, int, ptr, ptr, ptr);
+void g_dbus_connection_new(ptr, ptr, str, int, ptr, ptr, ptr, ptr);
+void g_dbus_connection_new_for_address(ptr, str, int, ptr, ptr, ptr, ptr);
+uint g_dbus_connection_add_filter(ptr, ptr, ptr, ptr);
+void g_dbus_connection_call(ptr, str, str, str, str, ptr, ptr, int, int, ptr, ptr, ptr);
+ptr g_dbus_connection_call_finish(ptr, ptr, ptr);
+ptr g_dbus_connection_call_sync(ptr, str, str, str, str, ptr, ptr, int, int, ptr, ptr);
+void g_dbus_connection_call_with_unix_fd_list(ptr, str, str, str, str, ptr, ptr, int, int, ptr, ptr, ptr, ptr);
+ptr g_dbus_connection_call_with_unix_fd_list_finish(ptr, ptr, ptr, ptr);
+ptr g_dbus_connection_call_with_unix_fd_list_sync(ptr, str, str, str, str, ptr, ptr, int, int, ptr, ptr, ptr, ptr);
+void g_dbus_connection_close(ptr, ptr, ptr, ptr);
+int g_dbus_connection_close_finish(ptr, ptr, ptr);
+int g_dbus_connection_close_sync(ptr, ptr, ptr);
+int g_dbus_connection_emit_signal(ptr, str, str, str, str, ptr, ptr);
+uint g_dbus_connection_export_action_group(ptr, str, ptr, ptr);
+uint g_dbus_connection_export_menu_model(ptr, str, ptr, ptr);
+void g_dbus_connection_flush(ptr, ptr, ptr, ptr);
+int g_dbus_connection_flush_finish(ptr, ptr, ptr);
+int g_dbus_connection_flush_sync(ptr, ptr, ptr);
+int g_dbus_connection_get_capabilities(ptr);
+int g_dbus_connection_get_exit_on_close(ptr);
+int g_dbus_connection_get_flags(ptr);
+str g_dbus_connection_get_guid(ptr);
+uint g_dbus_connection_get_last_serial(ptr);
+ptr g_dbus_connection_get_peer_credentials(ptr);
+ptr g_dbus_connection_get_stream(ptr);
+str g_dbus_connection_get_unique_name(ptr);
+int g_dbus_connection_is_closed(ptr);
+uint g_dbus_connection_register_object_with_closures(ptr, str, ptr, ptr, ptr, ptr, ptr);
+uint g_dbus_connection_register_subtree(ptr, str, ptr, int, ptr, ptr, ptr);
+void g_dbus_connection_remove_filter(ptr, uint);
+int g_dbus_connection_send_message(ptr, ptr, int, ptr, ptr);
+void g_dbus_connection_send_message_with_reply(ptr, ptr, int, int, ptr, ptr, ptr, ptr);
+ptr g_dbus_connection_send_message_with_reply_finish(ptr, ptr, ptr);
+ptr g_dbus_connection_send_message_with_reply_sync(ptr, ptr, int, int, ptr, ptr, ptr);
+void g_dbus_connection_set_exit_on_close(ptr, int);
+uint g_dbus_connection_signal_subscribe(ptr, str, str, str, str, str, int, ptr, ptr, ptr);
+void g_dbus_connection_signal_unsubscribe(ptr, uint);
+void g_dbus_connection_start_message_processing(ptr);
+void g_dbus_connection_unexport_action_group(ptr, uint);
+void g_dbus_connection_unexport_menu_model(ptr, uint);
+int g_dbus_connection_unregister_object(ptr, uint);
+int g_dbus_connection_unregister_subtree(ptr, uint);
+ptr g_dbus_interface_dup_object(ptr);
+ptr g_dbus_interface_get_info(ptr);
+void g_dbus_interface_set_object(ptr, ptr);
+void g_dbus_interface_info_cache_build(ptr);
+void g_dbus_interface_info_cache_release(ptr);
+void g_dbus_interface_info_generate_xml(ptr, uint, ptr);
+ptr g_dbus_interface_info_lookup_method(ptr, str);
+ptr g_dbus_interface_info_lookup_property(ptr, str);
+ptr g_dbus_interface_info_lookup_signal(ptr, str);
+ptr g_dbus_interface_info_ref(ptr);
+void g_dbus_interface_info_unref(ptr);
+int g_dbus_interface_skeleton_export(ptr, ptr, str, ptr);
+void g_dbus_interface_skeleton_flush(ptr);
+ptr g_dbus_interface_skeleton_get_connection(ptr);
+ptr g_dbus_interface_skeleton_get_connections(ptr);
+int g_dbus_interface_skeleton_get_flags(ptr);
+ptr g_dbus_interface_skeleton_get_info(ptr);
+str g_dbus_interface_skeleton_get_object_path(ptr);
+ptr g_dbus_interface_skeleton_get_properties(ptr);
+int g_dbus_interface_skeleton_has_connection(ptr, ptr);
+void g_dbus_interface_skeleton_set_flags(ptr, int);
+void g_dbus_interface_skeleton_unexport(ptr);
+void g_dbus_interface_skeleton_unexport_from_connection(ptr, ptr);
+ptr g_dbus_menu_model_get(ptr, ptr, str, str);
+ptr g_dbus_message_new();
+ptr g_dbus_message_new_from_blob(ptr, ulong, int, ptr);
+ptr g_dbus_message_new_method_call(str, str, str, str);
+ptr g_dbus_message_new_signal(str, str, str);
+long g_dbus_message_bytes_needed(ptr, ptr, ulong, ptr);
+ptr g_dbus_message_copy(ptr, ptr);
+str g_dbus_message_get_arg0(ptr);
+ptr g_dbus_message_get_body(ptr);
+int g_dbus_message_get_byte_order(ptr);
+str g_dbus_message_get_destination(ptr);
+str g_dbus_message_get_error_name(ptr);
+int g_dbus_message_get_flags(ptr);
+ptr g_dbus_message_get_header(ptr, int);
+ptr g_dbus_message_get_header_fields(ptr);
+str g_dbus_message_get_interface(ptr);
+int g_dbus_message_get_locked(ptr);
+str g_dbus_message_get_member(ptr);
+int g_dbus_message_get_message_type(ptr);
+uint g_dbus_message_get_num_unix_fds(ptr);
+str g_dbus_message_get_path(ptr);
+uint g_dbus_message_get_reply_serial(ptr);
+str g_dbus_message_get_sender(ptr);
+uint g_dbus_message_get_serial(ptr);
+str g_dbus_message_get_signature(ptr);
+ptr g_dbus_message_get_unix_fd_list(ptr);
+void g_dbus_message_lock(ptr);
+ptr g_dbus_message_new_method_error_literal(ptr, str, str);
+ptr g_dbus_message_new_method_reply(ptr);
+ptr g_dbus_message_print(ptr, uint);
+void g_dbus_message_set_body(ptr, ptr);
+void g_dbus_message_set_byte_order(ptr, int);
+void g_dbus_message_set_destination(ptr, str);
+void g_dbus_message_set_error_name(ptr, str);
+void g_dbus_message_set_flags(ptr, int);
+void g_dbus_message_set_header(ptr, int, ptr);
+void g_dbus_message_set_interface(ptr, str);
+void g_dbus_message_set_member(ptr, str);
+void g_dbus_message_set_message_type(ptr, int);
+void g_dbus_message_set_num_unix_fds(ptr, uint);
+void g_dbus_message_set_path(ptr, str);
+void g_dbus_message_set_reply_serial(ptr, uint);
+void g_dbus_message_set_sender(ptr, str);
+void g_dbus_message_set_serial(ptr, uint);
+void g_dbus_message_set_signature(ptr, str);
+void g_dbus_message_set_unix_fd_list(ptr, ptr);
+ptr g_dbus_message_to_blob(ptr, ptr, int, ptr);
+int g_dbus_message_to_gerror(ptr, ptr);
+ptr g_dbus_method_info_ref(ptr);
+void g_dbus_method_info_unref(ptr);
+ptr g_dbus_method_invocation_get_connection(ptr);
+str g_dbus_method_invocation_get_interface_name(ptr);
+ptr g_dbus_method_invocation_get_message(ptr);
+ptr g_dbus_method_invocation_get_method_info(ptr);
+str g_dbus_method_invocation_get_method_name(ptr);
+str g_dbus_method_invocation_get_object_path(ptr);
+ptr g_dbus_method_invocation_get_parameters(ptr);
+ptr g_dbus_method_invocation_get_property_info(ptr);
+str g_dbus_method_invocation_get_sender(ptr);
+void g_dbus_method_invocation_return_dbus_error(ptr, str, str);
+void g_dbus_method_invocation_return_error_literal(ptr, uint, int, str);
+void g_dbus_method_invocation_return_gerror(ptr, ptr);
+void g_dbus_method_invocation_return_value(ptr, ptr);
+void g_dbus_method_invocation_return_value_with_unix_fd_list(ptr, ptr, ptr);
+ptr g_dbus_node_info_new_for_xml(str, ptr);
+void g_dbus_node_info_generate_xml(ptr, uint, ptr);
+ptr g_dbus_node_info_lookup_interface(ptr, str);
+ptr g_dbus_node_info_ref(ptr);
+void g_dbus_node_info_unref(ptr);
+ptr g_dbus_object_get_interface(ptr, str);
+ptr g_dbus_object_get_interfaces(ptr);
+str g_dbus_object_get_object_path(ptr);
+ptr g_dbus_object_manager_get_interface(ptr, str, str);
+ptr g_dbus_object_manager_get_object(ptr, str);
+str g_dbus_object_manager_get_object_path(ptr);
+ptr g_dbus_object_manager_get_objects(ptr);
+ptr g_dbus_object_manager_client_new_finish(ptr, ptr);
+ptr g_dbus_object_manager_client_new_for_bus_finish(ptr, ptr);
+ptr g_dbus_object_manager_client_new_for_bus_sync(int, int, str, str, ptr, ptr, ptr, ptr, ptr);
+ptr g_dbus_object_manager_client_new_sync(ptr, int, str, str, ptr, ptr, ptr, ptr, ptr);
+void g_dbus_object_manager_client_new(ptr, ptr, int, str, str, ptr, ptr, ptr, ptr, ptr, ptr);
+void g_dbus_object_manager_client_new_for_bus(ptr, int, int, str, str, ptr, ptr, ptr, ptr, ptr, ptr);
+ptr g_dbus_object_manager_client_get_connection(ptr);
+int g_dbus_object_manager_client_get_flags(ptr);
+str g_dbus_object_manager_client_get_name(ptr);
+ptr g_dbus_object_manager_client_get_name_owner(ptr);
+ptr g_dbus_object_manager_server_new(str);
+void g_dbus_object_manager_server_export(ptr, ptr);
+void g_dbus_object_manager_server_export_uniquely(ptr, ptr);
+ptr g_dbus_object_manager_server_get_connection(ptr);
+int g_dbus_object_manager_server_is_exported(ptr, ptr);
+void g_dbus_object_manager_server_set_connection(ptr, ptr);
+int g_dbus_object_manager_server_unexport(ptr, str);
+ptr g_dbus_object_proxy_new(ptr, str);
+ptr g_dbus_object_proxy_get_connection(ptr);
+ptr g_dbus_object_skeleton_new(str);
+void g_dbus_object_skeleton_add_interface(ptr, ptr);
+void g_dbus_object_skeleton_flush(ptr);
+void g_dbus_object_skeleton_remove_interface(ptr, ptr);
+void g_dbus_object_skeleton_remove_interface_by_name(ptr, str);
+void g_dbus_object_skeleton_set_object_path(ptr, str);
+ptr g_dbus_property_info_ref(ptr);
+void g_dbus_property_info_unref(ptr);
+ptr g_dbus_proxy_new_finish(ptr, ptr);
+ptr g_dbus_proxy_new_for_bus_finish(ptr, ptr);
+ptr g_dbus_proxy_new_for_bus_sync(int, int, ptr, str, str, str, ptr, ptr);
+ptr g_dbus_proxy_new_sync(ptr, int, ptr, str, str, str, ptr, ptr);
+void g_dbus_proxy_new(ptr, ptr, int, ptr, str, str, str, ptr, ptr, ptr);
+void g_dbus_proxy_new_for_bus(ptr, int, int, ptr, str, str, str, ptr, ptr, ptr);
+void g_dbus_proxy_call(ptr, str, ptr, int, int, ptr, ptr, ptr);
+ptr g_dbus_proxy_call_finish(ptr, ptr, ptr);
+ptr g_dbus_proxy_call_sync(ptr, str, ptr, int, int, ptr, ptr);
+void g_dbus_proxy_call_with_unix_fd_list(ptr, str, ptr, int, int, ptr, ptr, ptr, ptr);
+ptr g_dbus_proxy_call_with_unix_fd_list_finish(ptr, ptr, ptr, ptr);
+ptr g_dbus_proxy_call_with_unix_fd_list_sync(ptr, str, ptr, int, int, ptr, ptr, ptr, ptr);
+ptr g_dbus_proxy_get_cached_property(ptr, str);
+ptr g_dbus_proxy_get_cached_property_names(ptr);
+ptr g_dbus_proxy_get_connection(ptr);
+int g_dbus_proxy_get_default_timeout(ptr);
+int g_dbus_proxy_get_flags(ptr);
+ptr g_dbus_proxy_get_interface_info(ptr);
+str g_dbus_proxy_get_interface_name(ptr);
+str g_dbus_proxy_get_name(ptr);
+ptr g_dbus_proxy_get_name_owner(ptr);
+str g_dbus_proxy_get_object_path(ptr);
+void g_dbus_proxy_set_cached_property(ptr, str, ptr);
+void g_dbus_proxy_set_default_timeout(ptr, int);
+void g_dbus_proxy_set_interface_info(ptr, ptr);
+ptr g_dbus_server_new_sync(str, int, str, ptr, ptr, ptr);
+str g_dbus_server_get_client_address(ptr);
+int g_dbus_server_get_flags(ptr);
+str g_dbus_server_get_guid(ptr);
+int g_dbus_server_is_active(ptr);
+void g_dbus_server_start(ptr);
+void g_dbus_server_stop(ptr);
+ptr g_dbus_signal_info_ref(ptr);
+void g_dbus_signal_info_unref(ptr);
+ptr g_data_input_stream_new(ptr);
+int g_data_input_stream_get_byte_order(ptr);
+int g_data_input_stream_get_newline_type(ptr);
+ubyte g_data_input_stream_read_byte(ptr, ptr, ptr);
+short g_data_input_stream_read_int16(ptr, ptr, ptr);
+int g_data_input_stream_read_int32(ptr, ptr, ptr);
+long g_data_input_stream_read_int64(ptr, ptr, ptr);
+ptr g_data_input_stream_read_line(ptr, ptr, ptr, ptr);
+void g_data_input_stream_read_line_async(ptr, int, ptr, ptr, ptr);
+ptr g_data_input_stream_read_line_finish(ptr, ptr, ptr, ptr);
+ptr g_data_input_stream_read_line_finish_utf8(ptr, ptr, ptr, ptr);
+ptr g_data_input_stream_read_line_utf8(ptr, ptr, ptr, ptr);
+ushort g_data_input_stream_read_uint16(ptr, ptr, ptr);
+uint g_data_input_stream_read_uint32(ptr, ptr, ptr);
+ulong g_data_input_stream_read_uint64(ptr, ptr, ptr);
+ptr g_data_input_stream_read_until(ptr, str, ptr, ptr, ptr);
+void g_data_input_stream_read_until_async(ptr, str, int, ptr, ptr, ptr);
+ptr g_data_input_stream_read_until_finish(ptr, ptr, ptr, ptr);
+ptr g_data_input_stream_read_upto(ptr, str, long, ptr, ptr, ptr);
+void g_data_input_stream_read_upto_async(ptr, str, long, int, ptr, ptr, ptr);
+ptr g_data_input_stream_read_upto_finish(ptr, ptr, ptr, ptr);
+void g_data_input_stream_set_byte_order(ptr, int);
+void g_data_input_stream_set_newline_type(ptr, int);
+ptr g_data_output_stream_new(ptr);
+int g_data_output_stream_get_byte_order(ptr);
+int g_data_output_stream_put_byte(ptr, ubyte, ptr, ptr);
+int g_data_output_stream_put_int16(ptr, short, ptr, ptr);
+int g_data_output_stream_put_int32(ptr, int, ptr, ptr);
+int g_data_output_stream_put_int64(ptr, long, ptr, ptr);
+int g_data_output_stream_put_string(ptr, str, ptr, ptr);
+int g_data_output_stream_put_uint16(ptr, ushort, ptr, ptr);
+int g_data_output_stream_put_uint32(ptr, uint, ptr, ptr);
+int g_data_output_stream_put_uint64(ptr, ulong, ptr, ptr);
+void g_data_output_stream_set_byte_order(ptr, int);
+int g_datagram_based_condition_check(ptr, int);
+int g_datagram_based_condition_wait(ptr, int, long, ptr, ptr);
+ptr g_datagram_based_create_source(ptr, int, ptr);
+int g_datagram_based_receive_messages(ptr, ptr, uint, int, long, ptr, ptr);
+int g_datagram_based_send_messages(ptr, ptr, uint, int, long, ptr, ptr);
+int g_debug_controller_get_debug_enabled(ptr);
+void g_debug_controller_set_debug_enabled(ptr, int);
+ptr g_debug_controller_dbus_new(ptr, ptr, ptr);
+void g_debug_controller_dbus_stop(ptr);
+ptr g_desktop_app_info_new(str);
+ptr g_desktop_app_info_new_from_filename(ptr);
+ptr g_desktop_app_info_new_from_keyfile(ptr);
+ptr g_desktop_app_info_get_implementations(ptr, str);
+ptr g_desktop_app_info_search(ptr, str);
+void g_desktop_app_info_set_desktop_env(ptr, str);
+ptr g_desktop_app_info_get_action_name(ptr, str);
+int g_desktop_app_info_get_boolean(ptr, str);
+str g_desktop_app_info_get_categories(ptr);
+ptr g_desktop_app_info_get_filename(ptr);
+str g_desktop_app_info_get_generic_name(ptr);
+int g_desktop_app_info_get_is_hidden(ptr);
+ptr g_desktop_app_info_get_keywords(ptr);
+ptr g_desktop_app_info_get_locale_string(ptr, str);
+int g_desktop_app_info_get_nodisplay(ptr);
+int g_desktop_app_info_get_show_in(ptr, str);
+str g_desktop_app_info_get_startup_wm_class(ptr);
+ptr g_desktop_app_info_get_string(ptr, str);
+ptr g_desktop_app_info_get_string_list(ptr, str, ptr);
+int g_desktop_app_info_has_key(ptr, str);
+void g_desktop_app_info_launch_action(ptr, str, ptr);
+int g_desktop_app_info_launch_uris_as_manager(ptr, ptr, ptr, int, ptr, ptr, ptr, ptr, ptr);
+int g_desktop_app_info_launch_uris_as_manager_with_fds(ptr, ptr, ptr, int, ptr, ptr, ptr, ptr, int, int, int, ptr);
+ptr g_desktop_app_info_list_actions(ptr);
+ptr g_desktop_app_info_lookup_get_default_for_uri_scheme(ptr, str);
+int g_drive_can_eject(ptr);
+int g_drive_can_poll_for_media(ptr);
+int g_drive_can_start(ptr);
+int g_drive_can_start_degraded(ptr);
+int g_drive_can_stop(ptr);
+void g_drive_eject(ptr, int, ptr, ptr, ptr);
+int g_drive_eject_finish(ptr, ptr, ptr);
+void g_drive_eject_with_operation(ptr, int, ptr, ptr, ptr, ptr);
+int g_drive_eject_with_operation_finish(ptr, ptr, ptr);
+ptr g_drive_enumerate_identifiers(ptr);
+ptr g_drive_get_icon(ptr);
+ptr g_drive_get_identifier(ptr, str);
+ptr g_drive_get_name(ptr);
+str g_drive_get_sort_key(ptr);
+int g_drive_get_start_stop_type(ptr);
+ptr g_drive_get_symbolic_icon(ptr);
+ptr g_drive_get_volumes(ptr);
+int g_drive_has_media(ptr);
+int g_drive_has_volumes(ptr);
+int g_drive_is_media_check_automatic(ptr);
+int g_drive_is_media_removable(ptr);
+int g_drive_is_removable(ptr);
+void g_drive_poll_for_media(ptr, ptr, ptr, ptr);
+int g_drive_poll_for_media_finish(ptr, ptr, ptr);
+void g_drive_start(ptr, int, ptr, ptr, ptr, ptr);
+int g_drive_start_finish(ptr, ptr, ptr);
+void g_drive_stop(ptr, int, ptr, ptr, ptr, ptr);
+int g_drive_stop_finish(ptr, ptr, ptr);
+ptr g_dtls_client_connection_new(ptr, ptr, ptr, ptr);
+ptr g_dtls_client_connection_get_accepted_cas(ptr);
+ptr g_dtls_client_connection_get_server_identity(ptr);
+int g_dtls_client_connection_get_validation_flags(ptr);
+void g_dtls_client_connection_set_server_identity(ptr, ptr);
+void g_dtls_client_connection_set_validation_flags(ptr, int);
+int g_dtls_connection_close(ptr, ptr, ptr);
+void g_dtls_connection_close_async(ptr, int, ptr, ptr, ptr);
+int g_dtls_connection_close_finish(ptr, ptr, ptr);
+int g_dtls_connection_emit_accept_certificate(ptr, ptr, int);
+ptr g_dtls_connection_get_certificate(ptr);
+int g_dtls_connection_get_channel_binding_data(ptr, int, ptr, ptr);
+ptr g_dtls_connection_get_ciphersuite_name(ptr);
+ptr g_dtls_connection_get_database(ptr);
+ptr g_dtls_connection_get_interaction(ptr);
+str g_dtls_connection_get_negotiated_protocol(ptr);
+ptr g_dtls_connection_get_peer_certificate(ptr);
+int g_dtls_connection_get_peer_certificate_errors(ptr);
+int g_dtls_connection_get_protocol_version(ptr);
+int g_dtls_connection_get_rehandshake_mode(ptr);
+int g_dtls_connection_get_require_close_notify(ptr);
+int g_dtls_connection_handshake(ptr, ptr, ptr);
+void g_dtls_connection_handshake_async(ptr, int, ptr, ptr, ptr);
+int g_dtls_connection_handshake_finish(ptr, ptr, ptr);
+void g_dtls_connection_set_advertised_protocols(ptr, ptr);
+void g_dtls_connection_set_certificate(ptr, ptr);
+void g_dtls_connection_set_database(ptr, ptr);
+void g_dtls_connection_set_interaction(ptr, ptr);
+void g_dtls_connection_set_rehandshake_mode(ptr, int);
+void g_dtls_connection_set_require_close_notify(ptr, int);
+int g_dtls_connection_shutdown(ptr, int, int, ptr, ptr);
+void g_dtls_connection_shutdown_async(ptr, int, int, int, ptr, ptr, ptr);
+int g_dtls_connection_shutdown_finish(ptr, ptr, ptr);
+ptr g_dtls_server_connection_new(ptr, ptr, ptr, ptr);
+ptr g_emblem_new(ptr);
+ptr g_emblem_new_with_origin(ptr, int);
+ptr g_emblem_get_icon(ptr);
+int g_emblem_get_origin(ptr);
+ptr g_emblemed_icon_new(ptr, ptr);
+void g_emblemed_icon_add_emblem(ptr, ptr);
+void g_emblemed_icon_clear_emblems(ptr);
+ptr g_emblemed_icon_get_emblems(ptr);
+ptr g_emblemed_icon_get_icon(ptr);
+ptr g_file_new_for_commandline_arg(ptr, ptr);
+ptr g_file_new_for_commandline_arg_and_cwd(ptr, ptr, ptr);
+ptr g_file_new_for_path(ptr, ptr);
+ptr g_file_new_for_uri(ptr, str);
+ptr g_file_new_tmp(ptr, ptr, ptr, ptr);
+ptr g_file_parse_name(ptr, str);
+ptr g_file_append_to(ptr, int, ptr, ptr);
+void g_file_append_to_async(ptr, int, int, ptr, ptr, ptr);
+ptr g_file_append_to_finish(ptr, ptr, ptr);
+ptr g_file_build_attribute_list_for_copy(ptr, int, ptr, ptr);
+int g_file_copy(ptr, ptr, int, ptr, ptr, ptr, ptr);
+void g_file_copy_async(ptr, ptr, int, int, ptr, ptr, ptr, ptr, ptr);
+int g_file_copy_attributes(ptr, ptr, int, ptr, ptr);
+int g_file_copy_finish(ptr, ptr, ptr);
+ptr g_file_create(ptr, int, ptr, ptr);
+void g_file_create_async(ptr, int, int, ptr, ptr, ptr);
+ptr g_file_create_finish(ptr, ptr, ptr);
+ptr g_file_create_readwrite(ptr, int, ptr, ptr);
+void g_file_create_readwrite_async(ptr, int, int, ptr, ptr, ptr);
+ptr g_file_create_readwrite_finish(ptr, ptr, ptr);
+int g_file_delete(ptr, ptr, ptr);
+void g_file_delete_async(ptr, int, ptr, ptr, ptr);
+int g_file_delete_finish(ptr, ptr, ptr);
+ptr g_file_dup(ptr);
+void g_file_eject_mountable(ptr, int, ptr, ptr, ptr);
+int g_file_eject_mountable_finish(ptr, ptr, ptr);
+void g_file_eject_mountable_with_operation(ptr, int, ptr, ptr, ptr, ptr);
+int g_file_eject_mountable_with_operation_finish(ptr, ptr, ptr);
+ptr g_file_enumerate_children(ptr, str, int, ptr, ptr);
+void g_file_enumerate_children_async(ptr, str, int, int, ptr, ptr, ptr);
+ptr g_file_enumerate_children_finish(ptr, ptr, ptr);
+int g_file_equal(ptr, ptr);
+ptr g_file_find_enclosing_mount(ptr, ptr, ptr);
+void g_file_find_enclosing_mount_async(ptr, int, ptr, ptr, ptr);
+ptr g_file_find_enclosing_mount_finish(ptr, ptr, ptr);
+ptr g_file_get_basename(ptr);
+ptr g_file_get_child(ptr, ptr);
+ptr g_file_get_child_for_display_name(ptr, str, ptr);
+ptr g_file_get_parent(ptr);
+ptr g_file_get_parse_name(ptr);
+ptr g_file_get_path(ptr);
+ptr g_file_get_relative_path(ptr, ptr);
+ptr g_file_get_uri(ptr);
+ptr g_file_get_uri_scheme(ptr);
+int g_file_has_parent(ptr, ptr);
+int g_file_has_prefix(ptr, ptr);
+int g_file_has_uri_scheme(ptr, str);
+uint g_file_hash(ptr);
+int g_file_is_native(ptr);
+ptr g_file_load_bytes(ptr, ptr, ptr, ptr);
+void g_file_load_bytes_async(ptr, ptr, ptr, ptr);
+ptr g_file_load_bytes_finish(ptr, ptr, ptr, ptr);
+int g_file_load_contents(ptr, ptr, ptr, ptr, ptr, ptr);
+void g_file_load_contents_async(ptr, ptr, ptr, ptr);
+int g_file_load_contents_finish(ptr, ptr, ptr, ptr, ptr, ptr);
+int g_file_load_partial_contents_finish(ptr, ptr, ptr, ptr, ptr, ptr);
+int g_file_make_directory(ptr, ptr, ptr);
+void g_file_make_directory_async(ptr, int, ptr, ptr, ptr);
+int g_file_make_directory_finish(ptr, ptr, ptr);
+int g_file_make_directory_with_parents(ptr, ptr, ptr);
+int g_file_make_symbolic_link(ptr, ptr, ptr, ptr);
+int g_file_measure_disk_usage_finish(ptr, ptr, ptr, ptr, ptr, ptr);
+ptr g_file_monitor(ptr, int, ptr, ptr);
+ptr g_file_monitor_directory(ptr, int, ptr, ptr);
+ptr g_file_monitor_file(ptr, int, ptr, ptr);
+void g_file_mount_enclosing_volume(ptr, int, ptr, ptr, ptr, ptr);
+int g_file_mount_enclosing_volume_finish(ptr, ptr, ptr);
+void g_file_mount_mountable(ptr, int, ptr, ptr, ptr, ptr);
+ptr g_file_mount_mountable_finish(ptr, ptr, ptr);
+int g_file_move(ptr, ptr, int, ptr, ptr, ptr, ptr);
+void g_file_move_async(ptr, ptr, int, int, ptr, ptr, ptr, ptr, ptr);
+int g_file_move_finish(ptr, ptr, ptr);
+ptr g_file_open_readwrite(ptr, ptr, ptr);
+void g_file_open_readwrite_async(ptr, int, ptr, ptr, ptr);
+ptr g_file_open_readwrite_finish(ptr, ptr, ptr);
+ptr g_file_peek_path(ptr);
+void g_file_poll_mountable(ptr, ptr, ptr, ptr);
+int g_file_poll_mountable_finish(ptr, ptr, ptr);
+ptr g_file_query_default_handler(ptr, ptr, ptr);
+void g_file_query_default_handler_async(ptr, int, ptr, ptr, ptr);
+ptr g_file_query_default_handler_finish(ptr, ptr, ptr);
+int g_file_query_exists(ptr, ptr);
+int g_file_query_file_type(ptr, int, ptr);
+ptr g_file_query_filesystem_info(ptr, str, ptr, ptr);
+void g_file_query_filesystem_info_async(ptr, str, int, ptr, ptr, ptr);
+ptr g_file_query_filesystem_info_finish(ptr, ptr, ptr);
+ptr g_file_query_info(ptr, str, int, ptr, ptr);
+void g_file_query_info_async(ptr, str, int, int, ptr, ptr, ptr);
+ptr g_file_query_info_finish(ptr, ptr, ptr);
+ptr g_file_query_settable_attributes(ptr, ptr, ptr);
+ptr g_file_query_writable_namespaces(ptr, ptr, ptr);
+ptr g_file_read(ptr, ptr, ptr);
+void g_file_read_async(ptr, int, ptr, ptr, ptr);
+ptr g_file_read_finish(ptr, ptr, ptr);
+ptr g_file_replace(ptr, str, int, int, ptr, ptr);
+void g_file_replace_async(ptr, str, int, int, int, ptr, ptr, ptr);
+int g_file_replace_contents(ptr, ptr, ulong, str, int, int, ptr, ptr, ptr);
+void g_file_replace_contents_async(ptr, ptr, ulong, str, int, int, ptr, ptr, ptr);
+void g_file_replace_contents_bytes_async(ptr, ptr, str, int, int, ptr, ptr, ptr);
+int g_file_replace_contents_finish(ptr, ptr, ptr, ptr);
+ptr g_file_replace_finish(ptr, ptr, ptr);
+ptr g_file_replace_readwrite(ptr, str, int, int, ptr, ptr);
+void g_file_replace_readwrite_async(ptr, str, int, int, int, ptr, ptr, ptr);
+ptr g_file_replace_readwrite_finish(ptr, ptr, ptr);
+ptr g_file_resolve_relative_path(ptr, ptr);
+int g_file_set_attribute(ptr, str, int, ptr, int, ptr, ptr);
+int g_file_set_attribute_byte_string(ptr, str, str, int, ptr, ptr);
+int g_file_set_attribute_int32(ptr, str, int, int, ptr, ptr);
+int g_file_set_attribute_int64(ptr, str, long, int, ptr, ptr);
+int g_file_set_attribute_string(ptr, str, str, int, ptr, ptr);
+int g_file_set_attribute_uint32(ptr, str, uint, int, ptr, ptr);
+int g_file_set_attribute_uint64(ptr, str, ulong, int, ptr, ptr);
+void g_file_set_attributes_async(ptr, ptr, int, int, ptr, ptr, ptr);
+int g_file_set_attributes_finish(ptr, ptr, ptr, ptr);
+int g_file_set_attributes_from_info(ptr, ptr, int, ptr, ptr);
+ptr g_file_set_display_name(ptr, str, ptr, ptr);
+void g_file_set_display_name_async(ptr, str, int, ptr, ptr, ptr);
+ptr g_file_set_display_name_finish(ptr, ptr, ptr);
+void g_file_start_mountable(ptr, int, ptr, ptr, ptr, ptr);
+int g_file_start_mountable_finish(ptr, ptr, ptr);
+void g_file_stop_mountable(ptr, int, ptr, ptr, ptr, ptr);
+int g_file_stop_mountable_finish(ptr, ptr, ptr);
+int g_file_supports_thread_contexts(ptr);
+int g_file_trash(ptr, ptr, ptr);
+void g_file_trash_async(ptr, int, ptr, ptr, ptr);
+int g_file_trash_finish(ptr, ptr, ptr);
+void g_file_unmount_mountable(ptr, int, ptr, ptr, ptr);
+int g_file_unmount_mountable_finish(ptr, ptr, ptr);
+void g_file_unmount_mountable_with_operation(ptr, int, ptr, ptr, ptr, ptr);
+int g_file_unmount_mountable_with_operation_finish(ptr, ptr, ptr);
+ptr g_file_attribute_info_list_new();
+void g_file_attribute_info_list_add(ptr, str, int, int);
+ptr g_file_attribute_info_list_dup(ptr);
+ptr g_file_attribute_info_list_lookup(ptr, str);
+ptr g_file_attribute_info_list_ref(ptr);
+void g_file_attribute_info_list_unref(ptr);
+ptr g_file_attribute_matcher_new(str);
+int g_file_attribute_matcher_enumerate_namespace(ptr, str);
+str g_file_attribute_matcher_enumerate_next(ptr);
+int g_file_attribute_matcher_matches(ptr, str);
+int g_file_attribute_matcher_matches_only(ptr, str);
+ptr g_file_attribute_matcher_ref(ptr);
+ptr g_file_attribute_matcher_subtract(ptr, ptr);
+ptr g_file_attribute_matcher_to_string(ptr);
+void g_file_attribute_matcher_unref(ptr);
+int g_file_descriptor_based_get_fd(ptr);
+int g_file_enumerator_close(ptr, ptr, ptr);
+void g_file_enumerator_close_async(ptr, int, ptr, ptr, ptr);
+int g_file_enumerator_close_finish(ptr, ptr, ptr);
+ptr g_file_enumerator_get_child(ptr, ptr);
+ptr g_file_enumerator_get_container(ptr);
+int g_file_enumerator_has_pending(ptr);
+int g_file_enumerator_is_closed(ptr);
+int g_file_enumerator_iterate(ptr, ptr, ptr, ptr, ptr);
+ptr g_file_enumerator_next_file(ptr, ptr, ptr);
+void g_file_enumerator_next_files_async(ptr, int, int, ptr, ptr, ptr);
+ptr g_file_enumerator_next_files_finish(ptr, ptr, ptr);
+void g_file_enumerator_set_pending(ptr, int);
+ptr g_file_io_stream_get_etag(ptr);
+ptr g_file_io_stream_query_info(ptr, str, ptr, ptr);
+void g_file_io_stream_query_info_async(ptr, str, int, ptr, ptr, ptr);
+ptr g_file_io_stream_query_info_finish(ptr, ptr, ptr);
+ptr g_file_icon_new(ptr);
+ptr g_file_icon_get_file(ptr);
+ptr g_file_info_new();
+void g_file_info_clear_status(ptr);
+void g_file_info_copy_into(ptr, ptr);
+ptr g_file_info_dup(ptr);
+ptr g_file_info_get_access_date_time(ptr);
+ptr g_file_info_get_attribute_as_string(ptr, str);
+int g_file_info_get_attribute_boolean(ptr, str);
+str g_file_info_get_attribute_byte_string(ptr, str);
+int g_file_info_get_attribute_data(ptr, str, ptr, ptr, ptr);
+int g_file_info_get_attribute_int32(ptr, str);
+long g_file_info_get_attribute_int64(ptr, str);
+ptr g_file_info_get_attribute_object(ptr, str);
+int g_file_info_get_attribute_status(ptr, str);
+str g_file_info_get_attribute_string(ptr, str);
+ptr g_file_info_get_attribute_stringv(ptr, str);
+int g_file_info_get_attribute_type(ptr, str);
+uint g_file_info_get_attribute_uint32(ptr, str);
+ulong g_file_info_get_attribute_uint64(ptr, str);
+str g_file_info_get_content_type(ptr);
+ptr g_file_info_get_creation_date_time(ptr);
+ptr g_file_info_get_deletion_date(ptr);
+str g_file_info_get_display_name(ptr);
+str g_file_info_get_edit_name(ptr);
+str g_file_info_get_etag(ptr);
+int g_file_info_get_file_type(ptr);
+ptr g_file_info_get_icon(ptr);
+int g_file_info_get_is_backup(ptr);
+int g_file_info_get_is_hidden(ptr);
+int g_file_info_get_is_symlink(ptr);
+ptr g_file_info_get_modification_date_time(ptr);
+void g_file_info_get_modification_time(ptr, ptr);
+ptr g_file_info_get_name(ptr);
+long g_file_info_get_size(ptr);
+int g_file_info_get_sort_order(ptr);
+ptr g_file_info_get_symbolic_icon(ptr);
+str g_file_info_get_symlink_target(ptr);
+int g_file_info_has_attribute(ptr, str);
+int g_file_info_has_namespace(ptr, str);
+ptr g_file_info_list_attributes(ptr, str);
+void g_file_info_remove_attribute(ptr, str);
+void g_file_info_set_access_date_time(ptr, ptr);
+void g_file_info_set_attribute(ptr, str, int, ptr);
+void g_file_info_set_attribute_boolean(ptr, str, int);
+void g_file_info_set_attribute_byte_string(ptr, str, str);
+void g_file_info_set_attribute_int32(ptr, str, int);
+void g_file_info_set_attribute_int64(ptr, str, long);
+void g_file_info_set_attribute_mask(ptr, ptr);
+void g_file_info_set_attribute_object(ptr, str, ptr);
+int g_file_info_set_attribute_status(ptr, str, int);
+void g_file_info_set_attribute_string(ptr, str, str);
+void g_file_info_set_attribute_stringv(ptr, str, ptr);
+void g_file_info_set_attribute_uint32(ptr, str, uint);
+void g_file_info_set_attribute_uint64(ptr, str, ulong);
+void g_file_info_set_content_type(ptr, str);
+void g_file_info_set_creation_date_time(ptr, ptr);
+void g_file_info_set_display_name(ptr, str);
+void g_file_info_set_edit_name(ptr, str);
+void g_file_info_set_file_type(ptr, int);
+void g_file_info_set_icon(ptr, ptr);
+void g_file_info_set_is_hidden(ptr, int);
+void g_file_info_set_is_symlink(ptr, int);
+void g_file_info_set_modification_date_time(ptr, ptr);
+void g_file_info_set_modification_time(ptr, ptr);
+void g_file_info_set_name(ptr, ptr);
+void g_file_info_set_size(ptr, long);
+void g_file_info_set_sort_order(ptr, int);
+void g_file_info_set_symbolic_icon(ptr, ptr);
+void g_file_info_set_symlink_target(ptr, str);
+void g_file_info_unset_attribute_mask(ptr);
+ptr g_file_input_stream_query_info(ptr, str, ptr, ptr);
+void g_file_input_stream_query_info_async(ptr, str, int, ptr, ptr, ptr);
+ptr g_file_input_stream_query_info_finish(ptr, ptr, ptr);
+int g_file_monitor_cancel(ptr);
+void g_file_monitor_emit_event(ptr, ptr, ptr, int);
+int g_file_monitor_is_cancelled(ptr);
+void g_file_monitor_set_rate_limit(ptr, int);
+ptr g_file_output_stream_get_etag(ptr);
+ptr g_file_output_stream_query_info(ptr, str, ptr, ptr);
+void g_file_output_stream_query_info_async(ptr, str, int, ptr, ptr, ptr);
+ptr g_file_output_stream_query_info_finish(ptr, ptr, ptr);
+ptr g_filename_completer_new();
+ptr g_filename_completer_get_completion_suffix(ptr, str);
+ptr g_filename_completer_get_completions(ptr, str);
+void g_filename_completer_set_dirs_only(ptr, int);
+ptr g_filter_input_stream_get_base_stream(ptr);
+int g_filter_input_stream_get_close_base_stream(ptr);
+void g_filter_input_stream_set_close_base_stream(ptr, int);
+ptr g_filter_output_stream_get_base_stream(ptr);
+int g_filter_output_stream_get_close_base_stream(ptr);
+void g_filter_output_stream_set_close_base_stream(ptr, int);
+str g_io_extension_get_name(ptr);
+int g_io_extension_get_priority(ptr);
+ulong g_io_extension_get_type(ptr);
+ptr g_io_extension_point_get_extension_by_name(ptr, str);
+ptr g_io_extension_point_get_extensions(ptr);
+ulong g_io_extension_point_get_required_type(ptr);
+void g_io_extension_point_set_required_type(ptr, ulong);
+ptr g_io_extension_point_implement(ptr, str, ulong, str, int);
+ptr g_io_extension_point_lookup(ptr, str);
+ptr g_io_extension_point_register(ptr, str);
+ptr g_io_module_new(ptr);
+ptr g_io_module_query(ptr);
+void g_io_module_scope_block(ptr, str);
+void g_io_module_scope_free(ptr);
+int g_io_scheduler_job_send_to_mainloop(ptr, ptr, ptr, ptr);
+void g_io_scheduler_job_send_to_mainloop_async(ptr, ptr, ptr, ptr);
+int g_io_stream_splice_finish(ptr, ptr, ptr);
+void g_io_stream_clear_pending(ptr);
+int g_io_stream_close(ptr, ptr, ptr);
+void g_io_stream_close_async(ptr, int, ptr, ptr, ptr);
+int g_io_stream_close_finish(ptr, ptr, ptr);
+ptr g_io_stream_get_input_stream(ptr);
+ptr g_io_stream_get_output_stream(ptr);
+int g_io_stream_has_pending(ptr);
+int g_io_stream_is_closed(ptr);
+int g_io_stream_set_pending(ptr, ptr);
+void g_io_stream_splice_async(ptr, ptr, int, int, ptr, ptr, ptr);
+ptr g_icon_deserialize(ptr, ptr);
+uint g_icon_hash(ptr, ptr);
+ptr g_icon_new_for_string(ptr, str, ptr);
+int g_icon_equal(ptr, ptr);
+ptr g_icon_serialize(ptr);
+ptr g_icon_to_string(ptr);
+ptr g_inet_address_new_any(int);
+ptr g_inet_address_new_from_bytes(ptr, int);
+ptr g_inet_address_new_from_string(str);
+ptr g_inet_address_new_loopback(int);
+int g_inet_address_equal(ptr, ptr);
+int g_inet_address_get_family(ptr);
+int g_inet_address_get_is_any(ptr);
+int g_inet_address_get_is_link_local(ptr);
+int g_inet_address_get_is_loopback(ptr);
+int g_inet_address_get_is_mc_global(ptr);
+int g_inet_address_get_is_mc_link_local(ptr);
+int g_inet_address_get_is_mc_node_local(ptr);
+int g_inet_address_get_is_mc_org_local(ptr);
+int g_inet_address_get_is_mc_site_local(ptr);
+int g_inet_address_get_is_multicast(ptr);
+int g_inet_address_get_is_site_local(ptr);
+ulong g_inet_address_get_native_size(ptr);
+ptr g_inet_address_to_string(ptr);
+ptr g_inet_address_mask_new(ptr, uint, ptr);
+ptr g_inet_address_mask_new_from_string(str, ptr);
+int g_inet_address_mask_equal(ptr, ptr);
+ptr g_inet_address_mask_get_address(ptr);
+int g_inet_address_mask_get_family(ptr);
+uint g_inet_address_mask_get_length(ptr);
+int g_inet_address_mask_matches(ptr, ptr);
+ptr g_inet_address_mask_to_string(ptr);
+ptr g_inet_socket_address_new(ptr, ushort);
+ptr g_inet_socket_address_new_from_string(str, uint);
+ptr g_inet_socket_address_get_address(ptr);
+uint g_inet_socket_address_get_flowinfo(ptr);
+ushort g_inet_socket_address_get_port(ptr);
+uint g_inet_socket_address_get_scope_id(ptr);
+ptr g_initable_newv(ptr, ulong, uint, ptr, ptr, ptr);
+int g_initable_init(ptr, ptr, ptr);
+void g_input_stream_clear_pending(ptr);
+int g_input_stream_close(ptr, ptr, ptr);
+void g_input_stream_close_async(ptr, int, ptr, ptr, ptr);
+int g_input_stream_close_finish(ptr, ptr, ptr);
+int g_input_stream_has_pending(ptr);
+int g_input_stream_is_closed(ptr);
+long g_input_stream_read(ptr, ptr, ulong, ptr, ptr);
+int g_input_stream_read_all(ptr, ptr, ulong, ptr, ptr, ptr);
+void g_input_stream_read_all_async(ptr, ptr, ulong, int, ptr, ptr, ptr);
+int g_input_stream_read_all_finish(ptr, ptr, ptr, ptr);
+void g_input_stream_read_async(ptr, ptr, ulong, int, ptr, ptr, ptr);
+ptr g_input_stream_read_bytes(ptr, ulong, ptr, ptr);
+void g_input_stream_read_bytes_async(ptr, ulong, int, ptr, ptr, ptr);
+ptr g_input_stream_read_bytes_finish(ptr, ptr, ptr);
+long g_input_stream_read_finish(ptr, ptr, ptr);
+int g_input_stream_set_pending(ptr, ptr);
+long g_input_stream_skip(ptr, ulong, ptr, ptr);
+void g_input_stream_skip_async(ptr, ulong, int, ptr, ptr, ptr);
+long g_input_stream_skip_finish(ptr, ptr, ptr);
+ulong g_list_model_get_item_type(ptr);
+uint g_list_model_get_n_items(ptr);
+ptr g_list_model_get_object(ptr, uint);
+void g_list_model_items_changed(ptr, uint, uint, uint);
+ptr g_list_store_new(ulong);
+void g_list_store_append(ptr, ptr);
+int g_list_store_find(ptr, ptr, ptr);
+int g_list_store_find_with_equal_func(ptr, ptr, ptr, ptr);
+void g_list_store_insert(ptr, uint, ptr);
+uint g_list_store_insert_sorted(ptr, ptr, ptr, ptr);
+void g_list_store_remove(ptr, uint);
+void g_list_store_remove_all(ptr);
+void g_list_store_sort(ptr, ptr, ptr);
+void g_list_store_splice(ptr, uint, uint, ptr, uint);
+ptr g_loadable_icon_load(ptr, int, ptr, ptr, ptr);
+void g_loadable_icon_load_async(ptr, int, ptr, ptr, ptr);
+ptr g_loadable_icon_load_finish(ptr, ptr, ptr, ptr);
+ptr g_memory_input_stream_new();
+ptr g_memory_input_stream_new_from_bytes(ptr);
+ptr g_memory_input_stream_new_from_data(ptr, long, ptr);
+void g_memory_input_stream_add_bytes(ptr, ptr);
+void g_memory_input_stream_add_data(ptr, ptr, long, ptr);
+ptr g_memory_monitor_dup_default(ptr);
+ptr g_memory_output_stream_new_resizable();
+ptr g_memory_output_stream_get_data(ptr);
+ulong g_memory_output_stream_get_data_size(ptr);
+ulong g_memory_output_stream_get_size(ptr);
+ptr g_memory_output_stream_steal_as_bytes(ptr);
+ptr g_memory_output_stream_steal_data(ptr);
+ptr g_menu_new();
+void g_menu_append(ptr, str, str);
+void g_menu_append_item(ptr, ptr);
+void g_menu_append_section(ptr, str, ptr);
+void g_menu_append_submenu(ptr, str, ptr);
+void g_menu_freeze(ptr);
+void g_menu_insert(ptr, int, str, str);
+void g_menu_insert_item(ptr, int, ptr);
+void g_menu_insert_section(ptr, int, str, ptr);
+void g_menu_insert_submenu(ptr, int, str, ptr);
+void g_menu_prepend(ptr, str, str);
+void g_menu_prepend_item(ptr, ptr);
+void g_menu_prepend_section(ptr, str, ptr);
+void g_menu_prepend_submenu(ptr, str, ptr);
+void g_menu_remove(ptr, int);
+void g_menu_remove_all(ptr);
+str g_menu_attribute_iter_get_name(ptr);
+int g_menu_attribute_iter_get_next(ptr, str, ptr);
+ptr g_menu_attribute_iter_get_value(ptr);
+int g_menu_attribute_iter_next(ptr);
+ptr g_menu_item_new(str, str);
+ptr g_menu_item_new_from_model(ptr, int);
+ptr g_menu_item_new_section(str, ptr);
+ptr g_menu_item_new_submenu(str, ptr);
+ptr g_menu_item_get_attribute_value(ptr, str, ptr);
+ptr g_menu_item_get_link(ptr, str);
+void g_menu_item_set_action_and_target_value(ptr, str, ptr);
+void g_menu_item_set_attribute_value(ptr, str, ptr);
+void g_menu_item_set_detailed_action(ptr, str);
+void g_menu_item_set_icon(ptr, ptr);
+void g_menu_item_set_label(ptr, str);
+void g_menu_item_set_link(ptr, str, ptr);
+void g_menu_item_set_section(ptr, ptr);
+void g_menu_item_set_submenu(ptr, ptr);
+str g_menu_link_iter_get_name(ptr);
+int g_menu_link_iter_get_next(ptr, str, ptr);
+ptr g_menu_link_iter_get_value(ptr);
+int g_menu_link_iter_next(ptr);
+ptr g_menu_model_get_item_attribute_value(ptr, int, str, ptr);
+ptr g_menu_model_get_item_link(ptr, int, str);
+int g_menu_model_get_n_items(ptr);
+int g_menu_model_is_mutable(ptr);
+void g_menu_model_items_changed(ptr, int, int, int);
+ptr g_menu_model_iterate_item_attributes(ptr, int);
+ptr g_menu_model_iterate_item_links(ptr, int);
+int g_mount_can_eject(ptr);
+int g_mount_can_unmount(ptr);
+void g_mount_eject(ptr, int, ptr, ptr, ptr);
+int g_mount_eject_finish(ptr, ptr, ptr);
+void g_mount_eject_with_operation(ptr, int, ptr, ptr, ptr, ptr);
+int g_mount_eject_with_operation_finish(ptr, ptr, ptr);
+ptr g_mount_get_default_location(ptr);
+ptr g_mount_get_drive(ptr);
+ptr g_mount_get_icon(ptr);
+ptr g_mount_get_name(ptr);
+ptr g_mount_get_root(ptr);
+str g_mount_get_sort_key(ptr);
+ptr g_mount_get_symbolic_icon(ptr);
+ptr g_mount_get_uuid(ptr);
+ptr g_mount_get_volume(ptr);
+void g_mount_guess_content_type(ptr, int, ptr, ptr, ptr);
+ptr g_mount_guess_content_type_finish(ptr, ptr, ptr);
+ptr g_mount_guess_content_type_sync(ptr, int, ptr, ptr);
+int g_mount_is_shadowed(ptr);
+void g_mount_remount(ptr, int, ptr, ptr, ptr, ptr);
+int g_mount_remount_finish(ptr, ptr, ptr);
+void g_mount_shadow(ptr);
+void g_mount_unmount(ptr, int, ptr, ptr, ptr);
+int g_mount_unmount_finish(ptr, ptr, ptr);
+void g_mount_unmount_with_operation(ptr, int, ptr, ptr, ptr, ptr);
+int g_mount_unmount_with_operation_finish(ptr, ptr, ptr);
+void g_mount_unshadow(ptr);
+ptr g_mount_operation_new();
+int g_mount_operation_get_anonymous(ptr);
+int g_mount_operation_get_choice(ptr);
+str g_mount_operation_get_domain(ptr);
+int g_mount_operation_get_is_tcrypt_hidden_volume(ptr);
+int g_mount_operation_get_is_tcrypt_system_volume(ptr);
+str g_mount_operation_get_password(ptr);
+int g_mount_operation_get_password_save(ptr);
+uint g_mount_operation_get_pim(ptr);
+str g_mount_operation_get_username(ptr);
+void g_mount_operation_reply(ptr, int);
+void g_mount_operation_set_anonymous(ptr, int);
+void g_mount_operation_set_choice(ptr, int);
+void g_mount_operation_set_domain(ptr, str);
+void g_mount_operation_set_is_tcrypt_hidden_volume(ptr, int);
+void g_mount_operation_set_is_tcrypt_system_volume(ptr, int);
+void g_mount_operation_set_password(ptr, str);
+void g_mount_operation_set_password_save(ptr, int);
+void g_mount_operation_set_pim(ptr, uint);
+void g_mount_operation_set_username(ptr, str);
+ptr g_native_socket_address_new(ptr, ulong);
+ptr g_network_address_new(str, ushort);
+ptr g_network_address_new_loopback(ushort);
+ptr g_network_address_parse(ptr, str, ushort, ptr);
+ptr g_network_address_parse_uri(ptr, str, ushort, ptr);
+str g_network_address_get_hostname(ptr);
+ushort g_network_address_get_port(ptr);
+str g_network_address_get_scheme(ptr);
+ptr g_network_monitor_get_default(ptr);
+int g_network_monitor_can_reach(ptr, ptr, ptr, ptr);
+void g_network_monitor_can_reach_async(ptr, ptr, ptr, ptr, ptr);
+int g_network_monitor_can_reach_finish(ptr, ptr, ptr);
+int g_network_monitor_get_connectivity(ptr);
+int g_network_monitor_get_network_available(ptr);
+int g_network_monitor_get_network_metered(ptr);
+ptr g_network_service_new(str, str, str);
+str g_network_service_get_domain(ptr);
+str g_network_service_get_protocol(ptr);
+str g_network_service_get_scheme(ptr);
+str g_network_service_get_service(ptr);
+void g_network_service_set_scheme(ptr, str);
+ptr g_notification_new(str);
+void g_notification_add_button(ptr, str, str);
+void g_notification_add_button_with_target_value(ptr, str, str, ptr);
+void g_notification_set_body(ptr, str);
+void g_notification_set_category(ptr, str);
+void g_notification_set_default_action(ptr, str);
+void g_notification_set_default_action_and_target_value(ptr, str, ptr);
+void g_notification_set_icon(ptr, ptr);
+void g_notification_set_priority(ptr, int);
+void g_notification_set_title(ptr, str);
+void g_notification_set_urgent(ptr, int);
+void g_output_stream_clear_pending(ptr);
+int g_output_stream_close(ptr, ptr, ptr);
+void g_output_stream_close_async(ptr, int, ptr, ptr, ptr);
+int g_output_stream_close_finish(ptr, ptr, ptr);
+int g_output_stream_flush(ptr, ptr, ptr);
+void g_output_stream_flush_async(ptr, int, ptr, ptr, ptr);
+int g_output_stream_flush_finish(ptr, ptr, ptr);
+int g_output_stream_has_pending(ptr);
+int g_output_stream_is_closed(ptr);
+int g_output_stream_is_closing(ptr);
+int g_output_stream_set_pending(ptr, ptr);
+long g_output_stream_splice(ptr, ptr, int, ptr, ptr);
+void g_output_stream_splice_async(ptr, ptr, int, int, ptr, ptr, ptr);
+long g_output_stream_splice_finish(ptr, ptr, ptr);
+long g_output_stream_write(ptr, ptr, ulong, ptr, ptr);
+int g_output_stream_write_all(ptr, ptr, ulong, ptr, ptr, ptr);
+void g_output_stream_write_all_async(ptr, ptr, ulong, int, ptr, ptr, ptr);
+int g_output_stream_write_all_finish(ptr, ptr, ptr, ptr);
+void g_output_stream_write_async(ptr, ptr, ulong, int, ptr, ptr, ptr);
+long g_output_stream_write_bytes(ptr, ptr, ptr, ptr);
+void g_output_stream_write_bytes_async(ptr, ptr, int, ptr, ptr, ptr);
+long g_output_stream_write_bytes_finish(ptr, ptr, ptr);
+long g_output_stream_write_finish(ptr, ptr, ptr);
+int g_output_stream_writev(ptr, ptr, ulong, ptr, ptr, ptr);
+int g_output_stream_writev_all(ptr, ptr, ulong, ptr, ptr, ptr);
+void g_output_stream_writev_all_async(ptr, ptr, ulong, int, ptr, ptr, ptr);
+int g_output_stream_writev_all_finish(ptr, ptr, ptr, ptr);
+void g_output_stream_writev_async(ptr, ptr, ulong, int, ptr, ptr, ptr);
+int g_output_stream_writev_finish(ptr, ptr, ptr, ptr);
+int g_permission_acquire(ptr, ptr, ptr);
+void g_permission_acquire_async(ptr, ptr, ptr, ptr);
+int g_permission_acquire_finish(ptr, ptr, ptr);
+int g_permission_get_allowed(ptr);
+int g_permission_get_can_acquire(ptr);
+int g_permission_get_can_release(ptr);
+void g_permission_impl_update(ptr, int, int, int);
+int g_permission_release(ptr, ptr, ptr);
+void g_permission_release_async(ptr, ptr, ptr, ptr);
+int g_permission_release_finish(ptr, ptr, ptr);
+int g_pollable_input_stream_can_poll(ptr);
+ptr g_pollable_input_stream_create_source(ptr, ptr);
+int g_pollable_input_stream_is_readable(ptr);
+long g_pollable_input_stream_read_nonblocking(ptr, ptr, ulong, ptr, ptr);
+int g_pollable_output_stream_can_poll(ptr);
+ptr g_pollable_output_stream_create_source(ptr, ptr);
+int g_pollable_output_stream_is_writable(ptr);
+long g_pollable_output_stream_write_nonblocking(ptr, ptr, ulong, ptr, ptr);
+int g_pollable_output_stream_writev_nonblocking(ptr, ptr, ulong, ptr, ptr, ptr);
+ptr g_power_profile_monitor_dup_default(ptr);
+int g_power_profile_monitor_get_power_saver_enabled(ptr);
+ptr g_property_action_new(str, ptr, str);
+ptr g_proxy_get_default_for_protocol(ptr, str);
+ptr g_proxy_connect(ptr, ptr, ptr, ptr, ptr);
+void g_proxy_connect_async(ptr, ptr, ptr, ptr, ptr, ptr);
+ptr g_proxy_connect_finish(ptr, ptr, ptr);
+int g_proxy_supports_hostname(ptr);
+ptr g_proxy_address_new(ptr, ushort, str, str, ushort, str, str);
+str g_proxy_address_get_destination_hostname(ptr);
+ushort g_proxy_address_get_destination_port(ptr);
+str g_proxy_address_get_destination_protocol(ptr);
+str g_proxy_address_get_password(ptr);
+str g_proxy_address_get_protocol(ptr);
+str g_proxy_address_get_uri(ptr);
+str g_proxy_address_get_username(ptr);
+ptr g_proxy_resolver_get_default(ptr);
+int g_proxy_resolver_is_supported(ptr);
+ptr g_proxy_resolver_lookup(ptr, str, ptr, ptr);
+void g_proxy_resolver_lookup_async(ptr, str, ptr, ptr, ptr);
+ptr g_proxy_resolver_lookup_finish(ptr, ptr, ptr);
+void g_remote_action_group_activate_action_full(ptr, str, ptr, ptr);
+void g_remote_action_group_change_action_state_full(ptr, str, ptr, ptr);
+ptr g_resolver_get_default(ptr);
+ptr g_resolver_lookup_by_address(ptr, ptr, ptr, ptr);
+void g_resolver_lookup_by_address_async(ptr, ptr, ptr, ptr, ptr);
+ptr g_resolver_lookup_by_address_finish(ptr, ptr, ptr);
+ptr g_resolver_lookup_by_name(ptr, str, ptr, ptr);
+void g_resolver_lookup_by_name_async(ptr, str, ptr, ptr, ptr);
+ptr g_resolver_lookup_by_name_finish(ptr, ptr, ptr);
+ptr g_resolver_lookup_by_name_with_flags(ptr, str, int, ptr, ptr);
+void g_resolver_lookup_by_name_with_flags_async(ptr, str, int, ptr, ptr, ptr);
+ptr g_resolver_lookup_by_name_with_flags_finish(ptr, ptr, ptr);
+ptr g_resolver_lookup_records(ptr, str, int, ptr, ptr);
+void g_resolver_lookup_records_async(ptr, str, int, ptr, ptr, ptr);
+ptr g_resolver_lookup_records_finish(ptr, ptr, ptr);
+ptr g_resolver_lookup_service(ptr, str, str, str, ptr, ptr);
+void g_resolver_lookup_service_async(ptr, str, str, str, ptr, ptr, ptr);
+ptr g_resolver_lookup_service_finish(ptr, ptr, ptr);
+void g_resolver_set_default(ptr);
+ptr g_resource_new_from_data(ptr, ptr);
+void g_resources_register(ptr);
+void g_resources_unregister(ptr);
+ptr g_resource_enumerate_children(ptr, str, int, ptr);
+int g_resource_get_info(ptr, str, int, ptr, ptr, ptr);
+ptr g_resource_lookup_data(ptr, str, int, ptr);
+ptr g_resource_open_stream(ptr, str, int, ptr);
+ptr g_resource_ref(ptr);
+void g_resource_unref(ptr);
+ptr g_resource_load(ptr, ptr, ptr);
+int g_seekable_can_seek(ptr);
+int g_seekable_can_truncate(ptr);
+int g_seekable_seek(ptr, long, int, ptr, ptr);
+long g_seekable_tell(ptr);
+int g_seekable_truncate(ptr, long, ptr, ptr);
+ptr g_settings_new(str);
+ptr g_settings_new_full(ptr, ptr, str);
+ptr g_settings_new_with_backend(str, ptr);
+ptr g_settings_new_with_backend_and_path(str, ptr, str);
+ptr g_settings_new_with_path(str, str);
+ptr g_settings_list_relocatable_schemas(ptr);
+ptr g_settings_list_schemas(ptr);
+void g_settings_sync(ptr);
+void g_settings_unbind(ptr, ptr, str);
+void g_settings_apply(ptr);
+void g_settings_bind(ptr, str, ptr, str, int);
+void g_settings_bind_writable(ptr, str, ptr, str, int);
+ptr g_settings_create_action(ptr, str);
+void g_settings_delay(ptr);
+int g_settings_get_boolean(ptr, str);
+ptr g_settings_get_child(ptr, str);
+ptr g_settings_get_default_value(ptr, str);
+double g_settings_get_double(ptr, str);
+int g_settings_get_enum(ptr, str);
+uint g_settings_get_flags(ptr, str);
+int g_settings_get_has_unapplied(ptr);
+int g_settings_get_int(ptr, str);
+long g_settings_get_int64(ptr, str);
+ptr g_settings_get_mapped(ptr, str, ptr, ptr);
+ptr g_settings_get_range(ptr, str);
+ptr g_settings_get_string(ptr, str);
+ptr g_settings_get_strv(ptr, str);
+uint g_settings_get_uint(ptr, str);
+ulong g_settings_get_uint64(ptr, str);
+ptr g_settings_get_user_value(ptr, str);
+ptr g_settings_get_value(ptr, str);
+int g_settings_is_writable(ptr, str);
+ptr g_settings_list_children(ptr);
+ptr g_settings_list_keys(ptr);
+int g_settings_range_check(ptr, str, ptr);
+void g_settings_reset(ptr, str);
+void g_settings_revert(ptr);
+int g_settings_set_boolean(ptr, str, int);
+int g_settings_set_double(ptr, str, double);
+int g_settings_set_enum(ptr, str, int);
+int g_settings_set_flags(ptr, str, uint);
+int g_settings_set_int(ptr, str, int);
+int g_settings_set_int64(ptr, str, long);
+int g_settings_set_string(ptr, str, str);
+int g_settings_set_strv(ptr, str, ptr);
+int g_settings_set_uint(ptr, str, uint);
+int g_settings_set_uint64(ptr, str, ulong);
+int g_settings_set_value(ptr, str, ptr);
+void g_settings_backend_flatten_tree(ptr, ptr, ptr, ptr, ptr);
+ptr g_settings_backend_get_default(ptr);
+void g_settings_backend_changed(ptr, str, ptr);
+void g_settings_backend_changed_tree(ptr, ptr, ptr);
+void g_settings_backend_keys_changed(ptr, str, ptr, ptr);
+void g_settings_backend_path_changed(ptr, str, ptr);
+void g_settings_backend_path_writable_changed(ptr, str);
+void g_settings_backend_writable_changed(ptr, str);
+str g_settings_schema_get_id(ptr);
+ptr g_settings_schema_get_key(ptr, str);
+str g_settings_schema_get_path(ptr);
+int g_settings_schema_has_key(ptr, str);
+ptr g_settings_schema_list_children(ptr);
+ptr g_settings_schema_list_keys(ptr);
+ptr g_settings_schema_ref(ptr);
+void g_settings_schema_unref(ptr);
+ptr g_settings_schema_key_get_default_value(ptr);
+str g_settings_schema_key_get_description(ptr);
+str g_settings_schema_key_get_name(ptr);
+ptr g_settings_schema_key_get_range(ptr);
+str g_settings_schema_key_get_summary(ptr);
+ptr g_settings_schema_key_get_value_type(ptr);
+int g_settings_schema_key_range_check(ptr, ptr);
+ptr g_settings_schema_key_ref(ptr);
+void g_settings_schema_key_unref(ptr);
+ptr g_settings_schema_source_new_from_directory(ptr, ptr, int, ptr);
+void g_settings_schema_source_list_schemas(ptr, int, ptr, ptr);
+ptr g_settings_schema_source_lookup(ptr, str, int);
+ptr g_settings_schema_source_ref(ptr);
+void g_settings_schema_source_unref(ptr);
+ptr g_settings_schema_source_get_default(ptr);
+ptr g_simple_action_new(str, ptr);
+ptr g_simple_action_new_stateful(str, ptr, ptr);
+void g_simple_action_set_enabled(ptr, int);
+void g_simple_action_set_state(ptr, ptr);
+void g_simple_action_set_state_hint(ptr, ptr);
+ptr g_simple_action_group_new();
+void g_simple_action_group_add_entries(ptr, ptr, int, ptr);
+void g_simple_action_group_insert(ptr, ptr);
+ptr g_simple_action_group_lookup(ptr, str);
+void g_simple_action_group_remove(ptr, str);
+ptr g_simple_async_result_new(ptr, ptr, ptr, ptr);
+ptr g_simple_async_result_new_from_error(ptr, ptr, ptr, ptr);
+int g_simple_async_result_is_valid(ptr, ptr, ptr, ptr);
+void g_simple_async_result_complete(ptr);
+void g_simple_async_result_complete_in_idle(ptr);
+int g_simple_async_result_get_op_res_gboolean(ptr);
+long g_simple_async_result_get_op_res_gssize(ptr);
+int g_simple_async_result_propagate_error(ptr, ptr);
+void g_simple_async_result_set_check_cancellable(ptr, ptr);
+void g_simple_async_result_set_from_error(ptr, ptr);
+void g_simple_async_result_set_handle_cancellation(ptr, int);
+void g_simple_async_result_set_op_res_gboolean(ptr, int);
+void g_simple_async_result_set_op_res_gssize(ptr, long);
+ptr g_simple_io_stream_new(ptr, ptr);
+ptr g_simple_permission_new(int);
+ptr g_simple_proxy_resolver_new(ptr, str, ptr);
+void g_simple_proxy_resolver_set_default_proxy(ptr, str);
+void g_simple_proxy_resolver_set_ignore_hosts(ptr, ptr);
+void g_simple_proxy_resolver_set_uri_proxy(ptr, str, str);
+ptr g_socket_new(int, int, int, ptr);
+ptr g_socket_new_from_fd(int, ptr);
+ptr g_socket_accept(ptr, ptr, ptr);
+int g_socket_bind(ptr, ptr, int, ptr);
+int g_socket_check_connect_result(ptr, ptr);
+int g_socket_close(ptr, ptr);
+int g_socket_condition_check(ptr, int);
+int g_socket_condition_timed_wait(ptr, int, long, ptr, ptr);
+int g_socket_condition_wait(ptr, int, ptr, ptr);
+int g_socket_connect(ptr, ptr, ptr, ptr);
+ptr g_socket_connection_factory_create_connection(ptr);
+long g_socket_get_available_bytes(ptr);
+int g_socket_get_blocking(ptr);
+int g_socket_get_broadcast(ptr);
+ptr g_socket_get_credentials(ptr, ptr);
+int g_socket_get_family(ptr);
+int g_socket_get_fd(ptr);
+int g_socket_get_keepalive(ptr);
+int g_socket_get_listen_backlog(ptr);
+ptr g_socket_get_local_address(ptr, ptr);
+int g_socket_get_multicast_loopback(ptr);
+uint g_socket_get_multicast_ttl(ptr);
+int g_socket_get_option(ptr, int, int, ptr, ptr);
+int g_socket_get_protocol(ptr);
+ptr g_socket_get_remote_address(ptr, ptr);
+int g_socket_get_socket_type(ptr);
+uint g_socket_get_timeout(ptr);
+uint g_socket_get_ttl(ptr);
+int g_socket_is_closed(ptr);
+int g_socket_is_connected(ptr);
+int g_socket_join_multicast_group(ptr, ptr, int, str, ptr);
+int g_socket_join_multicast_group_ssm(ptr, ptr, ptr, str, ptr);
+int g_socket_leave_multicast_group(ptr, ptr, int, str, ptr);
+int g_socket_leave_multicast_group_ssm(ptr, ptr, ptr, str, ptr);
+int g_socket_listen(ptr, ptr);
+long g_socket_receive(ptr, ptr, ptr, ptr, ptr);
+long g_socket_receive_from(ptr, ptr, ptr, ptr, ptr, ptr);
+long g_socket_receive_message(ptr, ptr, ptr, int, ptr, ptr, ptr, ptr, ptr);
+int g_socket_receive_messages(ptr, ptr, uint, int, ptr, ptr);
+long g_socket_receive_with_blocking(ptr, ptr, ptr, int, ptr, ptr);
+long g_socket_send(ptr, ptr, ulong, ptr, ptr);
+long g_socket_send_message(ptr, ptr, ptr, int, ptr, int, int, ptr, ptr);
+int g_socket_send_message_with_timeout(ptr, ptr, ptr, int, ptr, int, int, long, ptr, ptr, ptr);
+int g_socket_send_messages(ptr, ptr, uint, int, ptr, ptr);
+long g_socket_send_to(ptr, ptr, ptr, ulong, ptr, ptr);
+long g_socket_send_with_blocking(ptr, ptr, ulong, int, ptr, ptr);
+void g_socket_set_blocking(ptr, int);
+void g_socket_set_broadcast(ptr, int);
+void g_socket_set_keepalive(ptr, int);
+void g_socket_set_listen_backlog(ptr, int);
+void g_socket_set_multicast_loopback(ptr, int);
+void g_socket_set_multicast_ttl(ptr, uint);
+int g_socket_set_option(ptr, int, int, int, ptr);
+void g_socket_set_timeout(ptr, uint);
+void g_socket_set_ttl(ptr, uint);
+int g_socket_shutdown(ptr, int, int, ptr);
+int g_socket_speaks_ipv4(ptr);
+ptr g_socket_address_new_from_native(ptr, ulong);
+int g_socket_address_get_family(ptr);
+long g_socket_address_get_native_size(ptr);
+int g_socket_address_to_native(ptr, ptr, ulong, ptr);
+ptr g_socket_address_enumerator_next(ptr, ptr, ptr);
+void g_socket_address_enumerator_next_async(ptr, ptr, ptr, ptr);
+ptr g_socket_address_enumerator_next_finish(ptr, ptr, ptr);
+ptr g_socket_client_new();
+void g_socket_client_add_application_proxy(ptr, str);
+ptr g_socket_client_connect(ptr, ptr, ptr, ptr);
+void g_socket_client_connect_async(ptr, ptr, ptr, ptr, ptr);
+ptr g_socket_client_connect_finish(ptr, ptr, ptr);
+ptr g_socket_client_connect_to_host(ptr, str, ushort, ptr, ptr);
+void g_socket_client_connect_to_host_async(ptr, str, ushort, ptr, ptr, ptr);
+ptr g_socket_client_connect_to_host_finish(ptr, ptr, ptr);
+ptr g_socket_client_connect_to_service(ptr, str, str, ptr, ptr);
+void g_socket_client_connect_to_service_async(ptr, str, str, ptr, ptr, ptr);
+ptr g_socket_client_connect_to_service_finish(ptr, ptr, ptr);
+ptr g_socket_client_connect_to_uri(ptr, str, ushort, ptr, ptr);
+void g_socket_client_connect_to_uri_async(ptr, str, ushort, ptr, ptr, ptr);
+ptr g_socket_client_connect_to_uri_finish(ptr, ptr, ptr);
+int g_socket_client_get_enable_proxy(ptr);
+int g_socket_client_get_family(ptr);
+ptr g_socket_client_get_local_address(ptr);
+int g_socket_client_get_protocol(ptr);
+ptr g_socket_client_get_proxy_resolver(ptr);
+int g_socket_client_get_socket_type(ptr);
+uint g_socket_client_get_timeout(ptr);
+int g_socket_client_get_tls(ptr);
+int g_socket_client_get_tls_validation_flags(ptr);
+void g_socket_client_set_enable_proxy(ptr, int);
+void g_socket_client_set_family(ptr, int);
+void g_socket_client_set_local_address(ptr, ptr);
+void g_socket_client_set_protocol(ptr, int);
+void g_socket_client_set_proxy_resolver(ptr, ptr);
+void g_socket_client_set_socket_type(ptr, int);
+void g_socket_client_set_timeout(ptr, uint);
+void g_socket_client_set_tls(ptr, int);
+void g_socket_client_set_tls_validation_flags(ptr, int);
+ptr g_socket_connectable_enumerate(ptr);
+ptr g_socket_connectable_proxy_enumerate(ptr);
+ptr g_socket_connectable_to_string(ptr);
+ulong g_socket_connection_factory_lookup_type(ptr, int, int, int);
+void g_socket_connection_factory_register_type(ptr, ulong, int, int, int);
+int g_socket_connection_connect(ptr, ptr, ptr, ptr);
+void g_socket_connection_connect_async(ptr, ptr, ptr, ptr, ptr);
+int g_socket_connection_connect_finish(ptr, ptr, ptr);
+ptr g_socket_connection_get_local_address(ptr, ptr);
+ptr g_socket_connection_get_remote_address(ptr, ptr);
+ptr g_socket_connection_get_socket(ptr);
+int g_socket_connection_is_connected(ptr);
+ptr g_socket_control_message_deserialize(ptr, int, int, ulong, ptr);
+int g_socket_control_message_get_level(ptr);
+int g_socket_control_message_get_msg_type(ptr);
+ulong g_socket_control_message_get_size(ptr);
+void g_socket_control_message_serialize(ptr, ptr);
+ptr g_socket_listener_new();
+ptr g_socket_listener_accept(ptr, ptr, ptr, ptr);
+void g_socket_listener_accept_async(ptr, ptr, ptr, ptr);
+ptr g_socket_listener_accept_finish(ptr, ptr, ptr, ptr);
+ptr g_socket_listener_accept_socket(ptr, ptr, ptr, ptr);
+void g_socket_listener_accept_socket_async(ptr, ptr, ptr, ptr);
+ptr g_socket_listener_accept_socket_finish(ptr, ptr, ptr, ptr);
+int g_socket_listener_add_address(ptr, ptr, int, int, ptr, ptr, ptr);
+ushort g_socket_listener_add_any_inet_port(ptr, ptr, ptr);
+int g_socket_listener_add_inet_port(ptr, ushort, ptr, ptr);
+int g_socket_listener_add_socket(ptr, ptr, ptr, ptr);
+void g_socket_listener_close(ptr);
+void g_socket_listener_set_backlog(ptr, int);
+ptr g_socket_service_new();
+int g_socket_service_is_active(ptr);
+void g_socket_service_start(ptr);
+void g_socket_service_stop(ptr);
+ptr g_srv_target_new(str, ushort, ushort, ushort);
+ptr g_srv_target_copy(ptr);
+void g_srv_target_free(ptr);
+str g_srv_target_get_hostname(ptr);
+ushort g_srv_target_get_port(ptr);
+ushort g_srv_target_get_priority(ptr);
+ushort g_srv_target_get_weight(ptr);
+void g_static_resource_fini(ptr);
+ptr g_static_resource_get_resource(ptr);
+void g_static_resource_init(ptr);
+ptr g_subprocess_newv(ptr, int, ptr);
+int g_subprocess_communicate(ptr, ptr, ptr, ptr, ptr, ptr);
+void g_subprocess_communicate_async(ptr, ptr, ptr, ptr, ptr);
+int g_subprocess_communicate_finish(ptr, ptr, ptr, ptr, ptr);
+int g_subprocess_communicate_utf8(ptr, str, ptr, ptr, ptr, ptr);
+void g_subprocess_communicate_utf8_async(ptr, str, ptr, ptr, ptr);
+int g_subprocess_communicate_utf8_finish(ptr, ptr, ptr, ptr, ptr);
+void g_subprocess_force_exit(ptr);
+int g_subprocess_get_exit_status(ptr);
+str g_subprocess_get_identifier(ptr);
+int g_subprocess_get_if_exited(ptr);
+int g_subprocess_get_if_signaled(ptr);
+int g_subprocess_get_status(ptr);
+ptr g_subprocess_get_stderr_pipe(ptr);
+ptr g_subprocess_get_stdin_pipe(ptr);
+ptr g_subprocess_get_stdout_pipe(ptr);
+int g_subprocess_get_successful(ptr);
+int g_subprocess_get_term_sig(ptr);
+void g_subprocess_send_signal(ptr, int);
+int g_subprocess_wait(ptr, ptr, ptr);
+void g_subprocess_wait_async(ptr, ptr, ptr, ptr);
+int g_subprocess_wait_check(ptr, ptr, ptr);
+void g_subprocess_wait_check_async(ptr, ptr, ptr, ptr);
+int g_subprocess_wait_check_finish(ptr, ptr, ptr);
+int g_subprocess_wait_finish(ptr, ptr, ptr);
+ptr g_subprocess_launcher_new(int);
+void g_subprocess_launcher_close(ptr);
+ptr g_subprocess_launcher_getenv(ptr, ptr);
+void g_subprocess_launcher_set_cwd(ptr, ptr);
+void g_subprocess_launcher_set_environ(ptr, ptr);
+void g_subprocess_launcher_set_flags(ptr, int);
+void g_subprocess_launcher_set_stderr_file_path(ptr, ptr);
+void g_subprocess_launcher_set_stdin_file_path(ptr, str);
+void g_subprocess_launcher_set_stdout_file_path(ptr, ptr);
+void g_subprocess_launcher_setenv(ptr, ptr, ptr, int);
+ptr g_subprocess_launcher_spawnv(ptr, ptr, ptr);
+void g_subprocess_launcher_take_fd(ptr, int, int);
+void g_subprocess_launcher_take_stderr_fd(ptr, int);
+void g_subprocess_launcher_take_stdin_fd(ptr, int);
+void g_subprocess_launcher_take_stdout_fd(ptr, int);
+void g_subprocess_launcher_unsetenv(ptr, ptr);
+ptr g_task_new(ptr, ptr, ptr, ptr);
+int g_task_is_valid(ptr, ptr, ptr);
+void g_task_report_error(ptr, ptr, ptr, ptr, ptr, ptr);
+ptr g_task_get_cancellable(ptr);
+int g_task_get_check_cancellable(ptr);
+int g_task_get_completed(ptr);
+ptr g_task_get_context(ptr);
+str g_task_get_name(ptr);
+int g_task_get_priority(ptr);
+int g_task_get_return_on_cancel(ptr);
+ptr g_task_get_source_object(ptr);
+ptr g_task_get_source_tag(ptr);
+ptr g_task_get_task_data(ptr);
+int g_task_had_error(ptr);
+int g_task_propagate_boolean(ptr, ptr);
+long g_task_propagate_int(ptr, ptr);
+ptr g_task_propagate_pointer(ptr, ptr);
+int g_task_propagate_value(ptr, ptr, ptr);
+void g_task_return_boolean(ptr, int);
+void g_task_return_error(ptr, ptr);
+int g_task_return_error_if_cancelled(ptr);
+void g_task_return_int(ptr, long);
+void g_task_return_pointer(ptr, ptr, ptr);
+void g_task_return_value(ptr, ptr);
+void g_task_run_in_thread(ptr, ptr);
+void g_task_run_in_thread_sync(ptr, ptr);
+void g_task_set_check_cancellable(ptr, int);
+void g_task_set_name(ptr, str);
+void g_task_set_priority(ptr, int);
+int g_task_set_return_on_cancel(ptr, int);
+void g_task_set_source_tag(ptr, ptr);
+void g_task_set_task_data(ptr, ptr, ptr);
+int g_tcp_connection_get_graceful_disconnect(ptr);
+void g_tcp_connection_set_graceful_disconnect(ptr, int);
+ptr g_tcp_wrapper_connection_new(ptr, ptr);
+ptr g_tcp_wrapper_connection_get_base_io_stream(ptr);
+ptr g_test_dbus_new(int);
+void g_test_dbus_unset(ptr);
+void g_test_dbus_add_service_dir(ptr, str);
+void g_test_dbus_down(ptr);
+str g_test_dbus_get_bus_address(ptr);
+int g_test_dbus_get_flags(ptr);
+void g_test_dbus_stop(ptr);
+void g_test_dbus_up(ptr);
+ptr g_themed_icon_new(str);
+ptr g_themed_icon_new_from_names(ptr, int);
+ptr g_themed_icon_new_with_default_fallbacks(str);
+void g_themed_icon_append_name(ptr, str);
+ptr g_themed_icon_get_names(ptr);
+void g_themed_icon_prepend_name(ptr, str);
+ptr g_threaded_socket_service_new(int);
+ptr g_tls_backend_get_default(ptr);
+ulong g_tls_backend_get_certificate_type(ptr);
+ulong g_tls_backend_get_client_connection_type(ptr);
+ptr g_tls_backend_get_default_database(ptr);
+ulong g_tls_backend_get_dtls_client_connection_type(ptr);
+ulong g_tls_backend_get_dtls_server_connection_type(ptr);
+ulong g_tls_backend_get_file_database_type(ptr);
+ulong g_tls_backend_get_server_connection_type(ptr);
+void g_tls_backend_set_default_database(ptr, ptr);
+int g_tls_backend_supports_dtls(ptr);
+int g_tls_backend_supports_tls(ptr);
+ptr g_tls_certificate_new_from_file(ptr, ptr);
+ptr g_tls_certificate_new_from_file_with_password(ptr, str, ptr);
+ptr g_tls_certificate_new_from_files(ptr, ptr, ptr);
+ptr g_tls_certificate_new_from_pem(str, long, ptr);
+ptr g_tls_certificate_new_from_pkcs11_uris(str, str, ptr);
+ptr g_tls_certificate_new_from_pkcs12(ptr, ulong, str, ptr);
+ptr g_tls_certificate_list_new_from_file(ptr, ptr, ptr);
+ptr g_tls_certificate_get_dns_names(ptr);
+ptr g_tls_certificate_get_ip_addresses(ptr);
+ptr g_tls_certificate_get_issuer(ptr);
+ptr g_tls_certificate_get_issuer_name(ptr);
+ptr g_tls_certificate_get_not_valid_after(ptr);
+ptr g_tls_certificate_get_not_valid_before(ptr);
+ptr g_tls_certificate_get_subject_name(ptr);
+int g_tls_certificate_is_same(ptr, ptr);
+int g_tls_certificate_verify(ptr, ptr, ptr);
+ptr g_tls_client_connection_new(ptr, ptr, ptr, ptr);
+void g_tls_client_connection_copy_session_state(ptr, ptr);
+ptr g_tls_client_connection_get_accepted_cas(ptr);
+ptr g_tls_client_connection_get_server_identity(ptr);
+int g_tls_client_connection_get_use_ssl3(ptr);
+int g_tls_client_connection_get_validation_flags(ptr);
+void g_tls_client_connection_set_server_identity(ptr, ptr);
+void g_tls_client_connection_set_use_ssl3(ptr, int);
+void g_tls_client_connection_set_validation_flags(ptr, int);
+int g_tls_connection_emit_accept_certificate(ptr, ptr, int);
+ptr g_tls_connection_get_certificate(ptr);
+int g_tls_connection_get_channel_binding_data(ptr, int, ptr, ptr);
+ptr g_tls_connection_get_ciphersuite_name(ptr);
+ptr g_tls_connection_get_database(ptr);
+ptr g_tls_connection_get_interaction(ptr);
+str g_tls_connection_get_negotiated_protocol(ptr);
+ptr g_tls_connection_get_peer_certificate(ptr);
+int g_tls_connection_get_peer_certificate_errors(ptr);
+int g_tls_connection_get_protocol_version(ptr);
+int g_tls_connection_get_rehandshake_mode(ptr);
+int g_tls_connection_get_require_close_notify(ptr);
+int g_tls_connection_get_use_system_certdb(ptr);
+int g_tls_connection_handshake(ptr, ptr, ptr);
+void g_tls_connection_handshake_async(ptr, int, ptr, ptr, ptr);
+int g_tls_connection_handshake_finish(ptr, ptr, ptr);
+void g_tls_connection_set_advertised_protocols(ptr, ptr);
+void g_tls_connection_set_certificate(ptr, ptr);
+void g_tls_connection_set_database(ptr, ptr);
+void g_tls_connection_set_interaction(ptr, ptr);
+void g_tls_connection_set_rehandshake_mode(ptr, int);
+void g_tls_connection_set_require_close_notify(ptr, int);
+void g_tls_connection_set_use_system_certdb(ptr, int);
+ptr g_tls_database_create_certificate_handle(ptr, ptr);
+ptr g_tls_database_lookup_certificate_for_handle(ptr, str, ptr, int, ptr, ptr);
+void g_tls_database_lookup_certificate_for_handle_async(ptr, str, ptr, int, ptr, ptr, ptr);
+ptr g_tls_database_lookup_certificate_for_handle_finish(ptr, ptr, ptr);
+ptr g_tls_database_lookup_certificate_issuer(ptr, ptr, ptr, int, ptr, ptr);
+void g_tls_database_lookup_certificate_issuer_async(ptr, ptr, ptr, int, ptr, ptr, ptr);
+ptr g_tls_database_lookup_certificate_issuer_finish(ptr, ptr, ptr);
+ptr g_tls_database_lookup_certificates_issued_by(ptr, ptr, ptr, int, ptr, ptr);
+void g_tls_database_lookup_certificates_issued_by_async(ptr, ptr, ptr, int, ptr, ptr, ptr);
+ptr g_tls_database_lookup_certificates_issued_by_finish(ptr, ptr, ptr);
+int g_tls_database_verify_chain(ptr, ptr, str, ptr, ptr, int, ptr, ptr);
+void g_tls_database_verify_chain_async(ptr, ptr, str, ptr, ptr, int, ptr, ptr, ptr);
+int g_tls_database_verify_chain_finish(ptr, ptr, ptr);
+ptr g_tls_file_database_new(ptr, ptr, ptr);
+int g_tls_interaction_ask_password(ptr, ptr, ptr, ptr);
+void g_tls_interaction_ask_password_async(ptr, ptr, ptr, ptr, ptr);
+int g_tls_interaction_ask_password_finish(ptr, ptr, ptr);
+int g_tls_interaction_invoke_ask_password(ptr, ptr, ptr, ptr);
+int g_tls_interaction_invoke_request_certificate(ptr, ptr, int, ptr, ptr);
+int g_tls_interaction_request_certificate(ptr, ptr, int, ptr, ptr);
+void g_tls_interaction_request_certificate_async(ptr, ptr, int, ptr, ptr, ptr);
+int g_tls_interaction_request_certificate_finish(ptr, ptr, ptr);
+ptr g_tls_password_new(int, str);
+str g_tls_password_get_description(ptr);
+int g_tls_password_get_flags(ptr);
+ptr g_tls_password_get_value(ptr, ptr);
+str g_tls_password_get_warning(ptr);
+void g_tls_password_set_description(ptr, str);
+void g_tls_password_set_flags(ptr, int);
+void g_tls_password_set_value(ptr, ptr, long);
+void g_tls_password_set_value_full(ptr, ptr, long, ptr);
+void g_tls_password_set_warning(ptr, str);
+ptr g_tls_server_connection_new(ptr, ptr, ptr, ptr);
+ptr g_unix_connection_receive_credentials(ptr, ptr, ptr);
+void g_unix_connection_receive_credentials_async(ptr, ptr, ptr, ptr);
+ptr g_unix_connection_receive_credentials_finish(ptr, ptr, ptr);
+int g_unix_connection_receive_fd(ptr, ptr, ptr);
+int g_unix_connection_send_credentials(ptr, ptr, ptr);
+void g_unix_connection_send_credentials_async(ptr, ptr, ptr, ptr);
+int g_unix_connection_send_credentials_finish(ptr, ptr, ptr);
+int g_unix_connection_send_fd(ptr, int, ptr, ptr);
+ptr g_unix_credentials_message_new();
+ptr g_unix_credentials_message_new_with_credentials(ptr);
+int g_unix_credentials_message_is_supported(ptr);
+ptr g_unix_credentials_message_get_credentials(ptr);
+ptr g_unix_fd_list_new();
+ptr g_unix_fd_list_new_from_array(ptr, int);
+int g_unix_fd_list_append(ptr, int, ptr);
+int g_unix_fd_list_get(ptr, int, ptr);
+int g_unix_fd_list_get_length(ptr);
+ptr g_unix_fd_list_peek_fds(ptr, ptr);
+ptr g_unix_fd_list_steal_fds(ptr, ptr);
+ptr g_unix_fd_message_new();
+ptr g_unix_fd_message_new_with_fd_list(ptr);
+int g_unix_fd_message_append_fd(ptr, int, ptr);
+ptr g_unix_fd_message_get_fd_list(ptr);
+ptr g_unix_fd_message_steal_fds(ptr, ptr);
+ptr g_unix_input_stream_new(int, int);
+int g_unix_input_stream_get_close_fd(ptr);
+int g_unix_input_stream_get_fd(ptr);
+void g_unix_input_stream_set_close_fd(ptr, int);
+ptr g_unix_mount_monitor_new();
+ptr g_unix_mount_monitor_get(ptr);
+void g_unix_mount_monitor_set_rate_limit(ptr, int);
+int g_unix_mount_point_compare(ptr, ptr);
+ptr g_unix_mount_point_copy(ptr);
+void g_unix_mount_point_free(ptr);
+ptr g_unix_mount_point_get_device_path(ptr);
+str g_unix_mount_point_get_fs_type(ptr);
+ptr g_unix_mount_point_get_mount_path(ptr);
+str g_unix_mount_point_get_options(ptr);
+int g_unix_mount_point_guess_can_eject(ptr);
+ptr g_unix_mount_point_guess_icon(ptr);
+ptr g_unix_mount_point_guess_name(ptr);
+ptr g_unix_mount_point_guess_symbolic_icon(ptr);
+int g_unix_mount_point_is_loopback(ptr);
+int g_unix_mount_point_is_readonly(ptr);
+int g_unix_mount_point_is_user_mountable(ptr);
+ptr g_unix_mount_point_at(ptr, ptr, ptr);
+ptr g_unix_output_stream_new(int, int);
+int g_unix_output_stream_get_close_fd(ptr);
+int g_unix_output_stream_get_fd(ptr);
+void g_unix_output_stream_set_close_fd(ptr, int);
+ptr g_unix_socket_address_new(str);
+ptr g_unix_socket_address_new_abstract(ptr, int);
+ptr g_unix_socket_address_new_with_type(ptr, int, int);
+int g_unix_socket_address_abstract_names_supported(ptr);
+int g_unix_socket_address_get_address_type(ptr);
+int g_unix_socket_address_get_is_abstract(ptr);
+str g_unix_socket_address_get_path(ptr);
+ulong g_unix_socket_address_get_path_len(ptr);
+ptr g_vfs_get_default(ptr);
+ptr g_vfs_get_local(ptr);
+ptr g_vfs_get_file_for_path(ptr, str);
+ptr g_vfs_get_file_for_uri(ptr, str);
+ptr g_vfs_get_supported_uri_schemes(ptr);
+int g_vfs_is_active(ptr);
+ptr g_vfs_parse_name(ptr, str);
+int g_vfs_register_uri_scheme(ptr, str, ptr, ptr, ptr, ptr, ptr, ptr);
+int g_vfs_unregister_uri_scheme(ptr, str);
+int g_volume_can_eject(ptr);
+int g_volume_can_mount(ptr);
+void g_volume_eject(ptr, int, ptr, ptr, ptr);
+int g_volume_eject_finish(ptr, ptr, ptr);
+void g_volume_eject_with_operation(ptr, int, ptr, ptr, ptr, ptr);
+int g_volume_eject_with_operation_finish(ptr, ptr, ptr);
+ptr g_volume_enumerate_identifiers(ptr);
+ptr g_volume_get_activation_root(ptr);
+ptr g_volume_get_drive(ptr);
+ptr g_volume_get_icon(ptr);
+ptr g_volume_get_identifier(ptr, str);
+ptr g_volume_get_mount(ptr);
+ptr g_volume_get_name(ptr);
+str g_volume_get_sort_key(ptr);
+ptr g_volume_get_symbolic_icon(ptr);
+ptr g_volume_get_uuid(ptr);
+void g_volume_mount(ptr, int, ptr, ptr, ptr, ptr);
+int g_volume_mount_finish(ptr, ptr, ptr);
+int g_volume_should_automount(ptr);
+ptr g_volume_monitor_adopt_orphan_mount(ptr, ptr);
+ptr g_volume_monitor_get(ptr);
+ptr g_volume_monitor_get_connected_drives(ptr);
+ptr g_volume_monitor_get_mount_for_uuid(ptr, str);
+ptr g_volume_monitor_get_mounts(ptr);
+ptr g_volume_monitor_get_volume_for_uuid(ptr, str);
+ptr g_volume_monitor_get_volumes(ptr);
+ptr g_zlib_compressor_new(int, int);
+ptr g_zlib_compressor_get_file_info(ptr);
+void g_zlib_compressor_set_file_info(ptr, ptr);
+ptr g_zlib_decompressor_new(int);
+ptr g_zlib_decompressor_get_file_info(ptr);
+int g_action_name_is_valid(str);
+int g_action_parse_detailed_name(str, ptr, ptr, ptr);
+ptr g_action_print_detailed_name(str, ptr);
+ptr g_app_info_create_from_commandline(ptr, str, int, ptr);
+ptr g_app_info_get_all();
+ptr g_app_info_get_all_for_type(str);
+ptr g_app_info_get_default_for_type(str, int);
+ptr g_app_info_get_default_for_uri_scheme(str);
+ptr g_app_info_get_fallback_for_type(str);
+ptr g_app_info_get_recommended_for_type(str);
+int g_app_info_launch_default_for_uri(str, ptr, ptr);
+void g_app_info_launch_default_for_uri_async(str, ptr, ptr, ptr, ptr);
+int g_app_info_launch_default_for_uri_finish(ptr, ptr);
+void g_app_info_reset_type_associations(str);
+void g_async_initable_newv_async(ulong, uint, ptr, int, ptr, ptr, ptr);
+void g_bus_get(int, ptr, ptr, ptr);
+ptr g_bus_get_finish(ptr, ptr);
+ptr g_bus_get_sync(int, ptr, ptr);
+uint g_bus_own_name_on_connection_with_closures(ptr, str, int, ptr, ptr);
+uint g_bus_own_name_with_closures(int, str, int, ptr, ptr, ptr);
+void g_bus_unown_name(uint);
+void g_bus_unwatch_name(uint);
+uint g_bus_watch_name_on_connection_with_closures(ptr, str, int, ptr, ptr);
+uint g_bus_watch_name_with_closures(int, str, int, ptr, ptr);
+int g_content_type_can_be_executable(str);
+int g_content_type_equals(str, str);
+ptr g_content_type_from_mime_type(str);
+ptr g_content_type_get_description(str);
+ptr g_content_type_get_generic_icon_name(str);
+ptr g_content_type_get_icon(str);
+ptr g_content_type_get_mime_dirs();
+ptr g_content_type_get_mime_type(str);
+ptr g_content_type_get_symbolic_icon(str);
+ptr g_content_type_guess(ptr, ptr, ulong, ptr);
+ptr g_content_type_guess_for_tree(ptr);
+int g_content_type_is_a(str, str);
+int g_content_type_is_mime_type(str, str);
+int g_content_type_is_unknown(str);
+void g_content_type_set_mime_dirs(ptr);
+ptr g_content_types_get_registered();
+ptr g_dbus_address_escape_value(str);
+ptr g_dbus_address_get_for_bus_sync(int, ptr, ptr);
+void g_dbus_address_get_stream(str, ptr, ptr, ptr);
+ptr g_dbus_address_get_stream_finish(ptr, ptr, ptr);
+ptr g_dbus_address_get_stream_sync(str, ptr, ptr, ptr);
+str g_dbus_annotation_info_lookup(ptr, str);
+ptr g_dbus_error_encode_gerror(ptr);
+ptr g_dbus_error_get_remote_error(ptr);
+int g_dbus_error_is_remote_error(ptr);
+ptr g_dbus_error_new_for_dbus_error(str, str);
+uint g_dbus_error_quark();
+int g_dbus_error_register_error(uint, int, str);
+void g_dbus_error_register_error_domain(str, ptr, ptr, uint);
+int g_dbus_error_strip_remote_error(ptr);
+int g_dbus_error_unregister_error(uint, int, str);
+ptr g_dbus_escape_object_path(str);
+ptr g_dbus_escape_object_path_bytestring(ptr);
+ptr g_dbus_generate_guid();
+ptr g_dbus_gvalue_to_gvariant(ptr, ptr);
+void g_dbus_gvariant_to_gvalue(ptr, ptr);
+int g_dbus_is_address(str);
+int g_dbus_is_error_name(str);
+int g_dbus_is_guid(str);
+int g_dbus_is_interface_name(str);
+int g_dbus_is_member_name(str);
+int g_dbus_is_name(str);
+int g_dbus_is_supported_address(str, ptr);
+int g_dbus_is_unique_name(str);
+ptr g_dbus_unescape_object_path(str);
+ptr g_dtls_client_connection_new(ptr, ptr, ptr);
+ptr g_dtls_server_connection_new(ptr, ptr, ptr);
+ptr g_file_new_for_commandline_arg(ptr);
+ptr g_file_new_for_commandline_arg_and_cwd(ptr, ptr);
+ptr g_file_new_for_path(ptr);
+ptr g_file_new_for_uri(str);
+ptr g_file_new_tmp(ptr, ptr, ptr);
+ptr g_file_parse_name(str);
+ptr g_icon_deserialize(ptr);
+uint g_icon_hash(ptr);
+ptr g_icon_new_for_string(str, ptr);
+ptr g_initable_newv(ulong, uint, ptr, ptr, ptr);
+int g_io_error_from_errno(int);
+uint g_io_error_quark();
+ptr g_io_extension_point_implement(str, ulong, str, int);
+ptr g_io_extension_point_lookup(str);
+ptr g_io_extension_point_register(str);
+ptr g_io_modules_load_all_in_directory(ptr);
+ptr g_io_modules_load_all_in_directory_with_scope(ptr, ptr);
+void g_io_modules_scan_all_in_directory(ptr);
+void g_io_modules_scan_all_in_directory_with_scope(ptr, ptr);
+void g_io_scheduler_cancel_all_jobs();
+void g_io_scheduler_push_job(ptr, ptr, ptr, int, ptr);
+ptr g_keyfile_settings_backend_new(str, str, str);
+ptr g_memory_monitor_dup_default();
+ptr g_memory_settings_backend_new();
+ptr g_network_monitor_get_default();
+void g_networking_init();
+ptr g_null_settings_backend_new();
+ptr g_pollable_source_new(ptr);
+ptr g_pollable_source_new_full(ptr, ptr, ptr);
+long g_pollable_stream_read(ptr, ptr, ulong, int, ptr, ptr);
+long g_pollable_stream_write(ptr, ptr, ulong, int, ptr, ptr);
+int g_pollable_stream_write_all(ptr, ptr, ulong, int, ptr, ptr, ptr);
+ptr g_power_profile_monitor_dup_default();
+ptr g_proxy_get_default_for_protocol(str);
+ptr g_proxy_resolver_get_default();
+uint g_resolver_error_quark();
+uint g_resource_error_quark();
+ptr g_resource_load(ptr, ptr);
+ptr g_resources_enumerate_children(str, int, ptr);
+int g_resources_get_info(str, int, ptr, ptr, ptr);
+ptr g_resources_lookup_data(str, int, ptr);
+ptr g_resources_open_stream(str, int, ptr);
+void g_resources_register(ptr);
+void g_resources_unregister(ptr);
+ptr g_settings_schema_source_get_default();
+void g_simple_async_report_gerror_in_idle(ptr, ptr, ptr, ptr);
+ptr g_tls_backend_get_default();
+uint g_tls_channel_binding_error_quark();
+ptr g_tls_client_connection_new(ptr, ptr, ptr);
+uint g_tls_error_quark();
+ptr g_tls_file_database_new(ptr, ptr);
+ptr g_tls_server_connection_new(ptr, ptr, ptr);
+int g_unix_is_mount_path_system_internal(ptr);
+int g_unix_is_system_device_path(str);
+int g_unix_is_system_fs_type(str);
+ptr g_unix_mount_at(ptr, ptr);
+int g_unix_mount_compare(ptr, ptr);
+ptr g_unix_mount_copy(ptr);
+ptr g_unix_mount_for(ptr, ptr);
+void g_unix_mount_free(ptr);
+ptr g_unix_mount_get_device_path(ptr);
+str g_unix_mount_get_fs_type(ptr);
+ptr g_unix_mount_get_mount_path(ptr);
+str g_unix_mount_get_options(ptr);
+str g_unix_mount_get_root_path(ptr);
+int g_unix_mount_guess_can_eject(ptr);
+ptr g_unix_mount_guess_icon(ptr);
+ptr g_unix_mount_guess_name(ptr);
+int g_unix_mount_guess_should_display(ptr);
+ptr g_unix_mount_guess_symbolic_icon(ptr);
+int g_unix_mount_is_readonly(ptr);
+int g_unix_mount_is_system_internal(ptr);
+ptr g_unix_mount_point_at(ptr, ptr);
+int g_unix_mount_points_changed_since(ulong);
+ptr g_unix_mount_points_get(ptr);
+int g_unix_mounts_changed_since(ulong);
+ptr g_unix_mounts_get(ptr);
+};
+
+extern callback void GioAsyncReadyCallback(ptr, ptr, ptr);
+extern callback void GioBusAcquiredCallback(ptr, str, ptr);
+extern callback void GioBusNameAcquiredCallback(ptr, str, ptr);
+extern callback void GioBusNameAppearedCallback(ptr, str, str, ptr);
+extern callback void GioBusNameLostCallback(ptr, str, ptr);
+extern callback void GioBusNameVanishedCallback(ptr, str, ptr);
+extern callback int GioCancellableSourceFunc(ptr, ptr);
+extern callback ptr GioDBusInterfaceGetPropertyFunc(ptr, str, str, str, str, ptr, ptr);
+extern callback void GioDBusInterfaceMethodCallFunc(ptr, str, str, str, str, ptr, ptr, ptr);
+extern callback int GioDBusInterfaceSetPropertyFunc(ptr, str, str, str, str, ptr, ptr, ptr);
+extern callback ptr GioDBusMessageFilterFunction(ptr, ptr, int, ptr);
+extern callback ulong GioDBusProxyTypeFunc(ptr, str, str, ptr);
+extern callback void GioDBusSignalCallback(ptr, str, str, str, str, ptr, ptr);
+extern callback ptr GioDBusSubtreeDispatchFunc(ptr, str, str, str, str, ptr, ptr);
+extern callback ptr GioDBusSubtreeEnumerateFunc(ptr, str, str, ptr);
+extern callback ptr GioDBusSubtreeIntrospectFunc(ptr, str, str, str, ptr);
+extern callback int GioDatagramBasedSourceFunc(ptr, int, ptr);
+extern callback void GioDesktopAppLaunchCallback(ptr, int, ptr);
+extern callback void GioFileMeasureProgressCallback(int, ulong, ulong, ulong, ptr);
+extern callback void GioFileProgressCallback(long, long, ptr);
+extern callback int GioFileReadMoreCallback(str, long, ptr);
+extern callback int GioIOSchedulerJobFunc(ptr, ptr, ptr);
+extern callback int GioPollableSourceFunc(ptr, ptr);
+extern callback ptr GioReallocFunc(ptr, ulong);
+extern callback int GioSettingsBindGetMapping(ptr, ptr, ptr);
+extern callback ptr GioSettingsBindSetMapping(ptr, ptr, ptr);
+extern callback int GioSettingsGetMapping(ptr, ptr, ptr);
+extern callback void GioSimpleAsyncThreadFunc(ptr, ptr, ptr);
+extern callback int GioSocketSourceFunc(ptr, int, ptr);
+extern callback void GioTaskThreadFunc(ptr, ptr, ptr, ptr);
+extern callback ptr GioVfsFileLookupFunc(ptr, str, ptr);
+extern struct GioActionEntry{
+str name,  // utf8*
+ptr activate,  // ::activate
+str parameter_type,  // utf8*
+str state,  // utf8*
+ptr change_state,  // ::change_state
+ptr padding_0,
+ptr padding_1,
+ptr padding_2,
+};
+
+extern struct GioActionGroupInterface{
+byte g_iface[16],  // GioTypeInterface
+ptr has_action,  // ::has_action
+ptr list_actions,  // ::list_actions
+ptr get_action_enabled,  // ::get_action_enabled
+ptr get_action_parameter_type,  // ::get_action_parameter_type
+ptr get_action_state_type,  // ::get_action_state_type
+ptr get_action_state_hint,  // ::get_action_state_hint
+ptr get_action_state,  // ::get_action_state
+ptr change_action_state,  // ::change_action_state
+ptr activate_action,  // ::activate_action
+ptr action_added,  // ::action_added
+ptr action_removed,  // ::action_removed
+ptr action_enabled_changed,  // ::action_enabled_changed
+ptr action_state_changed,  // ::action_state_changed
+ptr query_action,  // ::query_action
+};
+
+extern struct GioActionInterface{
+byte g_iface[16],  // GioTypeInterface
+ptr get_name,  // ::get_name
+ptr get_parameter_type,  // ::get_parameter_type
+ptr get_state_type,  // ::get_state_type
+ptr get_state_hint,  // ::get_state_hint
+ptr get_enabled,  // ::get_enabled
+ptr get_state,  // ::get_state
+ptr change_state,  // ::change_state
+ptr activate,  // ::activate
+};
+
+extern struct GioActionMapInterface{
+byte g_iface[16],  // GioTypeInterface
+ptr lookup_action,  // ::lookup_action
+ptr add_action,  // ::add_action
+ptr remove_action,  // ::remove_action
+};
+
+extern struct GioAppInfoIface{
+byte g_iface[16],  // GioTypeInterface
+ptr dup,  // ::dup
+ptr equal,  // ::equal
+ptr get_id,  // ::get_id
+ptr get_name,  // ::get_name
+ptr get_description,  // ::get_description
+ptr get_executable,  // ::get_executable
+ptr get_icon,  // ::get_icon
+ptr launch,  // ::launch
+ptr supports_uris,  // ::supports_uris
+ptr supports_files,  // ::supports_files
+ptr launch_uris,  // ::launch_uris
+ptr should_show,  // ::should_show
+ptr set_as_default_for_type,  // ::set_as_default_for_type
+ptr set_as_default_for_extension,  // ::set_as_default_for_extension
+ptr add_supports_type,  // ::add_supports_type
+ptr can_remove_supports_type,  // ::can_remove_supports_type
+ptr remove_supports_type,  // ::remove_supports_type
+ptr can_delete,  // ::can_delete
+ptr do_delete,  // ::do_delete
+ptr get_commandline,  // ::get_commandline
+ptr get_display_name,  // ::get_display_name
+ptr set_as_last_used_for_type,  // ::set_as_last_used_for_type
+ptr get_supported_types,  // ::get_supported_types
+ptr launch_uris_async,  // ::launch_uris_async
+ptr launch_uris_finish,  // ::launch_uris_finish
+};
+
+extern struct GioAppLaunchContextClass{
+byte parent_class[136],  // GioObjectClass
+ptr get_display,  // ::get_display
+ptr get_startup_notify_id,  // ::get_startup_notify_id
+ptr launch_failed,  // ::launch_failed
+ptr launched,  // ::launched
+ptr launch_started,  // ::launch_started
+ptr _g_reserved1,  // void*
+ptr _g_reserved2,  // void*
+ptr _g_reserved3,  // void*
+};
+
+extern struct GioAppLaunchContextPrivate{
+
+};
+
+extern struct GioApplicationClass{
+byte parent_class[136],  // GioObjectClass
+ptr startup,  // ::startup
+ptr activate,  // ::activate
+ptr open,  // ::open
+ptr command_line,  // ::command_line
+ptr local_command_line,  // ::local_command_line
+ptr before_emit,  // ::before_emit
+ptr after_emit,  // ::after_emit
+ptr add_platform_data,  // ::add_platform_data
+ptr quit_mainloop,  // ::quit_mainloop
+ptr run_mainloop,  // ::run_mainloop
+ptr shutdown,  // ::shutdown
+ptr dbus_register,  // ::dbus_register
+ptr dbus_unregister,  // ::dbus_unregister
+ptr handle_local_options,  // ::handle_local_options
+ptr name_lost,  // ::name_lost
+ptr padding_0,
+ptr padding_1,
+ptr padding_2,
+ptr padding_3,
+ptr padding_4,
+ptr padding_5,
+ptr padding_6,
+};
+
+extern struct GioApplicationCommandLineClass{
+byte parent_class[136],  // GioObjectClass
+ptr print_literal,  // ::print_literal
+ptr printerr_literal,  // ::printerr_literal
+ptr get_stdin,  // ::get_stdin
+ptr padding_0,
+ptr padding_1,
+ptr padding_2,
+ptr padding_3,
+ptr padding_4,
+ptr padding_5,
+ptr padding_6,
+ptr padding_7,
+ptr padding_8,
+ptr padding_9,
+ptr padding_10,
+};
+
+extern struct GioApplicationCommandLinePrivate{
+
+};
+
+extern struct GioApplicationPrivate{
+
+};
+
+extern struct GioAsyncInitableIface{
+byte g_iface[16],  // GioTypeInterface
+ptr init_async,  // ::init_async
+ptr init_finish,  // ::init_finish
+};
+
+extern struct GioAsyncResultIface{
+byte g_iface[16],  // GioTypeInterface
+ptr get_user_data,  // ::get_user_data
+ptr get_source_object,  // ::get_source_object
+ptr is_tagged,  // ::is_tagged
+};
+
+extern struct GioBufferedInputStreamClass{
+byte parent_class[272],  // GioFilterInputStreamClass
+ptr fill,  // ::fill
+ptr fill_async,  // ::fill_async
+ptr fill_finish,  // ::fill_finish
+ptr _g_reserved1,  // void*
+ptr _g_reserved2,  // void*
+ptr _g_reserved3,  // void*
+ptr _g_reserved4,  // void*
+ptr _g_reserved5,  // void*
+};
+
+extern struct GioBufferedInputStreamPrivate{
+
+};
+
+extern struct GioBufferedOutputStreamClass{
+byte parent_class[320],  // GioFilterOutputStreamClass
+ptr _g_reserved1,  // void*
+ptr _g_reserved2,  // void*
+};
+
+extern struct GioBufferedOutputStreamPrivate{
+
+};
+
+extern struct GioCancellableClass{
+byte parent_class[136],  // GioObjectClass
+ptr cancelled,  // ::cancelled
+ptr _g_reserved1,  // void*
+ptr _g_reserved2,  // void*
+ptr _g_reserved3,  // void*
+ptr _g_reserved4,  // void*
+ptr _g_reserved5,  // void*
+};
+
+extern struct GioCancellablePrivate{
+
+};
+
+extern struct GioCharsetConverterClass{
+byte parent_class[136],  // GioObjectClass
+};
+
+extern struct GioConverterIface{
+byte g_iface[16],  // GioTypeInterface
+ptr convert,  // ::convert
+ptr reset,  // ::reset
+};
+
+extern struct GioConverterInputStreamClass{
+byte parent_class[272],  // GioFilterInputStreamClass
+ptr _g_reserved1,  // void*
+ptr _g_reserved2,  // void*
+ptr _g_reserved3,  // void*
+ptr _g_reserved4,  // void*
+ptr _g_reserved5,  // void*
+};
+
+extern struct GioConverterInputStreamPrivate{
+
+};
+
+extern struct GioConverterOutputStreamClass{
+byte parent_class[320],  // GioFilterOutputStreamClass
+ptr _g_reserved1,  // void*
+ptr _g_reserved2,  // void*
+ptr _g_reserved3,  // void*
+ptr _g_reserved4,  // void*
+ptr _g_reserved5,  // void*
+};
+
+extern struct GioConverterOutputStreamPrivate{
+
+};
+
+extern struct GioCredentialsClass{
+
+};
+
+// name GDBusAnnotationInfo
+extern struct GDBusAnnotationInfo{
+int ref_count,  // gint32
+str key,  // utf8*
+str value,  // utf8*
+ptr annotations,  // array*
+};
+
+// name GDBusArgInfo
+extern struct GDBusArgInfo{
+int ref_count,  // gint32
+str name,  // utf8*
+str signature,  // utf8*
+ptr annotations,  // array*
+};
+
+extern struct GioDBusErrorEntry{
+int error_code,  // gint32
+str dbus_error_name,  // utf8*
+};
+
+extern struct GioDBusInterfaceIface{
+byte parent_iface[16],  // GioTypeInterface
+ptr get_info,  // ::get_info
+ptr get_object,  // ::get_object
+ptr set_object,  // ::set_object
+ptr dup_object,  // ::dup_object
+};
+
+// name GDBusInterfaceInfo
+extern struct GDBusInterfaceInfo{
+int ref_count,  // gint32
+str name,  // utf8*
+ptr methods,  // array*
+ptr signals,  // array*
+ptr properties,  // array*
+ptr annotations,  // array*
+};
+
+extern struct GioDBusInterfaceSkeletonClass{
+byte parent_class[136],  // GioObjectClass
+ptr get_info,  // ::get_info
+ptr get_vtable,  // void*
+ptr get_properties,  // ::get_properties
+ptr flush,  // ::flush
+ptr vfunc_padding_0,
+ptr vfunc_padding_1,
+ptr vfunc_padding_2,
+ptr vfunc_padding_3,
+ptr vfunc_padding_4,
+ptr vfunc_padding_5,
+ptr vfunc_padding_6,
+ptr vfunc_padding_7,
+ptr g_authorize_method,  // ::g_authorize_method
+ptr signal_padding_0,
+ptr signal_padding_1,
+ptr signal_padding_2,
+ptr signal_padding_3,
+ptr signal_padding_4,
+ptr signal_padding_5,
+ptr signal_padding_6,
+ptr signal_padding_7,
+};
+
+extern struct GioDBusInterfaceSkeletonPrivate{
+
+};
+
+extern struct GioDBusInterfaceVTable{
+ptr method_call,  // ::DBusInterfaceMethodCallFunc
+ptr get_property,  // ::DBusInterfaceGetPropertyFunc
+ptr set_property,  // ::DBusInterfaceSetPropertyFunc
+ptr padding_0,
+ptr padding_1,
+ptr padding_2,
+ptr padding_3,
+ptr padding_4,
+ptr padding_5,
+ptr padding_6,
+ptr padding_7,
+};
+
+// name GDBusMethodInfo
+extern struct GDBusMethodInfo{
+int ref_count,  // gint32
+str name,  // utf8*
+ptr in_args,  // array*
+ptr out_args,  // array*
+ptr annotations,  // array*
+};
+
+// name GDBusNodeInfo
+extern struct GDBusNodeInfo{
+int ref_count,  // gint32
+str path,  // utf8*
+ptr interfaces,  // array*
+ptr nodes,  // array*
+ptr annotations,  // array*
+};
+
+extern struct GioDBusObjectIface{
+byte parent_iface[16],  // GioTypeInterface
+ptr get_object_path,  // ::get_object_path
+ptr get_interfaces,  // ::get_interfaces
+ptr get_interface,  // ::get_interface
+ptr interface_added,  // ::interface_added
+ptr interface_removed,  // ::interface_removed
+};
+
+extern struct GioDBusObjectManagerClientClass{
+byte parent_class[136],  // GioObjectClass
+ptr interface_proxy_signal,  // ::interface_proxy_signal
+ptr interface_proxy_properties_changed,  // ::interface_proxy_properties_changed
+ptr padding_0,
+ptr padding_1,
+ptr padding_2,
+ptr padding_3,
+ptr padding_4,
+ptr padding_5,
+ptr padding_6,
+ptr padding_7,
+};
+
+extern struct GioDBusObjectManagerClientPrivate{
+
+};
+
+extern struct GioDBusObjectManagerIface{
+byte parent_iface[16],  // GioTypeInterface
+ptr get_object_path,  // ::get_object_path
+ptr get_objects,  // ::get_objects
+ptr get_object,  // ::get_object
+ptr get_interface,  // ::get_interface
+ptr object_added,  // ::object_added
+ptr object_removed,  // ::object_removed
+ptr interface_added,  // ::interface_added
+ptr interface_removed,  // ::interface_removed
+};
+
+extern struct GioDBusObjectManagerServerClass{
+byte parent_class[136],  // GioObjectClass
+ptr padding_0,
+ptr padding_1,
+ptr padding_2,
+ptr padding_3,
+ptr padding_4,
+ptr padding_5,
+ptr padding_6,
+ptr padding_7,
+};
+
+extern struct GioDBusObjectManagerServerPrivate{
+
+};
+
+extern struct GioDBusObjectProxyClass{
+byte parent_class[136],  // GioObjectClass
+ptr padding_0,
+ptr padding_1,
+ptr padding_2,
+ptr padding_3,
+ptr padding_4,
+ptr padding_5,
+ptr padding_6,
+ptr padding_7,
+};
+
+extern struct GioDBusObjectProxyPrivate{
+
+};
+
+extern struct GioDBusObjectSkeletonClass{
+byte parent_class[136],  // GioObjectClass
+ptr authorize_method,  // ::authorize_method
+ptr padding_0,
+ptr padding_1,
+ptr padding_2,
+ptr padding_3,
+ptr padding_4,
+ptr padding_5,
+ptr padding_6,
+ptr padding_7,
+};
+
+extern struct GioDBusObjectSkeletonPrivate{
+
+};
+
+// name GDBusPropertyInfo
+extern struct GDBusPropertyInfo{
+int ref_count,  // gint32
+str name,  // utf8*
+str signature,  // utf8*
+int flags,  // GioDBusPropertyInfoFlags
+ptr annotations,  // array*
+};
+
+extern struct GioDBusProxyClass{
+byte parent_class[136],  // GioObjectClass
+ptr g_properties_changed,  // ::g_properties_changed
+ptr g_signal,  // ::g_signal
+ptr padding_0,
+ptr padding_1,
+ptr padding_2,
+ptr padding_3,
+ptr padding_4,
+ptr padding_5,
+ptr padding_6,
+ptr padding_7,
+ptr padding_8,
+ptr padding_9,
+ptr padding_10,
+ptr padding_11,
+ptr padding_12,
+ptr padding_13,
+ptr padding_14,
+ptr padding_15,
+ptr padding_16,
+ptr padding_17,
+ptr padding_18,
+ptr padding_19,
+ptr padding_20,
+ptr padding_21,
+ptr padding_22,
+ptr padding_23,
+ptr padding_24,
+ptr padding_25,
+ptr padding_26,
+ptr padding_27,
+ptr padding_28,
+ptr padding_29,
+ptr padding_30,
+ptr padding_31,
+};
+
+extern struct GioDBusProxyPrivate{
+
+};
+
+// name GDBusSignalInfo
+extern struct GDBusSignalInfo{
+int ref_count,  // gint32
+str name,  // utf8*
+ptr args,  // array*
+ptr annotations,  // array*
+};
+
+extern struct GioDBusSubtreeVTable{
+ptr enumerate,  // ::DBusSubtreeEnumerateFunc
+ptr introspect,  // ::DBusSubtreeIntrospectFunc
+ptr dispatch,  // ::DBusSubtreeDispatchFunc
+ptr padding_0,
+ptr padding_1,
+ptr padding_2,
+ptr padding_3,
+ptr padding_4,
+ptr padding_5,
+ptr padding_6,
+ptr padding_7,
+};
+
+extern struct GioDataInputStreamClass{
+byte parent_class[336],  // GioBufferedInputStreamClass
+ptr _g_reserved1,  // void*
+ptr _g_reserved2,  // void*
+ptr _g_reserved3,  // void*
+ptr _g_reserved4,  // void*
+ptr _g_reserved5,  // void*
+};
+
+extern struct GioDataInputStreamPrivate{
+
+};
+
+extern struct GioDataOutputStreamClass{
+byte parent_class[320],  // GioFilterOutputStreamClass
+ptr _g_reserved1,  // void*
+ptr _g_reserved2,  // void*
+ptr _g_reserved3,  // void*
+ptr _g_reserved4,  // void*
+ptr _g_reserved5,  // void*
+};
+
+extern struct GioDataOutputStreamPrivate{
+
+};
+
+extern struct GioDatagramBasedInterface{
+byte g_iface[16],  // GioTypeInterface
+ptr receive_messages,  // ::receive_messages
+ptr send_messages,  // ::send_messages
+ptr create_source,  // ::create_source
+ptr condition_check,  // ::condition_check
+ptr condition_wait,  // ::condition_wait
+};
+
+extern struct GioDebugControllerDBusClass{
+byte parent_class[136],  // GioObjectClass
+ptr authorize,  // ::authorize
+ptr padding_0,
+ptr padding_1,
+ptr padding_2,
+ptr padding_3,
+ptr padding_4,
+ptr padding_5,
+ptr padding_6,
+ptr padding_7,
+ptr padding_8,
+ptr padding_9,
+ptr padding_10,
+ptr padding_11,
+};
+
+extern struct GioDebugControllerInterface{
+byte g_iface[16],  // GioTypeInterface
+};
+
+extern struct GioDesktopAppInfoClass{
+byte parent_class[136],  // GioObjectClass
+};
+
+extern struct GioDesktopAppInfoLookupIface{
+byte g_iface[16],  // GioTypeInterface
+ptr get_default_for_uri_scheme,  // ::get_default_for_uri_scheme
+};
+
+extern struct GioDriveIface{
+byte g_iface[16],  // GioTypeInterface
+ptr changed,  // ::changed
+ptr disconnected,  // ::disconnected
+ptr eject_button,  // ::eject_button
+ptr get_name,  // ::get_name
+ptr get_icon,  // ::get_icon
+ptr has_volumes,  // ::has_volumes
+ptr get_volumes,  // ::get_volumes
+ptr is_media_removable,  // ::is_media_removable
+ptr has_media,  // ::has_media
+ptr is_media_check_automatic,  // ::is_media_check_automatic
+ptr can_eject,  // ::can_eject
+ptr can_poll_for_media,  // ::can_poll_for_media
+ptr eject,  // ::eject
+ptr eject_finish,  // ::eject_finish
+ptr poll_for_media,  // ::poll_for_media
+ptr poll_for_media_finish,  // ::poll_for_media_finish
+ptr get_identifier,  // ::get_identifier
+ptr enumerate_identifiers,  // ::enumerate_identifiers
+ptr get_start_stop_type,  // ::get_start_stop_type
+ptr can_start,  // ::can_start
+ptr can_start_degraded,  // ::can_start_degraded
+ptr start,  // ::start
+ptr start_finish,  // ::start_finish
+ptr can_stop,  // ::can_stop
+ptr stop,  // ::stop
+ptr stop_finish,  // ::stop_finish
+ptr stop_button,  // ::stop_button
+ptr eject_with_operation,  // ::eject_with_operation
+ptr eject_with_operation_finish,  // ::eject_with_operation_finish
+ptr get_sort_key,  // ::get_sort_key
+ptr get_symbolic_icon,  // ::get_symbolic_icon
+ptr is_removable,  // ::is_removable
+};
+
+extern struct GioDtlsClientConnectionInterface{
+byte g_iface[16],  // GioTypeInterface
+};
+
+extern struct GioDtlsConnectionInterface{
+byte g_iface[16],  // GioTypeInterface
+ptr accept_certificate,  // ::accept_certificate
+ptr handshake,  // ::handshake
+ptr handshake_async,  // ::handshake_async
+ptr handshake_finish,  // ::handshake_finish
+ptr shutdown,  // ::shutdown
+ptr shutdown_async,  // ::shutdown_async
+ptr shutdown_finish,  // ::shutdown_finish
+ptr set_advertised_protocols,  // ::set_advertised_protocols
+ptr get_negotiated_protocol,  // ::get_negotiated_protocol
+ptr get_binding_data,  // ::get_binding_data
+};
+
+extern struct GioDtlsServerConnectionInterface{
+byte g_iface[16],  // GioTypeInterface
+};
+
+extern struct GioEmblemClass{
+
+};
+
+extern struct GioEmblemedIconClass{
+byte parent_class[136],  // GioObjectClass
+};
+
+extern struct GioEmblemedIconPrivate{
+
+};
+
+extern struct GioFileAttributeInfo{
+str name,  // utf8*
+int type,  // GioFileAttributeType
+int flags,  // GioFileAttributeInfoFlags
+};
+
+// name GFileAttributeInfoList
+extern struct GFileAttributeInfoList{
+ptr infos,  // GioFileAttributeInfo*
+int n_infos,  // gint32
+};
+
+// name GFileAttributeMatcher
+extern struct GFileAttributeMatcher{
+
+};
+
+extern struct GioFileDescriptorBasedIface{
+byte g_iface[16],  // GioTypeInterface
+ptr get_fd,  // ::get_fd
+};
+
+extern struct GioFileEnumeratorClass{
+byte parent_class[136],  // GioObjectClass
+ptr next_file,  // ::next_file
+ptr close_fn,  // ::close_fn
+ptr next_files_async,  // ::next_files_async
+ptr next_files_finish,  // ::next_files_finish
+ptr close_async,  // ::close_async
+ptr close_finish,  // ::close_finish
+ptr _g_reserved1,  // void*
+ptr _g_reserved2,  // void*
+ptr _g_reserved3,  // void*
+ptr _g_reserved4,  // void*
+ptr _g_reserved5,  // void*
+ptr _g_reserved6,  // void*
+ptr _g_reserved7,  // void*
+};
+
+extern struct GioFileEnumeratorPrivate{
+
+};
+
+extern struct GioFileIOStreamClass{
+byte parent_class[256],  // GioIOStreamClass
+ptr tell,  // ::tell
+ptr can_seek,  // ::can_seek
+ptr seek,  // ::seek
+ptr can_truncate,  // ::can_truncate
+ptr truncate_fn,  // ::truncate_fn
+ptr query_info,  // ::query_info
+ptr query_info_async,  // ::query_info_async
+ptr query_info_finish,  // ::query_info_finish
+ptr get_etag,  // ::get_etag
+ptr _g_reserved1,  // void*
+ptr _g_reserved2,  // void*
+ptr _g_reserved3,  // void*
+ptr _g_reserved4,  // void*
+ptr _g_reserved5,  // void*
+};
+
+extern struct GioFileIOStreamPrivate{
+
+};
+
+extern struct GioFileIconClass{
+
+};
+
+extern struct GioFileIface{
+byte g_iface[16],  // GioTypeInterface
+ptr dup,  // ::dup
+ptr hash,  // ::hash
+ptr equal,  // ::equal
+ptr is_native,  // ::is_native
+ptr has_uri_scheme,  // ::has_uri_scheme
+ptr get_uri_scheme,  // ::get_uri_scheme
+ptr get_basename,  // ::get_basename
+ptr get_path,  // ::get_path
+ptr get_uri,  // ::get_uri
+ptr get_parse_name,  // ::get_parse_name
+ptr get_parent,  // ::get_parent
+ptr prefix_matches,  // ::prefix_matches
+ptr get_relative_path,  // ::get_relative_path
+ptr resolve_relative_path,  // ::resolve_relative_path
+ptr get_child_for_display_name,  // ::get_child_for_display_name
+ptr enumerate_children,  // ::enumerate_children
+ptr enumerate_children_async,  // ::enumerate_children_async
+ptr enumerate_children_finish,  // ::enumerate_children_finish
+ptr query_info,  // ::query_info
+ptr query_info_async,  // ::query_info_async
+ptr query_info_finish,  // ::query_info_finish
+ptr query_filesystem_info,  // ::query_filesystem_info
+ptr query_filesystem_info_async,  // ::query_filesystem_info_async
+ptr query_filesystem_info_finish,  // ::query_filesystem_info_finish
+ptr find_enclosing_mount,  // ::find_enclosing_mount
+ptr find_enclosing_mount_async,  // ::find_enclosing_mount_async
+ptr find_enclosing_mount_finish,  // ::find_enclosing_mount_finish
+ptr set_display_name,  // ::set_display_name
+ptr set_display_name_async,  // ::set_display_name_async
+ptr set_display_name_finish,  // ::set_display_name_finish
+ptr query_settable_attributes,  // ::query_settable_attributes
+ptr _query_settable_attributes_async,  // void*
+ptr _query_settable_attributes_finish,  // void*
+ptr query_writable_namespaces,  // ::query_writable_namespaces
+ptr _query_writable_namespaces_async,  // void*
+ptr _query_writable_namespaces_finish,  // void*
+ptr set_attribute,  // ::set_attribute
+ptr set_attributes_from_info,  // ::set_attributes_from_info
+ptr set_attributes_async,  // ::set_attributes_async
+ptr set_attributes_finish,  // ::set_attributes_finish
+ptr read_fn,  // ::read_fn
+ptr read_async,  // ::read_async
+ptr read_finish,  // ::read_finish
+ptr append_to,  // ::append_to
+ptr append_to_async,  // ::append_to_async
+ptr append_to_finish,  // ::append_to_finish
+ptr create,  // ::create
+ptr create_async,  // ::create_async
+ptr create_finish,  // ::create_finish
+ptr replace,  // ::replace
+ptr replace_async,  // ::replace_async
+ptr replace_finish,  // ::replace_finish
+ptr delete_file,  // ::delete_file
+ptr delete_file_async,  // ::delete_file_async
+ptr delete_file_finish,  // ::delete_file_finish
+ptr trash,  // ::trash
+ptr trash_async,  // ::trash_async
+ptr trash_finish,  // ::trash_finish
+ptr make_directory,  // ::make_directory
+ptr make_directory_async,  // ::make_directory_async
+ptr make_directory_finish,  // ::make_directory_finish
+ptr make_symbolic_link,  // ::make_symbolic_link
+ptr _make_symbolic_link_async,  // void*
+ptr _make_symbolic_link_finish,  // void*
+ptr copy,  // ::copy
+ptr copy_async,  // ::copy_async
+ptr copy_finish,  // ::copy_finish
+ptr move,  // ::move
+ptr move_async,  // ::move_async
+ptr move_finish,  // ::move_finish
+ptr mount_mountable,  // ::mount_mountable
+ptr mount_mountable_finish,  // ::mount_mountable_finish
+ptr unmount_mountable,  // ::unmount_mountable
+ptr unmount_mountable_finish,  // ::unmount_mountable_finish
+ptr eject_mountable,  // ::eject_mountable
+ptr eject_mountable_finish,  // ::eject_mountable_finish
+ptr mount_enclosing_volume,  // ::mount_enclosing_volume
+ptr mount_enclosing_volume_finish,  // ::mount_enclosing_volume_finish
+ptr monitor_dir,  // ::monitor_dir
+ptr monitor_file,  // ::monitor_file
+ptr open_readwrite,  // ::open_readwrite
+ptr open_readwrite_async,  // ::open_readwrite_async
+ptr open_readwrite_finish,  // ::open_readwrite_finish
+ptr create_readwrite,  // ::create_readwrite
+ptr create_readwrite_async,  // ::create_readwrite_async
+ptr create_readwrite_finish,  // ::create_readwrite_finish
+ptr replace_readwrite,  // ::replace_readwrite
+ptr replace_readwrite_async,  // ::replace_readwrite_async
+ptr replace_readwrite_finish,  // ::replace_readwrite_finish
+ptr start_mountable,  // ::start_mountable
+ptr start_mountable_finish,  // ::start_mountable_finish
+ptr stop_mountable,  // ::stop_mountable
+ptr stop_mountable_finish,  // ::stop_mountable_finish
+int supports_thread_contexts,  // gboolean
+ptr unmount_mountable_with_operation,  // ::unmount_mountable_with_operation
+ptr unmount_mountable_with_operation_finish,  // ::unmount_mountable_with_operation_finish
+ptr eject_mountable_with_operation,  // ::eject_mountable_with_operation
+ptr eject_mountable_with_operation_finish,  // ::eject_mountable_with_operation_finish
+ptr poll_mountable,  // ::poll_mountable
+ptr poll_mountable_finish,  // ::poll_mountable_finish
+ptr measure_disk_usage,  // void*
+ptr measure_disk_usage_async,  // void*
+ptr measure_disk_usage_finish,  // ::measure_disk_usage_finish
+};
+
+extern struct GioFileInfoClass{
+
+};
+
+extern struct GioFileInputStreamClass{
+byte parent_class[248],  // GioInputStreamClass
+ptr tell,  // ::tell
+ptr can_seek,  // ::can_seek
+ptr seek,  // ::seek
+ptr query_info,  // ::query_info
+ptr query_info_async,  // ::query_info_async
+ptr query_info_finish,  // ::query_info_finish
+ptr _g_reserved1,  // void*
+ptr _g_reserved2,  // void*
+ptr _g_reserved3,  // void*
+ptr _g_reserved4,  // void*
+ptr _g_reserved5,  // void*
+};
+
+extern struct GioFileInputStreamPrivate{
+
+};
+
+extern struct GioFileMonitorClass{
+byte parent_class[136],  // GioObjectClass
+ptr changed,  // ::changed
+ptr cancel,  // ::cancel
+ptr _g_reserved1,  // void*
+ptr _g_reserved2,  // void*
+ptr _g_reserved3,  // void*
+ptr _g_reserved4,  // void*
+ptr _g_reserved5,  // void*
+};
+
+extern struct GioFileMonitorPrivate{
+
+};
+
+extern struct GioFileOutputStreamClass{
+byte parent_class[296],  // GioOutputStreamClass
+ptr tell,  // ::tell
+ptr can_seek,  // ::can_seek
+ptr seek,  // ::seek
+ptr can_truncate,  // ::can_truncate
+ptr truncate_fn,  // ::truncate_fn
+ptr query_info,  // ::query_info
+ptr query_info_async,  // ::query_info_async
+ptr query_info_finish,  // ::query_info_finish
+ptr get_etag,  // ::get_etag
+ptr _g_reserved1,  // void*
+ptr _g_reserved2,  // void*
+ptr _g_reserved3,  // void*
+ptr _g_reserved4,  // void*
+ptr _g_reserved5,  // void*
+};
+
+extern struct GioFileOutputStreamPrivate{
+
+};
+
+extern struct GioFilenameCompleterClass{
+byte parent_class[136],  // GioObjectClass
+ptr got_completion_data,  // ::got_completion_data
+ptr _g_reserved1,  // void*
+ptr _g_reserved2,  // void*
+ptr _g_reserved3,  // void*
+};
+
+extern struct GioFilterInputStreamClass{
+byte parent_class[248],  // GioInputStreamClass
+ptr _g_reserved1,  // void*
+ptr _g_reserved2,  // void*
+ptr _g_reserved3,  // void*
+};
+
+extern struct GioFilterOutputStreamClass{
+byte parent_class[296],  // GioOutputStreamClass
+ptr _g_reserved1,  // void*
+ptr _g_reserved2,  // void*
+ptr _g_reserved3,  // void*
+};
+
+extern struct GioIOExtension{
+
+};
+
+extern struct GioIOExtensionPoint{
+
+};
+
+extern struct GioIOModuleClass{
+
+};
+
+extern struct GioIOModuleScope{
+
+};
+
+extern struct GioIOSchedulerJob{
+
+};
+
+extern struct GioIOStreamAdapter{
+
+};
+
+extern struct GioIOStreamClass{
+byte parent_class[136],  // GioObjectClass
+ptr get_input_stream,  // ::get_input_stream
+ptr get_output_stream,  // ::get_output_stream
+ptr close_fn,  // ::close_fn
+ptr close_async,  // ::close_async
+ptr close_finish,  // ::close_finish
+ptr _g_reserved1,  // void*
+ptr _g_reserved2,  // void*
+ptr _g_reserved3,  // void*
+ptr _g_reserved4,  // void*
+ptr _g_reserved5,  // void*
+ptr _g_reserved6,  // void*
+ptr _g_reserved7,  // void*
+ptr _g_reserved8,  // void*
+ptr _g_reserved9,  // void*
+ptr _g_reserved10,  // void*
+};
+
+extern struct GioIOStreamPrivate{
+
+};
+
+extern struct GioIconIface{
+byte g_iface[16],  // GioTypeInterface
+ptr hash,  // ::hash
+ptr equal,  // ::equal
+ptr to_tokens,  // void*
+ptr from_tokens,  // void*
+ptr serialize,  // ::serialize
+};
+
+extern struct GioInetAddressClass{
+byte parent_class[136],  // GioObjectClass
+ptr to_string,  // ::to_string
+ptr to_bytes,  // ::to_bytes
+};
+
+extern struct GioInetAddressMaskClass{
+byte parent_class[136],  // GioObjectClass
+};
+
+extern struct GioInetAddressMaskPrivate{
+
+};
+
+extern struct GioInetAddressPrivate{
+
+};
+
+extern struct GioInetSocketAddressClass{
+byte parent_class[160],  // GioSocketAddressClass
+};
+
+extern struct GioInetSocketAddressPrivate{
+
+};
+
+extern struct GioInitableIface{
+byte g_iface[16],  // GioTypeInterface
+ptr init,  // ::init
+};
+
+extern struct GioInputMessage{
+ptr address,  // GioSocketAddress*
+ptr vectors,  // array*
+uint num_vectors,  // guint32
+ulong bytes_received,  // guint64
+int flags,  // gint32
+ptr control_messages,  // array*
+ptr num_control_messages,  // guint32*
+};
+
+extern struct GioInputStreamClass{
+byte parent_class[136],  // GioObjectClass
+ptr read_fn,  // ::read_fn
+ptr skip,  // ::skip
+ptr close_fn,  // ::close_fn
+ptr read_async,  // ::read_async
+ptr read_finish,  // ::read_finish
+ptr skip_async,  // ::skip_async
+ptr skip_finish,  // ::skip_finish
+ptr close_async,  // ::close_async
+ptr close_finish,  // ::close_finish
+ptr _g_reserved1,  // void*
+ptr _g_reserved2,  // void*
+ptr _g_reserved3,  // void*
+ptr _g_reserved4,  // void*
+ptr _g_reserved5,  // void*
+};
+
+extern struct GioInputStreamPrivate{
+
+};
+
+extern struct GioInputVector{
+ptr buffer,  // void*
+ulong size,  // guint64
+};
+
+extern struct GioListModelInterface{
+byte g_iface[16],  // GioTypeInterface
+ptr get_item_type,  // ::get_item_type
+ptr get_n_items,  // ::get_n_items
+ptr get_item,  // ::get_item
+};
+
+extern struct GioListStoreClass{
+byte parent_class[136],  // GioObjectClass
+};
+
+extern struct GioLoadableIconIface{
+byte g_iface[16],  // GioTypeInterface
+ptr load,  // ::load
+ptr load_async,  // ::load_async
+ptr load_finish,  // ::load_finish
+};
+
+extern struct GioMemoryInputStreamClass{
+byte parent_class[248],  // GioInputStreamClass
+ptr _g_reserved1,  // void*
+ptr _g_reserved2,  // void*
+ptr _g_reserved3,  // void*
+ptr _g_reserved4,  // void*
+ptr _g_reserved5,  // void*
+};
+
+extern struct GioMemoryInputStreamPrivate{
+
+};
+
+extern struct GioMemoryMonitorInterface{
+byte g_iface[16],  // GioTypeInterface
+ptr low_memory_warning,  // ::low_memory_warning
+};
+
+extern struct GioMemoryOutputStreamClass{
+byte parent_class[296],  // GioOutputStreamClass
+ptr _g_reserved1,  // void*
+ptr _g_reserved2,  // void*
+ptr _g_reserved3,  // void*
+ptr _g_reserved4,  // void*
+ptr _g_reserved5,  // void*
+};
+
+extern struct GioMemoryOutputStreamPrivate{
+
+};
+
+extern struct GioMenuAttributeIterClass{
+byte parent_class[136],  // GioObjectClass
+ptr get_next,  // ::get_next
+};
+
+extern struct GioMenuAttributeIterPrivate{
+
+};
+
+extern struct GioMenuLinkIterClass{
+byte parent_class[136],  // GioObjectClass
+ptr get_next,  // ::get_next
+};
+
+extern struct GioMenuLinkIterPrivate{
+
+};
+
+extern struct GioMenuModelClass{
+byte parent_class[136],  // GioObjectClass
+ptr is_mutable,  // ::is_mutable
+ptr get_n_items,  // ::get_n_items
+ptr get_item_attributes,  // ::get_item_attributes
+ptr iterate_item_attributes,  // ::iterate_item_attributes
+ptr get_item_attribute_value,  // ::get_item_attribute_value
+ptr get_item_links,  // ::get_item_links
+ptr iterate_item_links,  // ::iterate_item_links
+ptr get_item_link,  // ::get_item_link
+};
+
+extern struct GioMenuModelPrivate{
+
+};
+
+extern struct GioMountIface{
+byte g_iface[16],  // GioTypeInterface
+ptr changed,  // ::changed
+ptr unmounted,  // ::unmounted
+ptr get_root,  // ::get_root
+ptr get_name,  // ::get_name
+ptr get_icon,  // ::get_icon
+ptr get_uuid,  // ::get_uuid
+ptr get_volume,  // ::get_volume
+ptr get_drive,  // ::get_drive
+ptr can_unmount,  // ::can_unmount
+ptr can_eject,  // ::can_eject
+ptr unmount,  // ::unmount
+ptr unmount_finish,  // ::unmount_finish
+ptr eject,  // ::eject
+ptr eject_finish,  // ::eject_finish
+ptr remount,  // ::remount
+ptr remount_finish,  // ::remount_finish
+ptr guess_content_type,  // ::guess_content_type
+ptr guess_content_type_finish,  // ::guess_content_type_finish
+ptr guess_content_type_sync,  // ::guess_content_type_sync
+ptr pre_unmount,  // ::pre_unmount
+ptr unmount_with_operation,  // ::unmount_with_operation
+ptr unmount_with_operation_finish,  // ::unmount_with_operation_finish
+ptr eject_with_operation,  // ::eject_with_operation
+ptr eject_with_operation_finish,  // ::eject_with_operation_finish
+ptr get_default_location,  // ::get_default_location
+ptr get_sort_key,  // ::get_sort_key
+ptr get_symbolic_icon,  // ::get_symbolic_icon
+};
+
+extern struct GioMountOperationClass{
+byte parent_class[136],  // GioObjectClass
+ptr ask_password,  // ::ask_password
+ptr ask_question,  // ::ask_question
+ptr reply,  // ::reply
+ptr aborted,  // ::aborted
+ptr show_processes,  // ::show_processes
+ptr show_unmount_progress,  // ::show_unmount_progress
+ptr _g_reserved1,  // void*
+ptr _g_reserved2,  // void*
+ptr _g_reserved3,  // void*
+ptr _g_reserved4,  // void*
+ptr _g_reserved5,  // void*
+ptr _g_reserved6,  // void*
+ptr _g_reserved7,  // void*
+ptr _g_reserved8,  // void*
+ptr _g_reserved9,  // void*
+};
+
+extern struct GioMountOperationPrivate{
+
+};
+
+extern struct GioNativeSocketAddressClass{
+byte parent_class[160],  // GioSocketAddressClass
+};
+
+extern struct GioNativeSocketAddressPrivate{
+
+};
+
+extern struct GioNativeVolumeMonitorClass{
+byte parent_class[336],  // GioVolumeMonitorClass
+ptr get_mount_for_mount_path,  // void*
+};
+
+extern struct GioNetworkAddressClass{
+byte parent_class[136],  // GioObjectClass
+};
+
+extern struct GioNetworkAddressPrivate{
+
+};
+
+extern struct GioNetworkMonitorInterface{
+byte g_iface[16],  // GioTypeInterface
+ptr network_changed,  // ::network_changed
+ptr can_reach,  // ::can_reach
+ptr can_reach_async,  // ::can_reach_async
+ptr can_reach_finish,  // ::can_reach_finish
+};
+
+extern struct GioNetworkServiceClass{
+byte parent_class[136],  // GioObjectClass
+};
+
+extern struct GioNetworkServicePrivate{
+
+};
+
+extern struct GioOutputMessage{
+ptr address,  // GioSocketAddress*
+ptr vectors,  // GioOutputVector*
+uint num_vectors,  // guint32
+uint bytes_sent,  // guint32
+ptr control_messages,  // array*
+uint num_control_messages,  // guint32
+};
+
+extern struct GioOutputStreamClass{
+byte parent_class[136],  // GioObjectClass
+ptr write_fn,  // ::write_fn
+ptr splice,  // ::splice
+ptr flush,  // ::flush
+ptr close_fn,  // ::close_fn
+ptr write_async,  // ::write_async
+ptr write_finish,  // ::write_finish
+ptr splice_async,  // ::splice_async
+ptr splice_finish,  // ::splice_finish
+ptr flush_async,  // ::flush_async
+ptr flush_finish,  // ::flush_finish
+ptr close_async,  // ::close_async
+ptr close_finish,  // ::close_finish
+ptr writev_fn,  // ::writev_fn
+ptr writev_async,  // ::writev_async
+ptr writev_finish,  // ::writev_finish
+ptr _g_reserved4,  // void*
+ptr _g_reserved5,  // void*
+ptr _g_reserved6,  // void*
+ptr _g_reserved7,  // void*
+ptr _g_reserved8,  // void*
+};
+
+extern struct GioOutputStreamPrivate{
+
+};
+
+extern struct GioOutputVector{
+ptr buffer,  // void*
+ulong size,  // guint64
+};
+
+extern struct GioPermissionClass{
+byte parent_class[136],  // GioObjectClass
+ptr acquire,  // ::acquire
+ptr acquire_async,  // ::acquire_async
+ptr acquire_finish,  // ::acquire_finish
+ptr release,  // ::release
+ptr release_async,  // ::release_async
+ptr release_finish,  // ::release_finish
+ptr reserved_0,
+ptr reserved_1,
+ptr reserved_2,
+ptr reserved_3,
+ptr reserved_4,
+ptr reserved_5,
+ptr reserved_6,
+ptr reserved_7,
+ptr reserved_8,
+ptr reserved_9,
+ptr reserved_10,
+ptr reserved_11,
+ptr reserved_12,
+ptr reserved_13,
+ptr reserved_14,
+ptr reserved_15,
+};
+
+extern struct GioPermissionPrivate{
+
+};
+
+extern struct GioPollableInputStreamInterface{
+byte g_iface[16],  // GioTypeInterface
+ptr can_poll,  // ::can_poll
+ptr is_readable,  // ::is_readable
+ptr create_source,  // ::create_source
+ptr read_nonblocking,  // ::read_nonblocking
+};
+
+extern struct GioPollableOutputStreamInterface{
+byte g_iface[16],  // GioTypeInterface
+ptr can_poll,  // ::can_poll
+ptr is_writable,  // ::is_writable
+ptr create_source,  // ::create_source
+ptr write_nonblocking,  // ::write_nonblocking
+ptr writev_nonblocking,  // ::writev_nonblocking
+};
+
+extern struct GioPowerProfileMonitorInterface{
+byte g_iface[16],  // GioTypeInterface
+};
+
+extern struct GioProxyAddressClass{
+byte parent_class[160],  // GioInetSocketAddressClass
+};
+
+extern struct GioProxyAddressEnumeratorClass{
+byte parent_class[160],  // GioSocketAddressEnumeratorClass
+ptr _g_reserved1,  // void*
+ptr _g_reserved2,  // void*
+ptr _g_reserved3,  // void*
+ptr _g_reserved4,  // void*
+ptr _g_reserved5,  // void*
+ptr _g_reserved6,  // void*
+ptr _g_reserved7,  // void*
+};
+
+extern struct GioProxyAddressEnumeratorPrivate{
+
+};
+
+extern struct GioProxyAddressPrivate{
+
+};
+
+extern struct GioProxyInterface{
+byte g_iface[16],  // GioTypeInterface
+ptr connect,  // ::connect
+ptr connect_async,  // ::connect_async
+ptr connect_finish,  // ::connect_finish
+ptr supports_hostname,  // ::supports_hostname
+};
+
+extern struct GioProxyResolverInterface{
+byte g_iface[16],  // GioTypeInterface
+ptr is_supported,  // ::is_supported
+ptr lookup,  // ::lookup
+ptr lookup_async,  // ::lookup_async
+ptr lookup_finish,  // ::lookup_finish
+};
+
+extern struct GioRemoteActionGroupInterface{
+byte g_iface[16],  // GioTypeInterface
+ptr activate_action_full,  // ::activate_action_full
+ptr change_action_state_full,  // ::change_action_state_full
+};
+
+extern struct GioResolverClass{
+byte parent_class[136],  // GioObjectClass
+ptr reload,  // ::reload
+ptr lookup_by_name,  // ::lookup_by_name
+ptr lookup_by_name_async,  // ::lookup_by_name_async
+ptr lookup_by_name_finish,  // ::lookup_by_name_finish
+ptr lookup_by_address,  // ::lookup_by_address
+ptr lookup_by_address_async,  // ::lookup_by_address_async
+ptr lookup_by_address_finish,  // ::lookup_by_address_finish
+ptr lookup_service,  // void*
+ptr lookup_service_async,  // ::lookup_service_async
+ptr lookup_service_finish,  // ::lookup_service_finish
+ptr lookup_records,  // ::lookup_records
+ptr lookup_records_async,  // ::lookup_records_async
+ptr lookup_records_finish,  // ::lookup_records_finish
+ptr lookup_by_name_with_flags_async,  // ::lookup_by_name_with_flags_async
+ptr lookup_by_name_with_flags_finish,  // ::lookup_by_name_with_flags_finish
+ptr lookup_by_name_with_flags,  // ::lookup_by_name_with_flags
+};
+
+extern struct GioResolverPrivate{
+
+};
+
+// name GResource
+extern struct GResource{
+
+};
+
+extern struct GioSeekableIface{
+byte g_iface[16],  // GioTypeInterface
+ptr tell,  // ::tell
+ptr can_seek,  // ::can_seek
+ptr seek,  // ::seek
+ptr can_truncate,  // ::can_truncate
+ptr truncate_fn,  // ::truncate_fn
+};
+
+extern struct GioSettingsBackendClass{
+byte parent_class[136],  // GioObjectClass
+ptr read,  // ::read
+ptr get_writable,  // ::get_writable
+ptr write,  // ::write
+ptr write_tree,  // ::write_tree
+ptr reset,  // ::reset
+ptr subscribe,  // ::subscribe
+ptr unsubscribe,  // ::unsubscribe
+ptr sync,  // ::sync
+ptr get_permission,  // void*
+ptr read_user_value,  // ::read_user_value
+ptr padding_0,
+ptr padding_1,
+ptr padding_2,
+ptr padding_3,
+ptr padding_4,
+ptr padding_5,
+ptr padding_6,
+ptr padding_7,
+ptr padding_8,
+ptr padding_9,
+ptr padding_10,
+ptr padding_11,
+ptr padding_12,
+ptr padding_13,
+ptr padding_14,
+ptr padding_15,
+ptr padding_16,
+ptr padding_17,
+ptr padding_18,
+ptr padding_19,
+ptr padding_20,
+ptr padding_21,
+ptr padding_22,
+};
+
+extern struct GioSettingsBackendPrivate{
+
+};
+
+extern struct GioSettingsClass{
+byte parent_class[136],  // GioObjectClass
+ptr writable_changed,  // ::writable_changed
+ptr changed,  // ::changed
+ptr writable_change_event,  // ::writable_change_event
+ptr change_event,  // ::change_event
+ptr padding_0,
+ptr padding_1,
+ptr padding_2,
+ptr padding_3,
+ptr padding_4,
+ptr padding_5,
+ptr padding_6,
+ptr padding_7,
+ptr padding_8,
+ptr padding_9,
+ptr padding_10,
+ptr padding_11,
+ptr padding_12,
+ptr padding_13,
+ptr padding_14,
+ptr padding_15,
+ptr padding_16,
+ptr padding_17,
+ptr padding_18,
+ptr padding_19,
+};
+
+extern struct GioSettingsPrivate{
+
+};
+
+// name GSettingsSchema
+extern struct GSettingsSchema{
+
+};
+
+// name GSettingsSchemaKey
+extern struct GSettingsSchemaKey{
+
+};
+
+// name GSettingsSchemaSource
+extern struct GSettingsSchemaSource{
+
+};
+
+extern struct GioSimpleActionGroupClass{
+byte parent_class[136],  // GioObjectClass
+ptr padding_0,
+ptr padding_1,
+ptr padding_2,
+ptr padding_3,
+ptr padding_4,
+ptr padding_5,
+ptr padding_6,
+ptr padding_7,
+ptr padding_8,
+ptr padding_9,
+ptr padding_10,
+ptr padding_11,
+};
+
+extern struct GioSimpleActionGroupPrivate{
+
+};
+
+extern struct GioSimpleAsyncResultClass{
+
+};
+
+extern struct GioSimpleProxyResolverClass{
+byte parent_class[136],  // GioObjectClass
+ptr _g_reserved1,  // void*
+ptr _g_reserved2,  // void*
+ptr _g_reserved3,  // void*
+ptr _g_reserved4,  // void*
+ptr _g_reserved5,  // void*
+};
+
+extern struct GioSimpleProxyResolverPrivate{
+
+};
+
+extern struct GioSocketAddressClass{
+byte parent_class[136],  // GioObjectClass
+ptr get_family,  // ::get_family
+ptr get_native_size,  // ::get_native_size
+ptr to_native,  // ::to_native
+};
+
+extern struct GioSocketAddressEnumeratorClass{
+byte parent_class[136],  // GioObjectClass
+ptr next,  // ::next
+ptr next_async,  // ::next_async
+ptr next_finish,  // ::next_finish
+};
+
+extern struct GioSocketClass{
+byte parent_class[136],  // GioObjectClass
+ptr _g_reserved1,  // void*
+ptr _g_reserved2,  // void*
+ptr _g_reserved3,  // void*
+ptr _g_reserved4,  // void*
+ptr _g_reserved5,  // void*
+ptr _g_reserved6,  // void*
+ptr _g_reserved7,  // void*
+ptr _g_reserved8,  // void*
+ptr _g_reserved9,  // void*
+ptr _g_reserved10,  // void*
+};
+
+extern struct GioSocketClientClass{
+byte parent_class[136],  // GioObjectClass
+ptr event,  // ::event
+ptr _g_reserved1,  // void*
+ptr _g_reserved2,  // void*
+ptr _g_reserved3,  // void*
+ptr _g_reserved4,  // void*
+};
+
+extern struct GioSocketClientPrivate{
+
+};
+
+extern struct GioSocketConnectableIface{
+byte g_iface[16],  // GioTypeInterface
+ptr enumerate,  // ::enumerate
+ptr proxy_enumerate,  // ::proxy_enumerate
+ptr to_string,  // ::to_string
+};
+
+extern struct GioSocketConnectionClass{
+byte parent_class[256],  // GioIOStreamClass
+ptr _g_reserved1,  // void*
+ptr _g_reserved2,  // void*
+ptr _g_reserved3,  // void*
+ptr _g_reserved4,  // void*
+ptr _g_reserved5,  // void*
+ptr _g_reserved6,  // void*
+};
+
+extern struct GioSocketConnectionPrivate{
+
+};
+
+extern struct GioSocketControlMessageClass{
+byte parent_class[136],  // GioObjectClass
+ptr get_size,  // ::get_size
+ptr get_level,  // ::get_level
+ptr get_type,  // ::get_type
+ptr serialize,  // ::serialize
+ptr deserialize,  // void*
+ptr _g_reserved1,  // void*
+ptr _g_reserved2,  // void*
+ptr _g_reserved3,  // void*
+ptr _g_reserved4,  // void*
+ptr _g_reserved5,  // void*
+};
+
+extern struct GioSocketControlMessagePrivate{
+
+};
+
+extern struct GioSocketListenerClass{
+byte parent_class[136],  // GioObjectClass
+ptr changed,  // ::changed
+ptr event,  // ::event
+ptr _g_reserved2,  // void*
+ptr _g_reserved3,  // void*
+ptr _g_reserved4,  // void*
+ptr _g_reserved5,  // void*
+ptr _g_reserved6,  // void*
+};
+
+extern struct GioSocketListenerPrivate{
+
+};
+
+extern struct GioSocketPrivate{
+
+};
+
+extern struct GioSocketServiceClass{
+byte parent_class[192],  // GioSocketListenerClass
+ptr incoming,  // ::incoming
+ptr _g_reserved1,  // void*
+ptr _g_reserved2,  // void*
+ptr _g_reserved3,  // void*
+ptr _g_reserved4,  // void*
+ptr _g_reserved5,  // void*
+ptr _g_reserved6,  // void*
+};
+
+extern struct GioSocketServicePrivate{
+
+};
+
+// name GSrvTarget
+extern struct GSrvTarget{
+
+};
+
+extern struct GioStaticResource{
+ptr data,  // guint8*
+ulong data_len,  // guint64
+ptr resource,  // GioResource*
+ptr next,  // GioStaticResource*
+ptr padding,  // void*
+};
+
+extern struct GioTaskClass{
+
+};
+
+extern struct GioTcpConnectionClass{
+byte parent_class[304],  // GioSocketConnectionClass
+};
+
+extern struct GioTcpConnectionPrivate{
+
+};
+
+extern struct GioTcpWrapperConnectionClass{
+byte parent_class[304],  // GioTcpConnectionClass
+};
+
+extern struct GioTcpWrapperConnectionPrivate{
+
+};
+
+extern struct GioThemedIconClass{
+
+};
+
+extern struct GioThreadedSocketServiceClass{
+byte parent_class[248],  // GioSocketServiceClass
+ptr run,  // ::run
+ptr _g_reserved1,  // void*
+ptr _g_reserved2,  // void*
+ptr _g_reserved3,  // void*
+ptr _g_reserved4,  // void*
+ptr _g_reserved5,  // void*
+};
+
+extern struct GioThreadedSocketServicePrivate{
+
+};
+
+extern struct GioTlsBackendInterface{
+byte g_iface[16],  // GioTypeInterface
+ptr supports_tls,  // ::supports_tls
+ptr get_certificate_type,  // ::get_certificate_type
+ptr get_client_connection_type,  // ::get_client_connection_type
+ptr get_server_connection_type,  // ::get_server_connection_type
+ptr get_file_database_type,  // ::get_file_database_type
+ptr get_default_database,  // ::get_default_database
+ptr supports_dtls,  // ::supports_dtls
+ptr get_dtls_client_connection_type,  // ::get_dtls_client_connection_type
+ptr get_dtls_server_connection_type,  // ::get_dtls_server_connection_type
+};
+
+extern struct GioTlsCertificateClass{
+byte parent_class[136],  // GioObjectClass
+ptr verify,  // ::verify
+ptr padding_0,
+ptr padding_1,
+ptr padding_2,
+ptr padding_3,
+ptr padding_4,
+ptr padding_5,
+ptr padding_6,
+ptr padding_7,
+};
+
+extern struct GioTlsCertificatePrivate{
+
+};
+
+extern struct GioTlsClientConnectionInterface{
+byte g_iface[16],  // GioTypeInterface
+ptr copy_session_state,  // ::copy_session_state
+};
+
+extern struct GioTlsConnectionClass{
+byte parent_class[256],  // GioIOStreamClass
+ptr accept_certificate,  // ::accept_certificate
+ptr handshake,  // ::handshake
+ptr handshake_async,  // ::handshake_async
+ptr handshake_finish,  // ::handshake_finish
+ptr get_binding_data,  // ::get_binding_data
+ptr get_negotiated_protocol,  // ::get_negotiated_protocol
+ptr padding_0,
+ptr padding_1,
+ptr padding_2,
+ptr padding_3,
+ptr padding_4,
+ptr padding_5,
+};
+
+extern struct GioTlsConnectionPrivate{
+
+};
+
+extern struct GioTlsDatabaseClass{
+byte parent_class[136],  // GioObjectClass
+ptr verify_chain,  // ::verify_chain
+ptr verify_chain_async,  // ::verify_chain_async
+ptr verify_chain_finish,  // ::verify_chain_finish
+ptr create_certificate_handle,  // ::create_certificate_handle
+ptr lookup_certificate_for_handle,  // ::lookup_certificate_for_handle
+ptr lookup_certificate_for_handle_async,  // ::lookup_certificate_for_handle_async
+ptr lookup_certificate_for_handle_finish,  // ::lookup_certificate_for_handle_finish
+ptr lookup_certificate_issuer,  // ::lookup_certificate_issuer
+ptr lookup_certificate_issuer_async,  // ::lookup_certificate_issuer_async
+ptr lookup_certificate_issuer_finish,  // ::lookup_certificate_issuer_finish
+ptr lookup_certificates_issued_by,  // ::lookup_certificates_issued_by
+ptr lookup_certificates_issued_by_async,  // ::lookup_certificates_issued_by_async
+ptr lookup_certificates_issued_by_finish,  // ::lookup_certificates_issued_by_finish
+ptr padding_0,
+ptr padding_1,
+ptr padding_2,
+ptr padding_3,
+ptr padding_4,
+ptr padding_5,
+ptr padding_6,
+ptr padding_7,
+ptr padding_8,
+ptr padding_9,
+ptr padding_10,
+ptr padding_11,
+ptr padding_12,
+ptr padding_13,
+ptr padding_14,
+ptr padding_15,
+};
+
+extern struct GioTlsDatabasePrivate{
+
+};
+
+extern struct GioTlsFileDatabaseInterface{
+byte g_iface[16],  // GioTypeInterface
+ptr padding_0,
+ptr padding_1,
+ptr padding_2,
+ptr padding_3,
+ptr padding_4,
+ptr padding_5,
+ptr padding_6,
+ptr padding_7,
+};
+
+extern struct GioTlsInteractionClass{
+byte parent_class[136],  // GioObjectClass
+ptr ask_password,  // ::ask_password
+ptr ask_password_async,  // ::ask_password_async
+ptr ask_password_finish,  // ::ask_password_finish
+ptr request_certificate,  // ::request_certificate
+ptr request_certificate_async,  // ::request_certificate_async
+ptr request_certificate_finish,  // ::request_certificate_finish
+ptr padding_0,
+ptr padding_1,
+ptr padding_2,
+ptr padding_3,
+ptr padding_4,
+ptr padding_5,
+ptr padding_6,
+ptr padding_7,
+ptr padding_8,
+ptr padding_9,
+ptr padding_10,
+ptr padding_11,
+ptr padding_12,
+ptr padding_13,
+ptr padding_14,
+ptr padding_15,
+ptr padding_16,
+ptr padding_17,
+ptr padding_18,
+ptr padding_19,
+ptr padding_20,
+};
+
+extern struct GioTlsInteractionPrivate{
+
+};
+
+extern struct GioTlsPasswordClass{
+byte parent_class[136],  // GioObjectClass
+ptr get_value,  // ::get_value
+ptr set_value,  // ::set_value
+ptr get_default_warning,  // ::get_default_warning
+ptr padding_0,
+ptr padding_1,
+ptr padding_2,
+ptr padding_3,
+};
+
+extern struct GioTlsPasswordPrivate{
+
+};
+
+extern struct GioTlsServerConnectionInterface{
+byte g_iface[16],  // GioTypeInterface
+};
+
+extern struct GioUnixConnectionClass{
+byte parent_class[304],  // GioSocketConnectionClass
+};
+
+extern struct GioUnixConnectionPrivate{
+
+};
+
+extern struct GioUnixCredentialsMessageClass{
+byte parent_class[216],  // GioSocketControlMessageClass
+ptr _g_reserved1,  // void*
+ptr _g_reserved2,  // void*
+};
+
+extern struct GioUnixCredentialsMessagePrivate{
+
+};
+
+extern struct GioUnixFDListClass{
+byte parent_class[136],  // GioObjectClass
+ptr _g_reserved1,  // void*
+ptr _g_reserved2,  // void*
+ptr _g_reserved3,  // void*
+ptr _g_reserved4,  // void*
+ptr _g_reserved5,  // void*
+};
+
+extern struct GioUnixFDListPrivate{
+
+};
+
+extern struct GioUnixFDMessageClass{
+byte parent_class[216],  // GioSocketControlMessageClass
+ptr _g_reserved1,  // void*
+ptr _g_reserved2,  // void*
+};
+
+extern struct GioUnixFDMessagePrivate{
+
+};
+
+extern struct GioUnixInputStreamClass{
+byte parent_class[248],  // GioInputStreamClass
+ptr _g_reserved1,  // void*
+ptr _g_reserved2,  // void*
+ptr _g_reserved3,  // void*
+ptr _g_reserved4,  // void*
+ptr _g_reserved5,  // void*
+};
+
+extern struct GioUnixInputStreamPrivate{
+
+};
+
+// name GUnixMountEntry
+extern struct GUnixMountEntry{
+
+};
+
+extern struct GioUnixMountMonitorClass{
+
+};
+
+// name GUnixMountPoint
+extern struct GUnixMountPoint{
+
+};
+
+extern struct GioUnixOutputStreamClass{
+byte parent_class[296],  // GioOutputStreamClass
+ptr _g_reserved1,  // void*
+ptr _g_reserved2,  // void*
+ptr _g_reserved3,  // void*
+ptr _g_reserved4,  // void*
+ptr _g_reserved5,  // void*
+};
+
+extern struct GioUnixOutputStreamPrivate{
+
+};
+
+extern struct GioUnixSocketAddressClass{
+byte parent_class[160],  // GioSocketAddressClass
+};
+
+extern struct GioUnixSocketAddressPrivate{
+
+};
+
+extern struct GioVfsClass{
+byte parent_class[136],  // GioObjectClass
+ptr is_active,  // ::is_active
+ptr get_file_for_path,  // ::get_file_for_path
+ptr get_file_for_uri,  // ::get_file_for_uri
+ptr get_supported_uri_schemes,  // ::get_supported_uri_schemes
+ptr parse_name,  // ::parse_name
+ptr local_file_add_info,  // ::local_file_add_info
+ptr add_writable_namespaces,  // ::add_writable_namespaces
+ptr local_file_set_attributes,  // ::local_file_set_attributes
+ptr local_file_removed,  // ::local_file_removed
+ptr local_file_moved,  // ::local_file_moved
+ptr deserialize_icon,  // void*
+ptr _g_reserved1,  // void*
+ptr _g_reserved2,  // void*
+ptr _g_reserved3,  // void*
+ptr _g_reserved4,  // void*
+ptr _g_reserved5,  // void*
+ptr _g_reserved6,  // void*
+};
+
+extern struct GioVolumeIface{
+byte g_iface[16],  // GioTypeInterface
+ptr changed,  // ::changed
+ptr removed,  // ::removed
+ptr get_name,  // ::get_name
+ptr get_icon,  // ::get_icon
+ptr get_uuid,  // ::get_uuid
+ptr get_drive,  // ::get_drive
+ptr get_mount,  // ::get_mount
+ptr can_mount,  // ::can_mount
+ptr can_eject,  // ::can_eject
+ptr mount_fn,  // ::mount_fn
+ptr mount_finish,  // ::mount_finish
+ptr eject,  // ::eject
+ptr eject_finish,  // ::eject_finish
+ptr get_identifier,  // ::get_identifier
+ptr enumerate_identifiers,  // ::enumerate_identifiers
+ptr should_automount,  // ::should_automount
+ptr get_activation_root,  // ::get_activation_root
+ptr eject_with_operation,  // ::eject_with_operation
+ptr eject_with_operation_finish,  // ::eject_with_operation_finish
+ptr get_sort_key,  // ::get_sort_key
+ptr get_symbolic_icon,  // ::get_symbolic_icon
+};
+
+extern struct GioVolumeMonitorClass{
+byte parent_class[136],  // GioObjectClass
+ptr volume_added,  // ::volume_added
+ptr volume_removed,  // ::volume_removed
+ptr volume_changed,  // ::volume_changed
+ptr mount_added,  // ::mount_added
+ptr mount_removed,  // ::mount_removed
+ptr mount_pre_unmount,  // ::mount_pre_unmount
+ptr mount_changed,  // ::mount_changed
+ptr drive_connected,  // ::drive_connected
+ptr drive_disconnected,  // ::drive_disconnected
+ptr drive_changed,  // ::drive_changed
+ptr is_supported,  // ::is_supported
+ptr get_connected_drives,  // ::get_connected_drives
+ptr get_volumes,  // ::get_volumes
+ptr get_mounts,  // ::get_mounts
+ptr get_volume_for_uuid,  // ::get_volume_for_uuid
+ptr get_mount_for_uuid,  // ::get_mount_for_uuid
+ptr adopt_orphan_mount,  // void*
+ptr drive_eject_button,  // ::drive_eject_button
+ptr drive_stop_button,  // ::drive_stop_button
+ptr _g_reserved1,  // void*
+ptr _g_reserved2,  // void*
+ptr _g_reserved3,  // void*
+ptr _g_reserved4,  // void*
+ptr _g_reserved5,  // void*
+ptr _g_reserved6,  // void*
+};
+
+extern struct GioZlibCompressorClass{
+byte parent_class[136],  // GioObjectClass
+};
+
+extern struct GioZlibDecompressorClass{
+byte parent_class[136],  // GioObjectClass
+};
+
+var Gio_AppInfoCreateFlags_none = 0;
+var Gio_AppInfoCreateFlags_needs_terminal = 1;
+var Gio_AppInfoCreateFlags_supports_uris = 2;
+var Gio_AppInfoCreateFlags_supports_startup_notification = 4;
+
+var Gio_ApplicationFlags_flags_none = 0;
+var Gio_ApplicationFlags_is_service = 1;
+var Gio_ApplicationFlags_is_launcher = 2;
+var Gio_ApplicationFlags_handles_open = 4;
+var Gio_ApplicationFlags_handles_command_line = 8;
+var Gio_ApplicationFlags_send_environment = 16;
+var Gio_ApplicationFlags_non_unique = 32;
+var Gio_ApplicationFlags_can_override_app_id = 64;
+var Gio_ApplicationFlags_allow_replacement = 128;
+var Gio_ApplicationFlags_replace = 256;
+
+var Gio_AskPasswordFlags_need_password = 1;
+var Gio_AskPasswordFlags_need_username = 2;
+var Gio_AskPasswordFlags_need_domain = 4;
+var Gio_AskPasswordFlags_saving_supported = 8;
+var Gio_AskPasswordFlags_anonymous_supported = 16;
+var Gio_AskPasswordFlags_tcrypt = 32;
+
+var Gio_BusNameOwnerFlags_none = 0;
+var Gio_BusNameOwnerFlags_allow_replacement = 1;
+var Gio_BusNameOwnerFlags_replace = 2;
+var Gio_BusNameOwnerFlags_do_not_queue = 4;
+
+var Gio_BusNameWatcherFlags_none = 0;
+var Gio_BusNameWatcherFlags_auto_start = 1;
+
+var Gio_BusType_starter = -1;
+var Gio_BusType_none = 0;
+var Gio_BusType_system = 1;
+var Gio_BusType_session = 2;
+
+var Gio_ConverterFlags_none = 0;
+var Gio_ConverterFlags_input_at_end = 1;
+var Gio_ConverterFlags_flush = 2;
+
+var Gio_ConverterResult_error = 0;
+var Gio_ConverterResult_converted = 1;
+var Gio_ConverterResult_finished = 2;
+var Gio_ConverterResult_flushed = 3;
+
+var Gio_CredentialsType_invalid = 0;
+var Gio_CredentialsType_linux_ucred = 1;
+var Gio_CredentialsType_freebsd_cmsgcred = 2;
+var Gio_CredentialsType_openbsd_sockpeercred = 3;
+var Gio_CredentialsType_solaris_ucred = 4;
+var Gio_CredentialsType_netbsd_unpcbid = 5;
+var Gio_CredentialsType_apple_xucred = 6;
+var Gio_CredentialsType_win32_pid = 7;
+
+var Gio_DBusCallFlags_none = 0;
+var Gio_DBusCallFlags_no_auto_start = 1;
+var Gio_DBusCallFlags_allow_interactive_authorization = 2;
+
+var Gio_DBusCapabilityFlags_none = 0;
+var Gio_DBusCapabilityFlags_unix_fd_passing = 1;
+
+var Gio_DBusConnectionFlags_none = 0;
+var Gio_DBusConnectionFlags_authentication_client = 1;
+var Gio_DBusConnectionFlags_authentication_server = 2;
+var Gio_DBusConnectionFlags_authentication_allow_anonymous = 4;
+var Gio_DBusConnectionFlags_message_bus_connection = 8;
+var Gio_DBusConnectionFlags_delay_message_processing = 16;
+var Gio_DBusConnectionFlags_authentication_require_same_user = 32;
+
+var Gio_DBusError_failed = 0;
+var Gio_DBusError_no_memory = 1;
+var Gio_DBusError_service_unknown = 2;
+var Gio_DBusError_name_has_no_owner = 3;
+var Gio_DBusError_no_reply = 4;
+var Gio_DBusError_io_error = 5;
+var Gio_DBusError_bad_address = 6;
+var Gio_DBusError_not_supported = 7;
+var Gio_DBusError_limits_exceeded = 8;
+var Gio_DBusError_access_denied = 9;
+var Gio_DBusError_auth_failed = 10;
+var Gio_DBusError_no_server = 11;
+var Gio_DBusError_timeout = 12;
+var Gio_DBusError_no_network = 13;
+var Gio_DBusError_address_in_use = 14;
+var Gio_DBusError_disconnected = 15;
+var Gio_DBusError_invalid_args = 16;
+var Gio_DBusError_file_not_found = 17;
+var Gio_DBusError_file_exists = 18;
+var Gio_DBusError_unknown_method = 19;
+var Gio_DBusError_timed_out = 20;
+var Gio_DBusError_match_rule_not_found = 21;
+var Gio_DBusError_match_rule_invalid = 22;
+var Gio_DBusError_spawn_exec_failed = 23;
+var Gio_DBusError_spawn_fork_failed = 24;
+var Gio_DBusError_spawn_child_exited = 25;
+var Gio_DBusError_spawn_child_signaled = 26;
+var Gio_DBusError_spawn_failed = 27;
+var Gio_DBusError_spawn_setup_failed = 28;
+var Gio_DBusError_spawn_config_invalid = 29;
+var Gio_DBusError_spawn_service_invalid = 30;
+var Gio_DBusError_spawn_service_not_found = 31;
+var Gio_DBusError_spawn_permissions_invalid = 32;
+var Gio_DBusError_spawn_file_invalid = 33;
+var Gio_DBusError_spawn_no_memory = 34;
+var Gio_DBusError_unix_process_id_unknown = 35;
+var Gio_DBusError_invalid_signature = 36;
+var Gio_DBusError_invalid_file_content = 37;
+var Gio_DBusError_selinux_security_context_unknown = 38;
+var Gio_DBusError_adt_audit_data_unknown = 39;
+var Gio_DBusError_object_path_in_use = 40;
+var Gio_DBusError_unknown_object = 41;
+var Gio_DBusError_unknown_interface = 42;
+var Gio_DBusError_unknown_property = 43;
+var Gio_DBusError_property_read_only = 44;
+
+var Gio_DBusInterfaceSkeletonFlags_none = 0;
+var Gio_DBusInterfaceSkeletonFlags_handle_method_invocations_in_thread = 1;
+
+var Gio_DBusMessageByteOrder_big_endian = 66;
+var Gio_DBusMessageByteOrder_little_endian = 108;
+
+var Gio_DBusMessageFlags_none = 0;
+var Gio_DBusMessageFlags_no_reply_expected = 1;
+var Gio_DBusMessageFlags_no_auto_start = 2;
+var Gio_DBusMessageFlags_allow_interactive_authorization = 4;
+
+var Gio_DBusMessageHeaderField_invalid = 0;
+var Gio_DBusMessageHeaderField_path = 1;
+var Gio_DBusMessageHeaderField_interface = 2;
+var Gio_DBusMessageHeaderField_member = 3;
+var Gio_DBusMessageHeaderField_error_name = 4;
+var Gio_DBusMessageHeaderField_reply_serial = 5;
+var Gio_DBusMessageHeaderField_destination = 6;
+var Gio_DBusMessageHeaderField_sender = 7;
+var Gio_DBusMessageHeaderField_signature = 8;
+var Gio_DBusMessageHeaderField_num_unix_fds = 9;
+
+var Gio_DBusMessageType_invalid = 0;
+var Gio_DBusMessageType_method_call = 1;
+var Gio_DBusMessageType_method_return = 2;
+var Gio_DBusMessageType_error = 3;
+var Gio_DBusMessageType_signal = 4;
+
+var Gio_DBusObjectManagerClientFlags_none = 0;
+var Gio_DBusObjectManagerClientFlags_do_not_auto_start = 1;
+
+var Gio_DBusPropertyInfoFlags_none = 0;
+var Gio_DBusPropertyInfoFlags_readable = 1;
+var Gio_DBusPropertyInfoFlags_writable = 2;
+
+var Gio_DBusProxyFlags_none = 0;
+var Gio_DBusProxyFlags_do_not_load_properties = 1;
+var Gio_DBusProxyFlags_do_not_connect_signals = 2;
+var Gio_DBusProxyFlags_do_not_auto_start = 4;
+var Gio_DBusProxyFlags_get_invalidated_properties = 8;
+var Gio_DBusProxyFlags_do_not_auto_start_at_construction = 16;
+var Gio_DBusProxyFlags_no_match_rule = 32;
+
+var Gio_DBusSendMessageFlags_none = 0;
+var Gio_DBusSendMessageFlags_preserve_serial = 1;
+
+var Gio_DBusServerFlags_none = 0;
+var Gio_DBusServerFlags_run_in_thread = 1;
+var Gio_DBusServerFlags_authentication_allow_anonymous = 2;
+var Gio_DBusServerFlags_authentication_require_same_user = 4;
+
+var Gio_DBusSignalFlags_none = 0;
+var Gio_DBusSignalFlags_no_match_rule = 1;
+var Gio_DBusSignalFlags_match_arg0_namespace = 2;
+var Gio_DBusSignalFlags_match_arg0_path = 4;
+
+var Gio_DBusSubtreeFlags_none = 0;
+var Gio_DBusSubtreeFlags_dispatch_to_unenumerated_nodes = 1;
+
+var Gio_DataStreamByteOrder_big_endian = 0;
+var Gio_DataStreamByteOrder_little_endian = 1;
+var Gio_DataStreamByteOrder_host_endian = 2;
+
+var Gio_DataStreamNewlineType_lf = 0;
+var Gio_DataStreamNewlineType_cr = 1;
+var Gio_DataStreamNewlineType_cr_lf = 2;
+var Gio_DataStreamNewlineType_any = 3;
+
+var Gio_DriveStartFlags_none = 0;
+
+var Gio_DriveStartStopType_unknown = 0;
+var Gio_DriveStartStopType_shutdown = 1;
+var Gio_DriveStartStopType_network = 2;
+var Gio_DriveStartStopType_multidisk = 3;
+var Gio_DriveStartStopType_password = 4;
+
+var Gio_EmblemOrigin_unknown = 0;
+var Gio_EmblemOrigin_device = 1;
+var Gio_EmblemOrigin_livemetadata = 2;
+var Gio_EmblemOrigin_tag = 3;
+
+var Gio_FileAttributeInfoFlags_none = 0;
+var Gio_FileAttributeInfoFlags_copy_with_file = 1;
+var Gio_FileAttributeInfoFlags_copy_when_moved = 2;
+
+var Gio_FileAttributeStatus_unset = 0;
+var Gio_FileAttributeStatus_set = 1;
+var Gio_FileAttributeStatus_error_setting = 2;
+
+var Gio_FileAttributeType_invalid = 0;
+var Gio_FileAttributeType_string = 1;
+var Gio_FileAttributeType_byte_string = 2;
+var Gio_FileAttributeType_boolean = 3;
+var Gio_FileAttributeType_uint32 = 4;
+var Gio_FileAttributeType_int32 = 5;
+var Gio_FileAttributeType_uint64 = 6;
+var Gio_FileAttributeType_int64 = 7;
+var Gio_FileAttributeType_object = 8;
+var Gio_FileAttributeType_stringv = 9;
+
+var Gio_FileCopyFlags_none = 0;
+var Gio_FileCopyFlags_overwrite = 1;
+var Gio_FileCopyFlags_backup = 2;
+var Gio_FileCopyFlags_nofollow_symlinks = 4;
+var Gio_FileCopyFlags_all_metadata = 8;
+var Gio_FileCopyFlags_no_fallback_for_move = 16;
+var Gio_FileCopyFlags_target_default_perms = 32;
+
+var Gio_FileCreateFlags_none = 0;
+var Gio_FileCreateFlags_private = 1;
+var Gio_FileCreateFlags_replace_destination = 2;
+
+var Gio_FileMeasureFlags_none = 0;
+var Gio_FileMeasureFlags_report_any_error = 2;
+var Gio_FileMeasureFlags_apparent_size = 4;
+var Gio_FileMeasureFlags_no_xdev = 8;
+
+var Gio_FileMonitorEvent_changed = 0;
+var Gio_FileMonitorEvent_changes_done_hint = 1;
+var Gio_FileMonitorEvent_deleted = 2;
+var Gio_FileMonitorEvent_created = 3;
+var Gio_FileMonitorEvent_attribute_changed = 4;
+var Gio_FileMonitorEvent_pre_unmount = 5;
+var Gio_FileMonitorEvent_unmounted = 6;
+var Gio_FileMonitorEvent_moved = 7;
+var Gio_FileMonitorEvent_renamed = 8;
+var Gio_FileMonitorEvent_moved_in = 9;
+var Gio_FileMonitorEvent_moved_out = 10;
+
+var Gio_FileMonitorFlags_none = 0;
+var Gio_FileMonitorFlags_watch_mounts = 1;
+var Gio_FileMonitorFlags_send_moved = 2;
+var Gio_FileMonitorFlags_watch_hard_links = 4;
+var Gio_FileMonitorFlags_watch_moves = 8;
+
+var Gio_FileQueryInfoFlags_none = 0;
+var Gio_FileQueryInfoFlags_nofollow_symlinks = 1;
+
+var Gio_FileType_unknown = 0;
+var Gio_FileType_regular = 1;
+var Gio_FileType_directory = 2;
+var Gio_FileType_symbolic_link = 3;
+var Gio_FileType_special = 4;
+var Gio_FileType_shortcut = 5;
+var Gio_FileType_mountable = 6;
+
+var Gio_FilesystemPreviewType_if_always = 0;
+var Gio_FilesystemPreviewType_if_local = 1;
+var Gio_FilesystemPreviewType_never = 2;
+
+var Gio_IOErrorEnum_failed = 0;
+var Gio_IOErrorEnum_not_found = 1;
+var Gio_IOErrorEnum_exists = 2;
+var Gio_IOErrorEnum_is_directory = 3;
+var Gio_IOErrorEnum_not_directory = 4;
+var Gio_IOErrorEnum_not_empty = 5;
+var Gio_IOErrorEnum_not_regular_file = 6;
+var Gio_IOErrorEnum_not_symbolic_link = 7;
+var Gio_IOErrorEnum_not_mountable_file = 8;
+var Gio_IOErrorEnum_filename_too_long = 9;
+var Gio_IOErrorEnum_invalid_filename = 10;
+var Gio_IOErrorEnum_too_many_links = 11;
+var Gio_IOErrorEnum_no_space = 12;
+var Gio_IOErrorEnum_invalid_argument = 13;
+var Gio_IOErrorEnum_permission_denied = 14;
+var Gio_IOErrorEnum_not_supported = 15;
+var Gio_IOErrorEnum_not_mounted = 16;
+var Gio_IOErrorEnum_already_mounted = 17;
+var Gio_IOErrorEnum_closed = 18;
+var Gio_IOErrorEnum_cancelled = 19;
+var Gio_IOErrorEnum_pending = 20;
+var Gio_IOErrorEnum_read_only = 21;
+var Gio_IOErrorEnum_cant_create_backup = 22;
+var Gio_IOErrorEnum_wrong_etag = 23;
+var Gio_IOErrorEnum_timed_out = 24;
+var Gio_IOErrorEnum_would_recurse = 25;
+var Gio_IOErrorEnum_busy = 26;
+var Gio_IOErrorEnum_would_block = 27;
+var Gio_IOErrorEnum_host_not_found = 28;
+var Gio_IOErrorEnum_would_merge = 29;
+var Gio_IOErrorEnum_failed_handled = 30;
+var Gio_IOErrorEnum_too_many_open_files = 31;
+var Gio_IOErrorEnum_not_initialized = 32;
+var Gio_IOErrorEnum_address_in_use = 33;
+var Gio_IOErrorEnum_partial_input = 34;
+var Gio_IOErrorEnum_invalid_data = 35;
+var Gio_IOErrorEnum_dbus_error = 36;
+var Gio_IOErrorEnum_host_unreachable = 37;
+var Gio_IOErrorEnum_network_unreachable = 38;
+var Gio_IOErrorEnum_connection_refused = 39;
+var Gio_IOErrorEnum_proxy_failed = 40;
+var Gio_IOErrorEnum_proxy_auth_failed = 41;
+var Gio_IOErrorEnum_proxy_need_auth = 42;
+var Gio_IOErrorEnum_proxy_not_allowed = 43;
+var Gio_IOErrorEnum_broken_pipe = 44;
+var Gio_IOErrorEnum_connection_closed = 44;
+var Gio_IOErrorEnum_not_connected = 45;
+var Gio_IOErrorEnum_message_too_large = 46;
+
+var Gio_IOModuleScopeFlags_none = 0;
+var Gio_IOModuleScopeFlags_block_duplicates = 1;
+
+var Gio_IOStreamSpliceFlags_none = 0;
+var Gio_IOStreamSpliceFlags_close_stream1 = 1;
+var Gio_IOStreamSpliceFlags_close_stream2 = 2;
+var Gio_IOStreamSpliceFlags_wait_for_both = 4;
+
+var Gio_MemoryMonitorWarningLevel_low = 50;
+var Gio_MemoryMonitorWarningLevel_medium = 100;
+var Gio_MemoryMonitorWarningLevel_critical = 255;
+
+var Gio_MountMountFlags_none = 0;
+
+var Gio_MountOperationResult_handled = 0;
+var Gio_MountOperationResult_aborted = 1;
+var Gio_MountOperationResult_unhandled = 2;
+
+var Gio_MountUnmountFlags_none = 0;
+var Gio_MountUnmountFlags_force = 1;
+
+var Gio_NetworkConnectivity_local = 1;
+var Gio_NetworkConnectivity_limited = 2;
+var Gio_NetworkConnectivity_portal = 3;
+var Gio_NetworkConnectivity_full = 4;
+
+var Gio_NotificationPriority_normal = 0;
+var Gio_NotificationPriority_low = 1;
+var Gio_NotificationPriority_high = 2;
+var Gio_NotificationPriority_urgent = 3;
+
+var Gio_OutputStreamSpliceFlags_none = 0;
+var Gio_OutputStreamSpliceFlags_close_source = 1;
+var Gio_OutputStreamSpliceFlags_close_target = 2;
+
+var Gio_PasswordSave_never = 0;
+var Gio_PasswordSave_for_session = 1;
+var Gio_PasswordSave_permanently = 2;
+
+var Gio_PollableReturn_failed = 0;
+var Gio_PollableReturn_ok = 1;
+var Gio_PollableReturn_would_block = -27;
+
+var Gio_ResolverError_not_found = 0;
+var Gio_ResolverError_temporary_failure = 1;
+var Gio_ResolverError_internal = 2;
+
+var Gio_ResolverNameLookupFlags_default = 0;
+var Gio_ResolverNameLookupFlags_ipv4_only = 1;
+var Gio_ResolverNameLookupFlags_ipv6_only = 2;
+
+var Gio_ResolverRecordType_srv = 1;
+var Gio_ResolverRecordType_mx = 2;
+var Gio_ResolverRecordType_txt = 3;
+var Gio_ResolverRecordType_soa = 4;
+var Gio_ResolverRecordType_ns = 5;
+
+var Gio_ResourceError_not_found = 0;
+var Gio_ResourceError_internal = 1;
+
+var Gio_ResourceFlags_none = 0;
+var Gio_ResourceFlags_compressed = 1;
+
+var Gio_ResourceLookupFlags_none = 0;
+
+var Gio_SettingsBindFlags_default = 0;
+var Gio_SettingsBindFlags_get = 1;
+var Gio_SettingsBindFlags_set = 2;
+var Gio_SettingsBindFlags_no_sensitivity = 4;
+var Gio_SettingsBindFlags_get_no_changes = 8;
+var Gio_SettingsBindFlags_invert_boolean = 16;
+
+var Gio_SocketClientEvent_resolving = 0;
+var Gio_SocketClientEvent_resolved = 1;
+var Gio_SocketClientEvent_connecting = 2;
+var Gio_SocketClientEvent_connected = 3;
+var Gio_SocketClientEvent_proxy_negotiating = 4;
+var Gio_SocketClientEvent_proxy_negotiated = 5;
+var Gio_SocketClientEvent_tls_handshaking = 6;
+var Gio_SocketClientEvent_tls_handshaked = 7;
+var Gio_SocketClientEvent_complete = 8;
+
+var Gio_SocketFamily_invalid = 0;
+var Gio_SocketFamily_unix = 1;
+var Gio_SocketFamily_ipv4 = 2;
+var Gio_SocketFamily_ipv6 = 10;
+
+var Gio_SocketListenerEvent_binding = 0;
+var Gio_SocketListenerEvent_bound = 1;
+var Gio_SocketListenerEvent_listening = 2;
+var Gio_SocketListenerEvent_listened = 3;
+
+var Gio_SocketMsgFlags_none = 0;
+var Gio_SocketMsgFlags_oob = 1;
+var Gio_SocketMsgFlags_peek = 2;
+var Gio_SocketMsgFlags_dontroute = 4;
+
+var Gio_SocketProtocol_unknown = -1;
+var Gio_SocketProtocol_default = 0;
+var Gio_SocketProtocol_tcp = 6;
+var Gio_SocketProtocol_udp = 17;
+var Gio_SocketProtocol_sctp = 132;
+
+var Gio_SocketType_invalid = 0;
+var Gio_SocketType_stream = 1;
+var Gio_SocketType_datagram = 2;
+var Gio_SocketType_seqpacket = 3;
+
+var Gio_SubprocessFlags_none = 0;
+var Gio_SubprocessFlags_stdin_pipe = 1;
+var Gio_SubprocessFlags_stdin_inherit = 2;
+var Gio_SubprocessFlags_stdout_pipe = 4;
+var Gio_SubprocessFlags_stdout_silence = 8;
+var Gio_SubprocessFlags_stderr_pipe = 16;
+var Gio_SubprocessFlags_stderr_silence = 32;
+var Gio_SubprocessFlags_stderr_merge = 64;
+var Gio_SubprocessFlags_inherit_fds = 128;
+var Gio_SubprocessFlags_search_path_from_envp = 256;
+
+var Gio_TestDBusFlags_none = 0;
+
+var Gio_TlsAuthenticationMode_none = 0;
+var Gio_TlsAuthenticationMode_requested = 1;
+var Gio_TlsAuthenticationMode_required = 2;
+
+var Gio_TlsCertificateFlags_unknown_ca = 1;
+var Gio_TlsCertificateFlags_bad_identity = 2;
+var Gio_TlsCertificateFlags_not_activated = 4;
+var Gio_TlsCertificateFlags_expired = 8;
+var Gio_TlsCertificateFlags_revoked = 16;
+var Gio_TlsCertificateFlags_insecure = 32;
+var Gio_TlsCertificateFlags_generic_error = 64;
+var Gio_TlsCertificateFlags_validate_all = 127;
+
+var Gio_TlsCertificateRequestFlags_none = 0;
+
+var Gio_TlsChannelBindingError_not_implemented = 0;
+var Gio_TlsChannelBindingError_invalid_state = 1;
+var Gio_TlsChannelBindingError_not_available = 2;
+var Gio_TlsChannelBindingError_not_supported = 3;
+var Gio_TlsChannelBindingError_general_error = 4;
+
+var Gio_TlsChannelBindingType_unique = 0;
+var Gio_TlsChannelBindingType_server_end_point = 1;
+
+var Gio_TlsDatabaseLookupFlags_none = 0;
+var Gio_TlsDatabaseLookupFlags_keypair = 1;
+
+var Gio_TlsDatabaseVerifyFlags_none = 0;
+
+var Gio_TlsError_unavailable = 0;
+var Gio_TlsError_misc = 1;
+var Gio_TlsError_bad_certificate = 2;
+var Gio_TlsError_not_tls = 3;
+var Gio_TlsError_handshake = 4;
+var Gio_TlsError_certificate_required = 5;
+var Gio_TlsError_eof = 6;
+var Gio_TlsError_inappropriate_fallback = 7;
+var Gio_TlsError_bad_certificate_password = 8;
+
+var Gio_TlsInteractionResult_unhandled = 0;
+var Gio_TlsInteractionResult_handled = 1;
+var Gio_TlsInteractionResult_failed = 2;
+
+var Gio_TlsPasswordFlags_none = 0;
+var Gio_TlsPasswordFlags_retry = 2;
+var Gio_TlsPasswordFlags_many_tries = 4;
+var Gio_TlsPasswordFlags_final_try = 8;
+var Gio_TlsPasswordFlags_pkcs11_user = 16;
+var Gio_TlsPasswordFlags_pkcs11_security_officer = 32;
+var Gio_TlsPasswordFlags_pkcs11_context_specific = 64;
+
+var Gio_TlsProtocolVersion_unknown = 0;
+var Gio_TlsProtocolVersion_ssl_3_0 = 1;
+var Gio_TlsProtocolVersion_tls_1_0 = 2;
+var Gio_TlsProtocolVersion_tls_1_1 = 3;
+var Gio_TlsProtocolVersion_tls_1_2 = 4;
+var Gio_TlsProtocolVersion_tls_1_3 = 5;
+var Gio_TlsProtocolVersion_dtls_1_0 = 201;
+var Gio_TlsProtocolVersion_dtls_1_2 = 202;
+
+var Gio_TlsRehandshakeMode_never = 0;
+var Gio_TlsRehandshakeMode_safely = 1;
+var Gio_TlsRehandshakeMode_unsafely = 2;
+
+var Gio_UnixSocketAddressType_invalid = 0;
+var Gio_UnixSocketAddressType_anonymous = 1;
+var Gio_UnixSocketAddressType_path = 2;
+var Gio_UnixSocketAddressType_abstract = 3;
+var Gio_UnixSocketAddressType_abstract_padded = 4;
+
+var Gio_ZlibCompressorFormat_zlib = 0;
+var Gio_ZlibCompressorFormat_gzip = 1;
+var Gio_ZlibCompressorFormat_raw = 2;
+
+var Gio_DEBUG_CONTROLLER_EXTENSION_POINT_NAME_DEBUG_CONTROLLER_EXTENSION_POINT_NAME = "gio-debug-controller";
+var Gio_DESKTOP_APP_INFO_LOOKUP_EXTENSION_POINT_NAME_DESKTOP_APP_INFO_LOOKUP_EXTENSION_POINT_NAME = "gio-desktop-app-info-lookup";
+var Gio_DRIVE_IDENTIFIER_KIND_UNIX_DEVICE_DRIVE_IDENTIFIER_KIND_UNIX_DEVICE = "unix-device";
+var Gio_FILE_ATTRIBUTE_ACCESS_CAN_DELETE_FILE_ATTRIBUTE_ACCESS_CAN_DELETE = "access::can-delete";
+var Gio_FILE_ATTRIBUTE_ACCESS_CAN_EXECUTE_FILE_ATTRIBUTE_ACCESS_CAN_EXECUTE = "access::can-execute";
+var Gio_FILE_ATTRIBUTE_ACCESS_CAN_READ_FILE_ATTRIBUTE_ACCESS_CAN_READ = "access::can-read";
+var Gio_FILE_ATTRIBUTE_ACCESS_CAN_RENAME_FILE_ATTRIBUTE_ACCESS_CAN_RENAME = "access::can-rename";
+var Gio_FILE_ATTRIBUTE_ACCESS_CAN_TRASH_FILE_ATTRIBUTE_ACCESS_CAN_TRASH = "access::can-trash";
+var Gio_FILE_ATTRIBUTE_ACCESS_CAN_WRITE_FILE_ATTRIBUTE_ACCESS_CAN_WRITE = "access::can-write";
+var Gio_FILE_ATTRIBUTE_DOS_IS_ARCHIVE_FILE_ATTRIBUTE_DOS_IS_ARCHIVE = "dos::is-archive";
+var Gio_FILE_ATTRIBUTE_DOS_IS_MOUNTPOINT_FILE_ATTRIBUTE_DOS_IS_MOUNTPOINT = "dos::is-mountpoint";
+var Gio_FILE_ATTRIBUTE_DOS_IS_SYSTEM_FILE_ATTRIBUTE_DOS_IS_SYSTEM = "dos::is-system";
+var Gio_FILE_ATTRIBUTE_DOS_REPARSE_POINT_TAG_FILE_ATTRIBUTE_DOS_REPARSE_POINT_TAG = "dos::reparse-point-tag";
+var Gio_FILE_ATTRIBUTE_ETAG_VALUE_FILE_ATTRIBUTE_ETAG_VALUE = "etag::value";
+var Gio_FILE_ATTRIBUTE_FILESYSTEM_FREE_FILE_ATTRIBUTE_FILESYSTEM_FREE = "filesystem::free";
+var Gio_FILE_ATTRIBUTE_FILESYSTEM_READONLY_FILE_ATTRIBUTE_FILESYSTEM_READONLY = "filesystem::readonly";
+var Gio_FILE_ATTRIBUTE_FILESYSTEM_REMOTE_FILE_ATTRIBUTE_FILESYSTEM_REMOTE = "filesystem::remote";
+var Gio_FILE_ATTRIBUTE_FILESYSTEM_SIZE_FILE_ATTRIBUTE_FILESYSTEM_SIZE = "filesystem::size";
+var Gio_FILE_ATTRIBUTE_FILESYSTEM_TYPE_FILE_ATTRIBUTE_FILESYSTEM_TYPE = "filesystem::type";
+var Gio_FILE_ATTRIBUTE_FILESYSTEM_USED_FILE_ATTRIBUTE_FILESYSTEM_USED = "filesystem::used";
+var Gio_FILE_ATTRIBUTE_FILESYSTEM_USE_PREVIEW_FILE_ATTRIBUTE_FILESYSTEM_USE_PREVIEW = "filesystem::use-preview";
+var Gio_FILE_ATTRIBUTE_GVFS_BACKEND_FILE_ATTRIBUTE_GVFS_BACKEND = "gvfs::backend";
+var Gio_FILE_ATTRIBUTE_ID_FILE_FILE_ATTRIBUTE_ID_FILE = "id::file";
+var Gio_FILE_ATTRIBUTE_ID_FILESYSTEM_FILE_ATTRIBUTE_ID_FILESYSTEM = "id::filesystem";
+var Gio_FILE_ATTRIBUTE_MOUNTABLE_CAN_EJECT_FILE_ATTRIBUTE_MOUNTABLE_CAN_EJECT = "mountable::can-eject";
+var Gio_FILE_ATTRIBUTE_MOUNTABLE_CAN_MOUNT_FILE_ATTRIBUTE_MOUNTABLE_CAN_MOUNT = "mountable::can-mount";
+var Gio_FILE_ATTRIBUTE_MOUNTABLE_CAN_POLL_FILE_ATTRIBUTE_MOUNTABLE_CAN_POLL = "mountable::can-poll";
+var Gio_FILE_ATTRIBUTE_MOUNTABLE_CAN_START_FILE_ATTRIBUTE_MOUNTABLE_CAN_START = "mountable::can-start";
+var Gio_FILE_ATTRIBUTE_MOUNTABLE_CAN_START_DEGRADED_FILE_ATTRIBUTE_MOUNTABLE_CAN_START_DEGRADED = "mountable::can-start-degraded";
+var Gio_FILE_ATTRIBUTE_MOUNTABLE_CAN_STOP_FILE_ATTRIBUTE_MOUNTABLE_CAN_STOP = "mountable::can-stop";
+var Gio_FILE_ATTRIBUTE_MOUNTABLE_CAN_UNMOUNT_FILE_ATTRIBUTE_MOUNTABLE_CAN_UNMOUNT = "mountable::can-unmount";
+var Gio_FILE_ATTRIBUTE_MOUNTABLE_HAL_UDI_FILE_ATTRIBUTE_MOUNTABLE_HAL_UDI = "mountable::hal-udi";
+var Gio_FILE_ATTRIBUTE_MOUNTABLE_IS_MEDIA_CHECK_AUTOMATIC_FILE_ATTRIBUTE_MOUNTABLE_IS_MEDIA_CHECK_AUTOMATIC = "mountable::is-media-check-automatic";
+var Gio_FILE_ATTRIBUTE_MOUNTABLE_START_STOP_TYPE_FILE_ATTRIBUTE_MOUNTABLE_START_STOP_TYPE = "mountable::start-stop-type";
+var Gio_FILE_ATTRIBUTE_MOUNTABLE_UNIX_DEVICE_FILE_ATTRIBUTE_MOUNTABLE_UNIX_DEVICE = "mountable::unix-device";
+var Gio_FILE_ATTRIBUTE_MOUNTABLE_UNIX_DEVICE_FILE_FILE_ATTRIBUTE_MOUNTABLE_UNIX_DEVICE_FILE = "mountable::unix-device-file";
+var Gio_FILE_ATTRIBUTE_OWNER_GROUP_FILE_ATTRIBUTE_OWNER_GROUP = "owner::group";
+var Gio_FILE_ATTRIBUTE_OWNER_USER_FILE_ATTRIBUTE_OWNER_USER = "owner::user";
+var Gio_FILE_ATTRIBUTE_OWNER_USER_REAL_FILE_ATTRIBUTE_OWNER_USER_REAL = "owner::user-real";
+var Gio_FILE_ATTRIBUTE_PREVIEW_ICON_FILE_ATTRIBUTE_PREVIEW_ICON = "preview::icon";
+var Gio_FILE_ATTRIBUTE_RECENT_MODIFIED_FILE_ATTRIBUTE_RECENT_MODIFIED = "recent::modified";
+var Gio_FILE_ATTRIBUTE_SELINUX_CONTEXT_FILE_ATTRIBUTE_SELINUX_CONTEXT = "selinux::context";
+var Gio_FILE_ATTRIBUTE_STANDARD_ALLOCATED_SIZE_FILE_ATTRIBUTE_STANDARD_ALLOCATED_SIZE = "standard::allocated-size";
+var Gio_FILE_ATTRIBUTE_STANDARD_CONTENT_TYPE_FILE_ATTRIBUTE_STANDARD_CONTENT_TYPE = "standard::content-type";
+var Gio_FILE_ATTRIBUTE_STANDARD_COPY_NAME_FILE_ATTRIBUTE_STANDARD_COPY_NAME = "standard::copy-name";
+var Gio_FILE_ATTRIBUTE_STANDARD_DESCRIPTION_FILE_ATTRIBUTE_STANDARD_DESCRIPTION = "standard::description";
+var Gio_FILE_ATTRIBUTE_STANDARD_DISPLAY_NAME_FILE_ATTRIBUTE_STANDARD_DISPLAY_NAME = "standard::display-name";
+var Gio_FILE_ATTRIBUTE_STANDARD_EDIT_NAME_FILE_ATTRIBUTE_STANDARD_EDIT_NAME = "standard::edit-name";
+var Gio_FILE_ATTRIBUTE_STANDARD_FAST_CONTENT_TYPE_FILE_ATTRIBUTE_STANDARD_FAST_CONTENT_TYPE = "standard::fast-content-type";
+var Gio_FILE_ATTRIBUTE_STANDARD_ICON_FILE_ATTRIBUTE_STANDARD_ICON = "standard::icon";
+var Gio_FILE_ATTRIBUTE_STANDARD_IS_BACKUP_FILE_ATTRIBUTE_STANDARD_IS_BACKUP = "standard::is-backup";
+var Gio_FILE_ATTRIBUTE_STANDARD_IS_HIDDEN_FILE_ATTRIBUTE_STANDARD_IS_HIDDEN = "standard::is-hidden";
+var Gio_FILE_ATTRIBUTE_STANDARD_IS_SYMLINK_FILE_ATTRIBUTE_STANDARD_IS_SYMLINK = "standard::is-symlink";
+var Gio_FILE_ATTRIBUTE_STANDARD_IS_VIRTUAL_FILE_ATTRIBUTE_STANDARD_IS_VIRTUAL = "standard::is-virtual";
+var Gio_FILE_ATTRIBUTE_STANDARD_IS_VOLATILE_FILE_ATTRIBUTE_STANDARD_IS_VOLATILE = "standard::is-volatile";
+var Gio_FILE_ATTRIBUTE_STANDARD_NAME_FILE_ATTRIBUTE_STANDARD_NAME = "standard::name";
+var Gio_FILE_ATTRIBUTE_STANDARD_SIZE_FILE_ATTRIBUTE_STANDARD_SIZE = "standard::size";
+var Gio_FILE_ATTRIBUTE_STANDARD_SORT_ORDER_FILE_ATTRIBUTE_STANDARD_SORT_ORDER = "standard::sort-order";
+var Gio_FILE_ATTRIBUTE_STANDARD_SYMBOLIC_ICON_FILE_ATTRIBUTE_STANDARD_SYMBOLIC_ICON = "standard::symbolic-icon";
+var Gio_FILE_ATTRIBUTE_STANDARD_SYMLINK_TARGET_FILE_ATTRIBUTE_STANDARD_SYMLINK_TARGET = "standard::symlink-target";
+var Gio_FILE_ATTRIBUTE_STANDARD_TARGET_URI_FILE_ATTRIBUTE_STANDARD_TARGET_URI = "standard::target-uri";
+var Gio_FILE_ATTRIBUTE_STANDARD_TYPE_FILE_ATTRIBUTE_STANDARD_TYPE = "standard::type";
+var Gio_FILE_ATTRIBUTE_THUMBNAILING_FAILED_FILE_ATTRIBUTE_THUMBNAILING_FAILED = "thumbnail::failed";
+var Gio_FILE_ATTRIBUTE_THUMBNAIL_IS_VALID_FILE_ATTRIBUTE_THUMBNAIL_IS_VALID = "thumbnail::is-valid";
+var Gio_FILE_ATTRIBUTE_THUMBNAIL_PATH_FILE_ATTRIBUTE_THUMBNAIL_PATH = "thumbnail::path";
+var Gio_FILE_ATTRIBUTE_TIME_ACCESS_FILE_ATTRIBUTE_TIME_ACCESS = "time::access";
+var Gio_FILE_ATTRIBUTE_TIME_ACCESS_USEC_FILE_ATTRIBUTE_TIME_ACCESS_USEC = "time::access-usec";
+var Gio_FILE_ATTRIBUTE_TIME_CHANGED_FILE_ATTRIBUTE_TIME_CHANGED = "time::changed";
+var Gio_FILE_ATTRIBUTE_TIME_CHANGED_USEC_FILE_ATTRIBUTE_TIME_CHANGED_USEC = "time::changed-usec";
+var Gio_FILE_ATTRIBUTE_TIME_CREATED_FILE_ATTRIBUTE_TIME_CREATED = "time::created";
+var Gio_FILE_ATTRIBUTE_TIME_CREATED_USEC_FILE_ATTRIBUTE_TIME_CREATED_USEC = "time::created-usec";
+var Gio_FILE_ATTRIBUTE_TIME_MODIFIED_FILE_ATTRIBUTE_TIME_MODIFIED = "time::modified";
+var Gio_FILE_ATTRIBUTE_TIME_MODIFIED_USEC_FILE_ATTRIBUTE_TIME_MODIFIED_USEC = "time::modified-usec";
+var Gio_FILE_ATTRIBUTE_TRASH_DELETION_DATE_FILE_ATTRIBUTE_TRASH_DELETION_DATE = "trash::deletion-date";
+var Gio_FILE_ATTRIBUTE_TRASH_ITEM_COUNT_FILE_ATTRIBUTE_TRASH_ITEM_COUNT = "trash::item-count";
+var Gio_FILE_ATTRIBUTE_TRASH_ORIG_PATH_FILE_ATTRIBUTE_TRASH_ORIG_PATH = "trash::orig-path";
+var Gio_FILE_ATTRIBUTE_UNIX_BLOCKS_FILE_ATTRIBUTE_UNIX_BLOCKS = "unix::blocks";
+var Gio_FILE_ATTRIBUTE_UNIX_BLOCK_SIZE_FILE_ATTRIBUTE_UNIX_BLOCK_SIZE = "unix::block-size";
+var Gio_FILE_ATTRIBUTE_UNIX_DEVICE_FILE_ATTRIBUTE_UNIX_DEVICE = "unix::device";
+var Gio_FILE_ATTRIBUTE_UNIX_GID_FILE_ATTRIBUTE_UNIX_GID = "unix::gid";
+var Gio_FILE_ATTRIBUTE_UNIX_INODE_FILE_ATTRIBUTE_UNIX_INODE = "unix::inode";
+var Gio_FILE_ATTRIBUTE_UNIX_IS_MOUNTPOINT_FILE_ATTRIBUTE_UNIX_IS_MOUNTPOINT = "unix::is-mountpoint";
+var Gio_FILE_ATTRIBUTE_UNIX_MODE_FILE_ATTRIBUTE_UNIX_MODE = "unix::mode";
+var Gio_FILE_ATTRIBUTE_UNIX_NLINK_FILE_ATTRIBUTE_UNIX_NLINK = "unix::nlink";
+var Gio_FILE_ATTRIBUTE_UNIX_RDEV_FILE_ATTRIBUTE_UNIX_RDEV = "unix::rdev";
+var Gio_FILE_ATTRIBUTE_UNIX_UID_FILE_ATTRIBUTE_UNIX_UID = "unix::uid";
+var Gio_MEMORY_MONITOR_EXTENSION_POINT_NAME_MEMORY_MONITOR_EXTENSION_POINT_NAME = "gio-memory-monitor";
+var Gio_MENU_ATTRIBUTE_ACTION_MENU_ATTRIBUTE_ACTION = "action";
+var Gio_MENU_ATTRIBUTE_ACTION_NAMESPACE_MENU_ATTRIBUTE_ACTION_NAMESPACE = "action-namespace";
+var Gio_MENU_ATTRIBUTE_ICON_MENU_ATTRIBUTE_ICON = "icon";
+var Gio_MENU_ATTRIBUTE_LABEL_MENU_ATTRIBUTE_LABEL = "label";
+var Gio_MENU_ATTRIBUTE_TARGET_MENU_ATTRIBUTE_TARGET = "target";
+var Gio_MENU_LINK_SECTION_MENU_LINK_SECTION = "section";
+var Gio_MENU_LINK_SUBMENU_MENU_LINK_SUBMENU = "submenu";
+var Gio_NATIVE_VOLUME_MONITOR_EXTENSION_POINT_NAME_NATIVE_VOLUME_MONITOR_EXTENSION_POINT_NAME = "gio-native-volume-monitor";
+var Gio_NETWORK_MONITOR_EXTENSION_POINT_NAME_NETWORK_MONITOR_EXTENSION_POINT_NAME = "gio-network-monitor";
+var Gio_POWER_PROFILE_MONITOR_EXTENSION_POINT_NAME_POWER_PROFILE_MONITOR_EXTENSION_POINT_NAME = "gio-power-profile-monitor";
+var Gio_PROXY_EXTENSION_POINT_NAME_PROXY_EXTENSION_POINT_NAME = "gio-proxy";
+var Gio_PROXY_RESOLVER_EXTENSION_POINT_NAME_PROXY_RESOLVER_EXTENSION_POINT_NAME = "gio-proxy-resolver";
+var Gio_SETTINGS_BACKEND_EXTENSION_POINT_NAME_SETTINGS_BACKEND_EXTENSION_POINT_NAME = "gsettings-backend";
+var Gio_TLS_BACKEND_EXTENSION_POINT_NAME_TLS_BACKEND_EXTENSION_POINT_NAME = "gio-tls-backend";
+var Gio_TLS_DATABASE_PURPOSE_AUTHENTICATE_CLIENT_TLS_DATABASE_PURPOSE_AUTHENTICATE_CLIENT = "1.3.6.1.5.5.7.3.2";
+var Gio_TLS_DATABASE_PURPOSE_AUTHENTICATE_SERVER_TLS_DATABASE_PURPOSE_AUTHENTICATE_SERVER = "1.3.6.1.5.5.7.3.1";
+var Gio_VFS_EXTENSION_POINT_NAME_VFS_EXTENSION_POINT_NAME = "gio-vfs";
+var Gio_VOLUME_IDENTIFIER_KIND_CLASS_VOLUME_IDENTIFIER_KIND_CLASS = "class";
+var Gio_VOLUME_IDENTIFIER_KIND_HAL_UDI_VOLUME_IDENTIFIER_KIND_HAL_UDI = "hal-udi";
+var Gio_VOLUME_IDENTIFIER_KIND_LABEL_VOLUME_IDENTIFIER_KIND_LABEL = "label";
+var Gio_VOLUME_IDENTIFIER_KIND_NFS_MOUNT_VOLUME_IDENTIFIER_KIND_NFS_MOUNT = "nfs-mount";
+var Gio_VOLUME_IDENTIFIER_KIND_UNIX_DEVICE_VOLUME_IDENTIFIER_KIND_UNIX_DEVICE = "unix-device";
+var Gio_VOLUME_IDENTIFIER_KIND_UUID_VOLUME_IDENTIFIER_KIND_UUID = "uuid";
+var Gio_VOLUME_MONITOR_EXTENSION_POINT_NAME_VOLUME_MONITOR_EXTENSION_POINT_NAME = "gio-volume-monitor";
+
+extern callback void GioAppInfoMonitor_signal_changed(ptr, ptr);
+extern callback void GioAppLaunchContext_signal_launch_failed(ptr, str, ptr);
+extern callback void GioAppLaunchContext_signal_launch_started(ptr, ptr, ptr, ptr);
+extern callback void GioAppLaunchContext_signal_launched(ptr, ptr, ptr, ptr);
+extern callback void GioApplication_signal_activate(ptr, ptr);
+extern callback int GioApplication_signal_command_line(ptr, ptr, ptr);
+extern callback int GioApplication_signal_handle_local_options(ptr, ptr, ptr);
+extern callback int GioApplication_signal_name_lost(ptr, ptr);
+extern callback void GioApplication_signal_open(ptr, ptr, int, str, ptr);
+extern callback void GioApplication_signal_shutdown(ptr, ptr);
+extern callback void GioApplication_signal_startup(ptr, ptr);
+extern callback void GioCancellable_signal_cancelled(ptr, ptr);
+extern callback int GioDBusAuthObserver_signal_allow_mechanism(ptr, str, ptr);
+extern callback int GioDBusAuthObserver_signal_authorize_authenticated_peer(ptr, ptr, ptr, ptr);
+extern callback void GioDBusConnection_signal_closed(ptr, int, ptr, ptr);
+extern callback int GioDBusInterfaceSkeleton_signal_g_authorize_method(ptr, ptr, ptr);
+extern callback void GioDBusObjectManagerClient_signal_interface_proxy_properties_changed(ptr, ptr, ptr, ptr, ptr, ptr);
+extern callback void GioDBusObjectManagerClient_signal_interface_proxy_signal(ptr, ptr, ptr, str, str, ptr, ptr);
+extern callback int GioDBusObjectSkeleton_signal_authorize_method(ptr, ptr, ptr, ptr);
+extern callback void GioDBusProxy_signal_g_properties_changed(ptr, ptr, ptr, ptr);
+extern callback void GioDBusProxy_signal_g_signal(ptr, str, str, ptr, ptr);
+extern callback int GioDBusServer_signal_new_connection(ptr, ptr, ptr);
+extern callback int GioDebugControllerDBus_signal_authorize(ptr, ptr, ptr);
+extern callback void GioFileMonitor_signal_changed(ptr, ptr, ptr, int, ptr);
+extern callback void GioFilenameCompleter_signal_got_completion_data(ptr, ptr);
+extern callback void GioMenuModel_signal_items_changed(ptr, int, int, int, ptr);
+extern callback void GioMountOperation_signal_aborted(ptr, ptr);
+extern callback void GioMountOperation_signal_ask_password(ptr, str, str, str, int, ptr);
+extern callback void GioMountOperation_signal_ask_question(ptr, str, ptr, ptr);
+extern callback void GioMountOperation_signal_reply(ptr, int, ptr);
+extern callback void GioMountOperation_signal_show_processes(ptr, str, ptr, ptr, ptr);
+extern callback void GioMountOperation_signal_show_unmount_progress(ptr, str, long, long, ptr);
+extern callback void GioResolver_signal_reload(ptr, ptr);
+extern callback int GioSettings_signal_change_event(ptr, ptr, int, ptr);
+extern callback void GioSettings_signal_changed(ptr, str, ptr);
+extern callback int GioSettings_signal_writable_change_event(ptr, uint, ptr);
+extern callback void GioSettings_signal_writable_changed(ptr, str, ptr);
+extern callback void GioSimpleAction_signal_activate(ptr, ptr, ptr);
+extern callback void GioSimpleAction_signal_change_state(ptr, ptr, ptr);
+extern callback void GioSocketClient_signal_event(ptr, int, ptr, ptr, ptr);
+extern callback void GioSocketListener_signal_event(ptr, int, ptr, ptr);
+extern callback int GioSocketService_signal_incoming(ptr, ptr, ptr, ptr);
+extern callback int GioThreadedSocketService_signal_run(ptr, ptr, ptr, ptr);
+extern callback int GioTlsConnection_signal_accept_certificate(ptr, ptr, int, ptr);
+extern callback void GioUnixMountMonitor_signal_mountpoints_changed(ptr, ptr);
+extern callback void GioUnixMountMonitor_signal_mounts_changed(ptr, ptr);
+extern callback void GioVolumeMonitor_signal_drive_changed(ptr, ptr, ptr);
+extern callback void GioVolumeMonitor_signal_drive_connected(ptr, ptr, ptr);
+extern callback void GioVolumeMonitor_signal_drive_disconnected(ptr, ptr, ptr);
+extern callback void GioVolumeMonitor_signal_drive_eject_button(ptr, ptr, ptr);
+extern callback void GioVolumeMonitor_signal_drive_stop_button(ptr, ptr, ptr);
+extern callback void GioVolumeMonitor_signal_mount_added(ptr, ptr, ptr);
+extern callback void GioVolumeMonitor_signal_mount_changed(ptr, ptr, ptr);
+extern callback void GioVolumeMonitor_signal_mount_pre_unmount(ptr, ptr, ptr);
+extern callback void GioVolumeMonitor_signal_mount_removed(ptr, ptr, ptr);
+extern callback void GioVolumeMonitor_signal_volume_added(ptr, ptr, ptr);
+extern callback void GioVolumeMonitor_signal_volume_changed(ptr, ptr, ptr);
+extern callback void GioVolumeMonitor_signal_volume_removed(ptr, ptr, ptr);
+////////////////////////
+extern callback ptr GioAppLaunchContext_virtual_get_display(ptr, ptr, ptr);
+extern callback ptr GioAppLaunchContext_virtual_get_startup_notify_id(ptr, ptr, ptr);
+extern callback void GioAppLaunchContext_virtual_launch_failed(ptr, str);
+extern callback void GioAppLaunchContext_virtual_launch_started(ptr, ptr, ptr);
+extern callback void GioAppLaunchContext_virtual_launched(ptr, ptr, ptr);
+extern callback void GioApplication_virtual_activate(ptr);
+extern callback void GioApplication_virtual_add_platform_data(ptr, ptr);
+extern callback void GioApplication_virtual_after_emit(ptr, ptr);
+extern callback void GioApplication_virtual_before_emit(ptr, ptr);
+extern callback int GioApplication_virtual_command_line(ptr, ptr);
+extern callback int GioApplication_virtual_dbus_register(ptr, ptr, str);
+extern callback void GioApplication_virtual_dbus_unregister(ptr, ptr, str);
+extern callback int GioApplication_virtual_handle_local_options(ptr, ptr);
+extern callback int GioApplication_virtual_local_command_line(ptr, ptr, ptr);
+extern callback int GioApplication_virtual_name_lost(ptr);
+extern callback void GioApplication_virtual_open(ptr, ptr, int, str);
+extern callback void GioApplication_virtual_quit_mainloop(ptr);
+extern callback void GioApplication_virtual_run_mainloop(ptr);
+extern callback void GioApplication_virtual_shutdown(ptr);
+extern callback void GioApplication_virtual_startup(ptr);
+extern callback ptr GioApplicationCommandLine_virtual_get_stdin(ptr);
+extern callback void GioApplicationCommandLine_virtual_print_literal(ptr, str);
+extern callback void GioApplicationCommandLine_virtual_printerr_literal(ptr, str);
+extern callback long GioBufferedInputStream_virtual_fill(ptr, long, ptr);
+extern callback void GioBufferedInputStream_virtual_fill_async(ptr, long, int, ptr, ptr, ptr);
+extern callback long GioBufferedInputStream_virtual_fill_finish(ptr, ptr);
+extern callback void GioCancellable_virtual_cancelled(ptr);
+extern callback void GioDBusInterfaceSkeleton_virtual_flush(ptr);
+extern callback int GioDBusInterfaceSkeleton_virtual_g_authorize_method(ptr, ptr);
+extern callback ptr GioDBusInterfaceSkeleton_virtual_get_info(ptr);
+extern callback ptr GioDBusInterfaceSkeleton_virtual_get_properties(ptr);
+extern callback void GioDBusObjectManagerClient_virtual_interface_proxy_properties_changed(ptr, ptr, ptr, ptr, str);
+extern callback void GioDBusObjectManagerClient_virtual_interface_proxy_signal(ptr, ptr, ptr, str, str, ptr);
+extern callback int GioDBusObjectSkeleton_virtual_authorize_method(ptr, ptr, ptr);
+extern callback void GioDBusProxy_virtual_g_properties_changed(ptr, ptr, str);
+extern callback void GioDBusProxy_virtual_g_signal(ptr, str, str, ptr);
+extern callback int GioDebugControllerDBus_virtual_authorize(ptr, ptr);
+extern callback void GioFileEnumerator_virtual_close_async(ptr, int, ptr, ptr, ptr);
+extern callback int GioFileEnumerator_virtual_close_finish(ptr, ptr);
+extern callback int GioFileEnumerator_virtual_close_fn(ptr, ptr);
+extern callback ptr GioFileEnumerator_virtual_next_file(ptr, ptr);
+extern callback void GioFileEnumerator_virtual_next_files_async(ptr, int, int, ptr, ptr, ptr);
+extern callback ptr GioFileEnumerator_virtual_next_files_finish(ptr, ptr);
+extern callback int GioFileIOStream_virtual_can_seek(ptr);
+extern callback int GioFileIOStream_virtual_can_truncate(ptr);
+extern callback ptr GioFileIOStream_virtual_get_etag(ptr);
+extern callback ptr GioFileIOStream_virtual_query_info(ptr, str, ptr);
+extern callback void GioFileIOStream_virtual_query_info_async(ptr, str, int, ptr, ptr, ptr);
+extern callback ptr GioFileIOStream_virtual_query_info_finish(ptr, ptr);
+extern callback int GioFileIOStream_virtual_seek(ptr, long, int, ptr);
+extern callback long GioFileIOStream_virtual_tell(ptr);
+extern callback int GioFileIOStream_virtual_truncate_fn(ptr, long, ptr);
+extern callback int GioFileInputStream_virtual_can_seek(ptr);
+extern callback ptr GioFileInputStream_virtual_query_info(ptr, str, ptr);
+extern callback void GioFileInputStream_virtual_query_info_async(ptr, str, int, ptr, ptr, ptr);
+extern callback ptr GioFileInputStream_virtual_query_info_finish(ptr, ptr);
+extern callback int GioFileInputStream_virtual_seek(ptr, long, int, ptr);
+extern callback long GioFileInputStream_virtual_tell(ptr);
+extern callback int GioFileMonitor_virtual_cancel(ptr);
+extern callback void GioFileMonitor_virtual_changed(ptr, ptr, ptr, int);
+extern callback int GioFileOutputStream_virtual_can_seek(ptr);
+extern callback int GioFileOutputStream_virtual_can_truncate(ptr);
+extern callback ptr GioFileOutputStream_virtual_get_etag(ptr);
+extern callback ptr GioFileOutputStream_virtual_query_info(ptr, str, ptr);
+extern callback void GioFileOutputStream_virtual_query_info_async(ptr, str, int, ptr, ptr, ptr);
+extern callback ptr GioFileOutputStream_virtual_query_info_finish(ptr, ptr);
+extern callback int GioFileOutputStream_virtual_seek(ptr, long, int, ptr);
+extern callback long GioFileOutputStream_virtual_tell(ptr);
+extern callback int GioFileOutputStream_virtual_truncate_fn(ptr, long, ptr);
+extern callback void GioFilenameCompleter_virtual_got_completion_data(ptr);
+extern callback void GioIOStream_virtual_close_async(ptr, int, ptr, ptr, ptr);
+extern callback int GioIOStream_virtual_close_finish(ptr, ptr);
+extern callback int GioIOStream_virtual_close_fn(ptr, ptr);
+extern callback ptr GioIOStream_virtual_get_input_stream(ptr);
+extern callback ptr GioIOStream_virtual_get_output_stream(ptr);
+extern callback ptr GioInetAddress_virtual_to_string(ptr);
+extern callback void GioInputStream_virtual_close_async(ptr, int, ptr, ptr, ptr);
+extern callback int GioInputStream_virtual_close_finish(ptr, ptr);
+extern callback int GioInputStream_virtual_close_fn(ptr, ptr);
+extern callback void GioInputStream_virtual_read_async(ptr, ptr, ulong, int, ptr, ptr, ptr);
+extern callback long GioInputStream_virtual_read_finish(ptr, ptr);
+extern callback long GioInputStream_virtual_read_fn(ptr, ptr, ulong, ptr);
+extern callback long GioInputStream_virtual_skip(ptr, ulong, ptr);
+extern callback void GioInputStream_virtual_skip_async(ptr, ulong, int, ptr, ptr, ptr);
+extern callback long GioInputStream_virtual_skip_finish(ptr, ptr);
+extern callback int GioMenuAttributeIter_virtual_get_next(ptr, str, ptr);
+extern callback int GioMenuLinkIter_virtual_get_next(ptr, str, ptr);
+extern callback ptr GioMenuModel_virtual_get_item_attribute_value(ptr, int, str, ptr);
+extern callback void GioMenuModel_virtual_get_item_attributes(ptr, int, ptr);
+extern callback ptr GioMenuModel_virtual_get_item_link(ptr, int, str);
+extern callback void GioMenuModel_virtual_get_item_links(ptr, int, ptr);
+extern callback int GioMenuModel_virtual_get_n_items(ptr);
+extern callback int GioMenuModel_virtual_is_mutable(ptr);
+extern callback ptr GioMenuModel_virtual_iterate_item_attributes(ptr, int);
+extern callback ptr GioMenuModel_virtual_iterate_item_links(ptr, int);
+extern callback void GioMountOperation_virtual_aborted(ptr);
+extern callback void GioMountOperation_virtual_ask_password(ptr, str, str, str, int);
+extern callback void GioMountOperation_virtual_ask_question(ptr, str, ptr);
+extern callback void GioMountOperation_virtual_reply(ptr, int);
+extern callback void GioMountOperation_virtual_show_processes(ptr, str, ptr, ptr);
+extern callback void GioMountOperation_virtual_show_unmount_progress(ptr, str, long, long);
+extern callback void GioOutputStream_virtual_close_async(ptr, int, ptr, ptr, ptr);
+extern callback int GioOutputStream_virtual_close_finish(ptr, ptr);
+extern callback int GioOutputStream_virtual_close_fn(ptr, ptr);
+extern callback int GioOutputStream_virtual_flush(ptr, ptr);
+extern callback void GioOutputStream_virtual_flush_async(ptr, int, ptr, ptr, ptr);
+extern callback int GioOutputStream_virtual_flush_finish(ptr, ptr);
+extern callback long GioOutputStream_virtual_splice(ptr, ptr, int, ptr);
+extern callback void GioOutputStream_virtual_splice_async(ptr, ptr, int, int, ptr, ptr, ptr);
+extern callback long GioOutputStream_virtual_splice_finish(ptr, ptr);
+extern callback void GioOutputStream_virtual_write_async(ptr, ptr, ulong, int, ptr, ptr, ptr);
+extern callback long GioOutputStream_virtual_write_finish(ptr, ptr);
+extern callback long GioOutputStream_virtual_write_fn(ptr, ptr, ulong, ptr);
+extern callback void GioOutputStream_virtual_writev_async(ptr, ptr, ulong, int, ptr, ptr, ptr);
+extern callback int GioOutputStream_virtual_writev_finish(ptr, ptr, ptr);
+extern callback int GioOutputStream_virtual_writev_fn(ptr, ptr, ulong, ptr, ptr);
+extern callback int GioPermission_virtual_acquire(ptr, ptr);
+extern callback void GioPermission_virtual_acquire_async(ptr, ptr, ptr, ptr);
+extern callback int GioPermission_virtual_acquire_finish(ptr, ptr);
+extern callback int GioPermission_virtual_release(ptr, ptr);
+extern callback void GioPermission_virtual_release_async(ptr, ptr, ptr, ptr);
+extern callback int GioPermission_virtual_release_finish(ptr, ptr);
+extern callback ptr GioResolver_virtual_lookup_by_address(ptr, ptr, ptr);
+extern callback void GioResolver_virtual_lookup_by_address_async(ptr, ptr, ptr, ptr, ptr);
+extern callback ptr GioResolver_virtual_lookup_by_address_finish(ptr, ptr);
+extern callback ptr GioResolver_virtual_lookup_by_name(ptr, str, ptr);
+extern callback void GioResolver_virtual_lookup_by_name_async(ptr, str, ptr, ptr, ptr);
+extern callback ptr GioResolver_virtual_lookup_by_name_finish(ptr, ptr);
+extern callback ptr GioResolver_virtual_lookup_by_name_with_flags(ptr, str, int, ptr);
+extern callback void GioResolver_virtual_lookup_by_name_with_flags_async(ptr, str, int, ptr, ptr, ptr);
+extern callback ptr GioResolver_virtual_lookup_by_name_with_flags_finish(ptr, ptr);
+extern callback ptr GioResolver_virtual_lookup_records(ptr, str, int, ptr);
+extern callback void GioResolver_virtual_lookup_records_async(ptr, str, int, ptr, ptr, ptr);
+extern callback ptr GioResolver_virtual_lookup_records_finish(ptr, ptr);
+extern callback void GioResolver_virtual_lookup_service_async(ptr, str, ptr, ptr, ptr);
+extern callback ptr GioResolver_virtual_lookup_service_finish(ptr, ptr);
+extern callback void GioResolver_virtual_reload(ptr);
+extern callback int GioSettings_virtual_change_event(ptr, ptr, int);
+extern callback void GioSettings_virtual_changed(ptr, str);
+extern callback int GioSettings_virtual_writable_change_event(ptr, uint);
+extern callback void GioSettings_virtual_writable_changed(ptr, str);
+extern callback int GioSettingsBackend_virtual_get_writable(ptr, str);
+extern callback ptr GioSettingsBackend_virtual_read(ptr, str, ptr, int);
+extern callback ptr GioSettingsBackend_virtual_read_user_value(ptr, str, ptr);
+extern callback void GioSettingsBackend_virtual_reset(ptr, str, ptr);
+extern callback void GioSettingsBackend_virtual_subscribe(ptr, str);
+extern callback void GioSettingsBackend_virtual_sync(ptr);
+extern callback void GioSettingsBackend_virtual_unsubscribe(ptr, str);
+extern callback int GioSettingsBackend_virtual_write(ptr, str, ptr, ptr);
+extern callback int GioSettingsBackend_virtual_write_tree(ptr, ptr, ptr);
+extern callback int GioSocketAddress_virtual_get_family(ptr);
+extern callback long GioSocketAddress_virtual_get_native_size(ptr);
+extern callback int GioSocketAddress_virtual_to_native(ptr, ptr, ulong);
+extern callback ptr GioSocketAddressEnumerator_virtual_next(ptr, ptr);
+extern callback void GioSocketAddressEnumerator_virtual_next_async(ptr, ptr, ptr, ptr);
+extern callback ptr GioSocketAddressEnumerator_virtual_next_finish(ptr, ptr);
+extern callback void GioSocketClient_virtual_event(ptr, int, ptr, ptr);
+extern callback int GioSocketControlMessage_virtual_get_level(ptr);
+extern callback ulong GioSocketControlMessage_virtual_get_size(ptr);
+extern callback int GioSocketControlMessage_virtual_get_type(ptr);
+extern callback void GioSocketControlMessage_virtual_serialize(ptr, ptr);
+extern callback void GioSocketListener_virtual_changed(ptr);
+extern callback void GioSocketListener_virtual_event(ptr, int, ptr);
+extern callback int GioSocketService_virtual_incoming(ptr, ptr, ptr);
+extern callback int GioThreadedSocketService_virtual_run(ptr, ptr, ptr);
+extern callback int GioTlsCertificate_virtual_verify(ptr, ptr, ptr);
+extern callback int GioTlsConnection_virtual_accept_certificate(ptr, ptr, int);
+extern callback int GioTlsConnection_virtual_get_binding_data(ptr, int, ptr);
+extern callback str GioTlsConnection_virtual_get_negotiated_protocol(ptr);
+extern callback int GioTlsConnection_virtual_handshake(ptr, ptr);
+extern callback void GioTlsConnection_virtual_handshake_async(ptr, int, ptr, ptr, ptr);
+extern callback int GioTlsConnection_virtual_handshake_finish(ptr, ptr);
+extern callback ptr GioTlsDatabase_virtual_create_certificate_handle(ptr, ptr);
+extern callback ptr GioTlsDatabase_virtual_lookup_certificate_for_handle(ptr, str, ptr, int, ptr);
+extern callback void GioTlsDatabase_virtual_lookup_certificate_for_handle_async(ptr, str, ptr, int, ptr, ptr, ptr);
+extern callback ptr GioTlsDatabase_virtual_lookup_certificate_for_handle_finish(ptr, ptr);
+extern callback ptr GioTlsDatabase_virtual_lookup_certificate_issuer(ptr, ptr, ptr, int, ptr);
+extern callback void GioTlsDatabase_virtual_lookup_certificate_issuer_async(ptr, ptr, ptr, int, ptr, ptr, ptr);
+extern callback ptr GioTlsDatabase_virtual_lookup_certificate_issuer_finish(ptr, ptr);
+extern callback ptr GioTlsDatabase_virtual_lookup_certificates_issued_by(ptr, ptr, ptr, int, ptr);
+extern callback void GioTlsDatabase_virtual_lookup_certificates_issued_by_async(ptr, ptr, ptr, int, ptr, ptr, ptr);
+extern callback ptr GioTlsDatabase_virtual_lookup_certificates_issued_by_finish(ptr, ptr);
+extern callback int GioTlsDatabase_virtual_verify_chain(ptr, ptr, str, ptr, ptr, int, ptr);
+extern callback void GioTlsDatabase_virtual_verify_chain_async(ptr, ptr, str, ptr, ptr, int, ptr, ptr, ptr);
+extern callback int GioTlsDatabase_virtual_verify_chain_finish(ptr, ptr);
+extern callback int GioTlsInteraction_virtual_ask_password(ptr, ptr, ptr);
+extern callback void GioTlsInteraction_virtual_ask_password_async(ptr, ptr, ptr, ptr, ptr);
+extern callback int GioTlsInteraction_virtual_ask_password_finish(ptr, ptr);
+extern callback int GioTlsInteraction_virtual_request_certificate(ptr, ptr, int, ptr);
+extern callback void GioTlsInteraction_virtual_request_certificate_async(ptr, ptr, int, ptr, ptr, ptr);
+extern callback int GioTlsInteraction_virtual_request_certificate_finish(ptr, ptr);
+extern callback str GioTlsPassword_virtual_get_default_warning(ptr);
+extern callback ptr GioTlsPassword_virtual_get_value(ptr, ptr);
+extern callback void GioTlsPassword_virtual_set_value(ptr, ptr, long, ptr);
+extern callback void GioVfs_virtual_add_writable_namespaces(ptr, ptr);
+extern callback ptr GioVfs_virtual_get_file_for_path(ptr, str);
+extern callback ptr GioVfs_virtual_get_file_for_uri(ptr, str);
+extern callback ptr GioVfs_virtual_get_supported_uri_schemes(ptr);
+extern callback int GioVfs_virtual_is_active(ptr);
+extern callback void GioVfs_virtual_local_file_add_info(ptr, str, ulong, ptr, ptr, ptr, ptr, ptr);
+extern callback void GioVfs_virtual_local_file_moved(ptr, str, str);
+extern callback void GioVfs_virtual_local_file_removed(ptr, str);
+extern callback int GioVfs_virtual_local_file_set_attributes(ptr, str, ptr, int, ptr);
+extern callback ptr GioVfs_virtual_parse_name(ptr, str);
+extern callback void GioVolumeMonitor_virtual_drive_changed(ptr, ptr);
+extern callback void GioVolumeMonitor_virtual_drive_connected(ptr, ptr);
+extern callback void GioVolumeMonitor_virtual_drive_disconnected(ptr, ptr);
+extern callback void GioVolumeMonitor_virtual_drive_eject_button(ptr, ptr);
+extern callback void GioVolumeMonitor_virtual_drive_stop_button(ptr, ptr);
+extern callback ptr GioVolumeMonitor_virtual_get_connected_drives(ptr);
+extern callback ptr GioVolumeMonitor_virtual_get_mount_for_uuid(ptr, str);
+extern callback ptr GioVolumeMonitor_virtual_get_mounts(ptr);
+extern callback ptr GioVolumeMonitor_virtual_get_volume_for_uuid(ptr, str);
+extern callback ptr GioVolumeMonitor_virtual_get_volumes(ptr);
+extern callback void GioVolumeMonitor_virtual_mount_added(ptr, ptr);
+extern callback void GioVolumeMonitor_virtual_mount_changed(ptr, ptr);
+extern callback void GioVolumeMonitor_virtual_mount_pre_unmount(ptr, ptr);
+extern callback void GioVolumeMonitor_virtual_mount_removed(ptr, ptr);
+extern callback void GioVolumeMonitor_virtual_volume_added(ptr, ptr);
+extern callback void GioVolumeMonitor_virtual_volume_changed(ptr, ptr);
+extern callback void GioVolumeMonitor_virtual_volume_removed(ptr, ptr);
+

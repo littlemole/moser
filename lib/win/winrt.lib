@@ -1,0 +1,81 @@
+class WinRtProxy
+{
+    getter(target,name)
+    {
+        var r = target{name};
+        if( r != nil) return r;
+        var n = "get_" + name;
+        if( target.methods().exists(n) )
+        {
+            return runtime.invoke(target,n, [] );
+        }
+        return this.chainCall( target, n, [] );
+    }
+
+    setter(target,name,value)
+    {
+        var fields = target.keys();
+        if( fields.contains(name) )
+        {
+            target{name} = value;
+            return;
+        }
+        var n = "put_" + name;
+        if( target.methods().exists(n) )
+        {
+            return runtime.invoke(target,n, [value] );
+        }
+        return this.chainCall( target, n, [value] );
+    }
+
+    invoke(target, name)
+    {
+        var args = arguments();
+
+        // proxy checks if method is avail on target
+        if( target.methods().exists(name) )
+        {
+            var r = runtime.invoke(target, name, args[2:]);
+            return r;
+        }
+
+        return this.chainCall(target, name, args[2:]);
+    }
+
+    chainCall(target, name, args)
+    {
+        if ($target == nil) return nil;
+
+        var parent = $target.Extends;
+        if (parent == nil) return nil;
+
+        var base = this.getClass(parent);
+        if (base == nil) return nil;
+
+        // "cast" to base and try again
+        var b = base(target.comPtr);
+        if (b == nil) return nil;
+
+        if ( b{"target"}.methods().exists(name) == false)
+        {
+            return this.chainCall( b{"target"}, name, args);
+        }
+        return runtime.invoke( b{"target"}, name, args);
+    }
+
+    getClass(name)
+    {
+        var a = name.split(".");
+        var c = runtime.global(a[0]);
+        if (c == nil) return nil;
+        for (var i = 1; i < a.length; i++)
+        {
+            var it = a[i];
+            if (c{ it } == nil) return nil;
+            c = c{ it };
+        }
+        return c;
+    }
+}
+
+winrt.init();

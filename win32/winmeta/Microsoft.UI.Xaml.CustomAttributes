@@ -1,0 +1,14 @@
+{
+class WinRtInterface { 
+    queryInterface(iid) { return this.comPtr.queryInterface(iid); }
+    release() { this.comPtr.release(); this.comPtr = nil; }
+    valid() { return this.comPtr != nil && int(this.comPtr) != 0; }
+}
+
+if( runtime.global("Microsoft") == nil ) { runtime.global("Microsoft", {}); }
+var Microsoft = runtime.global("Microsoft");
+if ( Microsoft.UI == nil ) { Microsoft.UI = {}; }
+if ( Microsoft.UI.Xaml == nil ) { Microsoft.UI.Xaml = {}; }
+if ( Microsoft.UI.Xaml.CustomAttributes == nil ) { Microsoft.UI.Xaml.CustomAttributes = {}; }
+
+}

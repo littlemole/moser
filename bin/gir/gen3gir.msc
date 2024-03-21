@@ -1,0 +1,7 @@
+
+import("promise");
+import("gir/gir");
+
+var gir = GIR( [ "Gio:2.0", "GLib:2.0", "Gdk:3.0", "Gtk:3.0", "GObject:2.0", "GtkSource:3.0", "WebKit2:4.0", "JavaScriptCore:4.0" ] );
+
+import("gengir");

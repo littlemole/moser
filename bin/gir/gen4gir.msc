@@ -1,0 +1,25 @@
+
+import("promise");
+import("gir/gir");
+
+extern struct GSList {
+  ptr data,
+  ptr next
+};
+
+g_irepository_prepend_library_path("/usr/local/lib/");
+g_irepository_prepend_search_path("/usr/local/lib/x86_64-linux-gnu/girepository-1.0/");
+
+var ptr = g_irepository_get_search_path();
+
+while( ptr && int(ptr) )
+{
+    var list = GSList(ptr);
+    var str = string(list.data);
+    // print str;
+    ptr = list.next;
+}
+
+var gir = GIR( [ "Gio:2.0", "GLib:2.0", "GObject:2.0", "Gdk:4.0", "Gtk:4.0" ,  "GtkSource:5", "WebKit:6.0", "JavaScriptCore:6.0"  ] );
+
+import("gengir");

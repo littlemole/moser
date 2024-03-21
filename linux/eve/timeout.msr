@@ -1,0 +1,59 @@
+extern from "libevent.so" {
+
+  ptr event_base_new();
+  void event_base_free(ptr);
+
+  int event_base_dispatch(ptr);
+  int event_base_loopbreak(ptr);  
+
+  ptr event_new(ptr, ptr, short, ptr, ptr );
+  void event_free(ptr);
+
+  int event_add(ptr, ptr);
+  int event_base_dispatch(ptr);  
+}
+
+extern struct timeval {
+    long tv_sec,  // seconds
+    long tv_usec  // microseconds
+};
+
+extern callback  void event_callback( ptr, short, ptr);
+
+var EV = {
+ "TIMEOUT" : 0x01,
+ "READ"    : 0x02,
+ "WRITE"   : 0x04,
+ "SIGNAL"  : 0x08,
+ "PERSIST" : 0x10,
+ "ET"      : 0x20
+};
+
+////////////////
+// MAIN
+////////////////
+
+var loop = event_base_new();
+
+var handler = event_callback( fun(base,what,ptr)
+{
+    print "timeout";
+    event_base_loopbreak(loop);
+});
+
+
+
+var timeout = timeval();
+timeout.tv_sec = 2;
+
+var ev = event_new( loop, -1, EV.TIMEOUT|EV.PERSIST, handler, 0);
+
+event_add(ev,timeout);
+
+event_base_dispatch(loop);
+
+event_base_free(loop);
+
+/////////////////
+
+print "good bye";

@@ -1,0 +1,48 @@
+class Base
+{
+    test ()
+    {
+        print this.className;
+    }
+}
+
+class Test : Base
+{
+    test ()
+    {
+        super.test();
+    }
+}
+
+class Other
+{
+
+}
+
+var t = Test();
+
+print typeof(Test); // expect: class
+print typeof(t); // expect: object
+print t.className; // expect: Test
+t.test();  // expect: Test
+var o = Other();
+var b = Base();
+print t isa t;  // expect: true
+print t isa Test;  // expect: true 
+print t isa Base; // expect: true
+print t isa b; // expect: true
+print b isa t;  // expect: false
+print b isa Test; // expect: false
+print o isa t; // expect: false
+print t isa o; // expect: false
+print o isa b; // expect: false
+print b isa o; // expect: false
+print typeof({});  // expect: map
+print typeof([]); // expect: array
+var p = sys.pointer();  
+print typeof(p); // expect: ptr
+print typeof("x"); // expect: str
+print typeof(1);// expect: int
+print typeof(1.0); // expect: double
+print typeof(true); // expect: boolean
+print typeof(nil); // expect: nil

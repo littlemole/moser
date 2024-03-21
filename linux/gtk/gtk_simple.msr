@@ -1,0 +1,41 @@
+extern from "libgtk-3.so" {
+    ptr gtk_application_new( str, int );
+    ptr gtk_application_window_new( ptr );
+    void gtk_widget_show_all( ptr );
+    void gtk_window_set_title( ptr, str );
+    void gtk_window_set_default_size( ptr, int, int );
+    ptr gtk_button_new_with_label( str );
+    void gtk_container_add( ptr, ptr );
+}
+
+extern from "libgio-2.0.so" {
+    int g_application_run( ptr, int, ptr);
+}
+
+extern from "libgobject-2.0.so" {
+    ulong g_signal_connect_data( ptr, str, ptr, ptr, ptr, int );
+}
+
+extern callback void gtk_cb( ptr, ptr );
+
+var hello = gtk_cb( fun(widget,ptr) 
+{
+    print "hello gtk";  
+});
+
+var activate = gtk_cb( fun(app,ptr) 
+{
+    var window = gtk_application_window_new (app);
+    gtk_window_set_title ( window, "My Window");
+    gtk_window_set_default_size (window, 200, 200);
+
+    var button = gtk_button_new_with_label ("Hello World");
+    g_signal_connect_data (button, "clicked", hello, 0, 0, 0);
+
+    gtk_container_add (window, button);
+    gtk_widget_show_all(window);
+});
+
+var app = gtk_application_new ("org.gtk.example", 0);
+g_signal_connect_data (app, "activate", activate, 0, 0, 0);
+var status = g_application_run (app, 0,0);

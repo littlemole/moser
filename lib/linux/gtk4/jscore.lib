@@ -1,0 +1,223 @@
+// load libgio-2.0.so.0: 140015876100096
+// load libgobject-2.0.so.0: 140015882178560
+// load libglib-2.0.so.0: 140015878037504
+// load libgobject-2.0.so.0: 140015882178560
+// load libgtk-4.so.1: 140015864643584
+// load libgtk-4.so.1: 140015864643584
+// load libgtksourceview-5.so.0: 140015850909696
+// load libwebkitgtk-6.0.so.4: 140015743008768
+// load libjavascriptcoregtk-6.0.so.1: 140015715745792
+// load libjavascriptcoregtk-6.0.so.1: 140015715745792
+// namespace JavaScriptCore
+// libs libjavascriptcoregtk-6.0.so.1
+extern from "libjavascriptcoregtk-6.0.so.1" {
+ptr jsc_class_add_constructor_variadic(ptr, str, ptr, ptr, ptr, ulong);
+ptr jsc_class_add_constructorv(ptr, str, ptr, ptr, ptr, ulong, uint, ptr);
+void jsc_class_add_method_variadic(ptr, str, ptr, ptr, ptr, ulong);
+void jsc_class_add_methodv(ptr, str, ptr, ptr, ptr, ulong, uint, ptr);
+void jsc_class_add_property(ptr, str, ulong, ptr, ptr, ptr, ptr);
+str jsc_class_get_name(ptr);
+ptr jsc_class_get_parent(ptr);
+ptr jsc_context_new();
+ptr jsc_context_new_with_virtual_machine(ptr);
+ptr jsc_context_get_current(ptr);
+int jsc_context_check_syntax(ptr, str, long, int, str, uint, ptr);
+void jsc_context_clear_exception(ptr);
+ptr jsc_context_evaluate(ptr, str, long);
+ptr jsc_context_evaluate_in_object(ptr, str, long, ptr, ptr, str, uint, ptr);
+ptr jsc_context_evaluate_with_source_uri(ptr, str, long, str, uint);
+ptr jsc_context_get_exception(ptr);
+ptr jsc_context_get_global_object(ptr);
+ptr jsc_context_get_value(ptr, str);
+ptr jsc_context_get_virtual_machine(ptr);
+void jsc_context_pop_exception_handler(ptr);
+void jsc_context_push_exception_handler(ptr, ptr, ptr, ptr);
+ptr jsc_context_register_class(ptr, str, ptr, ptr, ptr);
+void jsc_context_set_value(ptr, str, ptr);
+void jsc_context_throw(ptr, str);
+void jsc_context_throw_exception(ptr, ptr);
+void jsc_context_throw_with_name(ptr, str, str);
+ptr jsc_exception_new(ptr, str);
+ptr jsc_exception_new_with_name(ptr, str, str);
+str jsc_exception_get_backtrace_string(ptr);
+uint jsc_exception_get_column_number(ptr);
+uint jsc_exception_get_line_number(ptr);
+str jsc_exception_get_message(ptr);
+str jsc_exception_get_name(ptr);
+str jsc_exception_get_source_uri(ptr);
+ptr jsc_exception_report(ptr);
+ptr jsc_exception_to_string(ptr);
+ptr jsc_value_new_array_buffer(ptr, ptr, ulong, ptr, ptr);
+ptr jsc_value_new_array_from_garray(ptr, ptr);
+ptr jsc_value_new_array_from_strv(ptr, ptr);
+ptr jsc_value_new_boolean(ptr, int);
+ptr jsc_value_new_from_json(ptr, str);
+ptr jsc_value_new_function_variadic(ptr, str, ptr, ptr, ptr, ulong);
+ptr jsc_value_new_functionv(ptr, str, ptr, ptr, ptr, ulong, uint, ptr);
+ptr jsc_value_new_null(ptr);
+ptr jsc_value_new_number(ptr, double);
+ptr jsc_value_new_object(ptr, ptr, ptr);
+ptr jsc_value_new_string(ptr, str);
+ptr jsc_value_new_string_from_bytes(ptr, ptr);
+ptr jsc_value_new_typed_array(ptr, int, ulong);
+ptr jsc_value_new_undefined(ptr);
+ptr jsc_value_array_buffer_get_data(ptr, ptr);
+ulong jsc_value_array_buffer_get_size(ptr);
+ptr jsc_value_constructor_callv(ptr, uint, ptr);
+ptr jsc_value_function_callv(ptr, uint, ptr);
+ptr jsc_value_get_context(ptr);
+int jsc_value_is_array(ptr);
+int jsc_value_is_array_buffer(ptr);
+int jsc_value_is_boolean(ptr);
+int jsc_value_is_constructor(ptr);
+int jsc_value_is_function(ptr);
+int jsc_value_is_null(ptr);
+int jsc_value_is_number(ptr);
+int jsc_value_is_object(ptr);
+int jsc_value_is_string(ptr);
+int jsc_value_is_typed_array(ptr);
+int jsc_value_is_undefined(ptr);
+ptr jsc_value_new_typed_array_with_buffer(ptr, int, ulong, long);
+void jsc_value_object_define_property_accessor(ptr, str, int, ulong, ptr, ptr, ptr, ptr);
+void jsc_value_object_define_property_data(ptr, str, int, ptr);
+int jsc_value_object_delete_property(ptr, str);
+ptr jsc_value_object_enumerate_properties(ptr);
+ptr jsc_value_object_get_property(ptr, str);
+ptr jsc_value_object_get_property_at_index(ptr, uint);
+int jsc_value_object_has_property(ptr, str);
+ptr jsc_value_object_invoke_methodv(ptr, str, uint, ptr);
+int jsc_value_object_is_instance_of(ptr, str);
+void jsc_value_object_set_property(ptr, str, ptr);
+void jsc_value_object_set_property_at_index(ptr, uint, ptr);
+int jsc_value_to_boolean(ptr);
+double jsc_value_to_double(ptr);
+int jsc_value_to_int32(ptr);
+ptr jsc_value_to_json(ptr, uint);
+ptr jsc_value_to_string(ptr);
+ptr jsc_value_to_string_as_bytes(ptr);
+ptr jsc_value_typed_array_get_buffer(ptr);
+ptr jsc_value_typed_array_get_data(ptr, ptr);
+ulong jsc_value_typed_array_get_length(ptr);
+ulong jsc_value_typed_array_get_offset(ptr);
+ulong jsc_value_typed_array_get_size(ptr);
+int jsc_value_typed_array_get_type(ptr);
+ptr jsc_virtual_machine_new();
+ptr jsc_weak_value_new(ptr);
+ptr jsc_weak_value_get_value(ptr);
+uint jsc_get_major_version();
+uint jsc_get_micro_version();
+uint jsc_get_minor_version();
+void jsc_options_foreach(ptr, ptr);
+int jsc_options_get_boolean(str, ptr);
+int jsc_options_get_double(str, ptr);
+int jsc_options_get_int(str, ptr);
+ptr jsc_options_get_option_group();
+int jsc_options_get_range_string(str, ptr);
+int jsc_options_get_size(str, ptr);
+int jsc_options_get_string(str, ptr);
+int jsc_options_get_uint(str, ptr);
+int jsc_options_set_boolean(str, int);
+int jsc_options_set_double(str, double);
+int jsc_options_set_int(str, int);
+int jsc_options_set_range_string(str, str);
+int jsc_options_set_size(str, ulong);
+int jsc_options_set_string(str, str);
+int jsc_options_set_uint(str, uint);
+};
+
+extern callback int JavaScriptCoreClassDeletePropertyFunction(ptr, ptr, ptr, str);
+extern callback ptr JavaScriptCoreClassEnumeratePropertiesFunction(ptr, ptr, ptr);
+extern callback ptr JavaScriptCoreClassGetPropertyFunction(ptr, ptr, ptr, str);
+extern callback int JavaScriptCoreClassHasPropertyFunction(ptr, ptr, ptr, str);
+extern callback int JavaScriptCoreClassSetPropertyFunction(ptr, ptr, ptr, str, ptr);
+extern callback void JavaScriptCoreExceptionHandler(ptr, ptr, ptr);
+extern callback int JavaScriptCoreOptionsFunc(str, int, str, ptr);
+extern struct JavaScriptCoreClassClass{
+byte parent_class[136],  // JavaScriptCoreObjectClass
+};
+
+extern struct JavaScriptCoreClassVTable{
+ptr get_property,  // ::ClassGetPropertyFunction
+ptr set_property,  // ::ClassSetPropertyFunction
+ptr has_property,  // ::ClassHasPropertyFunction
+ptr delete_property,  // ::ClassDeletePropertyFunction
+ptr enumerate_properties,  // ::ClassEnumeratePropertiesFunction
+ptr _jsc_reserved0,  // void*
+ptr _jsc_reserved1,  // void*
+ptr _jsc_reserved2,  // void*
+ptr _jsc_reserved3,  // void*
+ptr _jsc_reserved4,  // void*
+ptr _jsc_reserved5,  // void*
+ptr _jsc_reserved6,  // void*
+ptr _jsc_reserved7,  // void*
+};
+
+extern struct JavaScriptCoreContextClass{
+byte parent_class[136],  // JavaScriptCoreObjectClass
+};
+
+extern struct JavaScriptCoreExceptionClass{
+byte parent_class[136],  // JavaScriptCoreObjectClass
+};
+
+extern struct JavaScriptCoreValueClass{
+byte parent_class[136],  // JavaScriptCoreObjectClass
+};
+
+extern struct JavaScriptCoreVirtualMachineClass{
+byte parent_class[136],  // JavaScriptCoreObjectClass
+};
+
+extern struct JavaScriptCoreWeakValueClass{
+byte parent_class[136],  // JavaScriptCoreObjectClass
+};
+
+var JavaScriptCore_CheckSyntaxMode_script = 0;
+var JavaScriptCore_CheckSyntaxMode_module = 1;
+
+var JavaScriptCore_CheckSyntaxResult_success = 0;
+var JavaScriptCore_CheckSyntaxResult_recoverable_error = 1;
+var JavaScriptCore_CheckSyntaxResult_irrecoverable_error = 2;
+var JavaScriptCore_CheckSyntaxResult_unterminated_literal_error = 3;
+var JavaScriptCore_CheckSyntaxResult_out_of_memory_error = 4;
+var JavaScriptCore_CheckSyntaxResult_stack_overflow_error = 5;
+
+var JavaScriptCore_OptionType_boolean = 0;
+var JavaScriptCore_OptionType_int = 1;
+var JavaScriptCore_OptionType_uint = 2;
+var JavaScriptCore_OptionType_size = 3;
+var JavaScriptCore_OptionType_double = 4;
+var JavaScriptCore_OptionType_string = 5;
+var JavaScriptCore_OptionType_range_string = 6;
+
+var JavaScriptCore_TypedArrayType_none = 0;
+var JavaScriptCore_TypedArrayType_int8 = 1;
+var JavaScriptCore_TypedArrayType_int16 = 2;
+var JavaScriptCore_TypedArrayType_int32 = 3;
+var JavaScriptCore_TypedArrayType_int64 = 4;
+var JavaScriptCore_TypedArrayType_uint8 = 5;
+var JavaScriptCore_TypedArrayType_uint8_clamped = 6;
+var JavaScriptCore_TypedArrayType_uint16 = 7;
+var JavaScriptCore_TypedArrayType_uint32 = 8;
+var JavaScriptCore_TypedArrayType_uint64 = 9;
+var JavaScriptCore_TypedArrayType_float32 = 10;
+var JavaScriptCore_TypedArrayType_float64 = 11;
+
+var JavaScriptCore_ValuePropertyFlags_configurable = 1;
+var JavaScriptCore_ValuePropertyFlags_enumerable = 2;
+var JavaScriptCore_ValuePropertyFlags_writable = 4;
+
+var JavaScriptCore_MAJOR_VERSION_MAJOR_VERSION = 2;
+
+var JavaScriptCore_MICRO_VERSION_MICRO_VERSION = 2;
+
+var JavaScriptCore_MINOR_VERSION_MINOR_VERSION = 40;
+
+var JavaScriptCore_OPTIONS_USE_DFG_OPTIONS_USE_DFG = "useDFGJIT";
+var JavaScriptCore_OPTIONS_USE_FTL_OPTIONS_USE_FTL = "useFTLJIT";
+var JavaScriptCore_OPTIONS_USE_JIT_OPTIONS_USE_JIT = "useJIT";
+var JavaScriptCore_OPTIONS_USE_LLINT_OPTIONS_USE_LLINT = "useLLInt";
+
+extern callback void JavaScriptCoreWeakValue_signal_cleared(ptr, ptr);
+////////////////////////
+

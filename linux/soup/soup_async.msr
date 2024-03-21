@@ -1,0 +1,58 @@
+import("glib/glib");
+import("glib/gio");
+import("glib/gobject");
+import("soup");
+
+var loop = g_main_loop_new(nil,0);
+
+var cb = GioAsyncReadyCallback( fun(src,res,msg) 
+{
+    var err = sys.pointer();
+    var bytes = soup_session_send_and_read_finish(src,res,&err);
+
+    if ( int(err)) 
+    {
+        var error = GError(&err);
+        print("Failed to download" +  error.message.string());
+        g_error_free (err);
+    }
+    else
+    {
+        var response_headers = soup_message_get_response_headers (msg);
+        var content_type = soup_message_headers_get_content_type (response_headers,nil);
+
+        var size = g_bytes_get_size(bytes);
+
+        print "Downloaded bytes " + size + " of type " + content_type;
+
+        var content = g_bytes_get_data(bytes,nil);
+        print content.string();
+
+        g_bytes_unref (bytes);
+
+    }
+    g_main_loop_quit(loop);
+});
+
+
+var session = soup_session_new();
+var msg = soup_message_new(
+    "GET", 
+    "https://www.amazon.de/"
+);
+
+soup_session_send_and_read_async(
+    session,
+    msg,
+    0,    
+    nil, // Pass a GCancellable here if you want to cancel a download
+    cb,
+    msg
+);
+
+
+
+g_main_loop_run(loop);
+
+g_object_unref (msg);
+g_object_unref (session);

@@ -1,0 +1,19 @@
+@attr
+class Base
+{
+
+}
+
+@attr2
+class Derived : Base
+{
+
+}
+
+print $Base.exists("attr"); // expect: true
+var b = Base();
+print $b.exists("attr"); // expect: true
+
+var d = Derived();
+print $d.exists("attr2"); // expect: true
+

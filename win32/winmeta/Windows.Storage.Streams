@@ -1,0 +1,3572 @@
+{
+class WinRtInterface { 
+    queryInterface(iid) { return this.comPtr.queryInterface(iid); }
+    release() { this.comPtr.release(); this.comPtr = nil; }
+    valid() { return this.comPtr != nil && int(this.comPtr) != 0; }
+}
+
+if( runtime.global("Windows") == nil ) { runtime.global("Windows", {}); }
+var Windows = runtime.global("Windows");
+if ( Windows.Storage == nil ) { Windows.Storage = {}; }
+if ( Windows.Storage.Streams == nil ) { Windows.Storage.Streams = {}; }
+
+Windows.Storage.Streams.ByteOrder = {
+    "LittleEndian" : 0, 
+    "BigEndian" : 1
+};
+
+
+Windows.Storage.Streams.FileOpenDisposition = {
+    "OpenExisting" : 0, 
+    "OpenAlways" : 1, 
+    "CreateNew" : 2, 
+    "CreateAlways" : 3, 
+    "TruncateExisting" : 4
+};
+
+
+Windows.Storage.Streams.InputStreamOptions = {
+    "None" : 0, 
+    "Partial" : 1, 
+    "ReadAhead" : 2
+};
+
+
+Windows.Storage.Streams.UnicodeEncoding = {
+    "Utf8" : 0, 
+    "Utf16LE" : 1, 
+    "Utf16BE" : 2
+};
+
+//@Interface("Windows.Storage.Streams.IBuffer")
+//@IID("{905A0FE0-BC53-11DF-8C49-001E4FC686DA}")
+class Windows_Storage_Streams_IBuffer : WinRtInterface 
+{
+    Windows_Storage_Streams_IBuffer( comPtr )
+    {
+        var Windows = runtime.global("Windows");
+        this.comPtr = comPtr.queryInterface( "{905A0FE0-BC53-11DF-8C49-001E4FC686DA}");
+    }
+
+    //@VtableIndex(6)
+    //@Async(0)
+    //@Returns("UInt32")
+    get_Capacity()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 6, "UInt32", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(7)
+    //@Async(0)
+    //@Returns("UInt32")
+    get_Length()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 7, "UInt32", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(8)
+    //@Async(0)
+    //@Returns("void")
+    //@Parameters("UInt32")
+    put_Length(value)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = value;
+        this.comPtr.invoke( 8, "void", ["UInt32"], [p1] );
+    }
+
+
+}
+Windows_Storage_Streams_IBuffer.iid = "{905A0FE0-BC53-11DF-8C49-001E4FC686DA}";
+Windows.Storage.Streams.IBuffer = Windows_Storage_Streams_IBuffer;
+
+
+//@Interface("Windows.Storage.Streams.IBufferFactory")
+//@IID("{71AF914D-C10F-484B-BC50-14BC623B3A27}")
+class Windows_Storage_Streams_IBufferFactory : WinRtInterface 
+{
+    Windows_Storage_Streams_IBufferFactory( comPtr )
+    {
+        var Windows = runtime.global("Windows");
+        this.comPtr = comPtr.queryInterface( "{71AF914D-C10F-484B-BC50-14BC623B3A27}");
+    }
+
+    //@VtableIndex(6)
+    //@Async(0)
+    //@Returns("Windows.Storage.Streams.Buffer")
+    //@Parameters("UInt32")
+    Create(capacity)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = capacity;
+        var _r = Windows.Storage.Streams.Buffer(
+            this.comPtr.invoke( 6, "Windows.Storage.Streams.Buffer", ["UInt32"], [p1] )
+        );
+        return _r;
+    }
+
+
+}
+Windows_Storage_Streams_IBufferFactory.iid = "{71AF914D-C10F-484B-BC50-14BC623B3A27}";
+Windows.Storage.Streams.IBufferFactory = Windows_Storage_Streams_IBufferFactory;
+
+
+//@Interface("Windows.Storage.Streams.IBufferStatics")
+//@IID("{E901E65B-D716-475A-A90A-AF7229B1E741}")
+class Windows_Storage_Streams_IBufferStatics : WinRtInterface 
+{
+    Windows_Storage_Streams_IBufferStatics( comPtr )
+    {
+        var Windows = runtime.global("Windows");
+        this.comPtr = comPtr.queryInterface( "{E901E65B-D716-475A-A90A-AF7229B1E741}");
+    }
+
+    //@VtableIndex(6)
+    //@Async(0)
+    //@Returns("Windows.Storage.Streams.Buffer")
+    //@Parameters("Windows.Foundation.IMemoryBuffer")
+    CreateCopyFromMemoryBuffer(input)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = Windows.Foundation.IMemoryBuffer( input); 
+        var _r = Windows.Storage.Streams.Buffer(
+            this.comPtr.invoke( 6, "Windows.Storage.Streams.Buffer", ["Windows.Foundation.IMemoryBuffer"], [p1] )
+        );
+        return _r;
+    }
+
+    //@VtableIndex(7)
+    //@Async(0)
+    //@Returns("Windows.Foundation.MemoryBuffer")
+    //@Parameters("Windows.Storage.Streams.IBuffer")
+    CreateMemoryBufferOverIBuffer(input)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = Windows.Storage.Streams.IBuffer( input); 
+        var _r = Windows.Foundation.MemoryBuffer(
+            this.comPtr.invoke( 7, "Windows.Foundation.MemoryBuffer", ["Windows.Storage.Streams.IBuffer"], [p1] )
+        );
+        return _r;
+    }
+
+
+}
+Windows_Storage_Streams_IBufferStatics.iid = "{E901E65B-D716-475A-A90A-AF7229B1E741}";
+Windows.Storage.Streams.IBufferStatics = Windows_Storage_Streams_IBufferStatics;
+
+
+//@Interface("Windows.Storage.Streams.IContentTypeProvider")
+//@IID("{97D098A5-3B99-4DE9-88A5-E11D2F50C795}")
+class Windows_Storage_Streams_IContentTypeProvider : WinRtInterface 
+{
+    Windows_Storage_Streams_IContentTypeProvider( comPtr )
+    {
+        var Windows = runtime.global("Windows");
+        this.comPtr = comPtr.queryInterface( "{97D098A5-3B99-4DE9-88A5-E11D2F50C795}");
+    }
+
+    //@VtableIndex(6)
+    //@Async(0)
+    //@Returns("String")
+    get_ContentType()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 6, "String", [], [] );
+        return _r;
+    }
+
+
+}
+Windows_Storage_Streams_IContentTypeProvider.iid = "{97D098A5-3B99-4DE9-88A5-E11D2F50C795}";
+Windows.Storage.Streams.IContentTypeProvider = Windows_Storage_Streams_IContentTypeProvider;
+
+
+//@Interface("Windows.Storage.Streams.IDataReader")
+//@IID("{E2B50029-B4C1-4314-A4B8-FB813A2F275E}")
+class Windows_Storage_Streams_IDataReader : WinRtInterface 
+{
+    Windows_Storage_Streams_IDataReader( comPtr )
+    {
+        var Windows = runtime.global("Windows");
+        this.comPtr = comPtr.queryInterface( "{E2B50029-B4C1-4314-A4B8-FB813A2F275E}");
+    }
+
+    //@VtableIndex(6)
+    //@Async(0)
+    //@Returns("UInt32")
+    get_UnconsumedBufferLength()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 6, "UInt32", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(7)
+    //@Async(0)
+    //@Returns("Windows.Storage.Streams.UnicodeEncoding")
+    get_UnicodeEncoding()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 7, "UInt32", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(8)
+    //@Async(0)
+    //@Returns("void")
+    //@Parameters("Windows.Storage.Streams.UnicodeEncoding")
+    put_UnicodeEncoding(value)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = value;
+        this.comPtr.invoke( 8, "void", ["UInt32"], [p1] );
+    }
+
+    //@VtableIndex(9)
+    //@Async(0)
+    //@Returns("Windows.Storage.Streams.ByteOrder")
+    get_ByteOrder()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 9, "UInt32", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(10)
+    //@Async(0)
+    //@Returns("void")
+    //@Parameters("Windows.Storage.Streams.ByteOrder")
+    put_ByteOrder(value)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = value;
+        this.comPtr.invoke( 10, "void", ["UInt32"], [p1] );
+    }
+
+    //@VtableIndex(11)
+    //@Async(0)
+    //@Returns("Windows.Storage.Streams.InputStreamOptions")
+    get_InputStreamOptions()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 11, "UInt32", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(12)
+    //@Async(0)
+    //@Returns("void")
+    //@Parameters("Windows.Storage.Streams.InputStreamOptions")
+    put_InputStreamOptions(value)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = value;
+        this.comPtr.invoke( 12, "void", ["UInt32"], [p1] );
+    }
+
+    //@VtableIndex(13)
+    //@Async(0)
+    //@Returns("UInt8")
+    ReadByte()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 13, "UInt8", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(15)
+    //@Async(0)
+    //@Returns("Windows.Storage.Streams.IBuffer")
+    //@Parameters("UInt32")
+    ReadBuffer(length)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = length;
+        var _r = Windows.Storage.Streams.IBuffer(
+            this.comPtr.invoke( 15, "Windows.Storage.Streams.IBuffer", ["UInt32"], [p1] )
+        );
+        return _r;
+    }
+
+    //@VtableIndex(16)
+    //@Async(0)
+    //@Returns("Boolean")
+    ReadBoolean()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 16, "Boolean", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(17)
+    //@Async(0)
+    //@Returns("ptr")
+    ReadGuid()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 17, "ptr", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(18)
+    //@Async(0)
+    //@Returns("Int16")
+    ReadInt16()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 18, "Int16", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(19)
+    //@Async(0)
+    //@Returns("Int32")
+    ReadInt32()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 19, "Int32", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(20)
+    //@Async(0)
+    //@Returns("Int64")
+    ReadInt64()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 20, "Int64", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(21)
+    //@Async(0)
+    //@Returns("UInt16")
+    ReadUInt16()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 21, "UInt16", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(22)
+    //@Async(0)
+    //@Returns("UInt32")
+    ReadUInt32()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 22, "UInt32", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(23)
+    //@Async(0)
+    //@Returns("UInt64")
+    ReadUInt64()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 23, "UInt64", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(24)
+    //@Async(0)
+    //@Returns("Single")
+    ReadSingle()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 24, "Single", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(25)
+    //@Async(0)
+    //@Returns("Double")
+    ReadDouble()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 25, "Double", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(26)
+    //@Async(0)
+    //@Returns("String")
+    //@Parameters("UInt32")
+    ReadString(codeUnitCount)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = codeUnitCount;
+        var _r = this.comPtr.invoke( 26, "String", ["UInt32"], [p1] );
+        return _r;
+    }
+
+    //@VtableIndex(27)
+    //@Async(0)
+    //@Returns("Windows.Foundation.DateTime")
+    ReadDateTime()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 27, "Windows.Foundation.DateTime", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(28)
+    //@Async(0)
+    //@Returns("Windows.Foundation.TimeSpan")
+    ReadTimeSpan()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 28, "Windows.Foundation.TimeSpan", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(29)
+    //@Async(0)
+    //@Returns("Windows.Storage.Streams.DataReaderLoadOperation")
+    //@Parameters("UInt32")
+    LoadAsync(count)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = count;
+        var _r = Windows.Storage.Streams.DataReaderLoadOperation(
+            this.comPtr.invoke( 29, "Windows.Storage.Streams.DataReaderLoadOperation", ["UInt32"], [p1] )
+        );
+        return _r;
+    }
+
+    //@VtableIndex(30)
+    //@Async(0)
+    //@Returns("Windows.Storage.Streams.IBuffer")
+    DetachBuffer()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = Windows.Storage.Streams.IBuffer(
+            this.comPtr.invoke( 30, "Windows.Storage.Streams.IBuffer", [], [] )
+        );
+        return _r;
+    }
+
+    //@VtableIndex(31)
+    //@Async(0)
+    //@Returns("Windows.Storage.Streams.IInputStream")
+    DetachStream()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = Windows.Storage.Streams.IInputStream(
+            this.comPtr.invoke( 31, "Windows.Storage.Streams.IInputStream", [], [] )
+        );
+        return _r;
+    }
+
+
+}
+Windows_Storage_Streams_IDataReader.iid = "{E2B50029-B4C1-4314-A4B8-FB813A2F275E}";
+Windows.Storage.Streams.IDataReader = Windows_Storage_Streams_IDataReader;
+
+
+//@Interface("Windows.Storage.Streams.IDataReaderFactory")
+//@IID("{D7527847-57DA-4E15-914C-06806699A098}")
+class Windows_Storage_Streams_IDataReaderFactory : WinRtInterface 
+{
+    Windows_Storage_Streams_IDataReaderFactory( comPtr )
+    {
+        var Windows = runtime.global("Windows");
+        this.comPtr = comPtr.queryInterface( "{D7527847-57DA-4E15-914C-06806699A098}");
+    }
+
+    //@VtableIndex(6)
+    //@Async(0)
+    //@Returns("Windows.Storage.Streams.DataReader")
+    //@Parameters("Windows.Storage.Streams.IInputStream")
+    CreateDataReader(inputStream)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = Windows.Storage.Streams.IInputStream( inputStream); 
+        var _r = Windows.Storage.Streams.DataReader(
+            this.comPtr.invoke( 6, "Windows.Storage.Streams.DataReader", ["Windows.Storage.Streams.IInputStream"], [p1] )
+        );
+        return _r;
+    }
+
+
+}
+Windows_Storage_Streams_IDataReaderFactory.iid = "{D7527847-57DA-4E15-914C-06806699A098}";
+Windows.Storage.Streams.IDataReaderFactory = Windows_Storage_Streams_IDataReaderFactory;
+
+
+//@Interface("Windows.Storage.Streams.IDataReaderStatics")
+//@IID("{11FCBFC8-F93A-471B-B121-F379E349313C}")
+class Windows_Storage_Streams_IDataReaderStatics : WinRtInterface 
+{
+    Windows_Storage_Streams_IDataReaderStatics( comPtr )
+    {
+        var Windows = runtime.global("Windows");
+        this.comPtr = comPtr.queryInterface( "{11FCBFC8-F93A-471B-B121-F379E349313C}");
+    }
+
+    //@VtableIndex(6)
+    //@Async(0)
+    //@Returns("Windows.Storage.Streams.DataReader")
+    //@Parameters("Windows.Storage.Streams.IBuffer")
+    FromBuffer(buffer)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = Windows.Storage.Streams.IBuffer( buffer); 
+        var _r = Windows.Storage.Streams.DataReader(
+            this.comPtr.invoke( 6, "Windows.Storage.Streams.DataReader", ["Windows.Storage.Streams.IBuffer"], [p1] )
+        );
+        return _r;
+    }
+
+
+}
+Windows_Storage_Streams_IDataReaderStatics.iid = "{11FCBFC8-F93A-471B-B121-F379E349313C}";
+Windows.Storage.Streams.IDataReaderStatics = Windows_Storage_Streams_IDataReaderStatics;
+
+
+//@Interface("Windows.Storage.Streams.IDataWriter")
+//@IID("{64B89265-D341-4922-B38A-DD4AF8808C4E}")
+class Windows_Storage_Streams_IDataWriter : WinRtInterface 
+{
+    Windows_Storage_Streams_IDataWriter( comPtr )
+    {
+        var Windows = runtime.global("Windows");
+        this.comPtr = comPtr.queryInterface( "{64B89265-D341-4922-B38A-DD4AF8808C4E}");
+    }
+
+    //@VtableIndex(6)
+    //@Async(0)
+    //@Returns("UInt32")
+    get_UnstoredBufferLength()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 6, "UInt32", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(7)
+    //@Async(0)
+    //@Returns("Windows.Storage.Streams.UnicodeEncoding")
+    get_UnicodeEncoding()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 7, "UInt32", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(8)
+    //@Async(0)
+    //@Returns("void")
+    //@Parameters("Windows.Storage.Streams.UnicodeEncoding")
+    put_UnicodeEncoding(value)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = value;
+        this.comPtr.invoke( 8, "void", ["UInt32"], [p1] );
+    }
+
+    //@VtableIndex(9)
+    //@Async(0)
+    //@Returns("Windows.Storage.Streams.ByteOrder")
+    get_ByteOrder()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 9, "UInt32", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(10)
+    //@Async(0)
+    //@Returns("void")
+    //@Parameters("Windows.Storage.Streams.ByteOrder")
+    put_ByteOrder(value)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = value;
+        this.comPtr.invoke( 10, "void", ["UInt32"], [p1] );
+    }
+
+    //@VtableIndex(11)
+    //@Async(0)
+    //@Returns("void")
+    //@Parameters("UInt8")
+    WriteByte(value)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = value;
+        this.comPtr.invoke( 11, "void", ["UInt8"], [p1] );
+    }
+
+    //@VtableIndex(13)
+    //@Async(0)
+    //@Returns("void")
+    //@Parameters("Windows.Storage.Streams.IBuffer")
+    WriteBuffer(buffer)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = Windows.Storage.Streams.IBuffer( buffer); 
+        this.comPtr.invoke( 13, "void", ["Windows.Storage.Streams.IBuffer"], [p1] );
+    }
+
+    //@VtableIndex(14)
+    //@Async(0)
+    //@Returns("void")
+    //@Parameters("Windows.Storage.Streams.IBuffer","UInt32","UInt32")
+    WriteBufferRange(buffer,start,count)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = Windows.Storage.Streams.IBuffer( buffer); 
+        var p2 = start;
+        var p3 = count;
+        this.comPtr.invoke( 14, "void", ["Windows.Storage.Streams.IBuffer", "UInt32", "UInt32"], [p1, p2, p3] );
+    }
+
+    //@VtableIndex(15)
+    //@Async(0)
+    //@Returns("void")
+    //@Parameters("Boolean")
+    WriteBoolean(value)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = value;
+        this.comPtr.invoke( 15, "void", ["Boolean"], [p1] );
+    }
+
+    //@VtableIndex(16)
+    //@Async(0)
+    //@Returns("void")
+    //@Parameters("ptr")
+    WriteGuid(value)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = value;
+        this.comPtr.invoke( 16, "void", ["ptr"], [p1] );
+    }
+
+    //@VtableIndex(17)
+    //@Async(0)
+    //@Returns("void")
+    //@Parameters("Int16")
+    WriteInt16(value)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = value;
+        this.comPtr.invoke( 17, "void", ["Int16"], [p1] );
+    }
+
+    //@VtableIndex(18)
+    //@Async(0)
+    //@Returns("void")
+    //@Parameters("Int32")
+    WriteInt32(value)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = value;
+        this.comPtr.invoke( 18, "void", ["Int32"], [p1] );
+    }
+
+    //@VtableIndex(19)
+    //@Async(0)
+    //@Returns("void")
+    //@Parameters("Int64")
+    WriteInt64(value)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = value;
+        this.comPtr.invoke( 19, "void", ["Int64"], [p1] );
+    }
+
+    //@VtableIndex(20)
+    //@Async(0)
+    //@Returns("void")
+    //@Parameters("UInt16")
+    WriteUInt16(value)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = value;
+        this.comPtr.invoke( 20, "void", ["UInt16"], [p1] );
+    }
+
+    //@VtableIndex(21)
+    //@Async(0)
+    //@Returns("void")
+    //@Parameters("UInt32")
+    WriteUInt32(value)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = value;
+        this.comPtr.invoke( 21, "void", ["UInt32"], [p1] );
+    }
+
+    //@VtableIndex(22)
+    //@Async(0)
+    //@Returns("void")
+    //@Parameters("UInt64")
+    WriteUInt64(value)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = value;
+        this.comPtr.invoke( 22, "void", ["UInt64"], [p1] );
+    }
+
+    //@VtableIndex(23)
+    //@Async(0)
+    //@Returns("void")
+    //@Parameters("Single")
+    WriteSingle(value)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = value;
+        this.comPtr.invoke( 23, "void", ["Single"], [p1] );
+    }
+
+    //@VtableIndex(24)
+    //@Async(0)
+    //@Returns("void")
+    //@Parameters("Double")
+    WriteDouble(value)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = value;
+        this.comPtr.invoke( 24, "void", ["Double"], [p1] );
+    }
+
+    //@VtableIndex(25)
+    //@Async(0)
+    //@Returns("void")
+    //@Parameters("Windows.Foundation.DateTime")
+    WriteDateTime(value)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = value;
+        this.comPtr.invoke( 25, "void", ["Windows.Foundation.DateTime"], [p1] );
+    }
+
+    //@VtableIndex(26)
+    //@Async(0)
+    //@Returns("void")
+    //@Parameters("Windows.Foundation.TimeSpan")
+    WriteTimeSpan(value)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = value;
+        this.comPtr.invoke( 26, "void", ["Windows.Foundation.TimeSpan"], [p1] );
+    }
+
+    //@VtableIndex(27)
+    //@Async(0)
+    //@Returns("UInt32")
+    //@Parameters("String")
+    WriteString(value)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = value;
+        var _r = this.comPtr.invoke( 27, "UInt32", ["String"], [p1] );
+        return _r;
+    }
+
+    //@VtableIndex(28)
+    //@Async(0)
+    //@Returns("UInt32")
+    //@Parameters("String")
+    MeasureString(value)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = value;
+        var _r = this.comPtr.invoke( 28, "UInt32", ["String"], [p1] );
+        return _r;
+    }
+
+    //@VtableIndex(29)
+    //@Async(0)
+    //@Returns("Windows.Storage.Streams.DataWriterStoreOperation")
+    StoreAsync()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = Windows.Storage.Streams.DataWriterStoreOperation(
+            this.comPtr.invoke( 29, "Windows.Storage.Streams.DataWriterStoreOperation", [], [] )
+        );
+        return _r;
+    }
+
+    //@VtableIndex(30)
+    //@Async(3)
+    //@Returns("Windows.Foundation.IAsyncOperation`1<Boolean>")
+    FlushAsync(cb)
+    {
+        var Windows = runtime.global("Windows");
+        this.comPtr.asyncOperation( 30, "Boolean", Windows.Foundation.IAsyncOperation_1_Boolean_.handler_iid, [], [] , cb );
+    }
+
+    //@VtableIndex(31)
+    //@Async(0)
+    //@Returns("Windows.Storage.Streams.IBuffer")
+    DetachBuffer()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = Windows.Storage.Streams.IBuffer(
+            this.comPtr.invoke( 31, "Windows.Storage.Streams.IBuffer", [], [] )
+        );
+        return _r;
+    }
+
+    //@VtableIndex(32)
+    //@Async(0)
+    //@Returns("Windows.Storage.Streams.IOutputStream")
+    DetachStream()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = Windows.Storage.Streams.IOutputStream(
+            this.comPtr.invoke( 32, "Windows.Storage.Streams.IOutputStream", [], [] )
+        );
+        return _r;
+    }
+
+
+}
+Windows_Storage_Streams_IDataWriter.iid = "{64B89265-D341-4922-B38A-DD4AF8808C4E}";
+Windows.Storage.Streams.IDataWriter = Windows_Storage_Streams_IDataWriter;
+
+
+//@Interface("Windows.Storage.Streams.IDataWriterFactory")
+//@IID("{338C67C2-8B84-4C2B-9C50-7B8767847A1F}")
+class Windows_Storage_Streams_IDataWriterFactory : WinRtInterface 
+{
+    Windows_Storage_Streams_IDataWriterFactory( comPtr )
+    {
+        var Windows = runtime.global("Windows");
+        this.comPtr = comPtr.queryInterface( "{338C67C2-8B84-4C2B-9C50-7B8767847A1F}");
+    }
+
+    //@VtableIndex(6)
+    //@Async(0)
+    //@Returns("Windows.Storage.Streams.DataWriter")
+    //@Parameters("Windows.Storage.Streams.IOutputStream")
+    CreateDataWriter(outputStream)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = Windows.Storage.Streams.IOutputStream( outputStream); 
+        var _r = Windows.Storage.Streams.DataWriter(
+            this.comPtr.invoke( 6, "Windows.Storage.Streams.DataWriter", ["Windows.Storage.Streams.IOutputStream"], [p1] )
+        );
+        return _r;
+    }
+
+
+}
+Windows_Storage_Streams_IDataWriterFactory.iid = "{338C67C2-8B84-4C2B-9C50-7B8767847A1F}";
+Windows.Storage.Streams.IDataWriterFactory = Windows_Storage_Streams_IDataWriterFactory;
+
+
+//@Interface("Windows.Storage.Streams.IFileRandomAccessStreamStatics")
+//@IID("{73550107-3B57-4B5D-8345-554D2FC621F0}")
+class Windows_Storage_Streams_IFileRandomAccessStreamStatics : WinRtInterface 
+{
+    Windows_Storage_Streams_IFileRandomAccessStreamStatics( comPtr )
+    {
+        var Windows = runtime.global("Windows");
+        this.comPtr = comPtr.queryInterface( "{73550107-3B57-4B5D-8345-554D2FC621F0}");
+    }
+
+    //@VtableIndex(6)
+    //@Async(3)
+    //@Returns("Windows.Foundation.IAsyncOperation`1<Windows.Storage.Streams.IRandomAccessStream>")
+    //@Parameters("String","Windows.Storage.FileAccessMode")
+    OpenAsync(filePath,accessMode,cb)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = filePath;
+        var p2 = accessMode;
+        this.comPtr.asyncOperation( 6, "Windows.Storage.Streams.IRandomAccessStream", Windows.Foundation.IAsyncOperation_1_Windows_Storage_Streams_IRandomAccessStream_.handler_iid, ["String", "UInt32"], [p1, p2] , fun(status,value) { if(status == Windows.Foundation.AsyncStatus.Completed ) {cb(status, Windows.Storage.Streams.IRandomAccessStream(value)); } else { cb( status, value ); } } );
+    }
+
+    //@VtableIndex(7)
+    //@Async(3)
+    //@Returns("Windows.Foundation.IAsyncOperation`1<Windows.Storage.Streams.IRandomAccessStream>")
+    //@Parameters("String","Windows.Storage.FileAccessMode","Windows.Storage.StorageOpenOptions","Windows.Storage.Streams.FileOpenDisposition")
+    OpenWithOptionsAsync(filePath,accessMode,sharingOptions,openDisposition,cb)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = filePath;
+        var p2 = accessMode;
+        var p3 = sharingOptions;
+        var p4 = openDisposition;
+        this.comPtr.asyncOperation( 7, "Windows.Storage.Streams.IRandomAccessStream", Windows.Foundation.IAsyncOperation_1_Windows_Storage_Streams_IRandomAccessStream_.handler_iid, ["String", "UInt32", "UInt32", "UInt32"], [p1, p2, p3, p4] , fun(status,value) { if(status == Windows.Foundation.AsyncStatus.Completed ) {cb(status, Windows.Storage.Streams.IRandomAccessStream(value)); } else { cb( status, value ); } } );
+    }
+
+    //@VtableIndex(8)
+    //@Async(3)
+    //@Returns("Windows.Foundation.IAsyncOperation`1<Windows.Storage.StorageStreamTransaction>")
+    //@Parameters("String")
+    OpenTransactedWriteAsync(filePath,cb)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = filePath;
+        this.comPtr.asyncOperation( 8, "Windows.Storage.StorageStreamTransaction", Windows.Foundation.IAsyncOperation_1_Windows_Storage_StorageStreamTransaction_.handler_iid, ["String"], [p1] , fun(status,value) { if(status == Windows.Foundation.AsyncStatus.Completed ) {cb(status, Windows.Storage.StorageStreamTransaction(value)); } else { cb( status, value ); } } );
+    }
+
+    //@VtableIndex(9)
+    //@Async(3)
+    //@Returns("Windows.Foundation.IAsyncOperation`1<Windows.Storage.StorageStreamTransaction>")
+    //@Parameters("String","Windows.Storage.StorageOpenOptions","Windows.Storage.Streams.FileOpenDisposition")
+    OpenTransactedWriteWithOptionsAsync(filePath,openOptions,openDisposition,cb)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = filePath;
+        var p2 = openOptions;
+        var p3 = openDisposition;
+        this.comPtr.asyncOperation( 9, "Windows.Storage.StorageStreamTransaction", Windows.Foundation.IAsyncOperation_1_Windows_Storage_StorageStreamTransaction_.handler_iid, ["String", "UInt32", "UInt32"], [p1, p2, p3] , fun(status,value) { if(status == Windows.Foundation.AsyncStatus.Completed ) {cb(status, Windows.Storage.StorageStreamTransaction(value)); } else { cb( status, value ); } } );
+    }
+
+    //@VtableIndex(10)
+    //@Async(3)
+    //@Returns("Windows.Foundation.IAsyncOperation`1<Windows.Storage.Streams.IRandomAccessStream>")
+    //@Parameters("Windows.System.User","String","Windows.Storage.FileAccessMode")
+    OpenForUserAsync(user,filePath,accessMode,cb)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = Windows.System.User( user); 
+        var p2 = filePath;
+        var p3 = accessMode;
+        this.comPtr.asyncOperation( 10, "Windows.Storage.Streams.IRandomAccessStream", Windows.Foundation.IAsyncOperation_1_Windows_Storage_Streams_IRandomAccessStream_.handler_iid, ["Windows.System.User", "String", "UInt32"], [p1, p2, p3] , fun(status,value) { if(status == Windows.Foundation.AsyncStatus.Completed ) {cb(status, Windows.Storage.Streams.IRandomAccessStream(value)); } else { cb( status, value ); } } );
+    }
+
+    //@VtableIndex(11)
+    //@Async(3)
+    //@Returns("Windows.Foundation.IAsyncOperation`1<Windows.Storage.Streams.IRandomAccessStream>")
+    //@Parameters("Windows.System.User","String","Windows.Storage.FileAccessMode","Windows.Storage.StorageOpenOptions","Windows.Storage.Streams.FileOpenDisposition")
+    OpenForUserWithOptionsAsync(user,filePath,accessMode,sharingOptions,openDisposition,cb)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = Windows.System.User( user); 
+        var p2 = filePath;
+        var p3 = accessMode;
+        var p4 = sharingOptions;
+        var p5 = openDisposition;
+        this.comPtr.asyncOperation( 11, "Windows.Storage.Streams.IRandomAccessStream", Windows.Foundation.IAsyncOperation_1_Windows_Storage_Streams_IRandomAccessStream_.handler_iid, ["Windows.System.User", "String", "UInt32", "UInt32", "UInt32"], [p1, p2, p3, p4, p5] , fun(status,value) { if(status == Windows.Foundation.AsyncStatus.Completed ) {cb(status, Windows.Storage.Streams.IRandomAccessStream(value)); } else { cb( status, value ); } } );
+    }
+
+    //@VtableIndex(12)
+    //@Async(3)
+    //@Returns("Windows.Foundation.IAsyncOperation`1<Windows.Storage.StorageStreamTransaction>")
+    //@Parameters("Windows.System.User","String")
+    OpenTransactedWriteForUserAsync(user,filePath,cb)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = Windows.System.User( user); 
+        var p2 = filePath;
+        this.comPtr.asyncOperation( 12, "Windows.Storage.StorageStreamTransaction", Windows.Foundation.IAsyncOperation_1_Windows_Storage_StorageStreamTransaction_.handler_iid, ["Windows.System.User", "String"], [p1, p2] , fun(status,value) { if(status == Windows.Foundation.AsyncStatus.Completed ) {cb(status, Windows.Storage.StorageStreamTransaction(value)); } else { cb( status, value ); } } );
+    }
+
+    //@VtableIndex(13)
+    //@Async(3)
+    //@Returns("Windows.Foundation.IAsyncOperation`1<Windows.Storage.StorageStreamTransaction>")
+    //@Parameters("Windows.System.User","String","Windows.Storage.StorageOpenOptions","Windows.Storage.Streams.FileOpenDisposition")
+    OpenTransactedWriteForUserWithOptionsAsync(user,filePath,openOptions,openDisposition,cb)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = Windows.System.User( user); 
+        var p2 = filePath;
+        var p3 = openOptions;
+        var p4 = openDisposition;
+        this.comPtr.asyncOperation( 13, "Windows.Storage.StorageStreamTransaction", Windows.Foundation.IAsyncOperation_1_Windows_Storage_StorageStreamTransaction_.handler_iid, ["Windows.System.User", "String", "UInt32", "UInt32"], [p1, p2, p3, p4] , fun(status,value) { if(status == Windows.Foundation.AsyncStatus.Completed ) {cb(status, Windows.Storage.StorageStreamTransaction(value)); } else { cb( status, value ); } } );
+    }
+
+
+}
+Windows_Storage_Streams_IFileRandomAccessStreamStatics.iid = "{73550107-3B57-4B5D-8345-554D2FC621F0}";
+Windows.Storage.Streams.IFileRandomAccessStreamStatics = Windows_Storage_Streams_IFileRandomAccessStreamStatics;
+
+
+//@Interface("Windows.Storage.Streams.IInputStream")
+//@IID("{905A0FE2-BC53-11DF-8C49-001E4FC686DA}")
+class Windows_Storage_Streams_IInputStream : WinRtInterface 
+{
+    Windows_Storage_Streams_IInputStream( comPtr )
+    {
+        var Windows = runtime.global("Windows");
+        this.comPtr = comPtr.queryInterface( "{905A0FE2-BC53-11DF-8C49-001E4FC686DA}");
+    }
+
+    //@VtableIndex(6)
+    //@Async(4)
+    //@Returns("Windows.Foundation.IAsyncOperationWithProgress`2<Windows.Storage.Streams.IBuffer,UInt32>")
+    //@Parameters("Windows.Storage.Streams.IBuffer","UInt32","Windows.Storage.Streams.InputStreamOptions")
+    ReadAsync(buffer,count,options,cb)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = Windows.Storage.Streams.IBuffer( buffer); 
+        var p2 = count;
+        var p3 = options;
+        this.comPtr.asyncOperationWithProgress( 6, "Windows.Storage.Streams.IBuffer", Windows.Foundation.IAsyncOperationWithProgress_2_Windows_Storage_Streams_IBuffer_UInt32_.handler_iid, ["Windows.Storage.Streams.IBuffer", "UInt32", "UInt32"], [p1, p2, p3] , fun(status,value) { if(status == Windows.Foundation.AsyncStatus.Completed ) {cb(status, Windows.Storage.Streams.IBuffer(value)); } else { cb( status, value ); } } );
+    }
+
+
+}
+Windows_Storage_Streams_IInputStream.iid = "{905A0FE2-BC53-11DF-8C49-001E4FC686DA}";
+Windows.Storage.Streams.IInputStream = Windows_Storage_Streams_IInputStream;
+
+
+//@Interface("Windows.Storage.Streams.IInputStreamReference")
+//@IID("{43929D18-5EC9-4B5A-919C-4205B0C804B6}")
+class Windows_Storage_Streams_IInputStreamReference : WinRtInterface 
+{
+    Windows_Storage_Streams_IInputStreamReference( comPtr )
+    {
+        var Windows = runtime.global("Windows");
+        this.comPtr = comPtr.queryInterface( "{43929D18-5EC9-4B5A-919C-4205B0C804B6}");
+    }
+
+    //@VtableIndex(6)
+    //@Async(3)
+    //@Returns("Windows.Foundation.IAsyncOperation`1<Windows.Storage.Streams.IInputStream>")
+    OpenSequentialReadAsync(cb)
+    {
+        var Windows = runtime.global("Windows");
+        this.comPtr.asyncOperation( 6, "Windows.Storage.Streams.IInputStream", Windows.Foundation.IAsyncOperation_1_Windows_Storage_Streams_IInputStream_.handler_iid, [], [] , fun(status,value) { if(status == Windows.Foundation.AsyncStatus.Completed ) {cb(status, Windows.Storage.Streams.IInputStream(value)); } else { cb( status, value ); } } );
+    }
+
+
+}
+Windows_Storage_Streams_IInputStreamReference.iid = "{43929D18-5EC9-4B5A-919C-4205B0C804B6}";
+Windows.Storage.Streams.IInputStreamReference = Windows_Storage_Streams_IInputStreamReference;
+
+
+//@Interface("Windows.Storage.Streams.IOutputStream")
+//@IID("{905A0FE6-BC53-11DF-8C49-001E4FC686DA}")
+class Windows_Storage_Streams_IOutputStream : WinRtInterface 
+{
+    Windows_Storage_Streams_IOutputStream( comPtr )
+    {
+        var Windows = runtime.global("Windows");
+        this.comPtr = comPtr.queryInterface( "{905A0FE6-BC53-11DF-8C49-001E4FC686DA}");
+    }
+
+    //@VtableIndex(6)
+    //@Async(4)
+    //@Returns("Windows.Foundation.IAsyncOperationWithProgress`2<UInt32,UInt32>")
+    //@Parameters("Windows.Storage.Streams.IBuffer")
+    WriteAsync(buffer,cb)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = Windows.Storage.Streams.IBuffer( buffer); 
+        this.comPtr.asyncOperationWithProgress( 6, "UInt32", Windows.Foundation.IAsyncOperationWithProgress_2_UInt32_UInt32_.handler_iid, ["Windows.Storage.Streams.IBuffer"], [p1] , cb );
+    }
+
+    //@VtableIndex(7)
+    //@Async(3)
+    //@Returns("Windows.Foundation.IAsyncOperation`1<Boolean>")
+    FlushAsync(cb)
+    {
+        var Windows = runtime.global("Windows");
+        this.comPtr.asyncOperation( 7, "Boolean", Windows.Foundation.IAsyncOperation_1_Boolean_.handler_iid, [], [] , cb );
+    }
+
+
+}
+Windows_Storage_Streams_IOutputStream.iid = "{905A0FE6-BC53-11DF-8C49-001E4FC686DA}";
+Windows.Storage.Streams.IOutputStream = Windows_Storage_Streams_IOutputStream;
+
+
+//@Interface("Windows.Storage.Streams.IRandomAccessStream")
+//@IID("{905A0FE1-BC53-11DF-8C49-001E4FC686DA}")
+class Windows_Storage_Streams_IRandomAccessStream : WinRtInterface 
+{
+    Windows_Storage_Streams_IRandomAccessStream( comPtr )
+    {
+        var Windows = runtime.global("Windows");
+        this.comPtr = comPtr.queryInterface( "{905A0FE1-BC53-11DF-8C49-001E4FC686DA}");
+    }
+
+    //@VtableIndex(6)
+    //@Async(0)
+    //@Returns("UInt64")
+    get_Size()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 6, "UInt64", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(7)
+    //@Async(0)
+    //@Returns("void")
+    //@Parameters("UInt64")
+    put_Size(value)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = value;
+        this.comPtr.invoke( 7, "void", ["UInt64"], [p1] );
+    }
+
+    //@VtableIndex(8)
+    //@Async(0)
+    //@Returns("Windows.Storage.Streams.IInputStream")
+    //@Parameters("UInt64")
+    GetInputStreamAt(position)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = position;
+        var _r = Windows.Storage.Streams.IInputStream(
+            this.comPtr.invoke( 8, "Windows.Storage.Streams.IInputStream", ["UInt64"], [p1] )
+        );
+        return _r;
+    }
+
+    //@VtableIndex(9)
+    //@Async(0)
+    //@Returns("Windows.Storage.Streams.IOutputStream")
+    //@Parameters("UInt64")
+    GetOutputStreamAt(position)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = position;
+        var _r = Windows.Storage.Streams.IOutputStream(
+            this.comPtr.invoke( 9, "Windows.Storage.Streams.IOutputStream", ["UInt64"], [p1] )
+        );
+        return _r;
+    }
+
+    //@VtableIndex(10)
+    //@Async(0)
+    //@Returns("UInt64")
+    get_Position()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 10, "UInt64", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(11)
+    //@Async(0)
+    //@Returns("void")
+    //@Parameters("UInt64")
+    Seek(position)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = position;
+        this.comPtr.invoke( 11, "void", ["UInt64"], [p1] );
+    }
+
+    //@VtableIndex(12)
+    //@Async(0)
+    //@Returns("Windows.Storage.Streams.IRandomAccessStream")
+    CloneStream()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = Windows.Storage.Streams.IRandomAccessStream(
+            this.comPtr.invoke( 12, "Windows.Storage.Streams.IRandomAccessStream", [], [] )
+        );
+        return _r;
+    }
+
+    //@VtableIndex(13)
+    //@Async(0)
+    //@Returns("Boolean")
+    get_CanRead()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 13, "Boolean", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(14)
+    //@Async(0)
+    //@Returns("Boolean")
+    get_CanWrite()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 14, "Boolean", [], [] );
+        return _r;
+    }
+
+
+}
+Windows_Storage_Streams_IRandomAccessStream.iid = "{905A0FE1-BC53-11DF-8C49-001E4FC686DA}";
+Windows.Storage.Streams.IRandomAccessStream = Windows_Storage_Streams_IRandomAccessStream;
+
+
+//@Interface("Windows.Storage.Streams.IRandomAccessStreamReference")
+//@IID("{33EE3134-1DD6-4E3A-8067-D1C162E8642B}")
+class Windows_Storage_Streams_IRandomAccessStreamReference : WinRtInterface 
+{
+    Windows_Storage_Streams_IRandomAccessStreamReference( comPtr )
+    {
+        var Windows = runtime.global("Windows");
+        this.comPtr = comPtr.queryInterface( "{33EE3134-1DD6-4E3A-8067-D1C162E8642B}");
+    }
+
+    //@VtableIndex(6)
+    //@Async(3)
+    //@Returns("Windows.Foundation.IAsyncOperation`1<Windows.Storage.Streams.IRandomAccessStreamWithContentType>")
+    OpenReadAsync(cb)
+    {
+        var Windows = runtime.global("Windows");
+        this.comPtr.asyncOperation( 6, "Windows.Storage.Streams.IRandomAccessStreamWithContentType", Windows.Foundation.IAsyncOperation_1_Windows_Storage_Streams_IRandomAccessStreamWithContentType_.handler_iid, [], [] , fun(status,value) { if(status == Windows.Foundation.AsyncStatus.Completed ) {cb(status, Windows.Storage.Streams.IRandomAccessStreamWithContentType(value)); } else { cb( status, value ); } } );
+    }
+
+
+}
+Windows_Storage_Streams_IRandomAccessStreamReference.iid = "{33EE3134-1DD6-4E3A-8067-D1C162E8642B}";
+Windows.Storage.Streams.IRandomAccessStreamReference = Windows_Storage_Streams_IRandomAccessStreamReference;
+
+
+//@Interface("Windows.Storage.Streams.IRandomAccessStreamReferenceStatics")
+//@IID("{857309DC-3FBF-4E7D-986F-EF3B1A07A964}")
+class Windows_Storage_Streams_IRandomAccessStreamReferenceStatics : WinRtInterface 
+{
+    Windows_Storage_Streams_IRandomAccessStreamReferenceStatics( comPtr )
+    {
+        var Windows = runtime.global("Windows");
+        this.comPtr = comPtr.queryInterface( "{857309DC-3FBF-4E7D-986F-EF3B1A07A964}");
+    }
+
+    //@VtableIndex(6)
+    //@Async(0)
+    //@Returns("Windows.Storage.Streams.RandomAccessStreamReference")
+    //@Parameters("Windows.Storage.IStorageFile")
+    CreateFromFile(file)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = Windows.Storage.IStorageFile( file); 
+        var _r = Windows.Storage.Streams.RandomAccessStreamReference(
+            this.comPtr.invoke( 6, "Windows.Storage.Streams.RandomAccessStreamReference", ["Windows.Storage.IStorageFile"], [p1] )
+        );
+        return _r;
+    }
+
+    //@VtableIndex(7)
+    //@Async(0)
+    //@Returns("Windows.Storage.Streams.RandomAccessStreamReference")
+    //@Parameters("Windows.Foundation.Uri")
+    CreateFromUri(uri)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = Windows.Foundation.Uri( uri); 
+        var _r = Windows.Storage.Streams.RandomAccessStreamReference(
+            this.comPtr.invoke( 7, "Windows.Storage.Streams.RandomAccessStreamReference", ["Windows.Foundation.Uri"], [p1] )
+        );
+        return _r;
+    }
+
+    //@VtableIndex(8)
+    //@Async(0)
+    //@Returns("Windows.Storage.Streams.RandomAccessStreamReference")
+    //@Parameters("Windows.Storage.Streams.IRandomAccessStream")
+    CreateFromStream(stream)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = Windows.Storage.Streams.IRandomAccessStream( stream); 
+        var _r = Windows.Storage.Streams.RandomAccessStreamReference(
+            this.comPtr.invoke( 8, "Windows.Storage.Streams.RandomAccessStreamReference", ["Windows.Storage.Streams.IRandomAccessStream"], [p1] )
+        );
+        return _r;
+    }
+
+
+}
+Windows_Storage_Streams_IRandomAccessStreamReferenceStatics.iid = "{857309DC-3FBF-4E7D-986F-EF3B1A07A964}";
+Windows.Storage.Streams.IRandomAccessStreamReferenceStatics = Windows_Storage_Streams_IRandomAccessStreamReferenceStatics;
+
+
+//@Interface("Windows.Storage.Streams.IRandomAccessStreamStatics")
+//@IID("{524CEDCF-6E29-4CE5-9573-6B753DB66C3A}")
+class Windows_Storage_Streams_IRandomAccessStreamStatics : WinRtInterface 
+{
+    Windows_Storage_Streams_IRandomAccessStreamStatics( comPtr )
+    {
+        var Windows = runtime.global("Windows");
+        this.comPtr = comPtr.queryInterface( "{524CEDCF-6E29-4CE5-9573-6B753DB66C3A}");
+    }
+
+    //@VtableIndex(6)
+    //@Async(4)
+    //@Returns("Windows.Foundation.IAsyncOperationWithProgress`2<UInt64,UInt64>")
+    //@Parameters("Windows.Storage.Streams.IInputStream","Windows.Storage.Streams.IOutputStream")
+    CopyAsync(source,destination,cb)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = Windows.Storage.Streams.IInputStream( source); 
+        var p2 = Windows.Storage.Streams.IOutputStream( destination); 
+        this.comPtr.asyncOperationWithProgress( 6, "UInt64", Windows.Foundation.IAsyncOperationWithProgress_2_UInt64_UInt64_.handler_iid, ["Windows.Storage.Streams.IInputStream", "Windows.Storage.Streams.IOutputStream"], [p1, p2] , cb );
+    }
+
+    //@VtableIndex(7)
+    //@Async(4)
+    //@Returns("Windows.Foundation.IAsyncOperationWithProgress`2<UInt64,UInt64>")
+    //@Parameters("Windows.Storage.Streams.IInputStream","Windows.Storage.Streams.IOutputStream","UInt64")
+    CopySizeAsync(source,destination,bytesToCopy,cb)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = Windows.Storage.Streams.IInputStream( source); 
+        var p2 = Windows.Storage.Streams.IOutputStream( destination); 
+        var p3 = bytesToCopy;
+        this.comPtr.asyncOperationWithProgress( 7, "UInt64", Windows.Foundation.IAsyncOperationWithProgress_2_UInt64_UInt64_.handler_iid, ["Windows.Storage.Streams.IInputStream", "Windows.Storage.Streams.IOutputStream", "UInt64"], [p1, p2, p3] , cb );
+    }
+
+    //@VtableIndex(8)
+    //@Async(4)
+    //@Returns("Windows.Foundation.IAsyncOperationWithProgress`2<UInt64,UInt64>")
+    //@Parameters("Windows.Storage.Streams.IInputStream","Windows.Storage.Streams.IOutputStream")
+    CopyAndCloseAsync(source,destination,cb)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = Windows.Storage.Streams.IInputStream( source); 
+        var p2 = Windows.Storage.Streams.IOutputStream( destination); 
+        this.comPtr.asyncOperationWithProgress( 8, "UInt64", Windows.Foundation.IAsyncOperationWithProgress_2_UInt64_UInt64_.handler_iid, ["Windows.Storage.Streams.IInputStream", "Windows.Storage.Streams.IOutputStream"], [p1, p2] , cb );
+    }
+
+
+}
+Windows_Storage_Streams_IRandomAccessStreamStatics.iid = "{524CEDCF-6E29-4CE5-9573-6B753DB66C3A}";
+Windows.Storage.Streams.IRandomAccessStreamStatics = Windows_Storage_Streams_IRandomAccessStreamStatics;
+
+
+//@Interface("Windows.Storage.Streams.IRandomAccessStreamWithContentType")
+//@IID("{CC254827-4B3D-438F-9232-10C76BC7E038}")
+class Windows_Storage_Streams_IRandomAccessStreamWithContentType : WinRtInterface 
+{
+    Windows_Storage_Streams_IRandomAccessStreamWithContentType( comPtr )
+    {
+        var Windows = runtime.global("Windows");
+        this.comPtr = comPtr.queryInterface( "{CC254827-4B3D-438F-9232-10C76BC7E038}");
+    }
+
+
+}
+Windows_Storage_Streams_IRandomAccessStreamWithContentType.iid = "{CC254827-4B3D-438F-9232-10C76BC7E038}";
+Windows.Storage.Streams.IRandomAccessStreamWithContentType = Windows_Storage_Streams_IRandomAccessStreamWithContentType;
+
+
+//@RuntimeClass("Windows.Storage.Streams.Buffer")
+//@Implements("Windows.Storage.Streams.IBuffer")
+//@DefaultInterface("Windows.Storage.Streams.IBuffer")
+@Proxy("WinRtProxy")
+class Windows_Storage_Streams_Buffer : WinRtInterface
+{
+    Windows_Storage_Streams_Buffer( comPtr )
+    {
+        var Windows = runtime.global("Windows");
+        this.comPtr = comPtr.queryInterface( Windows.Storage.Streams.IBuffer.iid );
+    }
+
+    // s Windows.Storage.Streams.IBufferStatics
+    //@Async(0)
+    //@Returns("Windows.Storage.Streams.Buffer")
+    //@Parameters("Windows.Foundation.IMemoryBuffer")
+    static CreateCopyFromMemoryBuffer( input)
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Storage.Streams.Buffer" );
+        var iface = Windows.Storage.Streams.IBufferStatics( factory );
+        var _r = iface.CreateCopyFromMemoryBuffer( input);
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    //@Async(0)
+    //@Returns("Windows.Foundation.MemoryBuffer")
+    //@Parameters("Windows.Storage.Streams.IBuffer")
+    static CreateMemoryBufferOverIBuffer( input)
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Storage.Streams.Buffer" );
+        var iface = Windows.Storage.Streams.IBufferStatics( factory );
+        var _r = iface.CreateMemoryBufferOverIBuffer( input);
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    static Create()
+    {
+        return Windows.Storage.Streams.Buffer(
+            winrt.activate("Windows.Storage.Streams.Buffer")
+        );
+    }
+    //@Returns("Windows.Storage.Streams.Buffer")
+    //@Parameters("UInt32")
+    static Create_capacity(capacity)
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Storage.Streams.Buffer");
+        var iface = Windows.Storage.Streams.IBufferFactory( factory );
+        var result = iface.Create( capacity );
+        iface.release();
+        factory.release();
+        return result;
+    }
+    // f Windows.Storage.Streams.IBufferFactory
+    //@Returns("UInt32")
+    get_Capacity()
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Storage.Streams.IBuffer( this.comPtr );
+        var _r = iface.get_Capacity(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Returns("UInt32")
+    get_Length()
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Storage.Streams.IBuffer( this.comPtr );
+        var _r = iface.get_Length(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Parameters("UInt32")
+    //@Returns("void")
+    //@Parameters("UInt32")
+    put_Length(value)
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Storage.Streams.IBuffer( this.comPtr );
+        iface.put_Length( value );
+        iface.release();
+    }
+
+
+}
+Windows.Storage.Streams.Buffer = Windows_Storage_Streams_Buffer;
+
+//@RuntimeClass("Windows.Storage.Streams.DataReader")
+//@Implements("Windows.Storage.Streams.IDataReader","Windows.Foundation.IClosable")
+//@DefaultInterface("Windows.Storage.Streams.IDataReader")
+@Proxy("WinRtProxy")
+class Windows_Storage_Streams_DataReader : WinRtInterface
+{
+    Windows_Storage_Streams_DataReader( comPtr )
+    {
+        var Windows = runtime.global("Windows");
+        this.comPtr = comPtr.queryInterface( Windows.Storage.Streams.IDataReader.iid );
+    }
+
+    // s Windows.Storage.Streams.IDataReaderStatics
+    //@Async(0)
+    //@Returns("Windows.Storage.Streams.DataReader")
+    //@Parameters("Windows.Storage.Streams.IBuffer")
+    static FromBuffer( buffer)
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Storage.Streams.DataReader" );
+        var iface = Windows.Storage.Streams.IDataReaderStatics( factory );
+        var _r = iface.FromBuffer( buffer);
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    static Create()
+    {
+        return Windows.Storage.Streams.DataReader(
+            winrt.activate("Windows.Storage.Streams.DataReader")
+        );
+    }
+    //@Returns("Windows.Storage.Streams.DataReader")
+    //@Parameters("Windows.Storage.Streams.IInputStream")
+    static CreateDataReader(inputStream)
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Storage.Streams.DataReader");
+        var iface = Windows.Storage.Streams.IDataReaderFactory( factory );
+        var result = iface.CreateDataReader( inputStream );
+        iface.release();
+        factory.release();
+        return result;
+    }
+    // f Windows.Storage.Streams.IDataReaderFactory
+    //@Returns("UInt32")
+    get_UnconsumedBufferLength()
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Storage.Streams.IDataReader( this.comPtr );
+        var _r = iface.get_UnconsumedBufferLength(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Returns("Windows.Storage.Streams.UnicodeEncoding")
+    get_UnicodeEncoding()
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Storage.Streams.IDataReader( this.comPtr );
+        var _r = iface.get_UnicodeEncoding(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Parameters("Windows.Storage.Streams.UnicodeEncoding")
+    //@Returns("void")
+    //@Parameters("Windows.Storage.Streams.UnicodeEncoding")
+    put_UnicodeEncoding(value)
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Storage.Streams.IDataReader( this.comPtr );
+        iface.put_UnicodeEncoding( value );
+        iface.release();
+    }
+
+    //@Returns("Windows.Storage.Streams.ByteOrder")
+    get_ByteOrder()
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Storage.Streams.IDataReader( this.comPtr );
+        var _r = iface.get_ByteOrder(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Parameters("Windows.Storage.Streams.ByteOrder")
+    //@Returns("void")
+    //@Parameters("Windows.Storage.Streams.ByteOrder")
+    put_ByteOrder(value)
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Storage.Streams.IDataReader( this.comPtr );
+        iface.put_ByteOrder( value );
+        iface.release();
+    }
+
+    //@Returns("Windows.Storage.Streams.InputStreamOptions")
+    get_InputStreamOptions()
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Storage.Streams.IDataReader( this.comPtr );
+        var _r = iface.get_InputStreamOptions(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Parameters("Windows.Storage.Streams.InputStreamOptions")
+    //@Returns("void")
+    //@Parameters("Windows.Storage.Streams.InputStreamOptions")
+    put_InputStreamOptions(value)
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Storage.Streams.IDataReader( this.comPtr );
+        iface.put_InputStreamOptions( value );
+        iface.release();
+    }
+
+    //@Returns("UInt8")
+    ReadByte()
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Storage.Streams.IDataReader( this.comPtr );
+        var _r = iface.ReadByte(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Parameters("UInt32")
+    //@Returns("Windows.Storage.Streams.IBuffer")
+    //@Parameters("UInt32")
+    ReadBuffer(length)
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Storage.Streams.IDataReader( this.comPtr );
+        var _r = iface.ReadBuffer( length );
+        iface.release();
+        return _r;
+    }
+
+    //@Returns("Boolean")
+    ReadBoolean()
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Storage.Streams.IDataReader( this.comPtr );
+        var _r = iface.ReadBoolean(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Returns("ptr")
+    ReadGuid()
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Storage.Streams.IDataReader( this.comPtr );
+        var _r = iface.ReadGuid(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Returns("Int16")
+    ReadInt16()
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Storage.Streams.IDataReader( this.comPtr );
+        var _r = iface.ReadInt16(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Returns("Int32")
+    ReadInt32()
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Storage.Streams.IDataReader( this.comPtr );
+        var _r = iface.ReadInt32(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Returns("Int64")
+    ReadInt64()
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Storage.Streams.IDataReader( this.comPtr );
+        var _r = iface.ReadInt64(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Returns("UInt16")
+    ReadUInt16()
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Storage.Streams.IDataReader( this.comPtr );
+        var _r = iface.ReadUInt16(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Returns("UInt32")
+    ReadUInt32()
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Storage.Streams.IDataReader( this.comPtr );
+        var _r = iface.ReadUInt32(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Returns("UInt64")
+    ReadUInt64()
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Storage.Streams.IDataReader( this.comPtr );
+        var _r = iface.ReadUInt64(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Returns("Single")
+    ReadSingle()
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Storage.Streams.IDataReader( this.comPtr );
+        var _r = iface.ReadSingle(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Returns("Double")
+    ReadDouble()
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Storage.Streams.IDataReader( this.comPtr );
+        var _r = iface.ReadDouble(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Parameters("UInt32")
+    //@Returns("String")
+    //@Parameters("UInt32")
+    ReadString(codeUnitCount)
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Storage.Streams.IDataReader( this.comPtr );
+        var _r = iface.ReadString( codeUnitCount );
+        iface.release();
+        return _r;
+    }
+
+    //@Returns("Windows.Foundation.DateTime")
+    ReadDateTime()
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Storage.Streams.IDataReader( this.comPtr );
+        var _r = iface.ReadDateTime(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Returns("Windows.Foundation.TimeSpan")
+    ReadTimeSpan()
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Storage.Streams.IDataReader( this.comPtr );
+        var _r = iface.ReadTimeSpan(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Parameters("UInt32")
+    //@Returns("Windows.Storage.Streams.DataReaderLoadOperation")
+    //@Parameters("UInt32")
+    LoadAsync(count)
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Storage.Streams.IDataReader( this.comPtr );
+        var _r = iface.LoadAsync( count );
+        iface.release();
+        return _r;
+    }
+
+    //@Returns("Windows.Storage.Streams.IBuffer")
+    DetachBuffer()
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Storage.Streams.IDataReader( this.comPtr );
+        var _r = iface.DetachBuffer(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Returns("Windows.Storage.Streams.IInputStream")
+    DetachStream()
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Storage.Streams.IDataReader( this.comPtr );
+        var _r = iface.DetachStream(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Returns("void")
+    Close()
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Foundation.IClosable( this.comPtr );
+        iface.Close(  );
+        iface.release();
+    }
+
+
+}
+Windows.Storage.Streams.DataReader = Windows_Storage_Streams_DataReader;
+
+//@RuntimeClass("Windows.Storage.Streams.DataReaderLoadOperation")
+//@Implements("Windows.Foundation.IAsyncInfo")
+//@DefaultInterface("")
+@Proxy("WinRtProxy")
+class Windows_Storage_Streams_DataReaderLoadOperation : WinRtInterface
+{
+    Windows_Storage_Streams_DataReaderLoadOperation( comPtr )
+    {
+        this.comPtr = comPtr;
+    }
+
+    static Create()
+    {
+        return Windows.Storage.Streams.DataReaderLoadOperation(
+            winrt.activate("Windows.Storage.Streams.DataReaderLoadOperation")
+        );
+    }
+    //@Parameters("Windows.Foundation.AsyncOperationCompletedHandler`1<UInt32>")
+    //@Returns("void")
+    //@Parameters("Windows.Foundation.AsyncOperationCompletedHandler`1<UInt32>")
+    put_Completed(handler)
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Foundation.IAsyncOperation_1_UInt32_( this.comPtr );
+        iface.put_Completed( handler );
+        iface.release();
+    }
+
+    //@Returns("Windows.Foundation.AsyncOperationCompletedHandler`1<UInt32>")
+    get_Completed()
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Foundation.IAsyncOperation_1_UInt32_( this.comPtr );
+        var _r = iface.get_Completed(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Returns("UInt32")
+    GetResults()
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Foundation.IAsyncOperation_1_UInt32_( this.comPtr );
+        var _r = iface.GetResults(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Returns("UInt32")
+    get_Id()
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Foundation.IAsyncInfo( this.comPtr );
+        var _r = iface.get_Id(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Returns("Windows.Foundation.AsyncStatus")
+    get_Status()
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Foundation.IAsyncInfo( this.comPtr );
+        var _r = iface.get_Status(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Returns("Windows.Foundation.HResult")
+    get_ErrorCode()
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Foundation.IAsyncInfo( this.comPtr );
+        var _r = iface.get_ErrorCode(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Returns("void")
+    Cancel()
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Foundation.IAsyncInfo( this.comPtr );
+        iface.Cancel(  );
+        iface.release();
+    }
+
+    //@Returns("void")
+    Close()
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Foundation.IAsyncInfo( this.comPtr );
+        iface.Close(  );
+        iface.release();
+    }
+
+
+}
+Windows.Storage.Streams.DataReaderLoadOperation = Windows_Storage_Streams_DataReaderLoadOperation;
+
+//@RuntimeClass("Windows.Storage.Streams.DataWriter")
+//@Implements("Windows.Storage.Streams.IDataWriter","Windows.Foundation.IClosable")
+//@DefaultInterface("Windows.Storage.Streams.IDataWriter")
+@Proxy("WinRtProxy")
+class Windows_Storage_Streams_DataWriter : WinRtInterface
+{
+    Windows_Storage_Streams_DataWriter( comPtr )
+    {
+        var Windows = runtime.global("Windows");
+        this.comPtr = comPtr.queryInterface( Windows.Storage.Streams.IDataWriter.iid );
+    }
+
+    static Create()
+    {
+        return Windows.Storage.Streams.DataWriter(
+            winrt.activate("Windows.Storage.Streams.DataWriter")
+        );
+    }
+    //@Returns("Windows.Storage.Streams.DataWriter")
+    //@Parameters("Windows.Storage.Streams.IOutputStream")
+    static CreateDataWriter(outputStream)
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Storage.Streams.DataWriter");
+        var iface = Windows.Storage.Streams.IDataWriterFactory( factory );
+        var result = iface.CreateDataWriter( outputStream );
+        iface.release();
+        factory.release();
+        return result;
+    }
+    // f Windows.Storage.Streams.IDataWriterFactory
+    //@Returns("UInt32")
+    get_UnstoredBufferLength()
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Storage.Streams.IDataWriter( this.comPtr );
+        var _r = iface.get_UnstoredBufferLength(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Returns("Windows.Storage.Streams.UnicodeEncoding")
+    get_UnicodeEncoding()
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Storage.Streams.IDataWriter( this.comPtr );
+        var _r = iface.get_UnicodeEncoding(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Parameters("Windows.Storage.Streams.UnicodeEncoding")
+    //@Returns("void")
+    //@Parameters("Windows.Storage.Streams.UnicodeEncoding")
+    put_UnicodeEncoding(value)
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Storage.Streams.IDataWriter( this.comPtr );
+        iface.put_UnicodeEncoding( value );
+        iface.release();
+    }
+
+    //@Returns("Windows.Storage.Streams.ByteOrder")
+    get_ByteOrder()
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Storage.Streams.IDataWriter( this.comPtr );
+        var _r = iface.get_ByteOrder(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Parameters("Windows.Storage.Streams.ByteOrder")
+    //@Returns("void")
+    //@Parameters("Windows.Storage.Streams.ByteOrder")
+    put_ByteOrder(value)
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Storage.Streams.IDataWriter( this.comPtr );
+        iface.put_ByteOrder( value );
+        iface.release();
+    }
+
+    //@Parameters("UInt8")
+    //@Returns("void")
+    //@Parameters("UInt8")
+    WriteByte(value)
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Storage.Streams.IDataWriter( this.comPtr );
+        iface.WriteByte( value );
+        iface.release();
+    }
+
+    //@Parameters("Boolean")
+    //@Returns("void")
+    //@Parameters("Boolean")
+    WriteBoolean(value)
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Storage.Streams.IDataWriter( this.comPtr );
+        iface.WriteBoolean( value );
+        iface.release();
+    }
+
+    //@Parameters("ptr")
+    //@Returns("void")
+    //@Parameters("ptr")
+    WriteGuid(value)
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Storage.Streams.IDataWriter( this.comPtr );
+        iface.WriteGuid( value );
+        iface.release();
+    }
+
+    //@Parameters("Int16")
+    //@Returns("void")
+    //@Parameters("Int16")
+    WriteInt16(value)
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Storage.Streams.IDataWriter( this.comPtr );
+        iface.WriteInt16( value );
+        iface.release();
+    }
+
+    //@Parameters("Int32")
+    //@Returns("void")
+    //@Parameters("Int32")
+    WriteInt32(value)
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Storage.Streams.IDataWriter( this.comPtr );
+        iface.WriteInt32( value );
+        iface.release();
+    }
+
+    //@Parameters("Int64")
+    //@Returns("void")
+    //@Parameters("Int64")
+    WriteInt64(value)
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Storage.Streams.IDataWriter( this.comPtr );
+        iface.WriteInt64( value );
+        iface.release();
+    }
+
+    //@Parameters("UInt16")
+    //@Returns("void")
+    //@Parameters("UInt16")
+    WriteUInt16(value)
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Storage.Streams.IDataWriter( this.comPtr );
+        iface.WriteUInt16( value );
+        iface.release();
+    }
+
+    //@Parameters("UInt32")
+    //@Returns("void")
+    //@Parameters("UInt32")
+    WriteUInt32(value)
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Storage.Streams.IDataWriter( this.comPtr );
+        iface.WriteUInt32( value );
+        iface.release();
+    }
+
+    //@Parameters("UInt64")
+    //@Returns("void")
+    //@Parameters("UInt64")
+    WriteUInt64(value)
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Storage.Streams.IDataWriter( this.comPtr );
+        iface.WriteUInt64( value );
+        iface.release();
+    }
+
+    //@Parameters("Single")
+    //@Returns("void")
+    //@Parameters("Single")
+    WriteSingle(value)
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Storage.Streams.IDataWriter( this.comPtr );
+        iface.WriteSingle( value );
+        iface.release();
+    }
+
+    //@Parameters("Double")
+    //@Returns("void")
+    //@Parameters("Double")
+    WriteDouble(value)
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Storage.Streams.IDataWriter( this.comPtr );
+        iface.WriteDouble( value );
+        iface.release();
+    }
+
+    //@Parameters("Windows.Foundation.DateTime")
+    //@Returns("void")
+    //@Parameters("Windows.Foundation.DateTime")
+    WriteDateTime(value)
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Storage.Streams.IDataWriter( this.comPtr );
+        iface.WriteDateTime( value );
+        iface.release();
+    }
+
+    //@Parameters("Windows.Foundation.TimeSpan")
+    //@Returns("void")
+    //@Parameters("Windows.Foundation.TimeSpan")
+    WriteTimeSpan(value)
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Storage.Streams.IDataWriter( this.comPtr );
+        iface.WriteTimeSpan( value );
+        iface.release();
+    }
+
+    //@Parameters("String")
+    //@Returns("UInt32")
+    //@Parameters("String")
+    WriteString(value)
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Storage.Streams.IDataWriter( this.comPtr );
+        var _r = iface.WriteString( value );
+        iface.release();
+        return _r;
+    }
+
+    //@Parameters("String")
+    //@Returns("UInt32")
+    //@Parameters("String")
+    MeasureString(value)
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Storage.Streams.IDataWriter( this.comPtr );
+        var _r = iface.MeasureString( value );
+        iface.release();
+        return _r;
+    }
+
+    //@Returns("Windows.Storage.Streams.DataWriterStoreOperation")
+    StoreAsync()
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Storage.Streams.IDataWriter( this.comPtr );
+        var _r = iface.StoreAsync(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Returns("Windows.Foundation.IAsyncOperation`1<Boolean>")
+    FlushAsync()
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Storage.Streams.IDataWriter( this.comPtr );
+        var _promise = Future();
+        var _cb = fun(status, result)
+        {
+            if (status == Windows.Foundation.AsyncStatus.Completed)
+            {
+                _promise.resolve(result);
+            } else {
+                _promise.reject(status);
+            }
+        };
+        iface.FlushAsync( _cb  );
+        iface.release();
+        return _promise;
+    }
+
+    //@Returns("Windows.Storage.Streams.IBuffer")
+    DetachBuffer()
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Storage.Streams.IDataWriter( this.comPtr );
+        var _r = iface.DetachBuffer(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Returns("Windows.Storage.Streams.IOutputStream")
+    DetachStream()
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Storage.Streams.IDataWriter( this.comPtr );
+        var _r = iface.DetachStream(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Returns("void")
+    Close()
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Foundation.IClosable( this.comPtr );
+        iface.Close(  );
+        iface.release();
+    }
+
+
+}
+Windows.Storage.Streams.DataWriter = Windows_Storage_Streams_DataWriter;
+
+//@RuntimeClass("Windows.Storage.Streams.DataWriterStoreOperation")
+//@Implements("Windows.Foundation.IAsyncInfo")
+//@DefaultInterface("")
+@Proxy("WinRtProxy")
+class Windows_Storage_Streams_DataWriterStoreOperation : WinRtInterface
+{
+    Windows_Storage_Streams_DataWriterStoreOperation( comPtr )
+    {
+        this.comPtr = comPtr;
+    }
+
+    static Create()
+    {
+        return Windows.Storage.Streams.DataWriterStoreOperation(
+            winrt.activate("Windows.Storage.Streams.DataWriterStoreOperation")
+        );
+    }
+    //@Parameters("Windows.Foundation.AsyncOperationCompletedHandler`1<UInt32>")
+    //@Returns("void")
+    //@Parameters("Windows.Foundation.AsyncOperationCompletedHandler`1<UInt32>")
+    put_Completed(handler)
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Foundation.IAsyncOperation_1_UInt32_( this.comPtr );
+        iface.put_Completed( handler );
+        iface.release();
+    }
+
+    //@Returns("Windows.Foundation.AsyncOperationCompletedHandler`1<UInt32>")
+    get_Completed()
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Foundation.IAsyncOperation_1_UInt32_( this.comPtr );
+        var _r = iface.get_Completed(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Returns("UInt32")
+    GetResults()
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Foundation.IAsyncOperation_1_UInt32_( this.comPtr );
+        var _r = iface.GetResults(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Returns("UInt32")
+    get_Id()
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Foundation.IAsyncInfo( this.comPtr );
+        var _r = iface.get_Id(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Returns("Windows.Foundation.AsyncStatus")
+    get_Status()
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Foundation.IAsyncInfo( this.comPtr );
+        var _r = iface.get_Status(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Returns("Windows.Foundation.HResult")
+    get_ErrorCode()
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Foundation.IAsyncInfo( this.comPtr );
+        var _r = iface.get_ErrorCode(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Returns("void")
+    Cancel()
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Foundation.IAsyncInfo( this.comPtr );
+        iface.Cancel(  );
+        iface.release();
+    }
+
+    //@Returns("void")
+    Close()
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Foundation.IAsyncInfo( this.comPtr );
+        iface.Close(  );
+        iface.release();
+    }
+
+
+}
+Windows.Storage.Streams.DataWriterStoreOperation = Windows_Storage_Streams_DataWriterStoreOperation;
+
+//@RuntimeClass("Windows.Storage.Streams.FileInputStream")
+//@Implements("Windows.Storage.Streams.IInputStream","Windows.Foundation.IClosable")
+//@DefaultInterface("Windows.Storage.Streams.IInputStream")
+@Proxy("WinRtProxy")
+class Windows_Storage_Streams_FileInputStream : WinRtInterface
+{
+    Windows_Storage_Streams_FileInputStream( comPtr )
+    {
+        var Windows = runtime.global("Windows");
+        this.comPtr = comPtr.queryInterface( Windows.Storage.Streams.IInputStream.iid );
+    }
+
+    static Create()
+    {
+        return Windows.Storage.Streams.FileInputStream(
+            winrt.activate("Windows.Storage.Streams.FileInputStream")
+        );
+    }
+    //@Parameters("Windows.Storage.Streams.IBuffer", "UInt32", "Windows.Storage.Streams.InputStreamOptions")
+    //@Returns("Windows.Foundation.IAsyncOperationWithProgress`2<Windows.Storage.Streams.IBuffer,UInt32>")
+    //@Parameters("Windows.Storage.Streams.IBuffer","UInt32","Windows.Storage.Streams.InputStreamOptions")
+    ReadAsync(buffer,count,options)
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Storage.Streams.IInputStream( this.comPtr );
+        var _promise = Future();
+        var _cb = fun(status, result)
+        {
+            if (status == Windows.Foundation.AsyncStatus.Completed)
+            {
+                _promise.resolve(result);
+            } else {
+                _promise.reject(status);
+            }
+        };
+        iface.ReadAsync( buffer, count, options, _cb  );
+        iface.release();
+        return _promise;
+    }
+
+    //@Returns("void")
+    Close()
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Foundation.IClosable( this.comPtr );
+        iface.Close(  );
+        iface.release();
+    }
+
+
+}
+Windows.Storage.Streams.FileInputStream = Windows_Storage_Streams_FileInputStream;
+
+//@RuntimeClass("Windows.Storage.Streams.FileOutputStream")
+//@Implements("Windows.Storage.Streams.IOutputStream","Windows.Foundation.IClosable")
+//@DefaultInterface("Windows.Storage.Streams.IOutputStream")
+@Proxy("WinRtProxy")
+class Windows_Storage_Streams_FileOutputStream : WinRtInterface
+{
+    Windows_Storage_Streams_FileOutputStream( comPtr )
+    {
+        var Windows = runtime.global("Windows");
+        this.comPtr = comPtr.queryInterface( Windows.Storage.Streams.IOutputStream.iid );
+    }
+
+    static Create()
+    {
+        return Windows.Storage.Streams.FileOutputStream(
+            winrt.activate("Windows.Storage.Streams.FileOutputStream")
+        );
+    }
+    //@Parameters("Windows.Storage.Streams.IBuffer")
+    //@Returns("Windows.Foundation.IAsyncOperationWithProgress`2<UInt32,UInt32>")
+    //@Parameters("Windows.Storage.Streams.IBuffer")
+    WriteAsync(buffer)
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Storage.Streams.IOutputStream( this.comPtr );
+        var _promise = Future();
+        var _cb = fun(status, result)
+        {
+            if (status == Windows.Foundation.AsyncStatus.Completed)
+            {
+                _promise.resolve(result);
+            } else {
+                _promise.reject(status);
+            }
+        };
+        iface.WriteAsync( buffer, _cb  );
+        iface.release();
+        return _promise;
+    }
+
+    //@Returns("Windows.Foundation.IAsyncOperation`1<Boolean>")
+    FlushAsync()
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Storage.Streams.IOutputStream( this.comPtr );
+        var _promise = Future();
+        var _cb = fun(status, result)
+        {
+            if (status == Windows.Foundation.AsyncStatus.Completed)
+            {
+                _promise.resolve(result);
+            } else {
+                _promise.reject(status);
+            }
+        };
+        iface.FlushAsync( _cb  );
+        iface.release();
+        return _promise;
+    }
+
+    //@Returns("void")
+    Close()
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Foundation.IClosable( this.comPtr );
+        iface.Close(  );
+        iface.release();
+    }
+
+
+}
+Windows.Storage.Streams.FileOutputStream = Windows_Storage_Streams_FileOutputStream;
+
+//@RuntimeClass("Windows.Storage.Streams.FileRandomAccessStream")
+//@Implements("Windows.Storage.Streams.IRandomAccessStream","Windows.Storage.Streams.IOutputStream","Windows.Foundation.IClosable","Windows.Storage.Streams.IInputStream")
+//@DefaultInterface("Windows.Storage.Streams.IRandomAccessStream")
+@Proxy("WinRtProxy")
+class Windows_Storage_Streams_FileRandomAccessStream : WinRtInterface
+{
+    Windows_Storage_Streams_FileRandomAccessStream( comPtr )
+    {
+        var Windows = runtime.global("Windows");
+        this.comPtr = comPtr.queryInterface( Windows.Storage.Streams.IRandomAccessStream.iid );
+    }
+
+    // s Windows.Storage.Streams.IFileRandomAccessStreamStatics
+    //@Async(3)
+    //@Returns("Windows.Foundation.IAsyncOperation`1<Windows.Storage.Streams.IRandomAccessStream>")
+    //@Parameters("String","Windows.Storage.FileAccessMode")
+    static OpenAsync( filePath, accessMode)
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Storage.Streams.FileRandomAccessStream" );
+        var iface = Windows.Storage.Streams.IFileRandomAccessStreamStatics( factory );
+        var _promise = Future();
+        var _cb = fun(status, result)
+        {
+            if (status == Windows.Foundation.AsyncStatus.Completed)
+            {
+                _promise.resolve(result);
+            } else {
+                _promise.reject(status);
+            }
+        };
+        iface.OpenAsync( filePath, accessMode, _cb);
+        iface.release();
+        factory.release();
+        return _promise;
+    }
+
+
+    //@Async(3)
+    //@Returns("Windows.Foundation.IAsyncOperation`1<Windows.Storage.Streams.IRandomAccessStream>")
+    //@Parameters("String","Windows.Storage.FileAccessMode","Windows.Storage.StorageOpenOptions","Windows.Storage.Streams.FileOpenDisposition")
+    static OpenWithOptionsAsync( filePath, accessMode, sharingOptions, openDisposition)
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Storage.Streams.FileRandomAccessStream" );
+        var iface = Windows.Storage.Streams.IFileRandomAccessStreamStatics( factory );
+        var _promise = Future();
+        var _cb = fun(status, result)
+        {
+            if (status == Windows.Foundation.AsyncStatus.Completed)
+            {
+                _promise.resolve(result);
+            } else {
+                _promise.reject(status);
+            }
+        };
+        iface.OpenWithOptionsAsync( filePath, accessMode, sharingOptions, openDisposition, _cb);
+        iface.release();
+        factory.release();
+        return _promise;
+    }
+
+
+    //@Async(3)
+    //@Returns("Windows.Foundation.IAsyncOperation`1<Windows.Storage.StorageStreamTransaction>")
+    //@Parameters("String")
+    static OpenTransactedWriteAsync( filePath)
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Storage.Streams.FileRandomAccessStream" );
+        var iface = Windows.Storage.Streams.IFileRandomAccessStreamStatics( factory );
+        var _promise = Future();
+        var _cb = fun(status, result)
+        {
+            if (status == Windows.Foundation.AsyncStatus.Completed)
+            {
+                _promise.resolve(result);
+            } else {
+                _promise.reject(status);
+            }
+        };
+        iface.OpenTransactedWriteAsync( filePath, _cb);
+        iface.release();
+        factory.release();
+        return _promise;
+    }
+
+
+    //@Async(3)
+    //@Returns("Windows.Foundation.IAsyncOperation`1<Windows.Storage.StorageStreamTransaction>")
+    //@Parameters("String","Windows.Storage.StorageOpenOptions","Windows.Storage.Streams.FileOpenDisposition")
+    static OpenTransactedWriteWithOptionsAsync( filePath, openOptions, openDisposition)
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Storage.Streams.FileRandomAccessStream" );
+        var iface = Windows.Storage.Streams.IFileRandomAccessStreamStatics( factory );
+        var _promise = Future();
+        var _cb = fun(status, result)
+        {
+            if (status == Windows.Foundation.AsyncStatus.Completed)
+            {
+                _promise.resolve(result);
+            } else {
+                _promise.reject(status);
+            }
+        };
+        iface.OpenTransactedWriteWithOptionsAsync( filePath, openOptions, openDisposition, _cb);
+        iface.release();
+        factory.release();
+        return _promise;
+    }
+
+
+    //@Async(3)
+    //@Returns("Windows.Foundation.IAsyncOperation`1<Windows.Storage.Streams.IRandomAccessStream>")
+    //@Parameters("Windows.System.User","String","Windows.Storage.FileAccessMode")
+    static OpenForUserAsync( user, filePath, accessMode)
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Storage.Streams.FileRandomAccessStream" );
+        var iface = Windows.Storage.Streams.IFileRandomAccessStreamStatics( factory );
+        var _promise = Future();
+        var _cb = fun(status, result)
+        {
+            if (status == Windows.Foundation.AsyncStatus.Completed)
+            {
+                _promise.resolve(result);
+            } else {
+                _promise.reject(status);
+            }
+        };
+        iface.OpenForUserAsync( user, filePath, accessMode, _cb);
+        iface.release();
+        factory.release();
+        return _promise;
+    }
+
+
+    //@Async(3)
+    //@Returns("Windows.Foundation.IAsyncOperation`1<Windows.Storage.Streams.IRandomAccessStream>")
+    //@Parameters("Windows.System.User","String","Windows.Storage.FileAccessMode","Windows.Storage.StorageOpenOptions","Windows.Storage.Streams.FileOpenDisposition")
+    static OpenForUserWithOptionsAsync( user, filePath, accessMode, sharingOptions, openDisposition)
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Storage.Streams.FileRandomAccessStream" );
+        var iface = Windows.Storage.Streams.IFileRandomAccessStreamStatics( factory );
+        var _promise = Future();
+        var _cb = fun(status, result)
+        {
+            if (status == Windows.Foundation.AsyncStatus.Completed)
+            {
+                _promise.resolve(result);
+            } else {
+                _promise.reject(status);
+            }
+        };
+        iface.OpenForUserWithOptionsAsync( user, filePath, accessMode, sharingOptions, openDisposition, _cb);
+        iface.release();
+        factory.release();
+        return _promise;
+    }
+
+
+    //@Async(3)
+    //@Returns("Windows.Foundation.IAsyncOperation`1<Windows.Storage.StorageStreamTransaction>")
+    //@Parameters("Windows.System.User","String")
+    static OpenTransactedWriteForUserAsync( user, filePath)
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Storage.Streams.FileRandomAccessStream" );
+        var iface = Windows.Storage.Streams.IFileRandomAccessStreamStatics( factory );
+        var _promise = Future();
+        var _cb = fun(status, result)
+        {
+            if (status == Windows.Foundation.AsyncStatus.Completed)
+            {
+                _promise.resolve(result);
+            } else {
+                _promise.reject(status);
+            }
+        };
+        iface.OpenTransactedWriteForUserAsync( user, filePath, _cb);
+        iface.release();
+        factory.release();
+        return _promise;
+    }
+
+
+    //@Async(3)
+    //@Returns("Windows.Foundation.IAsyncOperation`1<Windows.Storage.StorageStreamTransaction>")
+    //@Parameters("Windows.System.User","String","Windows.Storage.StorageOpenOptions","Windows.Storage.Streams.FileOpenDisposition")
+    static OpenTransactedWriteForUserWithOptionsAsync( user, filePath, openOptions, openDisposition)
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Storage.Streams.FileRandomAccessStream" );
+        var iface = Windows.Storage.Streams.IFileRandomAccessStreamStatics( factory );
+        var _promise = Future();
+        var _cb = fun(status, result)
+        {
+            if (status == Windows.Foundation.AsyncStatus.Completed)
+            {
+                _promise.resolve(result);
+            } else {
+                _promise.reject(status);
+            }
+        };
+        iface.OpenTransactedWriteForUserWithOptionsAsync( user, filePath, openOptions, openDisposition, _cb);
+        iface.release();
+        factory.release();
+        return _promise;
+    }
+
+
+    static Create()
+    {
+        return Windows.Storage.Streams.FileRandomAccessStream(
+            winrt.activate("Windows.Storage.Streams.FileRandomAccessStream")
+        );
+    }
+    //@Returns("UInt64")
+    get_Size()
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Storage.Streams.IRandomAccessStream( this.comPtr );
+        var _r = iface.get_Size(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Parameters("UInt64")
+    //@Returns("void")
+    //@Parameters("UInt64")
+    put_Size(value)
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Storage.Streams.IRandomAccessStream( this.comPtr );
+        iface.put_Size( value );
+        iface.release();
+    }
+
+    //@Parameters("UInt64")
+    //@Returns("Windows.Storage.Streams.IInputStream")
+    //@Parameters("UInt64")
+    GetInputStreamAt(position)
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Storage.Streams.IRandomAccessStream( this.comPtr );
+        var _r = iface.GetInputStreamAt( position );
+        iface.release();
+        return _r;
+    }
+
+    //@Parameters("UInt64")
+    //@Returns("Windows.Storage.Streams.IOutputStream")
+    //@Parameters("UInt64")
+    GetOutputStreamAt(position)
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Storage.Streams.IRandomAccessStream( this.comPtr );
+        var _r = iface.GetOutputStreamAt( position );
+        iface.release();
+        return _r;
+    }
+
+    //@Returns("UInt64")
+    get_Position()
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Storage.Streams.IRandomAccessStream( this.comPtr );
+        var _r = iface.get_Position(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Parameters("UInt64")
+    //@Returns("void")
+    //@Parameters("UInt64")
+    Seek(position)
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Storage.Streams.IRandomAccessStream( this.comPtr );
+        iface.Seek( position );
+        iface.release();
+    }
+
+    //@Returns("Windows.Storage.Streams.IRandomAccessStream")
+    CloneStream()
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Storage.Streams.IRandomAccessStream( this.comPtr );
+        var _r = iface.CloneStream(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Returns("Boolean")
+    get_CanRead()
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Storage.Streams.IRandomAccessStream( this.comPtr );
+        var _r = iface.get_CanRead(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Returns("Boolean")
+    get_CanWrite()
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Storage.Streams.IRandomAccessStream( this.comPtr );
+        var _r = iface.get_CanWrite(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Returns("void")
+    Close()
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Foundation.IClosable( this.comPtr );
+        iface.Close(  );
+        iface.release();
+    }
+
+    //@Parameters("Windows.Storage.Streams.IBuffer", "UInt32", "Windows.Storage.Streams.InputStreamOptions")
+    //@Returns("Windows.Foundation.IAsyncOperationWithProgress`2<Windows.Storage.Streams.IBuffer,UInt32>")
+    //@Parameters("Windows.Storage.Streams.IBuffer","UInt32","Windows.Storage.Streams.InputStreamOptions")
+    ReadAsync(buffer,count,options)
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Storage.Streams.IInputStream( this.comPtr );
+        var _promise = Future();
+        var _cb = fun(status, result)
+        {
+            if (status == Windows.Foundation.AsyncStatus.Completed)
+            {
+                _promise.resolve(result);
+            } else {
+                _promise.reject(status);
+            }
+        };
+        iface.ReadAsync( buffer, count, options, _cb  );
+        iface.release();
+        return _promise;
+    }
+
+    //@Parameters("Windows.Storage.Streams.IBuffer")
+    //@Returns("Windows.Foundation.IAsyncOperationWithProgress`2<UInt32,UInt32>")
+    //@Parameters("Windows.Storage.Streams.IBuffer")
+    WriteAsync(buffer)
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Storage.Streams.IOutputStream( this.comPtr );
+        var _promise = Future();
+        var _cb = fun(status, result)
+        {
+            if (status == Windows.Foundation.AsyncStatus.Completed)
+            {
+                _promise.resolve(result);
+            } else {
+                _promise.reject(status);
+            }
+        };
+        iface.WriteAsync( buffer, _cb  );
+        iface.release();
+        return _promise;
+    }
+
+    //@Returns("Windows.Foundation.IAsyncOperation`1<Boolean>")
+    FlushAsync()
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Storage.Streams.IOutputStream( this.comPtr );
+        var _promise = Future();
+        var _cb = fun(status, result)
+        {
+            if (status == Windows.Foundation.AsyncStatus.Completed)
+            {
+                _promise.resolve(result);
+            } else {
+                _promise.reject(status);
+            }
+        };
+        iface.FlushAsync( _cb  );
+        iface.release();
+        return _promise;
+    }
+
+
+}
+Windows.Storage.Streams.FileRandomAccessStream = Windows_Storage_Streams_FileRandomAccessStream;
+
+//@RuntimeClass("Windows.Storage.Streams.InMemoryRandomAccessStream")
+//@Implements("Windows.Storage.Streams.IRandomAccessStream","Windows.Storage.Streams.IOutputStream","Windows.Foundation.IClosable","Windows.Storage.Streams.IInputStream")
+//@DefaultInterface("Windows.Storage.Streams.IRandomAccessStream")
+@Proxy("WinRtProxy")
+class Windows_Storage_Streams_InMemoryRandomAccessStream : WinRtInterface
+{
+    Windows_Storage_Streams_InMemoryRandomAccessStream( comPtr )
+    {
+        var Windows = runtime.global("Windows");
+        this.comPtr = comPtr.queryInterface( Windows.Storage.Streams.IRandomAccessStream.iid );
+    }
+
+    static Create()
+    {
+        return Windows.Storage.Streams.InMemoryRandomAccessStream(
+            winrt.activate("Windows.Storage.Streams.InMemoryRandomAccessStream")
+        );
+    }
+    //@Returns("UInt64")
+    get_Size()
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Storage.Streams.IRandomAccessStream( this.comPtr );
+        var _r = iface.get_Size(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Parameters("UInt64")
+    //@Returns("void")
+    //@Parameters("UInt64")
+    put_Size(value)
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Storage.Streams.IRandomAccessStream( this.comPtr );
+        iface.put_Size( value );
+        iface.release();
+    }
+
+    //@Parameters("UInt64")
+    //@Returns("Windows.Storage.Streams.IInputStream")
+    //@Parameters("UInt64")
+    GetInputStreamAt(position)
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Storage.Streams.IRandomAccessStream( this.comPtr );
+        var _r = iface.GetInputStreamAt( position );
+        iface.release();
+        return _r;
+    }
+
+    //@Parameters("UInt64")
+    //@Returns("Windows.Storage.Streams.IOutputStream")
+    //@Parameters("UInt64")
+    GetOutputStreamAt(position)
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Storage.Streams.IRandomAccessStream( this.comPtr );
+        var _r = iface.GetOutputStreamAt( position );
+        iface.release();
+        return _r;
+    }
+
+    //@Returns("UInt64")
+    get_Position()
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Storage.Streams.IRandomAccessStream( this.comPtr );
+        var _r = iface.get_Position(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Parameters("UInt64")
+    //@Returns("void")
+    //@Parameters("UInt64")
+    Seek(position)
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Storage.Streams.IRandomAccessStream( this.comPtr );
+        iface.Seek( position );
+        iface.release();
+    }
+
+    //@Returns("Windows.Storage.Streams.IRandomAccessStream")
+    CloneStream()
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Storage.Streams.IRandomAccessStream( this.comPtr );
+        var _r = iface.CloneStream(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Returns("Boolean")
+    get_CanRead()
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Storage.Streams.IRandomAccessStream( this.comPtr );
+        var _r = iface.get_CanRead(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Returns("Boolean")
+    get_CanWrite()
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Storage.Streams.IRandomAccessStream( this.comPtr );
+        var _r = iface.get_CanWrite(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Returns("void")
+    Close()
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Foundation.IClosable( this.comPtr );
+        iface.Close(  );
+        iface.release();
+    }
+
+    //@Parameters("Windows.Storage.Streams.IBuffer", "UInt32", "Windows.Storage.Streams.InputStreamOptions")
+    //@Returns("Windows.Foundation.IAsyncOperationWithProgress`2<Windows.Storage.Streams.IBuffer,UInt32>")
+    //@Parameters("Windows.Storage.Streams.IBuffer","UInt32","Windows.Storage.Streams.InputStreamOptions")
+    ReadAsync(buffer,count,options)
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Storage.Streams.IInputStream( this.comPtr );
+        var _promise = Future();
+        var _cb = fun(status, result)
+        {
+            if (status == Windows.Foundation.AsyncStatus.Completed)
+            {
+                _promise.resolve(result);
+            } else {
+                _promise.reject(status);
+            }
+        };
+        iface.ReadAsync( buffer, count, options, _cb  );
+        iface.release();
+        return _promise;
+    }
+
+    //@Parameters("Windows.Storage.Streams.IBuffer")
+    //@Returns("Windows.Foundation.IAsyncOperationWithProgress`2<UInt32,UInt32>")
+    //@Parameters("Windows.Storage.Streams.IBuffer")
+    WriteAsync(buffer)
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Storage.Streams.IOutputStream( this.comPtr );
+        var _promise = Future();
+        var _cb = fun(status, result)
+        {
+            if (status == Windows.Foundation.AsyncStatus.Completed)
+            {
+                _promise.resolve(result);
+            } else {
+                _promise.reject(status);
+            }
+        };
+        iface.WriteAsync( buffer, _cb  );
+        iface.release();
+        return _promise;
+    }
+
+    //@Returns("Windows.Foundation.IAsyncOperation`1<Boolean>")
+    FlushAsync()
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Storage.Streams.IOutputStream( this.comPtr );
+        var _promise = Future();
+        var _cb = fun(status, result)
+        {
+            if (status == Windows.Foundation.AsyncStatus.Completed)
+            {
+                _promise.resolve(result);
+            } else {
+                _promise.reject(status);
+            }
+        };
+        iface.FlushAsync( _cb  );
+        iface.release();
+        return _promise;
+    }
+
+
+}
+Windows.Storage.Streams.InMemoryRandomAccessStream = Windows_Storage_Streams_InMemoryRandomAccessStream;
+
+//@RuntimeClass("Windows.Storage.Streams.InputStreamOverStream")
+//@Implements("Windows.Storage.Streams.IInputStream","Windows.Foundation.IClosable")
+//@DefaultInterface("Windows.Storage.Streams.IInputStream")
+@Proxy("WinRtProxy")
+class Windows_Storage_Streams_InputStreamOverStream : WinRtInterface
+{
+    Windows_Storage_Streams_InputStreamOverStream( comPtr )
+    {
+        var Windows = runtime.global("Windows");
+        this.comPtr = comPtr.queryInterface( Windows.Storage.Streams.IInputStream.iid );
+    }
+
+    static Create()
+    {
+        return Windows.Storage.Streams.InputStreamOverStream(
+            winrt.activate("Windows.Storage.Streams.InputStreamOverStream")
+        );
+    }
+    //@Parameters("Windows.Storage.Streams.IBuffer", "UInt32", "Windows.Storage.Streams.InputStreamOptions")
+    //@Returns("Windows.Foundation.IAsyncOperationWithProgress`2<Windows.Storage.Streams.IBuffer,UInt32>")
+    //@Parameters("Windows.Storage.Streams.IBuffer","UInt32","Windows.Storage.Streams.InputStreamOptions")
+    ReadAsync(buffer,count,options)
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Storage.Streams.IInputStream( this.comPtr );
+        var _promise = Future();
+        var _cb = fun(status, result)
+        {
+            if (status == Windows.Foundation.AsyncStatus.Completed)
+            {
+                _promise.resolve(result);
+            } else {
+                _promise.reject(status);
+            }
+        };
+        iface.ReadAsync( buffer, count, options, _cb  );
+        iface.release();
+        return _promise;
+    }
+
+    //@Returns("void")
+    Close()
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Foundation.IClosable( this.comPtr );
+        iface.Close(  );
+        iface.release();
+    }
+
+
+}
+Windows.Storage.Streams.InputStreamOverStream = Windows_Storage_Streams_InputStreamOverStream;
+
+//@RuntimeClass("Windows.Storage.Streams.OutputStreamOverStream")
+//@Implements("Windows.Storage.Streams.IOutputStream","Windows.Foundation.IClosable")
+//@DefaultInterface("Windows.Storage.Streams.IOutputStream")
+@Proxy("WinRtProxy")
+class Windows_Storage_Streams_OutputStreamOverStream : WinRtInterface
+{
+    Windows_Storage_Streams_OutputStreamOverStream( comPtr )
+    {
+        var Windows = runtime.global("Windows");
+        this.comPtr = comPtr.queryInterface( Windows.Storage.Streams.IOutputStream.iid );
+    }
+
+    static Create()
+    {
+        return Windows.Storage.Streams.OutputStreamOverStream(
+            winrt.activate("Windows.Storage.Streams.OutputStreamOverStream")
+        );
+    }
+    //@Parameters("Windows.Storage.Streams.IBuffer")
+    //@Returns("Windows.Foundation.IAsyncOperationWithProgress`2<UInt32,UInt32>")
+    //@Parameters("Windows.Storage.Streams.IBuffer")
+    WriteAsync(buffer)
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Storage.Streams.IOutputStream( this.comPtr );
+        var _promise = Future();
+        var _cb = fun(status, result)
+        {
+            if (status == Windows.Foundation.AsyncStatus.Completed)
+            {
+                _promise.resolve(result);
+            } else {
+                _promise.reject(status);
+            }
+        };
+        iface.WriteAsync( buffer, _cb  );
+        iface.release();
+        return _promise;
+    }
+
+    //@Returns("Windows.Foundation.IAsyncOperation`1<Boolean>")
+    FlushAsync()
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Storage.Streams.IOutputStream( this.comPtr );
+        var _promise = Future();
+        var _cb = fun(status, result)
+        {
+            if (status == Windows.Foundation.AsyncStatus.Completed)
+            {
+                _promise.resolve(result);
+            } else {
+                _promise.reject(status);
+            }
+        };
+        iface.FlushAsync( _cb  );
+        iface.release();
+        return _promise;
+    }
+
+    //@Returns("void")
+    Close()
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Foundation.IClosable( this.comPtr );
+        iface.Close(  );
+        iface.release();
+    }
+
+
+}
+Windows.Storage.Streams.OutputStreamOverStream = Windows_Storage_Streams_OutputStreamOverStream;
+
+//@RuntimeClass("Windows.Storage.Streams.RandomAccessStream")
+//@Implements("")
+//@DefaultInterface("")
+@Proxy("WinRtProxy")
+class Windows_Storage_Streams_RandomAccessStream : WinRtInterface
+{
+    Windows_Storage_Streams_RandomAccessStream( comPtr )
+    {
+        this.comPtr = comPtr;
+    }
+
+    // s Windows.Storage.Streams.IRandomAccessStreamStatics
+    //@Async(4)
+    //@Returns("Windows.Foundation.IAsyncOperationWithProgress`2<UInt64,UInt64>")
+    //@Parameters("Windows.Storage.Streams.IInputStream","Windows.Storage.Streams.IOutputStream")
+    static CopyAsync( source, destination)
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Storage.Streams.RandomAccessStream" );
+        var iface = Windows.Storage.Streams.IRandomAccessStreamStatics( factory );
+        var _promise = Future();
+        var _cb = fun(status, result)
+        {
+            if (status == Windows.Foundation.AsyncStatus.Completed)
+            {
+                _promise.resolve(result);
+            } else {
+                _promise.reject(status);
+            }
+        };
+        iface.CopyAsync( source, destination, _cb);
+        iface.release();
+        factory.release();
+        return _promise;
+    }
+
+
+    //@Async(4)
+    //@Returns("Windows.Foundation.IAsyncOperationWithProgress`2<UInt64,UInt64>")
+    //@Parameters("Windows.Storage.Streams.IInputStream","Windows.Storage.Streams.IOutputStream","UInt64")
+    static CopySizeAsync( source, destination, bytesToCopy)
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Storage.Streams.RandomAccessStream" );
+        var iface = Windows.Storage.Streams.IRandomAccessStreamStatics( factory );
+        var _promise = Future();
+        var _cb = fun(status, result)
+        {
+            if (status == Windows.Foundation.AsyncStatus.Completed)
+            {
+                _promise.resolve(result);
+            } else {
+                _promise.reject(status);
+            }
+        };
+        iface.CopySizeAsync( source, destination, bytesToCopy, _cb);
+        iface.release();
+        factory.release();
+        return _promise;
+    }
+
+
+    //@Async(4)
+    //@Returns("Windows.Foundation.IAsyncOperationWithProgress`2<UInt64,UInt64>")
+    //@Parameters("Windows.Storage.Streams.IInputStream","Windows.Storage.Streams.IOutputStream")
+    static CopyAndCloseAsync( source, destination)
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Storage.Streams.RandomAccessStream" );
+        var iface = Windows.Storage.Streams.IRandomAccessStreamStatics( factory );
+        var _promise = Future();
+        var _cb = fun(status, result)
+        {
+            if (status == Windows.Foundation.AsyncStatus.Completed)
+            {
+                _promise.resolve(result);
+            } else {
+                _promise.reject(status);
+            }
+        };
+        iface.CopyAndCloseAsync( source, destination, _cb);
+        iface.release();
+        factory.release();
+        return _promise;
+    }
+
+
+    static Create()
+    {
+        return Windows.Storage.Streams.RandomAccessStream(
+            winrt.activate("Windows.Storage.Streams.RandomAccessStream")
+        );
+    }
+
+}
+Windows.Storage.Streams.RandomAccessStream = Windows_Storage_Streams_RandomAccessStream;
+
+//@RuntimeClass("Windows.Storage.Streams.RandomAccessStreamOverStream")
+//@Implements("Windows.Storage.Streams.IRandomAccessStream","Windows.Storage.Streams.IOutputStream","Windows.Foundation.IClosable","Windows.Storage.Streams.IInputStream")
+//@DefaultInterface("Windows.Storage.Streams.IRandomAccessStream")
+@Proxy("WinRtProxy")
+class Windows_Storage_Streams_RandomAccessStreamOverStream : WinRtInterface
+{
+    Windows_Storage_Streams_RandomAccessStreamOverStream( comPtr )
+    {
+        var Windows = runtime.global("Windows");
+        this.comPtr = comPtr.queryInterface( Windows.Storage.Streams.IRandomAccessStream.iid );
+    }
+
+    static Create()
+    {
+        return Windows.Storage.Streams.RandomAccessStreamOverStream(
+            winrt.activate("Windows.Storage.Streams.RandomAccessStreamOverStream")
+        );
+    }
+    //@Returns("UInt64")
+    get_Size()
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Storage.Streams.IRandomAccessStream( this.comPtr );
+        var _r = iface.get_Size(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Parameters("UInt64")
+    //@Returns("void")
+    //@Parameters("UInt64")
+    put_Size(value)
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Storage.Streams.IRandomAccessStream( this.comPtr );
+        iface.put_Size( value );
+        iface.release();
+    }
+
+    //@Parameters("UInt64")
+    //@Returns("Windows.Storage.Streams.IInputStream")
+    //@Parameters("UInt64")
+    GetInputStreamAt(position)
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Storage.Streams.IRandomAccessStream( this.comPtr );
+        var _r = iface.GetInputStreamAt( position );
+        iface.release();
+        return _r;
+    }
+
+    //@Parameters("UInt64")
+    //@Returns("Windows.Storage.Streams.IOutputStream")
+    //@Parameters("UInt64")
+    GetOutputStreamAt(position)
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Storage.Streams.IRandomAccessStream( this.comPtr );
+        var _r = iface.GetOutputStreamAt( position );
+        iface.release();
+        return _r;
+    }
+
+    //@Returns("UInt64")
+    get_Position()
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Storage.Streams.IRandomAccessStream( this.comPtr );
+        var _r = iface.get_Position(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Parameters("UInt64")
+    //@Returns("void")
+    //@Parameters("UInt64")
+    Seek(position)
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Storage.Streams.IRandomAccessStream( this.comPtr );
+        iface.Seek( position );
+        iface.release();
+    }
+
+    //@Returns("Windows.Storage.Streams.IRandomAccessStream")
+    CloneStream()
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Storage.Streams.IRandomAccessStream( this.comPtr );
+        var _r = iface.CloneStream(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Returns("Boolean")
+    get_CanRead()
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Storage.Streams.IRandomAccessStream( this.comPtr );
+        var _r = iface.get_CanRead(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Returns("Boolean")
+    get_CanWrite()
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Storage.Streams.IRandomAccessStream( this.comPtr );
+        var _r = iface.get_CanWrite(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Returns("void")
+    Close()
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Foundation.IClosable( this.comPtr );
+        iface.Close(  );
+        iface.release();
+    }
+
+    //@Parameters("Windows.Storage.Streams.IBuffer", "UInt32", "Windows.Storage.Streams.InputStreamOptions")
+    //@Returns("Windows.Foundation.IAsyncOperationWithProgress`2<Windows.Storage.Streams.IBuffer,UInt32>")
+    //@Parameters("Windows.Storage.Streams.IBuffer","UInt32","Windows.Storage.Streams.InputStreamOptions")
+    ReadAsync(buffer,count,options)
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Storage.Streams.IInputStream( this.comPtr );
+        var _promise = Future();
+        var _cb = fun(status, result)
+        {
+            if (status == Windows.Foundation.AsyncStatus.Completed)
+            {
+                _promise.resolve(result);
+            } else {
+                _promise.reject(status);
+            }
+        };
+        iface.ReadAsync( buffer, count, options, _cb  );
+        iface.release();
+        return _promise;
+    }
+
+    //@Parameters("Windows.Storage.Streams.IBuffer")
+    //@Returns("Windows.Foundation.IAsyncOperationWithProgress`2<UInt32,UInt32>")
+    //@Parameters("Windows.Storage.Streams.IBuffer")
+    WriteAsync(buffer)
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Storage.Streams.IOutputStream( this.comPtr );
+        var _promise = Future();
+        var _cb = fun(status, result)
+        {
+            if (status == Windows.Foundation.AsyncStatus.Completed)
+            {
+                _promise.resolve(result);
+            } else {
+                _promise.reject(status);
+            }
+        };
+        iface.WriteAsync( buffer, _cb  );
+        iface.release();
+        return _promise;
+    }
+
+    //@Returns("Windows.Foundation.IAsyncOperation`1<Boolean>")
+    FlushAsync()
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Storage.Streams.IOutputStream( this.comPtr );
+        var _promise = Future();
+        var _cb = fun(status, result)
+        {
+            if (status == Windows.Foundation.AsyncStatus.Completed)
+            {
+                _promise.resolve(result);
+            } else {
+                _promise.reject(status);
+            }
+        };
+        iface.FlushAsync( _cb  );
+        iface.release();
+        return _promise;
+    }
+
+
+}
+Windows.Storage.Streams.RandomAccessStreamOverStream = Windows_Storage_Streams_RandomAccessStreamOverStream;
+
+//@RuntimeClass("Windows.Storage.Streams.RandomAccessStreamReference")
+//@Implements("Windows.Storage.Streams.IRandomAccessStreamReference")
+//@DefaultInterface("Windows.Storage.Streams.IRandomAccessStreamReference")
+@Proxy("WinRtProxy")
+class Windows_Storage_Streams_RandomAccessStreamReference : WinRtInterface
+{
+    Windows_Storage_Streams_RandomAccessStreamReference( comPtr )
+    {
+        var Windows = runtime.global("Windows");
+        this.comPtr = comPtr.queryInterface( Windows.Storage.Streams.IRandomAccessStreamReference.iid );
+    }
+
+    // s Windows.Storage.Streams.IRandomAccessStreamReferenceStatics
+    //@Async(0)
+    //@Returns("Windows.Storage.Streams.RandomAccessStreamReference")
+    //@Parameters("Windows.Storage.IStorageFile")
+    static CreateFromFile( file)
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Storage.Streams.RandomAccessStreamReference" );
+        var iface = Windows.Storage.Streams.IRandomAccessStreamReferenceStatics( factory );
+        var _r = iface.CreateFromFile( file);
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    //@Async(0)
+    //@Returns("Windows.Storage.Streams.RandomAccessStreamReference")
+    //@Parameters("Windows.Foundation.Uri")
+    static CreateFromUri( uri)
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Storage.Streams.RandomAccessStreamReference" );
+        var iface = Windows.Storage.Streams.IRandomAccessStreamReferenceStatics( factory );
+        var _r = iface.CreateFromUri( uri);
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    //@Async(0)
+    //@Returns("Windows.Storage.Streams.RandomAccessStreamReference")
+    //@Parameters("Windows.Storage.Streams.IRandomAccessStream")
+    static CreateFromStream( stream)
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Storage.Streams.RandomAccessStreamReference" );
+        var iface = Windows.Storage.Streams.IRandomAccessStreamReferenceStatics( factory );
+        var _r = iface.CreateFromStream( stream);
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    static Create()
+    {
+        return Windows.Storage.Streams.RandomAccessStreamReference(
+            winrt.activate("Windows.Storage.Streams.RandomAccessStreamReference")
+        );
+    }
+    //@Returns("Windows.Foundation.IAsyncOperation`1<Windows.Storage.Streams.IRandomAccessStreamWithContentType>")
+    OpenReadAsync()
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Storage.Streams.IRandomAccessStreamReference( this.comPtr );
+        var _promise = Future();
+        var _cb = fun(status, result)
+        {
+            if (status == Windows.Foundation.AsyncStatus.Completed)
+            {
+                _promise.resolve(result);
+            } else {
+                _promise.reject(status);
+            }
+        };
+        iface.OpenReadAsync( _cb  );
+        iface.release();
+        return _promise;
+    }
+
+
+}
+Windows.Storage.Streams.RandomAccessStreamReference = Windows_Storage_Streams_RandomAccessStreamReference;
+
+if ( Windows.Foundation == nil ) { Windows.Foundation = {}; }
+//@Interface("Windows.Foundation.IAsyncOperation`1<Windows.Storage.Streams.IRandomAccessStreamWithContentType>")
+//@IID("{C4A57C5E-32B0-55B3-AD13-CE1C23041ED6}")
+class Windows_Foundation_IAsyncOperation_1_Windows_Storage_Streams_IRandomAccessStreamWithContentType_ : WinRtInterface {}
+Windows_Foundation_IAsyncOperation_1_Windows_Storage_Streams_IRandomAccessStreamWithContentType_.iid = "{C4A57C5E-32B0-55B3-AD13-CE1C23041ED6}";
+Windows_Foundation_IAsyncOperation_1_Windows_Storage_Streams_IRandomAccessStreamWithContentType_.handler_iid = "{3DDDECF4-1D39-58E8-83B1-DBED541C7F35}";
+
+Windows.Foundation.IAsyncOperation_1_Windows_Storage_Streams_IRandomAccessStreamWithContentType_ = Windows_Foundation_IAsyncOperation_1_Windows_Storage_Streams_IRandomAccessStreamWithContentType_;
+if ( Windows.Foundation == nil ) { Windows.Foundation = {}; }
+//@Interface("Windows.Foundation.IAsyncOperation`1<Windows.Storage.Streams.IRandomAccessStream>")
+//@IID("{430ECECE-1418-5D19-81B2-5DDB381603CC}")
+class Windows_Foundation_IAsyncOperation_1_Windows_Storage_Streams_IRandomAccessStream_ : WinRtInterface {}
+Windows_Foundation_IAsyncOperation_1_Windows_Storage_Streams_IRandomAccessStream_.iid = "{430ECECE-1418-5D19-81B2-5DDB381603CC}";
+Windows_Foundation_IAsyncOperation_1_Windows_Storage_Streams_IRandomAccessStream_.handler_iid = "{398C4183-793D-5B00-819B-4AEF92485E94}";
+
+Windows.Foundation.IAsyncOperation_1_Windows_Storage_Streams_IRandomAccessStream_ = Windows_Foundation_IAsyncOperation_1_Windows_Storage_Streams_IRandomAccessStream_;
+if ( Windows.Foundation == nil ) { Windows.Foundation = {}; }
+//@Interface("Windows.Foundation.IAsyncOperation`1<Windows.Storage.Streams.IInputStream>")
+//@IID("{A8FE0732-556D-5841-B7EE-B3450FB52666}")
+class Windows_Foundation_IAsyncOperation_1_Windows_Storage_Streams_IInputStream_ : WinRtInterface {}
+Windows_Foundation_IAsyncOperation_1_Windows_Storage_Streams_IInputStream_.iid = "{A8FE0732-556D-5841-B7EE-B3450FB52666}";
+Windows_Foundation_IAsyncOperation_1_Windows_Storage_Streams_IInputStream_.handler_iid = "{D0BD0125-9049-57A3-BD66-E2525D98C814}";
+
+Windows.Foundation.IAsyncOperation_1_Windows_Storage_Streams_IInputStream_ = Windows_Foundation_IAsyncOperation_1_Windows_Storage_Streams_IInputStream_;
+if ( Windows.Foundation == nil ) { Windows.Foundation = {}; }
+//@Interface("Windows.Foundation.IAsyncOperation`1<Windows.Storage.StorageStreamTransaction>")
+//@IID("{0D81405A-9BD3-5E87-82F4-9B4128A887EB}")
+class Windows_Foundation_IAsyncOperation_1_Windows_Storage_StorageStreamTransaction_ : WinRtInterface {}
+Windows_Foundation_IAsyncOperation_1_Windows_Storage_StorageStreamTransaction_.iid = "{0D81405A-9BD3-5E87-82F4-9B4128A887EB}";
+Windows_Foundation_IAsyncOperation_1_Windows_Storage_StorageStreamTransaction_.handler_iid = "{D11739E6-2995-5D33-BFFF-51B6041F68C1}";
+
+Windows.Foundation.IAsyncOperation_1_Windows_Storage_StorageStreamTransaction_ = Windows_Foundation_IAsyncOperation_1_Windows_Storage_StorageStreamTransaction_;
+if ( Windows.Foundation == nil ) { Windows.Foundation = {}; }
+//@Interface("Windows.Foundation.IAsyncOperation`1<UInt32>")
+//@IID("{EF60385F-BE78-584B-AAEF-7829ADA2B0DE}")
+class Windows_Foundation_IAsyncOperation_1_UInt32_ : WinRtInterface {}
+Windows_Foundation_IAsyncOperation_1_UInt32_.iid = "{EF60385F-BE78-584B-AAEF-7829ADA2B0DE}";
+Windows_Foundation_IAsyncOperation_1_UInt32_.handler_iid = "{9343B6E7-E3D2-5E4A-AB2D-2BCE4919A6A4}";
+
+Windows.Foundation.IAsyncOperation_1_UInt32_ = Windows_Foundation_IAsyncOperation_1_UInt32_;
+if ( Windows.Foundation == nil ) { Windows.Foundation = {}; }
+//@Interface("Windows.Foundation.IAsyncOperation`1<Boolean>")
+//@IID("{CDB5EFB3-5788-509D-9BE1-71CCB8A3362A}")
+class Windows_Foundation_IAsyncOperation_1_Boolean_ : WinRtInterface {}
+Windows_Foundation_IAsyncOperation_1_Boolean_.iid = "{CDB5EFB3-5788-509D-9BE1-71CCB8A3362A}";
+Windows_Foundation_IAsyncOperation_1_Boolean_.handler_iid = "{C1D3D1A2-AE17-5A5F-B5A2-BDCC8844889A}";
+
+Windows.Foundation.IAsyncOperation_1_Boolean_ = Windows_Foundation_IAsyncOperation_1_Boolean_;
+if ( Windows.Foundation == nil ) { Windows.Foundation = {}; }
+//@Interface("Windows.Foundation.IAsyncOperationWithProgress`2<Windows.Storage.Streams.IBuffer,UInt32>")
+//@IID("{D26B2819-897F-5C7D-84D6-56D796561431}")
+class Windows_Foundation_IAsyncOperationWithProgress_2_Windows_Storage_Streams_IBuffer_UInt32_ : WinRtInterface {}
+Windows_Foundation_IAsyncOperationWithProgress_2_Windows_Storage_Streams_IBuffer_UInt32_.iid = "{D26B2819-897F-5C7D-84D6-56D796561431}";
+Windows_Foundation_IAsyncOperationWithProgress_2_Windows_Storage_Streams_IBuffer_UInt32_.handler_iid = "{06386A7A-E009-5B0B-AB68-A8E48B516647}";
+
+Windows.Foundation.IAsyncOperationWithProgress_2_Windows_Storage_Streams_IBuffer_UInt32_ = Windows_Foundation_IAsyncOperationWithProgress_2_Windows_Storage_Streams_IBuffer_UInt32_;
+if ( Windows.Foundation == nil ) { Windows.Foundation = {}; }
+//@Interface("Windows.Foundation.IAsyncOperationWithProgress`2<UInt64,UInt64>")
+//@IID("{8F1DB6E3-6556-5516-825C-1021EE27CD0C}")
+class Windows_Foundation_IAsyncOperationWithProgress_2_UInt64_UInt64_ : WinRtInterface {}
+Windows_Foundation_IAsyncOperationWithProgress_2_UInt64_UInt64_.iid = "{8F1DB6E3-6556-5516-825C-1021EE27CD0C}";
+Windows_Foundation_IAsyncOperationWithProgress_2_UInt64_UInt64_.handler_iid = "{D2024E41-5500-5B5A-BA46-CB7009596A2F}";
+
+Windows.Foundation.IAsyncOperationWithProgress_2_UInt64_UInt64_ = Windows_Foundation_IAsyncOperationWithProgress_2_UInt64_UInt64_;
+if ( Windows.Foundation == nil ) { Windows.Foundation = {}; }
+//@Interface("Windows.Foundation.IAsyncOperationWithProgress`2<UInt32,UInt32>")
+//@IID("{ECCB574A-C684-5572-A679-6B0842CFB57F}")
+class Windows_Foundation_IAsyncOperationWithProgress_2_UInt32_UInt32_ : WinRtInterface {}
+Windows_Foundation_IAsyncOperationWithProgress_2_UInt32_UInt32_.iid = "{ECCB574A-C684-5572-A679-6B0842CFB57F}";
+Windows_Foundation_IAsyncOperationWithProgress_2_UInt32_UInt32_.handler_iid = "{1E466DC5-840F-54F9-B877-5E3A9F4B6C74}";
+
+Windows.Foundation.IAsyncOperationWithProgress_2_UInt32_UInt32_ = Windows_Foundation_IAsyncOperationWithProgress_2_UInt32_UInt32_;
+if ( Windows.Foundation == nil ) { Windows.Foundation = {}; }
+//@Delegate("Windows.Foundation.AsyncOperationCompletedHandler`1<UInt32>")
+//@IID("{9343B6E7-E3D2-5E4A-AB2D-2BCE4919A6A4}")
+class Windows_Foundation_AsyncOperationCompletedHandler_1_UInt32_{
+    static Create( cb ) 
+    {
+        var callback = cb;
+        return winrt.Delegate(["Windows.Foundation.IAsyncOperation`1<UInt32>", "Windows.Foundation.AsyncStatus"], "{9343B6E7-E3D2-5E4A-AB2D-2BCE4919A6A4}", callback );
+    }
+}
+Windows_Foundation_AsyncOperationCompletedHandler_1_UInt32_.iid = "{9343B6E7-E3D2-5E4A-AB2D-2BCE4919A6A4}";
+Windows.Foundation.AsyncOperationCompletedHandler_1_UInt32_ = Windows_Foundation_AsyncOperationCompletedHandler_1_UInt32_;
+
+
+
+}

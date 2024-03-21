@@ -1,0 +1,9 @@
+
+fun f(t) { print "hello from module:" + t; }
+
+print "module global code";
+
+return {
+    
+    "module" : fun(t) { print "a test: " + t;}
+};

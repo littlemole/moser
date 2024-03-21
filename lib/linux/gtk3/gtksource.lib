@@ -1,0 +1,993 @@
+// load libgio-2.0.so.0: 140564402171904
+// load libgobject-2.0.so.0: 140564406480896
+// load libglib-2.0.so.0: 140564406874112
+// load libgdk-3.so.0: 140564398129152
+// load libgtk-3.so.0: 140564376846336
+// load libgdk-3.so.0: 140564398129152
+// load libgobject-2.0.so.0: 140564406480896
+// load libgtksourceview-3.0.so.1: 140564373413888
+// load libwebkit2gtk-4.0.so.37: 140564274085888
+// load libjavascriptcoregtk-4.0.so.18: 140564246822912
+// load libjavascriptcoregtk-4.0.so.18: 140564246822912
+// namespace GtkSource
+// libs libgtksourceview-3.0.so.1
+extern from "libgtksourceview-3.0.so.1" {
+ptr gtk_source_buffer_new(ptr);
+ptr gtk_source_buffer_new_with_language(ptr);
+int gtk_source_buffer_backward_iter_to_source_mark(ptr, ptr, str);
+void gtk_source_buffer_begin_not_undoable_action(ptr);
+int gtk_source_buffer_can_redo(ptr);
+int gtk_source_buffer_can_undo(ptr);
+void gtk_source_buffer_change_case(ptr, int, ptr, ptr);
+ptr gtk_source_buffer_create_source_mark(ptr, str, str, ptr);
+void gtk_source_buffer_end_not_undoable_action(ptr);
+void gtk_source_buffer_ensure_highlight(ptr, ptr, ptr);
+int gtk_source_buffer_forward_iter_to_source_mark(ptr, ptr, str);
+ptr gtk_source_buffer_get_context_classes_at_iter(ptr, ptr);
+int gtk_source_buffer_get_highlight_matching_brackets(ptr);
+int gtk_source_buffer_get_highlight_syntax(ptr);
+int gtk_source_buffer_get_implicit_trailing_newline(ptr);
+ptr gtk_source_buffer_get_language(ptr);
+int gtk_source_buffer_get_max_undo_levels(ptr);
+ptr gtk_source_buffer_get_source_marks_at_iter(ptr, ptr, str);
+ptr gtk_source_buffer_get_source_marks_at_line(ptr, int, str);
+ptr gtk_source_buffer_get_style_scheme(ptr);
+ptr gtk_source_buffer_get_undo_manager(ptr);
+int gtk_source_buffer_iter_backward_to_context_class_toggle(ptr, ptr, str);
+int gtk_source_buffer_iter_forward_to_context_class_toggle(ptr, ptr, str);
+int gtk_source_buffer_iter_has_context_class(ptr, ptr, str);
+void gtk_source_buffer_join_lines(ptr, ptr, ptr);
+void gtk_source_buffer_redo(ptr);
+void gtk_source_buffer_remove_source_marks(ptr, ptr, ptr, str);
+void gtk_source_buffer_set_highlight_matching_brackets(ptr, int);
+void gtk_source_buffer_set_highlight_syntax(ptr, int);
+void gtk_source_buffer_set_implicit_trailing_newline(ptr, int);
+void gtk_source_buffer_set_language(ptr, ptr);
+void gtk_source_buffer_set_max_undo_levels(ptr, int);
+void gtk_source_buffer_set_style_scheme(ptr, ptr);
+void gtk_source_buffer_set_undo_manager(ptr, ptr);
+void gtk_source_buffer_sort_lines(ptr, ptr, ptr, int, int);
+void gtk_source_buffer_undo(ptr);
+int gtk_source_completion_add_provider(ptr, ptr, ptr);
+void gtk_source_completion_block_interactive(ptr);
+ptr gtk_source_completion_create_context(ptr, ptr);
+ptr gtk_source_completion_get_info_window(ptr);
+ptr gtk_source_completion_get_providers(ptr);
+ptr gtk_source_completion_get_view(ptr);
+void gtk_source_completion_hide(ptr);
+void gtk_source_completion_move_window(ptr, ptr);
+int gtk_source_completion_remove_provider(ptr, ptr, ptr);
+int gtk_source_completion_show(ptr, ptr, ptr);
+void gtk_source_completion_unblock_interactive(ptr);
+void gtk_source_completion_context_add_proposals(ptr, ptr, ptr, int);
+int gtk_source_completion_context_get_activation(ptr);
+int gtk_source_completion_context_get_iter(ptr, ptr);
+ptr gtk_source_completion_info_new();
+ptr gtk_source_completion_info_get_widget(ptr);
+void gtk_source_completion_info_move_to_iter(ptr, ptr, ptr);
+void gtk_source_completion_info_set_widget(ptr, ptr);
+ptr gtk_source_completion_item_new(str, str, ptr, str);
+ptr gtk_source_completion_item_new_from_stock(str, str, str, str);
+ptr gtk_source_completion_item_new_with_markup(str, str, ptr, str);
+ptr gtk_source_completion_item_new2(ptr);
+void gtk_source_completion_item_set_gicon(ptr, ptr);
+void gtk_source_completion_item_set_icon(ptr, ptr);
+void gtk_source_completion_item_set_icon_name(ptr, str);
+void gtk_source_completion_item_set_info(ptr, str);
+void gtk_source_completion_item_set_label(ptr, str);
+void gtk_source_completion_item_set_markup(ptr, str);
+void gtk_source_completion_item_set_text(ptr, str);
+void gtk_source_completion_proposal_changed(ptr);
+int gtk_source_completion_proposal_equal(ptr, ptr);
+ptr gtk_source_completion_proposal_get_gicon(ptr);
+ptr gtk_source_completion_proposal_get_icon(ptr);
+str gtk_source_completion_proposal_get_icon_name(ptr);
+ptr gtk_source_completion_proposal_get_info(ptr);
+ptr gtk_source_completion_proposal_get_label(ptr);
+ptr gtk_source_completion_proposal_get_markup(ptr);
+ptr gtk_source_completion_proposal_get_text(ptr);
+uint gtk_source_completion_proposal_hash(ptr);
+int gtk_source_completion_provider_activate_proposal(ptr, ptr, ptr);
+int gtk_source_completion_provider_get_activation(ptr);
+ptr gtk_source_completion_provider_get_gicon(ptr);
+ptr gtk_source_completion_provider_get_icon(ptr);
+str gtk_source_completion_provider_get_icon_name(ptr);
+ptr gtk_source_completion_provider_get_info_widget(ptr, ptr);
+int gtk_source_completion_provider_get_interactive_delay(ptr);
+ptr gtk_source_completion_provider_get_name(ptr);
+int gtk_source_completion_provider_get_priority(ptr);
+int gtk_source_completion_provider_get_start_iter(ptr, ptr, ptr, ptr);
+int gtk_source_completion_provider_match(ptr, ptr);
+void gtk_source_completion_provider_populate(ptr, ptr);
+void gtk_source_completion_provider_update_info(ptr, ptr, ptr);
+ptr gtk_source_completion_words_new(str, ptr);
+void gtk_source_completion_words_register(ptr, ptr);
+void gtk_source_completion_words_unregister(ptr, ptr);
+ptr gtk_source_encoding_copy(ptr);
+void gtk_source_encoding_free(ptr);
+str gtk_source_encoding_get_charset(ptr);
+str gtk_source_encoding_get_name(ptr);
+ptr gtk_source_encoding_to_string(ptr);
+ptr gtk_source_encoding_get_all(ptr);
+ptr gtk_source_encoding_get_current(ptr);
+ptr gtk_source_encoding_get_default_candidates(ptr);
+ptr gtk_source_encoding_get_from_charset(ptr, str);
+ptr gtk_source_encoding_get_utf8(ptr);
+ptr gtk_source_file_new();
+void gtk_source_file_check_file_on_disk(ptr);
+int gtk_source_file_get_compression_type(ptr);
+ptr gtk_source_file_get_encoding(ptr);
+ptr gtk_source_file_get_location(ptr);
+int gtk_source_file_get_newline_type(ptr);
+int gtk_source_file_is_deleted(ptr);
+int gtk_source_file_is_externally_modified(ptr);
+int gtk_source_file_is_local(ptr);
+int gtk_source_file_is_readonly(ptr);
+void gtk_source_file_set_location(ptr, ptr);
+ptr gtk_source_file_loader_new(ptr, ptr);
+ptr gtk_source_file_loader_new_from_stream(ptr, ptr, ptr);
+ptr gtk_source_file_loader_get_buffer(ptr);
+int gtk_source_file_loader_get_compression_type(ptr);
+ptr gtk_source_file_loader_get_encoding(ptr);
+ptr gtk_source_file_loader_get_file(ptr);
+ptr gtk_source_file_loader_get_input_stream(ptr);
+ptr gtk_source_file_loader_get_location(ptr);
+int gtk_source_file_loader_get_newline_type(ptr);
+void gtk_source_file_loader_load_async(ptr, int, ptr, ptr, ptr, ptr, ptr, ptr);
+int gtk_source_file_loader_load_finish(ptr, ptr, ptr);
+void gtk_source_file_loader_set_candidate_encodings(ptr, ptr);
+ptr gtk_source_file_saver_new(ptr, ptr);
+ptr gtk_source_file_saver_new_with_target(ptr, ptr, ptr);
+ptr gtk_source_file_saver_get_buffer(ptr);
+int gtk_source_file_saver_get_compression_type(ptr);
+ptr gtk_source_file_saver_get_encoding(ptr);
+ptr gtk_source_file_saver_get_file(ptr);
+int gtk_source_file_saver_get_flags(ptr);
+ptr gtk_source_file_saver_get_location(ptr);
+int gtk_source_file_saver_get_newline_type(ptr);
+void gtk_source_file_saver_save_async(ptr, int, ptr, ptr, ptr, ptr, ptr, ptr);
+int gtk_source_file_saver_save_finish(ptr, ptr, ptr);
+void gtk_source_file_saver_set_compression_type(ptr, int);
+void gtk_source_file_saver_set_encoding(ptr, ptr);
+void gtk_source_file_saver_set_flags(ptr, int);
+void gtk_source_file_saver_set_newline_type(ptr, int);
+void gtk_source_gutter_get_padding(ptr, ptr, ptr);
+ptr gtk_source_gutter_get_renderer_at_pos(ptr, int, int);
+ptr gtk_source_gutter_get_view(ptr);
+ptr gtk_source_gutter_get_window(ptr);
+int gtk_source_gutter_get_window_type(ptr);
+int gtk_source_gutter_insert(ptr, ptr, int);
+void gtk_source_gutter_queue_draw(ptr);
+void gtk_source_gutter_remove(ptr, ptr);
+void gtk_source_gutter_reorder(ptr, ptr, int);
+void gtk_source_gutter_set_padding(ptr, int, int);
+void gtk_source_gutter_renderer_activate(ptr, ptr, ptr, ptr);
+void gtk_source_gutter_renderer_begin(ptr, ptr, ptr, ptr, ptr, ptr);
+void gtk_source_gutter_renderer_draw(ptr, ptr, ptr, ptr, ptr, ptr, int);
+void gtk_source_gutter_renderer_end(ptr);
+void gtk_source_gutter_renderer_get_alignment(ptr, ptr, ptr);
+int gtk_source_gutter_renderer_get_alignment_mode(ptr);
+int gtk_source_gutter_renderer_get_background(ptr, ptr);
+void gtk_source_gutter_renderer_get_padding(ptr, ptr, ptr);
+int gtk_source_gutter_renderer_get_size(ptr);
+ptr gtk_source_gutter_renderer_get_view(ptr);
+int gtk_source_gutter_renderer_get_visible(ptr);
+int gtk_source_gutter_renderer_get_window_type(ptr);
+int gtk_source_gutter_renderer_query_activatable(ptr, ptr, ptr, ptr);
+void gtk_source_gutter_renderer_query_data(ptr, ptr, ptr, int);
+int gtk_source_gutter_renderer_query_tooltip(ptr, ptr, ptr, int, int, ptr);
+void gtk_source_gutter_renderer_queue_draw(ptr);
+void gtk_source_gutter_renderer_set_alignment(ptr, float, float);
+void gtk_source_gutter_renderer_set_alignment_mode(ptr, int);
+void gtk_source_gutter_renderer_set_background(ptr, ptr);
+void gtk_source_gutter_renderer_set_padding(ptr, int, int);
+void gtk_source_gutter_renderer_set_size(ptr, int);
+void gtk_source_gutter_renderer_set_visible(ptr, int);
+ptr gtk_source_gutter_renderer_pixbuf_new();
+ptr gtk_source_gutter_renderer_pixbuf_get_gicon(ptr);
+str gtk_source_gutter_renderer_pixbuf_get_icon_name(ptr);
+ptr gtk_source_gutter_renderer_pixbuf_get_pixbuf(ptr);
+str gtk_source_gutter_renderer_pixbuf_get_stock_id(ptr);
+void gtk_source_gutter_renderer_pixbuf_set_gicon(ptr, ptr);
+void gtk_source_gutter_renderer_pixbuf_set_icon_name(ptr, str);
+void gtk_source_gutter_renderer_pixbuf_set_pixbuf(ptr, ptr);
+void gtk_source_gutter_renderer_pixbuf_set_stock_id(ptr, str);
+ptr gtk_source_gutter_renderer_text_new();
+void gtk_source_gutter_renderer_text_measure(ptr, str, ptr, ptr);
+void gtk_source_gutter_renderer_text_measure_markup(ptr, str, ptr, ptr);
+void gtk_source_gutter_renderer_text_set_markup(ptr, str, int);
+void gtk_source_gutter_renderer_text_set_text(ptr, str, int);
+ptr gtk_source_language_get_globs(ptr);
+int gtk_source_language_get_hidden(ptr);
+str gtk_source_language_get_id(ptr);
+str gtk_source_language_get_metadata(ptr, str);
+ptr gtk_source_language_get_mime_types(ptr);
+str gtk_source_language_get_name(ptr);
+str gtk_source_language_get_section(ptr);
+str gtk_source_language_get_style_fallback(ptr, str);
+ptr gtk_source_language_get_style_ids(ptr);
+str gtk_source_language_get_style_name(ptr, str);
+ptr gtk_source_language_manager_new();
+ptr gtk_source_language_manager_get_default(ptr);
+ptr gtk_source_language_manager_get_language(ptr, str);
+ptr gtk_source_language_manager_get_language_ids(ptr);
+ptr gtk_source_language_manager_get_search_path(ptr);
+ptr gtk_source_language_manager_guess_language(ptr, str, str);
+void gtk_source_language_manager_set_search_path(ptr, ptr);
+ptr gtk_source_map_new();
+ptr gtk_source_map_get_view(ptr);
+void gtk_source_map_set_view(ptr, ptr);
+ptr gtk_source_mark_new(str, str);
+str gtk_source_mark_get_category(ptr);
+ptr gtk_source_mark_next(ptr, str);
+ptr gtk_source_mark_prev(ptr, str);
+ptr gtk_source_mark_attributes_new();
+int gtk_source_mark_attributes_get_background(ptr, ptr);
+ptr gtk_source_mark_attributes_get_gicon(ptr);
+str gtk_source_mark_attributes_get_icon_name(ptr);
+ptr gtk_source_mark_attributes_get_pixbuf(ptr);
+str gtk_source_mark_attributes_get_stock_id(ptr);
+ptr gtk_source_mark_attributes_get_tooltip_markup(ptr, ptr);
+ptr gtk_source_mark_attributes_get_tooltip_text(ptr, ptr);
+ptr gtk_source_mark_attributes_render_icon(ptr, ptr, int);
+void gtk_source_mark_attributes_set_background(ptr, ptr);
+void gtk_source_mark_attributes_set_gicon(ptr, ptr);
+void gtk_source_mark_attributes_set_icon_name(ptr, str);
+void gtk_source_mark_attributes_set_pixbuf(ptr, ptr);
+void gtk_source_mark_attributes_set_stock_id(ptr, str);
+ptr gtk_source_print_compositor_new(ptr);
+ptr gtk_source_print_compositor_new_from_view(ptr);
+void gtk_source_print_compositor_draw_page(ptr, ptr, int);
+ptr gtk_source_print_compositor_get_body_font_name(ptr);
+double gtk_source_print_compositor_get_bottom_margin(ptr, int);
+ptr gtk_source_print_compositor_get_buffer(ptr);
+ptr gtk_source_print_compositor_get_footer_font_name(ptr);
+ptr gtk_source_print_compositor_get_header_font_name(ptr);
+int gtk_source_print_compositor_get_highlight_syntax(ptr);
+double gtk_source_print_compositor_get_left_margin(ptr, int);
+ptr gtk_source_print_compositor_get_line_numbers_font_name(ptr);
+int gtk_source_print_compositor_get_n_pages(ptr);
+double gtk_source_print_compositor_get_pagination_progress(ptr);
+int gtk_source_print_compositor_get_print_footer(ptr);
+int gtk_source_print_compositor_get_print_header(ptr);
+uint gtk_source_print_compositor_get_print_line_numbers(ptr);
+double gtk_source_print_compositor_get_right_margin(ptr, int);
+uint gtk_source_print_compositor_get_tab_width(ptr);
+double gtk_source_print_compositor_get_top_margin(ptr, int);
+int gtk_source_print_compositor_get_wrap_mode(ptr);
+int gtk_source_print_compositor_paginate(ptr, ptr);
+void gtk_source_print_compositor_set_body_font_name(ptr, str);
+void gtk_source_print_compositor_set_bottom_margin(ptr, double, int);
+void gtk_source_print_compositor_set_footer_font_name(ptr, str);
+void gtk_source_print_compositor_set_footer_format(ptr, int, str, str, str);
+void gtk_source_print_compositor_set_header_font_name(ptr, str);
+void gtk_source_print_compositor_set_header_format(ptr, int, str, str, str);
+void gtk_source_print_compositor_set_highlight_syntax(ptr, int);
+void gtk_source_print_compositor_set_left_margin(ptr, double, int);
+void gtk_source_print_compositor_set_line_numbers_font_name(ptr, str);
+void gtk_source_print_compositor_set_print_footer(ptr, int);
+void gtk_source_print_compositor_set_print_header(ptr, int);
+void gtk_source_print_compositor_set_print_line_numbers(ptr, uint);
+void gtk_source_print_compositor_set_right_margin(ptr, double, int);
+void gtk_source_print_compositor_set_tab_width(ptr, uint);
+void gtk_source_print_compositor_set_top_margin(ptr, double, int);
+void gtk_source_print_compositor_set_wrap_mode(ptr, int);
+ptr gtk_source_region_new(ptr);
+void gtk_source_region_add_region(ptr, ptr);
+void gtk_source_region_add_subregion(ptr, ptr, ptr);
+int gtk_source_region_get_bounds(ptr, ptr, ptr);
+ptr gtk_source_region_get_buffer(ptr);
+void gtk_source_region_get_start_region_iter(ptr, ptr);
+ptr gtk_source_region_intersect_region(ptr, ptr);
+ptr gtk_source_region_intersect_subregion(ptr, ptr, ptr);
+int gtk_source_region_is_empty(ptr);
+void gtk_source_region_subtract_region(ptr, ptr);
+void gtk_source_region_subtract_subregion(ptr, ptr, ptr);
+ptr gtk_source_region_to_string(ptr);
+int gtk_source_region_iter_get_subregion(ptr, ptr, ptr);
+int gtk_source_region_iter_is_end(ptr);
+int gtk_source_region_iter_next(ptr);
+ptr gtk_source_search_context_new(ptr, ptr);
+int gtk_source_search_context_backward(ptr, ptr, ptr, ptr);
+int gtk_source_search_context_backward2(ptr, ptr, ptr, ptr, ptr);
+void gtk_source_search_context_backward_async(ptr, ptr, ptr, ptr, ptr);
+int gtk_source_search_context_backward_finish(ptr, ptr, ptr, ptr, ptr);
+int gtk_source_search_context_backward_finish2(ptr, ptr, ptr, ptr, ptr, ptr);
+int gtk_source_search_context_forward(ptr, ptr, ptr, ptr);
+int gtk_source_search_context_forward2(ptr, ptr, ptr, ptr, ptr);
+void gtk_source_search_context_forward_async(ptr, ptr, ptr, ptr, ptr);
+int gtk_source_search_context_forward_finish(ptr, ptr, ptr, ptr, ptr);
+int gtk_source_search_context_forward_finish2(ptr, ptr, ptr, ptr, ptr, ptr);
+ptr gtk_source_search_context_get_buffer(ptr);
+int gtk_source_search_context_get_highlight(ptr);
+ptr gtk_source_search_context_get_match_style(ptr);
+int gtk_source_search_context_get_occurrence_position(ptr, ptr, ptr);
+int gtk_source_search_context_get_occurrences_count(ptr);
+ptr gtk_source_search_context_get_regex_error(ptr);
+ptr gtk_source_search_context_get_settings(ptr);
+int gtk_source_search_context_replace(ptr, ptr, ptr, str, int, ptr);
+int gtk_source_search_context_replace2(ptr, ptr, ptr, str, int, ptr);
+uint gtk_source_search_context_replace_all(ptr, str, int, ptr);
+void gtk_source_search_context_set_highlight(ptr, int);
+void gtk_source_search_context_set_match_style(ptr, ptr);
+void gtk_source_search_context_set_settings(ptr, ptr);
+ptr gtk_source_search_settings_new();
+int gtk_source_search_settings_get_at_word_boundaries(ptr);
+int gtk_source_search_settings_get_case_sensitive(ptr);
+int gtk_source_search_settings_get_regex_enabled(ptr);
+str gtk_source_search_settings_get_search_text(ptr);
+int gtk_source_search_settings_get_wrap_around(ptr);
+void gtk_source_search_settings_set_at_word_boundaries(ptr, int);
+void gtk_source_search_settings_set_case_sensitive(ptr, int);
+void gtk_source_search_settings_set_regex_enabled(ptr, int);
+void gtk_source_search_settings_set_search_text(ptr, str);
+void gtk_source_search_settings_set_wrap_around(ptr, int);
+ptr gtk_source_space_drawer_new();
+void gtk_source_space_drawer_bind_matrix_setting(ptr, ptr, str, int);
+int gtk_source_space_drawer_get_enable_matrix(ptr);
+ptr gtk_source_space_drawer_get_matrix(ptr);
+int gtk_source_space_drawer_get_types_for_locations(ptr, int);
+void gtk_source_space_drawer_set_enable_matrix(ptr, int);
+void gtk_source_space_drawer_set_matrix(ptr, ptr);
+void gtk_source_space_drawer_set_types_for_locations(ptr, int, int);
+void gtk_source_style_apply(ptr, ptr);
+ptr gtk_source_style_copy(ptr);
+ptr gtk_source_style_scheme_get_authors(ptr);
+str gtk_source_style_scheme_get_description(ptr);
+str gtk_source_style_scheme_get_filename(ptr);
+str gtk_source_style_scheme_get_id(ptr);
+str gtk_source_style_scheme_get_name(ptr);
+ptr gtk_source_style_scheme_get_style(ptr, str);
+ptr gtk_source_style_scheme_chooser_get_style_scheme(ptr);
+void gtk_source_style_scheme_chooser_set_style_scheme(ptr, ptr);
+ptr gtk_source_style_scheme_chooser_button_new();
+ptr gtk_source_style_scheme_chooser_widget_new();
+ptr gtk_source_style_scheme_manager_new();
+ptr gtk_source_style_scheme_manager_get_default(ptr);
+void gtk_source_style_scheme_manager_append_search_path(ptr, str);
+void gtk_source_style_scheme_manager_force_rescan(ptr);
+ptr gtk_source_style_scheme_manager_get_scheme(ptr, str);
+ptr gtk_source_style_scheme_manager_get_scheme_ids(ptr);
+ptr gtk_source_style_scheme_manager_get_search_path(ptr);
+void gtk_source_style_scheme_manager_prepend_search_path(ptr, str);
+void gtk_source_style_scheme_manager_set_search_path(ptr, ptr);
+ptr gtk_source_tag_new(str);
+void gtk_source_undo_manager_begin_not_undoable_action(ptr);
+int gtk_source_undo_manager_can_redo(ptr);
+void gtk_source_undo_manager_can_redo_changed(ptr);
+int gtk_source_undo_manager_can_undo(ptr);
+void gtk_source_undo_manager_can_undo_changed(ptr);
+void gtk_source_undo_manager_end_not_undoable_action(ptr);
+void gtk_source_undo_manager_redo(ptr);
+void gtk_source_undo_manager_undo(ptr);
+ptr gtk_source_view_new();
+ptr gtk_source_view_new_with_buffer(ptr);
+int gtk_source_view_get_auto_indent(ptr);
+int gtk_source_view_get_background_pattern(ptr);
+ptr gtk_source_view_get_completion(ptr);
+int gtk_source_view_get_draw_spaces(ptr);
+ptr gtk_source_view_get_gutter(ptr, int);
+int gtk_source_view_get_highlight_current_line(ptr);
+int gtk_source_view_get_indent_on_tab(ptr);
+int gtk_source_view_get_indent_width(ptr);
+int gtk_source_view_get_insert_spaces_instead_of_tabs(ptr);
+ptr gtk_source_view_get_mark_attributes(ptr, str, ptr);
+uint gtk_source_view_get_right_margin_position(ptr);
+int gtk_source_view_get_show_line_marks(ptr);
+int gtk_source_view_get_show_line_numbers(ptr);
+int gtk_source_view_get_show_right_margin(ptr);
+int gtk_source_view_get_smart_backspace(ptr);
+int gtk_source_view_get_smart_home_end(ptr);
+ptr gtk_source_view_get_space_drawer(ptr);
+uint gtk_source_view_get_tab_width(ptr);
+uint gtk_source_view_get_visual_column(ptr, ptr);
+void gtk_source_view_indent_lines(ptr, ptr, ptr);
+void gtk_source_view_set_auto_indent(ptr, int);
+void gtk_source_view_set_background_pattern(ptr, int);
+void gtk_source_view_set_draw_spaces(ptr, int);
+void gtk_source_view_set_highlight_current_line(ptr, int);
+void gtk_source_view_set_indent_on_tab(ptr, int);
+void gtk_source_view_set_indent_width(ptr, int);
+void gtk_source_view_set_insert_spaces_instead_of_tabs(ptr, int);
+void gtk_source_view_set_mark_attributes(ptr, str, ptr, int);
+void gtk_source_view_set_right_margin_position(ptr, uint);
+void gtk_source_view_set_show_line_marks(ptr, int);
+void gtk_source_view_set_show_line_numbers(ptr, int);
+void gtk_source_view_set_show_right_margin(ptr, int);
+void gtk_source_view_set_smart_backspace(ptr, int);
+void gtk_source_view_set_smart_home_end(ptr, int);
+void gtk_source_view_set_tab_width(ptr, uint);
+void gtk_source_view_unindent_lines(ptr, ptr, ptr);
+uint gtk_source_completion_error_quark();
+ptr gtk_source_encoding_get_all();
+ptr gtk_source_encoding_get_current();
+ptr gtk_source_encoding_get_default_candidates();
+ptr gtk_source_encoding_get_from_charset(str);
+ptr gtk_source_encoding_get_utf8();
+uint gtk_source_file_loader_error_quark();
+uint gtk_source_file_saver_error_quark();
+ptr gtk_source_utils_escape_search_text(str);
+ptr gtk_source_utils_unescape_search_text(str);
+};
+
+extern struct GtkSourceBufferClass{
+byte parent_class[272],  // GtkSourceTextBufferClass
+ptr undo,  // ::undo
+ptr redo,  // ::redo
+ptr bracket_matched,  // ::bracket_matched
+ptr _gtk_source_reserved1,  // void*
+ptr _gtk_source_reserved2,  // void*
+ptr _gtk_source_reserved3,  // void*
+};
+
+extern struct GtkSourceBufferPrivate{
+
+};
+
+extern struct GtkSourceCompletionClass{
+byte parent_class[136],  // GtkSourceObjectClass
+ptr proposal_activated,  // ::proposal_activated
+ptr show,  // ::show
+ptr hide,  // ::hide
+ptr populate_context,  // ::populate_context
+ptr move_cursor,  // ::move_cursor
+ptr move_page,  // ::move_page
+ptr activate_proposal,  // ::activate_proposal
+};
+
+extern struct GtkSourceCompletionContextClass{
+byte parent_class[136],  // GtkSourceInitiallyUnownedClass
+ptr cancelled,  // ::cancelled
+ptr _gtk_source_reserved1,  // void*
+ptr _gtk_source_reserved2,  // void*
+ptr _gtk_source_reserved3,  // void*
+};
+
+extern struct GtkSourceCompletionContextPrivate{
+
+};
+
+extern struct GtkSourceCompletionInfoClass{
+byte parent_class[1072],  // GtkSourceWindowClass
+ptr before_show,  // ::before_show
+};
+
+extern struct GtkSourceCompletionInfoPrivate{
+
+};
+
+extern struct GtkSourceCompletionItemClass{
+byte parent_class[136],  // GtkSourceObjectClass
+};
+
+extern struct GtkSourceCompletionItemPrivate{
+
+};
+
+extern struct GtkSourceCompletionPrivate{
+
+};
+
+extern struct GtkSourceCompletionProposalIface{
+byte parent[16],  // GtkSourceTypeInterface
+ptr get_label,  // ::get_label
+ptr get_markup,  // ::get_markup
+ptr get_text,  // ::get_text
+ptr get_icon,  // ::get_icon
+ptr get_icon_name,  // ::get_icon_name
+ptr get_gicon,  // ::get_gicon
+ptr get_info,  // ::get_info
+ptr hash,  // ::hash
+ptr equal,  // ::equal
+ptr changed,  // ::changed
+};
+
+extern struct GtkSourceCompletionProviderIface{
+byte g_iface[16],  // GtkSourceTypeInterface
+ptr get_name,  // ::get_name
+ptr get_icon,  // ::get_icon
+ptr get_icon_name,  // ::get_icon_name
+ptr get_gicon,  // ::get_gicon
+ptr populate,  // ::populate
+ptr match,  // ::match
+ptr get_activation,  // ::get_activation
+ptr get_info_widget,  // ::get_info_widget
+ptr update_info,  // ::update_info
+ptr get_start_iter,  // ::get_start_iter
+ptr activate_proposal,  // ::activate_proposal
+ptr get_interactive_delay,  // ::get_interactive_delay
+ptr get_priority,  // ::get_priority
+};
+
+extern struct GtkSourceCompletionWordsClass{
+byte parent_class[136],  // GtkSourceObjectClass
+};
+
+extern struct GtkSourceCompletionWordsPrivate{
+
+};
+
+// name GtkSourceEncoding
+extern struct GtkSourceEncoding{
+
+};
+
+extern struct GtkSourceFileClass{
+byte parent_class[136],  // GtkSourceObjectClass
+ptr padding_0,
+ptr padding_1,
+ptr padding_2,
+ptr padding_3,
+ptr padding_4,
+ptr padding_5,
+ptr padding_6,
+ptr padding_7,
+ptr padding_8,
+ptr padding_9,
+};
+
+extern struct GtkSourceFileLoaderClass{
+byte parent_class[136],  // GtkSourceObjectClass
+ptr padding_0,
+ptr padding_1,
+ptr padding_2,
+ptr padding_3,
+ptr padding_4,
+ptr padding_5,
+ptr padding_6,
+ptr padding_7,
+ptr padding_8,
+ptr padding_9,
+};
+
+extern struct GtkSourceFileLoaderPrivate{
+
+};
+
+extern struct GtkSourceFilePrivate{
+
+};
+
+extern struct GtkSourceFileSaverClass{
+byte parent_class[136],  // GtkSourceObjectClass
+ptr padding_0,
+ptr padding_1,
+ptr padding_2,
+ptr padding_3,
+ptr padding_4,
+ptr padding_5,
+ptr padding_6,
+ptr padding_7,
+ptr padding_8,
+ptr padding_9,
+};
+
+extern struct GtkSourceFileSaverPrivate{
+
+};
+
+extern struct GtkSourceGutterClass{
+byte parent_class[136],  // GtkSourceObjectClass
+};
+
+extern struct GtkSourceGutterPrivate{
+
+};
+
+extern struct GtkSourceGutterRendererClass{
+byte parent_class[136],  // GtkSourceInitiallyUnownedClass
+ptr begin,  // ::begin
+ptr draw,  // ::draw
+ptr end,  // ::end
+ptr change_view,  // ::change_view
+ptr change_buffer,  // ::change_buffer
+ptr query_activatable,  // ::query_activatable
+ptr activate,  // ::activate
+ptr queue_draw,  // ::queue_draw
+ptr query_tooltip,  // ::query_tooltip
+ptr query_data,  // ::query_data
+};
+
+extern struct GtkSourceGutterRendererPixbufClass{
+byte parent_class[216],  // GtkSourceGutterRendererClass
+};
+
+extern struct GtkSourceGutterRendererPixbufPrivate{
+
+};
+
+extern struct GtkSourceGutterRendererPrivate{
+
+};
+
+extern struct GtkSourceGutterRendererTextClass{
+byte parent_class[216],  // GtkSourceGutterRendererClass
+};
+
+extern struct GtkSourceGutterRendererTextPrivate{
+
+};
+
+extern struct GtkSourceLanguageClass{
+byte parent_class[136],  // GtkSourceObjectClass
+ptr _gtk_source_reserved1,  // void*
+ptr _gtk_source_reserved2,  // void*
+};
+
+extern struct GtkSourceLanguageManagerClass{
+byte parent_class[136],  // GtkSourceObjectClass
+ptr _gtk_source_reserved1,  // void*
+ptr _gtk_source_reserved2,  // void*
+ptr _gtk_source_reserved3,  // void*
+ptr _gtk_source_reserved4,  // void*
+};
+
+extern struct GtkSourceLanguageManagerPrivate{
+
+};
+
+extern struct GtkSourceLanguagePrivate{
+
+};
+
+extern struct GtkSourceMapClass{
+byte parent_class[1168],  // GtkSourceViewClass
+ptr padding_0,
+ptr padding_1,
+ptr padding_2,
+ptr padding_3,
+ptr padding_4,
+ptr padding_5,
+ptr padding_6,
+ptr padding_7,
+ptr padding_8,
+ptr padding_9,
+};
+
+extern struct GtkSourceMarkAttributesClass{
+byte parent_class[136],  // GtkSourceObjectClass
+};
+
+extern struct GtkSourceMarkAttributesPrivate{
+
+};
+
+extern struct GtkSourceMarkClass{
+byte parent_class[168],  // GtkSourceTextMarkClass
+ptr _gtk_source_reserved1,  // void*
+ptr _gtk_source_reserved2,  // void*
+};
+
+extern struct GtkSourceMarkPrivate{
+
+};
+
+extern struct GtkSourcePrintCompositorClass{
+byte parent_class[136],  // GtkSourceObjectClass
+ptr _gtk_source_reserved1,  // void*
+ptr _gtk_source_reserved2,  // void*
+};
+
+extern struct GtkSourcePrintCompositorPrivate{
+
+};
+
+extern struct GtkSourceRegionClass{
+byte parent_class[136],  // GtkSourceObjectClass
+ptr padding_0,
+ptr padding_1,
+ptr padding_2,
+ptr padding_3,
+ptr padding_4,
+ptr padding_5,
+ptr padding_6,
+ptr padding_7,
+};
+
+extern struct GtkSourceRegionIter{
+ptr dummy1,  // void*
+uint dummy2,  // guint32
+ptr dummy3,  // void*
+};
+
+extern struct GtkSourceSearchContextClass{
+byte parent_class[136],  // GtkSourceObjectClass
+ptr padding_0,
+ptr padding_1,
+ptr padding_2,
+ptr padding_3,
+ptr padding_4,
+ptr padding_5,
+ptr padding_6,
+ptr padding_7,
+ptr padding_8,
+ptr padding_9,
+};
+
+extern struct GtkSourceSearchContextPrivate{
+
+};
+
+extern struct GtkSourceSearchSettingsClass{
+byte parent_class[136],  // GtkSourceObjectClass
+ptr padding_0,
+ptr padding_1,
+ptr padding_2,
+ptr padding_3,
+ptr padding_4,
+ptr padding_5,
+ptr padding_6,
+ptr padding_7,
+ptr padding_8,
+ptr padding_9,
+};
+
+extern struct GtkSourceSearchSettingsPrivate{
+
+};
+
+extern struct GtkSourceSpaceDrawerClass{
+byte parent_class[136],  // GtkSourceObjectClass
+ptr padding_0,
+ptr padding_1,
+ptr padding_2,
+ptr padding_3,
+ptr padding_4,
+ptr padding_5,
+ptr padding_6,
+ptr padding_7,
+ptr padding_8,
+ptr padding_9,
+ptr padding_10,
+ptr padding_11,
+ptr padding_12,
+ptr padding_13,
+ptr padding_14,
+ptr padding_15,
+ptr padding_16,
+ptr padding_17,
+ptr padding_18,
+ptr padding_19,
+};
+
+extern struct GtkSourceSpaceDrawerPrivate{
+
+};
+
+extern struct GtkSourceStyleClass{
+
+};
+
+extern struct GtkSourceStyleSchemeChooserButtonClass{
+byte parent[1088],  // GtkSourceButtonClass
+};
+
+extern struct GtkSourceStyleSchemeChooserInterface{
+byte base_interface[16],  // GtkSourceTypeInterface
+ptr get_style_scheme,  // ::get_style_scheme
+ptr set_style_scheme,  // ::set_style_scheme
+ptr padding_0,
+ptr padding_1,
+ptr padding_2,
+ptr padding_3,
+ptr padding_4,
+ptr padding_5,
+ptr padding_6,
+ptr padding_7,
+ptr padding_8,
+ptr padding_9,
+ptr padding_10,
+ptr padding_11,
+};
+
+extern struct GtkSourceStyleSchemeChooserWidgetClass{
+byte parent[1008],  // GtkSourceBinClass
+};
+
+extern struct GtkSourceStyleSchemeClass{
+byte base_class[136],  // GtkSourceObjectClass
+ptr _gtk_source_reserved1,  // void*
+ptr _gtk_source_reserved2,  // void*
+};
+
+extern struct GtkSourceStyleSchemeManagerClass{
+byte parent_class[136],  // GtkSourceObjectClass
+ptr _gtk_source_reserved1,  // void*
+ptr _gtk_source_reserved2,  // void*
+ptr _gtk_source_reserved3,  // void*
+ptr _gtk_source_reserved4,  // void*
+};
+
+extern struct GtkSourceStyleSchemeManagerPrivate{
+
+};
+
+extern struct GtkSourceStyleSchemePrivate{
+
+};
+
+extern struct GtkSourceTagClass{
+byte parent_class[176],  // GtkSourceTextTagClass
+ptr padding_0,
+ptr padding_1,
+ptr padding_2,
+ptr padding_3,
+ptr padding_4,
+ptr padding_5,
+ptr padding_6,
+ptr padding_7,
+ptr padding_8,
+ptr padding_9,
+};
+
+extern struct GtkSourceUndoManagerIface{
+byte parent[16],  // GtkSourceTypeInterface
+ptr can_undo,  // ::can_undo
+ptr can_redo,  // ::can_redo
+ptr undo,  // ::undo
+ptr redo,  // ::redo
+ptr begin_not_undoable_action,  // ::begin_not_undoable_action
+ptr end_not_undoable_action,  // ::end_not_undoable_action
+ptr can_undo_changed,  // ::can_undo_changed
+ptr can_redo_changed,  // ::can_redo_changed
+};
+
+extern struct GtkSourceViewClass{
+byte parent_class[1120],  // GtkSourceTextViewClass
+ptr undo,  // ::undo
+ptr redo,  // ::redo
+ptr line_mark_activated,  // ::line_mark_activated
+ptr show_completion,  // ::show_completion
+ptr move_lines,  // ::move_lines
+ptr move_words,  // ::move_words
+};
+
+extern struct GtkSourceViewPrivate{
+
+};
+
+var GtkSource_BackgroundPatternType_none = 0;
+var GtkSource_BackgroundPatternType_grid = 1;
+
+var GtkSource_BracketMatchType_none = 0;
+var GtkSource_BracketMatchType_out_of_range = 1;
+var GtkSource_BracketMatchType_not_found = 2;
+var GtkSource_BracketMatchType_found = 3;
+
+var GtkSource_ChangeCaseType_lower = 0;
+var GtkSource_ChangeCaseType_upper = 1;
+var GtkSource_ChangeCaseType_toggle = 2;
+var GtkSource_ChangeCaseType_title = 3;
+
+var GtkSource_CompletionActivation_none = 0;
+var GtkSource_CompletionActivation_interactive = 1;
+var GtkSource_CompletionActivation_user_requested = 2;
+
+var GtkSource_CompletionError_already_bound = 0;
+var GtkSource_CompletionError_not_bound = 1;
+
+var GtkSource_CompressionType_none = 0;
+var GtkSource_CompressionType_gzip = 1;
+
+var GtkSource_DrawSpacesFlags_space = 1;
+var GtkSource_DrawSpacesFlags_tab = 2;
+var GtkSource_DrawSpacesFlags_newline = 4;
+var GtkSource_DrawSpacesFlags_nbsp = 8;
+var GtkSource_DrawSpacesFlags_leading = 16;
+var GtkSource_DrawSpacesFlags_text = 32;
+var GtkSource_DrawSpacesFlags_trailing = 64;
+var GtkSource_DrawSpacesFlags_all = 127;
+
+var GtkSource_FileLoaderError_too_big = 0;
+var GtkSource_FileLoaderError_encoding_auto_detection_failed = 1;
+var GtkSource_FileLoaderError_conversion_fallback = 2;
+
+var GtkSource_FileSaverError_invalid_chars = 0;
+var GtkSource_FileSaverError_externally_modified = 1;
+
+var GtkSource_FileSaverFlags_none = 0;
+var GtkSource_FileSaverFlags_ignore_invalid_chars = 1;
+var GtkSource_FileSaverFlags_ignore_modification_time = 2;
+var GtkSource_FileSaverFlags_create_backup = 4;
+
+var GtkSource_GutterRendererAlignmentMode_cell = 0;
+var GtkSource_GutterRendererAlignmentMode_first = 1;
+var GtkSource_GutterRendererAlignmentMode_last = 2;
+
+var GtkSource_GutterRendererState_normal = 0;
+var GtkSource_GutterRendererState_cursor = 1;
+var GtkSource_GutterRendererState_prelit = 2;
+var GtkSource_GutterRendererState_selected = 4;
+
+var GtkSource_NewlineType_lf = 0;
+var GtkSource_NewlineType_cr = 1;
+var GtkSource_NewlineType_cr_lf = 2;
+
+var GtkSource_SmartHomeEndType_disabled = 0;
+var GtkSource_SmartHomeEndType_before = 1;
+var GtkSource_SmartHomeEndType_after = 2;
+var GtkSource_SmartHomeEndType_always = 3;
+
+var GtkSource_SortFlags_none = 0;
+var GtkSource_SortFlags_case_sensitive = 1;
+var GtkSource_SortFlags_reverse_order = 2;
+var GtkSource_SortFlags_remove_duplicates = 4;
+
+var GtkSource_SpaceLocationFlags_none = 0;
+var GtkSource_SpaceLocationFlags_leading = 1;
+var GtkSource_SpaceLocationFlags_inside_text = 2;
+var GtkSource_SpaceLocationFlags_trailing = 4;
+var GtkSource_SpaceLocationFlags_all = 7;
+
+var GtkSource_SpaceTypeFlags_none = 0;
+var GtkSource_SpaceTypeFlags_space = 1;
+var GtkSource_SpaceTypeFlags_tab = 2;
+var GtkSource_SpaceTypeFlags_newline = 4;
+var GtkSource_SpaceTypeFlags_nbsp = 8;
+var GtkSource_SpaceTypeFlags_all = 15;
+
+var GtkSource_ViewGutterPosition_lines = -30;
+var GtkSource_ViewGutterPosition_marks = -20;
+
+
+extern callback void GtkSourceBuffer_signal_bracket_matched(ptr, ptr, int, ptr);
+extern callback void GtkSourceBuffer_signal_highlight_updated(ptr, ptr, ptr, ptr);
+extern callback void GtkSourceBuffer_signal_redo(ptr, ptr);
+extern callback void GtkSourceBuffer_signal_source_mark_updated(ptr, ptr, ptr);
+extern callback void GtkSourceBuffer_signal_undo(ptr, ptr);
+extern callback void GtkSourceCompletion_signal_activate_proposal(ptr, ptr);
+extern callback void GtkSourceCompletion_signal_hide(ptr, ptr);
+extern callback void GtkSourceCompletion_signal_move_cursor(ptr, int, int, ptr);
+extern callback void GtkSourceCompletion_signal_move_page(ptr, int, int, ptr);
+extern callback void GtkSourceCompletion_signal_populate_context(ptr, ptr, ptr);
+extern callback void GtkSourceCompletion_signal_show(ptr, ptr);
+extern callback void GtkSourceCompletionContext_signal_cancelled(ptr, ptr);
+extern callback void GtkSourceCompletionInfo_signal_before_show(ptr, ptr);
+extern callback void GtkSourceGutterRenderer_signal_activate(ptr, ptr, ptr, ptr, ptr);
+extern callback int GtkSourceGutterRenderer_signal_query_activatable(ptr, ptr, ptr, ptr, ptr);
+extern callback void GtkSourceGutterRenderer_signal_query_data(ptr, ptr, ptr, int, ptr);
+extern callback int GtkSourceGutterRenderer_signal_query_tooltip(ptr, ptr, ptr, int, int, ptr, ptr);
+extern callback void GtkSourceGutterRenderer_signal_queue_draw(ptr, ptr);
+extern callback ptr GtkSourceMarkAttributes_signal_query_tooltip_markup(ptr, ptr, ptr);
+extern callback ptr GtkSourceMarkAttributes_signal_query_tooltip_text(ptr, ptr, ptr);
+extern callback void GtkSourceView_signal_change_case(ptr, int, ptr);
+extern callback void GtkSourceView_signal_change_number(ptr, int, ptr);
+extern callback void GtkSourceView_signal_join_lines(ptr, ptr);
+extern callback void GtkSourceView_signal_line_mark_activated(ptr, ptr, ptr, ptr);
+extern callback void GtkSourceView_signal_move_lines(ptr, int, int, ptr);
+extern callback void GtkSourceView_signal_move_to_matching_bracket(ptr, int, ptr);
+extern callback void GtkSourceView_signal_move_words(ptr, int, ptr);
+extern callback void GtkSourceView_signal_redo(ptr, ptr);
+extern callback void GtkSourceView_signal_show_completion(ptr, ptr);
+extern callback void GtkSourceView_signal_smart_home_end(ptr, ptr, int, ptr);
+extern callback void GtkSourceView_signal_undo(ptr, ptr);
+////////////////////////
+extern callback void GtkSourceBuffer_virtual_bracket_matched(ptr, ptr, int);
+extern callback void GtkSourceBuffer_virtual_redo(ptr);
+extern callback void GtkSourceBuffer_virtual_undo(ptr);
+extern callback void GtkSourceCompletion_virtual_activate_proposal(ptr);
+extern callback void GtkSourceCompletion_virtual_hide(ptr);
+extern callback void GtkSourceCompletion_virtual_move_cursor(ptr, int, int);
+extern callback void GtkSourceCompletion_virtual_move_page(ptr, int, int);
+extern callback void GtkSourceCompletion_virtual_populate_context(ptr, ptr);
+extern callback int GtkSourceCompletion_virtual_proposal_activated(ptr, ptr, ptr);
+extern callback void GtkSourceCompletion_virtual_show(ptr);
+extern callback void GtkSourceCompletionContext_virtual_cancelled(ptr);
+extern callback void GtkSourceCompletionInfo_virtual_before_show(ptr);
+extern callback void GtkSourceGutterRenderer_virtual_activate(ptr, ptr, ptr, ptr);
+extern callback void GtkSourceGutterRenderer_virtual_begin(ptr, ptr, ptr, ptr, ptr, ptr);
+extern callback void GtkSourceGutterRenderer_virtual_change_buffer(ptr, ptr);
+extern callback void GtkSourceGutterRenderer_virtual_change_view(ptr, ptr);
+extern callback void GtkSourceGutterRenderer_virtual_draw(ptr, ptr, ptr, ptr, ptr, ptr, int);
+extern callback void GtkSourceGutterRenderer_virtual_end(ptr);
+extern callback int GtkSourceGutterRenderer_virtual_query_activatable(ptr, ptr, ptr, ptr);
+extern callback void GtkSourceGutterRenderer_virtual_query_data(ptr, ptr, ptr, int);
+extern callback int GtkSourceGutterRenderer_virtual_query_tooltip(ptr, ptr, ptr, int, int, ptr);
+extern callback void GtkSourceGutterRenderer_virtual_queue_draw(ptr);
+extern callback void GtkSourceView_virtual_line_mark_activated(ptr, ptr, ptr);
+extern callback void GtkSourceView_virtual_move_lines(ptr, int, int);
+extern callback void GtkSourceView_virtual_move_words(ptr, int);
+extern callback void GtkSourceView_virtual_redo(ptr);
+extern callback void GtkSourceView_virtual_show_completion(ptr);
+extern callback void GtkSourceView_virtual_undo(ptr);
+

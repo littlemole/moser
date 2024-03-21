@@ -1,0 +1,32 @@
+var i = 3;
+do {
+    print i;
+    i--;
+} while(i>0);
+
+// expect: 3
+// expect: 2
+// expect: 1
+
+var i = 3;
+do {
+    print i;
+    i--;
+    break;
+} while(i>0);
+
+// expect: 3
+
+var i = 3;
+do {
+    print i;
+    i--;
+    if(i==2) continue;
+    break;
+} while(i>0);
+
+// expect: 3
+// expect: 2
+
+
+

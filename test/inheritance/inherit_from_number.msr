@@ -1,0 +1,5 @@
+var Number = 123;
+
+class Foo : Number {} // expect: Superclass must be a class.
+
+// expect: [line 3] in script

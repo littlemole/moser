@@ -1,0 +1,71 @@
+
+extern from "libcurl.so" {
+    
+    long curl_global_init(long);
+    ptr curl_easy_init();
+    long curl_easy_setopt(ptr, long, ptr);
+    long curl_easy_perform(ptr);
+
+    void curl_easy_cleanup(ptr);
+    void curl_global_cleanup();
+}
+
+extern callback long curl_write_data(ptr, long, long, ptr);
+
+var curl_opt = {
+
+    "CURLOPT_URL"               : 10002,
+    "CURLOPT_FOLLOWLOCATION"    : 52,
+    "CURLOPT_WRITEFUNCTION"     : 20011,
+
+    "CURLE_OK"                  : 0,
+};
+
+class Curl
+{
+    Curl()
+    {
+        this.content = "";
+        this.curl = curl_easy_init();
+        this.receiver = curl_write_data(this.write_data);
+        curl_easy_setopt(this.curl, curl_opt.CURLOPT_WRITEFUNCTION, this.receiver);
+    }
+
+    set_url(url)
+    {
+        curl_easy_setopt(this.curl, curl_opt.CURLOPT_URL, url);
+    }
+
+    perform()
+    {
+        var res = curl_easy_perform(this.curl);
+        if(res != curl_opt.CURLE_OK)
+            throw("curl_easy_perform() failed");
+    }
+
+    release()
+    {
+        print this.content;
+        curl_easy_cleanup(this.curl);
+    }
+
+    write_data(data, size, len, that)
+    {
+        var s = size*len;
+        if(s==0) return 0;
+        this.content = this.content + data.string(s);
+        return s;
+    }
+}
+
+var curl = Curl();
+try {
+    curl.set_url("http://oha7.org");
+    curl.perform();
+
+    print curl.content;
+}
+finally
+{
+    curl.release();
+}

@@ -1,0 +1,2494 @@
+{
+class WinRtInterface { 
+    queryInterface(iid) { return this.comPtr.queryInterface(iid); }
+    release() { this.comPtr.release(); this.comPtr = nil; }
+    valid() { return this.comPtr != nil && int(this.comPtr) != 0; }
+}
+
+if( runtime.global("Windows") == nil ) { runtime.global("Windows", {}); }
+var Windows = runtime.global("Windows");
+if ( Windows.Storage == nil ) { Windows.Storage = {}; }
+if ( Windows.Storage.Pickers == nil ) { Windows.Storage.Pickers = {}; }
+
+Windows.Storage.Pickers.PickerLocationId = {
+    "DocumentsLibrary" : 0, 
+    "ComputerFolder" : 1, 
+    "Desktop" : 2, 
+    "Downloads" : 3, 
+    "HomeGroup" : 4, 
+    "MusicLibrary" : 5, 
+    "PicturesLibrary" : 6, 
+    "VideosLibrary" : 7, 
+    "Objects3D" : 8, 
+    "Unspecified" : 9
+};
+
+
+Windows.Storage.Pickers.PickerViewMode = {
+    "List" : 0, 
+    "Thumbnail" : 1
+};
+
+//@Interface("Windows.Storage.Pickers.IFileOpenPicker")
+//@IID("{2CA8278A-12C5-4C5F-8977-94547793C241}")
+class Windows_Storage_Pickers_IFileOpenPicker : WinRtInterface 
+{
+    Windows_Storage_Pickers_IFileOpenPicker( comPtr )
+    {
+        var Windows = runtime.global("Windows");
+        this.comPtr = comPtr.queryInterface( "{2CA8278A-12C5-4C5F-8977-94547793C241}");
+    }
+
+    //@VtableIndex(6)
+    //@Async(0)
+    //@Returns("Windows.Storage.Pickers.PickerViewMode")
+    get_ViewMode()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 6, "UInt32", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(7)
+    //@Async(0)
+    //@Returns("void")
+    //@Parameters("Windows.Storage.Pickers.PickerViewMode")
+    put_ViewMode(value)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = value;
+        this.comPtr.invoke( 7, "void", ["UInt32"], [p1] );
+    }
+
+    //@VtableIndex(8)
+    //@Async(0)
+    //@Returns("String")
+    get_SettingsIdentifier()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 8, "String", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(9)
+    //@Async(0)
+    //@Returns("void")
+    //@Parameters("String")
+    put_SettingsIdentifier(value)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = value;
+        this.comPtr.invoke( 9, "void", ["String"], [p1] );
+    }
+
+    //@VtableIndex(10)
+    //@Async(0)
+    //@Returns("Windows.Storage.Pickers.PickerLocationId")
+    get_SuggestedStartLocation()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 10, "UInt32", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(11)
+    //@Async(0)
+    //@Returns("void")
+    //@Parameters("Windows.Storage.Pickers.PickerLocationId")
+    put_SuggestedStartLocation(value)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = value;
+        this.comPtr.invoke( 11, "void", ["UInt32"], [p1] );
+    }
+
+    //@VtableIndex(12)
+    //@Async(0)
+    //@Returns("String")
+    get_CommitButtonText()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 12, "String", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(13)
+    //@Async(0)
+    //@Returns("void")
+    //@Parameters("String")
+    put_CommitButtonText(value)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = value;
+        this.comPtr.invoke( 13, "void", ["String"], [p1] );
+    }
+
+    //@VtableIndex(14)
+    //@Async(0)
+    //@Returns("Windows.Foundation.Collections.IVector`1<String>")
+    get_FileTypeFilter()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = Windows.Foundation.Collections.IVector_1_String_(
+            this.comPtr.invoke( 14, "Windows.Foundation.Collections.IVector`1<String>", [], [] )
+        );
+        return _r;
+    }
+
+    //@VtableIndex(15)
+    //@Async(3)
+    //@Returns("Windows.Foundation.IAsyncOperation`1<Windows.Storage.StorageFile>")
+    PickSingleFileAsync(cb)
+    {
+        var Windows = runtime.global("Windows");
+        this.comPtr.asyncOperation( 15, "Windows.Storage.StorageFile", Windows.Foundation.IAsyncOperation_1_Windows_Storage_StorageFile_.handler_iid, [], [] , fun(status,value) { if(status == Windows.Foundation.AsyncStatus.Completed ) {cb(status, Windows.Storage.StorageFile(value)); } else { cb( status, value ); } } );
+    }
+
+    //@VtableIndex(16)
+    //@Async(3)
+    //@Returns("Windows.Foundation.IAsyncOperation`1<Windows.Foundation.Collections.IVectorView`1<Windows.Storage.StorageFile>>")
+    PickMultipleFilesAsync(cb)
+    {
+        var Windows = runtime.global("Windows");
+        this.comPtr.asyncOperation( 16, "Windows.Foundation.Collections.IVectorView`1<Windows.Storage.StorageFile>", Windows.Foundation.IAsyncOperation_1_Windows_Foundation_Collections_IVectorView_1_Windows_Storage_StorageFile__.handler_iid, [], [] , fun(status,value) { if(status == Windows.Foundation.AsyncStatus.Completed ) {cb(status, Windows.Foundation.Collections.IVectorView_1_Windows_Storage_StorageFile_(value)); } else { cb( status, value ); } } );
+    }
+
+
+}
+Windows_Storage_Pickers_IFileOpenPicker.iid = "{2CA8278A-12C5-4C5F-8977-94547793C241}";
+Windows.Storage.Pickers.IFileOpenPicker = Windows_Storage_Pickers_IFileOpenPicker;
+
+
+//@Interface("Windows.Storage.Pickers.IFileOpenPicker2")
+//@IID("{8CEB6CD2-B446-46F7-B265-90F8E55AD650}")
+class Windows_Storage_Pickers_IFileOpenPicker2 : WinRtInterface 
+{
+    Windows_Storage_Pickers_IFileOpenPicker2( comPtr )
+    {
+        var Windows = runtime.global("Windows");
+        this.comPtr = comPtr.queryInterface( "{8CEB6CD2-B446-46F7-B265-90F8E55AD650}");
+    }
+
+    //@VtableIndex(6)
+    //@Async(0)
+    //@Returns("Windows.Foundation.Collections.ValueSet")
+    get_ContinuationData()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = Windows.Foundation.Collections.ValueSet(
+            this.comPtr.invoke( 6, "Windows.Foundation.Collections.ValueSet", [], [] )
+        );
+        return _r;
+    }
+
+    //@VtableIndex(7)
+    //@Async(0)
+    //@Returns("void")
+    PickSingleFileAndContinue()
+    {
+        var Windows = runtime.global("Windows");
+        this.comPtr.invoke( 7, "void", [], [] );
+    }
+
+    //@VtableIndex(8)
+    //@Async(0)
+    //@Returns("void")
+    PickMultipleFilesAndContinue()
+    {
+        var Windows = runtime.global("Windows");
+        this.comPtr.invoke( 8, "void", [], [] );
+    }
+
+
+}
+Windows_Storage_Pickers_IFileOpenPicker2.iid = "{8CEB6CD2-B446-46F7-B265-90F8E55AD650}";
+Windows.Storage.Pickers.IFileOpenPicker2 = Windows_Storage_Pickers_IFileOpenPicker2;
+
+
+//@Interface("Windows.Storage.Pickers.IFileOpenPicker3")
+//@IID("{D9A5C5B3-C5DC-5B98-BD80-A8D0CA0584D8}")
+class Windows_Storage_Pickers_IFileOpenPicker3 : WinRtInterface 
+{
+    Windows_Storage_Pickers_IFileOpenPicker3( comPtr )
+    {
+        var Windows = runtime.global("Windows");
+        this.comPtr = comPtr.queryInterface( "{D9A5C5B3-C5DC-5B98-BD80-A8D0CA0584D8}");
+    }
+
+    //@VtableIndex(6)
+    //@Async(0)
+    //@Returns("Windows.System.User")
+    get_User()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = Windows.System.User(
+            this.comPtr.invoke( 6, "Windows.System.User", [], [] )
+        );
+        return _r;
+    }
+
+
+}
+Windows_Storage_Pickers_IFileOpenPicker3.iid = "{D9A5C5B3-C5DC-5B98-BD80-A8D0CA0584D8}";
+Windows.Storage.Pickers.IFileOpenPicker3 = Windows_Storage_Pickers_IFileOpenPicker3;
+
+
+//@Interface("Windows.Storage.Pickers.IFileOpenPickerStatics")
+//@IID("{6821573B-2F02-4833-96D4-ABBFAD72B67B}")
+class Windows_Storage_Pickers_IFileOpenPickerStatics : WinRtInterface 
+{
+    Windows_Storage_Pickers_IFileOpenPickerStatics( comPtr )
+    {
+        var Windows = runtime.global("Windows");
+        this.comPtr = comPtr.queryInterface( "{6821573B-2F02-4833-96D4-ABBFAD72B67B}");
+    }
+
+    //@VtableIndex(6)
+    //@Async(3)
+    //@Returns("Windows.Foundation.IAsyncOperation`1<Windows.Storage.StorageFile>")
+    ResumePickSingleFileAsync(cb)
+    {
+        var Windows = runtime.global("Windows");
+        this.comPtr.asyncOperation( 6, "Windows.Storage.StorageFile", Windows.Foundation.IAsyncOperation_1_Windows_Storage_StorageFile_.handler_iid, [], [] , fun(status,value) { if(status == Windows.Foundation.AsyncStatus.Completed ) {cb(status, Windows.Storage.StorageFile(value)); } else { cb( status, value ); } } );
+    }
+
+
+}
+Windows_Storage_Pickers_IFileOpenPickerStatics.iid = "{6821573B-2F02-4833-96D4-ABBFAD72B67B}";
+Windows.Storage.Pickers.IFileOpenPickerStatics = Windows_Storage_Pickers_IFileOpenPickerStatics;
+
+
+//@Interface("Windows.Storage.Pickers.IFileOpenPickerStatics2")
+//@IID("{E8917415-EDDD-5C98-B6F3-366FDFCAD392}")
+class Windows_Storage_Pickers_IFileOpenPickerStatics2 : WinRtInterface 
+{
+    Windows_Storage_Pickers_IFileOpenPickerStatics2( comPtr )
+    {
+        var Windows = runtime.global("Windows");
+        this.comPtr = comPtr.queryInterface( "{E8917415-EDDD-5C98-B6F3-366FDFCAD392}");
+    }
+
+    //@VtableIndex(6)
+    //@Async(0)
+    //@Returns("Windows.Storage.Pickers.FileOpenPicker")
+    //@Parameters("Windows.System.User")
+    CreateForUser(user)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = Windows.System.User( user); 
+        var _r = Windows.Storage.Pickers.FileOpenPicker(
+            this.comPtr.invoke( 6, "Windows.Storage.Pickers.FileOpenPicker", ["Windows.System.User"], [p1] )
+        );
+        return _r;
+    }
+
+
+}
+Windows_Storage_Pickers_IFileOpenPickerStatics2.iid = "{E8917415-EDDD-5C98-B6F3-366FDFCAD392}";
+Windows.Storage.Pickers.IFileOpenPickerStatics2 = Windows_Storage_Pickers_IFileOpenPickerStatics2;
+
+
+//@Interface("Windows.Storage.Pickers.IFileOpenPickerWithOperationId")
+//@IID("{3F57B569-2522-4CA5-AA73-A15509F1FCBF}")
+class Windows_Storage_Pickers_IFileOpenPickerWithOperationId : WinRtInterface 
+{
+    Windows_Storage_Pickers_IFileOpenPickerWithOperationId( comPtr )
+    {
+        var Windows = runtime.global("Windows");
+        this.comPtr = comPtr.queryInterface( "{3F57B569-2522-4CA5-AA73-A15509F1FCBF}");
+    }
+
+    //@VtableIndex(6)
+    //@Async(3)
+    //@Returns("Windows.Foundation.IAsyncOperation`1<Windows.Storage.StorageFile>")
+    //@Parameters("String")
+    PickSingleFileAsync(pickerOperationId,cb)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = pickerOperationId;
+        this.comPtr.asyncOperation( 6, "Windows.Storage.StorageFile", Windows.Foundation.IAsyncOperation_1_Windows_Storage_StorageFile_.handler_iid, ["String"], [p1] , fun(status,value) { if(status == Windows.Foundation.AsyncStatus.Completed ) {cb(status, Windows.Storage.StorageFile(value)); } else { cb( status, value ); } } );
+    }
+
+
+}
+Windows_Storage_Pickers_IFileOpenPickerWithOperationId.iid = "{3F57B569-2522-4CA5-AA73-A15509F1FCBF}";
+Windows.Storage.Pickers.IFileOpenPickerWithOperationId = Windows_Storage_Pickers_IFileOpenPickerWithOperationId;
+
+
+//@Interface("Windows.Storage.Pickers.IFileSavePicker")
+//@IID("{3286FFCB-617F-4CC5-AF6A-B3FDF29AD145}")
+class Windows_Storage_Pickers_IFileSavePicker : WinRtInterface 
+{
+    Windows_Storage_Pickers_IFileSavePicker( comPtr )
+    {
+        var Windows = runtime.global("Windows");
+        this.comPtr = comPtr.queryInterface( "{3286FFCB-617F-4CC5-AF6A-B3FDF29AD145}");
+    }
+
+    //@VtableIndex(6)
+    //@Async(0)
+    //@Returns("String")
+    get_SettingsIdentifier()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 6, "String", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(7)
+    //@Async(0)
+    //@Returns("void")
+    //@Parameters("String")
+    put_SettingsIdentifier(value)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = value;
+        this.comPtr.invoke( 7, "void", ["String"], [p1] );
+    }
+
+    //@VtableIndex(8)
+    //@Async(0)
+    //@Returns("Windows.Storage.Pickers.PickerLocationId")
+    get_SuggestedStartLocation()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 8, "UInt32", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(9)
+    //@Async(0)
+    //@Returns("void")
+    //@Parameters("Windows.Storage.Pickers.PickerLocationId")
+    put_SuggestedStartLocation(value)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = value;
+        this.comPtr.invoke( 9, "void", ["UInt32"], [p1] );
+    }
+
+    //@VtableIndex(10)
+    //@Async(0)
+    //@Returns("String")
+    get_CommitButtonText()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 10, "String", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(11)
+    //@Async(0)
+    //@Returns("void")
+    //@Parameters("String")
+    put_CommitButtonText(value)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = value;
+        this.comPtr.invoke( 11, "void", ["String"], [p1] );
+    }
+
+    //@VtableIndex(12)
+    //@Async(0)
+    //@Returns("Windows.Foundation.Collections.IMap`2<String,Windows.Foundation.Collections.IVector`1<String>>")
+    get_FileTypeChoices()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = Windows.Foundation.Collections.IMap_2_String_Windows_Foundation_Collections_IVector_1_String__(
+            this.comPtr.invoke( 12, "Windows.Foundation.Collections.IMap`2<String,Windows.Foundation.Collections.IVector`1<String>>", [], [] )
+        );
+        return _r;
+    }
+
+    //@VtableIndex(13)
+    //@Async(0)
+    //@Returns("String")
+    get_DefaultFileExtension()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 13, "String", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(14)
+    //@Async(0)
+    //@Returns("void")
+    //@Parameters("String")
+    put_DefaultFileExtension(value)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = value;
+        this.comPtr.invoke( 14, "void", ["String"], [p1] );
+    }
+
+    //@VtableIndex(15)
+    //@Async(0)
+    //@Returns("Windows.Storage.StorageFile")
+    get_SuggestedSaveFile()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = Windows.Storage.StorageFile(
+            this.comPtr.invoke( 15, "Windows.Storage.StorageFile", [], [] )
+        );
+        return _r;
+    }
+
+    //@VtableIndex(16)
+    //@Async(0)
+    //@Returns("void")
+    //@Parameters("Windows.Storage.StorageFile")
+    put_SuggestedSaveFile(value)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = Windows.Storage.StorageFile( value); 
+        this.comPtr.invoke( 16, "void", ["Windows.Storage.StorageFile"], [p1] );
+    }
+
+    //@VtableIndex(17)
+    //@Async(0)
+    //@Returns("String")
+    get_SuggestedFileName()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 17, "String", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(18)
+    //@Async(0)
+    //@Returns("void")
+    //@Parameters("String")
+    put_SuggestedFileName(value)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = value;
+        this.comPtr.invoke( 18, "void", ["String"], [p1] );
+    }
+
+    //@VtableIndex(19)
+    //@Async(3)
+    //@Returns("Windows.Foundation.IAsyncOperation`1<Windows.Storage.StorageFile>")
+    PickSaveFileAsync(cb)
+    {
+        var Windows = runtime.global("Windows");
+        this.comPtr.asyncOperation( 19, "Windows.Storage.StorageFile", Windows.Foundation.IAsyncOperation_1_Windows_Storage_StorageFile_.handler_iid, [], [] , fun(status,value) { if(status == Windows.Foundation.AsyncStatus.Completed ) {cb(status, Windows.Storage.StorageFile(value)); } else { cb( status, value ); } } );
+    }
+
+
+}
+Windows_Storage_Pickers_IFileSavePicker.iid = "{3286FFCB-617F-4CC5-AF6A-B3FDF29AD145}";
+Windows.Storage.Pickers.IFileSavePicker = Windows_Storage_Pickers_IFileSavePicker;
+
+
+//@Interface("Windows.Storage.Pickers.IFileSavePicker2")
+//@IID("{0EC313A2-D24B-449A-8197-E89104FD42CC}")
+class Windows_Storage_Pickers_IFileSavePicker2 : WinRtInterface 
+{
+    Windows_Storage_Pickers_IFileSavePicker2( comPtr )
+    {
+        var Windows = runtime.global("Windows");
+        this.comPtr = comPtr.queryInterface( "{0EC313A2-D24B-449A-8197-E89104FD42CC}");
+    }
+
+    //@VtableIndex(6)
+    //@Async(0)
+    //@Returns("Windows.Foundation.Collections.ValueSet")
+    get_ContinuationData()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = Windows.Foundation.Collections.ValueSet(
+            this.comPtr.invoke( 6, "Windows.Foundation.Collections.ValueSet", [], [] )
+        );
+        return _r;
+    }
+
+    //@VtableIndex(7)
+    //@Async(0)
+    //@Returns("void")
+    PickSaveFileAndContinue()
+    {
+        var Windows = runtime.global("Windows");
+        this.comPtr.invoke( 7, "void", [], [] );
+    }
+
+
+}
+Windows_Storage_Pickers_IFileSavePicker2.iid = "{0EC313A2-D24B-449A-8197-E89104FD42CC}";
+Windows.Storage.Pickers.IFileSavePicker2 = Windows_Storage_Pickers_IFileSavePicker2;
+
+
+//@Interface("Windows.Storage.Pickers.IFileSavePicker3")
+//@IID("{698AEC69-BA3C-4E51-BD90-4ABCBBF4CFAF}")
+class Windows_Storage_Pickers_IFileSavePicker3 : WinRtInterface 
+{
+    Windows_Storage_Pickers_IFileSavePicker3( comPtr )
+    {
+        var Windows = runtime.global("Windows");
+        this.comPtr = comPtr.queryInterface( "{698AEC69-BA3C-4E51-BD90-4ABCBBF4CFAF}");
+    }
+
+    //@VtableIndex(6)
+    //@Async(0)
+    //@Returns("String")
+    get_EnterpriseId()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 6, "String", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(7)
+    //@Async(0)
+    //@Returns("void")
+    //@Parameters("String")
+    put_EnterpriseId(value)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = value;
+        this.comPtr.invoke( 7, "void", ["String"], [p1] );
+    }
+
+
+}
+Windows_Storage_Pickers_IFileSavePicker3.iid = "{698AEC69-BA3C-4E51-BD90-4ABCBBF4CFAF}";
+Windows.Storage.Pickers.IFileSavePicker3 = Windows_Storage_Pickers_IFileSavePicker3;
+
+
+//@Interface("Windows.Storage.Pickers.IFileSavePicker4")
+//@IID("{E7D83A5A-DDFA-5DE0-8B70-C842C21988EC}")
+class Windows_Storage_Pickers_IFileSavePicker4 : WinRtInterface 
+{
+    Windows_Storage_Pickers_IFileSavePicker4( comPtr )
+    {
+        var Windows = runtime.global("Windows");
+        this.comPtr = comPtr.queryInterface( "{E7D83A5A-DDFA-5DE0-8B70-C842C21988EC}");
+    }
+
+    //@VtableIndex(6)
+    //@Async(0)
+    //@Returns("Windows.System.User")
+    get_User()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = Windows.System.User(
+            this.comPtr.invoke( 6, "Windows.System.User", [], [] )
+        );
+        return _r;
+    }
+
+
+}
+Windows_Storage_Pickers_IFileSavePicker4.iid = "{E7D83A5A-DDFA-5DE0-8B70-C842C21988EC}";
+Windows.Storage.Pickers.IFileSavePicker4 = Windows_Storage_Pickers_IFileSavePicker4;
+
+
+//@Interface("Windows.Storage.Pickers.IFileSavePickerStatics")
+//@IID("{28E3CF9E-961C-5E2C-AED7-E64737F4CE37}")
+class Windows_Storage_Pickers_IFileSavePickerStatics : WinRtInterface 
+{
+    Windows_Storage_Pickers_IFileSavePickerStatics( comPtr )
+    {
+        var Windows = runtime.global("Windows");
+        this.comPtr = comPtr.queryInterface( "{28E3CF9E-961C-5E2C-AED7-E64737F4CE37}");
+    }
+
+    //@VtableIndex(6)
+    //@Async(0)
+    //@Returns("Windows.Storage.Pickers.FileSavePicker")
+    //@Parameters("Windows.System.User")
+    CreateForUser(user)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = Windows.System.User( user); 
+        var _r = Windows.Storage.Pickers.FileSavePicker(
+            this.comPtr.invoke( 6, "Windows.Storage.Pickers.FileSavePicker", ["Windows.System.User"], [p1] )
+        );
+        return _r;
+    }
+
+
+}
+Windows_Storage_Pickers_IFileSavePickerStatics.iid = "{28E3CF9E-961C-5E2C-AED7-E64737F4CE37}";
+Windows.Storage.Pickers.IFileSavePickerStatics = Windows_Storage_Pickers_IFileSavePickerStatics;
+
+
+//@Interface("Windows.Storage.Pickers.IFolderPicker")
+//@IID("{084F7799-F3FB-400A-99B1-7B4A772FD60D}")
+class Windows_Storage_Pickers_IFolderPicker : WinRtInterface 
+{
+    Windows_Storage_Pickers_IFolderPicker( comPtr )
+    {
+        var Windows = runtime.global("Windows");
+        this.comPtr = comPtr.queryInterface( "{084F7799-F3FB-400A-99B1-7B4A772FD60D}");
+    }
+
+    //@VtableIndex(6)
+    //@Async(0)
+    //@Returns("Windows.Storage.Pickers.PickerViewMode")
+    get_ViewMode()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 6, "UInt32", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(7)
+    //@Async(0)
+    //@Returns("void")
+    //@Parameters("Windows.Storage.Pickers.PickerViewMode")
+    put_ViewMode(value)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = value;
+        this.comPtr.invoke( 7, "void", ["UInt32"], [p1] );
+    }
+
+    //@VtableIndex(8)
+    //@Async(0)
+    //@Returns("String")
+    get_SettingsIdentifier()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 8, "String", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(9)
+    //@Async(0)
+    //@Returns("void")
+    //@Parameters("String")
+    put_SettingsIdentifier(value)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = value;
+        this.comPtr.invoke( 9, "void", ["String"], [p1] );
+    }
+
+    //@VtableIndex(10)
+    //@Async(0)
+    //@Returns("Windows.Storage.Pickers.PickerLocationId")
+    get_SuggestedStartLocation()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 10, "UInt32", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(11)
+    //@Async(0)
+    //@Returns("void")
+    //@Parameters("Windows.Storage.Pickers.PickerLocationId")
+    put_SuggestedStartLocation(value)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = value;
+        this.comPtr.invoke( 11, "void", ["UInt32"], [p1] );
+    }
+
+    //@VtableIndex(12)
+    //@Async(0)
+    //@Returns("String")
+    get_CommitButtonText()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 12, "String", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(13)
+    //@Async(0)
+    //@Returns("void")
+    //@Parameters("String")
+    put_CommitButtonText(value)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = value;
+        this.comPtr.invoke( 13, "void", ["String"], [p1] );
+    }
+
+    //@VtableIndex(14)
+    //@Async(0)
+    //@Returns("Windows.Foundation.Collections.IVector`1<String>")
+    get_FileTypeFilter()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = Windows.Foundation.Collections.IVector_1_String_(
+            this.comPtr.invoke( 14, "Windows.Foundation.Collections.IVector`1<String>", [], [] )
+        );
+        return _r;
+    }
+
+    //@VtableIndex(15)
+    //@Async(3)
+    //@Returns("Windows.Foundation.IAsyncOperation`1<Windows.Storage.StorageFolder>")
+    PickSingleFolderAsync(cb)
+    {
+        var Windows = runtime.global("Windows");
+        this.comPtr.asyncOperation( 15, "Windows.Storage.StorageFolder", Windows.Foundation.IAsyncOperation_1_Windows_Storage_StorageFolder_.handler_iid, [], [] , fun(status,value) { if(status == Windows.Foundation.AsyncStatus.Completed ) {cb(status, Windows.Storage.StorageFolder(value)); } else { cb( status, value ); } } );
+    }
+
+
+}
+Windows_Storage_Pickers_IFolderPicker.iid = "{084F7799-F3FB-400A-99B1-7B4A772FD60D}";
+Windows.Storage.Pickers.IFolderPicker = Windows_Storage_Pickers_IFolderPicker;
+
+
+//@Interface("Windows.Storage.Pickers.IFolderPicker2")
+//@IID("{8EB3BA97-DC85-4616-BE94-9660881F2F5D}")
+class Windows_Storage_Pickers_IFolderPicker2 : WinRtInterface 
+{
+    Windows_Storage_Pickers_IFolderPicker2( comPtr )
+    {
+        var Windows = runtime.global("Windows");
+        this.comPtr = comPtr.queryInterface( "{8EB3BA97-DC85-4616-BE94-9660881F2F5D}");
+    }
+
+    //@VtableIndex(6)
+    //@Async(0)
+    //@Returns("Windows.Foundation.Collections.ValueSet")
+    get_ContinuationData()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = Windows.Foundation.Collections.ValueSet(
+            this.comPtr.invoke( 6, "Windows.Foundation.Collections.ValueSet", [], [] )
+        );
+        return _r;
+    }
+
+    //@VtableIndex(7)
+    //@Async(0)
+    //@Returns("void")
+    PickFolderAndContinue()
+    {
+        var Windows = runtime.global("Windows");
+        this.comPtr.invoke( 7, "void", [], [] );
+    }
+
+
+}
+Windows_Storage_Pickers_IFolderPicker2.iid = "{8EB3BA97-DC85-4616-BE94-9660881F2F5D}";
+Windows.Storage.Pickers.IFolderPicker2 = Windows_Storage_Pickers_IFolderPicker2;
+
+
+//@Interface("Windows.Storage.Pickers.IFolderPicker3")
+//@IID("{673B1E29-D326-53C0-BD24-A25C714CEE36}")
+class Windows_Storage_Pickers_IFolderPicker3 : WinRtInterface 
+{
+    Windows_Storage_Pickers_IFolderPicker3( comPtr )
+    {
+        var Windows = runtime.global("Windows");
+        this.comPtr = comPtr.queryInterface( "{673B1E29-D326-53C0-BD24-A25C714CEE36}");
+    }
+
+    //@VtableIndex(6)
+    //@Async(0)
+    //@Returns("Windows.System.User")
+    get_User()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = Windows.System.User(
+            this.comPtr.invoke( 6, "Windows.System.User", [], [] )
+        );
+        return _r;
+    }
+
+
+}
+Windows_Storage_Pickers_IFolderPicker3.iid = "{673B1E29-D326-53C0-BD24-A25C714CEE36}";
+Windows.Storage.Pickers.IFolderPicker3 = Windows_Storage_Pickers_IFolderPicker3;
+
+
+//@Interface("Windows.Storage.Pickers.IFolderPickerStatics")
+//@IID("{9BE34740-7CA1-5942-A3C8-46F2551ECFF3}")
+class Windows_Storage_Pickers_IFolderPickerStatics : WinRtInterface 
+{
+    Windows_Storage_Pickers_IFolderPickerStatics( comPtr )
+    {
+        var Windows = runtime.global("Windows");
+        this.comPtr = comPtr.queryInterface( "{9BE34740-7CA1-5942-A3C8-46F2551ECFF3}");
+    }
+
+    //@VtableIndex(6)
+    //@Async(0)
+    //@Returns("Windows.Storage.Pickers.FolderPicker")
+    //@Parameters("Windows.System.User")
+    CreateForUser(user)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = Windows.System.User( user); 
+        var _r = Windows.Storage.Pickers.FolderPicker(
+            this.comPtr.invoke( 6, "Windows.Storage.Pickers.FolderPicker", ["Windows.System.User"], [p1] )
+        );
+        return _r;
+    }
+
+
+}
+Windows_Storage_Pickers_IFolderPickerStatics.iid = "{9BE34740-7CA1-5942-A3C8-46F2551ECFF3}";
+Windows.Storage.Pickers.IFolderPickerStatics = Windows_Storage_Pickers_IFolderPickerStatics;
+
+
+//@RuntimeClass("Windows.Storage.Pickers.FileExtensionVector")
+//@Implements("")
+//@DefaultInterface("")
+@Proxy("WinRtProxy")
+class Windows_Storage_Pickers_FileExtensionVector : WinRtInterface
+{
+    Windows_Storage_Pickers_FileExtensionVector( comPtr )
+    {
+        this.comPtr = comPtr;
+    }
+
+    static Create()
+    {
+        return Windows.Storage.Pickers.FileExtensionVector(
+            winrt.activate("Windows.Storage.Pickers.FileExtensionVector")
+        );
+    }
+    //@Parameters("UInt32")
+    //@Returns("String")
+    //@Parameters("UInt32")
+    GetAt(index)
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Foundation.Collections.IVector_1_String_( this.comPtr );
+        var _r = iface.GetAt( index );
+        iface.release();
+        return _r;
+    }
+
+    //@Returns("UInt32")
+    get_Size()
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Foundation.Collections.IVector_1_String_( this.comPtr );
+        var _r = iface.get_Size(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Returns("Windows.Foundation.Collections.IVectorView`1<String>")
+    GetView()
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Foundation.Collections.IVector_1_String_( this.comPtr );
+        var _r = iface.GetView(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Parameters("UInt32", "String")
+    //@Returns("void")
+    //@Parameters("UInt32","String")
+    SetAt(index,value)
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Foundation.Collections.IVector_1_String_( this.comPtr );
+        iface.SetAt( index, value );
+        iface.release();
+    }
+
+    //@Parameters("UInt32", "String")
+    //@Returns("void")
+    //@Parameters("UInt32","String")
+    InsertAt(index,value)
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Foundation.Collections.IVector_1_String_( this.comPtr );
+        iface.InsertAt( index, value );
+        iface.release();
+    }
+
+    //@Parameters("UInt32")
+    //@Returns("void")
+    //@Parameters("UInt32")
+    RemoveAt(index)
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Foundation.Collections.IVector_1_String_( this.comPtr );
+        iface.RemoveAt( index );
+        iface.release();
+    }
+
+    //@Parameters("String")
+    //@Returns("void")
+    //@Parameters("String")
+    Append(value)
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Foundation.Collections.IVector_1_String_( this.comPtr );
+        iface.Append( value );
+        iface.release();
+    }
+
+    //@Returns("void")
+    RemoveAtEnd()
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Foundation.Collections.IVector_1_String_( this.comPtr );
+        iface.RemoveAtEnd(  );
+        iface.release();
+    }
+
+    //@Returns("void")
+    Clear()
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Foundation.Collections.IVector_1_String_( this.comPtr );
+        iface.Clear(  );
+        iface.release();
+    }
+
+    //@Returns("Windows.Foundation.Collections.IIterator`1<String>")
+    First()
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Foundation.Collections.IIterable_1_String_( this.comPtr );
+        var _r = iface.First(  );
+        iface.release();
+        return _r;
+    }
+
+
+}
+Windows.Storage.Pickers.FileExtensionVector = Windows_Storage_Pickers_FileExtensionVector;
+
+//@RuntimeClass("Windows.Storage.Pickers.FileOpenPicker")
+//@Implements("Windows.Storage.Pickers.IFileOpenPicker2","Windows.Storage.Pickers.IFileOpenPickerWithOperationId","Windows.Storage.Pickers.IFileOpenPicker","Windows.Storage.Pickers.IFileOpenPicker3")
+//@DefaultInterface("Windows.Storage.Pickers.IFileOpenPicker")
+@Proxy("WinRtProxy")
+class Windows_Storage_Pickers_FileOpenPicker : WinRtInterface
+{
+    Windows_Storage_Pickers_FileOpenPicker( comPtr )
+    {
+        var Windows = runtime.global("Windows");
+        this.comPtr = comPtr.queryInterface( Windows.Storage.Pickers.IFileOpenPicker.iid );
+    }
+
+    // s Windows.Storage.Pickers.IFileOpenPickerStatics
+    //@Async(3)
+    //@Returns("Windows.Foundation.IAsyncOperation`1<Windows.Storage.StorageFile>")
+    static ResumePickSingleFileAsync( )
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Storage.Pickers.FileOpenPicker" );
+        var iface = Windows.Storage.Pickers.IFileOpenPickerStatics( factory );
+        var _promise = Future();
+        var _cb = fun(status, result)
+        {
+            if (status == Windows.Foundation.AsyncStatus.Completed)
+            {
+                _promise.resolve(result);
+            } else {
+                _promise.reject(status);
+            }
+        };
+        iface.ResumePickSingleFileAsync( _cb);
+        iface.release();
+        factory.release();
+        return _promise;
+    }
+
+
+    // s Windows.Storage.Pickers.IFileOpenPickerStatics2
+    //@Async(0)
+    //@Returns("Windows.Storage.Pickers.FileOpenPicker")
+    //@Parameters("Windows.System.User")
+    static CreateForUser( user)
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Storage.Pickers.FileOpenPicker" );
+        var iface = Windows.Storage.Pickers.IFileOpenPickerStatics2( factory );
+        var _r = iface.CreateForUser( user);
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    static Create()
+    {
+        return Windows.Storage.Pickers.FileOpenPicker(
+            winrt.activate("Windows.Storage.Pickers.FileOpenPicker")
+        );
+    }
+    //@Returns("Windows.Foundation.Collections.ValueSet")
+    get_ContinuationData()
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Storage.Pickers.IFileOpenPicker2( this.comPtr );
+        var _r = iface.get_ContinuationData(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Returns("void")
+    PickSingleFileAndContinue()
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Storage.Pickers.IFileOpenPicker2( this.comPtr );
+        iface.PickSingleFileAndContinue(  );
+        iface.release();
+    }
+
+    //@Returns("void")
+    PickMultipleFilesAndContinue()
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Storage.Pickers.IFileOpenPicker2( this.comPtr );
+        iface.PickMultipleFilesAndContinue(  );
+        iface.release();
+    }
+
+    //@Parameters("String")
+    //@Returns("Windows.Foundation.IAsyncOperation`1<Windows.Storage.StorageFile>")
+    //@Parameters("String")
+    PickSingleFileAsync(pickerOperationId)
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Storage.Pickers.IFileOpenPickerWithOperationId( this.comPtr );
+        var _promise = Future();
+        var _cb = fun(status, result)
+        {
+            if (status == Windows.Foundation.AsyncStatus.Completed)
+            {
+                _promise.resolve(result);
+            } else {
+                _promise.reject(status);
+            }
+        };
+        iface.PickSingleFileAsync( pickerOperationId, _cb  );
+        iface.release();
+        return _promise;
+    }
+
+    //@Returns("Windows.Storage.Pickers.PickerViewMode")
+    get_ViewMode()
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Storage.Pickers.IFileOpenPicker( this.comPtr );
+        var _r = iface.get_ViewMode(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Parameters("Windows.Storage.Pickers.PickerViewMode")
+    //@Returns("void")
+    //@Parameters("Windows.Storage.Pickers.PickerViewMode")
+    put_ViewMode(value)
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Storage.Pickers.IFileOpenPicker( this.comPtr );
+        iface.put_ViewMode( value );
+        iface.release();
+    }
+
+    //@Returns("String")
+    get_SettingsIdentifier()
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Storage.Pickers.IFileOpenPicker( this.comPtr );
+        var _r = iface.get_SettingsIdentifier(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Parameters("String")
+    //@Returns("void")
+    //@Parameters("String")
+    put_SettingsIdentifier(value)
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Storage.Pickers.IFileOpenPicker( this.comPtr );
+        iface.put_SettingsIdentifier( value );
+        iface.release();
+    }
+
+    //@Returns("Windows.Storage.Pickers.PickerLocationId")
+    get_SuggestedStartLocation()
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Storage.Pickers.IFileOpenPicker( this.comPtr );
+        var _r = iface.get_SuggestedStartLocation(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Parameters("Windows.Storage.Pickers.PickerLocationId")
+    //@Returns("void")
+    //@Parameters("Windows.Storage.Pickers.PickerLocationId")
+    put_SuggestedStartLocation(value)
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Storage.Pickers.IFileOpenPicker( this.comPtr );
+        iface.put_SuggestedStartLocation( value );
+        iface.release();
+    }
+
+    //@Returns("String")
+    get_CommitButtonText()
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Storage.Pickers.IFileOpenPicker( this.comPtr );
+        var _r = iface.get_CommitButtonText(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Parameters("String")
+    //@Returns("void")
+    //@Parameters("String")
+    put_CommitButtonText(value)
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Storage.Pickers.IFileOpenPicker( this.comPtr );
+        iface.put_CommitButtonText( value );
+        iface.release();
+    }
+
+    //@Returns("Windows.Foundation.Collections.IVector`1<String>")
+    get_FileTypeFilter()
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Storage.Pickers.IFileOpenPicker( this.comPtr );
+        var _r = iface.get_FileTypeFilter(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Returns("Windows.Foundation.IAsyncOperation`1<Windows.Storage.StorageFile>")
+    PickSingleFileAsync_()
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Storage.Pickers.IFileOpenPickerWithOperationId( this.comPtr );
+        var _promise = Future();
+        var _cb = fun(status, result)
+        {
+            if (status == Windows.Foundation.AsyncStatus.Completed)
+            {
+                _promise.resolve(result);
+            } else {
+                _promise.reject(status);
+            }
+        };
+        iface.PickSingleFileAsync_( _cb  );
+        iface.release();
+        return _promise;
+    }
+
+    //@Returns("Windows.Foundation.IAsyncOperation`1<Windows.Foundation.Collections.IVectorView`1<Windows.Storage.StorageFile>>")
+    PickMultipleFilesAsync()
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Storage.Pickers.IFileOpenPicker( this.comPtr );
+        var _promise = Future();
+        var _cb = fun(status, result)
+        {
+            if (status == Windows.Foundation.AsyncStatus.Completed)
+            {
+                _promise.resolve(result);
+            } else {
+                _promise.reject(status);
+            }
+        };
+        iface.PickMultipleFilesAsync( _cb  );
+        iface.release();
+        return _promise;
+    }
+
+    //@Returns("Windows.System.User")
+    get_User()
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Storage.Pickers.IFileOpenPicker3( this.comPtr );
+        var _r = iface.get_User(  );
+        iface.release();
+        return _r;
+    }
+
+
+}
+Windows.Storage.Pickers.FileOpenPicker = Windows_Storage_Pickers_FileOpenPicker;
+
+//@RuntimeClass("Windows.Storage.Pickers.FilePickerFileTypesOrderedMap")
+//@Implements("")
+//@DefaultInterface("")
+@Proxy("WinRtProxy")
+class Windows_Storage_Pickers_FilePickerFileTypesOrderedMap : WinRtInterface
+{
+    Windows_Storage_Pickers_FilePickerFileTypesOrderedMap( comPtr )
+    {
+        this.comPtr = comPtr;
+    }
+
+    static Create()
+    {
+        return Windows.Storage.Pickers.FilePickerFileTypesOrderedMap(
+            winrt.activate("Windows.Storage.Pickers.FilePickerFileTypesOrderedMap")
+        );
+    }
+    //@Parameters("String")
+    //@Returns("Windows.Foundation.Collections.IVector`1<String>")
+    //@Parameters("String")
+    Lookup(key)
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Foundation.Collections.IMap_2_String_Windows_Foundation_Collections_IVector_1_String__( this.comPtr );
+        var _r = iface.Lookup( key );
+        iface.release();
+        return _r;
+    }
+
+    //@Returns("UInt32")
+    get_Size()
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Foundation.Collections.IMap_2_String_Windows_Foundation_Collections_IVector_1_String__( this.comPtr );
+        var _r = iface.get_Size(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Parameters("String")
+    //@Returns("Boolean")
+    //@Parameters("String")
+    HasKey(key)
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Foundation.Collections.IMap_2_String_Windows_Foundation_Collections_IVector_1_String__( this.comPtr );
+        var _r = iface.HasKey( key );
+        iface.release();
+        return _r;
+    }
+
+    //@Returns("Windows.Foundation.Collections.IMapView`2<String,Windows.Foundation.Collections.IVector`1<String>>")
+    GetView()
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Foundation.Collections.IMap_2_String_Windows_Foundation_Collections_IVector_1_String__( this.comPtr );
+        var _r = iface.GetView(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Parameters("String", "Windows.Foundation.Collections.IVector`1<String>")
+    //@Returns("Boolean")
+    //@Parameters("String","Windows.Foundation.Collections.IVector`1<String>")
+    Insert(key,value)
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Foundation.Collections.IMap_2_String_Windows_Foundation_Collections_IVector_1_String__( this.comPtr );
+        var _r = iface.Insert( key, value );
+        iface.release();
+        return _r;
+    }
+
+    //@Parameters("String")
+    //@Returns("void")
+    //@Parameters("String")
+    Remove(key)
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Foundation.Collections.IMap_2_String_Windows_Foundation_Collections_IVector_1_String__( this.comPtr );
+        iface.Remove( key );
+        iface.release();
+    }
+
+    //@Returns("void")
+    Clear()
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Foundation.Collections.IMap_2_String_Windows_Foundation_Collections_IVector_1_String__( this.comPtr );
+        iface.Clear(  );
+        iface.release();
+    }
+
+    //@Returns("Windows.Foundation.Collections.IIterator`1<Windows.Foundation.Collections.IKeyValuePair`2<String,Windows.Foundation.Collections.IVector`1<String>>>")
+    First()
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Foundation.Collections.IIterable_1_Windows_Foundation_Collections_IKeyValuePair_2_String_Windows_Foundation_Collections_IVector_1_String___( this.comPtr );
+        var _r = iface.First(  );
+        iface.release();
+        return _r;
+    }
+
+
+}
+Windows.Storage.Pickers.FilePickerFileTypesOrderedMap = Windows_Storage_Pickers_FilePickerFileTypesOrderedMap;
+
+//@RuntimeClass("Windows.Storage.Pickers.FilePickerSelectedFilesArray")
+//@Implements("")
+//@DefaultInterface("")
+@Proxy("WinRtProxy")
+class Windows_Storage_Pickers_FilePickerSelectedFilesArray : WinRtInterface
+{
+    Windows_Storage_Pickers_FilePickerSelectedFilesArray( comPtr )
+    {
+        this.comPtr = comPtr;
+    }
+
+    static Create()
+    {
+        return Windows.Storage.Pickers.FilePickerSelectedFilesArray(
+            winrt.activate("Windows.Storage.Pickers.FilePickerSelectedFilesArray")
+        );
+    }
+    //@Parameters("UInt32")
+    //@Returns("Windows.Storage.StorageFile")
+    //@Parameters("UInt32")
+    GetAt(index)
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Foundation.Collections.IVectorView_1_Windows_Storage_StorageFile_( this.comPtr );
+        var _r = iface.GetAt( index );
+        iface.release();
+        return _r;
+    }
+
+    //@Returns("UInt32")
+    get_Size()
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Foundation.Collections.IVectorView_1_Windows_Storage_StorageFile_( this.comPtr );
+        var _r = iface.get_Size(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Returns("Windows.Foundation.Collections.IIterator`1<Windows.Storage.StorageFile>")
+    First()
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Foundation.Collections.IIterable_1_Windows_Storage_StorageFile_( this.comPtr );
+        var _r = iface.First(  );
+        iface.release();
+        return _r;
+    }
+
+
+}
+Windows.Storage.Pickers.FilePickerSelectedFilesArray = Windows_Storage_Pickers_FilePickerSelectedFilesArray;
+
+//@RuntimeClass("Windows.Storage.Pickers.FileSavePicker")
+//@Implements("Windows.Storage.Pickers.IFileSavePicker2","Windows.Storage.Pickers.IFileSavePicker3","Windows.Storage.Pickers.IFileSavePicker","Windows.Storage.Pickers.IFileSavePicker4")
+//@DefaultInterface("Windows.Storage.Pickers.IFileSavePicker")
+@Proxy("WinRtProxy")
+class Windows_Storage_Pickers_FileSavePicker : WinRtInterface
+{
+    Windows_Storage_Pickers_FileSavePicker( comPtr )
+    {
+        var Windows = runtime.global("Windows");
+        this.comPtr = comPtr.queryInterface( Windows.Storage.Pickers.IFileSavePicker.iid );
+    }
+
+    // s Windows.Storage.Pickers.IFileSavePickerStatics
+    //@Async(0)
+    //@Returns("Windows.Storage.Pickers.FileSavePicker")
+    //@Parameters("Windows.System.User")
+    static CreateForUser( user)
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Storage.Pickers.FileSavePicker" );
+        var iface = Windows.Storage.Pickers.IFileSavePickerStatics( factory );
+        var _r = iface.CreateForUser( user);
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    static Create()
+    {
+        return Windows.Storage.Pickers.FileSavePicker(
+            winrt.activate("Windows.Storage.Pickers.FileSavePicker")
+        );
+    }
+    //@Returns("Windows.Foundation.Collections.ValueSet")
+    get_ContinuationData()
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Storage.Pickers.IFileSavePicker2( this.comPtr );
+        var _r = iface.get_ContinuationData(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Returns("void")
+    PickSaveFileAndContinue()
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Storage.Pickers.IFileSavePicker2( this.comPtr );
+        iface.PickSaveFileAndContinue(  );
+        iface.release();
+    }
+
+    //@Returns("String")
+    get_EnterpriseId()
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Storage.Pickers.IFileSavePicker3( this.comPtr );
+        var _r = iface.get_EnterpriseId(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Parameters("String")
+    //@Returns("void")
+    //@Parameters("String")
+    put_EnterpriseId(value)
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Storage.Pickers.IFileSavePicker3( this.comPtr );
+        iface.put_EnterpriseId( value );
+        iface.release();
+    }
+
+    //@Returns("String")
+    get_SettingsIdentifier()
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Storage.Pickers.IFileSavePicker( this.comPtr );
+        var _r = iface.get_SettingsIdentifier(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Parameters("String")
+    //@Returns("void")
+    //@Parameters("String")
+    put_SettingsIdentifier(value)
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Storage.Pickers.IFileSavePicker( this.comPtr );
+        iface.put_SettingsIdentifier( value );
+        iface.release();
+    }
+
+    //@Returns("Windows.Storage.Pickers.PickerLocationId")
+    get_SuggestedStartLocation()
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Storage.Pickers.IFileSavePicker( this.comPtr );
+        var _r = iface.get_SuggestedStartLocation(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Parameters("Windows.Storage.Pickers.PickerLocationId")
+    //@Returns("void")
+    //@Parameters("Windows.Storage.Pickers.PickerLocationId")
+    put_SuggestedStartLocation(value)
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Storage.Pickers.IFileSavePicker( this.comPtr );
+        iface.put_SuggestedStartLocation( value );
+        iface.release();
+    }
+
+    //@Returns("String")
+    get_CommitButtonText()
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Storage.Pickers.IFileSavePicker( this.comPtr );
+        var _r = iface.get_CommitButtonText(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Parameters("String")
+    //@Returns("void")
+    //@Parameters("String")
+    put_CommitButtonText(value)
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Storage.Pickers.IFileSavePicker( this.comPtr );
+        iface.put_CommitButtonText( value );
+        iface.release();
+    }
+
+    //@Returns("Windows.Foundation.Collections.IMap`2<String,Windows.Foundation.Collections.IVector`1<String>>")
+    get_FileTypeChoices()
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Storage.Pickers.IFileSavePicker( this.comPtr );
+        var _r = iface.get_FileTypeChoices(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Returns("String")
+    get_DefaultFileExtension()
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Storage.Pickers.IFileSavePicker( this.comPtr );
+        var _r = iface.get_DefaultFileExtension(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Parameters("String")
+    //@Returns("void")
+    //@Parameters("String")
+    put_DefaultFileExtension(value)
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Storage.Pickers.IFileSavePicker( this.comPtr );
+        iface.put_DefaultFileExtension( value );
+        iface.release();
+    }
+
+    //@Returns("Windows.Storage.StorageFile")
+    get_SuggestedSaveFile()
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Storage.Pickers.IFileSavePicker( this.comPtr );
+        var _r = iface.get_SuggestedSaveFile(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Parameters("Windows.Storage.StorageFile")
+    //@Returns("void")
+    //@Parameters("Windows.Storage.StorageFile")
+    put_SuggestedSaveFile(value)
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Storage.Pickers.IFileSavePicker( this.comPtr );
+        iface.put_SuggestedSaveFile( value );
+        iface.release();
+    }
+
+    //@Returns("String")
+    get_SuggestedFileName()
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Storage.Pickers.IFileSavePicker( this.comPtr );
+        var _r = iface.get_SuggestedFileName(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Parameters("String")
+    //@Returns("void")
+    //@Parameters("String")
+    put_SuggestedFileName(value)
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Storage.Pickers.IFileSavePicker( this.comPtr );
+        iface.put_SuggestedFileName( value );
+        iface.release();
+    }
+
+    //@Returns("Windows.Foundation.IAsyncOperation`1<Windows.Storage.StorageFile>")
+    PickSaveFileAsync()
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Storage.Pickers.IFileSavePicker( this.comPtr );
+        var _promise = Future();
+        var _cb = fun(status, result)
+        {
+            if (status == Windows.Foundation.AsyncStatus.Completed)
+            {
+                _promise.resolve(result);
+            } else {
+                _promise.reject(status);
+            }
+        };
+        iface.PickSaveFileAsync( _cb  );
+        iface.release();
+        return _promise;
+    }
+
+    //@Returns("Windows.System.User")
+    get_User()
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Storage.Pickers.IFileSavePicker4( this.comPtr );
+        var _r = iface.get_User(  );
+        iface.release();
+        return _r;
+    }
+
+
+}
+Windows.Storage.Pickers.FileSavePicker = Windows_Storage_Pickers_FileSavePicker;
+
+//@RuntimeClass("Windows.Storage.Pickers.FolderPicker")
+//@Implements("Windows.Storage.Pickers.IFolderPicker2","Windows.Storage.Pickers.IFolderPicker","Windows.Storage.Pickers.IFolderPicker3")
+//@DefaultInterface("Windows.Storage.Pickers.IFolderPicker")
+@Proxy("WinRtProxy")
+class Windows_Storage_Pickers_FolderPicker : WinRtInterface
+{
+    Windows_Storage_Pickers_FolderPicker( comPtr )
+    {
+        var Windows = runtime.global("Windows");
+        this.comPtr = comPtr.queryInterface( Windows.Storage.Pickers.IFolderPicker.iid );
+    }
+
+    // s Windows.Storage.Pickers.IFolderPickerStatics
+    //@Async(0)
+    //@Returns("Windows.Storage.Pickers.FolderPicker")
+    //@Parameters("Windows.System.User")
+    static CreateForUser( user)
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Storage.Pickers.FolderPicker" );
+        var iface = Windows.Storage.Pickers.IFolderPickerStatics( factory );
+        var _r = iface.CreateForUser( user);
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    static Create()
+    {
+        return Windows.Storage.Pickers.FolderPicker(
+            winrt.activate("Windows.Storage.Pickers.FolderPicker")
+        );
+    }
+    //@Returns("Windows.Foundation.Collections.ValueSet")
+    get_ContinuationData()
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Storage.Pickers.IFolderPicker2( this.comPtr );
+        var _r = iface.get_ContinuationData(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Returns("void")
+    PickFolderAndContinue()
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Storage.Pickers.IFolderPicker2( this.comPtr );
+        iface.PickFolderAndContinue(  );
+        iface.release();
+    }
+
+    //@Returns("Windows.Storage.Pickers.PickerViewMode")
+    get_ViewMode()
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Storage.Pickers.IFolderPicker( this.comPtr );
+        var _r = iface.get_ViewMode(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Parameters("Windows.Storage.Pickers.PickerViewMode")
+    //@Returns("void")
+    //@Parameters("Windows.Storage.Pickers.PickerViewMode")
+    put_ViewMode(value)
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Storage.Pickers.IFolderPicker( this.comPtr );
+        iface.put_ViewMode( value );
+        iface.release();
+    }
+
+    //@Returns("String")
+    get_SettingsIdentifier()
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Storage.Pickers.IFolderPicker( this.comPtr );
+        var _r = iface.get_SettingsIdentifier(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Parameters("String")
+    //@Returns("void")
+    //@Parameters("String")
+    put_SettingsIdentifier(value)
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Storage.Pickers.IFolderPicker( this.comPtr );
+        iface.put_SettingsIdentifier( value );
+        iface.release();
+    }
+
+    //@Returns("Windows.Storage.Pickers.PickerLocationId")
+    get_SuggestedStartLocation()
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Storage.Pickers.IFolderPicker( this.comPtr );
+        var _r = iface.get_SuggestedStartLocation(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Parameters("Windows.Storage.Pickers.PickerLocationId")
+    //@Returns("void")
+    //@Parameters("Windows.Storage.Pickers.PickerLocationId")
+    put_SuggestedStartLocation(value)
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Storage.Pickers.IFolderPicker( this.comPtr );
+        iface.put_SuggestedStartLocation( value );
+        iface.release();
+    }
+
+    //@Returns("String")
+    get_CommitButtonText()
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Storage.Pickers.IFolderPicker( this.comPtr );
+        var _r = iface.get_CommitButtonText(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Parameters("String")
+    //@Returns("void")
+    //@Parameters("String")
+    put_CommitButtonText(value)
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Storage.Pickers.IFolderPicker( this.comPtr );
+        iface.put_CommitButtonText( value );
+        iface.release();
+    }
+
+    //@Returns("Windows.Foundation.Collections.IVector`1<String>")
+    get_FileTypeFilter()
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Storage.Pickers.IFolderPicker( this.comPtr );
+        var _r = iface.get_FileTypeFilter(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Returns("Windows.Foundation.IAsyncOperation`1<Windows.Storage.StorageFolder>")
+    PickSingleFolderAsync()
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Storage.Pickers.IFolderPicker( this.comPtr );
+        var _promise = Future();
+        var _cb = fun(status, result)
+        {
+            if (status == Windows.Foundation.AsyncStatus.Completed)
+            {
+                _promise.resolve(result);
+            } else {
+                _promise.reject(status);
+            }
+        };
+        iface.PickSingleFolderAsync( _cb  );
+        iface.release();
+        return _promise;
+    }
+
+    //@Returns("Windows.System.User")
+    get_User()
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Storage.Pickers.IFolderPicker3( this.comPtr );
+        var _r = iface.get_User(  );
+        iface.release();
+        return _r;
+    }
+
+
+}
+Windows.Storage.Pickers.FolderPicker = Windows_Storage_Pickers_FolderPicker;
+
+if ( Windows.Foundation == nil ) { Windows.Foundation = {}; }
+//@Interface("Windows.Foundation.IAsyncOperation`1<Windows.Storage.StorageFolder>")
+//@IID("{6BE9E7D7-E83A-5CBC-802C-1768960B52C3}")
+class Windows_Foundation_IAsyncOperation_1_Windows_Storage_StorageFolder_ : WinRtInterface {}
+Windows_Foundation_IAsyncOperation_1_Windows_Storage_StorageFolder_.iid = "{6BE9E7D7-E83A-5CBC-802C-1768960B52C3}";
+Windows_Foundation_IAsyncOperation_1_Windows_Storage_StorageFolder_.handler_iid = "{C211026E-9E63-5452-BA54-3A07D6A96874}";
+
+Windows.Foundation.IAsyncOperation_1_Windows_Storage_StorageFolder_ = Windows_Foundation_IAsyncOperation_1_Windows_Storage_StorageFolder_;
+if ( Windows.Foundation == nil ) { Windows.Foundation = {}; }
+//@Interface("Windows.Foundation.IAsyncOperation`1<Windows.Storage.StorageFile>")
+//@IID("{5E52F8CE-ACED-5A42-95B4-F674DD84885E}")
+class Windows_Foundation_IAsyncOperation_1_Windows_Storage_StorageFile_ : WinRtInterface {}
+Windows_Foundation_IAsyncOperation_1_Windows_Storage_StorageFile_.iid = "{5E52F8CE-ACED-5A42-95B4-F674DD84885E}";
+Windows_Foundation_IAsyncOperation_1_Windows_Storage_StorageFile_.handler_iid = "{E521C894-2C26-5946-9E61-2B5E188D01ED}";
+
+Windows.Foundation.IAsyncOperation_1_Windows_Storage_StorageFile_ = Windows_Foundation_IAsyncOperation_1_Windows_Storage_StorageFile_;
+if ( Windows.Foundation == nil ) { Windows.Foundation = {}; }
+//@Interface("Windows.Foundation.IAsyncOperation`1<Windows.Foundation.Collections.IVectorView`1<Windows.Storage.StorageFile>>")
+//@IID("{03362E33-E413-5F29-97D0-48A4780935F9}")
+class Windows_Foundation_IAsyncOperation_1_Windows_Foundation_Collections_IVectorView_1_Windows_Storage_StorageFile__ : WinRtInterface {}
+Windows_Foundation_IAsyncOperation_1_Windows_Foundation_Collections_IVectorView_1_Windows_Storage_StorageFile__.iid = "{03362E33-E413-5F29-97D0-48A4780935F9}";
+Windows_Foundation_IAsyncOperation_1_Windows_Foundation_Collections_IVectorView_1_Windows_Storage_StorageFile__.handler_iid = "{CB4206C5-0988-5104-AFA9-253C298F86FD}";
+
+Windows.Foundation.IAsyncOperation_1_Windows_Foundation_Collections_IVectorView_1_Windows_Storage_StorageFile__ = Windows_Foundation_IAsyncOperation_1_Windows_Foundation_Collections_IVectorView_1_Windows_Storage_StorageFile__;
+if ( Windows.Foundation == nil ) { Windows.Foundation = {}; }
+if ( Windows.Foundation.Collections == nil ) { Windows.Foundation.Collections = {}; }
+//@Interface("Windows.Foundation.Collections.IVector`1<String>")
+//@IID("{98B9ACC1-4B56-532E-AC73-03D5291CCA90}")
+class Windows_Foundation_Collections_IVector_1_String_ : WinRtInterface 
+{
+    Windows_Foundation_Collections_IVector_1_String_( comPtr )
+    {
+        this.comPtr = comPtr.queryInterface( "{98B9ACC1-4B56-532E-AC73-03D5291CCA90}");
+    }
+
+    //@VtableIndex(6)
+    //@Returns("T0")
+    //@Parameters("UInt32")
+    GetAt(index)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = index;
+        var _r = this.comPtr.invoke(6, "String", ["UInt32"], [p1] );
+        return _r;
+    }
+
+    //@VtableIndex(7)
+    //@Returns("UInt32")
+    get_Size()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke(7, "UInt32", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(8)
+    //@Returns("Windows.Foundation.Collections.IVectorView`1<T0>")
+    GetView()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = Windows.Foundation.Collections.IVectorView_1_String_(
+            this.comPtr.invoke(8, "Windows.Foundation.Collections.IVectorView`1<String>", [], [] )
+        );
+        return _r;
+    }
+
+    //@VtableIndex(10)
+    //@Returns("void")
+    //@Parameters("UInt32","T0")
+    SetAt(index,value)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = index;
+        var p2 = value;
+        this.comPtr.invoke(10, "void", ["UInt32", "String"], [p1, p2] );
+    }
+
+    //@VtableIndex(11)
+    //@Returns("void")
+    //@Parameters("UInt32","T0")
+    InsertAt(index,value)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = index;
+        var p2 = value;
+        this.comPtr.invoke(11, "void", ["UInt32", "String"], [p1, p2] );
+    }
+
+    //@VtableIndex(12)
+    //@Returns("void")
+    //@Parameters("UInt32")
+    RemoveAt(index)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = index;
+        this.comPtr.invoke(12, "void", ["UInt32"], [p1] );
+    }
+
+    //@VtableIndex(13)
+    //@Returns("void")
+    //@Parameters("T0")
+    Append(value)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = value;
+        this.comPtr.invoke(13, "void", ["String"], [p1] );
+    }
+
+    //@VtableIndex(14)
+    //@Returns("void")
+    RemoveAtEnd()
+    {
+        var Windows = runtime.global("Windows");
+        this.comPtr.invoke(14, "void", [], [] );
+    }
+
+    //@VtableIndex(15)
+    //@Returns("void")
+    Clear()
+    {
+        var Windows = runtime.global("Windows");
+        this.comPtr.invoke(15, "void", [], [] );
+    }
+
+
+}
+Windows_Foundation_Collections_IVector_1_String_.iid = "{98B9ACC1-4B56-532E-AC73-03D5291CCA90}";
+Windows.Foundation.Collections.IVector_1_String_ = Windows_Foundation_Collections_IVector_1_String_;
+
+
+if ( Windows.Foundation == nil ) { Windows.Foundation = {}; }
+if ( Windows.Foundation.Collections == nil ) { Windows.Foundation.Collections = {}; }
+//@Interface("Windows.Foundation.Collections.IVectorView`1<Windows.Storage.StorageFile>")
+//@IID("{80646519-5E2A-595D-A8CD-2A24B4067F1B}")
+class Windows_Foundation_Collections_IVectorView_1_Windows_Storage_StorageFile_ : WinRtInterface 
+{
+    Windows_Foundation_Collections_IVectorView_1_Windows_Storage_StorageFile_( comPtr )
+    {
+        this.comPtr = comPtr.queryInterface( "{80646519-5E2A-595D-A8CD-2A24B4067F1B}");
+    }
+
+    //@VtableIndex(6)
+    //@Returns("T0")
+    //@Parameters("UInt32")
+    GetAt(index)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = index;
+        var _r = Windows.Storage.StorageFile(
+            this.comPtr.invoke(6, "Windows.Storage.StorageFile", ["UInt32"], [p1] )
+        );
+        return _r;
+    }
+
+    //@VtableIndex(7)
+    //@Returns("UInt32")
+    get_Size()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke(7, "UInt32", [], [] );
+        return _r;
+    }
+
+
+}
+Windows_Foundation_Collections_IVectorView_1_Windows_Storage_StorageFile_.iid = "{80646519-5E2A-595D-A8CD-2A24B4067F1B}";
+Windows.Foundation.Collections.IVectorView_1_Windows_Storage_StorageFile_ = Windows_Foundation_Collections_IVectorView_1_Windows_Storage_StorageFile_;
+
+
+if ( Windows.Foundation == nil ) { Windows.Foundation = {}; }
+if ( Windows.Foundation.Collections == nil ) { Windows.Foundation.Collections = {}; }
+//@Interface("Windows.Foundation.Collections.IVectorView`1<String>")
+//@IID("{2F13C006-A03A-5F69-B090-75A43E33423E}")
+class Windows_Foundation_Collections_IVectorView_1_String_ : WinRtInterface 
+{
+    Windows_Foundation_Collections_IVectorView_1_String_( comPtr )
+    {
+        this.comPtr = comPtr.queryInterface( "{2F13C006-A03A-5F69-B090-75A43E33423E}");
+    }
+
+    //@VtableIndex(6)
+    //@Returns("T0")
+    //@Parameters("UInt32")
+    GetAt(index)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = index;
+        var _r = this.comPtr.invoke(6, "String", ["UInt32"], [p1] );
+        return _r;
+    }
+
+    //@VtableIndex(7)
+    //@Returns("UInt32")
+    get_Size()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke(7, "UInt32", [], [] );
+        return _r;
+    }
+
+
+}
+Windows_Foundation_Collections_IVectorView_1_String_.iid = "{2F13C006-A03A-5F69-B090-75A43E33423E}";
+Windows.Foundation.Collections.IVectorView_1_String_ = Windows_Foundation_Collections_IVectorView_1_String_;
+
+
+if ( Windows.Foundation == nil ) { Windows.Foundation = {}; }
+if ( Windows.Foundation.Collections == nil ) { Windows.Foundation.Collections = {}; }
+//@Interface("Windows.Foundation.Collections.IMap`2<String,Windows.Foundation.Collections.IVector`1<String>>")
+//@IID("{E475CA9D-6AFB-5992-993E-53E6EF7A9ECD}")
+class Windows_Foundation_Collections_IMap_2_String_Windows_Foundation_Collections_IVector_1_String__ : WinRtInterface 
+{
+    Windows_Foundation_Collections_IMap_2_String_Windows_Foundation_Collections_IVector_1_String__( comPtr )
+    {
+        this.comPtr = comPtr.queryInterface( "{E475CA9D-6AFB-5992-993E-53E6EF7A9ECD}");
+    }
+
+    //@VtableIndex(6)
+    //@Returns("T1")
+    //@Parameters("T0")
+    Lookup(key)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = key;
+        var _r = Windows.Foundation.Collections.IVector_1_String_(
+            this.comPtr.invoke(6, "Windows.Foundation.Collections.IVector`1<String>", ["String"], [p1] )
+        );
+        return _r;
+    }
+
+    //@VtableIndex(7)
+    //@Returns("UInt32")
+    get_Size()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke(7, "UInt32", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(8)
+    //@Returns("Boolean")
+    //@Parameters("T0")
+    HasKey(key)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = key;
+        var _r = this.comPtr.invoke(8, "Boolean", ["String"], [p1] );
+        return _r;
+    }
+
+    //@VtableIndex(9)
+    //@Returns("Windows.Foundation.Collections.IMapView`2<T0,T1>")
+    GetView()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = Windows.Foundation.Collections.IMapView_2_String_Windows_Foundation_Collections_IVector_1_String__(
+            this.comPtr.invoke(9, "Windows.Foundation.Collections.IMapView`2<String,Windows.Foundation.Collections.IVector`1<String>>", [], [] )
+        );
+        return _r;
+    }
+
+    //@VtableIndex(10)
+    //@Returns("Boolean")
+    //@Parameters("T0","T1")
+    Insert(key,value)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = key;
+        var p2 = Windows.Foundation.Collections.IVector_1_String_( value); 
+        var _r = this.comPtr.invoke(10, "Boolean", ["String", "Windows.Foundation.Collections.IVector`1<String>"], [p1, p2] );
+        return _r;
+    }
+
+    //@VtableIndex(11)
+    //@Returns("void")
+    //@Parameters("T0")
+    Remove(key)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = key;
+        this.comPtr.invoke(11, "void", ["String"], [p1] );
+    }
+
+    //@VtableIndex(12)
+    //@Returns("void")
+    Clear()
+    {
+        var Windows = runtime.global("Windows");
+        this.comPtr.invoke(12, "void", [], [] );
+    }
+
+
+}
+Windows_Foundation_Collections_IMap_2_String_Windows_Foundation_Collections_IVector_1_String__.iid = "{E475CA9D-6AFB-5992-993E-53E6EF7A9ECD}";
+Windows.Foundation.Collections.IMap_2_String_Windows_Foundation_Collections_IVector_1_String__ = Windows_Foundation_Collections_IMap_2_String_Windows_Foundation_Collections_IVector_1_String__;
+
+
+if ( Windows.Foundation == nil ) { Windows.Foundation = {}; }
+if ( Windows.Foundation.Collections == nil ) { Windows.Foundation.Collections = {}; }
+//@Interface("Windows.Foundation.Collections.IMap`2<String,Windows.Foundation.Collections.IVector`1>")
+//@IID("{E475CA9D-6AFB-5992-993E-53E6EF7A9ECD}")
+class Windows_Foundation_Collections_IMap_2_String_Windows_Foundation_Collections_IVector_1_ : WinRtInterface 
+{
+    Windows_Foundation_Collections_IMap_2_String_Windows_Foundation_Collections_IVector_1_( comPtr )
+    {
+        this.comPtr = comPtr.queryInterface( "{E475CA9D-6AFB-5992-993E-53E6EF7A9ECD}");
+    }
+
+    //@VtableIndex(6)
+    //@Returns("T1")
+    //@Parameters("T0")
+    Lookup(key)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = key;
+        var _r = Windows.Foundation.Collections.IVector_1(
+            this.comPtr.invoke(6, "Windows.Foundation.Collections.IVector`1", ["String"], [p1] )
+        );
+        return _r;
+    }
+
+    //@VtableIndex(7)
+    //@Returns("UInt32")
+    get_Size()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke(7, "UInt32", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(8)
+    //@Returns("Boolean")
+    //@Parameters("T0")
+    HasKey(key)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = key;
+        var _r = this.comPtr.invoke(8, "Boolean", ["String"], [p1] );
+        return _r;
+    }
+
+    //@VtableIndex(9)
+    //@Returns("Windows.Foundation.Collections.IMapView`2<T0,T1>")
+    GetView()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = Windows.Foundation.Collections.IMapView_2_String_Windows_Foundation_Collections_IVector_1_(
+            this.comPtr.invoke(9, "Windows.Foundation.Collections.IMapView`2<String,Windows.Foundation.Collections.IVector`1>", [], [] )
+        );
+        return _r;
+    }
+
+    //@VtableIndex(10)
+    //@Returns("Boolean")
+    //@Parameters("T0","T1")
+    Insert(key,value)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = key;
+        var p2 = Windows.Foundation.Collections.IVector_1( value); 
+        var _r = this.comPtr.invoke(10, "Boolean", ["String", "Windows.Foundation.Collections.IVector`1"], [p1, p2] );
+        return _r;
+    }
+
+    //@VtableIndex(11)
+    //@Returns("void")
+    //@Parameters("T0")
+    Remove(key)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = key;
+        this.comPtr.invoke(11, "void", ["String"], [p1] );
+    }
+
+    //@VtableIndex(12)
+    //@Returns("void")
+    Clear()
+    {
+        var Windows = runtime.global("Windows");
+        this.comPtr.invoke(12, "void", [], [] );
+    }
+
+
+}
+Windows_Foundation_Collections_IMap_2_String_Windows_Foundation_Collections_IVector_1_.iid = "{E475CA9D-6AFB-5992-993E-53E6EF7A9ECD}";
+Windows.Foundation.Collections.IMap_2_String_Windows_Foundation_Collections_IVector_1_ = Windows_Foundation_Collections_IMap_2_String_Windows_Foundation_Collections_IVector_1_;
+
+
+if ( Windows.Foundation == nil ) { Windows.Foundation = {}; }
+if ( Windows.Foundation.Collections == nil ) { Windows.Foundation.Collections = {}; }
+//@Interface("Windows.Foundation.Collections.IMapView`2<String,Windows.Foundation.Collections.IVector`1<String>>")
+//@IID("{153F9C9C-D22A-5C9E-9C74-8B85C908B000}")
+class Windows_Foundation_Collections_IMapView_2_String_Windows_Foundation_Collections_IVector_1_String__ : WinRtInterface 
+{
+    Windows_Foundation_Collections_IMapView_2_String_Windows_Foundation_Collections_IVector_1_String__( comPtr )
+    {
+        this.comPtr = comPtr.queryInterface( "{153F9C9C-D22A-5C9E-9C74-8B85C908B000}");
+    }
+
+    //@VtableIndex(6)
+    //@Returns("T1")
+    //@Parameters("T0")
+    Lookup(key)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = key;
+        var _r = Windows.Foundation.Collections.IVector_1_String_(
+            this.comPtr.invoke(6, "Windows.Foundation.Collections.IVector`1<String>", ["String"], [p1] )
+        );
+        return _r;
+    }
+
+    //@VtableIndex(7)
+    //@Returns("UInt32")
+    get_Size()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke(7, "UInt32", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(8)
+    //@Returns("Boolean")
+    //@Parameters("T0")
+    HasKey(key)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = key;
+        var _r = this.comPtr.invoke(8, "Boolean", ["String"], [p1] );
+        return _r;
+    }
+
+
+}
+Windows_Foundation_Collections_IMapView_2_String_Windows_Foundation_Collections_IVector_1_String__.iid = "{153F9C9C-D22A-5C9E-9C74-8B85C908B000}";
+Windows.Foundation.Collections.IMapView_2_String_Windows_Foundation_Collections_IVector_1_String__ = Windows_Foundation_Collections_IMapView_2_String_Windows_Foundation_Collections_IVector_1_String__;
+
+
+if ( Windows.Foundation == nil ) { Windows.Foundation = {}; }
+if ( Windows.Foundation.Collections == nil ) { Windows.Foundation.Collections = {}; }
+//@Interface("Windows.Foundation.Collections.IKeyValuePair`2<String,Windows.Foundation.Collections.IVector`1<String>>")
+//@IID("{174F26C7-79EA-5F7C-BD70-AC4457F2CAC8}")
+class Windows_Foundation_Collections_IKeyValuePair_2_String_Windows_Foundation_Collections_IVector_1_String__ : WinRtInterface 
+{
+    Windows_Foundation_Collections_IKeyValuePair_2_String_Windows_Foundation_Collections_IVector_1_String__( comPtr )
+    {
+        this.comPtr = comPtr.queryInterface( "{174F26C7-79EA-5F7C-BD70-AC4457F2CAC8}");
+    }
+
+    //@VtableIndex(6)
+    //@Returns("T0")
+    get_Key()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke(6, "String", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(7)
+    //@Returns("T1")
+    get_Value()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = Windows.Foundation.Collections.IVector_1_String_(
+            this.comPtr.invoke(7, "Windows.Foundation.Collections.IVector`1<String>", [], [] )
+        );
+        return _r;
+    }
+
+
+}
+Windows_Foundation_Collections_IKeyValuePair_2_String_Windows_Foundation_Collections_IVector_1_String__.iid = "{174F26C7-79EA-5F7C-BD70-AC4457F2CAC8}";
+Windows.Foundation.Collections.IKeyValuePair_2_String_Windows_Foundation_Collections_IVector_1_String__ = Windows_Foundation_Collections_IKeyValuePair_2_String_Windows_Foundation_Collections_IVector_1_String__;
+
+
+if ( Windows.Foundation == nil ) { Windows.Foundation = {}; }
+if ( Windows.Foundation.Collections == nil ) { Windows.Foundation.Collections = {}; }
+//@Interface("Windows.Foundation.Collections.IIterator`1<Windows.Storage.StorageFile>")
+//@IID("{43E29F53-0298-55AA-A6C8-4EDD323D9598}")
+class Windows_Foundation_Collections_IIterator_1_Windows_Storage_StorageFile_ : WinRtInterface 
+{
+    Windows_Foundation_Collections_IIterator_1_Windows_Storage_StorageFile_( comPtr )
+    {
+        this.comPtr = comPtr.queryInterface( "{43E29F53-0298-55AA-A6C8-4EDD323D9598}");
+    }
+
+    //@VtableIndex(6)
+    //@Returns("T0")
+    get_Current()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = Windows.Storage.StorageFile(
+            this.comPtr.invoke(6, "Windows.Storage.StorageFile", [], [] )
+        );
+        return _r;
+    }
+
+    //@VtableIndex(7)
+    //@Returns("Boolean")
+    get_HasCurrent()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke(7, "Boolean", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(8)
+    //@Returns("Boolean")
+    MoveNext()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke(8, "Boolean", [], [] );
+        return _r;
+    }
+
+
+}
+Windows_Foundation_Collections_IIterator_1_Windows_Storage_StorageFile_.iid = "{43E29F53-0298-55AA-A6C8-4EDD323D9598}";
+Windows.Foundation.Collections.IIterator_1_Windows_Storage_StorageFile_ = Windows_Foundation_Collections_IIterator_1_Windows_Storage_StorageFile_;
+
+
+if ( Windows.Foundation == nil ) { Windows.Foundation = {}; }
+if ( Windows.Foundation.Collections == nil ) { Windows.Foundation.Collections = {}; }
+//@Interface("Windows.Foundation.Collections.IIterator`1<Windows.Foundation.Collections.IKeyValuePair`2<String,Windows.Foundation.Collections.IVector`1<String>>>")
+//@IID("{A11824C9-E458-502A-AFD8-CE3CE0ABD6FE}")
+class Windows_Foundation_Collections_IIterator_1_Windows_Foundation_Collections_IKeyValuePair_2_String_Windows_Foundation_Collections_IVector_1_String___ : WinRtInterface 
+{
+    Windows_Foundation_Collections_IIterator_1_Windows_Foundation_Collections_IKeyValuePair_2_String_Windows_Foundation_Collections_IVector_1_String___( comPtr )
+    {
+        this.comPtr = comPtr.queryInterface( "{A11824C9-E458-502A-AFD8-CE3CE0ABD6FE}");
+    }
+
+    //@VtableIndex(6)
+    //@Returns("T0")
+    get_Current()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = Windows.Foundation.Collections.IKeyValuePair_2_String_Windows_Foundation_Collections_IVector_1_String__(
+            this.comPtr.invoke(6, "Windows.Foundation.Collections.IKeyValuePair`2<String,Windows.Foundation.Collections.IVector`1<String>>", [], [] )
+        );
+        return _r;
+    }
+
+    //@VtableIndex(7)
+    //@Returns("Boolean")
+    get_HasCurrent()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke(7, "Boolean", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(8)
+    //@Returns("Boolean")
+    MoveNext()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke(8, "Boolean", [], [] );
+        return _r;
+    }
+
+
+}
+Windows_Foundation_Collections_IIterator_1_Windows_Foundation_Collections_IKeyValuePair_2_String_Windows_Foundation_Collections_IVector_1_String___.iid = "{A11824C9-E458-502A-AFD8-CE3CE0ABD6FE}";
+Windows.Foundation.Collections.IIterator_1_Windows_Foundation_Collections_IKeyValuePair_2_String_Windows_Foundation_Collections_IVector_1_String___ = Windows_Foundation_Collections_IIterator_1_Windows_Foundation_Collections_IKeyValuePair_2_String_Windows_Foundation_Collections_IVector_1_String___;
+
+
+if ( Windows.Foundation == nil ) { Windows.Foundation = {}; }
+if ( Windows.Foundation.Collections == nil ) { Windows.Foundation.Collections = {}; }
+//@Interface("Windows.Foundation.Collections.IIterator`1<String>")
+//@IID("{8C304EBB-6615-50A4-8829-879ECD443236}")
+class Windows_Foundation_Collections_IIterator_1_String_ : WinRtInterface 
+{
+    Windows_Foundation_Collections_IIterator_1_String_( comPtr )
+    {
+        this.comPtr = comPtr.queryInterface( "{8C304EBB-6615-50A4-8829-879ECD443236}");
+    }
+
+    //@VtableIndex(6)
+    //@Returns("T0")
+    get_Current()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke(6, "String", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(7)
+    //@Returns("Boolean")
+    get_HasCurrent()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke(7, "Boolean", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(8)
+    //@Returns("Boolean")
+    MoveNext()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke(8, "Boolean", [], [] );
+        return _r;
+    }
+
+
+}
+Windows_Foundation_Collections_IIterator_1_String_.iid = "{8C304EBB-6615-50A4-8829-879ECD443236}";
+Windows.Foundation.Collections.IIterator_1_String_ = Windows_Foundation_Collections_IIterator_1_String_;
+
+
+if ( Windows.Foundation == nil ) { Windows.Foundation = {}; }
+if ( Windows.Foundation.Collections == nil ) { Windows.Foundation.Collections = {}; }
+//@Interface("Windows.Foundation.Collections.IIterable`1<Windows.Storage.StorageFile>")
+//@IID("{9AC00304-83EA-5688-87B6-AE38AAB65D0B}")
+class Windows_Foundation_Collections_IIterable_1_Windows_Storage_StorageFile_ : WinRtInterface 
+{
+    Windows_Foundation_Collections_IIterable_1_Windows_Storage_StorageFile_( comPtr )
+    {
+        this.comPtr = comPtr.queryInterface( "{9AC00304-83EA-5688-87B6-AE38AAB65D0B}");
+    }
+
+    //@VtableIndex(6)
+    //@Returns("Windows.Foundation.Collections.IIterator`1<T0>")
+    First()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = Windows.Foundation.Collections.IIterator_1_Windows_Storage_StorageFile_(
+            this.comPtr.invoke(6, "Windows.Foundation.Collections.IIterator`1<Windows.Storage.StorageFile>", [], [] )
+        );
+        return _r;
+    }
+
+
+}
+Windows_Foundation_Collections_IIterable_1_Windows_Storage_StorageFile_.iid = "{9AC00304-83EA-5688-87B6-AE38AAB65D0B}";
+Windows.Foundation.Collections.IIterable_1_Windows_Storage_StorageFile_ = Windows_Foundation_Collections_IIterable_1_Windows_Storage_StorageFile_;
+
+
+if ( Windows.Foundation == nil ) { Windows.Foundation = {}; }
+if ( Windows.Foundation.Collections == nil ) { Windows.Foundation.Collections = {}; }
+//@Interface("Windows.Foundation.Collections.IIterable`1<Windows.Foundation.Collections.IKeyValuePair`2>")
+//@IID("{4FED2669-D0D3-59F6-91D9-95902D728D6A}")
+class Windows_Foundation_Collections_IIterable_1_Windows_Foundation_Collections_IKeyValuePair_2_ : WinRtInterface 
+{
+    Windows_Foundation_Collections_IIterable_1_Windows_Foundation_Collections_IKeyValuePair_2_( comPtr )
+    {
+        this.comPtr = comPtr.queryInterface( "{4FED2669-D0D3-59F6-91D9-95902D728D6A}");
+    }
+
+    //@VtableIndex(6)
+    //@Returns("Windows.Foundation.Collections.IIterator`1<T0>")
+    First()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = Windows.Foundation.Collections.IIterator_1_Windows_Foundation_Collections_IKeyValuePair_2_(
+            this.comPtr.invoke(6, "Windows.Foundation.Collections.IIterator`1<Windows.Foundation.Collections.IKeyValuePair`2>", [], [] )
+        );
+        return _r;
+    }
+
+
+}
+Windows_Foundation_Collections_IIterable_1_Windows_Foundation_Collections_IKeyValuePair_2_.iid = "{4FED2669-D0D3-59F6-91D9-95902D728D6A}";
+Windows.Foundation.Collections.IIterable_1_Windows_Foundation_Collections_IKeyValuePair_2_ = Windows_Foundation_Collections_IIterable_1_Windows_Foundation_Collections_IKeyValuePair_2_;
+
+
+if ( Windows.Foundation == nil ) { Windows.Foundation = {}; }
+if ( Windows.Foundation.Collections == nil ) { Windows.Foundation.Collections = {}; }
+//@Interface("Windows.Foundation.Collections.IIterable`1<String>")
+//@IID("{E2FCC7C1-3BFC-5A0B-B2B0-72E769D1CB7E}")
+class Windows_Foundation_Collections_IIterable_1_String_ : WinRtInterface 
+{
+    Windows_Foundation_Collections_IIterable_1_String_( comPtr )
+    {
+        this.comPtr = comPtr.queryInterface( "{E2FCC7C1-3BFC-5A0B-B2B0-72E769D1CB7E}");
+    }
+
+    //@VtableIndex(6)
+    //@Returns("Windows.Foundation.Collections.IIterator`1<T0>")
+    First()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = Windows.Foundation.Collections.IIterator_1_String_(
+            this.comPtr.invoke(6, "Windows.Foundation.Collections.IIterator`1<String>", [], [] )
+        );
+        return _r;
+    }
+
+
+}
+Windows_Foundation_Collections_IIterable_1_String_.iid = "{E2FCC7C1-3BFC-5A0B-B2B0-72E769D1CB7E}";
+Windows.Foundation.Collections.IIterable_1_String_ = Windows_Foundation_Collections_IIterable_1_String_;
+
+
+
+}

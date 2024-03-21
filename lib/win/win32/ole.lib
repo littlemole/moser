@@ -1,0 +1,2525 @@
+{
+
+if( runtime.global("Win32") == nil ) { runtime.global("Win32", {}); }
+var Win32 = runtime.global("Win32");
+
+Win32.UPDFCACHE_FLAGS = {
+    "UPDFCACHE_ALL" : 2147483647, 
+    "UPDFCACHE_ALLBUTNODATACACHE" : 2147483646, 
+    "UPDFCACHE_NORMALCACHE" : 8, 
+    "UPDFCACHE_IFBLANK" : 16, 
+    "UPDFCACHE_ONLYIFBLANK" : 2147483648, 
+    "UPDFCACHE_NODATACACHE" : 1, 
+    "UPDFCACHE_ONSAVECACHE" : 2, 
+    "UPDFCACHE_ONSTOPCACHE" : 4, 
+    "UPDFCACHE_IFBLANKORONSAVECACHE" : 18
+};
+
+
+Win32.ENUM_CONTROLS_WHICH_FLAGS = {
+    "GCW_WCH_SIBLING" : 1, 
+    "GC_WCH_CONTAINER" : 2, 
+    "GC_WCH_CONTAINED" : 3, 
+    "GC_WCH_ALL" : 4, 
+    "GC_WCH_FREVERSEDIR" : 134217728, 
+    "GC_WCH_FONLYAFTER" : 268435456, 
+    "GC_WCH_FONLYBEFORE" : 536870912, 
+    "GC_WCH_FSELECTED" : 1073741824
+};
+
+
+Win32.MULTICLASSINFO_FLAGS = {
+    "MULTICLASSINFO_GETTYPEINFO" : 1, 
+    "MULTICLASSINFO_GETNUMRESERVEDDISPIDS" : 2, 
+    "MULTICLASSINFO_GETIIDPRIMARY" : 4, 
+    "MULTICLASSINFO_GETIIDSOURCE" : 8
+};
+
+
+Win32.DROPEFFECT = {
+    "DROPEFFECT_NONE" : 0, 
+    "DROPEFFECT_COPY" : 1, 
+    "DROPEFFECT_MOVE" : 2, 
+    "DROPEFFECT_LINK" : 4, 
+    "DROPEFFECT_SCROLL" : 2147483648
+};
+
+
+Win32.KEYMODIFIERS = {
+    "KEYMOD_SHIFT" : 1, 
+    "KEYMOD_CONTROL" : 2, 
+    "KEYMOD_ALT" : 4
+};
+
+
+Win32.ACTIVEOBJECT_FLAGS = {
+    "ACTIVEOBJECT_STRONG" : 0, 
+    "ACTIVEOBJECT_WEAK" : 1
+};
+
+
+Win32.BUSY_DIALOG_FLAGS = {
+    "BZ_DISABLECANCELBUTTON" : 1, 
+    "BZ_DISABLESWITCHTOBUTTON" : 2, 
+    "BZ_DISABLERETRYBUTTON" : 4, 
+    "BZ_NOTRESPONDINGDIALOG" : 8
+};
+
+
+Win32.UI_CONVERT_FLAGS = {
+    "CF_SHOWHELPBUTTON" : 1, 
+    "CF_SETCONVERTDEFAULT" : 2, 
+    "CF_SETACTIVATEDEFAULT" : 4, 
+    "CF_SELECTCONVERTTO" : 8, 
+    "CF_SELECTACTIVATEAS" : 16, 
+    "CF_DISABLEDISPLAYASICON" : 32, 
+    "CF_DISABLEACTIVATEAS" : 64, 
+    "CF_HIDECHANGEICON" : 128, 
+    "CF_CONVERTONLY" : 256
+};
+
+
+Win32.CHANGE_ICON_FLAGS = {
+    "CIF_SHOWHELP" : 1, 
+    "CIF_SELECTCURRENT" : 2, 
+    "CIF_SELECTDEFAULT" : 4, 
+    "CIF_SELECTFROMFILE" : 8, 
+    "CIF_USEICONEXE" : 16
+};
+
+
+Win32.CHANGE_SOURCE_FLAGS = {
+    "CSF_SHOWHELP" : 1, 
+    "CSF_VALIDSOURCE" : 2, 
+    "CSF_ONLYGETSOURCE" : 4, 
+    "CSF_EXPLORER" : 8
+};
+
+
+Win32.EDIT_LINKS_FLAGS = {
+    "ELF_SHOWHELP" : 1, 
+    "ELF_DISABLEUPDATENOW" : 2, 
+    "ELF_DISABLEOPENSOURCE" : 4, 
+    "ELF_DISABLECHANGESOURCE" : 8, 
+    "ELF_DISABLECANCELLINK" : 16
+};
+
+
+Win32.INSERT_OBJECT_FLAGS = {
+    "IOF_SHOWHELP" : 1, 
+    "IOF_SELECTCREATENEW" : 2, 
+    "IOF_SELECTCREATEFROMFILE" : 4, 
+    "IOF_CHECKLINK" : 8, 
+    "IOF_CHECKDISPLAYASICON" : 16, 
+    "IOF_CREATENEWOBJECT" : 32, 
+    "IOF_CREATEFILEOBJECT" : 64, 
+    "IOF_CREATELINKOBJECT" : 128, 
+    "IOF_DISABLELINK" : 256, 
+    "IOF_VERIFYSERVERSEXIST" : 512, 
+    "IOF_DISABLEDISPLAYASICON" : 1024, 
+    "IOF_HIDECHANGEICON" : 2048, 
+    "IOF_SHOWINSERTCONTROL" : 4096, 
+    "IOF_SELECTCREATECONTROL" : 8192
+};
+
+
+Win32.OBJECT_PROPERTIES_FLAGS = {
+    "OPF_OBJECTISLINK" : 1, 
+    "OPF_NOFILLDEFAULT" : 2, 
+    "OPF_SHOWHELP" : 4, 
+    "OPF_DISABLECONVERT" : 8
+};
+
+
+Win32.VIEW_OBJECT_PROPERTIES_FLAGS = {
+    "VPF_SELECTRELATIVE" : 1, 
+    "VPF_DISABLERELATIVE" : 2, 
+    "VPF_DISABLESCALE" : 4
+};
+
+
+Win32.PARAMFLAGS = {
+    "PARAMFLAG_NONE" : 0, 
+    "PARAMFLAG_FIN" : 1, 
+    "PARAMFLAG_FOUT" : 2, 
+    "PARAMFLAG_FLCID" : 4, 
+    "PARAMFLAG_FRETVAL" : 8, 
+    "PARAMFLAG_FOPT" : 16, 
+    "PARAMFLAG_FHASDEFAULT" : 32, 
+    "PARAMFLAG_FHASCUSTDATA" : 64
+};
+
+
+Win32.NUMPARSE_FLAGS = {
+    "NUMPRS_LEADING_WHITE" : 1, 
+    "NUMPRS_TRAILING_WHITE" : 2, 
+    "NUMPRS_LEADING_PLUS" : 4, 
+    "NUMPRS_TRAILING_PLUS" : 8, 
+    "NUMPRS_LEADING_MINUS" : 16, 
+    "NUMPRS_TRAILING_MINUS" : 32, 
+    "NUMPRS_HEX_OCT" : 64, 
+    "NUMPRS_PARENS" : 128, 
+    "NUMPRS_DECIMAL" : 256, 
+    "NUMPRS_THOUSANDS" : 512, 
+    "NUMPRS_CURRENCY" : 1024, 
+    "NUMPRS_EXPONENT" : 2048, 
+    "NUMPRS_USE_ALL" : 4096, 
+    "NUMPRS_STD" : 8191, 
+    "NUMPRS_NEG" : 65536, 
+    "NUMPRS_INEXACT" : 131072
+};
+
+
+Win32.PICTYPE = {
+    "PICTYPE_UNINITIALIZED" : -1, 
+    "PICTYPE_NONE" : 0, 
+    "PICTYPE_BITMAP" : 1, 
+    "PICTYPE_METAFILE" : 2, 
+    "PICTYPE_ICON" : 3, 
+    "PICTYPE_ENHMETAFILE" : 4
+};
+
+
+Win32.VARCMP = {
+    "VARCMP_LT" : 0, 
+    "VARCMP_EQ" : 1, 
+    "VARCMP_GT" : 2, 
+    "VARCMP_NULL" : 3
+};
+
+
+Win32.PASTE_SPECIAL_FLAGS = {
+    "PSF_SHOWHELP" : 1, 
+    "PSF_SELECTPASTE" : 2, 
+    "PSF_SELECTPASTELINK" : 4, 
+    "PSF_CHECKDISPLAYASICON" : 8, 
+    "PSF_DISABLEDISPLAYASICON" : 16, 
+    "PSF_HIDECHANGEICON" : 32, 
+    "PSF_STAYONCLIPBOARDCHANGE" : 64, 
+    "PSF_NOREFRESHDATAOBJECT" : 128
+};
+
+
+Win32.EMBDHLP_FLAGS = {
+    "EMBDHLP_INPROC_HANDLER" : 0, 
+    "EMBDHLP_INPROC_SERVER" : 1, 
+    "EMBDHLP_CREATENOW" : 0, 
+    "EMBDHLP_DELAYCREATE" : 65536
+};
+
+
+Win32.FDEX_PROP_FLAGS = {
+    "fdexPropCanGet" : 1, 
+    "fdexPropCannotGet" : 2, 
+    "fdexPropCanPut" : 4, 
+    "fdexPropCannotPut" : 8, 
+    "fdexPropCanPutRef" : 16, 
+    "fdexPropCannotPutRef" : 32, 
+    "fdexPropNoSideEffects" : 64, 
+    "fdexPropDynamicType" : 128, 
+    "fdexPropCanCall" : 256, 
+    "fdexPropCannotCall" : 512, 
+    "fdexPropCanConstruct" : 1024, 
+    "fdexPropCannotConstruct" : 2048, 
+    "fdexPropCanSourceEvents" : 4096, 
+    "fdexPropCannotSourceEvents" : 8192
+};
+
+
+Win32.LOAD_PICTURE_FLAGS = {
+    "LP_DEFAULT" : 0, 
+    "LP_MONOCHROME" : 1, 
+    "LP_VGACOLOR" : 2, 
+    "LP_COLOR" : 4
+};
+
+
+Win32.OLECREATE = {
+    "OLECREATE_ZERO" : 0, 
+    "OLECREATE_LEAVERUNNING" : 1
+};
+
+
+Win32.VARFORMAT_FIRST_DAY = {
+    "VARFORMAT_FIRST_DAY_SYSTEMDEFAULT" : 0, 
+    "VARFORMAT_FIRST_DAY_MONDAY" : 1, 
+    "VARFORMAT_FIRST_DAY_TUESDAY" : 2, 
+    "VARFORMAT_FIRST_DAY_WEDNESDAY" : 3, 
+    "VARFORMAT_FIRST_DAY_THURSDAY" : 4, 
+    "VARFORMAT_FIRST_DAY_FRIDAY" : 5, 
+    "VARFORMAT_FIRST_DAY_SATURDAY" : 6, 
+    "VARFORMAT_FIRST_DAY_SUNDAY" : 7
+};
+
+
+Win32.VARFORMAT_FIRST_WEEK = {
+    "VARFORMAT_FIRST_WEEK_SYSTEMDEFAULT" : 0, 
+    "VARFORMAT_FIRST_WEEK_CONTAINS_JANUARY_FIRST" : 1, 
+    "VARFORMAT_FIRST_WEEK_LARGER_HALF_IN_CURRENT_YEAR" : 2, 
+    "VARFORMAT_FIRST_WEEK_HAS_SEVEN_DAYS" : 3
+};
+
+
+Win32.VARFORMAT_NAMED_FORMAT = {
+    "VARFORMAT_NAMED_FORMAT_GENERALDATE" : 0, 
+    "VARFORMAT_NAMED_FORMAT_LONGDATE" : 1, 
+    "VARFORMAT_NAMED_FORMAT_SHORTDATE" : 2, 
+    "VARFORMAT_NAMED_FORMAT_LONGTIME" : 3, 
+    "VARFORMAT_NAMED_FORMAT_SHORTTIME" : 4
+};
+
+
+Win32.VARFORMAT_LEADING_DIGIT = {
+    "VARFORMAT_LEADING_DIGIT_SYSTEMDEFAULT" : -2, 
+    "VARFORMAT_LEADING_DIGIT_INCLUDED" : -1, 
+    "VARFORMAT_LEADING_DIGIT_NOTINCLUDED" : 0
+};
+
+
+Win32.VARFORMAT_PARENTHESES = {
+    "VARFORMAT_PARENTHESES_SYSTEMDEFAULT" : -2, 
+    "VARFORMAT_PARENTHESES_USED" : -1, 
+    "VARFORMAT_PARENTHESES_NOTUSED" : 0
+};
+
+
+Win32.VARFORMAT_GROUP = {
+    "VARFORMAT_GROUP_SYSTEMDEFAULT" : -2, 
+    "VARFORMAT_GROUP_THOUSANDS" : -1, 
+    "VARFORMAT_GROUP_NOTTHOUSANDS" : 0
+};
+
+
+Win32.SF_TYPE = {
+    "SF_ERROR" : 10, 
+    "SF_I1" : 16, 
+    "SF_I2" : 2, 
+    "SF_I4" : 3, 
+    "SF_I8" : 20, 
+    "SF_BSTR" : 8, 
+    "SF_UNKNOWN" : 13, 
+    "SF_DISPATCH" : 9, 
+    "SF_VARIANT" : 12, 
+    "SF_RECORD" : 36, 
+    "SF_HAVEIID" : 32781
+};
+
+
+Win32.TYPEFLAGS = {
+    "TYPEFLAG_FAPPOBJECT" : 1, 
+    "TYPEFLAG_FCANCREATE" : 2, 
+    "TYPEFLAG_FLICENSED" : 4, 
+    "TYPEFLAG_FPREDECLID" : 8, 
+    "TYPEFLAG_FHIDDEN" : 16, 
+    "TYPEFLAG_FCONTROL" : 32, 
+    "TYPEFLAG_FDUAL" : 64, 
+    "TYPEFLAG_FNONEXTENSIBLE" : 128, 
+    "TYPEFLAG_FOLEAUTOMATION" : 256, 
+    "TYPEFLAG_FRESTRICTED" : 512, 
+    "TYPEFLAG_FAGGREGATABLE" : 1024, 
+    "TYPEFLAG_FREPLACEABLE" : 2048, 
+    "TYPEFLAG_FDISPATCHABLE" : 4096, 
+    "TYPEFLAG_FREVERSEBIND" : 8192, 
+    "TYPEFLAG_FPROXY" : 16384
+};
+
+
+Win32.LIBFLAGS = {
+    "LIBFLAG_FRESTRICTED" : 1, 
+    "LIBFLAG_FCONTROL" : 2, 
+    "LIBFLAG_FHIDDEN" : 4, 
+    "LIBFLAG_FHASDISKIMAGE" : 8
+};
+
+
+Win32.CHANGEKIND = {
+    "CHANGEKIND_ADDMEMBER" : 0, 
+    "CHANGEKIND_DELETEMEMBER" : 1, 
+    "CHANGEKIND_SETNAMES" : 2, 
+    "CHANGEKIND_SETDOCUMENTATION" : 3, 
+    "CHANGEKIND_GENERAL" : 4, 
+    "CHANGEKIND_INVALIDATE" : 5, 
+    "CHANGEKIND_CHANGEFAILED" : 6, 
+    "CHANGEKIND_MAX" : 7
+};
+
+
+Win32.DISCARDCACHE = {
+    "DISCARDCACHE_SAVEIFDIRTY" : 0, 
+    "DISCARDCACHE_NOSAVE" : 1
+};
+
+
+Win32.OLEGETMONIKER = {
+    "OLEGETMONIKER_ONLYIFTHERE" : 1, 
+    "OLEGETMONIKER_FORCEASSIGN" : 2, 
+    "OLEGETMONIKER_UNASSIGN" : 3, 
+    "OLEGETMONIKER_TEMPFORUSER" : 4
+};
+
+
+Win32.OLEWHICHMK = {
+    "OLEWHICHMK_CONTAINER" : 1, 
+    "OLEWHICHMK_OBJREL" : 2, 
+    "OLEWHICHMK_OBJFULL" : 3
+};
+
+
+Win32.USERCLASSTYPE = {
+    "USERCLASSTYPE_FULL" : 1, 
+    "USERCLASSTYPE_SHORT" : 2, 
+    "USERCLASSTYPE_APPNAME" : 3
+};
+
+
+Win32.OLEMISC = {
+    "OLEMISC_RECOMPOSEONRESIZE" : 1, 
+    "OLEMISC_ONLYICONIC" : 2, 
+    "OLEMISC_INSERTNOTREPLACE" : 4, 
+    "OLEMISC_STATIC" : 8, 
+    "OLEMISC_CANTLINKINSIDE" : 16, 
+    "OLEMISC_CANLINKBYOLE1" : 32, 
+    "OLEMISC_ISLINKOBJECT" : 64, 
+    "OLEMISC_INSIDEOUT" : 128, 
+    "OLEMISC_ACTIVATEWHENVISIBLE" : 256, 
+    "OLEMISC_RENDERINGISDEVICEINDEPENDENT" : 512, 
+    "OLEMISC_INVISIBLEATRUNTIME" : 1024, 
+    "OLEMISC_ALWAYSRUN" : 2048, 
+    "OLEMISC_ACTSLIKEBUTTON" : 4096, 
+    "OLEMISC_ACTSLIKELABEL" : 8192, 
+    "OLEMISC_NOUIACTIVATE" : 16384, 
+    "OLEMISC_ALIGNABLE" : 32768, 
+    "OLEMISC_SIMPLEFRAME" : 65536, 
+    "OLEMISC_SETCLIENTSITEFIRST" : 131072, 
+    "OLEMISC_IMEMODE" : 262144, 
+    "OLEMISC_IGNOREACTIVATEWHENVISIBLE" : 524288, 
+    "OLEMISC_WANTSTOMENUMERGE" : 1048576, 
+    "OLEMISC_SUPPORTSMULTILEVELUNDO" : 2097152
+};
+
+
+Win32.OLECLOSE = {
+    "OLECLOSE_SAVEIFDIRTY" : 0, 
+    "OLECLOSE_NOSAVE" : 1, 
+    "OLECLOSE_PROMPTSAVE" : 2
+};
+
+
+Win32.OLERENDER = {
+    "OLERENDER_NONE" : 0, 
+    "OLERENDER_DRAW" : 1, 
+    "OLERENDER_FORMAT" : 2, 
+    "OLERENDER_ASIS" : 3
+};
+
+
+Win32.OLEUPDATE = {
+    "OLEUPDATE_ALWAYS" : 1, 
+    "OLEUPDATE_ONCALL" : 3
+};
+
+
+Win32.OLELINKBIND = {
+    "OLELINKBIND_EVENIFCLASSDIFF" : 1
+};
+
+
+Win32.BINDSPEED = {
+    "BINDSPEED_INDEFINITE" : 1, 
+    "BINDSPEED_MODERATE" : 2, 
+    "BINDSPEED_IMMEDIATE" : 3
+};
+
+
+Win32.OLECONTF = {
+    "OLECONTF_EMBEDDINGS" : 1, 
+    "OLECONTF_LINKS" : 2, 
+    "OLECONTF_OTHERS" : 4, 
+    "OLECONTF_ONLYUSER" : 8, 
+    "OLECONTF_ONLYIFRUNNING" : 16
+};
+
+
+Win32.OLEVERBATTRIB = {
+    "OLEVERBATTRIB_NEVERDIRTIES" : 1, 
+    "OLEVERBATTRIB_ONCONTAINERMENU" : 2
+};
+
+
+Win32.REGKIND = {
+    "REGKIND_DEFAULT" : 0, 
+    "REGKIND_REGISTER" : 1, 
+    "REGKIND_NONE" : 2
+};
+
+
+Win32.UASFLAGS = {
+    "UAS_NORMAL" : 0, 
+    "UAS_BLOCKED" : 1, 
+    "UAS_NOPARENTENABLE" : 2, 
+    "UAS_MASK" : 3
+};
+
+
+Win32.READYSTATE = {
+    "READYSTATE_UNINITIALIZED" : 0, 
+    "READYSTATE_LOADING" : 1, 
+    "READYSTATE_LOADED" : 2, 
+    "READYSTATE_INTERACTIVE" : 3, 
+    "READYSTATE_COMPLETE" : 4
+};
+
+
+Win32.GUIDKIND = {
+    "GUIDKIND_DEFAULT_SOURCE_DISP_IID" : 1
+};
+
+
+Win32.CTRLINFO = {
+    "CTRLINFO_EATS_RETURN" : 1, 
+    "CTRLINFO_EATS_ESCAPE" : 2
+};
+
+
+Win32.XFORMCOORDS = {
+    "XFORMCOORDS_POSITION" : 1, 
+    "XFORMCOORDS_SIZE" : 2, 
+    "XFORMCOORDS_HIMETRICTOCONTAINER" : 4, 
+    "XFORMCOORDS_CONTAINERTOHIMETRIC" : 8, 
+    "XFORMCOORDS_EVENTCOMPAT" : 16
+};
+
+
+Win32.PROPPAGESTATUS = {
+    "PROPPAGESTATUS_DIRTY" : 1, 
+    "PROPPAGESTATUS_VALIDATE" : 2, 
+    "PROPPAGESTATUS_CLEAN" : 4
+};
+
+
+Win32.PICTUREATTRIBUTES = {
+    "PICTURE_SCALABLE" : 1, 
+    "PICTURE_TRANSPARENT" : 2
+};
+
+
+Win32.ACTIVATEFLAGS = {
+    "ACTIVATE_WINDOWLESS" : 1
+};
+
+
+Win32.OLEDCFLAGS = {
+    "OLEDC_NODRAW" : 1, 
+    "OLEDC_PAINTBKGND" : 2, 
+    "OLEDC_OFFSCREEN" : 4
+};
+
+
+Win32.VIEWSTATUS = {
+    "VIEWSTATUS_OPAQUE" : 1, 
+    "VIEWSTATUS_SOLIDBKGND" : 2, 
+    "VIEWSTATUS_DVASPECTOPAQUE" : 4, 
+    "VIEWSTATUS_DVASPECTTRANSPARENT" : 8, 
+    "VIEWSTATUS_SURFACE" : 16, 
+    "VIEWSTATUS_3DSURFACE" : 32
+};
+
+
+Win32.HITRESULT = {
+    "HITRESULT_OUTSIDE" : 0, 
+    "HITRESULT_TRANSPARENT" : 1, 
+    "HITRESULT_CLOSE" : 2, 
+    "HITRESULT_HIT" : 3
+};
+
+
+Win32.DVEXTENTMODE = {
+    "DVEXTENT_CONTENT" : 0, 
+    "DVEXTENT_INTEGRAL" : 1
+};
+
+
+Win32.DVASPECTINFOFLAG = {
+    "DVASPECTINFOFLAG_CANOPTIMIZE" : 1
+};
+
+
+Win32.POINTERINACTIVE = {
+    "POINTERINACTIVE_ACTIVATEONENTRY" : 1, 
+    "POINTERINACTIVE_DEACTIVATEONLEAVE" : 2, 
+    "POINTERINACTIVE_ACTIVATEONDRAG" : 4
+};
+
+
+Win32.PROPBAG2_TYPE = {
+    "PROPBAG2_TYPE_UNDEFINED" : 0, 
+    "PROPBAG2_TYPE_DATA" : 1, 
+    "PROPBAG2_TYPE_URL" : 2, 
+    "PROPBAG2_TYPE_OBJECT" : 3, 
+    "PROPBAG2_TYPE_STREAM" : 4, 
+    "PROPBAG2_TYPE_STORAGE" : 5, 
+    "PROPBAG2_TYPE_MONIKER" : 6
+};
+
+
+Win32.QACONTAINERFLAGS = {
+    "QACONTAINER_SHOWHATCHING" : 1, 
+    "QACONTAINER_SHOWGRABHANDLES" : 2, 
+    "QACONTAINER_USERMODE" : 4, 
+    "QACONTAINER_DISPLAYASDEFAULT" : 8, 
+    "QACONTAINER_UIDEAD" : 16, 
+    "QACONTAINER_AUTOCLIP" : 32, 
+    "QACONTAINER_MESSAGEREFLECT" : 64, 
+    "QACONTAINER_SUPPORTSMNEMONICS" : 128
+};
+
+
+Win32.OLE_TRISTATE = {
+    "triUnchecked" : 0, 
+    "triChecked" : 1, 
+    "triGray" : 2
+};
+
+
+Win32.DOCMISC = {
+    "DOCMISC_CANCREATEMULTIPLEVIEWS" : 1, 
+    "DOCMISC_SUPPORTCOMPLEXRECTANGLES" : 2, 
+    "DOCMISC_CANTOPENEDIT" : 4, 
+    "DOCMISC_NOFILESUPPORT" : 8
+};
+
+
+Win32.PRINTFLAG = {
+    "PRINTFLAG_MAYBOTHERUSER" : 1, 
+    "PRINTFLAG_PROMPTUSER" : 2, 
+    "PRINTFLAG_USERMAYCHANGEPRINTER" : 4, 
+    "PRINTFLAG_RECOMPOSETODEVICE" : 8, 
+    "PRINTFLAG_DONTACTUALLYPRINT" : 16, 
+    "PRINTFLAG_FORCEPROPERTIES" : 32, 
+    "PRINTFLAG_PRINTTOFILE" : 64
+};
+
+
+Win32.OLECMDF = {
+    "OLECMDF_SUPPORTED" : 1, 
+    "OLECMDF_ENABLED" : 2, 
+    "OLECMDF_LATCHED" : 4, 
+    "OLECMDF_NINCHED" : 8, 
+    "OLECMDF_INVISIBLE" : 16, 
+    "OLECMDF_DEFHIDEONCTXTMENU" : 32
+};
+
+
+Win32.OLECMDTEXTF = {
+    "OLECMDTEXTF_NONE" : 0, 
+    "OLECMDTEXTF_NAME" : 1, 
+    "OLECMDTEXTF_STATUS" : 2
+};
+
+
+Win32.OLECMDEXECOPT = {
+    "OLECMDEXECOPT_DODEFAULT" : 0, 
+    "OLECMDEXECOPT_PROMPTUSER" : 1, 
+    "OLECMDEXECOPT_DONTPROMPTUSER" : 2, 
+    "OLECMDEXECOPT_SHOWHELP" : 3
+};
+
+
+Win32.OLECMDID = {
+    "OLECMDID_OPEN" : 1, 
+    "OLECMDID_NEW" : 2, 
+    "OLECMDID_SAVE" : 3, 
+    "OLECMDID_SAVEAS" : 4, 
+    "OLECMDID_SAVECOPYAS" : 5, 
+    "OLECMDID_PRINT" : 6, 
+    "OLECMDID_PRINTPREVIEW" : 7, 
+    "OLECMDID_PAGESETUP" : 8, 
+    "OLECMDID_SPELL" : 9, 
+    "OLECMDID_PROPERTIES" : 10, 
+    "OLECMDID_CUT" : 11, 
+    "OLECMDID_COPY" : 12, 
+    "OLECMDID_PASTE" : 13, 
+    "OLECMDID_PASTESPECIAL" : 14, 
+    "OLECMDID_UNDO" : 15, 
+    "OLECMDID_REDO" : 16, 
+    "OLECMDID_SELECTALL" : 17, 
+    "OLECMDID_CLEARSELECTION" : 18, 
+    "OLECMDID_ZOOM" : 19, 
+    "OLECMDID_GETZOOMRANGE" : 20, 
+    "OLECMDID_UPDATECOMMANDS" : 21, 
+    "OLECMDID_REFRESH" : 22, 
+    "OLECMDID_STOP" : 23, 
+    "OLECMDID_HIDETOOLBARS" : 24, 
+    "OLECMDID_SETPROGRESSMAX" : 25, 
+    "OLECMDID_SETPROGRESSPOS" : 26, 
+    "OLECMDID_SETPROGRESSTEXT" : 27, 
+    "OLECMDID_SETTITLE" : 28, 
+    "OLECMDID_SETDOWNLOADSTATE" : 29, 
+    "OLECMDID_STOPDOWNLOAD" : 30, 
+    "OLECMDID_ONTOOLBARACTIVATED" : 31, 
+    "OLECMDID_FIND" : 32, 
+    "OLECMDID_DELETE" : 33, 
+    "OLECMDID_HTTPEQUIV" : 34, 
+    "OLECMDID_HTTPEQUIV_DONE" : 35, 
+    "OLECMDID_ENABLE_INTERACTION" : 36, 
+    "OLECMDID_ONUNLOAD" : 37, 
+    "OLECMDID_PROPERTYBAG2" : 38, 
+    "OLECMDID_PREREFRESH" : 39, 
+    "OLECMDID_SHOWSCRIPTERROR" : 40, 
+    "OLECMDID_SHOWMESSAGE" : 41, 
+    "OLECMDID_SHOWFIND" : 42, 
+    "OLECMDID_SHOWPAGESETUP" : 43, 
+    "OLECMDID_SHOWPRINT" : 44, 
+    "OLECMDID_CLOSE" : 45, 
+    "OLECMDID_ALLOWUILESSSAVEAS" : 46, 
+    "OLECMDID_DONTDOWNLOADCSS" : 47, 
+    "OLECMDID_UPDATEPAGESTATUS" : 48, 
+    "OLECMDID_PRINT2" : 49, 
+    "OLECMDID_PRINTPREVIEW2" : 50, 
+    "OLECMDID_SETPRINTTEMPLATE" : 51, 
+    "OLECMDID_GETPRINTTEMPLATE" : 52, 
+    "OLECMDID_PAGEACTIONBLOCKED" : 55, 
+    "OLECMDID_PAGEACTIONUIQUERY" : 56, 
+    "OLECMDID_FOCUSVIEWCONTROLS" : 57, 
+    "OLECMDID_FOCUSVIEWCONTROLSQUERY" : 58, 
+    "OLECMDID_SHOWPAGEACTIONMENU" : 59, 
+    "OLECMDID_ADDTRAVELENTRY" : 60, 
+    "OLECMDID_UPDATETRAVELENTRY" : 61, 
+    "OLECMDID_UPDATEBACKFORWARDSTATE" : 62, 
+    "OLECMDID_OPTICAL_ZOOM" : 63, 
+    "OLECMDID_OPTICAL_GETZOOMRANGE" : 64, 
+    "OLECMDID_WINDOWSTATECHANGED" : 65, 
+    "OLECMDID_ACTIVEXINSTALLSCOPE" : 66, 
+    "OLECMDID_UPDATETRAVELENTRY_DATARECOVERY" : 67, 
+    "OLECMDID_SHOWTASKDLG" : 68, 
+    "OLECMDID_POPSTATEEVENT" : 69, 
+    "OLECMDID_VIEWPORT_MODE" : 70, 
+    "OLECMDID_LAYOUT_VIEWPORT_WIDTH" : 71, 
+    "OLECMDID_VISUAL_VIEWPORT_EXCLUDE_BOTTOM" : 72, 
+    "OLECMDID_USER_OPTICAL_ZOOM" : 73, 
+    "OLECMDID_PAGEAVAILABLE" : 74, 
+    "OLECMDID_GETUSERSCALABLE" : 75, 
+    "OLECMDID_UPDATE_CARET" : 76, 
+    "OLECMDID_ENABLE_VISIBILITY" : 77, 
+    "OLECMDID_MEDIA_PLAYBACK" : 78, 
+    "OLECMDID_SETFAVICON" : 79, 
+    "OLECMDID_SET_HOST_FULLSCREENMODE" : 80, 
+    "OLECMDID_EXITFULLSCREEN" : 81, 
+    "OLECMDID_SCROLLCOMPLETE" : 82, 
+    "OLECMDID_ONBEFOREUNLOAD" : 83, 
+    "OLECMDID_SHOWMESSAGE_BLOCKABLE" : 84, 
+    "OLECMDID_SHOWTASKDLG_BLOCKABLE" : 85
+};
+
+
+Win32.MEDIAPLAYBACK_STATE = {
+    "MEDIAPLAYBACK_RESUME" : 0, 
+    "MEDIAPLAYBACK_PAUSE" : 1, 
+    "MEDIAPLAYBACK_PAUSE_AND_SUSPEND" : 2, 
+    "MEDIAPLAYBACK_RESUME_FROM_SUSPEND" : 3
+};
+
+
+Win32.IGNOREMIME = {
+    "IGNOREMIME_PROMPT" : 1, 
+    "IGNOREMIME_TEXT" : 2
+};
+
+
+Win32.WPCSETTING = {
+    "WPCSETTING_LOGGING_ENABLED" : 1, 
+    "WPCSETTING_FILEDOWNLOAD_BLOCKED" : 2
+};
+
+
+Win32.OLECMDID_REFRESHFLAG = {
+    "OLECMDIDF_REFRESH_NORMAL" : 0, 
+    "OLECMDIDF_REFRESH_IFEXPIRED" : 1, 
+    "OLECMDIDF_REFRESH_CONTINUE" : 2, 
+    "OLECMDIDF_REFRESH_COMPLETELY" : 3, 
+    "OLECMDIDF_REFRESH_NO_CACHE" : 4, 
+    "OLECMDIDF_REFRESH_RELOAD" : 5, 
+    "OLECMDIDF_REFRESH_LEVELMASK" : 255, 
+    "OLECMDIDF_REFRESH_CLEARUSERINPUT" : 4096, 
+    "OLECMDIDF_REFRESH_PROMPTIFOFFLINE" : 8192, 
+    "OLECMDIDF_REFRESH_THROUGHSCRIPT" : 16384, 
+    "OLECMDIDF_REFRESH_SKIPBEFOREUNLOADEVENT" : 32768, 
+    "OLECMDIDF_REFRESH_PAGEACTION_ACTIVEXINSTALL" : 65536, 
+    "OLECMDIDF_REFRESH_PAGEACTION_FILEDOWNLOAD" : 131072, 
+    "OLECMDIDF_REFRESH_PAGEACTION_LOCALMACHINE" : 262144, 
+    "OLECMDIDF_REFRESH_PAGEACTION_POPUPWINDOW" : 524288, 
+    "OLECMDIDF_REFRESH_PAGEACTION_PROTLOCKDOWNLOCALMACHINE" : 1048576, 
+    "OLECMDIDF_REFRESH_PAGEACTION_PROTLOCKDOWNTRUSTED" : 2097152, 
+    "OLECMDIDF_REFRESH_PAGEACTION_PROTLOCKDOWNINTRANET" : 4194304, 
+    "OLECMDIDF_REFRESH_PAGEACTION_PROTLOCKDOWNINTERNET" : 8388608, 
+    "OLECMDIDF_REFRESH_PAGEACTION_PROTLOCKDOWNRESTRICTED" : 16777216, 
+    "OLECMDIDF_REFRESH_PAGEACTION_MIXEDCONTENT" : 33554432, 
+    "OLECMDIDF_REFRESH_PAGEACTION_INVALID_CERT" : 67108864, 
+    "OLECMDIDF_REFRESH_PAGEACTION_ALLOW_VERSION" : 134217728
+};
+
+
+Win32.OLECMDID_PAGEACTIONFLAG = {
+    "OLECMDIDF_PAGEACTION_FILEDOWNLOAD" : 1, 
+    "OLECMDIDF_PAGEACTION_ACTIVEXINSTALL" : 2, 
+    "OLECMDIDF_PAGEACTION_ACTIVEXTRUSTFAIL" : 4, 
+    "OLECMDIDF_PAGEACTION_ACTIVEXUSERDISABLE" : 8, 
+    "OLECMDIDF_PAGEACTION_ACTIVEXDISALLOW" : 16, 
+    "OLECMDIDF_PAGEACTION_ACTIVEXUNSAFE" : 32, 
+    "OLECMDIDF_PAGEACTION_POPUPWINDOW" : 64, 
+    "OLECMDIDF_PAGEACTION_LOCALMACHINE" : 128, 
+    "OLECMDIDF_PAGEACTION_MIMETEXTPLAIN" : 256, 
+    "OLECMDIDF_PAGEACTION_SCRIPTNAVIGATE" : 512, 
+    "OLECMDIDF_PAGEACTION_SCRIPTNAVIGATE_ACTIVEXINSTALL" : 512, 
+    "OLECMDIDF_PAGEACTION_PROTLOCKDOWNLOCALMACHINE" : 1024, 
+    "OLECMDIDF_PAGEACTION_PROTLOCKDOWNTRUSTED" : 2048, 
+    "OLECMDIDF_PAGEACTION_PROTLOCKDOWNINTRANET" : 4096, 
+    "OLECMDIDF_PAGEACTION_PROTLOCKDOWNINTERNET" : 8192, 
+    "OLECMDIDF_PAGEACTION_PROTLOCKDOWNRESTRICTED" : 16384, 
+    "OLECMDIDF_PAGEACTION_PROTLOCKDOWNDENY" : 32768, 
+    "OLECMDIDF_PAGEACTION_POPUPALLOWED" : 65536, 
+    "OLECMDIDF_PAGEACTION_SCRIPTPROMPT" : 131072, 
+    "OLECMDIDF_PAGEACTION_ACTIVEXUSERAPPROVAL" : 262144, 
+    "OLECMDIDF_PAGEACTION_MIXEDCONTENT" : 524288, 
+    "OLECMDIDF_PAGEACTION_INVALID_CERT" : 1048576, 
+    "OLECMDIDF_PAGEACTION_INTRANETZONEREQUEST" : 2097152, 
+    "OLECMDIDF_PAGEACTION_XSSFILTERED" : 4194304, 
+    "OLECMDIDF_PAGEACTION_SPOOFABLEIDNHOST" : 8388608, 
+    "OLECMDIDF_PAGEACTION_ACTIVEX_EPM_INCOMPATIBLE" : 16777216, 
+    "OLECMDIDF_PAGEACTION_SCRIPTNAVIGATE_ACTIVEXUSERAPPROVAL" : 33554432, 
+    "OLECMDIDF_PAGEACTION_WPCBLOCKED" : 67108864, 
+    "OLECMDIDF_PAGEACTION_WPCBLOCKED_ACTIVEX" : 134217728, 
+    "OLECMDIDF_PAGEACTION_EXTENSION_COMPAT_BLOCKED" : 268435456, 
+    "OLECMDIDF_PAGEACTION_NORESETACTIVEX" : 536870912, 
+    "OLECMDIDF_PAGEACTION_GENERIC_STATE" : 1073741824, 
+    "OLECMDIDF_PAGEACTION_RESET" : -2147483648
+};
+
+
+Win32.OLECMDID_BROWSERSTATEFLAG = {
+    "OLECMDIDF_BROWSERSTATE_EXTENSIONSOFF" : 1, 
+    "OLECMDIDF_BROWSERSTATE_IESECURITY" : 2, 
+    "OLECMDIDF_BROWSERSTATE_PROTECTEDMODE_OFF" : 4, 
+    "OLECMDIDF_BROWSERSTATE_RESET" : 8, 
+    "OLECMDIDF_BROWSERSTATE_REQUIRESACTIVEX" : 16, 
+    "OLECMDIDF_BROWSERSTATE_DESKTOPHTMLDIALOG" : 32, 
+    "OLECMDIDF_BROWSERSTATE_BLOCKEDVERSION" : 64
+};
+
+
+Win32.OLECMDID_OPTICAL_ZOOMFLAG = {
+    "OLECMDIDF_OPTICAL_ZOOM_NOPERSIST" : 1, 
+    "OLECMDIDF_OPTICAL_ZOOM_NOLAYOUT" : 16, 
+    "OLECMDIDF_OPTICAL_ZOOM_NOTRANSIENT" : 32, 
+    "OLECMDIDF_OPTICAL_ZOOM_RELOADFORNEWTAB" : 64
+};
+
+
+Win32.PAGEACTION_UI = {
+    "PAGEACTION_UI_DEFAULT" : 0, 
+    "PAGEACTION_UI_MODAL" : 1, 
+    "PAGEACTION_UI_MODELESS" : 2, 
+    "PAGEACTION_UI_SILENT" : 3
+};
+
+
+Win32.OLECMDID_WINDOWSTATE_FLAG = {
+    "OLECMDIDF_WINDOWSTATE_USERVISIBLE" : 1, 
+    "OLECMDIDF_WINDOWSTATE_ENABLED" : 2, 
+    "OLECMDIDF_WINDOWSTATE_USERVISIBLE_VALID" : 65536, 
+    "OLECMDIDF_WINDOWSTATE_ENABLED_VALID" : 131072
+};
+
+
+Win32.OLECMDID_VIEWPORT_MODE_FLAG = {
+    "OLECMDIDF_VIEWPORTMODE_FIXED_LAYOUT_WIDTH" : 1, 
+    "OLECMDIDF_VIEWPORTMODE_EXCLUDE_VISUAL_BOTTOM" : 2, 
+    "OLECMDIDF_VIEWPORTMODE_FIXED_LAYOUT_WIDTH_VALID" : 65536, 
+    "OLECMDIDF_VIEWPORTMODE_EXCLUDE_VISUAL_BOTTOM_VALID" : 131072
+};
+
+
+Win32.OLEUIPASTEFLAG = {
+    "OLEUIPASTE_ENABLEICON" : 2048, 
+    "OLEUIPASTE_PASTEONLY" : 0, 
+    "OLEUIPASTE_PASTE" : 512, 
+    "OLEUIPASTE_LINKANYTYPE" : 1024, 
+    "OLEUIPASTE_LINKTYPE1" : 1, 
+    "OLEUIPASTE_LINKTYPE2" : 2, 
+    "OLEUIPASTE_LINKTYPE3" : 4, 
+    "OLEUIPASTE_LINKTYPE4" : 8, 
+    "OLEUIPASTE_LINKTYPE5" : 16, 
+    "OLEUIPASTE_LINKTYPE6" : 32, 
+    "OLEUIPASTE_LINKTYPE7" : 64, 
+    "OLEUIPASTE_LINKTYPE8" : 128
+};
+
+
+Win32.SAFEARR_BSTR = foreign.named_struct( "Windows.Win32.System.Ole.SAFEARR_BSTR", [ 
+    "Size:uint", 
+    "aBstr:ptr"
+]); 
+
+
+Win32.SAFEARR_UNKNOWN = foreign.named_struct( "Windows.Win32.System.Ole.SAFEARR_UNKNOWN", [ 
+    "Size:uint", 
+    "apUnknown:ptr"
+]); 
+
+
+Win32.SAFEARR_DISPATCH = foreign.named_struct( "Windows.Win32.System.Ole.SAFEARR_DISPATCH", [ 
+    "Size:uint", 
+    "apDispatch:ptr"
+]); 
+
+
+Win32.SAFEARR_VARIANT = foreign.named_struct( "Windows.Win32.System.Ole.SAFEARR_VARIANT", [ 
+    "Size:uint", 
+    "aVariant:ptr"
+]); 
+
+
+Win32.SAFEARR_BRECORD = foreign.named_struct( "Windows.Win32.System.Ole.SAFEARR_BRECORD", [ 
+    "Size:uint", 
+    "aRecord:ptr"
+]); 
+
+
+Win32.SAFEARR_HAVEIID = foreign.named_struct( "Windows.Win32.System.Ole.SAFEARR_HAVEIID", [ 
+    "Size:uint", 
+    "apUnknown:ptr", 
+    "iid:ptr"
+]); 
+
+
+Win32.SAFEARRAYUNION = foreign.named_struct( "Windows.Win32.System.Ole.SAFEARRAYUNION", [ 
+    "sfType:uint", 
+    "u:._u_e__Struct"
+]); 
+
+
+Win32.wireSAFEARRAY = foreign.named_struct( "Windows.Win32.System.Ole._wireSAFEARRAY", [ 
+    "cDims:ushort", 
+    "fFeatures:ushort", 
+    "cbElements:uint", 
+    "cLocks:uint", 
+    "uArrayStructs:Windows.Win32.System.Ole.SAFEARRAYUNION", 
+    "rgsabound[1]:Windows.Win32.System.Com.SAFEARRAYBOUND"
+]); 
+
+
+Win32.wireBRECORD = foreign.named_struct( "Windows.Win32.System.Ole._wireBRECORD", [ 
+    "fFlags:uint", 
+    "clSize:uint", 
+    "pRecInfo:ptr", 
+    "pRecord:ptr"
+]); 
+
+
+Win32.wireVARIANT = foreign.named_struct( "Windows.Win32.System.Ole._wireVARIANT", [ 
+    "clSize:uint", 
+    "rpcReserved:uint", 
+    "vt:ushort", 
+    "wReserved1:ushort", 
+    "wReserved2:ushort", 
+    "wReserved3:ushort", 
+    "Anonymous:._Anonymous_e__Union"
+]); 
+
+
+Win32.ARRAYDESC = foreign.named_struct( "Windows.Win32.System.Ole.ARRAYDESC", [ 
+    "tdescElem:Windows.Win32.System.Com.TYPEDESC", 
+    "cDims:ushort", 
+    "rgbounds[1]:Windows.Win32.System.Com.SAFEARRAYBOUND"
+]); 
+
+
+Win32.PARAMDESCEX = foreign.named_struct( "Windows.Win32.System.Ole.PARAMDESCEX", [ 
+    "cBytes:uint", 
+    "varDefaultValue:Windows.Win32.System.Com.VARIANT"
+]); 
+
+
+Win32.PARAMDESC = foreign.named_struct( "Windows.Win32.System.Ole.PARAMDESC", [ 
+    "pparamdescex:ptr", 
+    "wParamFlags:ushort"
+]); 
+
+
+Win32.CLEANLOCALSTORAGE = foreign.named_struct( "Windows.Win32.System.Ole.CLEANLOCALSTORAGE", [ 
+    "pInterface:ptr", 
+    "pStorage:ptr", 
+    "flags:uint"
+]); 
+
+
+Win32.OBJECTDESCRIPTOR = foreign.named_struct( "Windows.Win32.System.Ole.OBJECTDESCRIPTOR", [ 
+    "cbSize:uint", 
+    "clsid:ptr", 
+    "dwDrawAspect:uint", 
+    "sizel:Windows.Win32.Foundation.SIZE", 
+    "pointl:Windows.Win32.Foundation.POINTL", 
+    "dwStatus:uint", 
+    "dwFullUserTypeName:uint", 
+    "dwSrcOfCopy:uint"
+]); 
+
+
+Win32.OLEINPLACEFRAMEINFO = foreign.named_struct( "Windows.Win32.System.Ole.OLEINPLACEFRAMEINFO", [ 
+    "cb:uint", 
+    "fMDIApp:Windows.Win32.Foundation.BOOL", 
+    "hwndFrame:Windows.Win32.Foundation.HWND", 
+    "haccel:Windows.Win32.UI.WindowsAndMessaging.HACCEL", 
+    "cAccelEntries:uint"
+]); 
+
+
+Win32.OLEMENUGROUPWIDTHS = foreign.named_struct( "Windows.Win32.System.Ole.OLEMENUGROUPWIDTHS", [ 
+    "width[6]:int"
+]); 
+
+
+Win32.OLEVERB = foreign.named_struct( "Windows.Win32.System.Ole.OLEVERB", [ 
+    "lVerb:int", 
+    "lpszVerbName:wstr", 
+    "fuFlags:uint", 
+    "grfAttribs:int"
+]); 
+
+
+Win32.NUMPARSE = foreign.named_struct( "Windows.Win32.System.Ole.NUMPARSE", [ 
+    "cDig:int", 
+    "dwInFlags:uint", 
+    "dwOutFlags:uint", 
+    "cchUsed:int", 
+    "nBaseShift:int", 
+    "nPwr10:int"
+]); 
+
+
+Win32.UDATE = foreign.named_struct( "Windows.Win32.System.Ole.UDATE", [ 
+    "st:Windows.Win32.Foundation.SYSTEMTIME", 
+    "wDayOfYear:ushort"
+]); 
+
+
+Win32.PARAMDATA = foreign.named_struct( "Windows.Win32.System.Ole.PARAMDATA", [ 
+    "szName:wstr", 
+    "vt:ushort"
+]); 
+
+
+Win32.METHODDATA = foreign.named_struct( "Windows.Win32.System.Ole.METHODDATA", [ 
+    "szName:wstr", 
+    "ppdata:ptr", 
+    "dispid:int", 
+    "iMeth:uint", 
+    "cc:int", 
+    "cArgs:uint", 
+    "wFlags:ushort", 
+    "vtReturn:ushort"
+]); 
+
+
+Win32.INTERFACEDATA = foreign.named_struct( "Windows.Win32.System.Ole.INTERFACEDATA", [ 
+    "pmethdata:ptr", 
+    "cMembers:uint"
+]); 
+
+
+Win32.LICINFO = foreign.named_struct( "Windows.Win32.System.Ole.LICINFO", [ 
+    "cbLicInfo:int", 
+    "fRuntimeKeyAvail:Windows.Win32.Foundation.BOOL", 
+    "fLicVerified:Windows.Win32.Foundation.BOOL"
+]); 
+
+
+Win32.CONTROLINFO = foreign.named_struct( "Windows.Win32.System.Ole.CONTROLINFO", [ 
+    "cb:uint", 
+    "hAccel:Windows.Win32.UI.WindowsAndMessaging.HACCEL", 
+    "cAccel:ushort", 
+    "dwFlags:int"
+]); 
+
+
+Win32.POINTF = foreign.named_struct( "Windows.Win32.System.Ole.POINTF", [ 
+    "x:float", 
+    "y:float"
+]); 
+
+
+Win32.PROPPAGEINFO = foreign.named_struct( "Windows.Win32.System.Ole.PROPPAGEINFO", [ 
+    "cb:uint", 
+    "pszTitle:wstr", 
+    "size:Windows.Win32.Foundation.SIZE", 
+    "pszDocString:wstr", 
+    "pszHelpFile:wstr", 
+    "dwHelpContext:uint"
+]); 
+
+
+Win32.CAUUID = foreign.named_struct( "Windows.Win32.System.Ole.CAUUID", [ 
+    "cElems:uint", 
+    "pElems:ptr"
+]); 
+
+
+Win32.DVEXTENTINFO = foreign.named_struct( "Windows.Win32.System.Ole.DVEXTENTINFO", [ 
+    "cb:uint", 
+    "dwExtentMode:uint", 
+    "sizelProposed:Windows.Win32.Foundation.SIZE"
+]); 
+
+
+Win32.DVASPECTINFO = foreign.named_struct( "Windows.Win32.System.Ole.DVASPECTINFO", [ 
+    "cb:uint", 
+    "dwFlags:uint"
+]); 
+
+
+Win32.CALPOLESTR = foreign.named_struct( "Windows.Win32.System.Ole.CALPOLESTR", [ 
+    "cElems:uint", 
+    "pElems:ptr"
+]); 
+
+
+Win32.CADWORD = foreign.named_struct( "Windows.Win32.System.Ole.CADWORD", [ 
+    "cElems:uint", 
+    "pElems:ptr"
+]); 
+
+
+Win32.QACONTAINER = foreign.named_struct( "Windows.Win32.System.Ole.QACONTAINER", [ 
+    "cbSize:uint", 
+    "pClientSite:ptr", 
+    "pAdviseSink:ptr", 
+    "pPropertyNotifySink:ptr", 
+    "pUnkEventSink:ptr", 
+    "dwAmbientFlags:int", 
+    "colorFore:uint", 
+    "colorBack:uint", 
+    "pFont:ptr", 
+    "pUndoMgr:ptr", 
+    "dwAppearance:uint", 
+    "lcid:int", 
+    "hpal:Windows.Win32.Graphics.Gdi.HPALETTE", 
+    "pBindHost:ptr", 
+    "pOleControlSite:ptr", 
+    "pServiceProvider:ptr"
+]); 
+
+
+Win32.QACONTROL = foreign.named_struct( "Windows.Win32.System.Ole.QACONTROL", [ 
+    "cbSize:uint", 
+    "dwMiscStatus:int", 
+    "dwViewStatus:int", 
+    "dwEventCookie:uint", 
+    "dwPropNotifyCookie:uint", 
+    "dwPointerActivationPolicy:int"
+]); 
+
+
+Win32.OCPFIPARAMS = foreign.named_struct( "Windows.Win32.System.Ole.OCPFIPARAMS", [ 
+    "cbStructSize:uint", 
+    "hWndOwner:Windows.Win32.Foundation.HWND", 
+    "x:int", 
+    "y:int", 
+    "lpszCaption:wstr", 
+    "cObjects:uint", 
+    "lplpUnk:ptr", 
+    "cPages:uint", 
+    "lpPages:ptr", 
+    "lcid:uint", 
+    "dispidInitialProperty:int"
+]); 
+
+
+Win32.FONTDESC = foreign.named_struct( "Windows.Win32.System.Ole.FONTDESC", [ 
+    "cbSizeofstruct:uint", 
+    "lpstrName:wstr", 
+    "cySize:Windows.Win32.System.Com.CY", 
+    "sWeight:short", 
+    "sCharset:short", 
+    "fItalic:Windows.Win32.Foundation.BOOL", 
+    "fUnderline:Windows.Win32.Foundation.BOOL", 
+    "fStrikethrough:Windows.Win32.Foundation.BOOL"
+]); 
+
+
+Win32.PICTDESC = foreign.named_struct( "Windows.Win32.System.Ole.PICTDESC", [ 
+    "cbSizeofstruct:uint", 
+    "picType:int", 
+    "Anonymous:._Anonymous_e__Union"
+]); 
+
+
+Win32.PAGERANGE = foreign.named_struct( "Windows.Win32.System.Ole.PAGERANGE", [ 
+    "nFromPage:int", 
+    "nToPage:int"
+]); 
+
+
+Win32.PAGESET = foreign.named_struct( "Windows.Win32.System.Ole.PAGESET", [ 
+    "cbStruct:uint", 
+    "fOddPages:Windows.Win32.Foundation.BOOL", 
+    "fEvenPages:Windows.Win32.Foundation.BOOL", 
+    "cPageRange:uint", 
+    "rgPages[1]:Windows.Win32.System.Ole.PAGERANGE"
+]); 
+
+
+Win32.OLECMD = foreign.named_struct( "Windows.Win32.System.Ole.OLECMD", [ 
+    "cmdID:int", 
+    "cmdf:int"
+]); 
+
+
+Win32.OLECMDTEXT = foreign.named_struct( "Windows.Win32.System.Ole.OLECMDTEXT", [ 
+    "cmdtextf:uint", 
+    "cwActual:uint", 
+    "cwBuf:uint", 
+    "rgwz[1]:short"
+]); 
+
+
+Win32.OLEUIINSERTOBJECTW = foreign.named_struct( "Windows.Win32.System.Ole.OLEUIINSERTOBJECTW", [ 
+    "cbStruct:uint", 
+    "dwFlags:uint", 
+    "hWndOwner:Windows.Win32.Foundation.HWND", 
+    "lpszCaption:wstr", 
+    "lpfnHook:ptr", 
+    "lCustData:Windows.Win32.Foundation.LPARAM", 
+    "hInstance:Windows.Win32.Foundation.HINSTANCE", 
+    "lpszTemplate:wstr", 
+    "hResource:Windows.Win32.Foundation.HRSRC", 
+    "clsid:ptr", 
+    "lpszFile:wstr", 
+    "cchFile:uint", 
+    "cClsidExclude:uint", 
+    "lpClsidExclude:ptr", 
+    "iid:ptr", 
+    "oleRender:uint", 
+    "lpFormatEtc:ptr", 
+    "lpIOleClientSite:ptr", 
+    "lpIStorage:ptr", 
+    "ppvObj:ptr", 
+    "sc:int", 
+    "hMetaPict:ptr"
+]); 
+
+
+Win32.OLEUIINSERTOBJECTA = foreign.named_struct( "Windows.Win32.System.Ole.OLEUIINSERTOBJECTA", [ 
+    "cbStruct:uint", 
+    "dwFlags:uint", 
+    "hWndOwner:Windows.Win32.Foundation.HWND", 
+    "lpszCaption:str", 
+    "lpfnHook:ptr", 
+    "lCustData:Windows.Win32.Foundation.LPARAM", 
+    "hInstance:Windows.Win32.Foundation.HINSTANCE", 
+    "lpszTemplate:str", 
+    "hResource:Windows.Win32.Foundation.HRSRC", 
+    "clsid:ptr", 
+    "lpszFile:str", 
+    "cchFile:uint", 
+    "cClsidExclude:uint", 
+    "lpClsidExclude:ptr", 
+    "iid:ptr", 
+    "oleRender:uint", 
+    "lpFormatEtc:ptr", 
+    "lpIOleClientSite:ptr", 
+    "lpIStorage:ptr", 
+    "ppvObj:ptr", 
+    "sc:int", 
+    "hMetaPict:ptr"
+]); 
+
+
+Win32.OLEUIPASTEENTRYW = foreign.named_struct( "Windows.Win32.System.Ole.OLEUIPASTEENTRYW", [ 
+    "fmtetc:Windows.Win32.System.Com.FORMATETC", 
+    "lpstrFormatName:wstr", 
+    "lpstrResultText:wstr", 
+    "dwFlags:uint", 
+    "dwScratchSpace:uint"
+]); 
+
+
+Win32.OLEUIPASTEENTRYA = foreign.named_struct( "Windows.Win32.System.Ole.OLEUIPASTEENTRYA", [ 
+    "fmtetc:Windows.Win32.System.Com.FORMATETC", 
+    "lpstrFormatName:str", 
+    "lpstrResultText:str", 
+    "dwFlags:uint", 
+    "dwScratchSpace:uint"
+]); 
+
+
+Win32.OLEUIPASTESPECIALW = foreign.named_struct( "Windows.Win32.System.Ole.OLEUIPASTESPECIALW", [ 
+    "cbStruct:uint", 
+    "dwFlags:uint", 
+    "hWndOwner:Windows.Win32.Foundation.HWND", 
+    "lpszCaption:wstr", 
+    "lpfnHook:ptr", 
+    "lCustData:Windows.Win32.Foundation.LPARAM", 
+    "hInstance:Windows.Win32.Foundation.HINSTANCE", 
+    "lpszTemplate:wstr", 
+    "hResource:Windows.Win32.Foundation.HRSRC", 
+    "lpSrcDataObj:ptr", 
+    "arrPasteEntries:ptr", 
+    "cPasteEntries:int", 
+    "arrLinkTypes:ptr", 
+    "cLinkTypes:int", 
+    "cClsidExclude:uint", 
+    "lpClsidExclude:ptr", 
+    "nSelectedIndex:int", 
+    "fLink:Windows.Win32.Foundation.BOOL", 
+    "hMetaPict:ptr", 
+    "sizel:Windows.Win32.Foundation.SIZE"
+]); 
+
+
+Win32.OLEUIPASTESPECIALA = foreign.named_struct( "Windows.Win32.System.Ole.OLEUIPASTESPECIALA", [ 
+    "cbStruct:uint", 
+    "dwFlags:uint", 
+    "hWndOwner:Windows.Win32.Foundation.HWND", 
+    "lpszCaption:str", 
+    "lpfnHook:ptr", 
+    "lCustData:Windows.Win32.Foundation.LPARAM", 
+    "hInstance:Windows.Win32.Foundation.HINSTANCE", 
+    "lpszTemplate:str", 
+    "hResource:Windows.Win32.Foundation.HRSRC", 
+    "lpSrcDataObj:ptr", 
+    "arrPasteEntries:ptr", 
+    "cPasteEntries:int", 
+    "arrLinkTypes:ptr", 
+    "cLinkTypes:int", 
+    "cClsidExclude:uint", 
+    "lpClsidExclude:ptr", 
+    "nSelectedIndex:int", 
+    "fLink:Windows.Win32.Foundation.BOOL", 
+    "hMetaPict:ptr", 
+    "sizel:Windows.Win32.Foundation.SIZE"
+]); 
+
+
+Win32.OLEUIEDITLINKSW = foreign.named_struct( "Windows.Win32.System.Ole.OLEUIEDITLINKSW", [ 
+    "cbStruct:uint", 
+    "dwFlags:uint", 
+    "hWndOwner:Windows.Win32.Foundation.HWND", 
+    "lpszCaption:wstr", 
+    "lpfnHook:ptr", 
+    "lCustData:Windows.Win32.Foundation.LPARAM", 
+    "hInstance:Windows.Win32.Foundation.HINSTANCE", 
+    "lpszTemplate:wstr", 
+    "hResource:Windows.Win32.Foundation.HRSRC", 
+    "lpOleUILinkContainer:ptr"
+]); 
+
+
+Win32.OLEUIEDITLINKSA = foreign.named_struct( "Windows.Win32.System.Ole.OLEUIEDITLINKSA", [ 
+    "cbStruct:uint", 
+    "dwFlags:uint", 
+    "hWndOwner:Windows.Win32.Foundation.HWND", 
+    "lpszCaption:str", 
+    "lpfnHook:ptr", 
+    "lCustData:Windows.Win32.Foundation.LPARAM", 
+    "hInstance:Windows.Win32.Foundation.HINSTANCE", 
+    "lpszTemplate:str", 
+    "hResource:Windows.Win32.Foundation.HRSRC", 
+    "lpOleUILinkContainer:ptr"
+]); 
+
+
+Win32.OLEUICHANGEICONW = foreign.named_struct( "Windows.Win32.System.Ole.OLEUICHANGEICONW", [ 
+    "cbStruct:uint", 
+    "dwFlags:int", 
+    "hWndOwner:Windows.Win32.Foundation.HWND", 
+    "lpszCaption:wstr", 
+    "lpfnHook:ptr", 
+    "lCustData:Windows.Win32.Foundation.LPARAM", 
+    "hInstance:Windows.Win32.Foundation.HINSTANCE", 
+    "lpszTemplate:wstr", 
+    "hResource:Windows.Win32.Foundation.HRSRC", 
+    "hMetaPict:ptr", 
+    "clsid:ptr", 
+    "szIconExe[260]:short", 
+    "cchIconExe:int"
+]); 
+
+
+Win32.OLEUICHANGEICONA = foreign.named_struct( "Windows.Win32.System.Ole.OLEUICHANGEICONA", [ 
+    "cbStruct:uint", 
+    "dwFlags:int", 
+    "hWndOwner:Windows.Win32.Foundation.HWND", 
+    "lpszCaption:str", 
+    "lpfnHook:ptr", 
+    "lCustData:Windows.Win32.Foundation.LPARAM", 
+    "hInstance:Windows.Win32.Foundation.HINSTANCE", 
+    "lpszTemplate:str", 
+    "hResource:Windows.Win32.Foundation.HRSRC", 
+    "hMetaPict:ptr", 
+    "clsid:ptr", 
+    "szIconExe[260]:Windows.Win32.Foundation.CHAR", 
+    "cchIconExe:int"
+]); 
+
+
+Win32.OLEUICONVERTW = foreign.named_struct( "Windows.Win32.System.Ole.OLEUICONVERTW", [ 
+    "cbStruct:uint", 
+    "dwFlags:uint", 
+    "hWndOwner:Windows.Win32.Foundation.HWND", 
+    "lpszCaption:wstr", 
+    "lpfnHook:ptr", 
+    "lCustData:Windows.Win32.Foundation.LPARAM", 
+    "hInstance:Windows.Win32.Foundation.HINSTANCE", 
+    "lpszTemplate:wstr", 
+    "hResource:Windows.Win32.Foundation.HRSRC", 
+    "clsid:ptr", 
+    "clsidConvertDefault:ptr", 
+    "clsidActivateDefault:ptr", 
+    "clsidNew:ptr", 
+    "dvAspect:uint", 
+    "wFormat:ushort", 
+    "fIsLinkedObject:Windows.Win32.Foundation.BOOL", 
+    "hMetaPict:ptr", 
+    "lpszUserType:wstr", 
+    "fObjectsIconChanged:Windows.Win32.Foundation.BOOL", 
+    "lpszDefLabel:wstr", 
+    "cClsidExclude:uint", 
+    "lpClsidExclude:ptr"
+]); 
+
+
+Win32.OLEUICONVERTA = foreign.named_struct( "Windows.Win32.System.Ole.OLEUICONVERTA", [ 
+    "cbStruct:uint", 
+    "dwFlags:uint", 
+    "hWndOwner:Windows.Win32.Foundation.HWND", 
+    "lpszCaption:str", 
+    "lpfnHook:ptr", 
+    "lCustData:Windows.Win32.Foundation.LPARAM", 
+    "hInstance:Windows.Win32.Foundation.HINSTANCE", 
+    "lpszTemplate:str", 
+    "hResource:Windows.Win32.Foundation.HRSRC", 
+    "clsid:ptr", 
+    "clsidConvertDefault:ptr", 
+    "clsidActivateDefault:ptr", 
+    "clsidNew:ptr", 
+    "dvAspect:uint", 
+    "wFormat:ushort", 
+    "fIsLinkedObject:Windows.Win32.Foundation.BOOL", 
+    "hMetaPict:ptr", 
+    "lpszUserType:str", 
+    "fObjectsIconChanged:Windows.Win32.Foundation.BOOL", 
+    "lpszDefLabel:str", 
+    "cClsidExclude:uint", 
+    "lpClsidExclude:ptr"
+]); 
+
+
+Win32.OLEUIBUSYW = foreign.named_struct( "Windows.Win32.System.Ole.OLEUIBUSYW", [ 
+    "cbStruct:uint", 
+    "dwFlags:uint", 
+    "hWndOwner:Windows.Win32.Foundation.HWND", 
+    "lpszCaption:wstr", 
+    "lpfnHook:ptr", 
+    "lCustData:Windows.Win32.Foundation.LPARAM", 
+    "hInstance:Windows.Win32.Foundation.HINSTANCE", 
+    "lpszTemplate:wstr", 
+    "hResource:Windows.Win32.Foundation.HRSRC", 
+    "hTask:Windows.Win32.Media.HTASK", 
+    "lphWndDialog:ptr"
+]); 
+
+
+Win32.OLEUIBUSYA = foreign.named_struct( "Windows.Win32.System.Ole.OLEUIBUSYA", [ 
+    "cbStruct:uint", 
+    "dwFlags:uint", 
+    "hWndOwner:Windows.Win32.Foundation.HWND", 
+    "lpszCaption:str", 
+    "lpfnHook:ptr", 
+    "lCustData:Windows.Win32.Foundation.LPARAM", 
+    "hInstance:Windows.Win32.Foundation.HINSTANCE", 
+    "lpszTemplate:str", 
+    "hResource:Windows.Win32.Foundation.HRSRC", 
+    "hTask:Windows.Win32.Media.HTASK", 
+    "lphWndDialog:ptr"
+]); 
+
+
+Win32.OLEUICHANGESOURCEW = foreign.named_struct( "Windows.Win32.System.Ole.OLEUICHANGESOURCEW", [ 
+    "cbStruct:uint", 
+    "dwFlags:uint", 
+    "hWndOwner:Windows.Win32.Foundation.HWND", 
+    "lpszCaption:wstr", 
+    "lpfnHook:ptr", 
+    "lCustData:Windows.Win32.Foundation.LPARAM", 
+    "hInstance:Windows.Win32.Foundation.HINSTANCE", 
+    "lpszTemplate:wstr", 
+    "hResource:Windows.Win32.Foundation.HRSRC", 
+    "lpOFN:ptr", 
+    "dwReserved1[4]:uint", 
+    "lpOleUILinkContainer:ptr", 
+    "dwLink:uint", 
+    "lpszDisplayName:wstr", 
+    "nFileLength:uint", 
+    "lpszFrom:wstr", 
+    "lpszTo:wstr"
+]); 
+
+
+Win32.OLEUICHANGESOURCEA = foreign.named_struct( "Windows.Win32.System.Ole.OLEUICHANGESOURCEA", [ 
+    "cbStruct:uint", 
+    "dwFlags:uint", 
+    "hWndOwner:Windows.Win32.Foundation.HWND", 
+    "lpszCaption:str", 
+    "lpfnHook:ptr", 
+    "lCustData:Windows.Win32.Foundation.LPARAM", 
+    "hInstance:Windows.Win32.Foundation.HINSTANCE", 
+    "lpszTemplate:str", 
+    "hResource:Windows.Win32.Foundation.HRSRC", 
+    "lpOFN:ptr", 
+    "dwReserved1[4]:uint", 
+    "lpOleUILinkContainer:ptr", 
+    "dwLink:uint", 
+    "lpszDisplayName:str", 
+    "nFileLength:uint", 
+    "lpszFrom:str", 
+    "lpszTo:str"
+]); 
+
+
+Win32.OLEUIGNRLPROPSW = foreign.named_struct( "Windows.Win32.System.Ole.OLEUIGNRLPROPSW", [ 
+    "cbStruct:uint", 
+    "dwFlags:uint", 
+    "dwReserved1[2]:uint", 
+    "lpfnHook:ptr", 
+    "lCustData:Windows.Win32.Foundation.LPARAM", 
+    "dwReserved2[3]:uint", 
+    "lpOP:ptr"
+]); 
+
+
+Win32.OLEUIGNRLPROPSA = foreign.named_struct( "Windows.Win32.System.Ole.OLEUIGNRLPROPSA", [ 
+    "cbStruct:uint", 
+    "dwFlags:uint", 
+    "dwReserved1[2]:uint", 
+    "lpfnHook:ptr", 
+    "lCustData:Windows.Win32.Foundation.LPARAM", 
+    "dwReserved2[3]:uint", 
+    "lpOP:ptr"
+]); 
+
+
+Win32.OLEUIVIEWPROPSW = foreign.named_struct( "Windows.Win32.System.Ole.OLEUIVIEWPROPSW", [ 
+    "cbStruct:uint", 
+    "dwFlags:uint", 
+    "dwReserved1[2]:uint", 
+    "lpfnHook:ptr", 
+    "lCustData:Windows.Win32.Foundation.LPARAM", 
+    "dwReserved2[3]:uint", 
+    "lpOP:ptr", 
+    "nScaleMin:int", 
+    "nScaleMax:int"
+]); 
+
+
+Win32.OLEUIVIEWPROPSA = foreign.named_struct( "Windows.Win32.System.Ole.OLEUIVIEWPROPSA", [ 
+    "cbStruct:uint", 
+    "dwFlags:uint", 
+    "dwReserved1[2]:uint", 
+    "lpfnHook:ptr", 
+    "lCustData:Windows.Win32.Foundation.LPARAM", 
+    "dwReserved2[3]:uint", 
+    "lpOP:ptr", 
+    "nScaleMin:int", 
+    "nScaleMax:int"
+]); 
+
+
+Win32.OLEUILINKPROPSW = foreign.named_struct( "Windows.Win32.System.Ole.OLEUILINKPROPSW", [ 
+    "cbStruct:uint", 
+    "dwFlags:uint", 
+    "dwReserved1[2]:uint", 
+    "lpfnHook:ptr", 
+    "lCustData:Windows.Win32.Foundation.LPARAM", 
+    "dwReserved2[3]:uint", 
+    "lpOP:ptr"
+]); 
+
+
+Win32.OLEUILINKPROPSA = foreign.named_struct( "Windows.Win32.System.Ole.OLEUILINKPROPSA", [ 
+    "cbStruct:uint", 
+    "dwFlags:uint", 
+    "dwReserved1[2]:uint", 
+    "lpfnHook:ptr", 
+    "lCustData:Windows.Win32.Foundation.LPARAM", 
+    "dwReserved2[3]:uint", 
+    "lpOP:ptr"
+]); 
+
+
+Win32.OLEUIOBJECTPROPSW = foreign.named_struct( "Windows.Win32.System.Ole.OLEUIOBJECTPROPSW", [ 
+    "cbStruct:uint", 
+    "dwFlags:uint", 
+    "lpPS:ptr", 
+    "dwObject:uint", 
+    "lpObjInfo:ptr", 
+    "dwLink:uint", 
+    "lpLinkInfo:ptr", 
+    "lpGP:ptr", 
+    "lpVP:ptr", 
+    "lpLP:ptr"
+]); 
+
+
+Win32.OLEUIOBJECTPROPSA = foreign.named_struct( "Windows.Win32.System.Ole.OLEUIOBJECTPROPSA", [ 
+    "cbStruct:uint", 
+    "dwFlags:uint", 
+    "lpPS:ptr", 
+    "dwObject:uint", 
+    "lpObjInfo:ptr", 
+    "dwLink:uint", 
+    "lpLinkInfo:ptr", 
+    "lpGP:ptr", 
+    "lpVP:ptr", 
+    "lpLP:ptr"
+]); 
+
+Win32.CTL_E_ILLEGALFUNCTIONCALL = -2146828283;
+Win32.CONNECT_E_FIRST = -2147220992;
+Win32.SELFREG_E_FIRST = -2147220992;
+Win32.PERPROP_E_FIRST = -2147220992;
+Win32.OLECMDERR_E_FIRST = -2147221248;
+Win32.OLECMDERR_E_DISABLED = -2147221247;
+Win32.OLECMDERR_E_NOHELP = -2147221246;
+Win32.OLECMDERR_E_CANCELED = -2147221245;
+Win32.OLECMDERR_E_UNKNOWNGROUP = -2147221244;
+Win32.CONNECT_E_NOCONNECTION = -2147220992;
+Win32.CONNECT_E_ADVISELIMIT = -2147220991;
+Win32.CONNECT_E_CANNOTCONNECT = -2147220990;
+Win32.CONNECT_E_OVERRIDDEN = -2147220989;
+Win32.SELFREG_E_TYPELIB = -2147220992;
+Win32.SELFREG_E_CLASS = -2147220991;
+Win32.PERPROP_E_NOPAGEAVAILABLE = -2147220992;
+Win32.CLSID_CFontPropPage = "ptr";
+Win32.CLSID_CColorPropPage = "ptr";
+Win32.CLSID_CPicturePropPage = "ptr";
+Win32.CLSID_PersistPropset = "ptr";
+Win32.CLSID_ConvertVBX = "ptr";
+Win32.CLSID_StdFont = "ptr";
+Win32.CLSID_StdPicture = "ptr";
+Win32.GUID_HIMETRIC = "ptr";
+Win32.GUID_COLOR = "ptr";
+Win32.GUID_XPOSPIXEL = "ptr";
+Win32.GUID_YPOSPIXEL = "ptr";
+Win32.GUID_XSIZEPIXEL = "ptr";
+Win32.GUID_YSIZEPIXEL = "ptr";
+Win32.GUID_XPOS = "ptr";
+Win32.GUID_YPOS = "ptr";
+Win32.GUID_XSIZE = "ptr";
+Win32.GUID_YSIZE = "ptr";
+Win32.GUID_TRISTATE = "ptr";
+Win32.GUID_OPTIONVALUEEXCLUSIVE = "ptr";
+Win32.GUID_CHECKVALUEEXCLUSIVE = "ptr";
+Win32.GUID_FONTNAME = "ptr";
+Win32.GUID_FONTSIZE = "ptr";
+Win32.GUID_FONTBOLD = "ptr";
+Win32.GUID_FONTITALIC = "ptr";
+Win32.GUID_FONTUNDERSCORE = "ptr";
+Win32.GUID_FONTSTRIKETHROUGH = "ptr";
+Win32.GUID_HANDLE = "ptr";
+Win32.CONNECT_E_LAST = -2147220977;
+Win32.CONNECT_S_FIRST = 262656;
+Win32.CONNECT_S_LAST = 262671;
+Win32.SELFREG_E_LAST = -2147220977;
+Win32.SELFREG_S_FIRST = 262656;
+Win32.SELFREG_S_LAST = 262671;
+Win32.PERPROP_E_LAST = -2147220977;
+Win32.PERPROP_S_FIRST = 262656;
+Win32.PERPROP_S_LAST = 262671;
+Win32.OLEIVERB_PROPERTIES = -7;
+Win32.VT_STREAMED_PROPSET = 73;
+Win32.VT_STORED_PROPSET = 74;
+Win32.VT_BLOB_PROPSET = 75;
+Win32.VT_VERBOSE_ENUM = 76;
+Win32.OCM__BASE = 8192;
+Win32.DISPID_AUTOSIZE = -500;
+Win32.DISPID_BACKCOLOR = -501;
+Win32.DISPID_BACKSTYLE = -502;
+Win32.DISPID_BORDERCOLOR = -503;
+Win32.DISPID_BORDERSTYLE = -504;
+Win32.DISPID_BORDERWIDTH = -505;
+Win32.DISPID_DRAWMODE = -507;
+Win32.DISPID_DRAWSTYLE = -508;
+Win32.DISPID_DRAWWIDTH = -509;
+Win32.DISPID_FILLCOLOR = -510;
+Win32.DISPID_FILLSTYLE = -511;
+Win32.DISPID_FONT = -512;
+Win32.DISPID_FORECOLOR = -513;
+Win32.DISPID_ENABLED = -514;
+Win32.DISPID_HWND = -515;
+Win32.DISPID_TABSTOP = -516;
+Win32.DISPID_TEXT = -517;
+Win32.DISPID_CAPTION = -518;
+Win32.DISPID_BORDERVISIBLE = -519;
+Win32.DISPID_APPEARANCE = -520;
+Win32.DISPID_MOUSEPOINTER = -521;
+Win32.DISPID_MOUSEICON = -522;
+Win32.DISPID_PICTURE = -523;
+Win32.DISPID_VALID = -524;
+Win32.DISPID_READYSTATE = -525;
+Win32.DISPID_LISTINDEX = -526;
+Win32.DISPID_SELECTED = -527;
+Win32.DISPID_LIST = -528;
+Win32.DISPID_COLUMN = -529;
+Win32.DISPID_LISTCOUNT = -531;
+Win32.DISPID_MULTISELECT = -532;
+Win32.DISPID_MAXLENGTH = -533;
+Win32.DISPID_PASSWORDCHAR = -534;
+Win32.DISPID_SCROLLBARS = -535;
+Win32.DISPID_WORDWRAP = -536;
+Win32.DISPID_MULTILINE = -537;
+Win32.DISPID_NUMBEROFROWS = -538;
+Win32.DISPID_NUMBEROFCOLUMNS = -539;
+Win32.DISPID_DISPLAYSTYLE = -540;
+Win32.DISPID_GROUPNAME = -541;
+Win32.DISPID_IMEMODE = -542;
+Win32.DISPID_ACCELERATOR = -543;
+Win32.DISPID_ENTERKEYBEHAVIOR = -544;
+Win32.DISPID_TABKEYBEHAVIOR = -545;
+Win32.DISPID_SELTEXT = -546;
+Win32.DISPID_SELSTART = -547;
+Win32.DISPID_SELLENGTH = -548;
+Win32.DISPID_REFRESH = -550;
+Win32.DISPID_DOCLICK = -551;
+Win32.DISPID_ABOUTBOX = -552;
+Win32.DISPID_ADDITEM = -553;
+Win32.DISPID_CLEAR = -554;
+Win32.DISPID_REMOVEITEM = -555;
+Win32.DISPID_CLICK = -600;
+Win32.DISPID_DBLCLICK = -601;
+Win32.DISPID_KEYDOWN = -602;
+Win32.DISPID_KEYPRESS = -603;
+Win32.DISPID_KEYUP = -604;
+Win32.DISPID_MOUSEDOWN = -605;
+Win32.DISPID_MOUSEMOVE = -606;
+Win32.DISPID_MOUSEUP = -607;
+Win32.DISPID_ERROREVENT = -608;
+Win32.DISPID_READYSTATECHANGE = -609;
+Win32.DISPID_CLICK_VALUE = -610;
+Win32.DISPID_RIGHTTOLEFT = -611;
+Win32.DISPID_TOPTOBOTTOM = -612;
+Win32.DISPID_THIS = -613;
+Win32.DISPID_AMBIENT_BACKCOLOR = -701;
+Win32.DISPID_AMBIENT_DISPLAYNAME = -702;
+Win32.DISPID_AMBIENT_FONT = -703;
+Win32.DISPID_AMBIENT_FORECOLOR = -704;
+Win32.DISPID_AMBIENT_LOCALEID = -705;
+Win32.DISPID_AMBIENT_MESSAGEREFLECT = -706;
+Win32.DISPID_AMBIENT_SCALEUNITS = -707;
+Win32.DISPID_AMBIENT_TEXTALIGN = -708;
+Win32.DISPID_AMBIENT_USERMODE = -709;
+Win32.DISPID_AMBIENT_UIDEAD = -710;
+Win32.DISPID_AMBIENT_SHOWGRABHANDLES = -711;
+Win32.DISPID_AMBIENT_SHOWHATCHING = -712;
+Win32.DISPID_AMBIENT_DISPLAYASDEFAULT = -713;
+Win32.DISPID_AMBIENT_SUPPORTSMNEMONICS = -714;
+Win32.DISPID_AMBIENT_AUTOCLIP = -715;
+Win32.DISPID_AMBIENT_APPEARANCE = -716;
+Win32.DISPID_AMBIENT_CODEPAGE = -725;
+Win32.DISPID_AMBIENT_PALETTE = -726;
+Win32.DISPID_AMBIENT_CHARSET = -727;
+Win32.DISPID_AMBIENT_TRANSFERPRIORITY = -728;
+Win32.DISPID_AMBIENT_RIGHTTOLEFT = -732;
+Win32.DISPID_AMBIENT_TOPTOBOTTOM = -733;
+Win32.DISPID_Name = -800;
+Win32.DISPID_Delete = -801;
+Win32.DISPID_Object = -802;
+Win32.DISPID_Parent = -803;
+Win32.DISPID_FONT_NAME = 0;
+Win32.DISPID_FONT_SIZE = 2;
+Win32.DISPID_FONT_BOLD = 3;
+Win32.DISPID_FONT_ITALIC = 4;
+Win32.DISPID_FONT_UNDER = 5;
+Win32.DISPID_FONT_STRIKE = 6;
+Win32.DISPID_FONT_WEIGHT = 7;
+Win32.DISPID_FONT_CHARSET = 8;
+Win32.DISPID_FONT_CHANGED = 9;
+Win32.DISPID_PICT_HANDLE = 0;
+Win32.DISPID_PICT_HPAL = 2;
+Win32.DISPID_PICT_TYPE = 3;
+Win32.DISPID_PICT_WIDTH = 4;
+Win32.DISPID_PICT_HEIGHT = 5;
+Win32.DISPID_PICT_RENDER = 6;
+Win32.STDOLE_TLB = "stdole2.tlb";
+Win32.STDTYPE_TLB = "stdole2.tlb";
+Win32.GC_WCH_SIBLING = 1;
+Win32.TIFLAGS_EXTENDDISPATCHONLY = 1;
+Win32.OLECMDERR_E_NOTSUPPORTED = -2147221248;
+Win32.MSOCMDERR_E_FIRST = -2147221248;
+Win32.MSOCMDERR_E_NOTSUPPORTED = -2147221248;
+Win32.MSOCMDERR_E_DISABLED = -2147221247;
+Win32.MSOCMDERR_E_NOHELP = -2147221246;
+Win32.MSOCMDERR_E_CANCELED = -2147221245;
+Win32.MSOCMDERR_E_UNKNOWNGROUP = -2147221244;
+Win32.OLECMD_TASKDLGID_ONBEFOREUNLOAD = 1;
+Win32.OLECMDARGINDEX_SHOWPAGEACTIONMENU_HWND = 0;
+Win32.OLECMDARGINDEX_SHOWPAGEACTIONMENU_X = 1;
+Win32.OLECMDARGINDEX_SHOWPAGEACTIONMENU_Y = 2;
+Win32.OLECMDARGINDEX_ACTIVEXINSTALL_PUBLISHER = 0;
+Win32.OLECMDARGINDEX_ACTIVEXINSTALL_DISPLAYNAME = 1;
+Win32.OLECMDARGINDEX_ACTIVEXINSTALL_CLSID = 2;
+Win32.OLECMDARGINDEX_ACTIVEXINSTALL_INSTALLSCOPE = 3;
+Win32.OLECMDARGINDEX_ACTIVEXINSTALL_SOURCEURL = 4;
+Win32.INSTALL_SCOPE_INVALID = 0;
+Win32.INSTALL_SCOPE_MACHINE = 1;
+Win32.INSTALL_SCOPE_USER = 2;
+Win32.MK_ALT = 32;
+Win32.DD_DEFSCROLLINSET = 11;
+Win32.DD_DEFSCROLLDELAY = 50;
+Win32.DD_DEFSCROLLINTERVAL = 50;
+Win32.DD_DEFDRAGDELAY = 200;
+Win32.DD_DEFDRAGMINDIST = 2;
+Win32.OT_LINK = 1;
+Win32.OT_EMBEDDED = 2;
+Win32.OT_STATIC = 3;
+Win32.OLEVERB_PRIMARY = 0;
+Win32.OF_SET = 1;
+Win32.OF_GET = 2;
+Win32.OF_HANDLER = 4;
+Win32.Win32 = 100;
+Win32.OLEIVERB_PRIMARY = 0;
+Win32.OLEIVERB_SHOW = -1;
+Win32.OLEIVERB_OPEN = -2;
+Win32.OLEIVERB_HIDE = -3;
+Win32.OLEIVERB_UIACTIVATE = -4;
+Win32.OLEIVERB_INPLACEACTIVATE = -5;
+Win32.OLEIVERB_DISCARDUNDOSTATE = -6;
+Win32.IDC_OLEUIHELP = 99;
+Win32.IDC_IO_CREATENEW = 2100;
+Win32.IDC_IO_CREATEFROMFILE = 2101;
+Win32.IDC_IO_LINKFILE = 2102;
+Win32.IDC_IO_OBJECTTYPELIST = 2103;
+Win32.IDC_IO_DISPLAYASICON = 2104;
+Win32.IDC_IO_CHANGEICON = 2105;
+Win32.IDC_IO_FILE = 2106;
+Win32.IDC_IO_FILEDISPLAY = 2107;
+Win32.IDC_IO_RESULTIMAGE = 2108;
+Win32.IDC_IO_RESULTTEXT = 2109;
+Win32.IDC_IO_ICONDISPLAY = 2110;
+Win32.IDC_IO_OBJECTTYPETEXT = 2111;
+Win32.IDC_IO_FILETEXT = 2112;
+Win32.IDC_IO_FILETYPE = 2113;
+Win32.IDC_IO_INSERTCONTROL = 2114;
+Win32.IDC_IO_ADDCONTROL = 2115;
+Win32.IDC_IO_CONTROLTYPELIST = 2116;
+Win32.IDC_PS_PASTE = 500;
+Win32.IDC_PS_PASTELINK = 501;
+Win32.IDC_PS_SOURCETEXT = 502;
+Win32.IDC_PS_PASTELIST = 503;
+Win32.IDC_PS_PASTELINKLIST = 504;
+Win32.IDC_PS_DISPLAYLIST = 505;
+Win32.IDC_PS_DISPLAYASICON = 506;
+Win32.IDC_PS_ICONDISPLAY = 507;
+Win32.IDC_PS_CHANGEICON = 508;
+Win32.IDC_PS_RESULTIMAGE = 509;
+Win32.IDC_PS_RESULTTEXT = 510;
+Win32.IDC_CI_GROUP = 120;
+Win32.IDC_CI_CURRENT = 121;
+Win32.IDC_CI_CURRENTICON = 122;
+Win32.IDC_CI_DEFAULT = 123;
+Win32.IDC_CI_DEFAULTICON = 124;
+Win32.IDC_CI_FROMFILE = 125;
+Win32.IDC_CI_FROMFILEEDIT = 126;
+Win32.IDC_CI_ICONLIST = 127;
+Win32.IDC_CI_LABEL = 128;
+Win32.IDC_CI_LABELEDIT = 129;
+Win32.IDC_CI_BROWSE = 130;
+Win32.IDC_CI_ICONDISPLAY = 131;
+Win32.IDC_CV_OBJECTTYPE = 150;
+Win32.IDC_CV_DISPLAYASICON = 152;
+Win32.IDC_CV_CHANGEICON = 153;
+Win32.IDC_CV_ACTIVATELIST = 154;
+Win32.IDC_CV_CONVERTTO = 155;
+Win32.IDC_CV_ACTIVATEAS = 156;
+Win32.IDC_CV_RESULTTEXT = 157;
+Win32.IDC_CV_CONVERTLIST = 158;
+Win32.IDC_CV_ICONDISPLAY = 165;
+Win32.IDC_EL_CHANGESOURCE = 201;
+Win32.IDC_EL_AUTOMATIC = 202;
+Win32.IDC_EL_CANCELLINK = 209;
+Win32.IDC_EL_UPDATENOW = 210;
+Win32.IDC_EL_OPENSOURCE = 211;
+Win32.IDC_EL_MANUAL = 212;
+Win32.IDC_EL_LINKSOURCE = 216;
+Win32.IDC_EL_LINKTYPE = 217;
+Win32.IDC_EL_LINKSLISTBOX = 206;
+Win32.IDC_EL_COL1 = 220;
+Win32.IDC_EL_COL2 = 221;
+Win32.IDC_EL_COL3 = 222;
+Win32.IDC_BZ_RETRY = 600;
+Win32.IDC_BZ_ICON = 601;
+Win32.IDC_BZ_MESSAGE1 = 602;
+Win32.IDC_BZ_SWITCHTO = 604;
+Win32.IDC_UL_METER = 1029;
+Win32.IDC_UL_STOP = 1030;
+Win32.IDC_UL_PERCENT = 1031;
+Win32.IDC_UL_PROGRESS = 1032;
+Win32.IDC_PU_LINKS = 900;
+Win32.IDC_PU_TEXT = 901;
+Win32.IDC_PU_CONVERT = 902;
+Win32.IDC_PU_ICON = 908;
+Win32.IDC_GP_OBJECTNAME = 1009;
+Win32.IDC_GP_OBJECTTYPE = 1010;
+Win32.IDC_GP_OBJECTSIZE = 1011;
+Win32.IDC_GP_CONVERT = 1013;
+Win32.IDC_GP_OBJECTICON = 1014;
+Win32.IDC_GP_OBJECTLOCATION = 1022;
+Win32.IDC_VP_PERCENT = 1000;
+Win32.IDC_VP_CHANGEICON = 1001;
+Win32.IDC_VP_EDITABLE = 1002;
+Win32.IDC_VP_ASICON = 1003;
+Win32.IDC_VP_RELATIVE = 1005;
+Win32.IDC_VP_SPIN = 1006;
+Win32.IDC_VP_SCALETXT = 1034;
+Win32.IDC_VP_ICONDISPLAY = 1021;
+Win32.IDC_VP_RESULTIMAGE = 1033;
+Win32.IDC_LP_OPENSOURCE = 1006;
+Win32.IDC_LP_UPDATENOW = 1007;
+Win32.IDC_LP_BREAKLINK = 1008;
+Win32.IDC_LP_LINKSOURCE = 1012;
+Win32.IDC_LP_CHANGESOURCE = 1015;
+Win32.IDC_LP_AUTOMATIC = 1016;
+Win32.IDC_LP_MANUAL = 1017;
+Win32.IDC_LP_DATE = 1018;
+Win32.IDC_LP_TIME = 1019;
+Win32.IDD_INSERTOBJECT = 1000;
+Win32.IDD_CHANGEICON = 1001;
+Win32.IDD_CONVERT = 1002;
+Win32.IDD_PASTESPECIAL = 1003;
+Win32.IDD_EDITLINKS = 1004;
+Win32.IDD_BUSY = 1006;
+Win32.IDD_UPDATELINKS = 1007;
+Win32.IDD_CHANGESOURCE = 1009;
+Win32.IDD_INSERTFILEBROWSE = 1010;
+Win32.IDD_CHANGEICONBROWSE = 1011;
+Win32.IDD_CONVERTONLY = 1012;
+Win32.IDD_CHANGESOURCE4 = 1013;
+Win32.IDD_GNRLPROPS = 1100;
+Win32.IDD_VIEWPROPS = 1101;
+Win32.IDD_LINKPROPS = 1102;
+Win32.IDD_CONVERT4 = 1103;
+Win32.IDD_CONVERTONLY4 = 1104;
+Win32.IDD_EDITLINKS4 = 1105;
+Win32.IDD_GNRLPROPS4 = 1106;
+Win32.IDD_LINKPROPS4 = 1107;
+Win32.IDD_PASTESPECIAL4 = 1108;
+Win32.IDD_CANNOTUPDATELINK = 1008;
+Win32.IDD_LINKSOURCEUNAVAILABLE = 1020;
+Win32.IDD_SERVERNOTFOUND = 1023;
+Win32.IDD_OUTOFMEMORY = 1024;
+Win32.IDD_SERVERNOTREGW = 1021;
+Win32.IDD_LINKTYPECHANGEDW = 1022;
+Win32.IDD_SERVERNOTREGA = 1025;
+Win32.IDD_LINKTYPECHANGEDA = 1026;
+Win32.IDD_SERVERNOTREG = 1021;
+Win32.IDD_LINKTYPECHANGED = 1022;
+Win32.OLESTDDELIM = "\\";
+Win32.SZOLEUI_MSG_HELP = "OLEUI_MSG_HELP";
+Win32.SZOLEUI_MSG_ENDDIALOG = "OLEUI_MSG_ENDDIALOG";
+Win32.SZOLEUI_MSG_BROWSE = "OLEUI_MSG_BROWSE";
+Win32.SZOLEUI_MSG_CHANGEICON = "OLEUI_MSG_CHANGEICON";
+Win32.SZOLEUI_MSG_CLOSEBUSYDIALOG = "OLEUI_MSG_CLOSEBUSYDIALOG";
+Win32.SZOLEUI_MSG_CONVERT = "OLEUI_MSG_CONVERT";
+Win32.SZOLEUI_MSG_CHANGESOURCE = "OLEUI_MSG_CHANGESOURCE";
+Win32.SZOLEUI_MSG_ADDCONTROL = "OLEUI_MSG_ADDCONTROL";
+Win32.SZOLEUI_MSG_BROWSE_OFN = "OLEUI_MSG_BROWSE_OFN";
+Win32.ID_BROWSE_CHANGEICON = 1;
+Win32.ID_BROWSE_INSERTFILE = 2;
+Win32.ID_BROWSE_ADDCONTROL = 3;
+Win32.ID_BROWSE_CHANGESOURCE = 4;
+Win32.OLEUI_FALSE = 0;
+Win32.OLEUI_SUCCESS = 1;
+Win32.OLEUI_OK = 1;
+Win32.OLEUI_CANCEL = 2;
+Win32.OLEUI_ERR_STANDARDMIN = 100;
+Win32.OLEUI_ERR_OLEMEMALLOC = 100;
+Win32.OLEUI_ERR_STRUCTURENULL = 101;
+Win32.OLEUI_ERR_STRUCTUREINVALID = 102;
+Win32.OLEUI_ERR_CBSTRUCTINCORRECT = 103;
+Win32.OLEUI_ERR_HWNDOWNERINVALID = 104;
+Win32.OLEUI_ERR_LPSZCAPTIONINVALID = 105;
+Win32.OLEUI_ERR_LPFNHOOKINVALID = 106;
+Win32.OLEUI_ERR_HINSTANCEINVALID = 107;
+Win32.OLEUI_ERR_LPSZTEMPLATEINVALID = 108;
+Win32.OLEUI_ERR_HRESOURCEINVALID = 109;
+Win32.OLEUI_ERR_FINDTEMPLATEFAILURE = 110;
+Win32.OLEUI_ERR_LOADTEMPLATEFAILURE = 111;
+Win32.OLEUI_ERR_DIALOGFAILURE = 112;
+Win32.OLEUI_ERR_LOCALMEMALLOC = 113;
+Win32.OLEUI_ERR_GLOBALMEMALLOC = 114;
+Win32.OLEUI_ERR_LOADSTRING = 115;
+Win32.OLEUI_ERR_STANDARDMAX = 116;
+Win32.OLEUI_IOERR_LPSZFILEINVALID = 116;
+Win32.OLEUI_IOERR_LPSZLABELINVALID = 117;
+Win32.OLEUI_IOERR_HICONINVALID = 118;
+Win32.OLEUI_IOERR_LPFORMATETCINVALID = 119;
+Win32.OLEUI_IOERR_PPVOBJINVALID = 120;
+Win32.OLEUI_IOERR_LPIOLECLIENTSITEINVALID = 121;
+Win32.OLEUI_IOERR_LPISTORAGEINVALID = 122;
+Win32.OLEUI_IOERR_SCODEHASERROR = 123;
+Win32.OLEUI_IOERR_LPCLSIDEXCLUDEINVALID = 124;
+Win32.OLEUI_IOERR_CCHFILEINVALID = 125;
+Win32.PS_MAXLINKTYPES = 8;
+Win32.OLEUI_IOERR_SRCDATAOBJECTINVALID = 116;
+Win32.OLEUI_IOERR_ARRPASTEENTRIESINVALID = 117;
+Win32.OLEUI_IOERR_ARRLINKTYPESINVALID = 118;
+Win32.OLEUI_PSERR_CLIPBOARDCHANGED = 119;
+Win32.OLEUI_PSERR_GETCLIPBOARDFAILED = 120;
+Win32.OLEUI_ELERR_LINKCNTRNULL = 116;
+Win32.OLEUI_ELERR_LINKCNTRINVALID = 117;
+Win32.OLEUI_CIERR_MUSTHAVECLSID = 116;
+Win32.OLEUI_CIERR_MUSTHAVECURRENTMETAFILE = 117;
+Win32.OLEUI_CIERR_SZICONEXEINVALID = 118;
+Win32.PROP_HWND_CHGICONDLG = "HWND_CIDLG";
+Win32.OLEUI_CTERR_CLASSIDINVALID = 117;
+Win32.OLEUI_CTERR_DVASPECTINVALID = 118;
+Win32.OLEUI_CTERR_CBFORMATINVALID = 119;
+Win32.OLEUI_CTERR_HMETAPICTINVALID = 120;
+Win32.OLEUI_CTERR_STRINGINVALID = 121;
+Win32.OLEUI_BZERR_HTASKINVALID = 116;
+Win32.OLEUI_BZ_SWITCHTOSELECTED = 117;
+Win32.OLEUI_BZ_RETRYSELECTED = 118;
+Win32.OLEUI_BZ_CALLUNBLOCKED = 119;
+Win32.OLEUI_CSERR_LINKCNTRNULL = 116;
+Win32.OLEUI_CSERR_LINKCNTRINVALID = 117;
+Win32.OLEUI_CSERR_FROMNOTNULL = 118;
+Win32.OLEUI_CSERR_TONOTNULL = 119;
+Win32.OLEUI_CSERR_SOURCENULL = 120;
+Win32.OLEUI_CSERR_SOURCEINVALID = 121;
+Win32.OLEUI_CSERR_SOURCEPARSERROR = 122;
+Win32.OLEUI_CSERR_SOURCEPARSEERROR = 122;
+Win32.OLEUI_OPERR_SUBPROPNULL = 116;
+Win32.OLEUI_OPERR_SUBPROPINVALID = 117;
+Win32.OLEUI_OPERR_PROPSHEETNULL = 118;
+Win32.OLEUI_OPERR_PROPSHEETINVALID = 119;
+Win32.OLEUI_OPERR_SUPPROP = 120;
+Win32.OLEUI_OPERR_PROPSINVALID = 121;
+Win32.OLEUI_OPERR_PAGESINCORRECT = 122;
+Win32.OLEUI_OPERR_INVALIDPAGES = 123;
+Win32.OLEUI_OPERR_NOTSUPPORTED = 124;
+Win32.OLEUI_OPERR_DLGPROCNOTNULL = 125;
+Win32.OLEUI_OPERR_LPARAMNOTZERO = 126;
+Win32.OLEUI_GPERR_STRINGINVALID = 127;
+Win32.OLEUI_GPERR_CLASSIDINVALID = 128;
+Win32.OLEUI_GPERR_LPCLSIDEXCLUDEINVALID = 129;
+Win32.OLEUI_GPERR_CBFORMATINVALID = 130;
+Win32.OLEUI_VPERR_METAPICTINVALID = 131;
+Win32.OLEUI_VPERR_DVASPECTINVALID = 132;
+Win32.OLEUI_LPERR_LINKCNTRNULL = 133;
+Win32.OLEUI_LPERR_LINKCNTRINVALID = 134;
+Win32.OLEUI_OPERR_PROPERTYSHEET = 135;
+Win32.OLEUI_OPERR_OBJINFOINVALID = 136;
+Win32.OLEUI_OPERR_LINKINFOINVALID = 137;
+Win32.OLEUI_QUERY_GETCLASSID = 65280;
+Win32.OLEUI_QUERY_LINKBROKEN = 65281;
+Win32.DISPID_UNKNOWN = -1;
+Win32.DISPID_VALUE = 0;
+Win32.DISPID_PROPERTYPUT = -3;
+Win32.DISPID_NEWENUM = -4;
+Win32.DISPID_EVALUATE = -5;
+Win32.DISPID_CONSTRUCTOR = -6;
+Win32.DISPID_DESTRUCTOR = -7;
+Win32.DISPID_COLLECT = -8;
+Win32.STDOLE_MAJORVERNUM = 1;
+Win32.STDOLE_MINORVERNUM = 0;
+Win32.STDOLE_LCID = 0;
+Win32.STDOLE2_MAJORVERNUM = 2;
+Win32.STDOLE2_MINORVERNUM = 0;
+Win32.STDOLE2_LCID = 0;
+Win32.VARIANT_NOVALUEPROP = 1;
+Win32.VARIANT_ALPHABOOL = 2;
+Win32.VARIANT_NOUSEROVERRIDE = 4;
+Win32.VARIANT_CALENDAR_HIJRI = 8;
+Win32.VARIANT_LOCALBOOL = 16;
+Win32.VARIANT_CALENDAR_THAI = 32;
+Win32.VARIANT_CALENDAR_GREGORIAN = 64;
+Win32.VARIANT_USE_NLS = 128;
+Win32.LOCALE_USE_NLS = 268435456;
+Win32.VTDATEGRE_MAX = 2958465;
+Win32.VTDATEGRE_MIN = -657434;
+Win32.MEMBERID_NIL = -1;
+Win32.ID_DEFAULTINST = -2;
+Win32.LOAD_TLB_AS_32BIT = 32;
+Win32.LOAD_TLB_AS_64BIT = 64;
+Win32.fdexNameCaseSensitive = 1;
+Win32.fdexNameEnsure = 2;
+Win32.fdexNameImplicit = 4;
+Win32.fdexNameCaseInsensitive = 8;
+Win32.fdexNameInternal = 16;
+Win32.fdexNameNoDynamicProperties = 32;
+Win32.fdexEnumDefault = 1;
+Win32.fdexEnumAll = 2;
+Win32.DISPATCH_CONSTRUCT = 16384;
+Win32.DISPID_STARTENUM = -1;
+Win32.SID_VariantConversion = "ptr";
+Win32.SID_GetCaller = "ptr";
+Win32.SID_ProvideRuntimeContext = "ptr";
+Win32.DosDateTimeToVariantTime = foreign.native( "OLEAUT32.dll", "int", "DosDateTimeToVariantTime", [ "ushort", "ushort", "ptr" ] ); 
+Win32.VariantTimeToDosDateTime = foreign.native( "OLEAUT32.dll", "int", "VariantTimeToDosDateTime", [ "double", "ptr", "ptr" ] ); 
+Win32.SystemTimeToVariantTime = foreign.native( "OLEAUT32.dll", "int", "SystemTimeToVariantTime", [ "ptr", "ptr" ] ); 
+Win32.VariantTimeToSystemTime = foreign.native( "OLEAUT32.dll", "int", "VariantTimeToSystemTime", [ "double", "ptr" ] ); 
+Win32.SafeArrayAllocDescriptor = foreign.native( "OLEAUT32.dll", "int", "SafeArrayAllocDescriptor", [ "uint", "ptr" ] ); 
+Win32.SafeArrayAllocDescriptorEx = foreign.native( "OLEAUT32.dll", "int", "SafeArrayAllocDescriptorEx", [ "ushort", "uint", "ptr" ] ); 
+Win32.SafeArrayAllocData = foreign.native( "OLEAUT32.dll", "int", "SafeArrayAllocData", [ "ptr" ] ); 
+Win32.SafeArrayCreate = foreign.native( "OLEAUT32.dll", "ptr", "SafeArrayCreate", [ "ushort", "uint", "ptr" ] ); 
+Win32.SafeArrayCreateEx = foreign.native( "OLEAUT32.dll", "ptr", "SafeArrayCreateEx", [ "ushort", "uint", "ptr", "ptr" ] ); 
+Win32.SafeArrayCopyData = foreign.native( "OLEAUT32.dll", "int", "SafeArrayCopyData", [ "ptr", "ptr" ] ); 
+Win32.SafeArrayReleaseDescriptor = foreign.native( "OLEAUT32.dll", "void", "SafeArrayReleaseDescriptor", [ "ptr" ] ); 
+Win32.SafeArrayDestroyDescriptor = foreign.native( "OLEAUT32.dll", "int", "SafeArrayDestroyDescriptor", [ "ptr" ] ); 
+Win32.SafeArrayReleaseData = foreign.native( "OLEAUT32.dll", "void", "SafeArrayReleaseData", [ "ptr" ] ); 
+Win32.SafeArrayDestroyData = foreign.native( "OLEAUT32.dll", "int", "SafeArrayDestroyData", [ "ptr" ] ); 
+Win32.SafeArrayAddRef = foreign.native( "OLEAUT32.dll", "int", "SafeArrayAddRef", [ "ptr", "ptr" ] ); 
+Win32.SafeArrayDestroy = foreign.native( "OLEAUT32.dll", "int", "SafeArrayDestroy", [ "ptr" ] ); 
+Win32.SafeArrayRedim = foreign.native( "OLEAUT32.dll", "int", "SafeArrayRedim", [ "ptr", "ptr" ] ); 
+Win32.SafeArrayGetDim = foreign.native( "OLEAUT32.dll", "uint", "SafeArrayGetDim", [ "ptr" ] ); 
+Win32.SafeArrayGetElemsize = foreign.native( "OLEAUT32.dll", "uint", "SafeArrayGetElemsize", [ "ptr" ] ); 
+Win32.SafeArrayGetUBound = foreign.native( "OLEAUT32.dll", "int", "SafeArrayGetUBound", [ "ptr", "uint", "ptr" ] ); 
+Win32.SafeArrayGetLBound = foreign.native( "OLEAUT32.dll", "int", "SafeArrayGetLBound", [ "ptr", "uint", "ptr" ] ); 
+Win32.SafeArrayLock = foreign.native( "OLEAUT32.dll", "int", "SafeArrayLock", [ "ptr" ] ); 
+Win32.SafeArrayUnlock = foreign.native( "OLEAUT32.dll", "int", "SafeArrayUnlock", [ "ptr" ] ); 
+Win32.SafeArrayAccessData = foreign.native( "OLEAUT32.dll", "int", "SafeArrayAccessData", [ "ptr", "ptr" ] ); 
+Win32.SafeArrayUnaccessData = foreign.native( "OLEAUT32.dll", "int", "SafeArrayUnaccessData", [ "ptr" ] ); 
+Win32.SafeArrayGetElement = foreign.native( "OLEAUT32.dll", "int", "SafeArrayGetElement", [ "ptr", "ptr", "ptr" ] ); 
+Win32.SafeArrayPutElement = foreign.native( "OLEAUT32.dll", "int", "SafeArrayPutElement", [ "ptr", "ptr", "ptr" ] ); 
+Win32.SafeArrayCopy = foreign.native( "OLEAUT32.dll", "int", "SafeArrayCopy", [ "ptr", "ptr" ] ); 
+Win32.SafeArrayPtrOfIndex = foreign.native( "OLEAUT32.dll", "int", "SafeArrayPtrOfIndex", [ "ptr", "ptr", "ptr" ] ); 
+Win32.SafeArraySetRecordInfo = foreign.native( "OLEAUT32.dll", "int", "SafeArraySetRecordInfo", [ "ptr", "ptr" ] ); 
+Win32.SafeArrayGetRecordInfo = foreign.native( "OLEAUT32.dll", "int", "SafeArrayGetRecordInfo", [ "ptr", "ptr" ] ); 
+Win32.SafeArraySetIID = foreign.native( "OLEAUT32.dll", "int", "SafeArraySetIID", [ "ptr", "ptr" ] ); 
+Win32.SafeArrayGetIID = foreign.native( "OLEAUT32.dll", "int", "SafeArrayGetIID", [ "ptr", "ptr" ] ); 
+Win32.SafeArrayGetVartype = foreign.native( "OLEAUT32.dll", "int", "SafeArrayGetVartype", [ "ptr", "ptr" ] ); 
+Win32.SafeArrayCreateVector = foreign.native( "OLEAUT32.dll", "ptr", "SafeArrayCreateVector", [ "ushort", "int", "uint" ] ); 
+Win32.SafeArrayCreateVectorEx = foreign.native( "OLEAUT32.dll", "ptr", "SafeArrayCreateVectorEx", [ "ushort", "int", "uint", "ptr" ] ); 
+Win32.VariantInit = foreign.native( "OLEAUT32.dll", "void", "VariantInit", [ "ptr" ] ); 
+Win32.VariantClear = foreign.native( "OLEAUT32.dll", "int", "VariantClear", [ "ptr" ] ); 
+Win32.VariantCopy = foreign.native( "OLEAUT32.dll", "int", "VariantCopy", [ "ptr", "ptr" ] ); 
+Win32.VariantCopyInd = foreign.native( "OLEAUT32.dll", "int", "VariantCopyInd", [ "ptr", "ptr" ] ); 
+Win32.VariantChangeType = foreign.native( "OLEAUT32.dll", "int", "VariantChangeType", [ "ptr", "ptr", "ushort", "ushort" ] ); 
+Win32.VariantChangeTypeEx = foreign.native( "OLEAUT32.dll", "int", "VariantChangeTypeEx", [ "ptr", "ptr", "uint", "ushort", "ushort" ] ); 
+Win32.VectorFromBstr = foreign.native( "OLEAUT32.dll", "int", "VectorFromBstr", [ "wstr", "ptr" ] ); 
+Win32.BstrFromVector = foreign.native( "OLEAUT32.dll", "int", "BstrFromVector", [ "ptr", "ptr" ] ); 
+Win32.VarUI1FromI2 = foreign.native( "OLEAUT32.dll", "int", "VarUI1FromI2", [ "short", "ptr" ] ); 
+Win32.VarUI1FromI4 = foreign.native( "OLEAUT32.dll", "int", "VarUI1FromI4", [ "int", "ptr" ] ); 
+Win32.VarUI1FromI8 = foreign.native( "OLEAUT32.dll", "int", "VarUI1FromI8", [ "long", "ptr" ] ); 
+Win32.VarUI1FromR4 = foreign.native( "OLEAUT32.dll", "int", "VarUI1FromR4", [ "float", "ptr" ] ); 
+Win32.VarUI1FromR8 = foreign.native( "OLEAUT32.dll", "int", "VarUI1FromR8", [ "double", "ptr" ] ); 
+Win32.VarUI1FromCy = foreign.native( "OLEAUT32.dll", "int", "VarUI1FromCy", [ "ptr", "ptr" ] ); 
+Win32.VarUI1FromDate = foreign.native( "OLEAUT32.dll", "int", "VarUI1FromDate", [ "double", "ptr" ] ); 
+Win32.VarUI1FromStr = foreign.native( "OLEAUT32.dll", "int", "VarUI1FromStr", [ "wstr", "uint", "uint", "ptr" ] ); 
+Win32.VarUI1FromDisp = foreign.native( "OLEAUT32.dll", "int", "VarUI1FromDisp", [ "ptr", "uint", "ptr" ] ); 
+Win32.VarUI1FromBool = foreign.native( "OLEAUT32.dll", "int", "VarUI1FromBool", [ "short", "ptr" ] ); 
+Win32.VarUI1FromI1 = foreign.native( "OLEAUT32.dll", "int", "VarUI1FromI1", [ "ubyte", "ptr" ] ); 
+Win32.VarUI1FromUI2 = foreign.native( "OLEAUT32.dll", "int", "VarUI1FromUI2", [ "ushort", "ptr" ] ); 
+Win32.VarUI1FromUI4 = foreign.native( "OLEAUT32.dll", "int", "VarUI1FromUI4", [ "uint", "ptr" ] ); 
+Win32.VarUI1FromUI8 = foreign.native( "OLEAUT32.dll", "int", "VarUI1FromUI8", [ "ulong", "ptr" ] ); 
+Win32.VarUI1FromDec = foreign.native( "OLEAUT32.dll", "int", "VarUI1FromDec", [ "ptr", "ptr" ] ); 
+Win32.VarI2FromUI1 = foreign.native( "OLEAUT32.dll", "int", "VarI2FromUI1", [ "ubyte", "ptr" ] ); 
+Win32.VarI2FromI4 = foreign.native( "OLEAUT32.dll", "int", "VarI2FromI4", [ "int", "ptr" ] ); 
+Win32.VarI2FromI8 = foreign.native( "OLEAUT32.dll", "int", "VarI2FromI8", [ "long", "ptr" ] ); 
+Win32.VarI2FromR4 = foreign.native( "OLEAUT32.dll", "int", "VarI2FromR4", [ "float", "ptr" ] ); 
+Win32.VarI2FromR8 = foreign.native( "OLEAUT32.dll", "int", "VarI2FromR8", [ "double", "ptr" ] ); 
+Win32.VarI2FromCy = foreign.native( "OLEAUT32.dll", "int", "VarI2FromCy", [ "ptr", "ptr" ] ); 
+Win32.VarI2FromDate = foreign.native( "OLEAUT32.dll", "int", "VarI2FromDate", [ "double", "ptr" ] ); 
+Win32.VarI2FromStr = foreign.native( "OLEAUT32.dll", "int", "VarI2FromStr", [ "wstr", "uint", "uint", "ptr" ] ); 
+Win32.VarI2FromDisp = foreign.native( "OLEAUT32.dll", "int", "VarI2FromDisp", [ "ptr", "uint", "ptr" ] ); 
+Win32.VarI2FromBool = foreign.native( "OLEAUT32.dll", "int", "VarI2FromBool", [ "short", "ptr" ] ); 
+Win32.VarI2FromI1 = foreign.native( "OLEAUT32.dll", "int", "VarI2FromI1", [ "ubyte", "ptr" ] ); 
+Win32.VarI2FromUI2 = foreign.native( "OLEAUT32.dll", "int", "VarI2FromUI2", [ "ushort", "ptr" ] ); 
+Win32.VarI2FromUI4 = foreign.native( "OLEAUT32.dll", "int", "VarI2FromUI4", [ "uint", "ptr" ] ); 
+Win32.VarI2FromUI8 = foreign.native( "OLEAUT32.dll", "int", "VarI2FromUI8", [ "ulong", "ptr" ] ); 
+Win32.VarI2FromDec = foreign.native( "OLEAUT32.dll", "int", "VarI2FromDec", [ "ptr", "ptr" ] ); 
+Win32.VarI4FromUI1 = foreign.native( "OLEAUT32.dll", "int", "VarI4FromUI1", [ "ubyte", "ptr" ] ); 
+Win32.VarI4FromI2 = foreign.native( "OLEAUT32.dll", "int", "VarI4FromI2", [ "short", "ptr" ] ); 
+Win32.VarI4FromI8 = foreign.native( "OLEAUT32.dll", "int", "VarI4FromI8", [ "long", "ptr" ] ); 
+Win32.VarI4FromR4 = foreign.native( "OLEAUT32.dll", "int", "VarI4FromR4", [ "float", "ptr" ] ); 
+Win32.VarI4FromR8 = foreign.native( "OLEAUT32.dll", "int", "VarI4FromR8", [ "double", "ptr" ] ); 
+Win32.VarI4FromCy = foreign.native( "OLEAUT32.dll", "int", "VarI4FromCy", [ "ptr", "ptr" ] ); 
+Win32.VarI4FromDate = foreign.native( "OLEAUT32.dll", "int", "VarI4FromDate", [ "double", "ptr" ] ); 
+Win32.VarI4FromStr = foreign.native( "OLEAUT32.dll", "int", "VarI4FromStr", [ "wstr", "uint", "uint", "ptr" ] ); 
+Win32.VarI4FromDisp = foreign.native( "OLEAUT32.dll", "int", "VarI4FromDisp", [ "ptr", "uint", "ptr" ] ); 
+Win32.VarI4FromBool = foreign.native( "OLEAUT32.dll", "int", "VarI4FromBool", [ "short", "ptr" ] ); 
+Win32.VarI4FromI1 = foreign.native( "OLEAUT32.dll", "int", "VarI4FromI1", [ "ubyte", "ptr" ] ); 
+Win32.VarI4FromUI2 = foreign.native( "OLEAUT32.dll", "int", "VarI4FromUI2", [ "ushort", "ptr" ] ); 
+Win32.VarI4FromUI4 = foreign.native( "OLEAUT32.dll", "int", "VarI4FromUI4", [ "uint", "ptr" ] ); 
+Win32.VarI4FromUI8 = foreign.native( "OLEAUT32.dll", "int", "VarI4FromUI8", [ "ulong", "ptr" ] ); 
+Win32.VarI4FromDec = foreign.native( "OLEAUT32.dll", "int", "VarI4FromDec", [ "ptr", "ptr" ] ); 
+Win32.VarI8FromUI1 = foreign.native( "OLEAUT32.dll", "int", "VarI8FromUI1", [ "ubyte", "ptr" ] ); 
+Win32.VarI8FromI2 = foreign.native( "OLEAUT32.dll", "int", "VarI8FromI2", [ "short", "ptr" ] ); 
+Win32.VarI8FromR4 = foreign.native( "OLEAUT32.dll", "int", "VarI8FromR4", [ "float", "ptr" ] ); 
+Win32.VarI8FromR8 = foreign.native( "OLEAUT32.dll", "int", "VarI8FromR8", [ "double", "ptr" ] ); 
+Win32.VarI8FromCy = foreign.native( "OLEAUT32.dll", "int", "VarI8FromCy", [ "ptr", "ptr" ] ); 
+Win32.VarI8FromDate = foreign.native( "OLEAUT32.dll", "int", "VarI8FromDate", [ "double", "ptr" ] ); 
+Win32.VarI8FromStr = foreign.native( "OLEAUT32.dll", "int", "VarI8FromStr", [ "wstr", "uint", "uint", "ptr" ] ); 
+Win32.VarI8FromDisp = foreign.native( "OLEAUT32.dll", "int", "VarI8FromDisp", [ "ptr", "uint", "ptr" ] ); 
+Win32.VarI8FromBool = foreign.native( "OLEAUT32.dll", "int", "VarI8FromBool", [ "short", "ptr" ] ); 
+Win32.VarI8FromI1 = foreign.native( "OLEAUT32.dll", "int", "VarI8FromI1", [ "ubyte", "ptr" ] ); 
+Win32.VarI8FromUI2 = foreign.native( "OLEAUT32.dll", "int", "VarI8FromUI2", [ "ushort", "ptr" ] ); 
+Win32.VarI8FromUI4 = foreign.native( "OLEAUT32.dll", "int", "VarI8FromUI4", [ "uint", "ptr" ] ); 
+Win32.VarI8FromUI8 = foreign.native( "OLEAUT32.dll", "int", "VarI8FromUI8", [ "ulong", "ptr" ] ); 
+Win32.VarI8FromDec = foreign.native( "OLEAUT32.dll", "int", "VarI8FromDec", [ "ptr", "ptr" ] ); 
+Win32.VarR4FromUI1 = foreign.native( "OLEAUT32.dll", "int", "VarR4FromUI1", [ "ubyte", "ptr" ] ); 
+Win32.VarR4FromI2 = foreign.native( "OLEAUT32.dll", "int", "VarR4FromI2", [ "short", "ptr" ] ); 
+Win32.VarR4FromI4 = foreign.native( "OLEAUT32.dll", "int", "VarR4FromI4", [ "int", "ptr" ] ); 
+Win32.VarR4FromI8 = foreign.native( "OLEAUT32.dll", "int", "VarR4FromI8", [ "long", "ptr" ] ); 
+Win32.VarR4FromR8 = foreign.native( "OLEAUT32.dll", "int", "VarR4FromR8", [ "double", "ptr" ] ); 
+Win32.VarR4FromCy = foreign.native( "OLEAUT32.dll", "int", "VarR4FromCy", [ "ptr", "ptr" ] ); 
+Win32.VarR4FromDate = foreign.native( "OLEAUT32.dll", "int", "VarR4FromDate", [ "double", "ptr" ] ); 
+Win32.VarR4FromStr = foreign.native( "OLEAUT32.dll", "int", "VarR4FromStr", [ "wstr", "uint", "uint", "ptr" ] ); 
+Win32.VarR4FromDisp = foreign.native( "OLEAUT32.dll", "int", "VarR4FromDisp", [ "ptr", "uint", "ptr" ] ); 
+Win32.VarR4FromBool = foreign.native( "OLEAUT32.dll", "int", "VarR4FromBool", [ "short", "ptr" ] ); 
+Win32.VarR4FromI1 = foreign.native( "OLEAUT32.dll", "int", "VarR4FromI1", [ "ubyte", "ptr" ] ); 
+Win32.VarR4FromUI2 = foreign.native( "OLEAUT32.dll", "int", "VarR4FromUI2", [ "ushort", "ptr" ] ); 
+Win32.VarR4FromUI4 = foreign.native( "OLEAUT32.dll", "int", "VarR4FromUI4", [ "uint", "ptr" ] ); 
+Win32.VarR4FromUI8 = foreign.native( "OLEAUT32.dll", "int", "VarR4FromUI8", [ "ulong", "ptr" ] ); 
+Win32.VarR4FromDec = foreign.native( "OLEAUT32.dll", "int", "VarR4FromDec", [ "ptr", "ptr" ] ); 
+Win32.VarR8FromUI1 = foreign.native( "OLEAUT32.dll", "int", "VarR8FromUI1", [ "ubyte", "ptr" ] ); 
+Win32.VarR8FromI2 = foreign.native( "OLEAUT32.dll", "int", "VarR8FromI2", [ "short", "ptr" ] ); 
+Win32.VarR8FromI4 = foreign.native( "OLEAUT32.dll", "int", "VarR8FromI4", [ "int", "ptr" ] ); 
+Win32.VarR8FromI8 = foreign.native( "OLEAUT32.dll", "int", "VarR8FromI8", [ "long", "ptr" ] ); 
+Win32.VarR8FromR4 = foreign.native( "OLEAUT32.dll", "int", "VarR8FromR4", [ "float", "ptr" ] ); 
+Win32.VarR8FromCy = foreign.native( "OLEAUT32.dll", "int", "VarR8FromCy", [ "ptr", "ptr" ] ); 
+Win32.VarR8FromDate = foreign.native( "OLEAUT32.dll", "int", "VarR8FromDate", [ "double", "ptr" ] ); 
+Win32.VarR8FromStr = foreign.native( "OLEAUT32.dll", "int", "VarR8FromStr", [ "wstr", "uint", "uint", "ptr" ] ); 
+Win32.VarR8FromDisp = foreign.native( "OLEAUT32.dll", "int", "VarR8FromDisp", [ "ptr", "uint", "ptr" ] ); 
+Win32.VarR8FromBool = foreign.native( "OLEAUT32.dll", "int", "VarR8FromBool", [ "short", "ptr" ] ); 
+Win32.VarR8FromI1 = foreign.native( "OLEAUT32.dll", "int", "VarR8FromI1", [ "ubyte", "ptr" ] ); 
+Win32.VarR8FromUI2 = foreign.native( "OLEAUT32.dll", "int", "VarR8FromUI2", [ "ushort", "ptr" ] ); 
+Win32.VarR8FromUI4 = foreign.native( "OLEAUT32.dll", "int", "VarR8FromUI4", [ "uint", "ptr" ] ); 
+Win32.VarR8FromUI8 = foreign.native( "OLEAUT32.dll", "int", "VarR8FromUI8", [ "ulong", "ptr" ] ); 
+Win32.VarR8FromDec = foreign.native( "OLEAUT32.dll", "int", "VarR8FromDec", [ "ptr", "ptr" ] ); 
+Win32.VarDateFromUI1 = foreign.native( "OLEAUT32.dll", "int", "VarDateFromUI1", [ "ubyte", "ptr" ] ); 
+Win32.VarDateFromI2 = foreign.native( "OLEAUT32.dll", "int", "VarDateFromI2", [ "short", "ptr" ] ); 
+Win32.VarDateFromI4 = foreign.native( "OLEAUT32.dll", "int", "VarDateFromI4", [ "int", "ptr" ] ); 
+Win32.VarDateFromI8 = foreign.native( "OLEAUT32.dll", "int", "VarDateFromI8", [ "long", "ptr" ] ); 
+Win32.VarDateFromR4 = foreign.native( "OLEAUT32.dll", "int", "VarDateFromR4", [ "float", "ptr" ] ); 
+Win32.VarDateFromR8 = foreign.native( "OLEAUT32.dll", "int", "VarDateFromR8", [ "double", "ptr" ] ); 
+Win32.VarDateFromCy = foreign.native( "OLEAUT32.dll", "int", "VarDateFromCy", [ "ptr", "ptr" ] ); 
+Win32.VarDateFromStr = foreign.native( "OLEAUT32.dll", "int", "VarDateFromStr", [ "wstr", "uint", "uint", "ptr" ] ); 
+Win32.VarDateFromDisp = foreign.native( "OLEAUT32.dll", "int", "VarDateFromDisp", [ "ptr", "uint", "ptr" ] ); 
+Win32.VarDateFromBool = foreign.native( "OLEAUT32.dll", "int", "VarDateFromBool", [ "short", "ptr" ] ); 
+Win32.VarDateFromI1 = foreign.native( "OLEAUT32.dll", "int", "VarDateFromI1", [ "ubyte", "ptr" ] ); 
+Win32.VarDateFromUI2 = foreign.native( "OLEAUT32.dll", "int", "VarDateFromUI2", [ "ushort", "ptr" ] ); 
+Win32.VarDateFromUI4 = foreign.native( "OLEAUT32.dll", "int", "VarDateFromUI4", [ "uint", "ptr" ] ); 
+Win32.VarDateFromUI8 = foreign.native( "OLEAUT32.dll", "int", "VarDateFromUI8", [ "ulong", "ptr" ] ); 
+Win32.VarDateFromDec = foreign.native( "OLEAUT32.dll", "int", "VarDateFromDec", [ "ptr", "ptr" ] ); 
+Win32.VarCyFromUI1 = foreign.native( "OLEAUT32.dll", "int", "VarCyFromUI1", [ "ubyte", "ptr" ] ); 
+Win32.VarCyFromI2 = foreign.native( "OLEAUT32.dll", "int", "VarCyFromI2", [ "short", "ptr" ] ); 
+Win32.VarCyFromI4 = foreign.native( "OLEAUT32.dll", "int", "VarCyFromI4", [ "int", "ptr" ] ); 
+Win32.VarCyFromI8 = foreign.native( "OLEAUT32.dll", "int", "VarCyFromI8", [ "long", "ptr" ] ); 
+Win32.VarCyFromR4 = foreign.native( "OLEAUT32.dll", "int", "VarCyFromR4", [ "float", "ptr" ] ); 
+Win32.VarCyFromR8 = foreign.native( "OLEAUT32.dll", "int", "VarCyFromR8", [ "double", "ptr" ] ); 
+Win32.VarCyFromDate = foreign.native( "OLEAUT32.dll", "int", "VarCyFromDate", [ "double", "ptr" ] ); 
+Win32.VarCyFromStr = foreign.native( "OLEAUT32.dll", "int", "VarCyFromStr", [ "wstr", "uint", "uint", "ptr" ] ); 
+Win32.VarCyFromDisp = foreign.native( "OLEAUT32.dll", "int", "VarCyFromDisp", [ "ptr", "uint", "ptr" ] ); 
+Win32.VarCyFromBool = foreign.native( "OLEAUT32.dll", "int", "VarCyFromBool", [ "short", "ptr" ] ); 
+Win32.VarCyFromI1 = foreign.native( "OLEAUT32.dll", "int", "VarCyFromI1", [ "ubyte", "ptr" ] ); 
+Win32.VarCyFromUI2 = foreign.native( "OLEAUT32.dll", "int", "VarCyFromUI2", [ "ushort", "ptr" ] ); 
+Win32.VarCyFromUI4 = foreign.native( "OLEAUT32.dll", "int", "VarCyFromUI4", [ "uint", "ptr" ] ); 
+Win32.VarCyFromUI8 = foreign.native( "OLEAUT32.dll", "int", "VarCyFromUI8", [ "ulong", "ptr" ] ); 
+Win32.VarCyFromDec = foreign.native( "OLEAUT32.dll", "int", "VarCyFromDec", [ "ptr", "ptr" ] ); 
+Win32.VarBstrFromUI1 = foreign.native( "OLEAUT32.dll", "int", "VarBstrFromUI1", [ "ubyte", "uint", "uint", "ptr" ] ); 
+Win32.VarBstrFromI2 = foreign.native( "OLEAUT32.dll", "int", "VarBstrFromI2", [ "short", "uint", "uint", "ptr" ] ); 
+Win32.VarBstrFromI4 = foreign.native( "OLEAUT32.dll", "int", "VarBstrFromI4", [ "int", "uint", "uint", "ptr" ] ); 
+Win32.VarBstrFromI8 = foreign.native( "OLEAUT32.dll", "int", "VarBstrFromI8", [ "long", "uint", "uint", "ptr" ] ); 
+Win32.VarBstrFromR4 = foreign.native( "OLEAUT32.dll", "int", "VarBstrFromR4", [ "float", "uint", "uint", "ptr" ] ); 
+Win32.VarBstrFromR8 = foreign.native( "OLEAUT32.dll", "int", "VarBstrFromR8", [ "double", "uint", "uint", "ptr" ] ); 
+Win32.VarBstrFromCy = foreign.native( "OLEAUT32.dll", "int", "VarBstrFromCy", [ "ptr", "uint", "uint", "ptr" ] ); 
+Win32.VarBstrFromDate = foreign.native( "OLEAUT32.dll", "int", "VarBstrFromDate", [ "double", "uint", "uint", "ptr" ] ); 
+Win32.VarBstrFromDisp = foreign.native( "OLEAUT32.dll", "int", "VarBstrFromDisp", [ "ptr", "uint", "uint", "ptr" ] ); 
+Win32.VarBstrFromBool = foreign.native( "OLEAUT32.dll", "int", "VarBstrFromBool", [ "short", "uint", "uint", "ptr" ] ); 
+Win32.VarBstrFromI1 = foreign.native( "OLEAUT32.dll", "int", "VarBstrFromI1", [ "ubyte", "uint", "uint", "ptr" ] ); 
+Win32.VarBstrFromUI2 = foreign.native( "OLEAUT32.dll", "int", "VarBstrFromUI2", [ "ushort", "uint", "uint", "ptr" ] ); 
+Win32.VarBstrFromUI4 = foreign.native( "OLEAUT32.dll", "int", "VarBstrFromUI4", [ "uint", "uint", "uint", "ptr" ] ); 
+Win32.VarBstrFromUI8 = foreign.native( "OLEAUT32.dll", "int", "VarBstrFromUI8", [ "ulong", "uint", "uint", "ptr" ] ); 
+Win32.VarBstrFromDec = foreign.native( "OLEAUT32.dll", "int", "VarBstrFromDec", [ "ptr", "uint", "uint", "ptr" ] ); 
+Win32.VarBoolFromUI1 = foreign.native( "OLEAUT32.dll", "int", "VarBoolFromUI1", [ "ubyte", "ptr" ] ); 
+Win32.VarBoolFromI2 = foreign.native( "OLEAUT32.dll", "int", "VarBoolFromI2", [ "short", "ptr" ] ); 
+Win32.VarBoolFromI4 = foreign.native( "OLEAUT32.dll", "int", "VarBoolFromI4", [ "int", "ptr" ] ); 
+Win32.VarBoolFromI8 = foreign.native( "OLEAUT32.dll", "int", "VarBoolFromI8", [ "long", "ptr" ] ); 
+Win32.VarBoolFromR4 = foreign.native( "OLEAUT32.dll", "int", "VarBoolFromR4", [ "float", "ptr" ] ); 
+Win32.VarBoolFromR8 = foreign.native( "OLEAUT32.dll", "int", "VarBoolFromR8", [ "double", "ptr" ] ); 
+Win32.VarBoolFromDate = foreign.native( "OLEAUT32.dll", "int", "VarBoolFromDate", [ "double", "ptr" ] ); 
+Win32.VarBoolFromCy = foreign.native( "OLEAUT32.dll", "int", "VarBoolFromCy", [ "ptr", "ptr" ] ); 
+Win32.VarBoolFromStr = foreign.native( "OLEAUT32.dll", "int", "VarBoolFromStr", [ "wstr", "uint", "uint", "ptr" ] ); 
+Win32.VarBoolFromDisp = foreign.native( "OLEAUT32.dll", "int", "VarBoolFromDisp", [ "ptr", "uint", "ptr" ] ); 
+Win32.VarBoolFromI1 = foreign.native( "OLEAUT32.dll", "int", "VarBoolFromI1", [ "ubyte", "ptr" ] ); 
+Win32.VarBoolFromUI2 = foreign.native( "OLEAUT32.dll", "int", "VarBoolFromUI2", [ "ushort", "ptr" ] ); 
+Win32.VarBoolFromUI4 = foreign.native( "OLEAUT32.dll", "int", "VarBoolFromUI4", [ "uint", "ptr" ] ); 
+Win32.VarBoolFromUI8 = foreign.native( "OLEAUT32.dll", "int", "VarBoolFromUI8", [ "ulong", "ptr" ] ); 
+Win32.VarBoolFromDec = foreign.native( "OLEAUT32.dll", "int", "VarBoolFromDec", [ "ptr", "ptr" ] ); 
+Win32.VarI1FromUI1 = foreign.native( "OLEAUT32.dll", "int", "VarI1FromUI1", [ "ubyte", "ptr" ] ); 
+Win32.VarI1FromI2 = foreign.native( "OLEAUT32.dll", "int", "VarI1FromI2", [ "short", "ptr" ] ); 
+Win32.VarI1FromI4 = foreign.native( "OLEAUT32.dll", "int", "VarI1FromI4", [ "int", "ptr" ] ); 
+Win32.VarI1FromI8 = foreign.native( "OLEAUT32.dll", "int", "VarI1FromI8", [ "long", "ptr" ] ); 
+Win32.VarI1FromR4 = foreign.native( "OLEAUT32.dll", "int", "VarI1FromR4", [ "float", "ptr" ] ); 
+Win32.VarI1FromR8 = foreign.native( "OLEAUT32.dll", "int", "VarI1FromR8", [ "double", "ptr" ] ); 
+Win32.VarI1FromDate = foreign.native( "OLEAUT32.dll", "int", "VarI1FromDate", [ "double", "ptr" ] ); 
+Win32.VarI1FromCy = foreign.native( "OLEAUT32.dll", "int", "VarI1FromCy", [ "ptr", "ptr" ] ); 
+Win32.VarI1FromStr = foreign.native( "OLEAUT32.dll", "int", "VarI1FromStr", [ "wstr", "uint", "uint", "ptr" ] ); 
+Win32.VarI1FromDisp = foreign.native( "OLEAUT32.dll", "int", "VarI1FromDisp", [ "ptr", "uint", "ptr" ] ); 
+Win32.VarI1FromBool = foreign.native( "OLEAUT32.dll", "int", "VarI1FromBool", [ "short", "ptr" ] ); 
+Win32.VarI1FromUI2 = foreign.native( "OLEAUT32.dll", "int", "VarI1FromUI2", [ "ushort", "ptr" ] ); 
+Win32.VarI1FromUI4 = foreign.native( "OLEAUT32.dll", "int", "VarI1FromUI4", [ "uint", "ptr" ] ); 
+Win32.VarI1FromUI8 = foreign.native( "OLEAUT32.dll", "int", "VarI1FromUI8", [ "ulong", "ptr" ] ); 
+Win32.VarI1FromDec = foreign.native( "OLEAUT32.dll", "int", "VarI1FromDec", [ "ptr", "ptr" ] ); 
+Win32.VarUI2FromUI1 = foreign.native( "OLEAUT32.dll", "int", "VarUI2FromUI1", [ "ubyte", "ptr" ] ); 
+Win32.VarUI2FromI2 = foreign.native( "OLEAUT32.dll", "int", "VarUI2FromI2", [ "short", "ptr" ] ); 
+Win32.VarUI2FromI4 = foreign.native( "OLEAUT32.dll", "int", "VarUI2FromI4", [ "int", "ptr" ] ); 
+Win32.VarUI2FromI8 = foreign.native( "OLEAUT32.dll", "int", "VarUI2FromI8", [ "long", "ptr" ] ); 
+Win32.VarUI2FromR4 = foreign.native( "OLEAUT32.dll", "int", "VarUI2FromR4", [ "float", "ptr" ] ); 
+Win32.VarUI2FromR8 = foreign.native( "OLEAUT32.dll", "int", "VarUI2FromR8", [ "double", "ptr" ] ); 
+Win32.VarUI2FromDate = foreign.native( "OLEAUT32.dll", "int", "VarUI2FromDate", [ "double", "ptr" ] ); 
+Win32.VarUI2FromCy = foreign.native( "OLEAUT32.dll", "int", "VarUI2FromCy", [ "ptr", "ptr" ] ); 
+Win32.VarUI2FromStr = foreign.native( "OLEAUT32.dll", "int", "VarUI2FromStr", [ "wstr", "uint", "uint", "ptr" ] ); 
+Win32.VarUI2FromDisp = foreign.native( "OLEAUT32.dll", "int", "VarUI2FromDisp", [ "ptr", "uint", "ptr" ] ); 
+Win32.VarUI2FromBool = foreign.native( "OLEAUT32.dll", "int", "VarUI2FromBool", [ "short", "ptr" ] ); 
+Win32.VarUI2FromI1 = foreign.native( "OLEAUT32.dll", "int", "VarUI2FromI1", [ "ubyte", "ptr" ] ); 
+Win32.VarUI2FromUI4 = foreign.native( "OLEAUT32.dll", "int", "VarUI2FromUI4", [ "uint", "ptr" ] ); 
+Win32.VarUI2FromUI8 = foreign.native( "OLEAUT32.dll", "int", "VarUI2FromUI8", [ "ulong", "ptr" ] ); 
+Win32.VarUI2FromDec = foreign.native( "OLEAUT32.dll", "int", "VarUI2FromDec", [ "ptr", "ptr" ] ); 
+Win32.VarUI4FromUI1 = foreign.native( "OLEAUT32.dll", "int", "VarUI4FromUI1", [ "ubyte", "ptr" ] ); 
+Win32.VarUI4FromI2 = foreign.native( "OLEAUT32.dll", "int", "VarUI4FromI2", [ "short", "ptr" ] ); 
+Win32.VarUI4FromI4 = foreign.native( "OLEAUT32.dll", "int", "VarUI4FromI4", [ "int", "ptr" ] ); 
+Win32.VarUI4FromI8 = foreign.native( "OLEAUT32.dll", "int", "VarUI4FromI8", [ "long", "ptr" ] ); 
+Win32.VarUI4FromR4 = foreign.native( "OLEAUT32.dll", "int", "VarUI4FromR4", [ "float", "ptr" ] ); 
+Win32.VarUI4FromR8 = foreign.native( "OLEAUT32.dll", "int", "VarUI4FromR8", [ "double", "ptr" ] ); 
+Win32.VarUI4FromDate = foreign.native( "OLEAUT32.dll", "int", "VarUI4FromDate", [ "double", "ptr" ] ); 
+Win32.VarUI4FromCy = foreign.native( "OLEAUT32.dll", "int", "VarUI4FromCy", [ "ptr", "ptr" ] ); 
+Win32.VarUI4FromStr = foreign.native( "OLEAUT32.dll", "int", "VarUI4FromStr", [ "wstr", "uint", "uint", "ptr" ] ); 
+Win32.VarUI4FromDisp = foreign.native( "OLEAUT32.dll", "int", "VarUI4FromDisp", [ "ptr", "uint", "ptr" ] ); 
+Win32.VarUI4FromBool = foreign.native( "OLEAUT32.dll", "int", "VarUI4FromBool", [ "short", "ptr" ] ); 
+Win32.VarUI4FromI1 = foreign.native( "OLEAUT32.dll", "int", "VarUI4FromI1", [ "ubyte", "ptr" ] ); 
+Win32.VarUI4FromUI2 = foreign.native( "OLEAUT32.dll", "int", "VarUI4FromUI2", [ "ushort", "ptr" ] ); 
+Win32.VarUI4FromUI8 = foreign.native( "OLEAUT32.dll", "int", "VarUI4FromUI8", [ "ulong", "ptr" ] ); 
+Win32.VarUI4FromDec = foreign.native( "OLEAUT32.dll", "int", "VarUI4FromDec", [ "ptr", "ptr" ] ); 
+Win32.VarUI8FromUI1 = foreign.native( "OLEAUT32.dll", "int", "VarUI8FromUI1", [ "ubyte", "ptr" ] ); 
+Win32.VarUI8FromI2 = foreign.native( "OLEAUT32.dll", "int", "VarUI8FromI2", [ "short", "ptr" ] ); 
+Win32.VarUI8FromI8 = foreign.native( "OLEAUT32.dll", "int", "VarUI8FromI8", [ "long", "ptr" ] ); 
+Win32.VarUI8FromR4 = foreign.native( "OLEAUT32.dll", "int", "VarUI8FromR4", [ "float", "ptr" ] ); 
+Win32.VarUI8FromR8 = foreign.native( "OLEAUT32.dll", "int", "VarUI8FromR8", [ "double", "ptr" ] ); 
+Win32.VarUI8FromCy = foreign.native( "OLEAUT32.dll", "int", "VarUI8FromCy", [ "ptr", "ptr" ] ); 
+Win32.VarUI8FromDate = foreign.native( "OLEAUT32.dll", "int", "VarUI8FromDate", [ "double", "ptr" ] ); 
+Win32.VarUI8FromStr = foreign.native( "OLEAUT32.dll", "int", "VarUI8FromStr", [ "wstr", "uint", "uint", "ptr" ] ); 
+Win32.VarUI8FromDisp = foreign.native( "OLEAUT32.dll", "int", "VarUI8FromDisp", [ "ptr", "uint", "ptr" ] ); 
+Win32.VarUI8FromBool = foreign.native( "OLEAUT32.dll", "int", "VarUI8FromBool", [ "short", "ptr" ] ); 
+Win32.VarUI8FromI1 = foreign.native( "OLEAUT32.dll", "int", "VarUI8FromI1", [ "ubyte", "ptr" ] ); 
+Win32.VarUI8FromUI2 = foreign.native( "OLEAUT32.dll", "int", "VarUI8FromUI2", [ "ushort", "ptr" ] ); 
+Win32.VarUI8FromUI4 = foreign.native( "OLEAUT32.dll", "int", "VarUI8FromUI4", [ "uint", "ptr" ] ); 
+Win32.VarUI8FromDec = foreign.native( "OLEAUT32.dll", "int", "VarUI8FromDec", [ "ptr", "ptr" ] ); 
+Win32.VarDecFromUI1 = foreign.native( "OLEAUT32.dll", "int", "VarDecFromUI1", [ "ubyte", "ptr" ] ); 
+Win32.VarDecFromI2 = foreign.native( "OLEAUT32.dll", "int", "VarDecFromI2", [ "short", "ptr" ] ); 
+Win32.VarDecFromI4 = foreign.native( "OLEAUT32.dll", "int", "VarDecFromI4", [ "int", "ptr" ] ); 
+Win32.VarDecFromI8 = foreign.native( "OLEAUT32.dll", "int", "VarDecFromI8", [ "long", "ptr" ] ); 
+Win32.VarDecFromR4 = foreign.native( "OLEAUT32.dll", "int", "VarDecFromR4", [ "float", "ptr" ] ); 
+Win32.VarDecFromR8 = foreign.native( "OLEAUT32.dll", "int", "VarDecFromR8", [ "double", "ptr" ] ); 
+Win32.VarDecFromDate = foreign.native( "OLEAUT32.dll", "int", "VarDecFromDate", [ "double", "ptr" ] ); 
+Win32.VarDecFromCy = foreign.native( "OLEAUT32.dll", "int", "VarDecFromCy", [ "ptr", "ptr" ] ); 
+Win32.VarDecFromStr = foreign.native( "OLEAUT32.dll", "int", "VarDecFromStr", [ "wstr", "uint", "uint", "ptr" ] ); 
+Win32.VarDecFromDisp = foreign.native( "OLEAUT32.dll", "int", "VarDecFromDisp", [ "ptr", "uint", "ptr" ] ); 
+Win32.VarDecFromBool = foreign.native( "OLEAUT32.dll", "int", "VarDecFromBool", [ "short", "ptr" ] ); 
+Win32.VarDecFromI1 = foreign.native( "OLEAUT32.dll", "int", "VarDecFromI1", [ "ubyte", "ptr" ] ); 
+Win32.VarDecFromUI2 = foreign.native( "OLEAUT32.dll", "int", "VarDecFromUI2", [ "ushort", "ptr" ] ); 
+Win32.VarDecFromUI4 = foreign.native( "OLEAUT32.dll", "int", "VarDecFromUI4", [ "uint", "ptr" ] ); 
+Win32.VarDecFromUI8 = foreign.native( "OLEAUT32.dll", "int", "VarDecFromUI8", [ "ulong", "ptr" ] ); 
+Win32.VarParseNumFromStr = foreign.native( "OLEAUT32.dll", "int", "VarParseNumFromStr", [ "wstr", "uint", "uint", "ptr", "ptr" ] ); 
+Win32.VarNumFromParseNum = foreign.native( "OLEAUT32.dll", "int", "VarNumFromParseNum", [ "ptr", "ptr", "uint", "ptr" ] ); 
+Win32.VarAdd = foreign.native( "OLEAUT32.dll", "int", "VarAdd", [ "ptr", "ptr", "ptr" ] ); 
+Win32.VarAnd = foreign.native( "OLEAUT32.dll", "int", "VarAnd", [ "ptr", "ptr", "ptr" ] ); 
+Win32.VarCat = foreign.native( "OLEAUT32.dll", "int", "VarCat", [ "ptr", "ptr", "ptr" ] ); 
+Win32.VarDiv = foreign.native( "OLEAUT32.dll", "int", "VarDiv", [ "ptr", "ptr", "ptr" ] ); 
+Win32.VarEqv = foreign.native( "OLEAUT32.dll", "int", "VarEqv", [ "ptr", "ptr", "ptr" ] ); 
+Win32.VarIdiv = foreign.native( "OLEAUT32.dll", "int", "VarIdiv", [ "ptr", "ptr", "ptr" ] ); 
+Win32.VarImp = foreign.native( "OLEAUT32.dll", "int", "VarImp", [ "ptr", "ptr", "ptr" ] ); 
+Win32.VarMod = foreign.native( "OLEAUT32.dll", "int", "VarMod", [ "ptr", "ptr", "ptr" ] ); 
+Win32.VarMul = foreign.native( "OLEAUT32.dll", "int", "VarMul", [ "ptr", "ptr", "ptr" ] ); 
+Win32.VarOr = foreign.native( "OLEAUT32.dll", "int", "VarOr", [ "ptr", "ptr", "ptr" ] ); 
+Win32.VarPow = foreign.native( "OLEAUT32.dll", "int", "VarPow", [ "ptr", "ptr", "ptr" ] ); 
+Win32.VarSub = foreign.native( "OLEAUT32.dll", "int", "VarSub", [ "ptr", "ptr", "ptr" ] ); 
+Win32.VarXor = foreign.native( "OLEAUT32.dll", "int", "VarXor", [ "ptr", "ptr", "ptr" ] ); 
+Win32.VarAbs = foreign.native( "OLEAUT32.dll", "int", "VarAbs", [ "ptr", "ptr" ] ); 
+Win32.VarFix = foreign.native( "OLEAUT32.dll", "int", "VarFix", [ "ptr", "ptr" ] ); 
+Win32.VarInt = foreign.native( "OLEAUT32.dll", "int", "VarInt", [ "ptr", "ptr" ] ); 
+Win32.VarNeg = foreign.native( "OLEAUT32.dll", "int", "VarNeg", [ "ptr", "ptr" ] ); 
+Win32.VarNot = foreign.native( "OLEAUT32.dll", "int", "VarNot", [ "ptr", "ptr" ] ); 
+Win32.VarRound = foreign.native( "OLEAUT32.dll", "int", "VarRound", [ "ptr", "int", "ptr" ] ); 
+Win32.VarCmp = foreign.native( "OLEAUT32.dll", "uint", "VarCmp", [ "ptr", "ptr", "uint", "uint" ] ); 
+Win32.VarDecAdd = foreign.native( "OLEAUT32.dll", "int", "VarDecAdd", [ "ptr", "ptr", "ptr" ] ); 
+Win32.VarDecDiv = foreign.native( "OLEAUT32.dll", "int", "VarDecDiv", [ "ptr", "ptr", "ptr" ] ); 
+Win32.VarDecMul = foreign.native( "OLEAUT32.dll", "int", "VarDecMul", [ "ptr", "ptr", "ptr" ] ); 
+Win32.VarDecSub = foreign.native( "OLEAUT32.dll", "int", "VarDecSub", [ "ptr", "ptr", "ptr" ] ); 
+Win32.VarDecAbs = foreign.native( "OLEAUT32.dll", "int", "VarDecAbs", [ "ptr", "ptr" ] ); 
+Win32.VarDecFix = foreign.native( "OLEAUT32.dll", "int", "VarDecFix", [ "ptr", "ptr" ] ); 
+Win32.VarDecInt = foreign.native( "OLEAUT32.dll", "int", "VarDecInt", [ "ptr", "ptr" ] ); 
+Win32.VarDecNeg = foreign.native( "OLEAUT32.dll", "int", "VarDecNeg", [ "ptr", "ptr" ] ); 
+Win32.VarDecRound = foreign.native( "OLEAUT32.dll", "int", "VarDecRound", [ "ptr", "int", "ptr" ] ); 
+Win32.VarDecCmp = foreign.native( "OLEAUT32.dll", "uint", "VarDecCmp", [ "ptr", "ptr" ] ); 
+Win32.VarDecCmpR8 = foreign.native( "OLEAUT32.dll", "uint", "VarDecCmpR8", [ "ptr", "double" ] ); 
+Win32.VarCyAdd = foreign.native( "OLEAUT32.dll", "int", "VarCyAdd", [ "ptr", "ptr", "ptr" ] ); 
+Win32.VarCyMul = foreign.native( "OLEAUT32.dll", "int", "VarCyMul", [ "ptr", "ptr", "ptr" ] ); 
+Win32.VarCyMulI4 = foreign.native( "OLEAUT32.dll", "int", "VarCyMulI4", [ "ptr", "int", "ptr" ] ); 
+Win32.VarCyMulI8 = foreign.native( "OLEAUT32.dll", "int", "VarCyMulI8", [ "ptr", "long", "ptr" ] ); 
+Win32.VarCySub = foreign.native( "OLEAUT32.dll", "int", "VarCySub", [ "ptr", "ptr", "ptr" ] ); 
+Win32.VarCyAbs = foreign.native( "OLEAUT32.dll", "int", "VarCyAbs", [ "ptr", "ptr" ] ); 
+Win32.VarCyFix = foreign.native( "OLEAUT32.dll", "int", "VarCyFix", [ "ptr", "ptr" ] ); 
+Win32.VarCyInt = foreign.native( "OLEAUT32.dll", "int", "VarCyInt", [ "ptr", "ptr" ] ); 
+Win32.VarCyNeg = foreign.native( "OLEAUT32.dll", "int", "VarCyNeg", [ "ptr", "ptr" ] ); 
+Win32.VarCyRound = foreign.native( "OLEAUT32.dll", "int", "VarCyRound", [ "ptr", "int", "ptr" ] ); 
+Win32.VarCyCmp = foreign.native( "OLEAUT32.dll", "uint", "VarCyCmp", [ "ptr", "ptr" ] ); 
+Win32.VarCyCmpR8 = foreign.native( "OLEAUT32.dll", "uint", "VarCyCmpR8", [ "ptr", "double" ] ); 
+Win32.VarBstrCat = foreign.native( "OLEAUT32.dll", "int", "VarBstrCat", [ "wstr", "wstr", "ptr" ] ); 
+Win32.VarBstrCmp = foreign.native( "OLEAUT32.dll", "int", "VarBstrCmp", [ "wstr", "wstr", "uint", "uint" ] ); 
+Win32.VarR8Pow = foreign.native( "OLEAUT32.dll", "int", "VarR8Pow", [ "double", "double", "ptr" ] ); 
+Win32.VarR4CmpR8 = foreign.native( "OLEAUT32.dll", "uint", "VarR4CmpR8", [ "float", "double" ] ); 
+Win32.VarR8Round = foreign.native( "OLEAUT32.dll", "int", "VarR8Round", [ "double", "int", "ptr" ] ); 
+Win32.VarDateFromUdate = foreign.native( "OLEAUT32.dll", "int", "VarDateFromUdate", [ "ptr", "uint", "ptr" ] ); 
+Win32.VarDateFromUdateEx = foreign.native( "OLEAUT32.dll", "int", "VarDateFromUdateEx", [ "ptr", "uint", "uint", "ptr" ] ); 
+Win32.VarUdateFromDate = foreign.native( "OLEAUT32.dll", "int", "VarUdateFromDate", [ "double", "uint", "ptr" ] ); 
+Win32.GetAltMonthNames = foreign.native( "OLEAUT32.dll", "int", "GetAltMonthNames", [ "uint", "ptr" ] ); 
+Win32.VarFormat = foreign.native( "OLEAUT32.dll", "int", "VarFormat", [ "ptr", "wstr", "int", "int", "uint", "ptr" ] ); 
+Win32.VarFormatDateTime = foreign.native( "OLEAUT32.dll", "int", "VarFormatDateTime", [ "ptr", "int", "uint", "ptr" ] ); 
+Win32.VarFormatNumber = foreign.native( "OLEAUT32.dll", "int", "VarFormatNumber", [ "ptr", "int", "int", "int", "int", "uint", "ptr" ] ); 
+Win32.VarFormatPercent = foreign.native( "OLEAUT32.dll", "int", "VarFormatPercent", [ "ptr", "int", "int", "int", "int", "uint", "ptr" ] ); 
+Win32.VarFormatCurrency = foreign.native( "OLEAUT32.dll", "int", "VarFormatCurrency", [ "ptr", "int", "int", "int", "int", "uint", "ptr" ] ); 
+Win32.VarWeekdayName = foreign.native( "OLEAUT32.dll", "int", "VarWeekdayName", [ "int", "int", "int", "uint", "ptr" ] ); 
+Win32.VarMonthName = foreign.native( "OLEAUT32.dll", "int", "VarMonthName", [ "int", "int", "uint", "ptr" ] ); 
+Win32.VarFormatFromTokens = foreign.native( "OLEAUT32.dll", "int", "VarFormatFromTokens", [ "ptr", "wstr", "ptr", "uint", "ptr", "uint" ] ); 
+Win32.VarTokenizeFormatString = foreign.native( "OLEAUT32.dll", "int", "VarTokenizeFormatString", [ "wstr", "ptr", "int", "int", "int", "uint", "ptr" ] ); 
+Win32.LHashValOfNameSysA = foreign.native( "OLEAUT32.dll", "uint", "LHashValOfNameSysA", [ "int", "uint", "ptr" ] ); 
+Win32.LHashValOfNameSys = foreign.native( "OLEAUT32.dll", "uint", "LHashValOfNameSys", [ "int", "uint", "wstr" ] ); 
+Win32.LoadTypeLib = foreign.native( "OLEAUT32.dll", "int", "LoadTypeLib", [ "wstr", "ptr" ] ); 
+Win32.LoadTypeLibEx = foreign.native( "OLEAUT32.dll", "int", "LoadTypeLibEx", [ "wstr", "int", "ptr" ] ); 
+Win32.LoadRegTypeLib = foreign.native( "OLEAUT32.dll", "int", "LoadRegTypeLib", [ "ptr", "ushort", "ushort", "uint", "ptr" ] ); 
+Win32.QueryPathOfRegTypeLib = foreign.native( "OLEAUT32.dll", "int", "QueryPathOfRegTypeLib", [ "ptr", "ushort", "ushort", "uint", "ptr" ] ); 
+Win32.RegisterTypeLib = foreign.native( "OLEAUT32.dll", "int", "RegisterTypeLib", [ "ptr", "wstr", "wstr" ] ); 
+Win32.UnRegisterTypeLib = foreign.native( "OLEAUT32.dll", "int", "UnRegisterTypeLib", [ "ptr", "ushort", "ushort", "uint", "int" ] ); 
+Win32.RegisterTypeLibForUser = foreign.native( "OLEAUT32.dll", "int", "RegisterTypeLibForUser", [ "ptr", "wstr", "wstr" ] ); 
+Win32.UnRegisterTypeLibForUser = foreign.native( "OLEAUT32.dll", "int", "UnRegisterTypeLibForUser", [ "ptr", "ushort", "ushort", "uint", "int" ] ); 
+Win32.CreateTypeLib = foreign.native( "OLEAUT32.dll", "int", "CreateTypeLib", [ "int", "wstr", "ptr" ] ); 
+Win32.CreateTypeLib2 = foreign.native( "OLEAUT32.dll", "int", "CreateTypeLib2", [ "int", "wstr", "ptr" ] ); 
+Win32.DispGetParam = foreign.native( "OLEAUT32.dll", "int", "DispGetParam", [ "ptr", "uint", "ushort", "ptr", "ptr" ] ); 
+Win32.DispGetIDsOfNames = foreign.native( "OLEAUT32.dll", "int", "DispGetIDsOfNames", [ "ptr", "ptr", "uint", "ptr" ] ); 
+Win32.DispInvoke = foreign.native( "OLEAUT32.dll", "int", "DispInvoke", [ "ptr", "ptr", "int", "ushort", "ptr", "ptr", "ptr", "ptr" ] ); 
+Win32.CreateDispTypeInfo = foreign.native( "OLEAUT32.dll", "int", "CreateDispTypeInfo", [ "ptr", "uint", "ptr" ] ); 
+Win32.CreateStdDispatch = foreign.native( "OLEAUT32.dll", "int", "CreateStdDispatch", [ "ptr", "ptr", "ptr", "ptr" ] ); 
+Win32.DispCallFunc = foreign.native( "OLEAUT32.dll", "int", "DispCallFunc", [ "ptr", "ptr", "int", "ushort", "uint", "ptr", "ptr", "ptr" ] ); 
+Win32.RegisterActiveObject = foreign.native( "OLEAUT32.dll", "int", "RegisterActiveObject", [ "ptr", "ptr", "uint", "ptr" ] ); 
+Win32.RevokeActiveObject = foreign.native( "OLEAUT32.dll", "int", "RevokeActiveObject", [ "uint", "ptr" ] ); 
+Win32.GetActiveObject = foreign.native( "OLEAUT32.dll", "int", "GetActiveObject", [ "ptr", "ptr", "ptr" ] ); 
+Win32.CreateErrorInfo = foreign.native( "OLEAUT32.dll", "int", "CreateErrorInfo", [ "ptr" ] ); 
+Win32.GetRecordInfoFromTypeInfo = foreign.native( "OLEAUT32.dll", "int", "GetRecordInfoFromTypeInfo", [ "ptr", "ptr" ] ); 
+Win32.GetRecordInfoFromGuids = foreign.native( "OLEAUT32.dll", "int", "GetRecordInfoFromGuids", [ "ptr", "uint", "uint", "uint", "ptr", "ptr" ] ); 
+Win32.OaBuildVersion = foreign.native( "OLEAUT32.dll", "uint", "OaBuildVersion", [  ] ); 
+Win32.ClearCustData = foreign.native( "OLEAUT32.dll", "void", "ClearCustData", [ "ptr" ] ); 
+Win32.OaEnablePerUserTLibRegistration = foreign.native( "OLEAUT32.dll", "void", "OaEnablePerUserTLibRegistration", [  ] ); 
+Win32.OleBuildVersion = foreign.native( "ole32.dll", "uint", "OleBuildVersion", [  ] ); 
+Win32.OleInitialize = foreign.native( "OLE32.dll", "int", "OleInitialize", [ "ptr" ] ); 
+Win32.OleUninitialize = foreign.native( "OLE32.dll", "void", "OleUninitialize", [  ] ); 
+Win32.OleQueryLinkFromData = foreign.native( "OLE32.dll", "int", "OleQueryLinkFromData", [ "ptr" ] ); 
+Win32.OleQueryCreateFromData = foreign.native( "OLE32.dll", "int", "OleQueryCreateFromData", [ "ptr" ] ); 
+Win32.OleCreate = foreign.native( "OLE32.dll", "int", "OleCreate", [ "ptr", "ptr", "int", "ptr", "ptr", "ptr", "ptr" ] ); 
+Win32.OleCreateEx = foreign.native( "ole32.dll", "int", "OleCreateEx", [ "ptr", "ptr", "uint", "int", "uint", "ptr", "ptr", "ptr", "ptr", "ptr", "ptr", "ptr" ] ); 
+Win32.OleCreateFromData = foreign.native( "OLE32.dll", "int", "OleCreateFromData", [ "ptr", "ptr", "int", "ptr", "ptr", "ptr", "ptr" ] ); 
+Win32.OleCreateFromDataEx = foreign.native( "ole32.dll", "int", "OleCreateFromDataEx", [ "ptr", "ptr", "uint", "int", "uint", "ptr", "ptr", "ptr", "ptr", "ptr", "ptr", "ptr" ] ); 
+Win32.OleCreateLinkFromData = foreign.native( "OLE32.dll", "int", "OleCreateLinkFromData", [ "ptr", "ptr", "int", "ptr", "ptr", "ptr", "ptr" ] ); 
+Win32.OleCreateLinkFromDataEx = foreign.native( "ole32.dll", "int", "OleCreateLinkFromDataEx", [ "ptr", "ptr", "uint", "int", "uint", "ptr", "ptr", "ptr", "ptr", "ptr", "ptr", "ptr" ] ); 
+Win32.OleCreateStaticFromData = foreign.native( "OLE32.dll", "int", "OleCreateStaticFromData", [ "ptr", "ptr", "int", "ptr", "ptr", "ptr", "ptr" ] ); 
+Win32.OleCreateLink = foreign.native( "ole32.dll", "int", "OleCreateLink", [ "ptr", "ptr", "int", "ptr", "ptr", "ptr", "ptr" ] ); 
+Win32.OleCreateLinkEx = foreign.native( "ole32.dll", "int", "OleCreateLinkEx", [ "ptr", "ptr", "uint", "int", "uint", "ptr", "ptr", "ptr", "ptr", "ptr", "ptr", "ptr" ] ); 
+Win32.OleCreateLinkToFile = foreign.native( "OLE32.dll", "int", "OleCreateLinkToFile", [ "wstr", "ptr", "int", "ptr", "ptr", "ptr", "ptr" ] ); 
+Win32.OleCreateLinkToFileEx = foreign.native( "ole32.dll", "int", "OleCreateLinkToFileEx", [ "wstr", "ptr", "uint", "int", "uint", "ptr", "ptr", "ptr", "ptr", "ptr", "ptr", "ptr" ] ); 
+Win32.OleCreateFromFile = foreign.native( "OLE32.dll", "int", "OleCreateFromFile", [ "ptr", "wstr", "ptr", "int", "ptr", "ptr", "ptr", "ptr" ] ); 
+Win32.OleCreateFromFileEx = foreign.native( "ole32.dll", "int", "OleCreateFromFileEx", [ "ptr", "wstr", "ptr", "uint", "int", "uint", "ptr", "ptr", "ptr", "ptr", "ptr", "ptr", "ptr" ] ); 
+Win32.OleLoad = foreign.native( "OLE32.dll", "int", "OleLoad", [ "ptr", "ptr", "ptr", "ptr" ] ); 
+Win32.OleSave = foreign.native( "OLE32.dll", "int", "OleSave", [ "ptr", "ptr", "int" ] ); 
+Win32.OleLoadFromStream = foreign.native( "OLE32.dll", "int", "OleLoadFromStream", [ "ptr", "ptr", "ptr" ] ); 
+Win32.OleSaveToStream = foreign.native( "OLE32.dll", "int", "OleSaveToStream", [ "ptr", "ptr" ] ); 
+Win32.OleSetContainedObject = foreign.native( "OLE32.dll", "int", "OleSetContainedObject", [ "ptr", "int" ] ); 
+Win32.OleNoteObjectVisible = foreign.native( "ole32.dll", "int", "OleNoteObjectVisible", [ "ptr", "int" ] ); 
+Win32.RegisterDragDrop = foreign.native( "OLE32.dll", "int", "RegisterDragDrop", [ "ptr", "ptr" ] ); 
+Win32.RevokeDragDrop = foreign.native( "OLE32.dll", "int", "RevokeDragDrop", [ "ptr" ] ); 
+Win32.DoDragDrop = foreign.native( "OLE32.dll", "int", "DoDragDrop", [ "ptr", "ptr", "uint", "ptr" ] ); 
+Win32.OleSetClipboard = foreign.native( "OLE32.dll", "int", "OleSetClipboard", [ "ptr" ] ); 
+Win32.OleGetClipboard = foreign.native( "OLE32.dll", "int", "OleGetClipboard", [ "ptr" ] ); 
+Win32.OleGetClipboardWithEnterpriseInfo = foreign.native( "ole32.dll", "int", "OleGetClipboardWithEnterpriseInfo", [ "ptr", "ptr", "ptr", "ptr", "ptr" ] ); 
+Win32.OleFlushClipboard = foreign.native( "OLE32.dll", "int", "OleFlushClipboard", [  ] ); 
+Win32.OleIsCurrentClipboard = foreign.native( "OLE32.dll", "int", "OleIsCurrentClipboard", [ "ptr" ] ); 
+Win32.OleCreateMenuDescriptor = foreign.native( "OLE32.dll", "ptr", "OleCreateMenuDescriptor", [ "ptr", "ptr" ] ); 
+Win32.OleSetMenuDescriptor = foreign.native( "OLE32.dll", "int", "OleSetMenuDescriptor", [ "ptr", "ptr", "ptr", "ptr", "ptr" ] ); 
+Win32.OleDestroyMenuDescriptor = foreign.native( "OLE32.dll", "int", "OleDestroyMenuDescriptor", [ "ptr" ] ); 
+Win32.OleTranslateAccelerator = foreign.native( "OLE32.dll", "int", "OleTranslateAccelerator", [ "ptr", "ptr", "ptr" ] ); 
+Win32.OleDuplicateData = foreign.native( "OLE32.dll", "ptr", "OleDuplicateData", [ "ptr", "ushort", "uint" ] ); 
+Win32.OleDraw = foreign.native( "OLE32.dll", "int", "OleDraw", [ "ptr", "uint", "ptr", "ptr" ] ); 
+Win32.OleRun = foreign.native( "OLE32.dll", "int", "OleRun", [ "ptr" ] ); 
+Win32.OleIsRunning = foreign.native( "OLE32.dll", "int", "OleIsRunning", [ "ptr" ] ); 
+Win32.OleLockRunning = foreign.native( "OLE32.dll", "int", "OleLockRunning", [ "ptr", "int", "int" ] ); 
+Win32.ReleaseStgMedium = foreign.native( "OLE32.dll", "void", "ReleaseStgMedium", [ "ptr" ] ); 
+Win32.CreateOleAdviseHolder = foreign.native( "OLE32.dll", "int", "CreateOleAdviseHolder", [ "ptr" ] ); 
+Win32.OleCreateDefaultHandler = foreign.native( "ole32.dll", "int", "OleCreateDefaultHandler", [ "ptr", "ptr", "ptr", "ptr" ] ); 
+Win32.OleCreateEmbeddingHelper = foreign.native( "OLE32.dll", "int", "OleCreateEmbeddingHelper", [ "ptr", "ptr", "uint", "ptr", "ptr", "ptr" ] ); 
+Win32.IsAccelerator = foreign.native( "OLE32.dll", "int", "IsAccelerator", [ "ptr", "int", "ptr", "ptr" ] ); 
+Win32.OleGetIconOfFile = foreign.native( "ole32.dll", "ptr", "OleGetIconOfFile", [ "wstr", "int" ] ); 
+Win32.OleGetIconOfClass = foreign.native( "OLE32.dll", "ptr", "OleGetIconOfClass", [ "ptr", "wstr", "int" ] ); 
+Win32.OleMetafilePictFromIconAndLabel = foreign.native( "ole32.dll", "ptr", "OleMetafilePictFromIconAndLabel", [ "ptr", "wstr", "wstr", "uint" ] ); 
+Win32.OleRegGetUserType = foreign.native( "OLE32.dll", "int", "OleRegGetUserType", [ "ptr", "int", "ptr" ] ); 
+Win32.OleRegGetMiscStatus = foreign.native( "OLE32.dll", "int", "OleRegGetMiscStatus", [ "ptr", "uint", "ptr" ] ); 
+Win32.OleRegEnumFormatEtc = foreign.native( "ole32.dll", "int", "OleRegEnumFormatEtc", [ "ptr", "uint", "ptr" ] ); 
+Win32.OleRegEnumVerbs = foreign.native( "OLE32.dll", "int", "OleRegEnumVerbs", [ "ptr", "ptr" ] ); 
+Win32.OleDoAutoConvert = foreign.native( "ole32.dll", "int", "OleDoAutoConvert", [ "ptr", "ptr" ] ); 
+Win32.OleGetAutoConvert = foreign.native( "OLE32.dll", "int", "OleGetAutoConvert", [ "ptr", "ptr" ] ); 
+Win32.OleSetAutoConvert = foreign.native( "ole32.dll", "int", "OleSetAutoConvert", [ "ptr", "ptr" ] ); 
+Win32.HRGN_UserSize = foreign.native( "OLE32.dll", "uint", "HRGN_UserSize", [ "ptr", "uint", "ptr" ] ); 
+Win32.HRGN_UserMarshal = foreign.native( "OLE32.dll", "ptr", "HRGN_UserMarshal", [ "ptr", "ptr", "ptr" ] ); 
+Win32.HRGN_UserUnmarshal = foreign.native( "OLE32.dll", "ptr", "HRGN_UserUnmarshal", [ "ptr", "ptr", "ptr" ] ); 
+Win32.HRGN_UserFree = foreign.native( "OLE32.dll", "void", "HRGN_UserFree", [ "ptr", "ptr" ] ); 
+Win32.HRGN_UserSize64 = foreign.native( "api-ms-win-core-marshal-l1-1-0.dll", "uint", "HRGN_UserSize64", [ "ptr", "uint", "ptr" ] ); 
+Win32.HRGN_UserMarshal64 = foreign.native( "api-ms-win-core-marshal-l1-1-0.dll", "ptr", "HRGN_UserMarshal64", [ "ptr", "ptr", "ptr" ] ); 
+Win32.HRGN_UserUnmarshal64 = foreign.native( "api-ms-win-core-marshal-l1-1-0.dll", "ptr", "HRGN_UserUnmarshal64", [ "ptr", "ptr", "ptr" ] ); 
+Win32.HRGN_UserFree64 = foreign.native( "api-ms-win-core-marshal-l1-1-0.dll", "void", "HRGN_UserFree64", [ "ptr", "ptr" ] ); 
+Win32.OleCreatePropertyFrame = foreign.native( "OLEAUT32.dll", "int", "OleCreatePropertyFrame", [ "ptr", "uint", "uint", "wstr", "uint", "ptr", "uint", "ptr", "uint", "uint", "ptr" ] ); 
+Win32.OleCreatePropertyFrameIndirect = foreign.native( "OLEAUT32.dll", "int", "OleCreatePropertyFrameIndirect", [ "ptr" ] ); 
+Win32.OleTranslateColor = foreign.native( "OLEAUT32.dll", "int", "OleTranslateColor", [ "uint", "ptr", "ptr" ] ); 
+Win32.OleCreateFontIndirect = foreign.native( "OLEAUT32.dll", "int", "OleCreateFontIndirect", [ "ptr", "ptr", "ptr" ] ); 
+Win32.OleCreatePictureIndirect = foreign.native( "OLEAUT32.dll", "int", "OleCreatePictureIndirect", [ "ptr", "ptr", "int", "ptr" ] ); 
+Win32.OleLoadPicture = foreign.native( "OLEAUT32.dll", "int", "OleLoadPicture", [ "ptr", "int", "int", "ptr", "ptr" ] ); 
+Win32.OleLoadPictureEx = foreign.native( "OLEAUT32.dll", "int", "OleLoadPictureEx", [ "ptr", "int", "int", "ptr", "uint", "uint", "uint", "ptr" ] ); 
+Win32.OleLoadPicturePath = foreign.native( "OLEAUT32.dll", "int", "OleLoadPicturePath", [ "wstr", "ptr", "uint", "uint", "ptr", "ptr" ] ); 
+Win32.OleLoadPictureFile = foreign.native( "OLEAUT32.dll", "int", "OleLoadPictureFile", [ "ptr", "ptr" ] ); 
+Win32.OleLoadPictureFileEx = foreign.native( "OLEAUT32.dll", "int", "OleLoadPictureFileEx", [ "ptr", "uint", "uint", "uint", "ptr" ] ); 
+Win32.OleSavePictureFile = foreign.native( "OLEAUT32.dll", "int", "OleSavePictureFile", [ "ptr", "wstr" ] ); 
+Win32.OleIconToCursor = foreign.native( "OLEAUT32.dll", "ptr", "OleIconToCursor", [ "ptr", "ptr" ] ); 
+Win32.OleUIAddVerbMenuW = foreign.native( "oledlg.dll", "int", "OleUIAddVerbMenuW", [ "ptr", "wstr", "ptr", "uint", "uint", "uint", "int", "uint", "ptr" ] ); 
+Win32.OleUIAddVerbMenuA = foreign.native( "oledlg.dll", "int", "OleUIAddVerbMenuA", [ "ptr", "ptr", "ptr", "uint", "uint", "uint", "int", "uint", "ptr" ] ); 
+Win32.OleUIInsertObjectW = foreign.native( "oledlg.dll", "uint", "OleUIInsertObjectW", [ "ptr" ] ); 
+Win32.OleUIInsertObjectA = foreign.native( "oledlg.dll", "uint", "OleUIInsertObjectA", [ "ptr" ] ); 
+Win32.OleUIPasteSpecialW = foreign.native( "oledlg.dll", "uint", "OleUIPasteSpecialW", [ "ptr" ] ); 
+Win32.OleUIPasteSpecialA = foreign.native( "oledlg.dll", "uint", "OleUIPasteSpecialA", [ "ptr" ] ); 
+Win32.OleUIEditLinksW = foreign.native( "oledlg.dll", "uint", "OleUIEditLinksW", [ "ptr" ] ); 
+Win32.OleUIEditLinksA = foreign.native( "oledlg.dll", "uint", "OleUIEditLinksA", [ "ptr" ] ); 
+Win32.OleUIChangeIconW = foreign.native( "oledlg.dll", "uint", "OleUIChangeIconW", [ "ptr" ] ); 
+Win32.OleUIChangeIconA = foreign.native( "oledlg.dll", "uint", "OleUIChangeIconA", [ "ptr" ] ); 
+Win32.OleUIConvertW = foreign.native( "oledlg.dll", "uint", "OleUIConvertW", [ "ptr" ] ); 
+Win32.OleUIConvertA = foreign.native( "oledlg.dll", "uint", "OleUIConvertA", [ "ptr" ] ); 
+Win32.OleUICanConvertOrActivateAs = foreign.native( "oledlg.dll", "int", "OleUICanConvertOrActivateAs", [ "ptr", "int", "ushort" ] ); 
+Win32.OleUIBusyW = foreign.native( "oledlg.dll", "uint", "OleUIBusyW", [ "ptr" ] ); 
+Win32.OleUIBusyA = foreign.native( "oledlg.dll", "uint", "OleUIBusyA", [ "ptr" ] ); 
+Win32.OleUIChangeSourceW = foreign.native( "oledlg.dll", "uint", "OleUIChangeSourceW", [ "ptr" ] ); 
+Win32.OleUIChangeSourceA = foreign.native( "oledlg.dll", "uint", "OleUIChangeSourceA", [ "ptr" ] ); 
+Win32.OleUIObjectPropertiesW = foreign.native( "oledlg.dll", "uint", "OleUIObjectPropertiesW", [ "ptr" ] ); 
+Win32.OleUIObjectPropertiesA = foreign.native( "oledlg.dll", "uint", "OleUIObjectPropertiesA", [ "ptr" ] ); 
+Win32.OleUIPromptUserW = foreign.variadic( "oledlg.dll", "int", "OleUIPromptUserW", [ "int", "ptr", "..." ] ); 
+Win32.OleUIPromptUserA = foreign.variadic( "oledlg.dll", "int", "OleUIPromptUserA", [ "int", "ptr", "..." ] ); 
+Win32.OleUIUpdateLinksW = foreign.native( "oledlg.dll", "int", "OleUIUpdateLinksW", [ "ptr", "ptr", "wstr", "int" ] ); 
+Win32.OleUIUpdateLinksA = foreign.native( "oledlg.dll", "int", "OleUIUpdateLinksA", [ "ptr", "ptr", "ptr", "int" ] ); 
+Win32.LPFNOLEUIHOOK = foreign.callback( "uint", [ "ptr", "uint", "ptr", "ptr"] );
+
+}
+

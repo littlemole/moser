@@ -1,0 +1,28 @@
+
+fun fizzbuzz(i)
+{
+    var dividableBy3 = i % 3 == 0;
+    var dividableBy5 = i % 5 == 0;
+
+    if( dividableBy3 && dividableBy5 )
+    {
+        print "fizz buzz";
+    }
+    else if( dividableBy3 )
+    {
+        print "fizz";
+    }
+    else if( dividableBy5 )
+    {
+        print "buzz";
+    }
+    else print i;
+}
+
+var n = 20;
+if( sys.args().length > 2) n = int( sys.args()[2] );
+
+for( var i = 1; i <= n; i++)
+{
+    fizzbuzz(i);
+}

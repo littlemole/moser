@@ -1,0 +1,31 @@
+
+extern from "ucrtbase.dll"
+{
+    ptr fopen(str,str);
+    int fclose(ptr);
+    ulong fread(ptr,ulong,ulong,ptr);
+}
+
+var stream = fopen("../../vcpkg.json","r");
+
+var buffer = sys.buffer(1024);
+var content = "";
+
+var s = 1;
+while(s != 0)
+{
+    s = fread(buffer,1,buffer.length,stream);    
+    if(s>0)
+    {
+        //print s;
+        content = content + buffer.asString(s);
+        //content = content + (buffer[0:s].asString());
+    }
+}
+fclose(stream);
+
+print content;
+var d = JSON.parse(content);
+print JSON.stringify(d.dependencies);
+
+

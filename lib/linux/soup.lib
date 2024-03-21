@@ -1,0 +1,877 @@
+// load libgio-2.0.so.0: 139845811752960
+// load libgobject-2.0.so.0: 139845821558784
+// load libglib-2.0.so.0: 139845813690368
+// load libgobject-2.0.so.0: 139845821558784
+// load libsoup-3.0.so.0: 139845809410048
+// namespace Soup
+// libs libsoup-3.0.so.0
+extern from "libsoup-3.0.so.0" {
+ptr soup_auth_new(ulong, ptr, str);
+void soup_auth_authenticate(ptr, str, str);
+int soup_auth_can_authenticate(ptr);
+void soup_auth_cancel(ptr);
+str soup_auth_get_authority(ptr);
+ptr soup_auth_get_authorization(ptr, ptr);
+ptr soup_auth_get_info(ptr);
+ptr soup_auth_get_protection_space(ptr, ptr);
+str soup_auth_get_realm(ptr);
+str soup_auth_get_scheme_name(ptr);
+int soup_auth_is_authenticated(ptr);
+int soup_auth_is_cancelled(ptr);
+int soup_auth_is_for_proxy(ptr);
+int soup_auth_is_ready(ptr, ptr);
+int soup_auth_update(ptr, ptr, str);
+ptr soup_auth_domain_accepts(ptr, ptr);
+void soup_auth_domain_add_path(ptr, str);
+void soup_auth_domain_challenge(ptr, ptr);
+int soup_auth_domain_check_password(ptr, ptr, str, str);
+int soup_auth_domain_covers(ptr, ptr);
+str soup_auth_domain_get_realm(ptr);
+void soup_auth_domain_remove_path(ptr, str);
+void soup_auth_domain_set_filter(ptr, ptr, ptr, ptr);
+void soup_auth_domain_set_generic_auth_callback(ptr, ptr, ptr, ptr);
+void soup_auth_domain_basic_set_auth_callback(ptr, ptr, ptr, ptr);
+ptr soup_auth_domain_digest_encode_password(ptr, str, str, str);
+void soup_auth_domain_digest_set_auth_callback(ptr, ptr, ptr, ptr);
+void soup_auth_manager_clear_cached_credentials(ptr);
+void soup_auth_manager_use_auth(ptr, ptr, ptr);
+int soup_auth_negotiate_supported(ptr);
+ptr soup_cache_new(str, int);
+void soup_cache_clear(ptr);
+void soup_cache_dump(ptr);
+void soup_cache_flush(ptr);
+uint soup_cache_get_max_size(ptr);
+void soup_cache_load(ptr);
+void soup_cache_set_max_size(ptr, uint);
+ptr soup_content_sniffer_new();
+ptr soup_content_sniffer_sniff(ptr, ptr, ptr, ptr);
+ptr soup_cookie_new(str, str, str, str, int);
+int soup_cookie_applies_to_uri(ptr, ptr);
+ptr soup_cookie_copy(ptr);
+int soup_cookie_domain_matches(ptr, str);
+int soup_cookie_equal(ptr, ptr);
+void soup_cookie_free(ptr);
+str soup_cookie_get_domain(ptr);
+ptr soup_cookie_get_expires(ptr);
+int soup_cookie_get_http_only(ptr);
+str soup_cookie_get_name(ptr);
+str soup_cookie_get_path(ptr);
+int soup_cookie_get_same_site_policy(ptr);
+int soup_cookie_get_secure(ptr);
+str soup_cookie_get_value(ptr);
+void soup_cookie_set_domain(ptr, str);
+void soup_cookie_set_expires(ptr, ptr);
+void soup_cookie_set_http_only(ptr, int);
+void soup_cookie_set_max_age(ptr, int);
+void soup_cookie_set_name(ptr, str);
+void soup_cookie_set_path(ptr, str);
+void soup_cookie_set_same_site_policy(ptr, int);
+void soup_cookie_set_secure(ptr, int);
+void soup_cookie_set_value(ptr, str);
+ptr soup_cookie_to_cookie_header(ptr);
+ptr soup_cookie_to_set_cookie_header(ptr);
+ptr soup_cookie_parse(ptr, str, ptr);
+ptr soup_cookie_jar_new();
+void soup_cookie_jar_add_cookie(ptr, ptr);
+void soup_cookie_jar_add_cookie_full(ptr, ptr, ptr, ptr);
+void soup_cookie_jar_add_cookie_with_first_party(ptr, ptr, ptr);
+ptr soup_cookie_jar_all_cookies(ptr);
+void soup_cookie_jar_delete_cookie(ptr, ptr);
+int soup_cookie_jar_get_accept_policy(ptr);
+ptr soup_cookie_jar_get_cookie_list(ptr, ptr, int);
+ptr soup_cookie_jar_get_cookie_list_with_same_site_info(ptr, ptr, ptr, ptr, int, int, int);
+ptr soup_cookie_jar_get_cookies(ptr, ptr, int);
+int soup_cookie_jar_is_persistent(ptr);
+void soup_cookie_jar_set_accept_policy(ptr, int);
+void soup_cookie_jar_set_cookie(ptr, ptr, str);
+void soup_cookie_jar_set_cookie_with_first_party(ptr, ptr, ptr, str);
+ptr soup_cookie_jar_db_new(str, int);
+ptr soup_cookie_jar_text_new(str, int);
+ptr soup_hsts_enforcer_new();
+ptr soup_hsts_enforcer_get_domains(ptr, int);
+ptr soup_hsts_enforcer_get_policies(ptr, int);
+int soup_hsts_enforcer_has_valid_policy(ptr, str);
+int soup_hsts_enforcer_is_persistent(ptr);
+void soup_hsts_enforcer_set_policy(ptr, ptr);
+void soup_hsts_enforcer_set_session_policy(ptr, str, int);
+ptr soup_hsts_enforcer_db_new(str);
+ptr soup_hsts_policy_new(str, ulong, int);
+ptr soup_hsts_policy_new_from_response(ptr);
+ptr soup_hsts_policy_new_full(str, ulong, ptr, int);
+ptr soup_hsts_policy_new_session_policy(str, int);
+ptr soup_hsts_policy_copy(ptr);
+int soup_hsts_policy_equal(ptr, ptr);
+void soup_hsts_policy_free(ptr);
+str soup_hsts_policy_get_domain(ptr);
+ptr soup_hsts_policy_get_expires(ptr);
+ulong soup_hsts_policy_get_max_age(ptr);
+int soup_hsts_policy_includes_subdomains(ptr);
+int soup_hsts_policy_is_expired(ptr);
+int soup_hsts_policy_is_session_policy(ptr);
+ptr soup_logger_new(int);
+int soup_logger_get_max_body_size(ptr);
+void soup_logger_set_max_body_size(ptr, int);
+void soup_logger_set_printer(ptr, ptr, ptr, ptr);
+void soup_logger_set_request_filter(ptr, ptr, ptr, ptr);
+void soup_logger_set_response_filter(ptr, ptr, ptr, ptr);
+ptr soup_message_new(str, str);
+ptr soup_message_new_from_encoded_form(str, str, ptr);
+ptr soup_message_new_from_multipart(str, ptr);
+ptr soup_message_new_from_uri(str, ptr);
+ptr soup_message_new_options_ping(ptr);
+void soup_message_add_flags(ptr, int);
+void soup_message_disable_feature(ptr, ulong);
+ulong soup_message_get_connection_id(ptr);
+ptr soup_message_get_first_party(ptr);
+int soup_message_get_flags(ptr);
+int soup_message_get_http_version(ptr);
+int soup_message_get_is_options_ping(ptr);
+int soup_message_get_is_top_level_navigation(ptr);
+str soup_message_get_method(ptr);
+ptr soup_message_get_metrics(ptr);
+int soup_message_get_priority(ptr);
+str soup_message_get_reason_phrase(ptr);
+ptr soup_message_get_remote_address(ptr);
+ptr soup_message_get_request_headers(ptr);
+ptr soup_message_get_response_headers(ptr);
+ptr soup_message_get_site_for_cookies(ptr);
+int soup_message_get_status(ptr);
+str soup_message_get_tls_ciphersuite_name(ptr);
+ptr soup_message_get_tls_peer_certificate(ptr);
+int soup_message_get_tls_peer_certificate_errors(ptr);
+int soup_message_get_tls_protocol_version(ptr);
+ptr soup_message_get_uri(ptr);
+int soup_message_is_feature_disabled(ptr, ulong);
+int soup_message_is_keepalive(ptr);
+int soup_message_query_flags(ptr, int);
+void soup_message_remove_flags(ptr, int);
+void soup_message_set_first_party(ptr, ptr);
+void soup_message_set_flags(ptr, int);
+void soup_message_set_is_options_ping(ptr, int);
+void soup_message_set_is_top_level_navigation(ptr, int);
+void soup_message_set_method(ptr, str);
+void soup_message_set_priority(ptr, int);
+void soup_message_set_request_body(ptr, str, ptr, long);
+void soup_message_set_request_body_from_bytes(ptr, str, ptr);
+void soup_message_set_site_for_cookies(ptr, ptr);
+void soup_message_set_tls_client_certificate(ptr, ptr);
+void soup_message_set_uri(ptr, ptr);
+void soup_message_tls_client_certificate_password_request_complete(ptr);
+ptr soup_message_body_new();
+void soup_message_body_append_bytes(ptr, ptr);
+void soup_message_body_append_take(ptr, ptr, ulong);
+void soup_message_body_complete(ptr);
+ptr soup_message_body_flatten(ptr);
+int soup_message_body_get_accumulate(ptr);
+ptr soup_message_body_get_chunk(ptr, long);
+void soup_message_body_got_chunk(ptr, ptr);
+ptr soup_message_body_ref(ptr);
+void soup_message_body_set_accumulate(ptr, int);
+void soup_message_body_truncate(ptr);
+void soup_message_body_unref(ptr);
+void soup_message_body_wrote_chunk(ptr, ptr);
+ptr soup_message_headers_new(int);
+void soup_message_headers_append(ptr, str, str);
+void soup_message_headers_clean_connection_headers(ptr);
+void soup_message_headers_clear(ptr);
+void soup_message_headers_foreach(ptr, ptr, ptr);
+void soup_message_headers_free_ranges(ptr, ptr);
+int soup_message_headers_get_content_disposition(ptr, ptr, ptr);
+long soup_message_headers_get_content_length(ptr);
+int soup_message_headers_get_content_range(ptr, ptr, ptr, ptr);
+str soup_message_headers_get_content_type(ptr, ptr);
+int soup_message_headers_get_encoding(ptr);
+int soup_message_headers_get_expectations(ptr);
+int soup_message_headers_get_headers_type(ptr);
+str soup_message_headers_get_list(ptr, str);
+str soup_message_headers_get_one(ptr, str);
+int soup_message_headers_get_ranges(ptr, long, ptr, ptr);
+int soup_message_headers_header_contains(ptr, str, str);
+int soup_message_headers_header_equals(ptr, str, str);
+ptr soup_message_headers_ref(ptr);
+void soup_message_headers_remove(ptr, str);
+void soup_message_headers_replace(ptr, str, str);
+void soup_message_headers_set_content_disposition(ptr, str, ptr);
+void soup_message_headers_set_content_length(ptr, long);
+void soup_message_headers_set_content_range(ptr, long, long, long);
+void soup_message_headers_set_content_type(ptr, str, ptr);
+void soup_message_headers_set_encoding(ptr, int);
+void soup_message_headers_set_expectations(ptr, int);
+void soup_message_headers_set_range(ptr, long, long);
+void soup_message_headers_set_ranges(ptr, ptr, int);
+void soup_message_headers_unref(ptr);
+int soup_message_headers_iter_next(ptr, str, str);
+void soup_message_headers_iter_init(ptr, ptr, ptr);
+ptr soup_message_metrics_copy(ptr);
+void soup_message_metrics_free(ptr);
+ulong soup_message_metrics_get_connect_end(ptr);
+ulong soup_message_metrics_get_connect_start(ptr);
+ulong soup_message_metrics_get_dns_end(ptr);
+ulong soup_message_metrics_get_dns_start(ptr);
+ulong soup_message_metrics_get_fetch_start(ptr);
+ulong soup_message_metrics_get_request_body_bytes_sent(ptr);
+ulong soup_message_metrics_get_request_body_size(ptr);
+ulong soup_message_metrics_get_request_header_bytes_sent(ptr);
+ulong soup_message_metrics_get_request_start(ptr);
+ulong soup_message_metrics_get_response_body_bytes_received(ptr);
+ulong soup_message_metrics_get_response_body_size(ptr);
+ulong soup_message_metrics_get_response_end(ptr);
+ulong soup_message_metrics_get_response_header_bytes_received(ptr);
+ulong soup_message_metrics_get_response_start(ptr);
+ulong soup_message_metrics_get_tls_start(ptr);
+ptr soup_multipart_new(str);
+ptr soup_multipart_new_from_message(ptr, ptr);
+void soup_multipart_append_form_file(ptr, str, str, str, ptr);
+void soup_multipart_append_form_string(ptr, str, str);
+void soup_multipart_append_part(ptr, ptr, ptr);
+void soup_multipart_free(ptr);
+int soup_multipart_get_length(ptr);
+int soup_multipart_get_part(ptr, int, ptr, ptr);
+void soup_multipart_to_message(ptr, ptr, ptr);
+ptr soup_multipart_input_stream_new(ptr, ptr);
+ptr soup_multipart_input_stream_get_headers(ptr);
+ptr soup_multipart_input_stream_next_part(ptr, ptr, ptr);
+void soup_multipart_input_stream_next_part_async(ptr, int, ptr, ptr, ptr);
+ptr soup_multipart_input_stream_next_part_finish(ptr, ptr, ptr);
+int soup_server_accept_iostream(ptr, ptr, ptr, ptr, ptr);
+void soup_server_add_auth_domain(ptr, ptr);
+void soup_server_add_early_handler(ptr, str, ptr, ptr, ptr);
+void soup_server_add_handler(ptr, str, ptr, ptr, ptr);
+void soup_server_add_websocket_extension(ptr, ulong);
+void soup_server_add_websocket_handler(ptr, str, str, ptr, ptr, ptr, ptr);
+void soup_server_disconnect(ptr);
+ptr soup_server_get_listeners(ptr);
+int soup_server_get_tls_auth_mode(ptr);
+ptr soup_server_get_tls_certificate(ptr);
+ptr soup_server_get_tls_database(ptr);
+ptr soup_server_get_uris(ptr);
+int soup_server_is_https(ptr);
+int soup_server_listen(ptr, ptr, int, ptr);
+int soup_server_listen_all(ptr, uint, int, ptr);
+int soup_server_listen_local(ptr, uint, int, ptr);
+int soup_server_listen_socket(ptr, ptr, int, ptr);
+void soup_server_pause_message(ptr, ptr);
+void soup_server_remove_auth_domain(ptr, ptr);
+void soup_server_remove_handler(ptr, str);
+void soup_server_remove_websocket_extension(ptr, ulong);
+void soup_server_set_tls_auth_mode(ptr, int);
+void soup_server_set_tls_certificate(ptr, ptr);
+void soup_server_set_tls_database(ptr, ptr);
+void soup_server_unpause_message(ptr, ptr);
+int soup_server_message_get_http_version(ptr);
+ptr soup_server_message_get_local_address(ptr);
+str soup_server_message_get_method(ptr);
+str soup_server_message_get_reason_phrase(ptr);
+ptr soup_server_message_get_remote_address(ptr);
+str soup_server_message_get_remote_host(ptr);
+ptr soup_server_message_get_request_body(ptr);
+ptr soup_server_message_get_request_headers(ptr);
+ptr soup_server_message_get_response_body(ptr);
+ptr soup_server_message_get_response_headers(ptr);
+ptr soup_server_message_get_socket(ptr);
+uint soup_server_message_get_status(ptr);
+ptr soup_server_message_get_uri(ptr);
+int soup_server_message_is_options_ping(ptr);
+void soup_server_message_set_http_version(ptr, int);
+void soup_server_message_set_redirect(ptr, uint, str);
+void soup_server_message_set_response(ptr, str, int, ptr, ulong);
+void soup_server_message_set_status(ptr, uint, str);
+ptr soup_server_message_steal_connection(ptr);
+ptr soup_session_new();
+void soup_session_abort(ptr);
+void soup_session_add_feature(ptr, ptr);
+void soup_session_add_feature_by_type(ptr, ulong);
+str soup_session_get_accept_language(ptr);
+int soup_session_get_accept_language_auto(ptr);
+ptr soup_session_get_async_result_message(ptr, ptr);
+ptr soup_session_get_feature(ptr, ulong);
+ptr soup_session_get_feature_for_message(ptr, ulong, ptr);
+uint soup_session_get_idle_timeout(ptr);
+ptr soup_session_get_local_address(ptr);
+uint soup_session_get_max_conns(ptr);
+uint soup_session_get_max_conns_per_host(ptr);
+ptr soup_session_get_proxy_resolver(ptr);
+ptr soup_session_get_remote_connectable(ptr);
+uint soup_session_get_timeout(ptr);
+ptr soup_session_get_tls_database(ptr);
+ptr soup_session_get_tls_interaction(ptr);
+str soup_session_get_user_agent(ptr);
+int soup_session_has_feature(ptr, ulong);
+void soup_session_preconnect_async(ptr, ptr, int, ptr, ptr, ptr);
+int soup_session_preconnect_finish(ptr, ptr, ptr);
+void soup_session_remove_feature(ptr, ptr);
+void soup_session_remove_feature_by_type(ptr, ulong);
+ptr soup_session_send(ptr, ptr, ptr, ptr);
+ptr soup_session_send_and_read(ptr, ptr, ptr, ptr);
+void soup_session_send_and_read_async(ptr, ptr, int, ptr, ptr, ptr);
+ptr soup_session_send_and_read_finish(ptr, ptr, ptr);
+void soup_session_send_async(ptr, ptr, int, ptr, ptr, ptr);
+ptr soup_session_send_finish(ptr, ptr, ptr);
+void soup_session_set_accept_language(ptr, str);
+void soup_session_set_accept_language_auto(ptr, int);
+void soup_session_set_idle_timeout(ptr, uint);
+void soup_session_set_proxy_resolver(ptr, ptr);
+void soup_session_set_timeout(ptr, uint);
+void soup_session_set_tls_database(ptr, ptr);
+void soup_session_set_tls_interaction(ptr, ptr);
+void soup_session_set_user_agent(ptr, str);
+void soup_session_websocket_connect_async(ptr, ptr, str, ptr, int, ptr, ptr, ptr);
+ptr soup_session_websocket_connect_finish(ptr, ptr, ptr);
+ptr soup_websocket_connection_new(ptr, ptr, int, str, str, ptr);
+void soup_websocket_connection_close(ptr, ushort, str);
+ushort soup_websocket_connection_get_close_code(ptr);
+str soup_websocket_connection_get_close_data(ptr);
+int soup_websocket_connection_get_connection_type(ptr);
+ptr soup_websocket_connection_get_extensions(ptr);
+ptr soup_websocket_connection_get_io_stream(ptr);
+uint soup_websocket_connection_get_keepalive_interval(ptr);
+ulong soup_websocket_connection_get_max_incoming_payload_size(ptr);
+str soup_websocket_connection_get_origin(ptr);
+str soup_websocket_connection_get_protocol(ptr);
+int soup_websocket_connection_get_state(ptr);
+ptr soup_websocket_connection_get_uri(ptr);
+void soup_websocket_connection_send_binary(ptr, ptr, ulong);
+void soup_websocket_connection_send_message(ptr, int, ptr);
+void soup_websocket_connection_send_text(ptr, str);
+void soup_websocket_connection_set_keepalive_interval(ptr, uint);
+void soup_websocket_connection_set_max_incoming_payload_size(ptr, ulong);
+int soup_websocket_extension_configure(ptr, int, ptr, ptr);
+ptr soup_websocket_extension_get_request_params(ptr);
+ptr soup_websocket_extension_get_response_params(ptr);
+ptr soup_websocket_extension_process_incoming_message(ptr, ptr, ptr, ptr);
+ptr soup_websocket_extension_process_outgoing_message(ptr, ptr, ptr, ptr);
+int soup_check_version(uint, uint, uint);
+ptr soup_cookie_parse(str, ptr);
+ptr soup_cookies_from_request(ptr);
+ptr soup_cookies_from_response(ptr);
+ptr soup_cookies_to_cookie_header(ptr);
+void soup_cookies_to_request(ptr, ptr);
+void soup_cookies_to_response(ptr, ptr);
+ptr soup_date_time_new_from_http_string(str);
+ptr soup_date_time_to_string(ptr, int);
+ptr soup_form_decode(str);
+ptr soup_form_decode_multipart(ptr, str, ptr, ptr, ptr);
+ptr soup_form_encode_datalist(ptr);
+ptr soup_form_encode_hash(ptr);
+uint soup_get_major_version();
+uint soup_get_micro_version();
+uint soup_get_minor_version();
+int soup_header_contains(str, str);
+void soup_header_free_param_list(ptr);
+void soup_header_g_string_append_param(ptr, str, str);
+void soup_header_g_string_append_param_quoted(ptr, str, str);
+ptr soup_header_parse_list(str);
+ptr soup_header_parse_param_list(str);
+ptr soup_header_parse_param_list_strict(str);
+ptr soup_header_parse_quality_list(str, ptr);
+ptr soup_header_parse_semi_param_list(str);
+ptr soup_header_parse_semi_param_list_strict(str);
+int soup_headers_parse(str, int, ptr);
+uint soup_headers_parse_request(str, int, ptr, ptr, ptr, ptr);
+int soup_headers_parse_response(str, int, ptr, ptr, ptr, ptr);
+int soup_headers_parse_status_line(str, ptr, ptr, ptr);
+void soup_message_headers_iter_init(ptr, ptr);
+uint soup_session_error_quark();
+str soup_status_get_phrase(uint);
+int soup_tld_domain_is_public_suffix(str);
+uint soup_tld_error_quark();
+str soup_tld_get_base_domain(str, ptr);
+ptr soup_uri_decode_data_uri(str, ptr);
+int soup_uri_equal(ptr, ptr);
+void soup_websocket_client_prepare_handshake(ptr, str, ptr, ptr);
+int soup_websocket_client_verify_handshake(ptr, ptr, ptr, ptr);
+uint soup_websocket_error_quark();
+int soup_websocket_server_check_handshake(ptr, str, ptr, ptr, ptr);
+int soup_websocket_server_process_handshake(ptr, str, ptr, ptr, ptr);
+};
+
+extern callback int SoupAuthDomainBasicAuthCallback(ptr, ptr, str, str, ptr);
+extern callback ptr SoupAuthDomainDigestAuthCallback(ptr, ptr, str, ptr);
+extern callback int SoupAuthDomainFilter(ptr, ptr, ptr);
+extern callback int SoupAuthDomainGenericAuthCallback(ptr, ptr, str, ptr);
+extern callback int SoupLoggerFilter(ptr, ptr, ptr);
+extern callback void SoupLoggerPrinter(ptr, int, byte, str, ptr);
+extern callback void SoupMessageHeadersForeachFunc(str, str, ptr);
+extern callback void SoupServerCallback(ptr, ptr, str, ptr, ptr);
+extern callback void SoupServerWebsocketCallback(ptr, ptr, str, ptr, ptr);
+extern struct SoupAuthClass{
+byte parent_class[136],  // SoupObjectClass
+str scheme_name,  // utf8*
+uint strength,  // guint32
+ptr update,  // ::update
+ptr get_protection_space,  // ::get_protection_space
+ptr authenticate,  // ::authenticate
+ptr is_authenticated,  // ::is_authenticated
+ptr get_authorization,  // ::get_authorization
+ptr is_ready,  // ::is_ready
+ptr can_authenticate,  // ::can_authenticate
+ptr padding_0,
+ptr padding_1,
+ptr padding_2,
+ptr padding_3,
+ptr padding_4,
+ptr padding_5,
+};
+
+extern struct SoupAuthDomainBasicClass{
+byte parent_class[208],  // SoupAuthDomainClass
+};
+
+extern struct SoupAuthDomainClass{
+byte parent_class[136],  // SoupObjectClass
+ptr accepts,  // ::accepts
+ptr challenge,  // ::challenge
+ptr check_password,  // ::check_password
+ptr padding_0,
+ptr padding_1,
+ptr padding_2,
+ptr padding_3,
+ptr padding_4,
+ptr padding_5,
+};
+
+extern struct SoupAuthDomainDigestClass{
+byte parent_class[208],  // SoupAuthDomainClass
+};
+
+extern struct SoupAuthManagerClass{
+byte parent_class[136],  // SoupObjectClass
+};
+
+extern struct SoupCacheClass{
+byte parent_class[136],  // SoupObjectClass
+ptr get_cacheability,  // ::get_cacheability
+ptr padding_0,
+ptr padding_1,
+ptr padding_2,
+ptr padding_3,
+};
+
+extern struct SoupContentDecoderClass{
+byte parent_class[136],  // SoupObjectClass
+};
+
+extern struct SoupContentSnifferClass{
+byte parent_class[136],  // SoupObjectClass
+};
+
+// name SoupCookie
+extern struct SoupCookie{
+
+};
+
+extern struct SoupCookieJarClass{
+byte parent_class[136],  // SoupObjectClass
+ptr save,  // ::save
+ptr is_persistent,  // ::is_persistent
+ptr changed,  // ::changed
+ptr padding_0,
+ptr padding_1,
+ptr padding_2,
+ptr padding_3,
+ptr padding_4,
+ptr padding_5,
+};
+
+extern struct SoupCookieJarDBClass{
+byte parent_class[208],  // SoupCookieJarClass
+};
+
+extern struct SoupCookieJarTextClass{
+byte parent_class[208],  // SoupCookieJarClass
+};
+
+extern struct SoupHSTSEnforcerClass{
+byte parent_class[136],  // SoupObjectClass
+ptr is_persistent,  // ::is_persistent
+ptr has_valid_policy,  // ::has_valid_policy
+ptr changed,  // ::changed
+ptr padding_0,
+ptr padding_1,
+ptr padding_2,
+ptr padding_3,
+};
+
+extern struct SoupHSTSEnforcerDBClass{
+byte parent_class[192],  // SoupHSTSEnforcerClass
+};
+
+// name SoupHSTSPolicy
+extern struct SoupHSTSPolicy{
+
+};
+
+extern struct SoupLoggerClass{
+byte parent_class[136],  // SoupObjectClass
+};
+
+// name SoupMessageBody
+extern struct SoupMessageBody{
+ptr data,  // array*
+long length,  // gint64
+};
+
+extern struct SoupMessageClass{
+byte parent_class[136],  // SoupObjectClass
+};
+
+// name SoupMessageHeaders
+extern struct SoupMessageHeaders{
+
+};
+
+extern struct SoupMessageHeadersIter{
+ptr dummy_0,
+ptr dummy_1,
+ptr dummy_2,
+};
+
+// name SoupMessageMetrics
+extern struct SoupMessageMetrics{
+
+};
+
+// name SoupMultipart
+extern struct SoupMultipart{
+
+};
+
+extern struct SoupMultipartInputStreamClass{
+byte parent_class[272],  // SoupFilterInputStreamClass
+};
+
+extern struct SoupRange{
+long start,  // gint64
+long end,  // gint64
+};
+
+extern struct SoupServerClass{
+byte parent_class[136],  // SoupObjectClass
+ptr request_started,  // ::request_started
+ptr request_read,  // ::request_read
+ptr request_finished,  // ::request_finished
+ptr request_aborted,  // ::request_aborted
+ptr padding_0,
+ptr padding_1,
+ptr padding_2,
+ptr padding_3,
+ptr padding_4,
+ptr padding_5,
+};
+
+extern struct SoupServerMessageClass{
+byte parent_class[136],  // SoupObjectClass
+};
+
+extern struct SoupSessionClass{
+byte parent_class[136],  // SoupObjectClass
+ptr request_queued,  // ::request_queued
+ptr request_unqueued,  // ::request_unqueued
+ptr _soup_reserved1,  // void*
+ptr _soup_reserved2,  // void*
+ptr _soup_reserved3,  // void*
+ptr _soup_reserved4,  // void*
+ptr _soup_reserved5,  // void*
+ptr _soup_reserved6,  // void*
+ptr _soup_reserved7,  // void*
+ptr _soup_reserved8,  // void*
+};
+
+extern struct SoupSessionFeatureInterface{
+
+};
+
+extern struct SoupWebsocketConnectionClass{
+byte parent_class[136],  // SoupObjectClass
+};
+
+extern struct SoupWebsocketExtensionClass{
+byte parent_class[136],  // SoupObjectClass
+str name,  // utf8*
+ptr configure,  // ::configure
+ptr get_request_params,  // ::get_request_params
+ptr get_response_params,  // ::get_response_params
+ptr process_outgoing_message,  // ::process_outgoing_message
+ptr process_incoming_message,  // ::process_incoming_message
+ptr padding_0,
+ptr padding_1,
+ptr padding_2,
+ptr padding_3,
+ptr padding_4,
+ptr padding_5,
+};
+
+extern struct SoupWebsocketExtensionDeflateClass{
+byte parent_class[232],  // SoupWebsocketExtensionClass
+};
+
+extern struct SoupWebsocketExtensionManagerClass{
+byte parent_class[136],  // SoupObjectClass
+};
+
+var Soup_CacheType_single_user = 0;
+var Soup_CacheType_shared = 1;
+
+var Soup_Cacheability_cacheable = 1;
+var Soup_Cacheability_uncacheable = 2;
+var Soup_Cacheability_invalidates = 4;
+var Soup_Cacheability_validates = 8;
+
+var Soup_CookieJarAcceptPolicy_always = 0;
+var Soup_CookieJarAcceptPolicy_never = 1;
+var Soup_CookieJarAcceptPolicy_no_third_party = 2;
+var Soup_CookieJarAcceptPolicy_grandfathered_third_party = 3;
+
+var Soup_DateFormat_http = 1;
+var Soup_DateFormat_cookie = 2;
+
+var Soup_Encoding_unrecognized = 0;
+var Soup_Encoding_none = 1;
+var Soup_Encoding_content_length = 2;
+var Soup_Encoding_eof = 3;
+var Soup_Encoding_chunked = 4;
+var Soup_Encoding_byteranges = 5;
+
+var Soup_Expectation_unrecognized = 1;
+var Soup_Expectation_continue = 2;
+
+var Soup_HTTPVersion_http_1_0 = 0;
+var Soup_HTTPVersion_http_1_1 = 1;
+var Soup_HTTPVersion_http_2_0 = 2;
+
+var Soup_LoggerLogLevel_none = 0;
+var Soup_LoggerLogLevel_minimal = 1;
+var Soup_LoggerLogLevel_headers = 2;
+var Soup_LoggerLogLevel_body = 3;
+
+var Soup_MemoryUse_static = 0;
+var Soup_MemoryUse_take = 1;
+var Soup_MemoryUse_copy = 2;
+
+var Soup_MessageFlags_no_redirect = 2;
+var Soup_MessageFlags_new_connection = 4;
+var Soup_MessageFlags_idempotent = 8;
+var Soup_MessageFlags_do_not_use_auth_cache = 16;
+var Soup_MessageFlags_collect_metrics = 32;
+
+var Soup_MessageHeadersType_request = 0;
+var Soup_MessageHeadersType_response = 1;
+var Soup_MessageHeadersType_multipart = 2;
+
+var Soup_MessagePriority_very_low = 0;
+var Soup_MessagePriority_low = 1;
+var Soup_MessagePriority_normal = 2;
+var Soup_MessagePriority_high = 3;
+var Soup_MessagePriority_very_high = 4;
+
+var Soup_SameSitePolicy_none = 0;
+var Soup_SameSitePolicy_lax = 1;
+var Soup_SameSitePolicy_strict = 2;
+
+var Soup_ServerListenOptions_https = 1;
+var Soup_ServerListenOptions_ipv4_only = 2;
+var Soup_ServerListenOptions_ipv6_only = 4;
+
+var Soup_SessionError_parsing = 0;
+var Soup_SessionError_encoding = 1;
+var Soup_SessionError_too_many_redirects = 2;
+var Soup_SessionError_too_many_restarts = 3;
+var Soup_SessionError_redirect_no_location = 4;
+var Soup_SessionError_redirect_bad_uri = 5;
+var Soup_SessionError_message_already_in_queue = 6;
+
+var Soup_Status_none = 0;
+var Soup_Status_continue = 100;
+var Soup_Status_switching_protocols = 101;
+var Soup_Status_processing = 102;
+var Soup_Status_ok = 200;
+var Soup_Status_created = 201;
+var Soup_Status_accepted = 202;
+var Soup_Status_non_authoritative = 203;
+var Soup_Status_no_content = 204;
+var Soup_Status_reset_content = 205;
+var Soup_Status_partial_content = 206;
+var Soup_Status_multi_status = 207;
+var Soup_Status_multiple_choices = 300;
+var Soup_Status_moved_permanently = 301;
+var Soup_Status_found = 302;
+var Soup_Status_moved_temporarily = 302;
+var Soup_Status_see_other = 303;
+var Soup_Status_not_modified = 304;
+var Soup_Status_use_proxy = 305;
+var Soup_Status_not_appearing_in_this_protocol = 306;
+var Soup_Status_temporary_redirect = 307;
+var Soup_Status_permanent_redirect = 308;
+var Soup_Status_bad_request = 400;
+var Soup_Status_unauthorized = 401;
+var Soup_Status_payment_required = 402;
+var Soup_Status_forbidden = 403;
+var Soup_Status_not_found = 404;
+var Soup_Status_method_not_allowed = 405;
+var Soup_Status_not_acceptable = 406;
+var Soup_Status_proxy_authentication_required = 407;
+var Soup_Status_proxy_unauthorized = 407;
+var Soup_Status_request_timeout = 408;
+var Soup_Status_conflict = 409;
+var Soup_Status_gone = 410;
+var Soup_Status_length_required = 411;
+var Soup_Status_precondition_failed = 412;
+var Soup_Status_request_entity_too_large = 413;
+var Soup_Status_request_uri_too_long = 414;
+var Soup_Status_unsupported_media_type = 415;
+var Soup_Status_requested_range_not_satisfiable = 416;
+var Soup_Status_invalid_range = 416;
+var Soup_Status_expectation_failed = 417;
+var Soup_Status_misdirected_request = 421;
+var Soup_Status_unprocessable_entity = 422;
+var Soup_Status_locked = 423;
+var Soup_Status_failed_dependency = 424;
+var Soup_Status_internal_server_error = 500;
+var Soup_Status_not_implemented = 501;
+var Soup_Status_bad_gateway = 502;
+var Soup_Status_service_unavailable = 503;
+var Soup_Status_gateway_timeout = 504;
+var Soup_Status_http_version_not_supported = 505;
+var Soup_Status_insufficient_storage = 507;
+var Soup_Status_not_extended = 510;
+
+var Soup_TLDError_invalid_hostname = 0;
+var Soup_TLDError_is_ip_address = 1;
+var Soup_TLDError_not_enough_domains = 2;
+var Soup_TLDError_no_base_domain = 3;
+var Soup_TLDError_no_psl_data = 4;
+
+var Soup_URIComponent_none = 0;
+var Soup_URIComponent_scheme = 1;
+var Soup_URIComponent_user = 2;
+var Soup_URIComponent_password = 3;
+var Soup_URIComponent_auth_params = 4;
+var Soup_URIComponent_host = 5;
+var Soup_URIComponent_port = 6;
+var Soup_URIComponent_path = 7;
+var Soup_URIComponent_query = 8;
+var Soup_URIComponent_fragment = 9;
+
+var Soup_WebsocketCloseCode_normal = 1000;
+var Soup_WebsocketCloseCode_going_away = 1001;
+var Soup_WebsocketCloseCode_protocol_error = 1002;
+var Soup_WebsocketCloseCode_unsupported_data = 1003;
+var Soup_WebsocketCloseCode_no_status = 1005;
+var Soup_WebsocketCloseCode_abnormal = 1006;
+var Soup_WebsocketCloseCode_bad_data = 1007;
+var Soup_WebsocketCloseCode_policy_violation = 1008;
+var Soup_WebsocketCloseCode_too_big = 1009;
+var Soup_WebsocketCloseCode_no_extension = 1010;
+var Soup_WebsocketCloseCode_server_error = 1011;
+var Soup_WebsocketCloseCode_tls_handshake = 1015;
+
+var Soup_WebsocketConnectionType_unknown = 0;
+var Soup_WebsocketConnectionType_client = 1;
+var Soup_WebsocketConnectionType_server = 2;
+
+var Soup_WebsocketDataType_text = 1;
+var Soup_WebsocketDataType_binary = 2;
+
+var Soup_WebsocketError_failed = 0;
+var Soup_WebsocketError_not_websocket = 1;
+var Soup_WebsocketError_bad_handshake = 2;
+var Soup_WebsocketError_bad_origin = 3;
+
+var Soup_WebsocketState_open = 1;
+var Soup_WebsocketState_closing = 2;
+var Soup_WebsocketState_closed = 3;
+
+var Soup_COOKIE_MAX_AGE_ONE_DAY_COOKIE_MAX_AGE_ONE_DAY = 0;
+
+var Soup_COOKIE_MAX_AGE_ONE_HOUR_COOKIE_MAX_AGE_ONE_HOUR = 3600;
+
+var Soup_COOKIE_MAX_AGE_ONE_WEEK_COOKIE_MAX_AGE_ONE_WEEK = 0;
+
+var Soup_COOKIE_MAX_AGE_ONE_YEAR_COOKIE_MAX_AGE_ONE_YEAR = 0;
+
+var Soup_FORM_MIME_TYPE_MULTIPART_FORM_MIME_TYPE_MULTIPART = "multipart/form-data";
+var Soup_FORM_MIME_TYPE_URLENCODED_FORM_MIME_TYPE_URLENCODED = "application/x-www-form-urlencoded";
+var Soup_HSTS_POLICY_MAX_AGE_PAST_HSTS_POLICY_MAX_AGE_PAST = 0;
+
+var Soup_HTTP_URI_FLAGS_HTTP_URI_FLAGS = 482;
+
+var Soup_MAJOR_VERSION_MAJOR_VERSION = 3;
+
+var Soup_MICRO_VERSION_MICRO_VERSION = 7;
+
+var Soup_MINOR_VERSION_MINOR_VERSION = 0;
+
+var Soup_VERSION_MIN_REQUIRED_VERSION_MIN_REQUIRED = 2;
+
+
+extern callback void SoupAuthManager_signal_authenticate(ptr, ptr, ptr, int, ptr);
+extern callback void SoupCookieJar_signal_changed(ptr, ptr, ptr, ptr);
+extern callback void SoupHSTSEnforcer_signal_changed(ptr, ptr, ptr, ptr);
+extern callback int SoupMessage_signal_accept_certificate(ptr, ptr, int, ptr);
+extern callback int SoupMessage_signal_authenticate(ptr, ptr, int, ptr);
+extern callback void SoupMessage_signal_content_sniffed(ptr, str, ptr, ptr);
+extern callback void SoupMessage_signal_finished(ptr, ptr);
+extern callback void SoupMessage_signal_got_body(ptr, ptr);
+extern callback void SoupMessage_signal_got_headers(ptr, ptr);
+extern callback void SoupMessage_signal_got_informational(ptr, ptr);
+extern callback void SoupMessage_signal_hsts_enforced(ptr, ptr);
+extern callback void SoupMessage_signal_network_event(ptr, int, ptr, ptr);
+extern callback int SoupMessage_signal_request_certificate(ptr, ptr, ptr);
+extern callback int SoupMessage_signal_request_certificate_password(ptr, ptr, ptr);
+extern callback void SoupMessage_signal_restarted(ptr, ptr);
+extern callback void SoupMessage_signal_starting(ptr, ptr);
+extern callback void SoupMessage_signal_wrote_body(ptr, ptr);
+extern callback void SoupMessage_signal_wrote_body_data(ptr, uint, ptr);
+extern callback void SoupMessage_signal_wrote_headers(ptr, ptr);
+extern callback void SoupServer_signal_request_aborted(ptr, ptr, ptr);
+extern callback void SoupServer_signal_request_finished(ptr, ptr, ptr);
+extern callback void SoupServer_signal_request_read(ptr, ptr, ptr);
+extern callback void SoupServer_signal_request_started(ptr, ptr, ptr);
+extern callback int SoupServerMessage_signal_accept_certificate(ptr, ptr, int, ptr);
+extern callback void SoupServerMessage_signal_disconnected(ptr, ptr);
+extern callback void SoupServerMessage_signal_finished(ptr, ptr);
+extern callback void SoupServerMessage_signal_got_body(ptr, ptr);
+extern callback void SoupServerMessage_signal_got_chunk(ptr, ptr, ptr);
+extern callback void SoupServerMessage_signal_got_headers(ptr, ptr);
+extern callback void SoupServerMessage_signal_wrote_body(ptr, ptr);
+extern callback void SoupServerMessage_signal_wrote_body_data(ptr, uint, ptr);
+extern callback void SoupServerMessage_signal_wrote_chunk(ptr, ptr);
+extern callback void SoupServerMessage_signal_wrote_headers(ptr, ptr);
+extern callback void SoupServerMessage_signal_wrote_informational(ptr, ptr);
+extern callback void SoupSession_signal_request_queued(ptr, ptr, ptr);
+extern callback void SoupSession_signal_request_unqueued(ptr, ptr, ptr);
+extern callback void SoupWebsocketConnection_signal_closed(ptr, ptr);
+extern callback void SoupWebsocketConnection_signal_closing(ptr, ptr);
+extern callback void SoupWebsocketConnection_signal_error(ptr, ptr, ptr);
+extern callback void SoupWebsocketConnection_signal_message(ptr, int, ptr, ptr);
+extern callback void SoupWebsocketConnection_signal_pong(ptr, ptr, ptr);
+////////////////////////
+extern callback void SoupAuth_virtual_authenticate(ptr, str, str);
+extern callback int SoupAuth_virtual_can_authenticate(ptr);
+extern callback ptr SoupAuth_virtual_get_authorization(ptr, ptr);
+extern callback ptr SoupAuth_virtual_get_protection_space(ptr, ptr);
+extern callback int SoupAuth_virtual_is_authenticated(ptr);
+extern callback int SoupAuth_virtual_is_ready(ptr, ptr);
+extern callback int SoupAuth_virtual_update(ptr, ptr, ptr);
+extern callback ptr SoupAuthDomain_virtual_accepts(ptr, ptr, str);
+extern callback ptr SoupAuthDomain_virtual_challenge(ptr, ptr);
+extern callback int SoupAuthDomain_virtual_check_password(ptr, ptr, str, str);
+extern callback int SoupCache_virtual_get_cacheability(ptr, ptr);
+extern callback void SoupCookieJar_virtual_changed(ptr, ptr, ptr);
+extern callback int SoupCookieJar_virtual_is_persistent(ptr);
+extern callback void SoupCookieJar_virtual_save(ptr);
+extern callback void SoupHSTSEnforcer_virtual_changed(ptr, ptr, ptr);
+extern callback int SoupHSTSEnforcer_virtual_has_valid_policy(ptr, str);
+extern callback int SoupHSTSEnforcer_virtual_is_persistent(ptr);
+extern callback void SoupServer_virtual_request_aborted(ptr, ptr);
+extern callback void SoupServer_virtual_request_finished(ptr, ptr);
+extern callback void SoupServer_virtual_request_read(ptr, ptr);
+extern callback void SoupServer_virtual_request_started(ptr, ptr);
+extern callback void SoupSession_virtual_request_queued(ptr, ptr);
+extern callback void SoupSession_virtual_request_unqueued(ptr, ptr);
+extern callback int SoupWebsocketExtension_virtual_configure(ptr, int, ptr);
+extern callback ptr SoupWebsocketExtension_virtual_get_request_params(ptr);
+extern callback ptr SoupWebsocketExtension_virtual_get_response_params(ptr);
+extern callback ptr SoupWebsocketExtension_virtual_process_incoming_message(ptr, ptr, ptr);
+extern callback ptr SoupWebsocketExtension_virtual_process_outgoing_message(ptr, ptr, ptr);
+

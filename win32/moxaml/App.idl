@@ -1,0 +1,71 @@
+namespace moxaml
+{
+     [default_interface]
+     runtimeclass App : Microsoft.Toolkit.Win32.UI.XamlHost.XamlApplication
+     {
+        App();
+     }
+
+    [default_interface]
+    runtimeclass mox : Windows.UI.Xaml.DependencyObject
+    {
+        mox();
+        static Windows.UI.Xaml.DependencyProperty EventProperty{ get; };
+        static String GetEvent(Windows.UI.Xaml.DependencyObject target);
+        static void SetEvent(Windows.UI.Xaml.DependencyObject target, String value);
+    }
+
+    [default_interface]
+    runtimeclass IntVector : Windows.Foundation.Collections.IObservableVector<int>
+    {
+        IntVector();
+    }
+
+
+    [default_interface]
+    runtimeclass DoubleVector : Windows.Foundation.Collections.IObservableVector<double>
+    {
+        DoubleVector();
+    }
+
+
+    [default_interface]
+    runtimeclass StringVector : Windows.Foundation.Collections.IObservableVector<String>
+    {
+        StringVector();
+    }
+
+
+    [default_interface]
+    runtimeclass Vector : Windows.Foundation.Collections.IObservableVector<Object>
+    {
+        Vector();
+    }
+
+
+    [default_interface]
+    runtimeclass Map : Windows.Foundation.Collections.IObservableMap<String,Object>
+    {
+        Map();
+    }
+
+
+    [default_interface]
+    runtimeclass IntMap : Windows.Foundation.Collections.IObservableMap<String,int>
+    {
+        IntMap();
+    }
+
+
+    [default_interface]
+    runtimeclass DoubleMap : Windows.Foundation.Collections.IObservableMap<String,double>
+    {
+        DoubleMap();
+    }
+
+    [default_interface]
+    runtimeclass StringMap : Windows.Foundation.Collections.IObservableMap<String,String>
+    {
+        StringMap();
+    }
+}

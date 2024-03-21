@@ -1,0 +1,4 @@
+for (;;) fun foo() {}
+
+// expect: [line 1] Error at 'foo': Expect '(' after function name.
+// expect: [line 4] Error at end: Expect '}' after block.

@@ -1,0 +1,4 @@
+undefined1.bar // expect: Undefined variable 'undefined1'.
+  = undefined2;
+
+// expect: [line 1] in script

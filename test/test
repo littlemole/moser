@@ -1,0 +1,9 @@
+
+fun f(t) { print "hello from module:" + t; }
+
+print "helau";
+
+return {
+    
+    "module" : fun(t) { print "a test: " + t;}
+};

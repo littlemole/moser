@@ -1,0 +1,4 @@
+var nan = 0/0;
+
+// expect: Division by zero.
+// expect: [line 1] in script

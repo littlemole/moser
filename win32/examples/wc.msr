@@ -1,0 +1,142 @@
+//import("windows");
+import("win32/crypt");
+import("wincrypt");
+
+
+var CLEARTEXT = "TEST"; //io.slurp("C:\\Users\\mike\\Documents\\new document.ctx");
+//var CLEARTEXT = io.slurp("C:\\Users\\mike\\Documents\\new document.ctx");
+print CLEARTEXT;
+
+print CALG_MD5;
+
+var cc = CryptoCtx();
+var h = Hash(cc,HASH.MD5);
+print io.toHex( h.hash(CLEARTEXT) );
+
+var h2 = Hash(cc,HASH.SHA1);
+print io.toHex( h2.hash(CLEARTEXT) );
+
+print io.toHex( cc.hash(HASH.MD5,CLEARTEXT) );
+print io.toHex( cc.hash(HASH.SHA1,CLEARTEXT) );
+
+print io.toHex( cc.hash(HASH.SHA_256,CLEARTEXT) );
+print io.toHex( cc.hash(HASH.SHA_512,CLEARTEXT) );
+
+var secret = "SECRET";
+
+var cryptoKey = CryptoKey(cc,HASH.RC2);
+var key = cryptoKey.import(secret);
+
+var hmac = Hash(cc,HASH.SHA1,cryptoKey);
+var buf = hmac.hmac(CLEARTEXT);
+
+print io.toHex( buf);
+
+print io.toHex( cc.hmac(HASH.SHA1, secret, CLEARTEXT) );
+
+print io.toHex( cc.hmac(HASH.SHA_256, secret, CLEARTEXT) );
+
+print io.toHex( cc.hmac(HASH.SHA_512, secret, CLEARTEXT) );
+
+var hex = "534543524554";
+var base64 = "U0VDUkVU";
+var ws = wstring(base64);
+
+class CryptoString
+{
+    CryptoString(algo)
+    {
+        this.algo = algo;
+    }
+
+    toBinary( str)
+    {
+        var ws = wstring( str );
+        var len = 0;
+         print ">>>>>>>><< 0 " + ws + " " + this.algo;
+        var r = Win32.CryptStringToBinaryW(ws,ws.length, this.algo, 0, &len, 0, 0 );
+        if(r)
+        {
+            print ">>>>>>>><< 1";
+            var buf = sys.buffer( x );
+            if(Win32.CryptStringToBinaryW(ws,ws.length, this.algo, buf, &x, 0, 0 ))
+            {
+                print ">>>>>>>><< 2";
+                key = buf.asString();
+                return key;
+            }                
+        }
+        print GetLastError();
+    }
+
+    toString( bin )
+    {
+        var len = 0;
+        if(Win32.CryptBinaryToStringW ( bin, bin.length, this.algo, 0, &len))
+        {
+            var buf = sys.buffer( (len+1)*2 );
+            if(Win32.CryptBinaryToStringW ( bin, bin.length, this.algo, buf, &len))
+            {
+                var ws = buf.asWideString();
+                var s = string(ws);
+                s = s.substr(0,s.length-2);
+                return s;
+            }
+        }
+    }
+}
+
+var x = 0;
+var len = Win32.CryptStringToBinaryW (ws,ws.length, Win32.CRYPT_STRING.CRYPT_STRING_BASE64, 0, &x, 0, 0 );
+print "LEN:" + len + " " + x;
+var key = "";
+if(len)
+{
+    print "CRYPTO";
+    var buf = sys.buffer( x );
+    if(Win32.CryptStringToBinaryW (ws,ws.length, Win32.CRYPT_STRING.CRYPT_STRING_BASE64, buf, &x, 0, 0 ))
+    {
+        print "CRYPTO";
+        key = buf.asString();
+        print "KEY: " + key + "[";
+    }                
+}
+
+var y = 0;
+if(Win32.CryptBinaryToStringW( key, key.length, Win32.CRYPT_STRING.CRYPT_STRING_BASE64, 0, &y))
+{
+    print "CRYPTO2 " + y;
+    var buf = sys.buffer( (y)*2);
+    if(Win32.CryptBinaryToStringW( key, key.length, Win32.CRYPT_STRING.CRYPT_STRING_BASE64, buf, &y))
+    {
+        print "CRYPTO3";
+        var ws = buf.asWideString();
+        var s = string(ws);
+        s = s.substr(0,s.length-2);
+        print s;
+    }
+}
+
+var cs = CryptoString(Win32.CRYPT_STRING.CRYPT_STRING_BASE64);
+
+var p = cs.toBinary(base64);
+print "P:" + p;
+var b = cs.toString(p);
+print "B: " + b;
+
+var cs = CryptoString(Win32.CRYPT_STRING.CRYPT_STRING_HEXRAW);
+
+var p = cs.toBinary(hex);
+print "P2:" + p;
+var b = cs.toString(p);
+print "B2: " + b;
+
+var cs = CryptoString(Win32.CRYPT_STRING.CRYPT_STRING_HEXASCIIADDR);
+
+var b = cs.toString(p);
+print "B2: " + b;
+
+
+
+
+print "OK";

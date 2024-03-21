@@ -1,0 +1,200 @@
+
+var time = sys.time();
+print "startup";
+
+import("rt/Windows.Foundation");
+import("rt/Windows.Foundation.Collections");
+import("rt/Windows.Storage");
+import("rt/Windows.Storage.Streams");
+import("rt/Windows.Web.Http");
+import("rt/Windows.Security.Cryptography");
+import("rt/Windows.Security.Cryptography.Core");
+import("rt/Windows.Security.Cryptography.Certificates");
+import("rt/Windows.System.Threading");
+import("promise");
+import("winrt");
+
+print "runtime loaded " + (sys.time()-time);
+
+extern from "User32.dll" {
+	long DefWindowProcA( ptr, uint, ptr, ptr) as DefWindowProc;
+	ushort RegisterClassA( ptr ) as RegisterClass;
+	ptr CreateWindowExA( int, str, str, int, int ,int, int, int,ptr,ptr,ptr,ptr) as CreateWindowEx;
+	int ShowWindow( ptr, int);
+	int GetMessageA( ptr, ptr, uint, uint ) as GetMessage;
+	int TranslateMessage( ptr );
+	long DispatchMessageA( ptr ) as DispatchMessage;
+	void PostQuitMessage(int);
+	ptr BeginPaint( ptr, ptr );
+	int EndPaint( ptr, ptr );
+	int DrawTextA( ptr, str, int, ptr, uint) as DrawText;
+	ptr CreateMenu();
+	ptr CreatePopupMenu();
+	int AppendMenuA( ptr, uint, ptr, str) as AppendMenu;
+	int SetMenu( ptr, ptr);
+}
+
+extern struct POINT {
+  int    x,
+  int    y
+}
+
+extern struct MSG {
+  ptr    hwnd,
+  uint   message,
+  ptr    wParam,
+  ptr    lParam,
+  int    time,
+  POINT  pt,
+  int    lPrivate
+}
+
+print "start call " + (sys.time()-time);
+
+Windows.Storage.StorageFile
+.GetFileFromPathAsync( "C:\\Windows\\win.ini")
+.then( fun( file ) 
+{
+    print "async1 " + (sys.time()-time);
+    print file;
+    
+    Windows.Storage.FileIO
+    .ReadTextAsync( file )
+	.then( fun( content)
+    {
+        print "async2 " + (sys.time()-time);
+        print content;
+		
+
+		var httpClient = Windows.Web.Http.HttpClient.Create();
+		print httpClient;
+		print httpClient.comPtr;
+
+		var requestUri = Windows.Foundation.Uri.CreateUri("http://www.amazon.de/");
+		print requestUri;
+		print requestUri.comPtr;
+		
+		var p = httpClient.GetStringAsync(requestUri);
+		print p;
+		p.then( fun(content) 
+		{
+			print content;
+			PostQuitMessage(0);
+		})
+		.otherwise(fun(status)
+		{
+			print "E: " + status;
+		});
+
+    });
+});
+
+/*
+
+
+Windows.Storage.StorageFile
+.GetFileFromPathAsync( "C:\\Log Files\\moc.txt", /*Windows.Storage.CreationCollisionOption.ReplaceExisting,* / fun(status, file)
+{
+	print "file: " + file;
+	print status;
+	Windows.Storage.FileIO.WriteTextAsync( file, "some text from moc\r\n", fun( status)
+    {
+        print "writeasync2 " + (sys.time()-time);
+        print status;
+
+		Windows.Storage.StorageFolder
+		.GetFolderFromPathAsync("C:\\Log Files", fun(status,folder) 
+		{
+			print "writeasync3 " + (sys.time()-time);
+			print status;
+
+			folder.CreateFileAsync( "moc.txt", Windows.Storage.CreationCollisionOption.OpenIfExists, fun(status,file) 
+			{
+				Windows.Storage.FileIO.WriteTextAsync( file, "some more text from moc\r\n", fun( status)
+				{
+					print "done done";
+				});
+			});
+		});
+	});
+});
+
+*/
+/*
+var strAlgName = Windows.Security.Cryptography.Core.HashAlgorithmNames.get_Md5();
+var enc = Windows.Security.Cryptography.BinaryStringEncoding.Utf8;
+var buffUtf8Msg = Windows.Security.Cryptography.CryptographicBuffer.ConvertStringToBinary("HELLO WORLD\r\n", enc);
+
+var objAlgProv = Windows.Security.Cryptography.Core.HashAlgorithmProvider.OpenAlgorithm(strAlgName);
+var strAlgNameUsed = objAlgProv.get_AlgorithmName();
+
+var buffHash = objAlgProv.HashData(buffUtf8Msg);
+print buffHash.get_Length();
+if (buffHash.get_Length() != objAlgProv.get_HashLength())
+{
+	print "e";
+	throw "There was an error creating the hash";
+}
+
+var hex = Windows.Security.Cryptography.CryptographicBuffer.EncodeToHexString(buffHash);
+
+print hex;
+*/
+/*
+var store = Windows.Security.Cryptography.Certificates.CertificateStores.get_TrustedRootCertificationAuthorities();
+
+var query = Windows.Security.Cryptography.Certificates.CertificateQuery.Create();
+print query;
+query.put_StoreName(store.get_Name());
+Windows.Security.Cryptography.Certificates.CertificateStores.FindAllWithQueryAsync( query, fun(status, certs)
+{
+	print status;
+	print certs;
+	var len = certs.get_Size();
+	print len;
+	for(var i = 0; i < len; i++)
+	{
+		var cert = certs.GetAt(i);
+		print cert;
+		print cert.get_StoreName();
+		print cert.get_FriendlyName();
+		print cert.get_Subject();
+		//print cert.get_SubjectAlternativeName();
+
+	}
+	//PostQuitMessage(0);
+});
+*/
+
+var timespan = Windows.Foundation.TimeSpan();
+timespan.Duration = 5 * 10000000;
+
+print timespan;
+
+fun f() 
+{
+	print "callback!";
+	//PostQuitMessage(0);
+}
+
+var cb = Windows.System.Threading.TimerElapsedHandler.Create( f);
+
+print cb;
+
+var timer = Windows.System.Threading.ThreadPoolTimer.CreateTimer(
+	f,
+	5 * 10000000 //timespan
+);
+
+
+print "start msg loop" + (sys.time()-time);
+
+var msg = MSG();
+while (GetMessage(msg, 0, 0, 0))
+{
+	TranslateMessage(msg);
+	DispatchMessage(msg);
+}
+
+
+print "done" + (sys.time()-time);

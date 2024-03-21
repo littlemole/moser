@@ -1,0 +1,26 @@
+
+fun deco(target)
+{
+    var args = arguments();
+    var r = runtime.invoke(target,args[1:]);
+    print r+1;
+    return r;
+}
+
+@Decorator("deco")
+fun test(value )
+{
+    print value;
+    return value+1;
+}
+
+{
+    
+print test(4711); // expect: 4711
+// expect: 4713
+// expect: 4712
+
+
+}
+
+

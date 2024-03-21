@@ -1,0 +1,181 @@
+import("win32/base");
+import("win32/lib");
+import("win32/gdi");
+import("win32/env");
+import("win32/shell");
+import("win32/user");
+import("win32/sysinfo");
+import("promise");
+import("rt/Windows.Foundation");
+import("rt/Windows.Foundation.Collections");
+import("rt/Windows.Graphics");
+import("rt/Windows.Storage");
+import("rt/Windows.Storage.Streams");
+import("rt/Windows.Storage.Pickers");
+import("rt/Windows.UI.Xaml");
+import("rt/Windows.UI.Xaml.Hosting");
+import("rt/Windows.UI.Xaml.Markup");
+import("rt/Windows.UI.Xaml.Interop");
+import("rt/Windows.UI.Xaml.Data");
+import("rt/Windows.UI.Xaml.Input");
+import("rt/Windows.UI.Xaml.Controls");
+import("rt/Windows.UI.Xaml.Controls.Primitives");
+
+import("rt/Microsoft.UI.Windowing");
+import("rt/Microsoft.UI.Xaml.Controls");
+import("rt/Microsoft.Web.WebView2.Core");
+
+import("rt/moxaml");
+
+import("windows");
+import("winrt");
+import("xaml");
+
+
+class DotWindow : Window 
+{
+    DotWindow()
+    {
+        super.Window();
+
+        this.self = io.dirname( io.self());
+
+        this.dataContext = DataContext( 
+        {
+            "dot"       : io.slurp( this.self + "\\dot.dot" ),
+            "dotFile"   : this.self + "\\dot.dot"
+        });
+
+        this.dataContext.onChange( fun(s,e) 
+        {
+            //var ea = Windows.Foundation.Collections.IMapChangedEventArgs_1_String_(e);
+
+            var key = e.get_Key();
+            if(key == "dot")
+            {
+                this.updateDot();
+            }
+        });
+    }
+
+    navigate2localFile( file )
+    {
+        var uri = "file:///" + io.dirname(io.self()) + "/" + file;
+        this.webView.Source = Windows.Foundation.Uri.CreateUri(uri);
+    }
+
+    // Xaml Event Handlers
+
+    @Xaml(Element=UpdateButton,Event=Click)
+    updateDot()
+    {
+        var dot = os.toDos(this.dataContext.dot);
+
+        var coreView = this.webView.CoreWebView2;
+        coreView.PostWebMessageAsString(dot);
+    }
+
+    @Xaml(Element=SaveDot,Event=Click)
+    onSaveDot()
+    {
+         // Xaml TextBox will convert newlines to single \r :-(
+         var dot = os.toDos(this.dataContext.dot);
+
+         print this.dataContext.dotFile;
+         this.xamlWnd.FileSavePicker(
+         
+            { 
+                "FileName" : this.dataContext.dotFile,
+                "FileTypeChoices" : { "file" : [ ".dot" ] }
+            }
+            
+            )
+        .then(
+            fun(file) 
+            {
+                if( file.valid()  )
+                {
+                    var p = file.Path;
+                    io.flush(p,dot);
+                }
+            }
+        );
+    }
+
+    @Xaml(Element=OpenDot,Event=Click)
+    onOpenDot()
+    {
+         this.xamlWnd.FileOpenPicker(
+            { 
+                "FileTypeFilter" : [ ".dot" ],
+            }
+        )
+        .then(
+            fun(file) 
+            {
+                if(file.valid()  )
+                {
+                    var p = file.Path;
+                    var dot = io.slurp(p);
+                    this.dataContext.dotFile = p;
+                    this.dataContext.dot = dot;
+                    this.updateDot();
+                }
+            }
+        );
+    }
+
+
+    // Win32 Messages
+
+    @msg(WM_CREATE)
+    onCreate(wParam,lParam)
+    {
+        this.xamlWnd = XamlWindow( this, io.slurp( this.self + "\\dot.xaml") );
+        Xaml.expand(this.hwnd,300);
+
+        this.webView = this.xamlWnd.find("dotWebView");
+
+        this.webView.add_NavigationStarting(fun(s,e)
+        {
+            //var ev =  Microsoft.Web.WebView2.Core.CoreWebView2NavigationStartingEventArgs(e);
+            print e.Uri;
+            e.Cancel = false;
+        });
+
+        this.webView.add_NavigationCompleted(fun(s,e)
+        {
+            this.updateDot();
+        });
+
+        this.navigate2localFile("dot.html");
+    }
+
+    @msg(WM_SIZE)
+    onSize(wParam,lParam)
+    {
+        if(!this.xamlWnd || !this.xamlWnd.hwnd) return;
+        this.resizeChild( this.xamlWnd.hwnd);
+
+        Xaml.expand(this.hwnd,300);
+        return 0;
+    }
+    
+    @msg(WM_DESTROY)
+    onDestroy(wParam,lParam)
+    {
+        Win32.PostQuitMessage(0);
+        return 0;
+    }
+}
+
+set_webview_user_data_folder("\\moser\\moser\\udf");
+
+var wnd = DotWindow();
+
+wnd.create( "Dot it while you can!");
+wnd.show();
+run(wnd);
+
+
+print "OK";

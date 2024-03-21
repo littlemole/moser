@@ -1,0 +1,74 @@
+// foreign funs
+extern from "User32.dll" {
+    uint MessageBoxA( ptr, str, str, uint) as MessageBox; 
+    int wsprintfA( ptr, str, ... , str ) as wsprintf;
+}
+
+// foreign callback
+extern callback int EnumSystemCodePagesCallback( str );
+
+// foreign structure
+extern struct SEI {
+	uint cbSize,
+	uint fMask,
+	ptr hwnd,
+	str lpVerb,
+	str lpFile,
+	str lpParameters,
+	str lpDirectory,
+	uint nShow,
+	ptr hInstApp,
+	ptr lpIDList,
+	ptr lpClass,
+	ptr hKeyClass,
+	ptr dwHotKey,
+	ptr hMonitor,
+	ptr hProcess
+}
+
+// windows const 
+var SW_MAXIMIZE = 3;
+
+
+// test 1
+
+MessageBox(0,"Hello","World",48);
+
+
+// test 2
+
+var buf = sys.buffer(1024);
+print 1;
+wsprintf(buf,"Hello %s", "huhu");
+print 2;
+print buf.length;
+print buf.asString();
+print 2;
+
+// test 3
+
+var f2 = foreign.native("Kernel32.dll", "int", "EnumSystemCodePagesA", [ "ptr", "int" ]);
+var cb = EnumSystemCodePagesCallback( fun (str) { print str; return 1; } );
+f2(cb,0);
+
+
+//test 4
+print 4;
+var sei = SEI();
+
+//var file = "C:\\Users\\michael.thumes\\status.awin.com.txt";// "C:\moe\README.txt";
+var file = io.self();//"C:\\Log Files\\moc.txt";
+
+print file;
+print SEI.size;
+
+sei{"cbSize"} = SEI.size;
+sei{"lpFile"} = file;
+sei{"nShow"}  = SW_MAXIMIZE;
+
+print "done";
+print sei{"lpFile"};
+
+var f2 = foreign.native( "Shell32.dll", "int", "ShellExecuteExA", ["ptr"] );
+f2(sei);
+

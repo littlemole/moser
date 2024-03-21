@@ -1,0 +1,225 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "winres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// German (Germany) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_DEU)
+LANGUAGE LANG_GERMAN, SUBLANG_GERMAN
+#pragma code_page(1252)
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""winres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+#endif    // German (Germany) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// English (United States) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDI_MOLE                ICON                    "res\\moe.ico"
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_ENCODING DIALOGEX 0, 0, 213, 57
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Select Encoding"
+FONT 12, "Microsoft Sans Serif", 400, 0, 0x0
+BEGIN
+    PUSHBUTTON      "Cancel",IDCANCEL,7,36,50,14
+    COMBOBOX        IDC_ENCODING,7,7,199,125,CBS_DROPDOWNLIST | CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
+    DEFPUSHBUTTON   "OK",IDOK,156,36,50,14
+END
+
+IDD_KEY DIALOGEX 0, 0, 275, 104
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Key Input"
+FONT 12, "Consolas", 400, 0, 0x0
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,218,83,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,7,83,50,14
+    EDITTEXT        IDC_INPUT,7,7,261,64,ES_MULTILINE | ES_AUTOHSCROLL | ES_WANTRETURN
+END
+
+IDD_INPUT DIALOGEX 0, 0, 144, 84
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Enter Credentials"
+FONT 12, "Consolas", 400, 0, 0x0
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,87,62,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,7,62,50,14
+    EDITTEXT        IDC_PASSWORD,7,42,130,12,ES_PASSWORD | ES_AUTOHSCROLL
+    LTEXT           "Username:",IDC_STATIC,7,7,130,8
+    LTEXT           "Password:",IDC_STATIC,7,34,130,8
+    EDITTEXT        IDC_USERNAME,7,16,130,12,ES_AUTOHSCROLL
+END
+
+IDD_CREDENTIALS DIALOGEX 0, 0, 275, 52
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Input"
+FONT 12, "Consolas", 400, 0, 0x0
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,218,31,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,7,31,50,14
+    EDITTEXT        IDC_INPUT,7,7,261,18,ES_AUTOHSCROLL
+END
+
+IDD_CRYPTOKEY DIALOGEX 0, 0, 275, 113
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Key Input"
+FONT 12, "Consolas", 400, 0, 0x0
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,218,92,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,7,92,50,14
+    EDITTEXT        IDC_INPUT,7,21,261,64,ES_MULTILINE | ES_AUTOHSCROLL | ES_WANTRETURN
+    CONTROL         "Base64",IDC_BASE64,"Button",BS_AUTORADIOBUTTON,102,7,40,10
+    CONTROL         "Plaintext",IDC_PLAINTEXT,"Button",BS_AUTORADIOBUTTON | WS_GROUP,7,7,52,10
+    CONTROL         "Hex",IDC_HEX,"Button",BS_AUTORADIOBUTTON,65,7,28,10
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO
+BEGIN
+    IDD_ENCODING, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 206
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 50
+    END
+
+    IDD_KEY, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 268
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 97
+    END
+
+    IDD_INPUT, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 137
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 76
+    END
+
+    IDD_CREDENTIALS, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 268
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 45
+    END
+
+    IDD_CRYPTOKEY, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 268
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 106
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// AFX_DIALOG_LAYOUT
+//
+
+IDD_ENCODING AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+IDD_KEY AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+IDD_INPUT AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+IDD_CREDENTIALS AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+IDD_CRYPTOKEY AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+#endif    // English (United States) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

@@ -1,0 +1,2104 @@
+{
+class WinRtInterface { 
+    queryInterface(iid) { return this.comPtr.queryInterface(iid); }
+    release() { this.comPtr.release(); this.comPtr = nil; }
+    valid() { return this.comPtr != nil && int(this.comPtr) != 0; }
+}
+
+if( runtime.global("Windows") == nil ) { runtime.global("Windows", {}); }
+var Windows = runtime.global("Windows");
+if ( Windows.UI == nil ) { Windows.UI = {}; }
+if ( Windows.UI.Xaml == nil ) { Windows.UI.Xaml = {}; }
+if ( Windows.UI.Xaml.Hosting == nil ) { Windows.UI.Xaml.Hosting = {}; }
+
+Windows.UI.Xaml.Hosting.DesignerAppViewState = {
+    "Visible" : 0, 
+    "Hidden" : 1
+};
+
+
+Windows.UI.Xaml.Hosting.XamlSourceFocusNavigationReason = {
+    "Programmatic" : 0, 
+    "Restore" : 1, 
+    "First" : 3, 
+    "Last" : 4, 
+    "Left" : 7, 
+    "Up" : 8, 
+    "Right" : 9, 
+    "Down" : 10
+};
+
+//@Interface("Windows.UI.Xaml.Hosting.IDesignerAppExitedEventArgs")
+//@IID("{F6AAC86A-0CAD-410C-8F62-DC2936151C74}")
+class Windows_UI_Xaml_Hosting_IDesignerAppExitedEventArgs : WinRtInterface 
+{
+    Windows_UI_Xaml_Hosting_IDesignerAppExitedEventArgs( comPtr )
+    {
+        var Windows = runtime.global("Windows");
+        this.comPtr = comPtr.queryInterface( "{F6AAC86A-0CAD-410C-8F62-DC2936151C74}");
+    }
+
+    //@VtableIndex(6)
+    //@Async(0)
+    //@Returns("UInt32")
+    get_ExitCode()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 6, "UInt32", [], [] );
+        return _r;
+    }
+
+
+}
+Windows_UI_Xaml_Hosting_IDesignerAppExitedEventArgs.iid = "{F6AAC86A-0CAD-410C-8F62-DC2936151C74}";
+Windows.UI.Xaml.Hosting.IDesignerAppExitedEventArgs = Windows_UI_Xaml_Hosting_IDesignerAppExitedEventArgs;
+
+
+//@Interface("Windows.UI.Xaml.Hosting.IDesignerAppManager")
+//@IID("{A6272CAA-D5C6-40CB-ABD9-27BA43831BB7}")
+class Windows_UI_Xaml_Hosting_IDesignerAppManager : WinRtInterface 
+{
+    Windows_UI_Xaml_Hosting_IDesignerAppManager( comPtr )
+    {
+        var Windows = runtime.global("Windows");
+        this.comPtr = comPtr.queryInterface( "{A6272CAA-D5C6-40CB-ABD9-27BA43831BB7}");
+    }
+
+    //@VtableIndex(6)
+    //@Async(0)
+    //@Returns("String")
+    get_AppUserModelId()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 6, "String", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(7)
+    //@Async(0)
+    //@Returns("Windows.Foundation.EventRegistrationToken")
+    //@Parameters("Windows.Foundation.TypedEventHandler`2<Windows.UI.Xaml.Hosting.DesignerAppManager,Windows.UI.Xaml.Hosting.DesignerAppExitedEventArgs>")
+    add_DesignerAppExited(handler)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = nil; 
+        if( typeof(handler) == "comptr" ) { 
+            p1 = handler;
+        } else {
+            p1 = Windows.Foundation.TypedEventHandler_2_Windows_UI_Xaml_Hosting_DesignerAppManager_Windows_UI_Xaml_Hosting_DesignerAppExitedEventArgs_.Create( handler); 
+        }
+        var _r = this.comPtr.invoke( 7, "Windows.Foundation.EventRegistrationToken", ["Windows.Foundation.TypedEventHandler`2<Windows.UI.Xaml.Hosting.DesignerAppManager,Windows.UI.Xaml.Hosting.DesignerAppExitedEventArgs>"], [p1] );
+        return _r;
+    }
+
+    //@VtableIndex(8)
+    //@Async(0)
+    //@Returns("void")
+    //@Parameters("Windows.Foundation.EventRegistrationToken")
+    remove_DesignerAppExited(token)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = token;
+        this.comPtr.invoke( 8, "void", ["Windows.Foundation.EventRegistrationToken"], [p1] );
+    }
+
+    //@VtableIndex(9)
+    //@Async(3)
+    //@Returns("Windows.Foundation.IAsyncOperation`1<Windows.UI.Xaml.Hosting.DesignerAppView>")
+    //@Parameters("Windows.UI.Xaml.Hosting.DesignerAppViewState","Windows.Foundation.Size")
+    CreateNewViewAsync(initialViewState,initialViewSize,cb)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = initialViewState;
+        var p2 = initialViewSize;
+        this.comPtr.asyncOperation( 9, "Windows.UI.Xaml.Hosting.DesignerAppView", Windows.Foundation.IAsyncOperation_1_Windows_UI_Xaml_Hosting_DesignerAppView_.handler_iid, ["UInt32", "Windows.Foundation.Size"], [p1, p2] , fun(status,value) { if(status == Windows.Foundation.AsyncStatus.Completed ) {cb(status, Windows.UI.Xaml.Hosting.DesignerAppView(value)); } else { cb( status, value ); } } );
+    }
+
+    //@VtableIndex(10)
+    //@Async(1)
+    //@Returns("Windows.Foundation.IAsyncAction")
+    //@Parameters("String","ptr","String")
+    LoadObjectIntoAppAsync(dllName,classId,initializationData,cb)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = dllName;
+        var p2 = classId;
+        var p3 = initializationData;
+        this.comPtr.asyncAction( 10, "Windows.Foundation.IAsyncAction", Windows.Foundation.IAsyncAction.handler_iid, ["String", "ptr", "String"], [p1, p2, p3] , cb );
+    }
+
+
+}
+Windows_UI_Xaml_Hosting_IDesignerAppManager.iid = "{A6272CAA-D5C6-40CB-ABD9-27BA43831BB7}";
+Windows.UI.Xaml.Hosting.IDesignerAppManager = Windows_UI_Xaml_Hosting_IDesignerAppManager;
+
+
+//@Interface("Windows.UI.Xaml.Hosting.IDesignerAppManagerFactory")
+//@IID("{8F9D633B-1266-4C0E-8499-0DB85BBD4C43}")
+class Windows_UI_Xaml_Hosting_IDesignerAppManagerFactory : WinRtInterface 
+{
+    Windows_UI_Xaml_Hosting_IDesignerAppManagerFactory( comPtr )
+    {
+        var Windows = runtime.global("Windows");
+        this.comPtr = comPtr.queryInterface( "{8F9D633B-1266-4C0E-8499-0DB85BBD4C43}");
+    }
+
+    //@VtableIndex(6)
+    //@Async(0)
+    //@Returns("Windows.UI.Xaml.Hosting.DesignerAppManager")
+    //@Parameters("String")
+    Create(appUserModelId)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = appUserModelId;
+        var _r = Windows.UI.Xaml.Hosting.DesignerAppManager(
+            this.comPtr.invoke( 6, "Windows.UI.Xaml.Hosting.DesignerAppManager", ["String"], [p1] )
+        );
+        return _r;
+    }
+
+
+}
+Windows_UI_Xaml_Hosting_IDesignerAppManagerFactory.iid = "{8F9D633B-1266-4C0E-8499-0DB85BBD4C43}";
+Windows.UI.Xaml.Hosting.IDesignerAppManagerFactory = Windows_UI_Xaml_Hosting_IDesignerAppManagerFactory;
+
+
+//@Interface("Windows.UI.Xaml.Hosting.IDesignerAppView")
+//@IID("{5C777CEA-DD71-4A84-A56F-DACB4B14706F}")
+class Windows_UI_Xaml_Hosting_IDesignerAppView : WinRtInterface 
+{
+    Windows_UI_Xaml_Hosting_IDesignerAppView( comPtr )
+    {
+        var Windows = runtime.global("Windows");
+        this.comPtr = comPtr.queryInterface( "{5C777CEA-DD71-4A84-A56F-DACB4B14706F}");
+    }
+
+    //@VtableIndex(6)
+    //@Async(0)
+    //@Returns("Int32")
+    get_ApplicationViewId()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 6, "Int32", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(7)
+    //@Async(0)
+    //@Returns("String")
+    get_AppUserModelId()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 7, "String", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(8)
+    //@Async(0)
+    //@Returns("Windows.UI.Xaml.Hosting.DesignerAppViewState")
+    get_ViewState()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 8, "UInt32", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(9)
+    //@Async(0)
+    //@Returns("Windows.Foundation.Size")
+    get_ViewSize()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 9, "Windows.Foundation.Size", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(10)
+    //@Async(1)
+    //@Returns("Windows.Foundation.IAsyncAction")
+    //@Parameters("Windows.UI.Xaml.Hosting.DesignerAppViewState","Windows.Foundation.Size")
+    UpdateViewAsync(viewState,viewSize,cb)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = viewState;
+        var p2 = viewSize;
+        this.comPtr.asyncAction( 10, "Windows.Foundation.IAsyncAction", Windows.Foundation.IAsyncAction.handler_iid, ["UInt32", "Windows.Foundation.Size"], [p1, p2] , cb );
+    }
+
+
+}
+Windows_UI_Xaml_Hosting_IDesignerAppView.iid = "{5C777CEA-DD71-4A84-A56F-DACB4B14706F}";
+Windows.UI.Xaml.Hosting.IDesignerAppView = Windows_UI_Xaml_Hosting_IDesignerAppView;
+
+
+//@Interface("Windows.UI.Xaml.Hosting.IDesktopWindowXamlSource")
+//@IID("{D585BFE1-00FF-51BE-BA1D-A1329956EA0A}")
+class Windows_UI_Xaml_Hosting_IDesktopWindowXamlSource : WinRtInterface 
+{
+    Windows_UI_Xaml_Hosting_IDesktopWindowXamlSource( comPtr )
+    {
+        var Windows = runtime.global("Windows");
+        this.comPtr = comPtr.queryInterface( "{D585BFE1-00FF-51BE-BA1D-A1329956EA0A}");
+    }
+
+    //@VtableIndex(6)
+    //@Async(0)
+    //@Returns("Windows.UI.Xaml.UIElement")
+    get_Content()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = Windows.UI.Xaml.UIElement(
+            this.comPtr.invoke( 6, "Windows.UI.Xaml.UIElement", [], [] )
+        );
+        return _r;
+    }
+
+    //@VtableIndex(7)
+    //@Async(0)
+    //@Returns("void")
+    //@Parameters("Windows.UI.Xaml.UIElement")
+    put_Content(value)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = Windows.UI.Xaml.UIElement( value); 
+        this.comPtr.invoke( 7, "void", ["Windows.UI.Xaml.UIElement"], [p1] );
+    }
+
+    //@VtableIndex(8)
+    //@Async(0)
+    //@Returns("Boolean")
+    get_HasFocus()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 8, "Boolean", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(9)
+    //@Async(0)
+    //@Returns("Windows.Foundation.EventRegistrationToken")
+    //@Parameters("Windows.Foundation.TypedEventHandler`2<Windows.UI.Xaml.Hosting.DesktopWindowXamlSource,Windows.UI.Xaml.Hosting.DesktopWindowXamlSourceTakeFocusRequestedEventArgs>")
+    add_TakeFocusRequested(handler)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = nil; 
+        if( typeof(handler) == "comptr" ) { 
+            p1 = handler;
+        } else {
+            p1 = Windows.Foundation.TypedEventHandler_2_Windows_UI_Xaml_Hosting_DesktopWindowXamlSource_Windows_UI_Xaml_Hosting_DesktopWindowXamlSourceTakeFocusRequestedEventArgs_.Create( handler); 
+        }
+        var _r = this.comPtr.invoke( 9, "Windows.Foundation.EventRegistrationToken", ["Windows.Foundation.TypedEventHandler`2<Windows.UI.Xaml.Hosting.DesktopWindowXamlSource,Windows.UI.Xaml.Hosting.DesktopWindowXamlSourceTakeFocusRequestedEventArgs>"], [p1] );
+        return _r;
+    }
+
+    //@VtableIndex(10)
+    //@Async(0)
+    //@Returns("void")
+    //@Parameters("Windows.Foundation.EventRegistrationToken")
+    remove_TakeFocusRequested(token)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = token;
+        this.comPtr.invoke( 10, "void", ["Windows.Foundation.EventRegistrationToken"], [p1] );
+    }
+
+    //@VtableIndex(11)
+    //@Async(0)
+    //@Returns("Windows.Foundation.EventRegistrationToken")
+    //@Parameters("Windows.Foundation.TypedEventHandler`2<Windows.UI.Xaml.Hosting.DesktopWindowXamlSource,Windows.UI.Xaml.Hosting.DesktopWindowXamlSourceGotFocusEventArgs>")
+    add_GotFocus(handler)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = nil; 
+        if( typeof(handler) == "comptr" ) { 
+            p1 = handler;
+        } else {
+            p1 = Windows.Foundation.TypedEventHandler_2_Windows_UI_Xaml_Hosting_DesktopWindowXamlSource_Windows_UI_Xaml_Hosting_DesktopWindowXamlSourceGotFocusEventArgs_.Create( handler); 
+        }
+        var _r = this.comPtr.invoke( 11, "Windows.Foundation.EventRegistrationToken", ["Windows.Foundation.TypedEventHandler`2<Windows.UI.Xaml.Hosting.DesktopWindowXamlSource,Windows.UI.Xaml.Hosting.DesktopWindowXamlSourceGotFocusEventArgs>"], [p1] );
+        return _r;
+    }
+
+    //@VtableIndex(12)
+    //@Async(0)
+    //@Returns("void")
+    //@Parameters("Windows.Foundation.EventRegistrationToken")
+    remove_GotFocus(token)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = token;
+        this.comPtr.invoke( 12, "void", ["Windows.Foundation.EventRegistrationToken"], [p1] );
+    }
+
+    //@VtableIndex(13)
+    //@Async(0)
+    //@Returns("Windows.UI.Xaml.Hosting.XamlSourceFocusNavigationResult")
+    //@Parameters("Windows.UI.Xaml.Hosting.XamlSourceFocusNavigationRequest")
+    NavigateFocus(request)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = Windows.UI.Xaml.Hosting.XamlSourceFocusNavigationRequest( request); 
+        var _r = Windows.UI.Xaml.Hosting.XamlSourceFocusNavigationResult(
+            this.comPtr.invoke( 13, "Windows.UI.Xaml.Hosting.XamlSourceFocusNavigationResult", ["Windows.UI.Xaml.Hosting.XamlSourceFocusNavigationRequest"], [p1] )
+        );
+        return _r;
+    }
+
+
+}
+Windows_UI_Xaml_Hosting_IDesktopWindowXamlSource.iid = "{D585BFE1-00FF-51BE-BA1D-A1329956EA0A}";
+Windows.UI.Xaml.Hosting.IDesktopWindowXamlSource = Windows_UI_Xaml_Hosting_IDesktopWindowXamlSource;
+
+
+//@Interface("Windows.UI.Xaml.Hosting.IDesktopWindowXamlSourceFactory")
+//@IID("{5CD61DC0-2561-56E1-8E75-6E44173805E3}")
+class Windows_UI_Xaml_Hosting_IDesktopWindowXamlSourceFactory : WinRtInterface 
+{
+    Windows_UI_Xaml_Hosting_IDesktopWindowXamlSourceFactory( comPtr )
+    {
+        var Windows = runtime.global("Windows");
+        this.comPtr = comPtr.queryInterface( "{5CD61DC0-2561-56E1-8E75-6E44173805E3}");
+    }
+
+
+}
+Windows_UI_Xaml_Hosting_IDesktopWindowXamlSourceFactory.iid = "{5CD61DC0-2561-56E1-8E75-6E44173805E3}";
+Windows.UI.Xaml.Hosting.IDesktopWindowXamlSourceFactory = Windows_UI_Xaml_Hosting_IDesktopWindowXamlSourceFactory;
+
+
+//@Interface("Windows.UI.Xaml.Hosting.IDesktopWindowXamlSourceGotFocusEventArgs")
+//@IID("{39BE4849-D9CC-5B70-8F05-1AD9A4AAA342}")
+class Windows_UI_Xaml_Hosting_IDesktopWindowXamlSourceGotFocusEventArgs : WinRtInterface 
+{
+    Windows_UI_Xaml_Hosting_IDesktopWindowXamlSourceGotFocusEventArgs( comPtr )
+    {
+        var Windows = runtime.global("Windows");
+        this.comPtr = comPtr.queryInterface( "{39BE4849-D9CC-5B70-8F05-1AD9A4AAA342}");
+    }
+
+    //@VtableIndex(6)
+    //@Async(0)
+    //@Returns("Windows.UI.Xaml.Hosting.XamlSourceFocusNavigationRequest")
+    get_Request()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = Windows.UI.Xaml.Hosting.XamlSourceFocusNavigationRequest(
+            this.comPtr.invoke( 6, "Windows.UI.Xaml.Hosting.XamlSourceFocusNavigationRequest", [], [] )
+        );
+        return _r;
+    }
+
+
+}
+Windows_UI_Xaml_Hosting_IDesktopWindowXamlSourceGotFocusEventArgs.iid = "{39BE4849-D9CC-5B70-8F05-1AD9A4AAA342}";
+Windows.UI.Xaml.Hosting.IDesktopWindowXamlSourceGotFocusEventArgs = Windows_UI_Xaml_Hosting_IDesktopWindowXamlSourceGotFocusEventArgs;
+
+
+//@Interface("Windows.UI.Xaml.Hosting.IDesktopWindowXamlSourceTakeFocusRequestedEventArgs")
+//@IID("{FE61E4B9-A7AF-52B3-BDB9-C3305C0B8DF2}")
+class Windows_UI_Xaml_Hosting_IDesktopWindowXamlSourceTakeFocusRequestedEventArgs : WinRtInterface 
+{
+    Windows_UI_Xaml_Hosting_IDesktopWindowXamlSourceTakeFocusRequestedEventArgs( comPtr )
+    {
+        var Windows = runtime.global("Windows");
+        this.comPtr = comPtr.queryInterface( "{FE61E4B9-A7AF-52B3-BDB9-C3305C0B8DF2}");
+    }
+
+    //@VtableIndex(6)
+    //@Async(0)
+    //@Returns("Windows.UI.Xaml.Hosting.XamlSourceFocusNavigationRequest")
+    get_Request()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = Windows.UI.Xaml.Hosting.XamlSourceFocusNavigationRequest(
+            this.comPtr.invoke( 6, "Windows.UI.Xaml.Hosting.XamlSourceFocusNavigationRequest", [], [] )
+        );
+        return _r;
+    }
+
+
+}
+Windows_UI_Xaml_Hosting_IDesktopWindowXamlSourceTakeFocusRequestedEventArgs.iid = "{FE61E4B9-A7AF-52B3-BDB9-C3305C0B8DF2}";
+Windows.UI.Xaml.Hosting.IDesktopWindowXamlSourceTakeFocusRequestedEventArgs = Windows_UI_Xaml_Hosting_IDesktopWindowXamlSourceTakeFocusRequestedEventArgs;
+
+
+//@Interface("Windows.UI.Xaml.Hosting.IElementCompositionPreview")
+//@IID("{B6F1A676-CFE6-46AC-ACF6-C4687BB65E60}")
+class Windows_UI_Xaml_Hosting_IElementCompositionPreview : WinRtInterface 
+{
+    Windows_UI_Xaml_Hosting_IElementCompositionPreview( comPtr )
+    {
+        var Windows = runtime.global("Windows");
+        this.comPtr = comPtr.queryInterface( "{B6F1A676-CFE6-46AC-ACF6-C4687BB65E60}");
+    }
+
+
+}
+Windows_UI_Xaml_Hosting_IElementCompositionPreview.iid = "{B6F1A676-CFE6-46AC-ACF6-C4687BB65E60}";
+Windows.UI.Xaml.Hosting.IElementCompositionPreview = Windows_UI_Xaml_Hosting_IElementCompositionPreview;
+
+
+//@Interface("Windows.UI.Xaml.Hosting.IElementCompositionPreviewStatics")
+//@IID("{08C92B38-EC99-4C55-BC85-A1C180B27646}")
+class Windows_UI_Xaml_Hosting_IElementCompositionPreviewStatics : WinRtInterface 
+{
+    Windows_UI_Xaml_Hosting_IElementCompositionPreviewStatics( comPtr )
+    {
+        var Windows = runtime.global("Windows");
+        this.comPtr = comPtr.queryInterface( "{08C92B38-EC99-4C55-BC85-A1C180B27646}");
+    }
+
+    //@VtableIndex(6)
+    //@Async(0)
+    //@Returns("Windows.UI.Composition.Visual")
+    //@Parameters("Windows.UI.Xaml.UIElement")
+    GetElementVisual(element)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = Windows.UI.Xaml.UIElement( element); 
+        var _r = Windows.UI.Composition.Visual(
+            this.comPtr.invoke( 6, "Windows.UI.Composition.Visual", ["Windows.UI.Xaml.UIElement"], [p1] )
+        );
+        return _r;
+    }
+
+    //@VtableIndex(7)
+    //@Async(0)
+    //@Returns("Windows.UI.Composition.Visual")
+    //@Parameters("Windows.UI.Xaml.UIElement")
+    GetElementChildVisual(element)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = Windows.UI.Xaml.UIElement( element); 
+        var _r = Windows.UI.Composition.Visual(
+            this.comPtr.invoke( 7, "Windows.UI.Composition.Visual", ["Windows.UI.Xaml.UIElement"], [p1] )
+        );
+        return _r;
+    }
+
+    //@VtableIndex(8)
+    //@Async(0)
+    //@Returns("void")
+    //@Parameters("Windows.UI.Xaml.UIElement","Windows.UI.Composition.Visual")
+    SetElementChildVisual(element,visual)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = Windows.UI.Xaml.UIElement( element); 
+        var p2 = Windows.UI.Composition.Visual( visual); 
+        this.comPtr.invoke( 8, "void", ["Windows.UI.Xaml.UIElement", "Windows.UI.Composition.Visual"], [p1, p2] );
+    }
+
+    //@VtableIndex(9)
+    //@Async(0)
+    //@Returns("Windows.UI.Composition.CompositionPropertySet")
+    //@Parameters("Windows.UI.Xaml.Controls.ScrollViewer")
+    GetScrollViewerManipulationPropertySet(scrollViewer)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = Windows.UI.Xaml.Controls.ScrollViewer( scrollViewer); 
+        var _r = Windows.UI.Composition.CompositionPropertySet(
+            this.comPtr.invoke( 9, "Windows.UI.Composition.CompositionPropertySet", ["Windows.UI.Xaml.Controls.ScrollViewer"], [p1] )
+        );
+        return _r;
+    }
+
+
+}
+Windows_UI_Xaml_Hosting_IElementCompositionPreviewStatics.iid = "{08C92B38-EC99-4C55-BC85-A1C180B27646}";
+Windows.UI.Xaml.Hosting.IElementCompositionPreviewStatics = Windows_UI_Xaml_Hosting_IElementCompositionPreviewStatics;
+
+
+//@Interface("Windows.UI.Xaml.Hosting.IElementCompositionPreviewStatics2")
+//@IID("{24148FBB-23D6-4F37-BA0C-0733E799722D}")
+class Windows_UI_Xaml_Hosting_IElementCompositionPreviewStatics2 : WinRtInterface 
+{
+    Windows_UI_Xaml_Hosting_IElementCompositionPreviewStatics2( comPtr )
+    {
+        var Windows = runtime.global("Windows");
+        this.comPtr = comPtr.queryInterface( "{24148FBB-23D6-4F37-BA0C-0733E799722D}");
+    }
+
+    //@VtableIndex(6)
+    //@Async(0)
+    //@Returns("void")
+    //@Parameters("Windows.UI.Xaml.UIElement","Windows.UI.Composition.ICompositionAnimationBase")
+    SetImplicitShowAnimation(element,animation)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = Windows.UI.Xaml.UIElement( element); 
+        var p2 = Windows.UI.Composition.ICompositionAnimationBase( animation); 
+        this.comPtr.invoke( 6, "void", ["Windows.UI.Xaml.UIElement", "Windows.UI.Composition.ICompositionAnimationBase"], [p1, p2] );
+    }
+
+    //@VtableIndex(7)
+    //@Async(0)
+    //@Returns("void")
+    //@Parameters("Windows.UI.Xaml.UIElement","Windows.UI.Composition.ICompositionAnimationBase")
+    SetImplicitHideAnimation(element,animation)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = Windows.UI.Xaml.UIElement( element); 
+        var p2 = Windows.UI.Composition.ICompositionAnimationBase( animation); 
+        this.comPtr.invoke( 7, "void", ["Windows.UI.Xaml.UIElement", "Windows.UI.Composition.ICompositionAnimationBase"], [p1, p2] );
+    }
+
+    //@VtableIndex(8)
+    //@Async(0)
+    //@Returns("void")
+    //@Parameters("Windows.UI.Xaml.UIElement","Boolean")
+    SetIsTranslationEnabled(element,value)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = Windows.UI.Xaml.UIElement( element); 
+        var p2 = value;
+        this.comPtr.invoke( 8, "void", ["Windows.UI.Xaml.UIElement", "Boolean"], [p1, p2] );
+    }
+
+    //@VtableIndex(9)
+    //@Async(0)
+    //@Returns("Windows.UI.Composition.CompositionPropertySet")
+    //@Parameters("Windows.UI.Xaml.UIElement")
+    GetPointerPositionPropertySet(targetElement)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = Windows.UI.Xaml.UIElement( targetElement); 
+        var _r = Windows.UI.Composition.CompositionPropertySet(
+            this.comPtr.invoke( 9, "Windows.UI.Composition.CompositionPropertySet", ["Windows.UI.Xaml.UIElement"], [p1] )
+        );
+        return _r;
+    }
+
+
+}
+Windows_UI_Xaml_Hosting_IElementCompositionPreviewStatics2.iid = "{24148FBB-23D6-4F37-BA0C-0733E799722D}";
+Windows.UI.Xaml.Hosting.IElementCompositionPreviewStatics2 = Windows_UI_Xaml_Hosting_IElementCompositionPreviewStatics2;
+
+
+//@Interface("Windows.UI.Xaml.Hosting.IElementCompositionPreviewStatics3")
+//@IID("{843BC4C3-C105-59FE-A3D1-373C1D3E6FBC}")
+class Windows_UI_Xaml_Hosting_IElementCompositionPreviewStatics3 : WinRtInterface 
+{
+    Windows_UI_Xaml_Hosting_IElementCompositionPreviewStatics3( comPtr )
+    {
+        var Windows = runtime.global("Windows");
+        this.comPtr = comPtr.queryInterface( "{843BC4C3-C105-59FE-A3D1-373C1D3E6FBC}");
+    }
+
+    //@VtableIndex(6)
+    //@Async(0)
+    //@Returns("void")
+    //@Parameters("Windows.UI.WindowManagement.AppWindow","Windows.UI.Xaml.UIElement")
+    SetAppWindowContent(appWindow,xamlContent)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = Windows.UI.WindowManagement.AppWindow( appWindow); 
+        var p2 = Windows.UI.Xaml.UIElement( xamlContent); 
+        this.comPtr.invoke( 6, "void", ["Windows.UI.WindowManagement.AppWindow", "Windows.UI.Xaml.UIElement"], [p1, p2] );
+    }
+
+    //@VtableIndex(7)
+    //@Async(0)
+    //@Returns("Windows.UI.Xaml.UIElement")
+    //@Parameters("Windows.UI.WindowManagement.AppWindow")
+    GetAppWindowContent(appWindow)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = Windows.UI.WindowManagement.AppWindow( appWindow); 
+        var _r = Windows.UI.Xaml.UIElement(
+            this.comPtr.invoke( 7, "Windows.UI.Xaml.UIElement", ["Windows.UI.WindowManagement.AppWindow"], [p1] )
+        );
+        return _r;
+    }
+
+
+}
+Windows_UI_Xaml_Hosting_IElementCompositionPreviewStatics3.iid = "{843BC4C3-C105-59FE-A3D1-373C1D3E6FBC}";
+Windows.UI.Xaml.Hosting.IElementCompositionPreviewStatics3 = Windows_UI_Xaml_Hosting_IElementCompositionPreviewStatics3;
+
+
+//@Interface("Windows.UI.Xaml.Hosting.IWindowsXamlManager")
+//@IID("{56096C31-1AA0-5288-8818-6E74A2DCAFF5}")
+class Windows_UI_Xaml_Hosting_IWindowsXamlManager : WinRtInterface 
+{
+    Windows_UI_Xaml_Hosting_IWindowsXamlManager( comPtr )
+    {
+        var Windows = runtime.global("Windows");
+        this.comPtr = comPtr.queryInterface( "{56096C31-1AA0-5288-8818-6E74A2DCAFF5}");
+    }
+
+
+}
+Windows_UI_Xaml_Hosting_IWindowsXamlManager.iid = "{56096C31-1AA0-5288-8818-6E74A2DCAFF5}";
+Windows.UI.Xaml.Hosting.IWindowsXamlManager = Windows_UI_Xaml_Hosting_IWindowsXamlManager;
+
+
+//@Interface("Windows.UI.Xaml.Hosting.IWindowsXamlManagerStatics")
+//@IID("{28258A12-7D82-505B-B210-712B04A58882}")
+class Windows_UI_Xaml_Hosting_IWindowsXamlManagerStatics : WinRtInterface 
+{
+    Windows_UI_Xaml_Hosting_IWindowsXamlManagerStatics( comPtr )
+    {
+        var Windows = runtime.global("Windows");
+        this.comPtr = comPtr.queryInterface( "{28258A12-7D82-505B-B210-712B04A58882}");
+    }
+
+    //@VtableIndex(6)
+    //@Async(0)
+    //@Returns("Windows.UI.Xaml.Hosting.WindowsXamlManager")
+    InitializeForCurrentThread()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = Windows.UI.Xaml.Hosting.WindowsXamlManager(
+            this.comPtr.invoke( 6, "Windows.UI.Xaml.Hosting.WindowsXamlManager", [], [] )
+        );
+        return _r;
+    }
+
+
+}
+Windows_UI_Xaml_Hosting_IWindowsXamlManagerStatics.iid = "{28258A12-7D82-505B-B210-712B04A58882}";
+Windows.UI.Xaml.Hosting.IWindowsXamlManagerStatics = Windows_UI_Xaml_Hosting_IWindowsXamlManagerStatics;
+
+
+//@Interface("Windows.UI.Xaml.Hosting.IXamlSourceFocusNavigationRequest")
+//@IID("{FBB93BB5-1496-5A80-AC00-E757359755E6}")
+class Windows_UI_Xaml_Hosting_IXamlSourceFocusNavigationRequest : WinRtInterface 
+{
+    Windows_UI_Xaml_Hosting_IXamlSourceFocusNavigationRequest( comPtr )
+    {
+        var Windows = runtime.global("Windows");
+        this.comPtr = comPtr.queryInterface( "{FBB93BB5-1496-5A80-AC00-E757359755E6}");
+    }
+
+    //@VtableIndex(6)
+    //@Async(0)
+    //@Returns("Windows.UI.Xaml.Hosting.XamlSourceFocusNavigationReason")
+    get_Reason()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 6, "UInt32", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(7)
+    //@Async(0)
+    //@Returns("Windows.Foundation.Rect")
+    get_HintRect()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 7, "Windows.Foundation.Rect", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(8)
+    //@Async(0)
+    //@Returns("ptr")
+    get_CorrelationId()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 8, "ptr", [], [] );
+        return _r;
+    }
+
+
+}
+Windows_UI_Xaml_Hosting_IXamlSourceFocusNavigationRequest.iid = "{FBB93BB5-1496-5A80-AC00-E757359755E6}";
+Windows.UI.Xaml.Hosting.IXamlSourceFocusNavigationRequest = Windows_UI_Xaml_Hosting_IXamlSourceFocusNavigationRequest;
+
+
+//@Interface("Windows.UI.Xaml.Hosting.IXamlSourceFocusNavigationRequestFactory")
+//@IID("{E746AB8F-B4EF-5390-97E5-CC0A2779C574}")
+class Windows_UI_Xaml_Hosting_IXamlSourceFocusNavigationRequestFactory : WinRtInterface 
+{
+    Windows_UI_Xaml_Hosting_IXamlSourceFocusNavigationRequestFactory( comPtr )
+    {
+        var Windows = runtime.global("Windows");
+        this.comPtr = comPtr.queryInterface( "{E746AB8F-B4EF-5390-97E5-CC0A2779C574}");
+    }
+
+    //@VtableIndex(6)
+    //@Async(0)
+    //@Returns("Windows.UI.Xaml.Hosting.XamlSourceFocusNavigationRequest")
+    //@Parameters("Windows.UI.Xaml.Hosting.XamlSourceFocusNavigationReason")
+    CreateInstance(reason)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = reason;
+        var _r = Windows.UI.Xaml.Hosting.XamlSourceFocusNavigationRequest(
+            this.comPtr.invoke( 6, "Windows.UI.Xaml.Hosting.XamlSourceFocusNavigationRequest", ["UInt32"], [p1] )
+        );
+        return _r;
+    }
+
+    //@VtableIndex(7)
+    //@Async(0)
+    //@Returns("Windows.UI.Xaml.Hosting.XamlSourceFocusNavigationRequest")
+    //@Parameters("Windows.UI.Xaml.Hosting.XamlSourceFocusNavigationReason","Windows.Foundation.Rect")
+    CreateInstanceWithHintRect(reason,hintRect)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = reason;
+        var p2 = hintRect;
+        var _r = Windows.UI.Xaml.Hosting.XamlSourceFocusNavigationRequest(
+            this.comPtr.invoke( 7, "Windows.UI.Xaml.Hosting.XamlSourceFocusNavigationRequest", ["UInt32", "Windows.Foundation.Rect"], [p1, p2] )
+        );
+        return _r;
+    }
+
+    //@VtableIndex(8)
+    //@Async(0)
+    //@Returns("Windows.UI.Xaml.Hosting.XamlSourceFocusNavigationRequest")
+    //@Parameters("Windows.UI.Xaml.Hosting.XamlSourceFocusNavigationReason","Windows.Foundation.Rect","ptr")
+    CreateInstanceWithHintRectAndCorrelationId(reason,hintRect,correlationId)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = reason;
+        var p2 = hintRect;
+        var p3 = correlationId;
+        var _r = Windows.UI.Xaml.Hosting.XamlSourceFocusNavigationRequest(
+            this.comPtr.invoke( 8, "Windows.UI.Xaml.Hosting.XamlSourceFocusNavigationRequest", ["UInt32", "Windows.Foundation.Rect", "ptr"], [p1, p2, p3] )
+        );
+        return _r;
+    }
+
+
+}
+Windows_UI_Xaml_Hosting_IXamlSourceFocusNavigationRequestFactory.iid = "{E746AB8F-B4EF-5390-97E5-CC0A2779C574}";
+Windows.UI.Xaml.Hosting.IXamlSourceFocusNavigationRequestFactory = Windows_UI_Xaml_Hosting_IXamlSourceFocusNavigationRequestFactory;
+
+
+//@Interface("Windows.UI.Xaml.Hosting.IXamlSourceFocusNavigationResult")
+//@IID("{88D55A5F-9603-5D8F-9CC7-D1C4070D9801}")
+class Windows_UI_Xaml_Hosting_IXamlSourceFocusNavigationResult : WinRtInterface 
+{
+    Windows_UI_Xaml_Hosting_IXamlSourceFocusNavigationResult( comPtr )
+    {
+        var Windows = runtime.global("Windows");
+        this.comPtr = comPtr.queryInterface( "{88D55A5F-9603-5D8F-9CC7-D1C4070D9801}");
+    }
+
+    //@VtableIndex(6)
+    //@Async(0)
+    //@Returns("Boolean")
+    get_WasFocusMoved()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 6, "Boolean", [], [] );
+        return _r;
+    }
+
+
+}
+Windows_UI_Xaml_Hosting_IXamlSourceFocusNavigationResult.iid = "{88D55A5F-9603-5D8F-9CC7-D1C4070D9801}";
+Windows.UI.Xaml.Hosting.IXamlSourceFocusNavigationResult = Windows_UI_Xaml_Hosting_IXamlSourceFocusNavigationResult;
+
+
+//@Interface("Windows.UI.Xaml.Hosting.IXamlSourceFocusNavigationResultFactory")
+//@IID("{43BBADBF-F9E1-5527-B8C5-09339FF2CA76}")
+class Windows_UI_Xaml_Hosting_IXamlSourceFocusNavigationResultFactory : WinRtInterface 
+{
+    Windows_UI_Xaml_Hosting_IXamlSourceFocusNavigationResultFactory( comPtr )
+    {
+        var Windows = runtime.global("Windows");
+        this.comPtr = comPtr.queryInterface( "{43BBADBF-F9E1-5527-B8C5-09339FF2CA76}");
+    }
+
+    //@VtableIndex(6)
+    //@Async(0)
+    //@Returns("Windows.UI.Xaml.Hosting.XamlSourceFocusNavigationResult")
+    //@Parameters("Boolean")
+    CreateInstance(focusMoved)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = focusMoved;
+        var _r = Windows.UI.Xaml.Hosting.XamlSourceFocusNavigationResult(
+            this.comPtr.invoke( 6, "Windows.UI.Xaml.Hosting.XamlSourceFocusNavigationResult", ["Boolean"], [p1] )
+        );
+        return _r;
+    }
+
+
+}
+Windows_UI_Xaml_Hosting_IXamlSourceFocusNavigationResultFactory.iid = "{43BBADBF-F9E1-5527-B8C5-09339FF2CA76}";
+Windows.UI.Xaml.Hosting.IXamlSourceFocusNavigationResultFactory = Windows_UI_Xaml_Hosting_IXamlSourceFocusNavigationResultFactory;
+
+
+//@Interface("Windows.UI.Xaml.Hosting.IXamlUIPresenter")
+//@IID("{A714944A-1619-4FC6-B31B-89512EF022A2}")
+class Windows_UI_Xaml_Hosting_IXamlUIPresenter : WinRtInterface 
+{
+    Windows_UI_Xaml_Hosting_IXamlUIPresenter( comPtr )
+    {
+        var Windows = runtime.global("Windows");
+        this.comPtr = comPtr.queryInterface( "{A714944A-1619-4FC6-B31B-89512EF022A2}");
+    }
+
+    //@VtableIndex(6)
+    //@Async(0)
+    //@Returns("Windows.UI.Xaml.UIElement")
+    get_RootElement()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = Windows.UI.Xaml.UIElement(
+            this.comPtr.invoke( 6, "Windows.UI.Xaml.UIElement", [], [] )
+        );
+        return _r;
+    }
+
+    //@VtableIndex(7)
+    //@Async(0)
+    //@Returns("void")
+    //@Parameters("Windows.UI.Xaml.UIElement")
+    put_RootElement(value)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = Windows.UI.Xaml.UIElement( value); 
+        this.comPtr.invoke( 7, "void", ["Windows.UI.Xaml.UIElement"], [p1] );
+    }
+
+    //@VtableIndex(8)
+    //@Async(0)
+    //@Returns("String")
+    get_ThemeKey()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 8, "String", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(9)
+    //@Async(0)
+    //@Returns("void")
+    //@Parameters("String")
+    put_ThemeKey(value)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = value;
+        this.comPtr.invoke( 9, "void", ["String"], [p1] );
+    }
+
+    //@VtableIndex(10)
+    //@Async(0)
+    //@Returns("String")
+    get_ThemeResourcesXaml()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 10, "String", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(11)
+    //@Async(0)
+    //@Returns("void")
+    //@Parameters("String")
+    put_ThemeResourcesXaml(value)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = value;
+        this.comPtr.invoke( 11, "void", ["String"], [p1] );
+    }
+
+    //@VtableIndex(12)
+    //@Async(0)
+    //@Returns("void")
+    //@Parameters("Int32","Int32")
+    SetSize(width,height)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = width;
+        var p2 = height;
+        this.comPtr.invoke( 12, "void", ["Int32", "Int32"], [p1, p2] );
+    }
+
+    //@VtableIndex(13)
+    //@Async(0)
+    //@Returns("void")
+    Render()
+    {
+        var Windows = runtime.global("Windows");
+        this.comPtr.invoke( 13, "void", [], [] );
+    }
+
+    //@VtableIndex(14)
+    //@Async(0)
+    //@Returns("void")
+    Present()
+    {
+        var Windows = runtime.global("Windows");
+        this.comPtr.invoke( 14, "void", [], [] );
+    }
+
+
+}
+Windows_UI_Xaml_Hosting_IXamlUIPresenter.iid = "{A714944A-1619-4FC6-B31B-89512EF022A2}";
+Windows.UI.Xaml.Hosting.IXamlUIPresenter = Windows_UI_Xaml_Hosting_IXamlUIPresenter;
+
+
+//@Interface("Windows.UI.Xaml.Hosting.IXamlUIPresenterHost")
+//@IID("{AAFB84CD-9F6D-4F80-AC2C-0E6CB9F31659}")
+class Windows_UI_Xaml_Hosting_IXamlUIPresenterHost : WinRtInterface 
+{
+    Windows_UI_Xaml_Hosting_IXamlUIPresenterHost( comPtr )
+    {
+        var Windows = runtime.global("Windows");
+        this.comPtr = comPtr.queryInterface( "{AAFB84CD-9F6D-4F80-AC2C-0E6CB9F31659}");
+    }
+
+    //@VtableIndex(6)
+    //@Async(0)
+    //@Returns("String")
+    //@Parameters("String")
+    ResolveFileResource(path)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = path;
+        var _r = this.comPtr.invoke( 6, "String", ["String"], [p1] );
+        return _r;
+    }
+
+
+}
+Windows_UI_Xaml_Hosting_IXamlUIPresenterHost.iid = "{AAFB84CD-9F6D-4F80-AC2C-0E6CB9F31659}";
+Windows.UI.Xaml.Hosting.IXamlUIPresenterHost = Windows_UI_Xaml_Hosting_IXamlUIPresenterHost;
+
+
+//@Interface("Windows.UI.Xaml.Hosting.IXamlUIPresenterHost2")
+//@IID("{61595672-7CA4-4A21-B56A-88F4812388CA}")
+class Windows_UI_Xaml_Hosting_IXamlUIPresenterHost2 : WinRtInterface 
+{
+    Windows_UI_Xaml_Hosting_IXamlUIPresenterHost2( comPtr )
+    {
+        var Windows = runtime.global("Windows");
+        this.comPtr = comPtr.queryInterface( "{61595672-7CA4-4A21-B56A-88F4812388CA}");
+    }
+
+    //@VtableIndex(6)
+    //@Async(0)
+    //@Returns("String")
+    GetGenericXamlFilePath()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 6, "String", [], [] );
+        return _r;
+    }
+
+
+}
+Windows_UI_Xaml_Hosting_IXamlUIPresenterHost2.iid = "{61595672-7CA4-4A21-B56A-88F4812388CA}";
+Windows.UI.Xaml.Hosting.IXamlUIPresenterHost2 = Windows_UI_Xaml_Hosting_IXamlUIPresenterHost2;
+
+
+//@Interface("Windows.UI.Xaml.Hosting.IXamlUIPresenterHost3")
+//@IID("{B14292BF-7320-41BB-9F26-4D6FD34DB45A}")
+class Windows_UI_Xaml_Hosting_IXamlUIPresenterHost3 : WinRtInterface 
+{
+    Windows_UI_Xaml_Hosting_IXamlUIPresenterHost3( comPtr )
+    {
+        var Windows = runtime.global("Windows");
+        this.comPtr = comPtr.queryInterface( "{B14292BF-7320-41BB-9F26-4D6FD34DB45A}");
+    }
+
+    //@VtableIndex(6)
+    //@Async(0)
+    //@Returns("Object")
+    //@Parameters("Windows.UI.Xaml.ResourceDictionary","Object","Object")
+    ResolveDictionaryResource(dictionary,dictionaryKey,suggestedValue)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = Windows.UI.Xaml.ResourceDictionary( dictionary); 
+        var p2 = dictionaryKey;
+        var p3 = suggestedValue;
+        var _r = this.comPtr.invoke( 6, "Object", ["Windows.UI.Xaml.ResourceDictionary", "Object", "Object"], [p1, p2, p3] );
+        return _r;
+    }
+
+
+}
+Windows_UI_Xaml_Hosting_IXamlUIPresenterHost3.iid = "{B14292BF-7320-41BB-9F26-4D6FD34DB45A}";
+Windows.UI.Xaml.Hosting.IXamlUIPresenterHost3 = Windows_UI_Xaml_Hosting_IXamlUIPresenterHost3;
+
+
+//@Interface("Windows.UI.Xaml.Hosting.IXamlUIPresenterStatics")
+//@IID("{71EAEAC8-45E1-4192-85AA-3A422EDD23CF}")
+class Windows_UI_Xaml_Hosting_IXamlUIPresenterStatics : WinRtInterface 
+{
+    Windows_UI_Xaml_Hosting_IXamlUIPresenterStatics( comPtr )
+    {
+        var Windows = runtime.global("Windows");
+        this.comPtr = comPtr.queryInterface( "{71EAEAC8-45E1-4192-85AA-3A422EDD23CF}");
+    }
+
+    //@VtableIndex(6)
+    //@Async(0)
+    //@Returns("Boolean")
+    get_CompleteTimelinesAutomatically()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke( 6, "Boolean", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(7)
+    //@Async(0)
+    //@Returns("void")
+    //@Parameters("Boolean")
+    put_CompleteTimelinesAutomatically(value)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = value;
+        this.comPtr.invoke( 7, "void", ["Boolean"], [p1] );
+    }
+
+    //@VtableIndex(8)
+    //@Async(0)
+    //@Returns("void")
+    //@Parameters("Windows.UI.Xaml.Hosting.IXamlUIPresenterHost")
+    SetHost(host)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = Windows.UI.Xaml.Hosting.IXamlUIPresenterHost( host); 
+        this.comPtr.invoke( 8, "void", ["Windows.UI.Xaml.Hosting.IXamlUIPresenterHost"], [p1] );
+    }
+
+    //@VtableIndex(9)
+    //@Async(0)
+    //@Returns("void")
+    NotifyWindowSizeChanged()
+    {
+        var Windows = runtime.global("Windows");
+        this.comPtr.invoke( 9, "void", [], [] );
+    }
+
+
+}
+Windows_UI_Xaml_Hosting_IXamlUIPresenterStatics.iid = "{71EAEAC8-45E1-4192-85AA-3A422EDD23CF}";
+Windows.UI.Xaml.Hosting.IXamlUIPresenterStatics = Windows_UI_Xaml_Hosting_IXamlUIPresenterStatics;
+
+
+//@Interface("Windows.UI.Xaml.Hosting.IXamlUIPresenterStatics2")
+//@IID("{5C6B68D2-CF1C-4F53-BF09-6A745F7A9703}")
+class Windows_UI_Xaml_Hosting_IXamlUIPresenterStatics2 : WinRtInterface 
+{
+    Windows_UI_Xaml_Hosting_IXamlUIPresenterStatics2( comPtr )
+    {
+        var Windows = runtime.global("Windows");
+        this.comPtr = comPtr.queryInterface( "{5C6B68D2-CF1C-4F53-BF09-6A745F7A9703}");
+    }
+
+
+}
+Windows_UI_Xaml_Hosting_IXamlUIPresenterStatics2.iid = "{5C6B68D2-CF1C-4F53-BF09-6A745F7A9703}";
+Windows.UI.Xaml.Hosting.IXamlUIPresenterStatics2 = Windows_UI_Xaml_Hosting_IXamlUIPresenterStatics2;
+
+
+//@RuntimeClass("Windows.UI.Xaml.Hosting.DesignerAppExitedEventArgs")
+//@Implements("Windows.UI.Xaml.Hosting.IDesignerAppExitedEventArgs")
+//@DefaultInterface("Windows.UI.Xaml.Hosting.IDesignerAppExitedEventArgs")
+@Proxy("WinRtProxy")
+class Windows_UI_Xaml_Hosting_DesignerAppExitedEventArgs : WinRtInterface
+{
+    Windows_UI_Xaml_Hosting_DesignerAppExitedEventArgs( comPtr )
+    {
+        var Windows = runtime.global("Windows");
+        this.comPtr = comPtr.queryInterface( Windows.UI.Xaml.Hosting.IDesignerAppExitedEventArgs.iid );
+    }
+
+    static Create()
+    {
+        return Windows.UI.Xaml.Hosting.DesignerAppExitedEventArgs(
+            winrt.activate("Windows.UI.Xaml.Hosting.DesignerAppExitedEventArgs")
+        );
+    }
+    //@Returns("UInt32")
+    get_ExitCode()
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.UI.Xaml.Hosting.IDesignerAppExitedEventArgs( this.comPtr );
+        var _r = iface.get_ExitCode(  );
+        iface.release();
+        return _r;
+    }
+
+
+}
+Windows.UI.Xaml.Hosting.DesignerAppExitedEventArgs = Windows_UI_Xaml_Hosting_DesignerAppExitedEventArgs;
+
+//@RuntimeClass("Windows.UI.Xaml.Hosting.DesignerAppManager")
+//@Implements("Windows.UI.Xaml.Hosting.IDesignerAppManager","Windows.Foundation.IClosable")
+//@DefaultInterface("Windows.UI.Xaml.Hosting.IDesignerAppManager")
+@Proxy("WinRtProxy")
+class Windows_UI_Xaml_Hosting_DesignerAppManager : WinRtInterface
+{
+    Windows_UI_Xaml_Hosting_DesignerAppManager( comPtr )
+    {
+        var Windows = runtime.global("Windows");
+        this.comPtr = comPtr.queryInterface( Windows.UI.Xaml.Hosting.IDesignerAppManager.iid );
+    }
+
+    static Create()
+    {
+        return Windows.UI.Xaml.Hosting.DesignerAppManager(
+            winrt.activate("Windows.UI.Xaml.Hosting.DesignerAppManager")
+        );
+    }
+    //@Returns("Windows.UI.Xaml.Hosting.DesignerAppManager")
+    //@Parameters("String")
+    static Create_appUserModelId(appUserModelId)
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.UI.Xaml.Hosting.DesignerAppManager");
+        var iface = Windows.UI.Xaml.Hosting.IDesignerAppManagerFactory( factory );
+        var result = iface.Create( appUserModelId );
+        iface.release();
+        factory.release();
+        return result;
+    }
+    // f Windows.UI.Xaml.Hosting.IDesignerAppManagerFactory
+    //@Returns("String")
+    get_AppUserModelId()
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.UI.Xaml.Hosting.IDesignerAppManager( this.comPtr );
+        var _r = iface.get_AppUserModelId(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Parameters("Windows.Foundation.TypedEventHandler`2<Windows.UI.Xaml.Hosting.DesignerAppManager,Windows.UI.Xaml.Hosting.DesignerAppExitedEventArgs>")
+    //@Returns("Windows.Foundation.EventRegistrationToken")
+    //@Parameters("Windows.Foundation.TypedEventHandler`2<Windows.UI.Xaml.Hosting.DesignerAppManager,Windows.UI.Xaml.Hosting.DesignerAppExitedEventArgs>")
+    add_DesignerAppExited(handler)
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.UI.Xaml.Hosting.IDesignerAppManager( this.comPtr );
+        var _r = iface.add_DesignerAppExited( handler );
+        iface.release();
+        return _r;
+    }
+
+    //@Parameters("Windows.Foundation.EventRegistrationToken")
+    //@Returns("void")
+    //@Parameters("Windows.Foundation.EventRegistrationToken")
+    remove_DesignerAppExited(token)
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.UI.Xaml.Hosting.IDesignerAppManager( this.comPtr );
+        iface.remove_DesignerAppExited( token );
+        iface.release();
+    }
+
+    //@Parameters("Windows.UI.Xaml.Hosting.DesignerAppViewState", "Windows.Foundation.Size")
+    //@Returns("Windows.Foundation.IAsyncOperation`1<Windows.UI.Xaml.Hosting.DesignerAppView>")
+    //@Parameters("Windows.UI.Xaml.Hosting.DesignerAppViewState","Windows.Foundation.Size")
+    CreateNewViewAsync(initialViewState,initialViewSize)
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.UI.Xaml.Hosting.IDesignerAppManager( this.comPtr );
+        var _promise = Future();
+        var _cb = fun(status, result)
+        {
+            if (status == Windows.Foundation.AsyncStatus.Completed)
+            {
+                _promise.resolve(result);
+            } else {
+                _promise.reject(status);
+            }
+        };
+        iface.CreateNewViewAsync( initialViewState, initialViewSize, _cb  );
+        iface.release();
+        return _promise;
+    }
+
+    //@Parameters("String", "ptr", "String")
+    //@Returns("Windows.Foundation.IAsyncAction")
+    //@Parameters("String","ptr","String")
+    LoadObjectIntoAppAsync(dllName,classId,initializationData)
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.UI.Xaml.Hosting.IDesignerAppManager( this.comPtr );
+        var _promise = Future();
+        var _cb = fun(status)
+        {
+            if (status == Windows.Foundation.AsyncStatus.Completed)
+            {
+                _promise.resolve();
+            } else {
+                _promise.reject(status);
+            }
+        };
+        iface.LoadObjectIntoAppAsync( dllName, classId, initializationData, _cb  );
+        iface.release();
+        return _promise;
+    }
+
+    //@Returns("void")
+    Close()
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Foundation.IClosable( this.comPtr );
+        iface.Close(  );
+        iface.release();
+    }
+
+
+}
+Windows.UI.Xaml.Hosting.DesignerAppManager = Windows_UI_Xaml_Hosting_DesignerAppManager;
+
+//@RuntimeClass("Windows.UI.Xaml.Hosting.DesignerAppView")
+//@Implements("Windows.UI.Xaml.Hosting.IDesignerAppView","Windows.Foundation.IClosable")
+//@DefaultInterface("Windows.UI.Xaml.Hosting.IDesignerAppView")
+@Proxy("WinRtProxy")
+class Windows_UI_Xaml_Hosting_DesignerAppView : WinRtInterface
+{
+    Windows_UI_Xaml_Hosting_DesignerAppView( comPtr )
+    {
+        var Windows = runtime.global("Windows");
+        this.comPtr = comPtr.queryInterface( Windows.UI.Xaml.Hosting.IDesignerAppView.iid );
+    }
+
+    static Create()
+    {
+        return Windows.UI.Xaml.Hosting.DesignerAppView(
+            winrt.activate("Windows.UI.Xaml.Hosting.DesignerAppView")
+        );
+    }
+    //@Returns("Int32")
+    get_ApplicationViewId()
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.UI.Xaml.Hosting.IDesignerAppView( this.comPtr );
+        var _r = iface.get_ApplicationViewId(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Returns("String")
+    get_AppUserModelId()
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.UI.Xaml.Hosting.IDesignerAppView( this.comPtr );
+        var _r = iface.get_AppUserModelId(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Returns("Windows.UI.Xaml.Hosting.DesignerAppViewState")
+    get_ViewState()
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.UI.Xaml.Hosting.IDesignerAppView( this.comPtr );
+        var _r = iface.get_ViewState(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Returns("Windows.Foundation.Size")
+    get_ViewSize()
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.UI.Xaml.Hosting.IDesignerAppView( this.comPtr );
+        var _r = iface.get_ViewSize(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Parameters("Windows.UI.Xaml.Hosting.DesignerAppViewState", "Windows.Foundation.Size")
+    //@Returns("Windows.Foundation.IAsyncAction")
+    //@Parameters("Windows.UI.Xaml.Hosting.DesignerAppViewState","Windows.Foundation.Size")
+    UpdateViewAsync(viewState,viewSize)
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.UI.Xaml.Hosting.IDesignerAppView( this.comPtr );
+        var _promise = Future();
+        var _cb = fun(status)
+        {
+            if (status == Windows.Foundation.AsyncStatus.Completed)
+            {
+                _promise.resolve();
+            } else {
+                _promise.reject(status);
+            }
+        };
+        iface.UpdateViewAsync( viewState, viewSize, _cb  );
+        iface.release();
+        return _promise;
+    }
+
+    //@Returns("void")
+    Close()
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Foundation.IClosable( this.comPtr );
+        iface.Close(  );
+        iface.release();
+    }
+
+
+}
+Windows.UI.Xaml.Hosting.DesignerAppView = Windows_UI_Xaml_Hosting_DesignerAppView;
+
+//@RuntimeClass("Windows.UI.Xaml.Hosting.DesktopWindowXamlSource")
+//@Implements("Windows.UI.Xaml.Hosting.IDesktopWindowXamlSource","Windows.Foundation.IClosable")
+//@DefaultInterface("Windows.UI.Xaml.Hosting.IDesktopWindowXamlSource")
+@Proxy("WinRtProxy")
+class Windows_UI_Xaml_Hosting_DesktopWindowXamlSource : WinRtInterface
+{
+    Windows_UI_Xaml_Hosting_DesktopWindowXamlSource( comPtr )
+    {
+        var Windows = runtime.global("Windows");
+        this.comPtr = comPtr.queryInterface( Windows.UI.Xaml.Hosting.IDesktopWindowXamlSource.iid );
+    }
+
+    static Create()
+    {
+        return Windows.UI.Xaml.Hosting.DesktopWindowXamlSource(
+            winrt.activate("Windows.UI.Xaml.Hosting.DesktopWindowXamlSource")
+        );
+    }
+    //@Returns("Windows.UI.Xaml.UIElement")
+    get_Content()
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.UI.Xaml.Hosting.IDesktopWindowXamlSource( this.comPtr );
+        var _r = iface.get_Content(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Parameters("Windows.UI.Xaml.UIElement")
+    //@Returns("void")
+    //@Parameters("Windows.UI.Xaml.UIElement")
+    put_Content(value)
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.UI.Xaml.Hosting.IDesktopWindowXamlSource( this.comPtr );
+        iface.put_Content( value );
+        iface.release();
+    }
+
+    //@Returns("Boolean")
+    get_HasFocus()
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.UI.Xaml.Hosting.IDesktopWindowXamlSource( this.comPtr );
+        var _r = iface.get_HasFocus(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Parameters("Windows.Foundation.TypedEventHandler`2<Windows.UI.Xaml.Hosting.DesktopWindowXamlSource,Windows.UI.Xaml.Hosting.DesktopWindowXamlSourceTakeFocusRequestedEventArgs>")
+    //@Returns("Windows.Foundation.EventRegistrationToken")
+    //@Parameters("Windows.Foundation.TypedEventHandler`2<Windows.UI.Xaml.Hosting.DesktopWindowXamlSource,Windows.UI.Xaml.Hosting.DesktopWindowXamlSourceTakeFocusRequestedEventArgs>")
+    add_TakeFocusRequested(handler)
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.UI.Xaml.Hosting.IDesktopWindowXamlSource( this.comPtr );
+        var _r = iface.add_TakeFocusRequested( handler );
+        iface.release();
+        return _r;
+    }
+
+    //@Parameters("Windows.Foundation.EventRegistrationToken")
+    //@Returns("void")
+    //@Parameters("Windows.Foundation.EventRegistrationToken")
+    remove_TakeFocusRequested(token)
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.UI.Xaml.Hosting.IDesktopWindowXamlSource( this.comPtr );
+        iface.remove_TakeFocusRequested( token );
+        iface.release();
+    }
+
+    //@Parameters("Windows.Foundation.TypedEventHandler`2<Windows.UI.Xaml.Hosting.DesktopWindowXamlSource,Windows.UI.Xaml.Hosting.DesktopWindowXamlSourceGotFocusEventArgs>")
+    //@Returns("Windows.Foundation.EventRegistrationToken")
+    //@Parameters("Windows.Foundation.TypedEventHandler`2<Windows.UI.Xaml.Hosting.DesktopWindowXamlSource,Windows.UI.Xaml.Hosting.DesktopWindowXamlSourceGotFocusEventArgs>")
+    add_GotFocus(handler)
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.UI.Xaml.Hosting.IDesktopWindowXamlSource( this.comPtr );
+        var _r = iface.add_GotFocus( handler );
+        iface.release();
+        return _r;
+    }
+
+    //@Parameters("Windows.Foundation.EventRegistrationToken")
+    //@Returns("void")
+    //@Parameters("Windows.Foundation.EventRegistrationToken")
+    remove_GotFocus(token)
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.UI.Xaml.Hosting.IDesktopWindowXamlSource( this.comPtr );
+        iface.remove_GotFocus( token );
+        iface.release();
+    }
+
+    //@Parameters("Windows.UI.Xaml.Hosting.XamlSourceFocusNavigationRequest")
+    //@Returns("Windows.UI.Xaml.Hosting.XamlSourceFocusNavigationResult")
+    //@Parameters("Windows.UI.Xaml.Hosting.XamlSourceFocusNavigationRequest")
+    NavigateFocus(request)
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.UI.Xaml.Hosting.IDesktopWindowXamlSource( this.comPtr );
+        var _r = iface.NavigateFocus( request );
+        iface.release();
+        return _r;
+    }
+
+    //@Returns("void")
+    Close()
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Foundation.IClosable( this.comPtr );
+        iface.Close(  );
+        iface.release();
+    }
+
+
+}
+Windows.UI.Xaml.Hosting.DesktopWindowXamlSource = Windows_UI_Xaml_Hosting_DesktopWindowXamlSource;
+
+//@RuntimeClass("Windows.UI.Xaml.Hosting.DesktopWindowXamlSourceGotFocusEventArgs")
+//@Implements("Windows.UI.Xaml.Hosting.IDesktopWindowXamlSourceGotFocusEventArgs")
+//@DefaultInterface("Windows.UI.Xaml.Hosting.IDesktopWindowXamlSourceGotFocusEventArgs")
+@Proxy("WinRtProxy")
+class Windows_UI_Xaml_Hosting_DesktopWindowXamlSourceGotFocusEventArgs : WinRtInterface
+{
+    Windows_UI_Xaml_Hosting_DesktopWindowXamlSourceGotFocusEventArgs( comPtr )
+    {
+        var Windows = runtime.global("Windows");
+        this.comPtr = comPtr.queryInterface( Windows.UI.Xaml.Hosting.IDesktopWindowXamlSourceGotFocusEventArgs.iid );
+    }
+
+    static Create()
+    {
+        return Windows.UI.Xaml.Hosting.DesktopWindowXamlSourceGotFocusEventArgs(
+            winrt.activate("Windows.UI.Xaml.Hosting.DesktopWindowXamlSourceGotFocusEventArgs")
+        );
+    }
+    //@Returns("Windows.UI.Xaml.Hosting.XamlSourceFocusNavigationRequest")
+    get_Request()
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.UI.Xaml.Hosting.IDesktopWindowXamlSourceGotFocusEventArgs( this.comPtr );
+        var _r = iface.get_Request(  );
+        iface.release();
+        return _r;
+    }
+
+
+}
+Windows.UI.Xaml.Hosting.DesktopWindowXamlSourceGotFocusEventArgs = Windows_UI_Xaml_Hosting_DesktopWindowXamlSourceGotFocusEventArgs;
+
+//@RuntimeClass("Windows.UI.Xaml.Hosting.DesktopWindowXamlSourceTakeFocusRequestedEventArgs")
+//@Implements("Windows.UI.Xaml.Hosting.IDesktopWindowXamlSourceTakeFocusRequestedEventArgs")
+//@DefaultInterface("Windows.UI.Xaml.Hosting.IDesktopWindowXamlSourceTakeFocusRequestedEventArgs")
+@Proxy("WinRtProxy")
+class Windows_UI_Xaml_Hosting_DesktopWindowXamlSourceTakeFocusRequestedEventArgs : WinRtInterface
+{
+    Windows_UI_Xaml_Hosting_DesktopWindowXamlSourceTakeFocusRequestedEventArgs( comPtr )
+    {
+        var Windows = runtime.global("Windows");
+        this.comPtr = comPtr.queryInterface( Windows.UI.Xaml.Hosting.IDesktopWindowXamlSourceTakeFocusRequestedEventArgs.iid );
+    }
+
+    static Create()
+    {
+        return Windows.UI.Xaml.Hosting.DesktopWindowXamlSourceTakeFocusRequestedEventArgs(
+            winrt.activate("Windows.UI.Xaml.Hosting.DesktopWindowXamlSourceTakeFocusRequestedEventArgs")
+        );
+    }
+    //@Returns("Windows.UI.Xaml.Hosting.XamlSourceFocusNavigationRequest")
+    get_Request()
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.UI.Xaml.Hosting.IDesktopWindowXamlSourceTakeFocusRequestedEventArgs( this.comPtr );
+        var _r = iface.get_Request(  );
+        iface.release();
+        return _r;
+    }
+
+
+}
+Windows.UI.Xaml.Hosting.DesktopWindowXamlSourceTakeFocusRequestedEventArgs = Windows_UI_Xaml_Hosting_DesktopWindowXamlSourceTakeFocusRequestedEventArgs;
+
+//@RuntimeClass("Windows.UI.Xaml.Hosting.ElementCompositionPreview")
+//@Implements("Windows.UI.Xaml.Hosting.IElementCompositionPreview")
+//@DefaultInterface("Windows.UI.Xaml.Hosting.IElementCompositionPreview")
+@Proxy("WinRtProxy")
+class Windows_UI_Xaml_Hosting_ElementCompositionPreview : WinRtInterface
+{
+    Windows_UI_Xaml_Hosting_ElementCompositionPreview( comPtr )
+    {
+        var Windows = runtime.global("Windows");
+        this.comPtr = comPtr.queryInterface( Windows.UI.Xaml.Hosting.IElementCompositionPreview.iid );
+    }
+
+    // s Windows.UI.Xaml.Hosting.IElementCompositionPreviewStatics3
+    //@Async(0)
+    //@Returns("void")
+    //@Parameters("Windows.UI.WindowManagement.AppWindow","Windows.UI.Xaml.UIElement")
+    static SetAppWindowContent( appWindow, xamlContent)
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.UI.Xaml.Hosting.ElementCompositionPreview" );
+        var iface = Windows.UI.Xaml.Hosting.IElementCompositionPreviewStatics3( factory );
+        iface.SetAppWindowContent( appWindow, xamlContent);
+        iface.release();
+        factory.release();
+    }
+
+
+    //@Async(0)
+    //@Returns("Windows.UI.Xaml.UIElement")
+    //@Parameters("Windows.UI.WindowManagement.AppWindow")
+    static GetAppWindowContent( appWindow)
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.UI.Xaml.Hosting.ElementCompositionPreview" );
+        var iface = Windows.UI.Xaml.Hosting.IElementCompositionPreviewStatics3( factory );
+        var _r = iface.GetAppWindowContent( appWindow);
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    // s Windows.UI.Xaml.Hosting.IElementCompositionPreviewStatics2
+    //@Async(0)
+    //@Returns("void")
+    //@Parameters("Windows.UI.Xaml.UIElement","Windows.UI.Composition.ICompositionAnimationBase")
+    static SetImplicitShowAnimation( element, animation)
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.UI.Xaml.Hosting.ElementCompositionPreview" );
+        var iface = Windows.UI.Xaml.Hosting.IElementCompositionPreviewStatics2( factory );
+        iface.SetImplicitShowAnimation( element, animation);
+        iface.release();
+        factory.release();
+    }
+
+
+    //@Async(0)
+    //@Returns("void")
+    //@Parameters("Windows.UI.Xaml.UIElement","Windows.UI.Composition.ICompositionAnimationBase")
+    static SetImplicitHideAnimation( element, animation)
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.UI.Xaml.Hosting.ElementCompositionPreview" );
+        var iface = Windows.UI.Xaml.Hosting.IElementCompositionPreviewStatics2( factory );
+        iface.SetImplicitHideAnimation( element, animation);
+        iface.release();
+        factory.release();
+    }
+
+
+    //@Async(0)
+    //@Returns("void")
+    //@Parameters("Windows.UI.Xaml.UIElement","Boolean")
+    static SetIsTranslationEnabled( element, value)
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.UI.Xaml.Hosting.ElementCompositionPreview" );
+        var iface = Windows.UI.Xaml.Hosting.IElementCompositionPreviewStatics2( factory );
+        iface.SetIsTranslationEnabled( element, value);
+        iface.release();
+        factory.release();
+    }
+
+
+    //@Async(0)
+    //@Returns("Windows.UI.Composition.CompositionPropertySet")
+    //@Parameters("Windows.UI.Xaml.UIElement")
+    static GetPointerPositionPropertySet( targetElement)
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.UI.Xaml.Hosting.ElementCompositionPreview" );
+        var iface = Windows.UI.Xaml.Hosting.IElementCompositionPreviewStatics2( factory );
+        var _r = iface.GetPointerPositionPropertySet( targetElement);
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    // s Windows.UI.Xaml.Hosting.IElementCompositionPreviewStatics
+    //@Async(0)
+    //@Returns("Windows.UI.Composition.Visual")
+    //@Parameters("Windows.UI.Xaml.UIElement")
+    static GetElementVisual( element)
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.UI.Xaml.Hosting.ElementCompositionPreview" );
+        var iface = Windows.UI.Xaml.Hosting.IElementCompositionPreviewStatics( factory );
+        var _r = iface.GetElementVisual( element);
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    //@Async(0)
+    //@Returns("Windows.UI.Composition.Visual")
+    //@Parameters("Windows.UI.Xaml.UIElement")
+    static GetElementChildVisual( element)
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.UI.Xaml.Hosting.ElementCompositionPreview" );
+        var iface = Windows.UI.Xaml.Hosting.IElementCompositionPreviewStatics( factory );
+        var _r = iface.GetElementChildVisual( element);
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    //@Async(0)
+    //@Returns("void")
+    //@Parameters("Windows.UI.Xaml.UIElement","Windows.UI.Composition.Visual")
+    static SetElementChildVisual( element, visual)
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.UI.Xaml.Hosting.ElementCompositionPreview" );
+        var iface = Windows.UI.Xaml.Hosting.IElementCompositionPreviewStatics( factory );
+        iface.SetElementChildVisual( element, visual);
+        iface.release();
+        factory.release();
+    }
+
+
+    //@Async(0)
+    //@Returns("Windows.UI.Composition.CompositionPropertySet")
+    //@Parameters("Windows.UI.Xaml.Controls.ScrollViewer")
+    static GetScrollViewerManipulationPropertySet( scrollViewer)
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.UI.Xaml.Hosting.ElementCompositionPreview" );
+        var iface = Windows.UI.Xaml.Hosting.IElementCompositionPreviewStatics( factory );
+        var _r = iface.GetScrollViewerManipulationPropertySet( scrollViewer);
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    static Create()
+    {
+        return Windows.UI.Xaml.Hosting.ElementCompositionPreview(
+            winrt.activate("Windows.UI.Xaml.Hosting.ElementCompositionPreview")
+        );
+    }
+
+}
+Windows.UI.Xaml.Hosting.ElementCompositionPreview = Windows_UI_Xaml_Hosting_ElementCompositionPreview;
+
+//@RuntimeClass("Windows.UI.Xaml.Hosting.WindowsXamlManager")
+//@Implements("Windows.UI.Xaml.Hosting.IWindowsXamlManager","Windows.Foundation.IClosable")
+//@DefaultInterface("Windows.UI.Xaml.Hosting.IWindowsXamlManager")
+@Proxy("WinRtProxy")
+class Windows_UI_Xaml_Hosting_WindowsXamlManager : WinRtInterface
+{
+    Windows_UI_Xaml_Hosting_WindowsXamlManager( comPtr )
+    {
+        var Windows = runtime.global("Windows");
+        this.comPtr = comPtr.queryInterface( Windows.UI.Xaml.Hosting.IWindowsXamlManager.iid );
+    }
+
+    // s Windows.UI.Xaml.Hosting.IWindowsXamlManagerStatics
+    //@Async(0)
+    //@Returns("Windows.UI.Xaml.Hosting.WindowsXamlManager")
+    static InitializeForCurrentThread( )
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.UI.Xaml.Hosting.WindowsXamlManager" );
+        var iface = Windows.UI.Xaml.Hosting.IWindowsXamlManagerStatics( factory );
+        var _r = iface.InitializeForCurrentThread( );
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    static Create()
+    {
+        return Windows.UI.Xaml.Hosting.WindowsXamlManager(
+            winrt.activate("Windows.UI.Xaml.Hosting.WindowsXamlManager")
+        );
+    }
+    //@Returns("void")
+    Close()
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Foundation.IClosable( this.comPtr );
+        iface.Close(  );
+        iface.release();
+    }
+
+
+}
+Windows.UI.Xaml.Hosting.WindowsXamlManager = Windows_UI_Xaml_Hosting_WindowsXamlManager;
+
+//@RuntimeClass("Windows.UI.Xaml.Hosting.XamlSourceFocusNavigationRequest")
+//@Implements("Windows.UI.Xaml.Hosting.IXamlSourceFocusNavigationRequest")
+//@DefaultInterface("Windows.UI.Xaml.Hosting.IXamlSourceFocusNavigationRequest")
+@Proxy("WinRtProxy")
+class Windows_UI_Xaml_Hosting_XamlSourceFocusNavigationRequest : WinRtInterface
+{
+    Windows_UI_Xaml_Hosting_XamlSourceFocusNavigationRequest( comPtr )
+    {
+        var Windows = runtime.global("Windows");
+        this.comPtr = comPtr.queryInterface( Windows.UI.Xaml.Hosting.IXamlSourceFocusNavigationRequest.iid );
+    }
+
+    static Create()
+    {
+        return Windows.UI.Xaml.Hosting.XamlSourceFocusNavigationRequest(
+            winrt.activate("Windows.UI.Xaml.Hosting.XamlSourceFocusNavigationRequest")
+        );
+    }
+    //@Returns("Windows.UI.Xaml.Hosting.XamlSourceFocusNavigationRequest")
+    //@Parameters("Windows.UI.Xaml.Hosting.XamlSourceFocusNavigationReason")
+    static CreateInstance(reason)
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.UI.Xaml.Hosting.XamlSourceFocusNavigationRequest");
+        var iface = Windows.UI.Xaml.Hosting.IXamlSourceFocusNavigationRequestFactory( factory );
+        var result = iface.CreateInstance( reason );
+        iface.release();
+        factory.release();
+        return result;
+    }
+    //@Returns("Windows.UI.Xaml.Hosting.XamlSourceFocusNavigationRequest")
+    //@Parameters("Windows.UI.Xaml.Hosting.XamlSourceFocusNavigationReason","Windows.Foundation.Rect")
+    static CreateInstanceWithHintRect(reason,hintRect)
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.UI.Xaml.Hosting.XamlSourceFocusNavigationRequest");
+        var iface = Windows.UI.Xaml.Hosting.IXamlSourceFocusNavigationRequestFactory( factory );
+        var result = iface.CreateInstanceWithHintRect( reason, hintRect );
+        iface.release();
+        factory.release();
+        return result;
+    }
+    //@Returns("Windows.UI.Xaml.Hosting.XamlSourceFocusNavigationRequest")
+    //@Parameters("Windows.UI.Xaml.Hosting.XamlSourceFocusNavigationReason","Windows.Foundation.Rect","ptr")
+    static CreateInstanceWithHintRectAndCorrelationId(reason,hintRect,correlationId)
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.UI.Xaml.Hosting.XamlSourceFocusNavigationRequest");
+        var iface = Windows.UI.Xaml.Hosting.IXamlSourceFocusNavigationRequestFactory( factory );
+        var result = iface.CreateInstanceWithHintRectAndCorrelationId( reason, hintRect, correlationId );
+        iface.release();
+        factory.release();
+        return result;
+    }
+    // f Windows.UI.Xaml.Hosting.IXamlSourceFocusNavigationRequestFactory
+    //@Returns("Windows.UI.Xaml.Hosting.XamlSourceFocusNavigationReason")
+    get_Reason()
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.UI.Xaml.Hosting.IXamlSourceFocusNavigationRequest( this.comPtr );
+        var _r = iface.get_Reason(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Returns("Windows.Foundation.Rect")
+    get_HintRect()
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.UI.Xaml.Hosting.IXamlSourceFocusNavigationRequest( this.comPtr );
+        var _r = iface.get_HintRect(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Returns("ptr")
+    get_CorrelationId()
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.UI.Xaml.Hosting.IXamlSourceFocusNavigationRequest( this.comPtr );
+        var _r = iface.get_CorrelationId(  );
+        iface.release();
+        return _r;
+    }
+
+
+}
+Windows.UI.Xaml.Hosting.XamlSourceFocusNavigationRequest = Windows_UI_Xaml_Hosting_XamlSourceFocusNavigationRequest;
+
+//@RuntimeClass("Windows.UI.Xaml.Hosting.XamlSourceFocusNavigationResult")
+//@Implements("Windows.UI.Xaml.Hosting.IXamlSourceFocusNavigationResult")
+//@DefaultInterface("Windows.UI.Xaml.Hosting.IXamlSourceFocusNavigationResult")
+@Proxy("WinRtProxy")
+class Windows_UI_Xaml_Hosting_XamlSourceFocusNavigationResult : WinRtInterface
+{
+    Windows_UI_Xaml_Hosting_XamlSourceFocusNavigationResult( comPtr )
+    {
+        var Windows = runtime.global("Windows");
+        this.comPtr = comPtr.queryInterface( Windows.UI.Xaml.Hosting.IXamlSourceFocusNavigationResult.iid );
+    }
+
+    static Create()
+    {
+        return Windows.UI.Xaml.Hosting.XamlSourceFocusNavigationResult(
+            winrt.activate("Windows.UI.Xaml.Hosting.XamlSourceFocusNavigationResult")
+        );
+    }
+    //@Returns("Windows.UI.Xaml.Hosting.XamlSourceFocusNavigationResult")
+    //@Parameters("Boolean")
+    static CreateInstance(focusMoved)
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.UI.Xaml.Hosting.XamlSourceFocusNavigationResult");
+        var iface = Windows.UI.Xaml.Hosting.IXamlSourceFocusNavigationResultFactory( factory );
+        var result = iface.CreateInstance( focusMoved );
+        iface.release();
+        factory.release();
+        return result;
+    }
+    // f Windows.UI.Xaml.Hosting.IXamlSourceFocusNavigationResultFactory
+    //@Returns("Boolean")
+    get_WasFocusMoved()
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.UI.Xaml.Hosting.IXamlSourceFocusNavigationResult( this.comPtr );
+        var _r = iface.get_WasFocusMoved(  );
+        iface.release();
+        return _r;
+    }
+
+
+}
+Windows.UI.Xaml.Hosting.XamlSourceFocusNavigationResult = Windows_UI_Xaml_Hosting_XamlSourceFocusNavigationResult;
+
+//@RuntimeClass("Windows.UI.Xaml.Hosting.XamlUIPresenter")
+//@Implements("Windows.UI.Xaml.Hosting.IXamlUIPresenter")
+//@DefaultInterface("Windows.UI.Xaml.Hosting.IXamlUIPresenter")
+@Proxy("WinRtProxy")
+class Windows_UI_Xaml_Hosting_XamlUIPresenter : WinRtInterface
+{
+    Windows_UI_Xaml_Hosting_XamlUIPresenter( comPtr )
+    {
+        var Windows = runtime.global("Windows");
+        this.comPtr = comPtr.queryInterface( Windows.UI.Xaml.Hosting.IXamlUIPresenter.iid );
+    }
+
+    // s Windows.UI.Xaml.Hosting.IXamlUIPresenterStatics
+    //@Async(0)
+    //@Returns("Boolean")
+    static get_CompleteTimelinesAutomatically( )
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.UI.Xaml.Hosting.XamlUIPresenter" );
+        var iface = Windows.UI.Xaml.Hosting.IXamlUIPresenterStatics( factory );
+        var _r = iface.get_CompleteTimelinesAutomatically( );
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    //@Async(0)
+    //@Returns("void")
+    //@Parameters("Boolean")
+    static put_CompleteTimelinesAutomatically( value)
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.UI.Xaml.Hosting.XamlUIPresenter" );
+        var iface = Windows.UI.Xaml.Hosting.IXamlUIPresenterStatics( factory );
+        iface.put_CompleteTimelinesAutomatically( value);
+        iface.release();
+        factory.release();
+    }
+
+
+    //@Async(0)
+    //@Returns("void")
+    //@Parameters("Windows.UI.Xaml.Hosting.IXamlUIPresenterHost")
+    static SetHost( host)
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.UI.Xaml.Hosting.XamlUIPresenter" );
+        var iface = Windows.UI.Xaml.Hosting.IXamlUIPresenterStatics( factory );
+        iface.SetHost( host);
+        iface.release();
+        factory.release();
+    }
+
+
+    //@Async(0)
+    //@Returns("void")
+    static NotifyWindowSizeChanged( )
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.UI.Xaml.Hosting.XamlUIPresenter" );
+        var iface = Windows.UI.Xaml.Hosting.IXamlUIPresenterStatics( factory );
+        iface.NotifyWindowSizeChanged( );
+        iface.release();
+        factory.release();
+    }
+
+
+    // s Windows.UI.Xaml.Hosting.IXamlUIPresenterStatics2
+
+
+    static Create()
+    {
+        return Windows.UI.Xaml.Hosting.XamlUIPresenter(
+            winrt.activate("Windows.UI.Xaml.Hosting.XamlUIPresenter")
+        );
+    }
+    //@Returns("Windows.UI.Xaml.UIElement")
+    get_RootElement()
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.UI.Xaml.Hosting.IXamlUIPresenter( this.comPtr );
+        var _r = iface.get_RootElement(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Parameters("Windows.UI.Xaml.UIElement")
+    //@Returns("void")
+    //@Parameters("Windows.UI.Xaml.UIElement")
+    put_RootElement(value)
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.UI.Xaml.Hosting.IXamlUIPresenter( this.comPtr );
+        iface.put_RootElement( value );
+        iface.release();
+    }
+
+    //@Returns("String")
+    get_ThemeKey()
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.UI.Xaml.Hosting.IXamlUIPresenter( this.comPtr );
+        var _r = iface.get_ThemeKey(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Parameters("String")
+    //@Returns("void")
+    //@Parameters("String")
+    put_ThemeKey(value)
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.UI.Xaml.Hosting.IXamlUIPresenter( this.comPtr );
+        iface.put_ThemeKey( value );
+        iface.release();
+    }
+
+    //@Returns("String")
+    get_ThemeResourcesXaml()
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.UI.Xaml.Hosting.IXamlUIPresenter( this.comPtr );
+        var _r = iface.get_ThemeResourcesXaml(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Parameters("String")
+    //@Returns("void")
+    //@Parameters("String")
+    put_ThemeResourcesXaml(value)
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.UI.Xaml.Hosting.IXamlUIPresenter( this.comPtr );
+        iface.put_ThemeResourcesXaml( value );
+        iface.release();
+    }
+
+    //@Parameters("Int32", "Int32")
+    //@Returns("void")
+    //@Parameters("Int32","Int32")
+    SetSize(width,height)
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.UI.Xaml.Hosting.IXamlUIPresenter( this.comPtr );
+        iface.SetSize( width, height );
+        iface.release();
+    }
+
+    //@Returns("void")
+    Render()
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.UI.Xaml.Hosting.IXamlUIPresenter( this.comPtr );
+        iface.Render(  );
+        iface.release();
+    }
+
+    //@Returns("void")
+    Present()
+    {
+        var Windows = runtime.global("Windows");
+        var iface = Windows.UI.Xaml.Hosting.IXamlUIPresenter( this.comPtr );
+        iface.Present(  );
+        iface.release();
+    }
+
+
+}
+Windows.UI.Xaml.Hosting.XamlUIPresenter = Windows_UI_Xaml_Hosting_XamlUIPresenter;
+
+if ( Windows.Foundation == nil ) { Windows.Foundation = {}; }
+//@Interface("Windows.Foundation.IAsyncOperation`1<Windows.UI.Xaml.Hosting.DesignerAppView>")
+//@IID("{49C6C658-1BD2-581E-A385-6EB3FD9BFEE3}")
+class Windows_Foundation_IAsyncOperation_1_Windows_UI_Xaml_Hosting_DesignerAppView_ : WinRtInterface {}
+Windows_Foundation_IAsyncOperation_1_Windows_UI_Xaml_Hosting_DesignerAppView_.iid = "{49C6C658-1BD2-581E-A385-6EB3FD9BFEE3}";
+Windows_Foundation_IAsyncOperation_1_Windows_UI_Xaml_Hosting_DesignerAppView_.handler_iid = "{AEEB272E-A814-5981-A2C3-623E226E4A71}";
+
+Windows.Foundation.IAsyncOperation_1_Windows_UI_Xaml_Hosting_DesignerAppView_ = Windows_Foundation_IAsyncOperation_1_Windows_UI_Xaml_Hosting_DesignerAppView_;
+if ( Windows.Foundation == nil ) { Windows.Foundation = {}; }
+//@Delegate("Windows.Foundation.TypedEventHandler`2<Windows.UI.Xaml.Hosting.DesktopWindowXamlSource,Windows.UI.Xaml.Hosting.DesktopWindowXamlSourceTakeFocusRequestedEventArgs>")
+//@IID("{9E79EAFE-C7FE-54A5-96FF-7ABE02E05418}")
+class Windows_Foundation_TypedEventHandler_2_Windows_UI_Xaml_Hosting_DesktopWindowXamlSource_Windows_UI_Xaml_Hosting_DesktopWindowXamlSourceTakeFocusRequestedEventArgs_{
+    static Create( cb ) 
+    {
+        var callback = fun( s, arg ) {
+            cb( s, Windows.UI.Xaml.Hosting.DesktopWindowXamlSourceTakeFocusRequestedEventArgs(arg) );
+        };
+        return winrt.Delegate(["Windows.UI.Xaml.Hosting.DesktopWindowXamlSource", "Windows.UI.Xaml.Hosting.DesktopWindowXamlSourceTakeFocusRequestedEventArgs"], "{9E79EAFE-C7FE-54A5-96FF-7ABE02E05418}", callback );
+    }
+}
+Windows_Foundation_TypedEventHandler_2_Windows_UI_Xaml_Hosting_DesktopWindowXamlSource_Windows_UI_Xaml_Hosting_DesktopWindowXamlSourceTakeFocusRequestedEventArgs_.iid = "{9E79EAFE-C7FE-54A5-96FF-7ABE02E05418}";
+Windows.Foundation.TypedEventHandler_2_Windows_UI_Xaml_Hosting_DesktopWindowXamlSource_Windows_UI_Xaml_Hosting_DesktopWindowXamlSourceTakeFocusRequestedEventArgs_ = Windows_Foundation_TypedEventHandler_2_Windows_UI_Xaml_Hosting_DesktopWindowXamlSource_Windows_UI_Xaml_Hosting_DesktopWindowXamlSourceTakeFocusRequestedEventArgs_;
+
+
+if ( Windows.Foundation == nil ) { Windows.Foundation = {}; }
+//@Delegate("Windows.Foundation.TypedEventHandler`2<Windows.UI.Xaml.Hosting.DesktopWindowXamlSource,Windows.UI.Xaml.Hosting.DesktopWindowXamlSourceGotFocusEventArgs>")
+//@IID("{A77F0E84-CED7-5681-B140-8C18A55CEB1D}")
+class Windows_Foundation_TypedEventHandler_2_Windows_UI_Xaml_Hosting_DesktopWindowXamlSource_Windows_UI_Xaml_Hosting_DesktopWindowXamlSourceGotFocusEventArgs_{
+    static Create( cb ) 
+    {
+        var callback = fun( s, arg ) {
+            cb( s, Windows.UI.Xaml.Hosting.DesktopWindowXamlSourceGotFocusEventArgs(arg) );
+        };
+        return winrt.Delegate(["Windows.UI.Xaml.Hosting.DesktopWindowXamlSource", "Windows.UI.Xaml.Hosting.DesktopWindowXamlSourceGotFocusEventArgs"], "{A77F0E84-CED7-5681-B140-8C18A55CEB1D}", callback );
+    }
+}
+Windows_Foundation_TypedEventHandler_2_Windows_UI_Xaml_Hosting_DesktopWindowXamlSource_Windows_UI_Xaml_Hosting_DesktopWindowXamlSourceGotFocusEventArgs_.iid = "{A77F0E84-CED7-5681-B140-8C18A55CEB1D}";
+Windows.Foundation.TypedEventHandler_2_Windows_UI_Xaml_Hosting_DesktopWindowXamlSource_Windows_UI_Xaml_Hosting_DesktopWindowXamlSourceGotFocusEventArgs_ = Windows_Foundation_TypedEventHandler_2_Windows_UI_Xaml_Hosting_DesktopWindowXamlSource_Windows_UI_Xaml_Hosting_DesktopWindowXamlSourceGotFocusEventArgs_;
+
+
+if ( Windows.Foundation == nil ) { Windows.Foundation = {}; }
+//@Delegate("Windows.Foundation.TypedEventHandler`2<Windows.UI.Xaml.Hosting.DesignerAppManager,Windows.UI.Xaml.Hosting.DesignerAppExitedEventArgs>")
+//@IID("{3772CE98-9BA0-504B-8A0D-36B7F816A1C2}")
+class Windows_Foundation_TypedEventHandler_2_Windows_UI_Xaml_Hosting_DesignerAppManager_Windows_UI_Xaml_Hosting_DesignerAppExitedEventArgs_{
+    static Create( cb ) 
+    {
+        var callback = fun( s, arg ) {
+            cb( s, Windows.UI.Xaml.Hosting.DesignerAppExitedEventArgs(arg) );
+        };
+        return winrt.Delegate(["Windows.UI.Xaml.Hosting.DesignerAppManager", "Windows.UI.Xaml.Hosting.DesignerAppExitedEventArgs"], "{3772CE98-9BA0-504B-8A0D-36B7F816A1C2}", callback );
+    }
+}
+Windows_Foundation_TypedEventHandler_2_Windows_UI_Xaml_Hosting_DesignerAppManager_Windows_UI_Xaml_Hosting_DesignerAppExitedEventArgs_.iid = "{3772CE98-9BA0-504B-8A0D-36B7F816A1C2}";
+Windows.Foundation.TypedEventHandler_2_Windows_UI_Xaml_Hosting_DesignerAppManager_Windows_UI_Xaml_Hosting_DesignerAppExitedEventArgs_ = Windows_Foundation_TypedEventHandler_2_Windows_UI_Xaml_Hosting_DesignerAppManager_Windows_UI_Xaml_Hosting_DesignerAppExitedEventArgs_;
+
+
+
+}

@@ -1,0 +1,205 @@
+
+
+extern from "User32.dll" {
+	long DefWindowProcA( ptr, uint, ptr, ptr) as DefWindowProc;
+	ushort RegisterClassA( ptr ) as RegisterClass;
+	ptr CreateWindowExA( int, str, str, int, int ,int, int, int,ptr,ptr,ptr,ptr) as CreateWindowEx;
+	int ShowWindow( ptr, int);
+	int GetMessageA( ptr, ptr, uint, uint ) as GetMessage;
+	int TranslateMessage( ptr );
+	long DispatchMessageA( ptr ) as DispatchMessage;
+	void PostQuitMessage(int);
+	ptr BeginPaint( ptr, ptr );
+	int EndPaint( ptr, ptr );
+	int DrawTextA( ptr, str, int, ptr, uint) as DrawText;
+	ptr CreateMenu();
+	ptr CreatePopupMenu();
+	int AppendMenuA( ptr, uint, ptr, str) as AppendMenu;
+	int SetMenu( ptr, ptr);
+}
+
+extern from "Gdi32.dll" {
+	int TextOutA( ptr, int, int, str, int) as TextOut;
+}
+
+extern from "Kernel32.dll" {
+	ptr GetModuleHandleA(int) as GetModuleHandle;
+}
+
+extern callback long WINDOWPROC(ptr, uint, ptr, ptr);
+
+extern struct WNDCLASS {
+  uint      style,
+  ptr       lpfnWndProc,
+  int       cbClsExtra,
+  int       cbWndExtra,
+  ptr       hInstance,
+  ptr       hIcon,
+  ptr       hCursor,
+  long       hbrBackground,
+  str       lpszMenuName,
+  str       lpszClassName
+}
+
+extern struct PAINTSTRUCT {
+  ptr  hdc,
+  int  fErase,
+  int  left,
+  int  top,
+  int  right,
+  int  bottom,
+  int  fRestore,
+  int  fIncUpdate,
+  long unused[4]
+}
+
+extern struct PAINTSTRUCT2 {
+  ptr  hdc,
+  int  fErase,
+  int  left,
+  int  top,
+  int  right,
+  int  bottom,
+  int  fRestore,
+  int  fIncUpdate,
+  long unused1,
+  long unused2,
+  long unused3,
+  long unused4
+}
+
+print PAINTSTRUCT.size + ":" + PAINTSTRUCT2.size;
+
+extern struct POINT {
+  int    x,
+  int    y
+}
+
+extern struct MSG {
+  ptr    hwnd,
+  uint   message,
+  ptr    wParam,
+  ptr    lParam,
+  int    time,
+  POINT  pt,
+  int    lPrivate
+}
+
+extern struct MSG2 {
+  ptr    hwnd,
+  uint   message,
+  ptr    wParam,
+  ptr    lParam,
+  int    time,
+  int    x,
+  int    y
+  int    lPrivate
+}
+
+print MSG.size + ":" + MSG2.size;
+
+extern struct RECT {
+  int left,
+  int top,
+  int right,
+  int bottom
+}
+
+
+var WS_OVERLAPPEDWINDOW = 13565952;
+var CW_USEDEFAULT = -2147483648;
+var SW_SHOW = 5;
+var COLOR_WINDOW = 5;
+
+var WM_CREATE = 1;
+var WM_DESTROY = 2;
+var WM_PAINT = 15;
+var WM_COMMAND = 273;
+
+var MF_STRING = 0;
+var MF_POPUP = 16;
+var ID_FILE_EXIT = 1001;
+var ID_STUFF_GO = 1002;
+
+var ps = PAINTSTRUCT();
+
+var windowProc = WINDOWPROC( fun( hWnd, msg, wParam, lParam) 
+{
+	if( msg == WM_CREATE) {
+
+        var hMenu = CreateMenu();
+
+        var hSubMenu = CreatePopupMenu();
+        AppendMenu(hSubMenu, MF_STRING, sys.pointer(ID_FILE_EXIT), "E&xit");
+        AppendMenu(hMenu, MF_STRING | MF_POPUP, hSubMenu, "&File");
+
+        hSubMenu = CreatePopupMenu();
+        AppendMenu(hSubMenu, MF_STRING, sys.pointer(ID_STUFF_GO), "&Go");
+        AppendMenu(hMenu, MF_STRING | MF_POPUP, hSubMenu, "&Stuff");
+
+        SetMenu(hWnd, hMenu);
+		return 0;
+	}
+	if( msg == WM_DESTROY ) {
+        PostQuitMessage(0);
+		return 0;
+	}
+	if( msg == WM_PAINT ) {
+
+		var hdc = BeginPaint(hWnd, ps);
+		var txt = "HELLO WINDOWS";
+        TextOut( hdc, 50,50, txt, txt.length);
+		EndPaint(hWnd, ps);
+		return 0;
+	}
+	if( msg == WM_COMMAND ) {
+
+		print "WPARAM: " + int(wParam);
+		if(int(wParam) == 1001)
+		{
+			PostQuitMessage(0);
+		}
+	}
+	return DefWindowProc(hWnd, msg, wParam, lParam);
+});
+
+
+var classname = "my wnd class";
+var hinstance = GetModuleHandle(0);
+
+var wc = WNDCLASS();
+wc.lpfnWndProc = windowProc;
+wc.hInstance = hinstance;
+wc.lpszClassName = classname;
+wc.hbrBackground = COLOR_WINDOW+1;
+
+print RegisterClass(wc);
+
+
+var hwnd = CreateWindowEx(
+        0,                              // Optional window styles.
+        classname,                      // Window class
+        "hello windows",    			// Window text
+        WS_OVERLAPPEDWINDOW,            // Window style
+
+        // Size and position
+		CW_USEDEFAULT,CW_USEDEFAULT,CW_USEDEFAULT,CW_USEDEFAULT,
+//		100,100,300,300,
+
+        0,       	// Parent window    
+        0,       	// Menu
+        hinstance,  // Instance handle
+        0        	// Additional application data
+);
+
+ShowWindow(hwnd, SW_SHOW);
+
+var msg = MSG();
+while (GetMessage(msg, 0, 0, 0))
+{
+	TranslateMessage(msg);
+	DispatchMessage(msg);
+}
+
+
+print "OK";

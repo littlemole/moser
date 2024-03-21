@@ -1,0 +1,263 @@
+
+extern from "libevent.so" {
+
+  ptr event_init();
+  ptr event_base_new();
+  void event_base_free(ptr);
+
+  long event_base_dispatch(ptr);
+  long event_base_loopbreak(ptr);  
+
+  ptr event_new(ptr, long, short, ptr, ptr );
+  long event_del(ptr);
+  void event_free(ptr);
+
+  long event_add(ptr, ptr);
+  long event_base_dispatch(ptr);  
+
+  long evutil_make_socket_nonblocking(long);
+}
+
+extern {
+
+    long read(long, ptr, long);
+    long write(long, ptr, long);
+    long close(long);
+
+    long socket(long, long, long);
+    long setsockopt(long, long, long, ptr, long);
+
+    long accept(long, ptr, ptr );
+    long bind(long, ptr, long);
+    long listen(long, long);
+
+    ushort htons(ushort);    
+
+    ptr memset( ptr,long, ulong);
+};
+
+extern struct timeval 
+{
+    long tv_sec,  // seconds
+    long tv_usec  // microseconds
+};
+
+extern struct in_addr 
+{
+    ulong s_addr  // load with inet_aton()
+};
+
+extern struct sockaddr_in 
+{
+    short   sin_family,   // e.g. AF_INET
+    ushort  sin_port,     // e.g. htons(3490)
+    ulong sin_addr,     // see struct in_addr, below
+    char dynamic           
+};
+
+extern callback  void event_callback( long, short, ptr);
+
+var EV = {
+ "TIMEOUT" : 0x01,
+ "READ"    : 0x02,
+ "WRITE"   : 0x04,
+ "SIGNAL"  : 0x08,
+ "PERSIST" : 0x10,
+ "ET"      : 0x20
+};
+
+
+var AF_INET = 2;
+var SOCK_STREAM = 1;
+var SOL_SOCKET = 1;
+var SO_REUSEADDR = 2;
+var INADDR_ANY = 0;
+
+var EINTR = 9959;
+var EAGAIN = 9976;
+
+
+/////////////////////////////
+
+event_init();
+var loop = event_base_new();
+var clients = {};
+
+
+var on_read = event_callback( fun( fd, ev, arg)
+{
+    var client = arg.object();
+	
+	var buf = sys.buffer(1024);
+
+	var len = read(fd, buf, 1024);
+	if (len == 0) 
+    {
+		print("Client disconnected.\n");
+        client.release();
+		return;
+	}
+	else if (len < 0) 
+    {
+		print "Socket failure, disconnecting client";
+        client.release();
+		return;
+	}
+
+    print buf.asString();
+
+    var buffer = Buffer();
+    buffer.buffer = buf;
+    buffer.size = len;
+    client.buffers.push(buffer);
+
+	event_add(client.ev_write, 0);
+});
+
+
+var on_write = event_callback( fun( fd, what, arg)
+{
+    var client = arg.object();
+
+    if(client.buffers.length == 0) return;
+
+    var buffer = client.buffers.back();
+
+    var ptr = sys.pointer( int(buffer.buffer) + buffer.offset );
+    var to_write = buffer.size - buffer.offset;
+
+    if(to_write <= 0) return;
+
+    var len = write( fd, ptr, to_write);
+
+	if (len == -1) 
+    {
+        var errno = sys.errno();
+		if (errno == EINTR || errno == EAGAIN) 
+        {
+			event_add(client.ev_write, NULL);
+			return;
+		}
+		else 
+        {
+            print "error";
+            event_base_loopbreak(loop);
+		}
+	}
+	else if ( (buffer.offset + len) < buffer.size) 
+    {
+		buffer.offset = buffer.offset + len;
+		event_add(client.ev_write, NULL);
+		return;
+	}
+
+    client.buffers.pop();
+});
+
+//////////////////////////////
+
+class Client
+{
+    Client(fd)
+    {
+        this.fd = fd;
+
+        this.ev_read = event_new(loop,fd,EV.READ|EV.PERSIST, on_read, &this);
+    	event_add(this.ev_read, 0);
+
+        this.ev_write = event_new(loop,fd,EV.WRITE,on_write,&this);
+        this.buffers = [];
+
+        var key = string(int(sys.pointer(this)));
+        clients{key} = this;
+    }
+
+    release()
+    {
+        close(this.fd);
+		event_del(this.ev_read);
+		event_free(this.ev_read);
+		event_free(this.ev_write);
+        var key = string(int(sys.pointer(this)));
+        delete key from clients;
+    }
+};
+
+class Buffer
+{
+    Buffer()
+    {
+        this.buffer = nil;
+        this.offset = 0;
+        this.size = 0;
+    }
+};
+
+//////////////////////////////
+
+
+var on_accept = event_callback( fun( fd, what, arg)
+{
+    var client_addr = sockaddr_in();
+	var client_len = sockaddr_in.size;
+
+	var client_fd = accept(fd, client_addr, &client_len);
+	if (client_fd == -1) 
+    {
+		print("accept failed");
+		return;
+	}
+
+    evutil_make_socket_nonblocking(client_fd);        
+
+	var client = Client(client_fd);
+
+	print("Accepted connection");
+
+});
+
+
+////////////////
+// MAIN
+////////////////
+
+var listen_addr = sockaddr_in();
+var	listen_fd = socket(AF_INET, SOCK_STREAM, 0);
+
+var reuseaddr_on = 1;
+var ev_accept    = 0;
+
+if (listen_fd >= 0)
+{
+	if (setsockopt(listen_fd, SOL_SOCKET, SO_REUSEADDR, &reuseaddr_on, 8) != -1)
+    {
+        listen_addr.sin_family = AF_INET;
+        listen_addr.sin_addr = INADDR_ANY;
+        listen_addr.sin_port = htons(5555);
+
+    	if (bind(listen_fd, listen_addr, sockaddr_in.size) >= 0)
+        {
+            evutil_make_socket_nonblocking(listen_fd);
+
+            listen(listen_fd,5);
+
+            ev_accept = event_new(loop,listen_fd, EV.READ|EV.PERSIST, on_accept, 0);
+            event_add(ev_accept, 0);
+
+            event_base_dispatch(loop);
+        }
+        else
+        {
+            print "bind failed";
+        }
+    }
+    else
+    {
+        print "setsockopt failed";
+    }
+}
+else
+{
+    print "listen failed";
+}
+

@@ -1,0 +1,3182 @@
+// load libgio-2.0.so.0: 140600914399232
+// load libgobject-2.0.so.0: 140600920477696
+// load libglib-2.0.so.0: 140600916336640
+// load libgdk-3.so.0: 140600910954496
+// load libgtk-3.so.0: 140600890359808
+// load libgdk-3.so.0: 140600910954496
+// load libgobject-2.0.so.0: 140600920477696
+// load libgtksourceview-3.0.so.1: 140600886288384
+// load libwebkit2gtk-4.0.so.37: 140600785502208
+// load libjavascriptcoregtk-4.0.so.18: 140600758239232
+// load libjavascriptcoregtk-4.0.so.18: 140600758239232
+// namespace GLib
+// libs libgobject-2.0.so.0,libglib-2.0.so.0
+extern from "libglib-2.0.so.0" {
+int g_async_queue_length(ptr);
+int g_async_queue_length_unlocked(ptr);
+void g_async_queue_lock(ptr);
+ptr g_async_queue_pop(ptr);
+ptr g_async_queue_pop_unlocked(ptr);
+void g_async_queue_push(ptr, ptr);
+void g_async_queue_push_front(ptr, ptr);
+void g_async_queue_push_front_unlocked(ptr, ptr);
+void g_async_queue_push_unlocked(ptr, ptr);
+void g_async_queue_ref_unlocked(ptr);
+int g_async_queue_remove(ptr, ptr);
+int g_async_queue_remove_unlocked(ptr, ptr);
+ptr g_async_queue_timed_pop(ptr, ptr);
+ptr g_async_queue_timed_pop_unlocked(ptr, ptr);
+ptr g_async_queue_timeout_pop(ptr, ulong);
+ptr g_async_queue_timeout_pop_unlocked(ptr, ulong);
+ptr g_async_queue_try_pop(ptr);
+ptr g_async_queue_try_pop_unlocked(ptr);
+void g_async_queue_unlock(ptr);
+void g_async_queue_unref(ptr);
+void g_async_queue_unref_and_unlock(ptr);
+void g_bookmark_file_add_application(ptr, str, str, str);
+void g_bookmark_file_add_group(ptr, str, str);
+void g_bookmark_file_free(ptr);
+long g_bookmark_file_get_added(ptr, str, ptr);
+ptr g_bookmark_file_get_added_date_time(ptr, str, ptr);
+int g_bookmark_file_get_app_info(ptr, str, str, ptr, ptr, ptr, ptr);
+int g_bookmark_file_get_application_info(ptr, str, str, ptr, ptr, ptr, ptr);
+ptr g_bookmark_file_get_applications(ptr, str, ptr, ptr);
+ptr g_bookmark_file_get_description(ptr, str, ptr);
+ptr g_bookmark_file_get_groups(ptr, str, ptr, ptr);
+int g_bookmark_file_get_icon(ptr, str, ptr, ptr, ptr);
+int g_bookmark_file_get_is_private(ptr, str, ptr);
+ptr g_bookmark_file_get_mime_type(ptr, str, ptr);
+long g_bookmark_file_get_modified(ptr, str, ptr);
+ptr g_bookmark_file_get_modified_date_time(ptr, str, ptr);
+int g_bookmark_file_get_size(ptr);
+ptr g_bookmark_file_get_title(ptr, str, ptr);
+ptr g_bookmark_file_get_uris(ptr, ptr);
+long g_bookmark_file_get_visited(ptr, str, ptr);
+ptr g_bookmark_file_get_visited_date_time(ptr, str, ptr);
+int g_bookmark_file_has_application(ptr, str, str, ptr);
+int g_bookmark_file_has_group(ptr, str, str, ptr);
+int g_bookmark_file_has_item(ptr, str);
+int g_bookmark_file_load_from_data(ptr, ptr, ulong, ptr);
+int g_bookmark_file_load_from_data_dirs(ptr, ptr, ptr, ptr);
+int g_bookmark_file_load_from_file(ptr, ptr, ptr);
+int g_bookmark_file_move_item(ptr, str, str, ptr);
+int g_bookmark_file_remove_application(ptr, str, str, ptr);
+int g_bookmark_file_remove_group(ptr, str, str, ptr);
+int g_bookmark_file_remove_item(ptr, str, ptr);
+void g_bookmark_file_set_added(ptr, str, long);
+void g_bookmark_file_set_added_date_time(ptr, str, ptr);
+int g_bookmark_file_set_app_info(ptr, str, str, str, int, long, ptr);
+int g_bookmark_file_set_application_info(ptr, str, str, str, int, ptr, ptr);
+void g_bookmark_file_set_description(ptr, str, str);
+void g_bookmark_file_set_groups(ptr, str, ptr, ulong);
+void g_bookmark_file_set_icon(ptr, str, str, str);
+void g_bookmark_file_set_is_private(ptr, str, int);
+void g_bookmark_file_set_mime_type(ptr, str, str);
+void g_bookmark_file_set_modified(ptr, str, long);
+void g_bookmark_file_set_modified_date_time(ptr, str, ptr);
+void g_bookmark_file_set_title(ptr, str, str);
+void g_bookmark_file_set_visited(ptr, str, long);
+void g_bookmark_file_set_visited_date_time(ptr, str, ptr);
+ptr g_bookmark_file_to_data(ptr, ptr, ptr);
+int g_bookmark_file_to_file(ptr, ptr, ptr);
+uint g_bookmark_file_error_quark(ptr);
+ptr g_byte_array_free(ptr, ptr, int);
+ptr g_byte_array_free_to_bytes(ptr, ptr);
+ptr g_byte_array_new(ptr);
+ptr g_byte_array_new_take(ptr, ptr, ulong);
+ptr g_byte_array_steal(ptr, ptr, ptr);
+void g_byte_array_unref(ptr, ptr);
+ptr g_bytes_new(ptr, ulong);
+ptr g_bytes_new_take(ptr, ulong);
+int g_bytes_compare(ptr, ptr);
+int g_bytes_equal(ptr, ptr);
+ptr g_bytes_get_data(ptr, ptr);
+ptr g_bytes_get_region(ptr, ulong, ulong, ulong);
+ulong g_bytes_get_size(ptr);
+uint g_bytes_hash(ptr);
+ptr g_bytes_new_from_bytes(ptr, ulong, ulong);
+ptr g_bytes_ref(ptr);
+void g_bytes_unref(ptr);
+ptr g_bytes_unref_to_array(ptr);
+ptr g_bytes_unref_to_data(ptr, ptr);
+ptr g_checksum_new(int);
+ptr g_checksum_copy(ptr);
+void g_checksum_free(ptr);
+str g_checksum_get_string(ptr);
+void g_checksum_reset(ptr);
+void g_checksum_update(ptr, ptr, long);
+long g_checksum_type_get_length(ptr, int);
+void g_cond_broadcast(ptr);
+void g_cond_clear(ptr);
+void g_cond_init(ptr);
+void g_cond_signal(ptr);
+void g_cond_wait(ptr, ptr);
+int g_cond_wait_until(ptr, ptr, long);
+ptr g_date_new();
+ptr g_date_new_dmy(ubyte, int, ushort);
+ptr g_date_new_julian(uint);
+void g_date_add_days(ptr, uint);
+void g_date_add_months(ptr, uint);
+void g_date_add_years(ptr, uint);
+void g_date_clamp(ptr, ptr, ptr);
+void g_date_clear(ptr, uint);
+int g_date_compare(ptr, ptr);
+ptr g_date_copy(ptr);
+int g_date_days_between(ptr, ptr);
+void g_date_free(ptr);
+ubyte g_date_get_day(ptr);
+uint g_date_get_day_of_year(ptr);
+uint g_date_get_iso8601_week_of_year(ptr);
+uint g_date_get_julian(ptr);
+uint g_date_get_monday_week_of_year(ptr);
+int g_date_get_month(ptr);
+uint g_date_get_sunday_week_of_year(ptr);
+int g_date_get_weekday(ptr);
+ushort g_date_get_year(ptr);
+int g_date_is_first_of_month(ptr);
+int g_date_is_last_of_month(ptr);
+void g_date_order(ptr, ptr);
+void g_date_set_day(ptr, ubyte);
+void g_date_set_dmy(ptr, ubyte, int, ushort);
+void g_date_set_julian(ptr, uint);
+void g_date_set_month(ptr, int);
+void g_date_set_parse(ptr, str);
+void g_date_set_time(ptr, int);
+void g_date_set_time_t(ptr, long);
+void g_date_set_time_val(ptr, ptr);
+void g_date_set_year(ptr, ushort);
+void g_date_subtract_days(ptr, uint);
+void g_date_subtract_months(ptr, uint);
+void g_date_subtract_years(ptr, uint);
+void g_date_to_struct_tm(ptr, ptr);
+int g_date_valid(ptr);
+ubyte g_date_get_days_in_month(ptr, int, ushort);
+ubyte g_date_get_monday_weeks_in_year(ptr, ushort);
+ubyte g_date_get_sunday_weeks_in_year(ptr, ushort);
+int g_date_is_leap_year(ptr, ushort);
+ulong g_date_strftime(ptr, str, ulong, str, ptr);
+int g_date_valid_day(ptr, ubyte);
+int g_date_valid_dmy(ptr, ubyte, int, ushort);
+int g_date_valid_julian(ptr, uint);
+int g_date_valid_month(ptr, int);
+int g_date_valid_weekday(ptr, int);
+int g_date_valid_year(ptr, ushort);
+ptr g_date_time_new(ptr, int, int, int, int, int, double);
+ptr g_date_time_new_from_iso8601(str, ptr);
+ptr g_date_time_new_from_timeval_local(ptr);
+ptr g_date_time_new_from_timeval_utc(ptr);
+ptr g_date_time_new_from_unix_local(long);
+ptr g_date_time_new_from_unix_utc(long);
+ptr g_date_time_new_local(int, int, int, int, int, double);
+ptr g_date_time_new_now(ptr);
+ptr g_date_time_new_now_local();
+ptr g_date_time_new_now_utc();
+ptr g_date_time_new_utc(int, int, int, int, int, double);
+ptr g_date_time_add(ptr, long);
+ptr g_date_time_add_days(ptr, int);
+ptr g_date_time_add_full(ptr, int, int, int, int, int, double);
+ptr g_date_time_add_hours(ptr, int);
+ptr g_date_time_add_minutes(ptr, int);
+ptr g_date_time_add_months(ptr, int);
+ptr g_date_time_add_seconds(ptr, double);
+ptr g_date_time_add_weeks(ptr, int);
+ptr g_date_time_add_years(ptr, int);
+int g_date_time_compare(ptr, ptr);
+long g_date_time_difference(ptr, ptr);
+int g_date_time_equal(ptr, ptr);
+ptr g_date_time_format(ptr, str);
+ptr g_date_time_format_iso8601(ptr);
+int g_date_time_get_day_of_month(ptr);
+int g_date_time_get_day_of_week(ptr);
+int g_date_time_get_day_of_year(ptr);
+int g_date_time_get_hour(ptr);
+int g_date_time_get_microsecond(ptr);
+int g_date_time_get_minute(ptr);
+int g_date_time_get_month(ptr);
+int g_date_time_get_second(ptr);
+double g_date_time_get_seconds(ptr);
+ptr g_date_time_get_timezone(ptr);
+str g_date_time_get_timezone_abbreviation(ptr);
+long g_date_time_get_utc_offset(ptr);
+int g_date_time_get_week_numbering_year(ptr);
+int g_date_time_get_week_of_year(ptr);
+int g_date_time_get_year(ptr);
+void g_date_time_get_ymd(ptr, ptr, ptr, ptr);
+uint g_date_time_hash(ptr);
+int g_date_time_is_daylight_savings(ptr);
+ptr g_date_time_ref(ptr);
+ptr g_date_time_to_local(ptr);
+int g_date_time_to_timeval(ptr, ptr);
+ptr g_date_time_to_timezone(ptr, ptr);
+long g_date_time_to_unix(ptr);
+ptr g_date_time_to_utc(ptr);
+void g_date_time_unref(ptr);
+void g_dir_close(ptr);
+ptr g_dir_read_name(ptr);
+void g_dir_rewind(ptr);
+ptr g_dir_make_tmp(ptr, ptr, ptr);
+ptr g_error_new_literal(uint, int, str);
+ptr g_error_copy(ptr);
+void g_error_free(ptr);
+int g_error_matches(ptr, uint, int);
+int g_hash_table_add(ptr, ptr, ptr);
+int g_hash_table_contains(ptr, ptr, ptr);
+void g_hash_table_destroy(ptr, ptr);
+int g_hash_table_insert(ptr, ptr, ptr, ptr);
+ptr g_hash_table_lookup(ptr, ptr, ptr);
+int g_hash_table_lookup_extended(ptr, ptr, ptr, ptr, ptr);
+ptr g_hash_table_new_similar(ptr, ptr);
+int g_hash_table_remove(ptr, ptr, ptr);
+void g_hash_table_remove_all(ptr, ptr);
+int g_hash_table_replace(ptr, ptr, ptr, ptr);
+uint g_hash_table_size(ptr, ptr);
+int g_hash_table_steal(ptr, ptr, ptr);
+void g_hash_table_steal_all(ptr, ptr);
+int g_hash_table_steal_extended(ptr, ptr, ptr, ptr, ptr);
+void g_hash_table_unref(ptr, ptr);
+void g_hash_table_iter_init(ptr, ptr);
+int g_hash_table_iter_next(ptr, ptr, ptr);
+void g_hash_table_iter_remove(ptr);
+void g_hash_table_iter_replace(ptr, ptr);
+void g_hash_table_iter_steal(ptr);
+void g_hmac_get_digest(ptr, ptr, ptr);
+str g_hmac_get_string(ptr);
+void g_hmac_unref(ptr);
+void g_hmac_update(ptr, ptr, long);
+int g_hook_compare_ids(ptr, ptr);
+int g_hook_destroy(ptr, ptr, ulong);
+void g_hook_destroy_link(ptr, ptr, ptr);
+void g_hook_free(ptr, ptr, ptr);
+void g_hook_insert_before(ptr, ptr, ptr, ptr);
+void g_hook_prepend(ptr, ptr, ptr);
+void g_hook_unref(ptr, ptr, ptr);
+void g_hook_list_clear(ptr);
+void g_hook_list_init(ptr, uint);
+void g_hook_list_invoke(ptr, int);
+void g_hook_list_invoke_check(ptr, int);
+ptr g_io_channel_new_file(ptr, str, ptr);
+ptr g_io_channel_unix_new(int);
+void g_io_channel_close(ptr);
+int g_io_channel_flush(ptr, ptr);
+int g_io_channel_get_buffer_condition(ptr);
+ulong g_io_channel_get_buffer_size(ptr);
+int g_io_channel_get_buffered(ptr);
+int g_io_channel_get_close_on_unref(ptr);
+str g_io_channel_get_encoding(ptr);
+int g_io_channel_get_flags(ptr);
+str g_io_channel_get_line_term(ptr, ptr);
+void g_io_channel_init(ptr);
+int g_io_channel_read(ptr, str, ulong, ptr);
+int g_io_channel_read_chars(ptr, ptr, ulong, ptr, ptr);
+int g_io_channel_read_line(ptr, ptr, ptr, ptr, ptr);
+int g_io_channel_read_line_string(ptr, ptr, ptr, ptr);
+int g_io_channel_read_to_end(ptr, ptr, ptr, ptr);
+int g_io_channel_read_unichar(ptr, ptr, ptr);
+ptr g_io_channel_ref(ptr);
+int g_io_channel_seek(ptr, long, int);
+int g_io_channel_seek_position(ptr, long, int, ptr);
+void g_io_channel_set_buffer_size(ptr, ulong);
+void g_io_channel_set_buffered(ptr, int);
+void g_io_channel_set_close_on_unref(ptr, int);
+int g_io_channel_set_encoding(ptr, str, ptr);
+int g_io_channel_set_flags(ptr, int, ptr);
+void g_io_channel_set_line_term(ptr, str, int);
+int g_io_channel_shutdown(ptr, int, ptr);
+int g_io_channel_unix_get_fd(ptr);
+void g_io_channel_unref(ptr);
+int g_io_channel_write(ptr, str, ulong, ptr);
+int g_io_channel_write_chars(ptr, ptr, long, ptr, ptr);
+int g_io_channel_write_unichar(ptr, ptr, ptr);
+int g_io_channel_error_from_errno(ptr, int);
+uint g_io_channel_error_quark(ptr);
+ptr g_key_file_new();
+int g_key_file_get_boolean(ptr, str, str, ptr);
+ptr g_key_file_get_boolean_list(ptr, str, str, ptr, ptr);
+ptr g_key_file_get_comment(ptr, str, str, ptr);
+double g_key_file_get_double(ptr, str, str, ptr);
+ptr g_key_file_get_double_list(ptr, str, str, ptr, ptr);
+ptr g_key_file_get_groups(ptr, ptr);
+long g_key_file_get_int64(ptr, str, str, ptr);
+int g_key_file_get_integer(ptr, str, str, ptr);
+ptr g_key_file_get_integer_list(ptr, str, str, ptr, ptr);
+ptr g_key_file_get_keys(ptr, str, ptr, ptr);
+ptr g_key_file_get_locale_for_key(ptr, str, str, str);
+ptr g_key_file_get_locale_string(ptr, str, str, str, ptr);
+ptr g_key_file_get_locale_string_list(ptr, str, str, str, ptr, ptr);
+ptr g_key_file_get_start_group(ptr);
+ptr g_key_file_get_string(ptr, str, str, ptr);
+ptr g_key_file_get_string_list(ptr, str, str, ptr, ptr);
+ulong g_key_file_get_uint64(ptr, str, str, ptr);
+ptr g_key_file_get_value(ptr, str, str, ptr);
+int g_key_file_has_group(ptr, str);
+int g_key_file_load_from_bytes(ptr, ptr, int, ptr);
+int g_key_file_load_from_data(ptr, str, ulong, int, ptr);
+int g_key_file_load_from_data_dirs(ptr, ptr, ptr, int, ptr);
+int g_key_file_load_from_dirs(ptr, ptr, ptr, ptr, int, ptr);
+int g_key_file_load_from_file(ptr, ptr, int, ptr);
+int g_key_file_remove_comment(ptr, str, str, ptr);
+int g_key_file_remove_group(ptr, str, ptr);
+int g_key_file_remove_key(ptr, str, str, ptr);
+int g_key_file_save_to_file(ptr, str, ptr);
+void g_key_file_set_boolean(ptr, str, str, int);
+void g_key_file_set_boolean_list(ptr, str, str, ptr, ulong);
+int g_key_file_set_comment(ptr, str, str, str, ptr);
+void g_key_file_set_double(ptr, str, str, double);
+void g_key_file_set_double_list(ptr, str, str, ptr, ulong);
+void g_key_file_set_int64(ptr, str, str, long);
+void g_key_file_set_integer(ptr, str, str, int);
+void g_key_file_set_integer_list(ptr, str, str, ptr, ulong);
+void g_key_file_set_list_separator(ptr, byte);
+void g_key_file_set_locale_string(ptr, str, str, str, str);
+void g_key_file_set_locale_string_list(ptr, str, str, str, ptr, ulong);
+void g_key_file_set_string(ptr, str, str, str);
+void g_key_file_set_string_list(ptr, str, str, ptr, ulong);
+void g_key_file_set_uint64(ptr, str, str, ulong);
+void g_key_file_set_value(ptr, str, str, str);
+ptr g_key_file_to_data(ptr, ptr, ptr);
+void g_key_file_unref(ptr);
+uint g_key_file_error_quark(ptr);
+ptr g_main_context_new();
+ptr g_main_context_new_with_flags(int);
+int g_main_context_acquire(ptr);
+void g_main_context_add_poll(ptr, ptr, int);
+int g_main_context_check(ptr, int, ptr, int);
+void g_main_context_dispatch(ptr);
+ptr g_main_context_find_source_by_funcs_user_data(ptr, ptr, ptr);
+ptr g_main_context_find_source_by_id(ptr, uint);
+ptr g_main_context_find_source_by_user_data(ptr, ptr);
+void g_main_context_invoke_full(ptr, int, ptr, ptr, ptr);
+int g_main_context_is_owner(ptr);
+int g_main_context_iteration(ptr, int);
+int g_main_context_pending(ptr);
+void g_main_context_pop_thread_default(ptr);
+int g_main_context_prepare(ptr, ptr);
+void g_main_context_push_thread_default(ptr);
+int g_main_context_query(ptr, int, ptr, ptr, int);
+ptr g_main_context_ref(ptr);
+void g_main_context_release(ptr);
+void g_main_context_remove_poll(ptr, ptr);
+void g_main_context_unref(ptr);
+int g_main_context_wait(ptr, ptr, ptr);
+void g_main_context_wakeup(ptr);
+ptr g_main_context_default(ptr);
+ptr g_main_context_get_thread_default(ptr);
+ptr g_main_context_ref_thread_default(ptr);
+ptr g_main_loop_new(ptr, int);
+ptr g_main_loop_get_context(ptr);
+int g_main_loop_is_running(ptr);
+void g_main_loop_quit(ptr);
+ptr g_main_loop_ref(ptr);
+void g_main_loop_run(ptr);
+void g_main_loop_unref(ptr);
+ptr g_mapped_file_new(ptr, int, ptr);
+ptr g_mapped_file_new_from_fd(int, int, ptr);
+void g_mapped_file_free(ptr);
+ptr g_mapped_file_get_bytes(ptr);
+ptr g_mapped_file_get_contents(ptr);
+ulong g_mapped_file_get_length(ptr);
+ptr g_mapped_file_ref(ptr);
+void g_mapped_file_unref(ptr);
+ptr g_markup_parse_context_new(ptr, int, ptr, ptr);
+int g_markup_parse_context_end_parse(ptr, ptr);
+void g_markup_parse_context_free(ptr);
+str g_markup_parse_context_get_element(ptr);
+void g_markup_parse_context_get_position(ptr, ptr, ptr);
+ptr g_markup_parse_context_get_user_data(ptr);
+int g_markup_parse_context_parse(ptr, str, long, ptr);
+ptr g_markup_parse_context_pop(ptr);
+void g_markup_parse_context_push(ptr, ptr, ptr);
+ptr g_markup_parse_context_ref(ptr);
+void g_markup_parse_context_unref(ptr);
+ptr g_match_info_expand_references(ptr, str, ptr);
+ptr g_match_info_fetch(ptr, int);
+ptr g_match_info_fetch_all(ptr);
+ptr g_match_info_fetch_named(ptr, str);
+int g_match_info_fetch_named_pos(ptr, str, ptr, ptr);
+int g_match_info_fetch_pos(ptr, int, ptr, ptr);
+void g_match_info_free(ptr);
+int g_match_info_get_match_count(ptr);
+ptr g_match_info_get_regex(ptr);
+str g_match_info_get_string(ptr);
+int g_match_info_is_partial_match(ptr);
+int g_match_info_matches(ptr);
+int g_match_info_next(ptr, ptr);
+ptr g_match_info_ref(ptr);
+void g_match_info_unref(ptr);
+int g_node_child_index(ptr, ptr);
+int g_node_child_position(ptr, ptr);
+uint g_node_depth(ptr);
+void g_node_destroy(ptr);
+int g_node_is_ancestor(ptr, ptr);
+uint g_node_max_height(ptr);
+uint g_node_n_children(ptr);
+uint g_node_n_nodes(ptr, int);
+void g_node_reverse_children(ptr);
+void g_node_unlink(ptr);
+int g_once_init_enter(ptr, ptr);
+void g_once_init_leave(ptr, ptr, ulong);
+void g_option_context_add_group(ptr, ptr);
+void g_option_context_add_main_entries(ptr, ptr, str);
+void g_option_context_free(ptr);
+str g_option_context_get_description(ptr);
+ptr g_option_context_get_help(ptr, int, ptr);
+int g_option_context_get_help_enabled(ptr);
+int g_option_context_get_ignore_unknown_options(ptr);
+ptr g_option_context_get_main_group(ptr);
+int g_option_context_get_strict_posix(ptr);
+str g_option_context_get_summary(ptr);
+int g_option_context_parse(ptr, ptr, ptr, ptr);
+int g_option_context_parse_strv(ptr, ptr, ptr);
+void g_option_context_set_description(ptr, str);
+void g_option_context_set_help_enabled(ptr, int);
+void g_option_context_set_ignore_unknown_options(ptr, int);
+void g_option_context_set_main_group(ptr, ptr);
+void g_option_context_set_strict_posix(ptr, int);
+void g_option_context_set_summary(ptr, str);
+void g_option_context_set_translate_func(ptr, ptr, ptr, ptr);
+void g_option_context_set_translation_domain(ptr, str);
+ptr g_option_group_new(str, str, str, ptr, ptr);
+void g_option_group_add_entries(ptr, ptr);
+void g_option_group_free(ptr);
+ptr g_option_group_ref(ptr);
+void g_option_group_set_translate_func(ptr, ptr, ptr, ptr);
+void g_option_group_set_translation_domain(ptr, str);
+void g_option_group_unref(ptr);
+ptr g_pattern_spec_new(str);
+ptr g_pattern_spec_copy(ptr);
+int g_pattern_spec_equal(ptr, ptr);
+void g_pattern_spec_free(ptr);
+int g_pattern_spec_match(ptr, ulong, str, str);
+int g_pattern_spec_match_string(ptr, str);
+ptr g_private_get(ptr);
+void g_private_replace(ptr, ptr);
+void g_private_set(ptr, ptr);
+void g_queue_clear(ptr);
+void g_queue_clear_full(ptr, ptr);
+void g_queue_free(ptr);
+void g_queue_free_full(ptr, ptr);
+uint g_queue_get_length(ptr);
+int g_queue_index(ptr, ptr);
+void g_queue_init(ptr);
+int g_queue_is_empty(ptr);
+ptr g_queue_peek_head(ptr);
+ptr g_queue_peek_nth(ptr, uint);
+ptr g_queue_peek_tail(ptr);
+ptr g_queue_pop_head(ptr);
+ptr g_queue_pop_nth(ptr, uint);
+ptr g_queue_pop_tail(ptr);
+void g_queue_push_head(ptr, ptr);
+void g_queue_push_nth(ptr, ptr, int);
+void g_queue_push_tail(ptr, ptr);
+int g_queue_remove(ptr, ptr);
+uint g_queue_remove_all(ptr, ptr);
+void g_queue_reverse(ptr);
+void g_rw_lock_clear(ptr);
+void g_rw_lock_init(ptr);
+void g_rw_lock_reader_lock(ptr);
+int g_rw_lock_reader_trylock(ptr);
+void g_rw_lock_reader_unlock(ptr);
+void g_rw_lock_writer_lock(ptr);
+int g_rw_lock_writer_trylock(ptr);
+void g_rw_lock_writer_unlock(ptr);
+double g_rand_double(ptr);
+double g_rand_double_range(ptr, double, double);
+void g_rand_free(ptr);
+uint g_rand_int(ptr);
+int g_rand_int_range(ptr, int, int);
+void g_rand_set_seed(ptr, uint);
+void g_rand_set_seed_array(ptr, ptr, uint);
+void g_rec_mutex_clear(ptr);
+void g_rec_mutex_init(ptr);
+void g_rec_mutex_lock(ptr);
+int g_rec_mutex_trylock(ptr);
+void g_rec_mutex_unlock(ptr);
+ptr g_regex_new(str, int, int, ptr);
+int g_regex_get_capture_count(ptr);
+int g_regex_get_compile_flags(ptr);
+int g_regex_get_has_cr_or_lf(ptr);
+int g_regex_get_match_flags(ptr);
+int g_regex_get_max_backref(ptr);
+int g_regex_get_max_lookbehind(ptr);
+str g_regex_get_pattern(ptr);
+int g_regex_get_string_number(ptr, str);
+int g_regex_match(ptr, str, int, ptr);
+int g_regex_match_all(ptr, str, int, ptr);
+int g_regex_match_all_full(ptr, ptr, long, int, int, ptr, ptr);
+int g_regex_match_full(ptr, ptr, long, int, int, ptr, ptr);
+ptr g_regex_ref(ptr);
+ptr g_regex_replace(ptr, ptr, long, int, str, int, ptr);
+ptr g_regex_replace_literal(ptr, ptr, long, int, str, int, ptr);
+ptr g_regex_split(ptr, str, int);
+ptr g_regex_split_full(ptr, ptr, long, int, int, int, ptr);
+void g_regex_unref(ptr);
+int g_regex_check_replacement(ptr, str, ptr, ptr);
+uint g_regex_error_quark(ptr);
+ptr g_regex_escape_nul(ptr, str, int);
+ptr g_regex_escape_string(ptr, ptr, int);
+int g_regex_match_simple(ptr, str, str, int, int);
+ptr g_regex_split_simple(ptr, str, str, int, int);
+uint g_scanner_cur_line(ptr);
+uint g_scanner_cur_position(ptr);
+int g_scanner_cur_token(ptr);
+void g_scanner_destroy(ptr);
+int g_scanner_eof(ptr);
+int g_scanner_get_next_token(ptr);
+void g_scanner_input_file(ptr, int);
+void g_scanner_input_text(ptr, str, uint);
+ptr g_scanner_lookup_symbol(ptr, str);
+int g_scanner_peek_next_token(ptr);
+void g_scanner_scope_add_symbol(ptr, uint, str, ptr);
+ptr g_scanner_scope_lookup_symbol(ptr, uint, str);
+void g_scanner_scope_remove_symbol(ptr, uint, str);
+uint g_scanner_set_scope(ptr, uint);
+void g_scanner_sync_file_offset(ptr);
+void g_scanner_unexp_token(ptr, int, str, str, str, str, int);
+ptr g_sequence_append(ptr, ptr);
+void g_sequence_free(ptr);
+ptr g_sequence_get_begin_iter(ptr);
+ptr g_sequence_get_end_iter(ptr);
+ptr g_sequence_get_iter_at_pos(ptr, int);
+int g_sequence_get_length(ptr);
+int g_sequence_is_empty(ptr);
+ptr g_sequence_prepend(ptr, ptr);
+ptr g_sequence_get(ptr, ptr);
+ptr g_sequence_insert_before(ptr, ptr, ptr);
+void g_sequence_move(ptr, ptr, ptr);
+void g_sequence_move_range(ptr, ptr, ptr, ptr);
+ptr g_sequence_range_get_midpoint(ptr, ptr, ptr);
+void g_sequence_remove(ptr, ptr);
+void g_sequence_remove_range(ptr, ptr, ptr);
+void g_sequence_set(ptr, ptr, ptr);
+void g_sequence_swap(ptr, ptr, ptr);
+int g_sequence_iter_compare(ptr, ptr);
+int g_sequence_iter_get_position(ptr);
+ptr g_sequence_iter_get_sequence(ptr);
+int g_sequence_iter_is_begin(ptr);
+int g_sequence_iter_is_end(ptr);
+ptr g_sequence_iter_move(ptr, int);
+ptr g_sequence_iter_next(ptr);
+ptr g_sequence_iter_prev(ptr);
+ptr g_source_new(ptr, uint);
+void g_source_add_child_source(ptr, ptr);
+void g_source_add_poll(ptr, ptr);
+ptr g_source_add_unix_fd(ptr, int, int);
+uint g_source_attach(ptr, ptr);
+void g_source_destroy(ptr);
+int g_source_get_can_recurse(ptr);
+ptr g_source_get_context(ptr);
+void g_source_get_current_time(ptr, ptr);
+uint g_source_get_id(ptr);
+str g_source_get_name(ptr);
+int g_source_get_priority(ptr);
+long g_source_get_ready_time(ptr);
+long g_source_get_time(ptr);
+int g_source_is_destroyed(ptr);
+void g_source_modify_unix_fd(ptr, ptr, int);
+int g_source_query_unix_fd(ptr, ptr);
+ptr g_source_ref(ptr);
+void g_source_remove_child_source(ptr, ptr);
+void g_source_remove_poll(ptr, ptr);
+void g_source_remove_unix_fd(ptr, ptr);
+void g_source_set_callback(ptr, ptr, ptr, ptr);
+void g_source_set_callback_indirect(ptr, ptr, ptr);
+void g_source_set_can_recurse(ptr, int);
+void g_source_set_funcs(ptr, ptr);
+void g_source_set_name(ptr, str);
+void g_source_set_priority(ptr, int);
+void g_source_set_ready_time(ptr, long);
+void g_source_set_static_name(ptr, str);
+void g_source_unref(ptr);
+int g_source_remove(ptr, uint);
+int g_source_remove_by_funcs_user_data(ptr, ptr, ptr);
+int g_source_remove_by_user_data(ptr, ptr);
+void g_source_set_name_by_id(ptr, uint, str);
+ptr g_string_new(str);
+ptr g_string_new_len(str, long);
+ptr g_string_sized_new(ulong);
+ptr g_string_append(ptr, str);
+ptr g_string_append_c(ptr, byte);
+ptr g_string_append_len(ptr, str, long);
+ptr g_string_append_unichar(ptr, ptr);
+ptr g_string_append_uri_escaped(ptr, str, str, int);
+ptr g_string_ascii_down(ptr);
+ptr g_string_ascii_up(ptr);
+ptr g_string_assign(ptr, str);
+ptr g_string_down(ptr);
+int g_string_equal(ptr, ptr);
+ptr g_string_erase(ptr, long, long);
+ptr g_string_free(ptr, int);
+ptr g_string_free_to_bytes(ptr);
+uint g_string_hash(ptr);
+ptr g_string_insert(ptr, long, str);
+ptr g_string_insert_c(ptr, long, byte);
+ptr g_string_insert_len(ptr, long, str, long);
+ptr g_string_insert_unichar(ptr, long, ptr);
+ptr g_string_overwrite(ptr, ulong, str);
+ptr g_string_overwrite_len(ptr, ulong, str, long);
+ptr g_string_prepend(ptr, str);
+ptr g_string_prepend_c(ptr, byte);
+ptr g_string_prepend_len(ptr, str, long);
+ptr g_string_prepend_unichar(ptr, ptr);
+uint g_string_replace(ptr, str, str, uint);
+ptr g_string_set_size(ptr, ulong);
+ptr g_string_truncate(ptr, ulong);
+ptr g_string_up(ptr);
+void g_string_chunk_clear(ptr);
+void g_string_chunk_free(ptr);
+ptr g_string_chunk_insert(ptr, str);
+ptr g_string_chunk_insert_const(ptr, str);
+ptr g_string_chunk_insert_len(ptr, str, long);
+void g_strv_builder_add(ptr, str);
+void g_strv_builder_addv(ptr, ptr);
+ptr g_strv_builder_end(ptr);
+void g_strv_builder_unref(ptr);
+void g_test_case_free(ptr);
+void g_test_log_buffer_free(ptr);
+void g_test_log_buffer_push(ptr, uint, ptr);
+void g_test_log_msg_free(ptr);
+void g_test_suite_add(ptr, ptr);
+void g_test_suite_add_suite(ptr, ptr);
+void g_test_suite_free(ptr);
+ptr g_thread_new(str, ptr, ptr);
+ptr g_thread_try_new(str, ptr, ptr, ptr);
+ptr g_thread_join(ptr);
+ptr g_thread_ref(ptr);
+void g_thread_unref(ptr);
+uint g_thread_error_quark(ptr);
+void g_thread_exit(ptr, ptr);
+ptr g_thread_self(ptr);
+void g_thread_yield(ptr);
+void g_thread_pool_free(ptr, int, int);
+int g_thread_pool_get_max_threads(ptr);
+uint g_thread_pool_get_num_threads(ptr);
+int g_thread_pool_move_to_front(ptr, ptr);
+int g_thread_pool_push(ptr, ptr, ptr);
+int g_thread_pool_set_max_threads(ptr, int, ptr);
+uint g_thread_pool_unprocessed(ptr);
+uint g_thread_pool_get_max_idle_time(ptr);
+int g_thread_pool_get_max_unused_threads(ptr);
+uint g_thread_pool_get_num_unused_threads(ptr);
+void g_thread_pool_set_max_idle_time(ptr, uint);
+void g_thread_pool_set_max_unused_threads(ptr, int);
+void g_thread_pool_stop_unused_threads(ptr);
+void g_time_val_add(ptr, long);
+ptr g_time_val_to_iso8601(ptr);
+int g_time_val_from_iso8601(ptr, str, ptr);
+ptr g_time_zone_new(str);
+ptr g_time_zone_new_identifier(str);
+ptr g_time_zone_new_local();
+ptr g_time_zone_new_offset(int);
+ptr g_time_zone_new_utc();
+int g_time_zone_adjust_time(ptr, int, ptr);
+int g_time_zone_find_interval(ptr, int, long);
+str g_time_zone_get_abbreviation(ptr, int);
+str g_time_zone_get_identifier(ptr);
+int g_time_zone_get_offset(ptr, int);
+int g_time_zone_is_dst(ptr, int);
+ptr g_time_zone_ref(ptr);
+void g_time_zone_unref(ptr);
+void g_timer_continue(ptr);
+void g_timer_destroy(ptr);
+double g_timer_elapsed(ptr, ptr);
+int g_timer_is_active(ptr);
+void g_timer_reset(ptr);
+void g_timer_start(ptr);
+void g_timer_stop(ptr);
+uint g_trash_stack_height(ptr, ptr);
+ptr g_trash_stack_peek(ptr, ptr);
+ptr g_trash_stack_pop(ptr, ptr);
+void g_trash_stack_push(ptr, ptr, ptr);
+ptr g_tree_new_full(ptr, ptr, ptr, ptr);
+void g_tree_destroy(ptr);
+int g_tree_height(ptr);
+void g_tree_insert(ptr, ptr, ptr);
+ptr g_tree_insert_node(ptr, ptr, ptr);
+ptr g_tree_lookup(ptr, ptr);
+int g_tree_lookup_extended(ptr, ptr, ptr, ptr);
+ptr g_tree_lookup_node(ptr, ptr);
+ptr g_tree_lower_bound(ptr, ptr);
+int g_tree_nnodes(ptr);
+ptr g_tree_node_first(ptr);
+ptr g_tree_node_last(ptr);
+ptr g_tree_ref(ptr);
+int g_tree_remove(ptr, ptr);
+void g_tree_remove_all(ptr);
+void g_tree_replace(ptr, ptr, ptr);
+ptr g_tree_replace_node(ptr, ptr, ptr);
+int g_tree_steal(ptr, ptr);
+void g_tree_unref(ptr);
+ptr g_tree_upper_bound(ptr, ptr);
+ptr g_tree_node_key(ptr);
+ptr g_tree_node_next(ptr);
+ptr g_tree_node_previous(ptr);
+ptr g_tree_node_value(ptr);
+str g_uri_get_auth_params(ptr);
+int g_uri_get_flags(ptr);
+str g_uri_get_fragment(ptr);
+str g_uri_get_host(ptr);
+str g_uri_get_password(ptr);
+str g_uri_get_path(ptr);
+int g_uri_get_port(ptr);
+str g_uri_get_query(ptr);
+str g_uri_get_scheme(ptr);
+str g_uri_get_user(ptr);
+str g_uri_get_userinfo(ptr);
+ptr g_uri_parse_relative(ptr, str, int, ptr);
+ptr g_uri_to_string(ptr);
+ptr g_uri_to_string_partial(ptr, int);
+ptr g_uri_build(ptr, int, str, str, str, int, str, str, str);
+ptr g_uri_build_with_user(ptr, int, str, str, str, str, str, int, str, str, str);
+uint g_uri_error_quark(ptr);
+ptr g_uri_escape_bytes(ptr, ptr, ulong, str);
+ptr g_uri_escape_string(ptr, str, str, int);
+int g_uri_is_valid(ptr, str, int, ptr);
+ptr g_uri_join(ptr, int, str, str, str, int, str, str, str);
+ptr g_uri_join_with_user(ptr, int, str, str, str, str, str, int, str, str, str);
+ptr g_uri_list_extract_uris(ptr, str);
+ptr g_uri_parse(ptr, str, int, ptr);
+ptr g_uri_parse_params(ptr, str, long, str, int, ptr);
+ptr g_uri_parse_scheme(ptr, str);
+str g_uri_peek_scheme(ptr, str);
+ptr g_uri_resolve_relative(ptr, str, str, int, ptr);
+int g_uri_split(ptr, str, int, ptr, ptr, ptr, ptr, ptr, ptr, ptr, ptr);
+int g_uri_split_network(ptr, str, int, ptr, ptr, ptr, ptr);
+int g_uri_split_with_user(ptr, str, int, ptr, ptr, ptr, ptr, ptr, ptr, ptr, ptr, ptr, ptr);
+ptr g_uri_unescape_bytes(ptr, str, long, str, ptr);
+ptr g_uri_unescape_segment(ptr, str, str, str);
+ptr g_uri_unescape_string(ptr, str, str);
+void g_uri_params_iter_init(ptr, str, long, str, int);
+int g_uri_params_iter_next(ptr, ptr, ptr, ptr);
+ptr g_variant_new_array(ptr, ptr, ulong);
+ptr g_variant_new_boolean(int);
+ptr g_variant_new_byte(ubyte);
+ptr g_variant_new_bytestring(ptr);
+ptr g_variant_new_bytestring_array(ptr, long);
+ptr g_variant_new_dict_entry(ptr, ptr);
+ptr g_variant_new_double(double);
+ptr g_variant_new_fixed_array(ptr, ptr, ulong, ulong);
+ptr g_variant_new_from_bytes(ptr, ptr, int);
+ptr g_variant_new_from_data(ptr, ptr, ulong, int, ptr, ptr);
+ptr g_variant_new_handle(int);
+ptr g_variant_new_int16(short);
+ptr g_variant_new_int32(int);
+ptr g_variant_new_int64(long);
+ptr g_variant_new_maybe(ptr, ptr);
+ptr g_variant_new_object_path(str);
+ptr g_variant_new_objv(ptr, long);
+ptr g_variant_new_signature(str);
+ptr g_variant_new_string(str);
+ptr g_variant_new_strv(ptr, long);
+ptr g_variant_new_tuple(ptr, ulong);
+ptr g_variant_new_uint16(ushort);
+ptr g_variant_new_uint32(uint);
+ptr g_variant_new_uint64(ulong);
+ptr g_variant_new_variant(ptr);
+ptr g_variant_byteswap(ptr);
+int g_variant_check_format_string(ptr, str, int);
+int g_variant_classify(ptr);
+int g_variant_compare(ptr, ptr);
+ptr g_variant_dup_bytestring(ptr, ptr);
+ptr g_variant_dup_bytestring_array(ptr, ptr);
+ptr g_variant_dup_objv(ptr, ptr);
+ptr g_variant_dup_string(ptr, ptr);
+ptr g_variant_dup_strv(ptr, ptr);
+int g_variant_equal(ptr, ptr);
+int g_variant_get_boolean(ptr);
+ubyte g_variant_get_byte(ptr);
+ptr g_variant_get_bytestring(ptr);
+ptr g_variant_get_bytestring_array(ptr, ptr);
+ptr g_variant_get_child_value(ptr, ulong);
+ptr g_variant_get_data(ptr);
+ptr g_variant_get_data_as_bytes(ptr);
+double g_variant_get_double(ptr);
+int g_variant_get_handle(ptr);
+short g_variant_get_int16(ptr);
+int g_variant_get_int32(ptr);
+long g_variant_get_int64(ptr);
+ptr g_variant_get_maybe(ptr);
+ptr g_variant_get_normal_form(ptr);
+ptr g_variant_get_objv(ptr, ptr);
+ulong g_variant_get_size(ptr);
+str g_variant_get_string(ptr, ptr);
+ptr g_variant_get_strv(ptr, ptr);
+ptr g_variant_get_type(ptr);
+str g_variant_get_type_string(ptr);
+ushort g_variant_get_uint16(ptr);
+uint g_variant_get_uint32(ptr);
+ulong g_variant_get_uint64(ptr);
+ptr g_variant_get_variant(ptr);
+uint g_variant_hash(ptr);
+int g_variant_is_container(ptr);
+int g_variant_is_floating(ptr);
+int g_variant_is_normal_form(ptr);
+int g_variant_is_of_type(ptr, ptr);
+ptr g_variant_lookup_value(ptr, str, ptr);
+ulong g_variant_n_children(ptr);
+ptr g_variant_print(ptr, int);
+ptr g_variant_ref(ptr);
+ptr g_variant_ref_sink(ptr);
+void g_variant_store(ptr, ptr);
+ptr g_variant_take_ref(ptr);
+void g_variant_unref(ptr);
+int g_variant_is_object_path(ptr, str);
+int g_variant_is_signature(ptr, str);
+ptr g_variant_parse(ptr, ptr, str, str, str, ptr);
+ptr g_variant_parse_error_print_context(ptr, ptr, str);
+uint g_variant_parse_error_quark(ptr);
+uint g_variant_parser_get_error_quark(ptr);
+ptr g_variant_builder_new(ptr);
+void g_variant_builder_add_value(ptr, ptr);
+void g_variant_builder_close(ptr);
+ptr g_variant_builder_end(ptr);
+void g_variant_builder_open(ptr, ptr);
+ptr g_variant_builder_ref(ptr);
+void g_variant_builder_unref(ptr);
+ptr g_variant_dict_new(ptr);
+void g_variant_dict_clear(ptr);
+int g_variant_dict_contains(ptr, str);
+ptr g_variant_dict_end(ptr);
+void g_variant_dict_insert_value(ptr, str, ptr);
+ptr g_variant_dict_lookup_value(ptr, str, ptr);
+ptr g_variant_dict_ref(ptr);
+int g_variant_dict_remove(ptr, str);
+void g_variant_dict_unref(ptr);
+ptr g_variant_type_new(str);
+ptr g_variant_type_new_array(ptr);
+ptr g_variant_type_new_dict_entry(ptr, ptr);
+ptr g_variant_type_new_maybe(ptr);
+ptr g_variant_type_new_tuple(ptr, int);
+ptr g_variant_type_copy(ptr);
+ptr g_variant_type_dup_string(ptr);
+ptr g_variant_type_element(ptr);
+int g_variant_type_equal(ptr, ptr);
+ptr g_variant_type_first(ptr);
+void g_variant_type_free(ptr);
+ulong g_variant_type_get_string_length(ptr);
+uint g_variant_type_hash(ptr);
+int g_variant_type_is_array(ptr);
+int g_variant_type_is_basic(ptr);
+int g_variant_type_is_container(ptr);
+int g_variant_type_is_definite(ptr);
+int g_variant_type_is_dict_entry(ptr);
+int g_variant_type_is_maybe(ptr);
+int g_variant_type_is_subtype_of(ptr, ptr);
+int g_variant_type_is_tuple(ptr);
+int g_variant_type_is_variant(ptr);
+ptr g_variant_type_key(ptr);
+ulong g_variant_type_n_items(ptr);
+ptr g_variant_type_next(ptr);
+ptr g_variant_type_value(ptr);
+ptr g_variant_type_checked_(ptr, str);
+ulong g_variant_type_string_get_depth_(ptr, str);
+int g_variant_type_string_is_valid(ptr, str);
+int g_variant_type_string_scan(ptr, str, str, ptr);
+int g_access(ptr, int);
+ptr g_aligned_alloc(ulong, ulong, ulong);
+ptr g_aligned_alloc0(ulong, ulong, ulong);
+void g_aligned_free(ptr);
+int g_ascii_digit_value(byte);
+ptr g_ascii_dtostr(str, int, double);
+ptr g_ascii_formatd(str, int, str, double);
+int g_ascii_strcasecmp(str, str);
+ptr g_ascii_strdown(str, long);
+int g_ascii_string_to_signed(str, uint, long, long, ptr, ptr);
+int g_ascii_string_to_unsigned(str, uint, ulong, ulong, ptr, ptr);
+int g_ascii_strncasecmp(str, str, ulong);
+double g_ascii_strtod(str, str);
+long g_ascii_strtoll(str, str, uint);
+ulong g_ascii_strtoull(str, str, uint);
+ptr g_ascii_strup(str, long);
+byte g_ascii_tolower(byte);
+byte g_ascii_toupper(byte);
+int g_ascii_xdigit_value(byte);
+void g_assert_warning(str, str, int, str, str);
+void g_assertion_message(str, str, int, str, str);
+void g_assertion_message_cmpstr(str, str, int, str, str, str, str, str);
+void g_assertion_message_cmpstrv(str, str, int, str, str, str, str, ulong);
+void g_assertion_message_error(str, str, int, str, str, ptr, uint, int);
+void g_atexit(ptr);
+int g_atomic_int_add(ptr, int);
+uint g_atomic_int_and(ptr, uint);
+int g_atomic_int_compare_and_exchange(ptr, int, int);
+int g_atomic_int_dec_and_test(ptr);
+int g_atomic_int_exchange_and_add(ptr, int);
+int g_atomic_int_get(ptr);
+void g_atomic_int_inc(ptr);
+uint g_atomic_int_or(ptr, uint);
+void g_atomic_int_set(ptr, int);
+uint g_atomic_int_xor(ptr, uint);
+long g_atomic_pointer_add(ptr, long);
+ulong g_atomic_pointer_and(ptr, ulong);
+int g_atomic_pointer_compare_and_exchange(ptr, ptr, ptr);
+ptr g_atomic_pointer_get(ptr);
+ulong g_atomic_pointer_or(ptr, ulong);
+void g_atomic_pointer_set(ptr, ptr);
+ulong g_atomic_pointer_xor(ptr, ulong);
+ptr g_atomic_rc_box_acquire(ptr);
+ptr g_atomic_rc_box_alloc(ulong);
+ptr g_atomic_rc_box_alloc0(ulong);
+ptr g_atomic_rc_box_dup(ulong, ptr);
+ulong g_atomic_rc_box_get_size(ptr);
+void g_atomic_rc_box_release(ptr);
+void g_atomic_rc_box_release_full(ptr, ptr);
+int g_atomic_ref_count_compare(ptr, int);
+int g_atomic_ref_count_dec(ptr);
+void g_atomic_ref_count_inc(ptr);
+void g_atomic_ref_count_init(ptr);
+ptr g_base64_decode(str, ptr);
+ptr g_base64_decode_inplace(ptr, ptr);
+ptr g_base64_encode(ptr, ulong);
+ulong g_base64_encode_close(int, ptr, ptr, ptr);
+ulong g_base64_encode_step(ptr, ulong, int, ptr, ptr, ptr);
+ptr g_basename(ptr);
+void g_bit_lock(ptr, int);
+int g_bit_nth_lsf(ulong, int);
+int g_bit_nth_msf(ulong, int);
+uint g_bit_storage(ulong);
+int g_bit_trylock(ptr, int);
+void g_bit_unlock(ptr, int);
+uint g_bookmark_file_error_quark();
+ptr g_build_filenamev(ptr);
+ptr g_build_pathv(str, ptr);
+ptr g_byte_array_free(ptr, int);
+ptr g_byte_array_free_to_bytes(ptr);
+ptr g_byte_array_new();
+ptr g_byte_array_new_take(ptr, ulong);
+ptr g_byte_array_steal(ptr, ptr);
+void g_byte_array_unref(ptr);
+ptr g_canonicalize_filename(ptr, ptr);
+int g_chdir(ptr);
+str glib_check_version(uint, uint, uint);
+long g_checksum_type_get_length(int);
+uint g_child_watch_add_full(int, int, ptr, ptr, ptr);
+ptr g_child_watch_source_new(int);
+void g_clear_error(ptr);
+int g_close(int, ptr);
+ptr g_compute_checksum_for_bytes(int, ptr);
+ptr g_compute_checksum_for_data(int, ptr, ulong);
+ptr g_compute_checksum_for_string(int, str, long);
+ptr g_compute_hmac_for_bytes(int, ptr, ptr);
+ptr g_compute_hmac_for_data(int, ptr, ulong, ptr, ulong);
+ptr g_compute_hmac_for_string(int, ptr, ulong, str, long);
+ptr g_convert(ptr, long, str, str, ptr, ptr, ptr);
+uint g_convert_error_quark();
+ptr g_convert_with_fallback(ptr, long, str, str, str, ptr, ptr, ptr);
+void g_datalist_foreach(ptr, ptr, ptr);
+ptr g_datalist_get_data(ptr, str);
+uint g_datalist_get_flags(ptr);
+ptr g_datalist_id_get_data(ptr, uint);
+void g_datalist_set_flags(ptr, uint);
+void g_datalist_unset_flags(ptr, uint);
+void g_dataset_destroy(ptr);
+void g_dataset_foreach(ptr, ptr, ptr);
+ptr g_dataset_id_get_data(ptr, uint);
+ubyte g_date_get_days_in_month(int, ushort);
+ubyte g_date_get_monday_weeks_in_year(ushort);
+ubyte g_date_get_sunday_weeks_in_year(ushort);
+int g_date_is_leap_year(ushort);
+ulong g_date_strftime(str, ulong, str, ptr);
+int g_date_valid_day(ubyte);
+int g_date_valid_dmy(ubyte, int, ushort);
+int g_date_valid_julian(uint);
+int g_date_valid_month(int);
+int g_date_valid_weekday(int);
+int g_date_valid_year(ushort);
+str g_dcgettext(str, str, int);
+str g_dgettext(str, str);
+ptr g_dir_make_tmp(ptr, ptr);
+int g_direct_equal(ptr, ptr);
+uint g_direct_hash(ptr);
+str g_dngettext(str, str, str, ulong);
+int g_double_equal(ptr, ptr);
+uint g_double_hash(ptr);
+str g_dpgettext(str, str, ulong);
+str g_dpgettext2(str, str, str);
+ptr g_environ_getenv(ptr, ptr);
+ptr g_environ_setenv(ptr, ptr, ptr, int);
+ptr g_environ_unsetenv(ptr, ptr);
+int g_file_error_from_errno(int);
+uint g_file_error_quark();
+int g_file_get_contents(ptr, ptr, ptr, ptr);
+int g_file_open_tmp(ptr, ptr, ptr);
+ptr g_file_read_link(ptr, ptr);
+int g_file_set_contents(ptr, ptr, long, ptr);
+int g_file_set_contents_full(ptr, ptr, long, int, int, ptr);
+int g_file_test(ptr, int);
+ptr g_filename_display_basename(ptr);
+ptr g_filename_display_name(ptr);
+ptr g_filename_from_uri(str, ptr, ptr);
+ptr g_filename_from_utf8(str, long, ptr, ptr, ptr);
+ptr g_filename_to_uri(ptr, str, ptr);
+ptr g_filename_to_utf8(ptr, long, ptr, ptr, ptr);
+ptr g_find_program_in_path(ptr);
+ptr g_format_size(ulong);
+ptr g_format_size_for_display(long);
+ptr g_format_size_full(ulong, int);
+void g_free(ptr);
+str g_get_application_name();
+int g_get_charset(str);
+ptr g_get_codeset();
+int g_get_console_charset(str);
+ptr g_get_current_dir();
+void g_get_current_time(ptr);
+ptr g_get_environ();
+int g_get_filename_charsets(ptr);
+ptr g_get_home_dir();
+str g_get_host_name();
+ptr g_get_language_names();
+ptr g_get_language_names_with_category(str);
+ptr g_get_locale_variants(str);
+long g_get_monotonic_time();
+uint g_get_num_processors();
+ptr g_get_os_info(str);
+str g_get_prgname();
+ptr g_get_real_name();
+long g_get_real_time();
+ptr g_get_system_config_dirs();
+ptr g_get_system_data_dirs();
+ptr g_get_tmp_dir();
+ptr g_get_user_cache_dir();
+ptr g_get_user_config_dir();
+ptr g_get_user_data_dir();
+ptr g_get_user_name();
+ptr g_get_user_runtime_dir();
+ptr g_get_user_special_dir(int);
+ptr g_get_user_state_dir();
+ptr g_getenv(ptr);
+int g_hash_table_add(ptr, ptr);
+int g_hash_table_contains(ptr, ptr);
+void g_hash_table_destroy(ptr);
+int g_hash_table_insert(ptr, ptr, ptr);
+ptr g_hash_table_lookup(ptr, ptr);
+int g_hash_table_lookup_extended(ptr, ptr, ptr, ptr);
+ptr g_hash_table_new_similar(ptr);
+int g_hash_table_remove(ptr, ptr);
+void g_hash_table_remove_all(ptr);
+int g_hash_table_replace(ptr, ptr, ptr);
+uint g_hash_table_size(ptr);
+int g_hash_table_steal(ptr, ptr);
+void g_hash_table_steal_all(ptr);
+int g_hash_table_steal_extended(ptr, ptr, ptr, ptr);
+void g_hash_table_unref(ptr);
+int g_hook_destroy(ptr, ulong);
+void g_hook_destroy_link(ptr, ptr);
+void g_hook_free(ptr, ptr);
+void g_hook_insert_before(ptr, ptr, ptr);
+void g_hook_prepend(ptr, ptr);
+void g_hook_unref(ptr, ptr);
+int g_hostname_is_ascii_encoded(str);
+int g_hostname_is_ip_address(str);
+int g_hostname_is_non_ascii(str);
+ptr g_hostname_to_ascii(str);
+ptr g_hostname_to_unicode(str);
+uint g_idle_add_full(int, ptr, ptr, ptr);
+int g_idle_remove_by_data(ptr);
+ptr g_idle_source_new();
+int g_int64_equal(ptr, ptr);
+uint g_int64_hash(ptr);
+int g_int_equal(ptr, ptr);
+uint g_int_hash(ptr);
+str g_intern_static_string(str);
+str g_intern_string(str);
+uint g_io_add_watch_full(ptr, int, int, ptr, ptr, ptr);
+int g_io_channel_error_from_errno(int);
+uint g_io_channel_error_quark();
+ptr g_io_create_watch(ptr, int);
+uint g_key_file_error_quark();
+ptr g_listenv();
+ptr g_locale_from_utf8(str, long, ptr, ptr, ptr);
+ptr g_locale_to_utf8(ptr, long, ptr, ptr, ptr);
+void g_log_default_handler(str, int, str, ptr);
+int g_log_get_debug_enabled();
+void g_log_remove_handler(str, uint);
+int g_log_set_always_fatal(int);
+void g_log_set_debug_enabled(int);
+int g_log_set_fatal_mask(str, int);
+uint g_log_set_handler_full(str, int, ptr, ptr, ptr);
+void g_log_set_writer_func(ptr, ptr, ptr);
+void g_log_structured_array(int, ptr, ulong);
+void g_log_variant(str, int, ptr);
+int g_log_writer_default(int, ptr, ulong, ptr);
+void g_log_writer_default_set_use_stderr(int);
+int g_log_writer_default_would_drop(int, str);
+ptr g_log_writer_format_fields(int, ptr, ulong, int);
+int g_log_writer_is_journald(int);
+int g_log_writer_journald(int, ptr, ulong, ptr);
+int g_log_writer_standard_streams(int, ptr, ulong, ptr);
+int g_log_writer_supports_color(int);
+ptr g_main_context_default();
+ptr g_main_context_get_thread_default();
+ptr g_main_context_ref_thread_default();
+ptr g_main_current_source();
+int g_main_depth();
+ptr g_malloc(ulong);
+ptr g_malloc0(ulong);
+ptr g_malloc0_n(ulong, ulong);
+ptr g_malloc_n(ulong, ulong);
+uint g_markup_error_quark();
+ptr g_markup_escape_text(str, long);
+int g_mem_is_system_malloc();
+void g_mem_profile();
+void g_mem_set_vtable(ptr);
+ptr g_memdup(ptr, uint);
+ptr g_memdup2(ptr, ulong);
+int g_mkdir_with_parents(ptr, int);
+void g_nullify_pointer(ptr);
+uint g_number_parser_error_quark();
+void g_on_error_query(str);
+void g_on_error_stack_trace(str);
+int g_once_init_enter(ptr);
+void g_once_init_leave(ptr, ulong);
+uint g_option_error_quark();
+uint g_parse_debug_string(str, ptr, uint);
+ptr g_path_get_basename(ptr);
+ptr g_path_get_dirname(ptr);
+int g_path_is_absolute(ptr);
+ptr g_path_skip_root(ptr);
+int g_pattern_match_simple(str, str);
+void g_pointer_bit_lock(ptr, int);
+int g_pointer_bit_trylock(ptr, int);
+void g_pointer_bit_unlock(ptr, int);
+int g_poll(ptr, uint, int);
+void g_prefix_error_literal(ptr, str);
+void g_propagate_error(ptr, ptr);
+uint g_quark_from_static_string(str);
+uint g_quark_from_string(str);
+str g_quark_to_string(uint);
+uint g_quark_try_string(str);
+double g_random_double();
+double g_random_double_range(double, double);
+uint g_random_int();
+int g_random_int_range(int, int);
+void g_random_set_seed(uint);
+ptr g_rc_box_acquire(ptr);
+ptr g_rc_box_alloc(ulong);
+ptr g_rc_box_alloc0(ulong);
+ptr g_rc_box_dup(ulong, ptr);
+ulong g_rc_box_get_size(ptr);
+void g_rc_box_release(ptr);
+void g_rc_box_release_full(ptr, ptr);
+ptr g_realloc(ptr, ulong);
+ptr g_realloc_n(ptr, ulong, ulong);
+int g_ref_count_compare(ptr, int);
+int g_ref_count_dec(ptr);
+void g_ref_count_inc(ptr);
+void g_ref_count_init(ptr);
+ptr g_ref_string_acquire(str);
+ulong g_ref_string_length(str);
+ptr g_ref_string_new(str);
+ptr g_ref_string_new_intern(str);
+ptr g_ref_string_new_len(str, long);
+void g_ref_string_release(str);
+int g_regex_check_replacement(str, ptr, ptr);
+uint g_regex_error_quark();
+ptr g_regex_escape_nul(str, int);
+ptr g_regex_escape_string(ptr, int);
+int g_regex_match_simple(str, str, int, int);
+ptr g_regex_split_simple(str, str, int, int);
+void g_reload_user_special_dirs_cache();
+int g_rmdir(ptr);
+ptr g_sequence_get(ptr);
+ptr g_sequence_insert_before(ptr, ptr);
+void g_sequence_move(ptr, ptr);
+void g_sequence_move_range(ptr, ptr, ptr);
+ptr g_sequence_range_get_midpoint(ptr, ptr);
+void g_sequence_remove(ptr);
+void g_sequence_remove_range(ptr, ptr);
+void g_sequence_set(ptr, ptr);
+void g_sequence_swap(ptr, ptr);
+void g_set_application_name(str);
+void g_set_error_literal(ptr, uint, int, str);
+void g_set_prgname(str);
+int g_setenv(ptr, ptr, int);
+uint g_shell_error_quark();
+int g_shell_parse_argv(ptr, ptr, ptr, ptr);
+ptr g_shell_quote(ptr);
+ptr g_shell_unquote(ptr, ptr);
+ptr g_slice_alloc(ulong);
+ptr g_slice_alloc0(ulong);
+ptr g_slice_copy(ulong, ptr);
+void g_slice_free1(ulong, ptr);
+void g_slice_free_chain_with_offset(ulong, ptr, ulong);
+long g_slice_get_config(int);
+ptr g_slice_get_config_state(int, long, ptr);
+void g_slice_set_config(int, long);
+int g_source_remove(uint);
+int g_source_remove_by_funcs_user_data(ptr, ptr);
+int g_source_remove_by_user_data(ptr);
+void g_source_set_name_by_id(uint, str);
+uint g_spaced_primes_closest(uint);
+int g_spawn_async(ptr, ptr, ptr, int, ptr, ptr, ptr, ptr);
+int g_spawn_async_with_fds(ptr, ptr, ptr, int, ptr, ptr, ptr, int, int, int, ptr);
+int g_spawn_async_with_pipes(ptr, ptr, ptr, int, ptr, ptr, ptr, ptr, ptr, ptr, ptr);
+int g_spawn_async_with_pipes_and_fds(ptr, ptr, ptr, int, ptr, ptr, int, int, int, ptr, ptr, ulong, ptr, ptr, ptr, ptr, ptr);
+int g_spawn_check_exit_status(int, ptr);
+int g_spawn_check_wait_status(int, ptr);
+void g_spawn_close_pid(int);
+int g_spawn_command_line_async(ptr, ptr);
+int g_spawn_command_line_sync(ptr, ptr, ptr, ptr, ptr);
+uint g_spawn_error_quark();
+uint g_spawn_exit_error_quark();
+int g_spawn_sync(ptr, ptr, ptr, int, ptr, ptr, ptr, ptr, ptr, ptr);
+ptr g_stpcpy(str, str);
+int g_str_equal(ptr, ptr);
+int g_str_has_prefix(str, str);
+int g_str_has_suffix(str, str);
+uint g_str_hash(ptr);
+int g_str_is_ascii(str);
+int g_str_match_string(str, str, int);
+ptr g_str_to_ascii(str, str);
+ptr g_str_tokenize_and_fold(str, str, ptr);
+ptr g_strcanon(str, str, byte);
+int g_strcasecmp(str, str);
+ptr g_strchomp(str);
+ptr g_strchug(str);
+int g_strcmp0(str, str);
+ptr g_strcompress(str);
+ptr g_strdelimit(str, str, byte);
+ptr g_strdown(str);
+ptr g_strdup(str);
+str g_strerror(int);
+ptr g_strescape(str, str);
+void g_strfreev(str);
+str g_strip_context(str, str);
+ptr g_strjoinv(str, str);
+ulong g_strlcat(str, str, ulong);
+ulong g_strlcpy(str, str, ulong);
+int g_strncasecmp(str, str, uint);
+ptr g_strndup(str, ulong);
+ptr g_strnfill(ulong, byte);
+ptr g_strreverse(str);
+ptr g_strrstr(str, str);
+ptr g_strrstr_len(str, long, str);
+str g_strsignal(int);
+ptr g_strstr_len(str, long, str);
+double g_strtod(str, str);
+ptr g_strup(str);
+int g_strv_contains(str, str);
+int g_strv_equal(str, str);
+ulong g_strv_get_type();
+uint g_strv_length(str);
+void g_test_add_data_func(str, ptr, ptr);
+void g_test_add_data_func_full(str, ptr, ptr, ptr);
+void g_test_add_func(str, ptr);
+void g_test_assert_expected_messages_internal(str, str, int, str);
+void g_test_bug(str);
+void g_test_bug_base(str);
+void g_test_expect_message(str, int, str);
+void g_test_fail();
+int g_test_failed();
+ptr g_test_get_dir(int);
+str g_test_get_path();
+void g_test_incomplete(str);
+str g_test_log_type_name(int);
+void g_test_queue_destroy(ptr, ptr);
+void g_test_queue_free(ptr);
+double g_test_rand_double();
+double g_test_rand_double_range(double, double);
+int g_test_rand_int();
+int g_test_rand_int_range(int, int);
+int g_test_run();
+int g_test_run_suite(ptr);
+void g_test_set_nonfatal_assertions();
+void g_test_skip(str);
+int g_test_subprocess();
+void g_test_summary(str);
+double g_test_timer_elapsed();
+double g_test_timer_last();
+void g_test_timer_start();
+void g_test_trap_assertions(str, str, int, str, ulong, str);
+int g_test_trap_fork(ulong, int);
+int g_test_trap_has_passed();
+int g_test_trap_reached_timeout();
+void g_test_trap_subprocess(str, ulong, int);
+uint g_thread_error_quark();
+void g_thread_exit(ptr);
+uint g_thread_pool_get_max_idle_time();
+int g_thread_pool_get_max_unused_threads();
+uint g_thread_pool_get_num_unused_threads();
+void g_thread_pool_set_max_idle_time(uint);
+void g_thread_pool_set_max_unused_threads(int);
+void g_thread_pool_stop_unused_threads();
+ptr g_thread_self();
+void g_thread_yield();
+int g_time_val_from_iso8601(str, ptr);
+uint g_timeout_add_full(int, uint, ptr, ptr, ptr);
+uint g_timeout_add_seconds_full(int, uint, ptr, ptr, ptr);
+ptr g_timeout_source_new(uint);
+ptr g_timeout_source_new_seconds(uint);
+uint g_trash_stack_height(ptr);
+ptr g_trash_stack_peek(ptr);
+ptr g_trash_stack_pop(ptr);
+void g_trash_stack_push(ptr, ptr);
+ptr g_try_malloc(ulong);
+ptr g_try_malloc0(ulong);
+ptr g_try_malloc0_n(ulong, ulong);
+ptr g_try_malloc_n(ulong, ulong);
+ptr g_try_realloc(ptr, ulong);
+ptr g_try_realloc_n(ptr, ulong, ulong);
+ptr g_ucs4_to_utf16(ptr, long, ptr, ptr, ptr);
+ptr g_ucs4_to_utf8(ptr, long, ptr, ptr, ptr);
+int g_unichar_break_type(ptr);
+int g_unichar_combining_class(ptr);
+int g_unichar_compose(ptr, ptr, ptr);
+int g_unichar_decompose(ptr, ptr, ptr);
+int g_unichar_digit_value(ptr);
+ulong g_unichar_fully_decompose(ptr, int, ptr, ulong);
+int g_unichar_get_mirror_char(ptr, ptr);
+int g_unichar_get_script(ptr);
+int g_unichar_isalnum(ptr);
+int g_unichar_isalpha(ptr);
+int g_unichar_iscntrl(ptr);
+int g_unichar_isdefined(ptr);
+int g_unichar_isdigit(ptr);
+int g_unichar_isgraph(ptr);
+int g_unichar_islower(ptr);
+int g_unichar_ismark(ptr);
+int g_unichar_isprint(ptr);
+int g_unichar_ispunct(ptr);
+int g_unichar_isspace(ptr);
+int g_unichar_istitle(ptr);
+int g_unichar_isupper(ptr);
+int g_unichar_iswide(ptr);
+int g_unichar_iswide_cjk(ptr);
+int g_unichar_isxdigit(ptr);
+int g_unichar_iszerowidth(ptr);
+int g_unichar_to_utf8(ptr, str);
+ptr g_unichar_tolower(ptr);
+ptr g_unichar_totitle(ptr);
+ptr g_unichar_toupper(ptr);
+int g_unichar_type(ptr);
+int g_unichar_validate(ptr);
+int g_unichar_xdigit_value(ptr);
+ptr g_unicode_canonical_decomposition(ptr, ptr);
+void g_unicode_canonical_ordering(ptr, ulong);
+int g_unicode_script_from_iso15924(uint);
+uint g_unicode_script_to_iso15924(int);
+uint g_unix_error_quark();
+uint g_unix_fd_add_full(int, int, int, ptr, ptr, ptr);
+ptr g_unix_fd_source_new(int, int);
+ptr g_unix_get_passwd_entry(str, ptr);
+int g_unix_open_pipe(ptr, int, ptr);
+int g_unix_set_fd_nonblocking(int, int, ptr);
+uint g_unix_signal_add_full(int, int, ptr, ptr, ptr);
+ptr g_unix_signal_source_new(int);
+int g_unlink(ptr);
+void g_unsetenv(ptr);
+ptr g_uri_build(int, str, str, str, int, str, str, str);
+ptr g_uri_build_with_user(int, str, str, str, str, str, int, str, str, str);
+uint g_uri_error_quark();
+ptr g_uri_escape_bytes(ptr, ulong, str);
+ptr g_uri_escape_string(str, str, int);
+int g_uri_is_valid(str, int, ptr);
+ptr g_uri_join(int, str, str, str, int, str, str, str);
+ptr g_uri_join_with_user(int, str, str, str, str, str, int, str, str, str);
+ptr g_uri_list_extract_uris(str);
+ptr g_uri_parse(str, int, ptr);
+ptr g_uri_parse_params(str, long, str, int, ptr);
+ptr g_uri_parse_scheme(str);
+str g_uri_peek_scheme(str);
+ptr g_uri_resolve_relative(str, str, int, ptr);
+int g_uri_split(str, int, ptr, ptr, ptr, ptr, ptr, ptr, ptr, ptr);
+int g_uri_split_network(str, int, ptr, ptr, ptr, ptr);
+int g_uri_split_with_user(str, int, ptr, ptr, ptr, ptr, ptr, ptr, ptr, ptr, ptr, ptr);
+ptr g_uri_unescape_bytes(str, long, str, ptr);
+ptr g_uri_unescape_segment(str, str, str);
+ptr g_uri_unescape_string(str, str);
+void g_usleep(ulong);
+ptr g_utf16_to_ucs4(ptr, long, ptr, ptr, ptr);
+ptr g_utf16_to_utf8(ptr, long, ptr, ptr, ptr);
+ptr g_utf8_casefold(str, long);
+int g_utf8_collate(str, str);
+ptr g_utf8_collate_key(str, long);
+ptr g_utf8_collate_key_for_filename(str, long);
+str g_utf8_find_next_char(str, str);
+str g_utf8_find_prev_char(str, str);
+ptr g_utf8_get_char(str);
+ptr g_utf8_get_char_validated(str, long);
+ptr g_utf8_make_valid(str, long);
+ptr g_utf8_normalize(str, long, int);
+str g_utf8_offset_to_pointer(str, long);
+long g_utf8_pointer_to_offset(str, str);
+str g_utf8_prev_char(str);
+str g_utf8_strchr(str, long, ptr);
+ptr g_utf8_strdown(str, long);
+long g_utf8_strlen(str, long);
+str g_utf8_strncpy(str, str, ulong);
+str g_utf8_strrchr(str, long, ptr);
+ptr g_utf8_strreverse(str, long);
+ptr g_utf8_strup(str, long);
+ptr g_utf8_substring(str, long, long);
+ptr g_utf8_to_ucs4(str, long, ptr, ptr, ptr);
+ptr g_utf8_to_ucs4_fast(str, long, ptr);
+ptr g_utf8_to_utf16(str, long, ptr, ptr, ptr);
+int g_utf8_validate(ptr, long, str);
+int g_utf8_validate_len(ptr, ulong, str);
+int g_uuid_string_is_valid(str);
+ptr g_uuid_string_random();
+ulong g_variant_get_gtype();
+int g_variant_is_object_path(str);
+int g_variant_is_signature(str);
+ptr g_variant_parse(ptr, str, str, str, ptr);
+ptr g_variant_parse_error_print_context(ptr, str);
+uint g_variant_parse_error_quark();
+uint g_variant_parser_get_error_quark();
+ptr g_variant_type_checked_(str);
+ulong g_variant_type_string_get_depth_(str);
+int g_variant_type_string_is_valid(str);
+int g_variant_type_string_scan(str, str, ptr);
+};
+
+extern callback void GLibChildWatchFunc(int, int, ptr);
+extern callback void GLibClearHandleFunc(uint);
+extern callback int GLibCompareDataFunc(ptr, ptr, ptr);
+extern callback int GLibCompareFunc(ptr, ptr);
+extern callback ptr GLibCopyFunc(ptr, ptr);
+extern callback void GLibDataForeachFunc(uint, ptr, ptr);
+extern callback void GLibDestroyNotify(ptr);
+extern callback ptr GLibDuplicateFunc(ptr, ptr);
+extern callback int GLibEqualFunc(ptr, ptr);
+extern callback void GLibErrorClearFunc(ptr);
+extern callback void GLibErrorCopyFunc(ptr, ptr);
+extern callback void GLibErrorInitFunc(ptr);
+extern callback void GLibFreeFunc(ptr);
+extern callback void GLibFunc(ptr, ptr);
+extern callback void GLibHFunc(ptr, ptr, ptr);
+extern callback int GLibHRFunc(ptr, ptr, ptr);
+extern callback uint GLibHashFunc(ptr);
+extern callback int GLibHookCheckFunc(ptr);
+extern callback int GLibHookCheckMarshaller(ptr, ptr);
+extern callback int GLibHookCompareFunc(ptr, ptr);
+extern callback void GLibHookFinalizeFunc(ptr, ptr);
+extern callback int GLibHookFindFunc(ptr, ptr);
+extern callback void GLibHookFunc(ptr);
+extern callback void GLibHookMarshaller(ptr, ptr);
+extern callback int GLibIOFunc(ptr, int, ptr);
+extern callback void GLibLogFunc(str, int, str, ptr);
+extern callback int GLibLogWriterFunc(int, ptr, ulong, ptr);
+extern callback void GLibNodeForeachFunc(ptr, ptr);
+extern callback int GLibNodeTraverseFunc(ptr, ptr);
+extern callback int GLibOptionArgFunc(str, str, ptr);
+extern callback void GLibOptionErrorFunc(ptr, ptr, ptr);
+extern callback int GLibOptionParseFunc(ptr, ptr, ptr);
+extern callback int GLibPollFunc(ptr, uint, int);
+extern callback void GLibPrintFunc(str);
+extern callback int GLibRegexEvalCallback(ptr, ptr, ptr);
+extern callback void GLibScannerMsgFunc(ptr, str, int);
+extern callback int GLibSequenceIterCompareFunc(ptr, ptr, ptr);
+extern callback void GLibSourceDisposeFunc(ptr);
+extern callback void GLibSourceDummyMarshal();
+extern callback int GLibSourceFunc(ptr);
+extern callback void GLibSpawnChildSetupFunc(ptr);
+extern callback void GLibTestDataFunc(ptr);
+extern callback void GLibTestFixtureFunc(ptr, ptr);
+extern callback void GLibTestFunc();
+extern callback int GLibTestLogFatalFunc(str, int, str, ptr);
+extern callback ptr GLibThreadFunc(ptr);
+extern callback str GLibTranslateFunc(str, ptr);
+extern callback int GLibTraverseFunc(ptr, ptr, ptr);
+extern callback int GLibTraverseNodeFunc(ptr, ptr);
+extern callback int GLibUnixFDSourceFunc(int, int, ptr);
+extern callback void GLibVoidFunc();
+// name GArray
+extern struct GArray{
+str data,  // utf8*
+uint len,  // guint32
+};
+
+extern struct GLibAsyncQueue{
+
+};
+
+extern struct GLibBookmarkFile{
+
+};
+
+// name GByteArray
+extern struct GByteArray{
+ptr data,  // guint8*
+uint len,  // guint32
+};
+
+// name GBytes
+extern struct GBytes{
+
+};
+
+// name GChecksum
+extern struct GChecksum{
+
+};
+
+extern struct GLibCond{
+ptr p,  // void*
+ptr i_0,
+ptr i_1,
+};
+
+extern struct GLibData{
+
+};
+
+// name GDate
+extern struct GDate{
+uint julian_days,  // guint32
+uint julian,  // guint32
+uint dmy,  // guint32
+uint day,  // guint32
+uint month,  // guint32
+uint year,  // guint32
+};
+
+// name GDateTime
+extern struct GDateTime{
+
+};
+
+extern struct GLibDebugKey{
+str key,  // utf8*
+uint value,  // guint32
+};
+
+extern struct GLibDir{
+
+};
+
+// name GError
+extern struct GError{
+uint domain,  // guint32
+int code,  // gint32
+str message,  // utf8*
+};
+
+// name GHashTable
+extern struct GHashTable{
+
+};
+
+extern struct GLibHashTableIter{
+ptr dummy1,  // void*
+ptr dummy2,  // void*
+ptr dummy3,  // void*
+int dummy4,  // gint32
+int dummy5,  // gboolean
+ptr dummy6,  // void*
+};
+
+extern struct GLibHmac{
+
+};
+
+extern struct GLibHook{
+ptr data,  // void*
+ptr next,  // GLibHook*
+ptr prev,  // GLibHook*
+uint ref_count,  // guint32
+ulong hook_id,  // guint64
+uint flags,  // guint32
+ptr func,  // void*
+ptr destroy,  // ::DestroyNotify
+};
+
+extern struct GLibHookList{
+ulong seq_id,  // guint64
+uint hook_size,  // guint32
+uint is_setup,  // guint32
+ptr hooks,  // GLibHook*
+ptr dummy3,  // void*
+ptr finalize_hook,  // ::HookFinalizeFunc
+ptr dummy_0,
+ptr dummy_1,
+};
+
+// name GIOChannel
+extern struct GIOChannel{
+int ref_count,  // gint32
+ptr funcs,  // GLibIOFuncs*
+str encoding,  // utf8*
+ptr read_cd,  // void*
+ptr write_cd,  // void*
+str line_term,  // utf8*
+uint line_term_len,  // guint32
+ulong buf_size,  // guint64
+ptr read_buf,  // GLibString*
+ptr encoded_read_buf,  // GLibString*
+ptr write_buf,  // GLibString*
+ptr partial_write_buf_0,
+ptr partial_write_buf_1,
+ptr partial_write_buf_2,
+ptr partial_write_buf_3,
+ptr partial_write_buf_4,
+ptr partial_write_buf_5,
+uint use_buffer,  // guint32
+uint do_encode,  // guint32
+uint close_on_unref,  // guint32
+uint is_readable,  // guint32
+uint is_writeable,  // guint32
+uint is_seekable,  // guint32
+ptr reserved1,  // void*
+ptr reserved2,  // void*
+};
+
+extern struct GLibIOFuncs{
+ptr io_read,  // ::io_read
+ptr io_write,  // ::io_write
+ptr io_seek,  // ::io_seek
+ptr io_close,  // ::io_close
+ptr io_create_watch,  // ::io_create_watch
+ptr io_free,  // ::io_free
+ptr io_set_flags,  // ::io_set_flags
+ptr io_get_flags,  // ::io_get_flags
+};
+
+// name GKeyFile
+extern struct GKeyFile{
+
+};
+
+extern struct GLibList{
+ptr data,  // void*
+ptr next,  // glist*
+ptr prev,  // glist*
+};
+
+extern struct GLibLogField{
+str key,  // utf8*
+ptr value,  // void*
+long length,  // gint64
+};
+
+// name GMainContext
+extern struct GMainContext{
+
+};
+
+// name GMainLoop
+extern struct GMainLoop{
+
+};
+
+// name GMappedFile
+extern struct GMappedFile{
+
+};
+
+// name GMarkupParseContext
+extern struct GMarkupParseContext{
+
+};
+
+extern struct GLibMarkupParser{
+ptr start_element,  // ::start_element
+ptr end_element,  // ::end_element
+ptr text,  // ::text
+ptr passthrough,  // ::passthrough
+ptr error,  // ::error
+};
+
+// name GMatchInfo
+extern struct GMatchInfo{
+
+};
+
+extern struct GLibMemVTable{
+ptr malloc,  // ::malloc
+ptr realloc,  // ::realloc
+ptr free,  // ::free
+ptr calloc,  // ::calloc
+ptr try_malloc,  // ::try_malloc
+ptr try_realloc,  // ::try_realloc
+};
+
+extern struct GLibNode{
+ptr data,  // void*
+ptr next,  // GLibNode*
+ptr prev,  // GLibNode*
+ptr parent,  // GLibNode*
+ptr children,  // GLibNode*
+};
+
+extern struct GLibOnce{
+int status,  // GLibOnceStatus
+ptr retval,  // void*
+};
+
+extern struct GLibOptionContext{
+
+};
+
+extern struct GLibOptionEntry{
+str long_name,  // utf8*
+byte short_name,  // gint8
+int flags,  // gint32
+int arg,  // GLibOptionArg
+ptr arg_data,  // void*
+str description,  // utf8*
+str arg_description,  // utf8*
+};
+
+// name GOptionGroup
+extern struct GOptionGroup{
+
+};
+
+// name GPatternSpec
+extern struct GPatternSpec{
+
+};
+
+// name GPollFD
+extern struct GPollFD{
+int fd,  // gint32
+ushort events,  // guint16
+ushort revents,  // guint16
+};
+
+extern struct GLibPrivate{
+ptr p,  // void*
+ptr notify,  // ::DestroyNotify
+ptr future_0,
+ptr future_1,
+};
+
+// name GPtrArray
+extern struct GPtrArray{
+ptr pdata,  // void*
+uint len,  // guint32
+};
+
+extern struct GLibQueue{
+ptr head,  // glist*
+ptr tail,  // glist*
+uint length,  // guint32
+};
+
+extern struct GLibRWLock{
+ptr p,  // void*
+ptr i_0,
+ptr i_1,
+};
+
+extern struct GLibRand{
+
+};
+
+extern struct GLibRecMutex{
+ptr p,  // void*
+ptr i_0,
+ptr i_1,
+};
+
+// name GRegex
+extern struct GRegex{
+
+};
+
+extern struct GLibSList{
+ptr data,  // void*
+ptr next,  // gslist*
+};
+
+extern struct GLibScanner{
+ptr user_data,  // void*
+uint max_parse_errors,  // guint32
+uint parse_errors,  // guint32
+str input_name,  // utf8*
+ptr qdata,  // GLibData*
+ptr config,  // GLibScannerConfig*
+int token,  // GLibTokenType
+ptr value,  // GLibTokenValue
+uint line,  // guint32
+uint position,  // guint32
+int next_token,  // GLibTokenType
+ptr next_value,  // GLibTokenValue
+uint next_line,  // guint32
+uint next_position,  // guint32
+ptr symbol_table,  // ghash*
+int input_fd,  // gint32
+str text,  // utf8*
+str text_end,  // utf8*
+str buffer,  // utf8*
+uint scope_id,  // guint32
+ptr msg_handler,  // ::ScannerMsgFunc
+};
+
+extern struct GLibScannerConfig{
+str cset_skip_characters,  // utf8*
+str cset_identifier_first,  // utf8*
+str cset_identifier_nth,  // utf8*
+str cpair_comment_single,  // utf8*
+uint case_sensitive,  // guint32
+uint skip_comment_multi,  // guint32
+uint skip_comment_single,  // guint32
+uint scan_comment_multi,  // guint32
+uint scan_identifier,  // guint32
+uint scan_identifier_1char,  // guint32
+uint scan_identifier_NULL,  // guint32
+uint scan_symbols,  // guint32
+uint scan_binary,  // guint32
+uint scan_octal,  // guint32
+uint scan_float,  // guint32
+uint scan_hex,  // guint32
+uint scan_hex_dollar,  // guint32
+uint scan_string_sq,  // guint32
+uint scan_string_dq,  // guint32
+uint numbers_2_int,  // guint32
+uint int_2_float,  // guint32
+uint identifier_2_string,  // guint32
+uint char_2_token,  // guint32
+uint symbol_2_token,  // guint32
+uint scope_0_fallback,  // guint32
+uint store_int64,  // guint32
+uint padding_dummy,  // guint32
+};
+
+extern struct GLibSequence{
+
+};
+
+extern struct GLibSequenceIter{
+
+};
+
+// name GSource
+extern struct GSource{
+ptr callback_data,  // void*
+ptr callback_funcs,  // GLibSourceCallbackFuncs*
+ptr source_funcs,  // GLibSourceFuncs*
+uint ref_count,  // guint32
+ptr context,  // GLibMainContext*
+int priority,  // gint32
+uint flags,  // guint32
+uint source_id,  // guint32
+ptr poll_fds,  // gslist*
+ptr prev,  // GLibSource*
+ptr next,  // GLibSource*
+str name,  // utf8*
+ptr priv,  // GLibSourcePrivate*
+};
+
+extern struct GLibSourceCallbackFuncs{
+ptr ref,  // ::ref
+ptr unref,  // ::unref
+ptr get,  // void*
+};
+
+extern struct GLibSourceFuncs{
+ptr prepare,  // ::prepare
+ptr check,  // ::check
+ptr dispatch,  // void*
+ptr finalize,  // ::finalize
+ptr closure_callback,  // ::SourceFunc
+ptr closure_marshal,  // ::SourceDummyMarshal
+};
+
+extern struct GLibSourcePrivate{
+
+};
+
+extern struct GLibStatBuf{
+
+};
+
+// name GString
+extern struct GString{
+str str,  // utf8*
+ulong len,  // guint64
+ulong allocated_len,  // guint64
+};
+
+extern struct GLibStringChunk{
+
+};
+
+extern struct GLibStrvBuilder{
+
+};
+
+extern struct GLibTestCase{
+
+};
+
+extern struct GLibTestConfig{
+int test_initialized,  // gboolean
+int test_quick,  // gboolean
+int test_perf,  // gboolean
+int test_verbose,  // gboolean
+int test_quiet,  // gboolean
+int test_undefined,  // gboolean
+};
+
+extern struct GLibTestLogBuffer{
+ptr data,  // GLibString*
+ptr msgs,  // gslist*
+};
+
+extern struct GLibTestLogMsg{
+int log_type,  // GLibTestLogType
+uint n_strings,  // guint32
+str strings,  // utf8*
+uint n_nums,  // guint32
+ptr nums,  // void*
+};
+
+extern struct GLibTestSuite{
+
+};
+
+// name GThread
+extern struct GThread{
+
+};
+
+extern struct GLibThreadPool{
+ptr func,  // ::Func
+ptr user_data,  // void*
+int exclusive,  // gboolean
+};
+
+extern struct GLibTimeVal{
+long tv_sec,  // gint64
+long tv_usec,  // gint64
+};
+
+// name GTimeZone
+extern struct GTimeZone{
+
+};
+
+extern struct GLibTimer{
+
+};
+
+extern struct GLibTrashStack{
+ptr next,  // GLibTrashStack*
+};
+
+// name GTree
+extern struct GTree{
+
+};
+
+extern struct GLibTreeNode{
+
+};
+
+// name GUri
+extern struct GUri{
+
+};
+
+extern struct GLibUriParamsIter{
+int dummy0,  // gint32
+ptr dummy1,  // void*
+ptr dummy2,  // void*
+ptr dummy3_0,
+ptr dummy3_1,
+ptr dummy3_2,
+ptr dummy3_3,
+ptr dummy3_4,
+ptr dummy3_5,
+ptr dummy3_6,
+ptr dummy3_7,
+ptr dummy3_8,
+ptr dummy3_9,
+ptr dummy3_10,
+ptr dummy3_11,
+ptr dummy3_12,
+ptr dummy3_13,
+ptr dummy3_14,
+ptr dummy3_15,
+ptr dummy3_16,
+ptr dummy3_17,
+ptr dummy3_18,
+ptr dummy3_19,
+ptr dummy3_20,
+ptr dummy3_21,
+ptr dummy3_22,
+ptr dummy3_23,
+ptr dummy3_24,
+ptr dummy3_25,
+ptr dummy3_26,
+ptr dummy3_27,
+ptr dummy3_28,
+ptr dummy3_29,
+ptr dummy3_30,
+ptr dummy3_31,
+ptr dummy3_32,
+ptr dummy3_33,
+ptr dummy3_34,
+ptr dummy3_35,
+ptr dummy3_36,
+ptr dummy3_37,
+ptr dummy3_38,
+ptr dummy3_39,
+ptr dummy3_40,
+ptr dummy3_41,
+ptr dummy3_42,
+ptr dummy3_43,
+ptr dummy3_44,
+ptr dummy3_45,
+ptr dummy3_46,
+ptr dummy3_47,
+ptr dummy3_48,
+ptr dummy3_49,
+ptr dummy3_50,
+ptr dummy3_51,
+ptr dummy3_52,
+ptr dummy3_53,
+ptr dummy3_54,
+ptr dummy3_55,
+ptr dummy3_56,
+ptr dummy3_57,
+ptr dummy3_58,
+ptr dummy3_59,
+ptr dummy3_60,
+ptr dummy3_61,
+ptr dummy3_62,
+ptr dummy3_63,
+ptr dummy3_64,
+ptr dummy3_65,
+ptr dummy3_66,
+ptr dummy3_67,
+ptr dummy3_68,
+ptr dummy3_69,
+ptr dummy3_70,
+ptr dummy3_71,
+ptr dummy3_72,
+ptr dummy3_73,
+ptr dummy3_74,
+ptr dummy3_75,
+ptr dummy3_76,
+ptr dummy3_77,
+ptr dummy3_78,
+ptr dummy3_79,
+ptr dummy3_80,
+ptr dummy3_81,
+ptr dummy3_82,
+ptr dummy3_83,
+ptr dummy3_84,
+ptr dummy3_85,
+ptr dummy3_86,
+ptr dummy3_87,
+ptr dummy3_88,
+ptr dummy3_89,
+ptr dummy3_90,
+ptr dummy3_91,
+ptr dummy3_92,
+ptr dummy3_93,
+ptr dummy3_94,
+ptr dummy3_95,
+ptr dummy3_96,
+ptr dummy3_97,
+ptr dummy3_98,
+ptr dummy3_99,
+ptr dummy3_100,
+ptr dummy3_101,
+ptr dummy3_102,
+ptr dummy3_103,
+ptr dummy3_104,
+ptr dummy3_105,
+ptr dummy3_106,
+ptr dummy3_107,
+ptr dummy3_108,
+ptr dummy3_109,
+ptr dummy3_110,
+ptr dummy3_111,
+ptr dummy3_112,
+ptr dummy3_113,
+ptr dummy3_114,
+ptr dummy3_115,
+ptr dummy3_116,
+ptr dummy3_117,
+ptr dummy3_118,
+ptr dummy3_119,
+ptr dummy3_120,
+ptr dummy3_121,
+ptr dummy3_122,
+ptr dummy3_123,
+ptr dummy3_124,
+ptr dummy3_125,
+ptr dummy3_126,
+ptr dummy3_127,
+ptr dummy3_128,
+ptr dummy3_129,
+ptr dummy3_130,
+ptr dummy3_131,
+ptr dummy3_132,
+ptr dummy3_133,
+ptr dummy3_134,
+ptr dummy3_135,
+ptr dummy3_136,
+ptr dummy3_137,
+ptr dummy3_138,
+ptr dummy3_139,
+ptr dummy3_140,
+ptr dummy3_141,
+ptr dummy3_142,
+ptr dummy3_143,
+ptr dummy3_144,
+ptr dummy3_145,
+ptr dummy3_146,
+ptr dummy3_147,
+ptr dummy3_148,
+ptr dummy3_149,
+ptr dummy3_150,
+ptr dummy3_151,
+ptr dummy3_152,
+ptr dummy3_153,
+ptr dummy3_154,
+ptr dummy3_155,
+ptr dummy3_156,
+ptr dummy3_157,
+ptr dummy3_158,
+ptr dummy3_159,
+ptr dummy3_160,
+ptr dummy3_161,
+ptr dummy3_162,
+ptr dummy3_163,
+ptr dummy3_164,
+ptr dummy3_165,
+ptr dummy3_166,
+ptr dummy3_167,
+ptr dummy3_168,
+ptr dummy3_169,
+ptr dummy3_170,
+ptr dummy3_171,
+ptr dummy3_172,
+ptr dummy3_173,
+ptr dummy3_174,
+ptr dummy3_175,
+ptr dummy3_176,
+ptr dummy3_177,
+ptr dummy3_178,
+ptr dummy3_179,
+ptr dummy3_180,
+ptr dummy3_181,
+ptr dummy3_182,
+ptr dummy3_183,
+ptr dummy3_184,
+ptr dummy3_185,
+ptr dummy3_186,
+ptr dummy3_187,
+ptr dummy3_188,
+ptr dummy3_189,
+ptr dummy3_190,
+ptr dummy3_191,
+ptr dummy3_192,
+ptr dummy3_193,
+ptr dummy3_194,
+ptr dummy3_195,
+ptr dummy3_196,
+ptr dummy3_197,
+ptr dummy3_198,
+ptr dummy3_199,
+ptr dummy3_200,
+ptr dummy3_201,
+ptr dummy3_202,
+ptr dummy3_203,
+ptr dummy3_204,
+ptr dummy3_205,
+ptr dummy3_206,
+ptr dummy3_207,
+ptr dummy3_208,
+ptr dummy3_209,
+ptr dummy3_210,
+ptr dummy3_211,
+ptr dummy3_212,
+ptr dummy3_213,
+ptr dummy3_214,
+ptr dummy3_215,
+ptr dummy3_216,
+ptr dummy3_217,
+ptr dummy3_218,
+ptr dummy3_219,
+ptr dummy3_220,
+ptr dummy3_221,
+ptr dummy3_222,
+ptr dummy3_223,
+ptr dummy3_224,
+ptr dummy3_225,
+ptr dummy3_226,
+ptr dummy3_227,
+ptr dummy3_228,
+ptr dummy3_229,
+ptr dummy3_230,
+ptr dummy3_231,
+ptr dummy3_232,
+ptr dummy3_233,
+ptr dummy3_234,
+ptr dummy3_235,
+ptr dummy3_236,
+ptr dummy3_237,
+ptr dummy3_238,
+ptr dummy3_239,
+ptr dummy3_240,
+ptr dummy3_241,
+ptr dummy3_242,
+ptr dummy3_243,
+ptr dummy3_244,
+ptr dummy3_245,
+ptr dummy3_246,
+ptr dummy3_247,
+ptr dummy3_248,
+ptr dummy3_249,
+ptr dummy3_250,
+ptr dummy3_251,
+ptr dummy3_252,
+ptr dummy3_253,
+ptr dummy3_254,
+ptr dummy3_255,
+};
+
+// name GVariant
+extern struct GVariant{
+
+};
+
+// name GVariantBuilder
+extern struct GVariantBuilder{
+
+};
+
+// name GVariantDict
+extern struct GVariantDict{
+
+};
+
+// name GVariantType
+extern struct GVariantType{
+
+};
+
+var GLib_AsciiType_alnum = 1;
+var GLib_AsciiType_alpha = 2;
+var GLib_AsciiType_cntrl = 4;
+var GLib_AsciiType_digit = 8;
+var GLib_AsciiType_graph = 16;
+var GLib_AsciiType_lower = 32;
+var GLib_AsciiType_print = 64;
+var GLib_AsciiType_punct = 128;
+var GLib_AsciiType_space = 256;
+var GLib_AsciiType_upper = 512;
+var GLib_AsciiType_xdigit = 1024;
+
+var GLib_BookmarkFileError_invalid_uri = 0;
+var GLib_BookmarkFileError_invalid_value = 1;
+var GLib_BookmarkFileError_app_not_registered = 2;
+var GLib_BookmarkFileError_uri_not_found = 3;
+var GLib_BookmarkFileError_read = 4;
+var GLib_BookmarkFileError_unknown_encoding = 5;
+var GLib_BookmarkFileError_write = 6;
+var GLib_BookmarkFileError_file_not_found = 7;
+
+var GLib_ChecksumType_md5 = 0;
+var GLib_ChecksumType_sha1 = 1;
+var GLib_ChecksumType_sha256 = 2;
+var GLib_ChecksumType_sha512 = 3;
+var GLib_ChecksumType_sha384 = 4;
+
+var GLib_ConvertError_no_conversion = 0;
+var GLib_ConvertError_illegal_sequence = 1;
+var GLib_ConvertError_failed = 2;
+var GLib_ConvertError_partial_input = 3;
+var GLib_ConvertError_bad_uri = 4;
+var GLib_ConvertError_not_absolute_path = 5;
+var GLib_ConvertError_no_memory = 6;
+var GLib_ConvertError_embedded_nul = 7;
+
+var GLib_DateDMY_day = 0;
+var GLib_DateDMY_month = 1;
+var GLib_DateDMY_year = 2;
+
+var GLib_DateMonth_bad_month = 0;
+var GLib_DateMonth_january = 1;
+var GLib_DateMonth_february = 2;
+var GLib_DateMonth_march = 3;
+var GLib_DateMonth_april = 4;
+var GLib_DateMonth_may = 5;
+var GLib_DateMonth_june = 6;
+var GLib_DateMonth_july = 7;
+var GLib_DateMonth_august = 8;
+var GLib_DateMonth_september = 9;
+var GLib_DateMonth_october = 10;
+var GLib_DateMonth_november = 11;
+var GLib_DateMonth_december = 12;
+
+var GLib_DateWeekday_bad_weekday = 0;
+var GLib_DateWeekday_monday = 1;
+var GLib_DateWeekday_tuesday = 2;
+var GLib_DateWeekday_wednesday = 3;
+var GLib_DateWeekday_thursday = 4;
+var GLib_DateWeekday_friday = 5;
+var GLib_DateWeekday_saturday = 6;
+var GLib_DateWeekday_sunday = 7;
+
+var GLib_ErrorType_unknown = 0;
+var GLib_ErrorType_unexp_eof = 1;
+var GLib_ErrorType_unexp_eof_in_string = 2;
+var GLib_ErrorType_unexp_eof_in_comment = 3;
+var GLib_ErrorType_non_digit_in_const = 4;
+var GLib_ErrorType_digit_radix = 5;
+var GLib_ErrorType_float_radix = 6;
+var GLib_ErrorType_float_malformed = 7;
+
+var GLib_FileError_exist = 0;
+var GLib_FileError_isdir = 1;
+var GLib_FileError_acces = 2;
+var GLib_FileError_nametoolong = 3;
+var GLib_FileError_noent = 4;
+var GLib_FileError_notdir = 5;
+var GLib_FileError_nxio = 6;
+var GLib_FileError_nodev = 7;
+var GLib_FileError_rofs = 8;
+var GLib_FileError_txtbsy = 9;
+var GLib_FileError_fault = 10;
+var GLib_FileError_loop = 11;
+var GLib_FileError_nospc = 12;
+var GLib_FileError_nomem = 13;
+var GLib_FileError_mfile = 14;
+var GLib_FileError_nfile = 15;
+var GLib_FileError_badf = 16;
+var GLib_FileError_inval = 17;
+var GLib_FileError_pipe = 18;
+var GLib_FileError_again = 19;
+var GLib_FileError_intr = 20;
+var GLib_FileError_io = 21;
+var GLib_FileError_perm = 22;
+var GLib_FileError_nosys = 23;
+var GLib_FileError_failed = 24;
+
+var GLib_FileSetContentsFlags_none = 0;
+var GLib_FileSetContentsFlags_consistent = 1;
+var GLib_FileSetContentsFlags_durable = 2;
+var GLib_FileSetContentsFlags_only_existing = 4;
+
+var GLib_FileTest_is_regular = 1;
+var GLib_FileTest_is_symlink = 2;
+var GLib_FileTest_is_dir = 4;
+var GLib_FileTest_is_executable = 8;
+var GLib_FileTest_exists = 16;
+
+var GLib_FormatSizeFlags_default = 0;
+var GLib_FormatSizeFlags_long_format = 1;
+var GLib_FormatSizeFlags_iec_units = 2;
+var GLib_FormatSizeFlags_bits = 4;
+
+var GLib_HookFlagMask_active = 1;
+var GLib_HookFlagMask_in_call = 2;
+var GLib_HookFlagMask_mask = 15;
+
+var GLib_IOChannelError_fbig = 0;
+var GLib_IOChannelError_inval = 1;
+var GLib_IOChannelError_io = 2;
+var GLib_IOChannelError_isdir = 3;
+var GLib_IOChannelError_nospc = 4;
+var GLib_IOChannelError_nxio = 5;
+var GLib_IOChannelError_overflow = 6;
+var GLib_IOChannelError_pipe = 7;
+var GLib_IOChannelError_failed = 8;
+
+var GLib_IOCondition_in = 1;
+var GLib_IOCondition_out = 4;
+var GLib_IOCondition_pri = 2;
+var GLib_IOCondition_err = 8;
+var GLib_IOCondition_hup = 16;
+var GLib_IOCondition_nval = 32;
+
+var GLib_IOError_none = 0;
+var GLib_IOError_again = 1;
+var GLib_IOError_inval = 2;
+var GLib_IOError_unknown = 3;
+
+var GLib_IOFlags_append = 1;
+var GLib_IOFlags_nonblock = 2;
+var GLib_IOFlags_is_readable = 4;
+var GLib_IOFlags_is_writable = 8;
+var GLib_IOFlags_is_writeable = 8;
+var GLib_IOFlags_is_seekable = 16;
+var GLib_IOFlags_mask = 31;
+var GLib_IOFlags_get_mask = 31;
+var GLib_IOFlags_set_mask = 3;
+
+var GLib_IOStatus_error = 0;
+var GLib_IOStatus_normal = 1;
+var GLib_IOStatus_eof = 2;
+var GLib_IOStatus_again = 3;
+
+var GLib_KeyFileError_unknown_encoding = 0;
+var GLib_KeyFileError_parse = 1;
+var GLib_KeyFileError_not_found = 2;
+var GLib_KeyFileError_key_not_found = 3;
+var GLib_KeyFileError_group_not_found = 4;
+var GLib_KeyFileError_invalid_value = 5;
+
+var GLib_KeyFileFlags_none = 0;
+var GLib_KeyFileFlags_keep_comments = 1;
+var GLib_KeyFileFlags_keep_translations = 2;
+
+var GLib_LogLevelFlags_flag_recursion = 1;
+var GLib_LogLevelFlags_flag_fatal = 2;
+var GLib_LogLevelFlags_level_error = 4;
+var GLib_LogLevelFlags_level_critical = 8;
+var GLib_LogLevelFlags_level_warning = 16;
+var GLib_LogLevelFlags_level_message = 32;
+var GLib_LogLevelFlags_level_info = 64;
+var GLib_LogLevelFlags_level_debug = 128;
+var GLib_LogLevelFlags_level_mask = -4;
+
+var GLib_LogWriterOutput_handled = 1;
+var GLib_LogWriterOutput_unhandled = 0;
+
+var GLib_MainContextFlags_none = 0;
+var GLib_MainContextFlags_ownerless_polling = 1;
+
+var GLib_MarkupCollectType_invalid = 0;
+var GLib_MarkupCollectType_string = 1;
+var GLib_MarkupCollectType_strdup = 2;
+var GLib_MarkupCollectType_boolean = 3;
+var GLib_MarkupCollectType_tristate = 4;
+var GLib_MarkupCollectType_optional = 65536;
+
+var GLib_MarkupError_bad_utf8 = 0;
+var GLib_MarkupError_empty = 1;
+var GLib_MarkupError_parse = 2;
+var GLib_MarkupError_unknown_element = 3;
+var GLib_MarkupError_unknown_attribute = 4;
+var GLib_MarkupError_invalid_content = 5;
+var GLib_MarkupError_missing_attribute = 6;
+
+var GLib_MarkupParseFlags_do_not_use_this_unsupported_flag = 1;
+var GLib_MarkupParseFlags_treat_cdata_as_text = 2;
+var GLib_MarkupParseFlags_prefix_error_position = 4;
+var GLib_MarkupParseFlags_ignore_qualified = 8;
+
+var GLib_NormalizeMode_default = 0;
+var GLib_NormalizeMode_nfd = 0;
+var GLib_NormalizeMode_default_compose = 1;
+var GLib_NormalizeMode_nfc = 1;
+var GLib_NormalizeMode_all = 2;
+var GLib_NormalizeMode_nfkd = 2;
+var GLib_NormalizeMode_all_compose = 3;
+var GLib_NormalizeMode_nfkc = 3;
+
+var GLib_NumberParserError_invalid = 0;
+var GLib_NumberParserError_out_of_bounds = 1;
+
+var GLib_OnceStatus_notcalled = 0;
+var GLib_OnceStatus_progress = 1;
+var GLib_OnceStatus_ready = 2;
+
+var GLib_OptionArg_none = 0;
+var GLib_OptionArg_string = 1;
+var GLib_OptionArg_int = 2;
+var GLib_OptionArg_callback = 3;
+var GLib_OptionArg_filename = 4;
+var GLib_OptionArg_string_array = 5;
+var GLib_OptionArg_filename_array = 6;
+var GLib_OptionArg_double = 7;
+var GLib_OptionArg_int64 = 8;
+
+var GLib_OptionError_unknown_option = 0;
+var GLib_OptionError_bad_value = 1;
+var GLib_OptionError_failed = 2;
+
+var GLib_OptionFlags_none = 0;
+var GLib_OptionFlags_hidden = 1;
+var GLib_OptionFlags_in_main = 2;
+var GLib_OptionFlags_reverse = 4;
+var GLib_OptionFlags_no_arg = 8;
+var GLib_OptionFlags_filename = 16;
+var GLib_OptionFlags_optional_arg = 32;
+var GLib_OptionFlags_noalias = 64;
+
+var GLib_RegexCompileFlags_caseless = 1;
+var GLib_RegexCompileFlags_multiline = 2;
+var GLib_RegexCompileFlags_dotall = 4;
+var GLib_RegexCompileFlags_extended = 8;
+var GLib_RegexCompileFlags_anchored = 16;
+var GLib_RegexCompileFlags_dollar_endonly = 32;
+var GLib_RegexCompileFlags_ungreedy = 512;
+var GLib_RegexCompileFlags_raw = 2048;
+var GLib_RegexCompileFlags_no_auto_capture = 4096;
+var GLib_RegexCompileFlags_optimize = 8192;
+var GLib_RegexCompileFlags_firstline = 262144;
+var GLib_RegexCompileFlags_dupnames = 524288;
+var GLib_RegexCompileFlags_newline_cr = 1048576;
+var GLib_RegexCompileFlags_newline_lf = 2097152;
+var GLib_RegexCompileFlags_newline_crlf = 3145728;
+var GLib_RegexCompileFlags_newline_anycrlf = 5242880;
+var GLib_RegexCompileFlags_bsr_anycrlf = 8388608;
+var GLib_RegexCompileFlags_javascript_compat = 33554432;
+
+var GLib_RegexError_compile = 0;
+var GLib_RegexError_optimize = 1;
+var GLib_RegexError_replace = 2;
+var GLib_RegexError_match = 3;
+var GLib_RegexError_internal = 4;
+var GLib_RegexError_stray_backslash = 101;
+var GLib_RegexError_missing_control_char = 102;
+var GLib_RegexError_unrecognized_escape = 103;
+var GLib_RegexError_quantifiers_out_of_order = 104;
+var GLib_RegexError_quantifier_too_big = 105;
+var GLib_RegexError_unterminated_character_class = 106;
+var GLib_RegexError_invalid_escape_in_character_class = 107;
+var GLib_RegexError_range_out_of_order = 108;
+var GLib_RegexError_nothing_to_repeat = 109;
+var GLib_RegexError_unrecognized_character = 112;
+var GLib_RegexError_posix_named_class_outside_class = 113;
+var GLib_RegexError_unmatched_parenthesis = 114;
+var GLib_RegexError_inexistent_subpattern_reference = 115;
+var GLib_RegexError_unterminated_comment = 118;
+var GLib_RegexError_expression_too_large = 120;
+var GLib_RegexError_memory_error = 121;
+var GLib_RegexError_variable_length_lookbehind = 125;
+var GLib_RegexError_malformed_condition = 126;
+var GLib_RegexError_too_many_conditional_branches = 127;
+var GLib_RegexError_assertion_expected = 128;
+var GLib_RegexError_unknown_posix_class_name = 130;
+var GLib_RegexError_posix_collating_elements_not_supported = 131;
+var GLib_RegexError_hex_code_too_large = 134;
+var GLib_RegexError_invalid_condition = 135;
+var GLib_RegexError_single_byte_match_in_lookbehind = 136;
+var GLib_RegexError_infinite_loop = 140;
+var GLib_RegexError_missing_subpattern_name_terminator = 142;
+var GLib_RegexError_duplicate_subpattern_name = 143;
+var GLib_RegexError_malformed_property = 146;
+var GLib_RegexError_unknown_property = 147;
+var GLib_RegexError_subpattern_name_too_long = 148;
+var GLib_RegexError_too_many_subpatterns = 149;
+var GLib_RegexError_invalid_octal_value = 151;
+var GLib_RegexError_too_many_branches_in_define = 154;
+var GLib_RegexError_define_repetion = 155;
+var GLib_RegexError_inconsistent_newline_options = 156;
+var GLib_RegexError_missing_back_reference = 157;
+var GLib_RegexError_invalid_relative_reference = 158;
+var GLib_RegexError_backtracking_control_verb_argument_forbidden = 159;
+var GLib_RegexError_unknown_backtracking_control_verb = 160;
+var GLib_RegexError_number_too_big = 161;
+var GLib_RegexError_missing_subpattern_name = 162;
+var GLib_RegexError_missing_digit = 163;
+var GLib_RegexError_invalid_data_character = 164;
+var GLib_RegexError_extra_subpattern_name = 165;
+var GLib_RegexError_backtracking_control_verb_argument_required = 166;
+var GLib_RegexError_invalid_control_char = 168;
+var GLib_RegexError_missing_name = 169;
+var GLib_RegexError_not_supported_in_class = 171;
+var GLib_RegexError_too_many_forward_references = 172;
+var GLib_RegexError_name_too_long = 175;
+var GLib_RegexError_character_value_too_large = 176;
+
+var GLib_RegexMatchFlags_anchored = 16;
+var GLib_RegexMatchFlags_notbol = 128;
+var GLib_RegexMatchFlags_noteol = 256;
+var GLib_RegexMatchFlags_notempty = 1024;
+var GLib_RegexMatchFlags_partial = 32768;
+var GLib_RegexMatchFlags_newline_cr = 1048576;
+var GLib_RegexMatchFlags_newline_lf = 2097152;
+var GLib_RegexMatchFlags_newline_crlf = 3145728;
+var GLib_RegexMatchFlags_newline_any = 4194304;
+var GLib_RegexMatchFlags_newline_anycrlf = 5242880;
+var GLib_RegexMatchFlags_bsr_anycrlf = 8388608;
+var GLib_RegexMatchFlags_bsr_any = 16777216;
+var GLib_RegexMatchFlags_partial_soft = 32768;
+var GLib_RegexMatchFlags_partial_hard = 134217728;
+var GLib_RegexMatchFlags_notempty_atstart = 268435456;
+
+var GLib_SeekType_cur = 0;
+var GLib_SeekType_set = 1;
+var GLib_SeekType_end = 2;
+
+var GLib_ShellError_bad_quoting = 0;
+var GLib_ShellError_empty_string = 1;
+var GLib_ShellError_failed = 2;
+
+var GLib_SliceConfig_always_malloc = 1;
+var GLib_SliceConfig_bypass_magazines = 2;
+var GLib_SliceConfig_working_set_msecs = 3;
+var GLib_SliceConfig_color_increment = 4;
+var GLib_SliceConfig_chunk_sizes = 5;
+var GLib_SliceConfig_contention_counter = 6;
+
+var GLib_SpawnError_fork = 0;
+var GLib_SpawnError_read = 1;
+var GLib_SpawnError_chdir = 2;
+var GLib_SpawnError_acces = 3;
+var GLib_SpawnError_perm = 4;
+var GLib_SpawnError_too_big = 5;
+var GLib_SpawnError_2big = 5;
+var GLib_SpawnError_noexec = 6;
+var GLib_SpawnError_nametoolong = 7;
+var GLib_SpawnError_noent = 8;
+var GLib_SpawnError_nomem = 9;
+var GLib_SpawnError_notdir = 10;
+var GLib_SpawnError_loop = 11;
+var GLib_SpawnError_txtbusy = 12;
+var GLib_SpawnError_io = 13;
+var GLib_SpawnError_nfile = 14;
+var GLib_SpawnError_mfile = 15;
+var GLib_SpawnError_inval = 16;
+var GLib_SpawnError_isdir = 17;
+var GLib_SpawnError_libbad = 18;
+var GLib_SpawnError_failed = 19;
+
+var GLib_SpawnFlags_default = 0;
+var GLib_SpawnFlags_leave_descriptors_open = 1;
+var GLib_SpawnFlags_do_not_reap_child = 2;
+var GLib_SpawnFlags_search_path = 4;
+var GLib_SpawnFlags_stdout_to_dev_null = 8;
+var GLib_SpawnFlags_stderr_to_dev_null = 16;
+var GLib_SpawnFlags_child_inherits_stdin = 32;
+var GLib_SpawnFlags_file_and_argv_zero = 64;
+var GLib_SpawnFlags_search_path_from_envp = 128;
+var GLib_SpawnFlags_cloexec_pipes = 256;
+
+var GLib_TestFileType_dist = 0;
+var GLib_TestFileType_built = 1;
+
+var GLib_TestLogType_none = 0;
+var GLib_TestLogType_error = 1;
+var GLib_TestLogType_start_binary = 2;
+var GLib_TestLogType_list_case = 3;
+var GLib_TestLogType_skip_case = 4;
+var GLib_TestLogType_start_case = 5;
+var GLib_TestLogType_stop_case = 6;
+var GLib_TestLogType_min_result = 7;
+var GLib_TestLogType_max_result = 8;
+var GLib_TestLogType_message = 9;
+var GLib_TestLogType_start_suite = 10;
+var GLib_TestLogType_stop_suite = 11;
+
+var GLib_TestResult_success = 0;
+var GLib_TestResult_skipped = 1;
+var GLib_TestResult_failure = 2;
+var GLib_TestResult_incomplete = 3;
+
+var GLib_TestSubprocessFlags_stdin = 1;
+var GLib_TestSubprocessFlags_stdout = 2;
+var GLib_TestSubprocessFlags_stderr = 4;
+
+var GLib_TestTrapFlags_silence_stdout = 128;
+var GLib_TestTrapFlags_silence_stderr = 256;
+var GLib_TestTrapFlags_inherit_stdin = 512;
+
+var GLib_ThreadError_thread_error_again = 0;
+
+var GLib_TimeType_standard = 0;
+var GLib_TimeType_daylight = 1;
+var GLib_TimeType_universal = 2;
+
+var GLib_TokenType_eof = 0;
+var GLib_TokenType_left_paren = 40;
+var GLib_TokenType_right_paren = 41;
+var GLib_TokenType_left_curly = 123;
+var GLib_TokenType_right_curly = 125;
+var GLib_TokenType_left_brace = 91;
+var GLib_TokenType_right_brace = 93;
+var GLib_TokenType_equal_sign = 61;
+var GLib_TokenType_comma = 44;
+var GLib_TokenType_none = 256;
+var GLib_TokenType_error = 257;
+var GLib_TokenType_char = 258;
+var GLib_TokenType_binary = 259;
+var GLib_TokenType_octal = 260;
+var GLib_TokenType_int = 261;
+var GLib_TokenType_hex = 262;
+var GLib_TokenType_float = 263;
+var GLib_TokenType_string = 264;
+var GLib_TokenType_symbol = 265;
+var GLib_TokenType_identifier = 266;
+var GLib_TokenType_identifier_null = 267;
+var GLib_TokenType_comment_single = 268;
+var GLib_TokenType_comment_multi = 269;
+
+var GLib_TraverseFlags_leaves = 1;
+var GLib_TraverseFlags_non_leaves = 2;
+var GLib_TraverseFlags_all = 3;
+var GLib_TraverseFlags_mask = 3;
+var GLib_TraverseFlags_leafs = 1;
+var GLib_TraverseFlags_non_leafs = 2;
+
+var GLib_TraverseType_in_order = 0;
+var GLib_TraverseType_pre_order = 1;
+var GLib_TraverseType_post_order = 2;
+var GLib_TraverseType_level_order = 3;
+
+var GLib_UnicodeBreakType_mandatory = 0;
+var GLib_UnicodeBreakType_carriage_return = 1;
+var GLib_UnicodeBreakType_line_feed = 2;
+var GLib_UnicodeBreakType_combining_mark = 3;
+var GLib_UnicodeBreakType_surrogate = 4;
+var GLib_UnicodeBreakType_zero_width_space = 5;
+var GLib_UnicodeBreakType_inseparable = 6;
+var GLib_UnicodeBreakType_non_breaking_glue = 7;
+var GLib_UnicodeBreakType_contingent = 8;
+var GLib_UnicodeBreakType_space = 9;
+var GLib_UnicodeBreakType_after = 10;
+var GLib_UnicodeBreakType_before = 11;
+var GLib_UnicodeBreakType_before_and_after = 12;
+var GLib_UnicodeBreakType_hyphen = 13;
+var GLib_UnicodeBreakType_non_starter = 14;
+var GLib_UnicodeBreakType_open_punctuation = 15;
+var GLib_UnicodeBreakType_close_punctuation = 16;
+var GLib_UnicodeBreakType_quotation = 17;
+var GLib_UnicodeBreakType_exclamation = 18;
+var GLib_UnicodeBreakType_ideographic = 19;
+var GLib_UnicodeBreakType_numeric = 20;
+var GLib_UnicodeBreakType_infix_separator = 21;
+var GLib_UnicodeBreakType_symbol = 22;
+var GLib_UnicodeBreakType_alphabetic = 23;
+var GLib_UnicodeBreakType_prefix = 24;
+var GLib_UnicodeBreakType_postfix = 25;
+var GLib_UnicodeBreakType_complex_context = 26;
+var GLib_UnicodeBreakType_ambiguous = 27;
+var GLib_UnicodeBreakType_unknown = 28;
+var GLib_UnicodeBreakType_next_line = 29;
+var GLib_UnicodeBreakType_word_joiner = 30;
+var GLib_UnicodeBreakType_hangul_l_jamo = 31;
+var GLib_UnicodeBreakType_hangul_v_jamo = 32;
+var GLib_UnicodeBreakType_hangul_t_jamo = 33;
+var GLib_UnicodeBreakType_hangul_lv_syllable = 34;
+var GLib_UnicodeBreakType_hangul_lvt_syllable = 35;
+var GLib_UnicodeBreakType_close_paranthesis = 36;
+var GLib_UnicodeBreakType_close_parenthesis = 36;
+var GLib_UnicodeBreakType_conditional_japanese_starter = 37;
+var GLib_UnicodeBreakType_hebrew_letter = 38;
+var GLib_UnicodeBreakType_regional_indicator = 39;
+var GLib_UnicodeBreakType_emoji_base = 40;
+var GLib_UnicodeBreakType_emoji_modifier = 41;
+var GLib_UnicodeBreakType_zero_width_joiner = 42;
+
+var GLib_UnicodeScript_invalid_code = -1;
+var GLib_UnicodeScript_common = 0;
+var GLib_UnicodeScript_inherited = 1;
+var GLib_UnicodeScript_arabic = 2;
+var GLib_UnicodeScript_armenian = 3;
+var GLib_UnicodeScript_bengali = 4;
+var GLib_UnicodeScript_bopomofo = 5;
+var GLib_UnicodeScript_cherokee = 6;
+var GLib_UnicodeScript_coptic = 7;
+var GLib_UnicodeScript_cyrillic = 8;
+var GLib_UnicodeScript_deseret = 9;
+var GLib_UnicodeScript_devanagari = 10;
+var GLib_UnicodeScript_ethiopic = 11;
+var GLib_UnicodeScript_georgian = 12;
+var GLib_UnicodeScript_gothic = 13;
+var GLib_UnicodeScript_greek = 14;
+var GLib_UnicodeScript_gujarati = 15;
+var GLib_UnicodeScript_gurmukhi = 16;
+var GLib_UnicodeScript_han = 17;
+var GLib_UnicodeScript_hangul = 18;
+var GLib_UnicodeScript_hebrew = 19;
+var GLib_UnicodeScript_hiragana = 20;
+var GLib_UnicodeScript_kannada = 21;
+var GLib_UnicodeScript_katakana = 22;
+var GLib_UnicodeScript_khmer = 23;
+var GLib_UnicodeScript_lao = 24;
+var GLib_UnicodeScript_latin = 25;
+var GLib_UnicodeScript_malayalam = 26;
+var GLib_UnicodeScript_mongolian = 27;
+var GLib_UnicodeScript_myanmar = 28;
+var GLib_UnicodeScript_ogham = 29;
+var GLib_UnicodeScript_old_italic = 30;
+var GLib_UnicodeScript_oriya = 31;
+var GLib_UnicodeScript_runic = 32;
+var GLib_UnicodeScript_sinhala = 33;
+var GLib_UnicodeScript_syriac = 34;
+var GLib_UnicodeScript_tamil = 35;
+var GLib_UnicodeScript_telugu = 36;
+var GLib_UnicodeScript_thaana = 37;
+var GLib_UnicodeScript_thai = 38;
+var GLib_UnicodeScript_tibetan = 39;
+var GLib_UnicodeScript_canadian_aboriginal = 40;
+var GLib_UnicodeScript_yi = 41;
+var GLib_UnicodeScript_tagalog = 42;
+var GLib_UnicodeScript_hanunoo = 43;
+var GLib_UnicodeScript_buhid = 44;
+var GLib_UnicodeScript_tagbanwa = 45;
+var GLib_UnicodeScript_braille = 46;
+var GLib_UnicodeScript_cypriot = 47;
+var GLib_UnicodeScript_limbu = 48;
+var GLib_UnicodeScript_osmanya = 49;
+var GLib_UnicodeScript_shavian = 50;
+var GLib_UnicodeScript_linear_b = 51;
+var GLib_UnicodeScript_tai_le = 52;
+var GLib_UnicodeScript_ugaritic = 53;
+var GLib_UnicodeScript_new_tai_lue = 54;
+var GLib_UnicodeScript_buginese = 55;
+var GLib_UnicodeScript_glagolitic = 56;
+var GLib_UnicodeScript_tifinagh = 57;
+var GLib_UnicodeScript_syloti_nagri = 58;
+var GLib_UnicodeScript_old_persian = 59;
+var GLib_UnicodeScript_kharoshthi = 60;
+var GLib_UnicodeScript_unknown = 61;
+var GLib_UnicodeScript_balinese = 62;
+var GLib_UnicodeScript_cuneiform = 63;
+var GLib_UnicodeScript_phoenician = 64;
+var GLib_UnicodeScript_phags_pa = 65;
+var GLib_UnicodeScript_nko = 66;
+var GLib_UnicodeScript_kayah_li = 67;
+var GLib_UnicodeScript_lepcha = 68;
+var GLib_UnicodeScript_rejang = 69;
+var GLib_UnicodeScript_sundanese = 70;
+var GLib_UnicodeScript_saurashtra = 71;
+var GLib_UnicodeScript_cham = 72;
+var GLib_UnicodeScript_ol_chiki = 73;
+var GLib_UnicodeScript_vai = 74;
+var GLib_UnicodeScript_carian = 75;
+var GLib_UnicodeScript_lycian = 76;
+var GLib_UnicodeScript_lydian = 77;
+var GLib_UnicodeScript_avestan = 78;
+var GLib_UnicodeScript_bamum = 79;
+var GLib_UnicodeScript_egyptian_hieroglyphs = 80;
+var GLib_UnicodeScript_imperial_aramaic = 81;
+var GLib_UnicodeScript_inscriptional_pahlavi = 82;
+var GLib_UnicodeScript_inscriptional_parthian = 83;
+var GLib_UnicodeScript_javanese = 84;
+var GLib_UnicodeScript_kaithi = 85;
+var GLib_UnicodeScript_lisu = 86;
+var GLib_UnicodeScript_meetei_mayek = 87;
+var GLib_UnicodeScript_old_south_arabian = 88;
+var GLib_UnicodeScript_old_turkic = 89;
+var GLib_UnicodeScript_samaritan = 90;
+var GLib_UnicodeScript_tai_tham = 91;
+var GLib_UnicodeScript_tai_viet = 92;
+var GLib_UnicodeScript_batak = 93;
+var GLib_UnicodeScript_brahmi = 94;
+var GLib_UnicodeScript_mandaic = 95;
+var GLib_UnicodeScript_chakma = 96;
+var GLib_UnicodeScript_meroitic_cursive = 97;
+var GLib_UnicodeScript_meroitic_hieroglyphs = 98;
+var GLib_UnicodeScript_miao = 99;
+var GLib_UnicodeScript_sharada = 100;
+var GLib_UnicodeScript_sora_sompeng = 101;
+var GLib_UnicodeScript_takri = 102;
+var GLib_UnicodeScript_bassa_vah = 103;
+var GLib_UnicodeScript_caucasian_albanian = 104;
+var GLib_UnicodeScript_duployan = 105;
+var GLib_UnicodeScript_elbasan = 106;
+var GLib_UnicodeScript_grantha = 107;
+var GLib_UnicodeScript_khojki = 108;
+var GLib_UnicodeScript_khudawadi = 109;
+var GLib_UnicodeScript_linear_a = 110;
+var GLib_UnicodeScript_mahajani = 111;
+var GLib_UnicodeScript_manichaean = 112;
+var GLib_UnicodeScript_mende_kikakui = 113;
+var GLib_UnicodeScript_modi = 114;
+var GLib_UnicodeScript_mro = 115;
+var GLib_UnicodeScript_nabataean = 116;
+var GLib_UnicodeScript_old_north_arabian = 117;
+var GLib_UnicodeScript_old_permic = 118;
+var GLib_UnicodeScript_pahawh_hmong = 119;
+var GLib_UnicodeScript_palmyrene = 120;
+var GLib_UnicodeScript_pau_cin_hau = 121;
+var GLib_UnicodeScript_psalter_pahlavi = 122;
+var GLib_UnicodeScript_siddham = 123;
+var GLib_UnicodeScript_tirhuta = 124;
+var GLib_UnicodeScript_warang_citi = 125;
+var GLib_UnicodeScript_ahom = 126;
+var GLib_UnicodeScript_anatolian_hieroglyphs = 127;
+var GLib_UnicodeScript_hatran = 128;
+var GLib_UnicodeScript_multani = 129;
+var GLib_UnicodeScript_old_hungarian = 130;
+var GLib_UnicodeScript_signwriting = 131;
+var GLib_UnicodeScript_adlam = 132;
+var GLib_UnicodeScript_bhaiksuki = 133;
+var GLib_UnicodeScript_marchen = 134;
+var GLib_UnicodeScript_newa = 135;
+var GLib_UnicodeScript_osage = 136;
+var GLib_UnicodeScript_tangut = 137;
+var GLib_UnicodeScript_masaram_gondi = 138;
+var GLib_UnicodeScript_nushu = 139;
+var GLib_UnicodeScript_soyombo = 140;
+var GLib_UnicodeScript_zanabazar_square = 141;
+var GLib_UnicodeScript_dogra = 142;
+var GLib_UnicodeScript_gunjala_gondi = 143;
+var GLib_UnicodeScript_hanifi_rohingya = 144;
+var GLib_UnicodeScript_makasar = 145;
+var GLib_UnicodeScript_medefaidrin = 146;
+var GLib_UnicodeScript_old_sogdian = 147;
+var GLib_UnicodeScript_sogdian = 148;
+var GLib_UnicodeScript_elymaic = 149;
+var GLib_UnicodeScript_nandinagari = 150;
+var GLib_UnicodeScript_nyiakeng_puachue_hmong = 151;
+var GLib_UnicodeScript_wancho = 152;
+var GLib_UnicodeScript_chorasmian = 153;
+var GLib_UnicodeScript_dives_akuru = 154;
+var GLib_UnicodeScript_khitan_small_script = 155;
+var GLib_UnicodeScript_yezidi = 156;
+var GLib_UnicodeScript_cypro_minoan = 157;
+var GLib_UnicodeScript_old_uyghur = 158;
+var GLib_UnicodeScript_tangsa = 159;
+var GLib_UnicodeScript_toto = 160;
+var GLib_UnicodeScript_vithkuqi = 161;
+var GLib_UnicodeScript_math = 162;
+
+var GLib_UnicodeType_control = 0;
+var GLib_UnicodeType_format = 1;
+var GLib_UnicodeType_unassigned = 2;
+var GLib_UnicodeType_private_use = 3;
+var GLib_UnicodeType_surrogate = 4;
+var GLib_UnicodeType_lowercase_letter = 5;
+var GLib_UnicodeType_modifier_letter = 6;
+var GLib_UnicodeType_other_letter = 7;
+var GLib_UnicodeType_titlecase_letter = 8;
+var GLib_UnicodeType_uppercase_letter = 9;
+var GLib_UnicodeType_spacing_mark = 10;
+var GLib_UnicodeType_enclosing_mark = 11;
+var GLib_UnicodeType_non_spacing_mark = 12;
+var GLib_UnicodeType_decimal_number = 13;
+var GLib_UnicodeType_letter_number = 14;
+var GLib_UnicodeType_other_number = 15;
+var GLib_UnicodeType_connect_punctuation = 16;
+var GLib_UnicodeType_dash_punctuation = 17;
+var GLib_UnicodeType_close_punctuation = 18;
+var GLib_UnicodeType_final_punctuation = 19;
+var GLib_UnicodeType_initial_punctuation = 20;
+var GLib_UnicodeType_other_punctuation = 21;
+var GLib_UnicodeType_open_punctuation = 22;
+var GLib_UnicodeType_currency_symbol = 23;
+var GLib_UnicodeType_modifier_symbol = 24;
+var GLib_UnicodeType_math_symbol = 25;
+var GLib_UnicodeType_other_symbol = 26;
+var GLib_UnicodeType_line_separator = 27;
+var GLib_UnicodeType_paragraph_separator = 28;
+var GLib_UnicodeType_space_separator = 29;
+
+var GLib_UriError_failed = 0;
+var GLib_UriError_bad_scheme = 1;
+var GLib_UriError_bad_user = 2;
+var GLib_UriError_bad_password = 3;
+var GLib_UriError_bad_auth_params = 4;
+var GLib_UriError_bad_host = 5;
+var GLib_UriError_bad_port = 6;
+var GLib_UriError_bad_path = 7;
+var GLib_UriError_bad_query = 8;
+var GLib_UriError_bad_fragment = 9;
+
+var GLib_UriFlags_none = 0;
+var GLib_UriFlags_parse_relaxed = 1;
+var GLib_UriFlags_has_password = 2;
+var GLib_UriFlags_has_auth_params = 4;
+var GLib_UriFlags_encoded = 8;
+var GLib_UriFlags_non_dns = 16;
+var GLib_UriFlags_encoded_query = 32;
+var GLib_UriFlags_encoded_path = 64;
+var GLib_UriFlags_encoded_fragment = 128;
+var GLib_UriFlags_scheme_normalize = 256;
+
+var GLib_UriHideFlags_none = 0;
+var GLib_UriHideFlags_userinfo = 1;
+var GLib_UriHideFlags_password = 2;
+var GLib_UriHideFlags_auth_params = 4;
+var GLib_UriHideFlags_query = 8;
+var GLib_UriHideFlags_fragment = 16;
+
+var GLib_UriParamsFlags_none = 0;
+var GLib_UriParamsFlags_case_insensitive = 1;
+var GLib_UriParamsFlags_www_form = 2;
+var GLib_UriParamsFlags_parse_relaxed = 4;
+
+var GLib_UserDirectory_directory_desktop = 0;
+var GLib_UserDirectory_directory_documents = 1;
+var GLib_UserDirectory_directory_download = 2;
+var GLib_UserDirectory_directory_music = 3;
+var GLib_UserDirectory_directory_pictures = 4;
+var GLib_UserDirectory_directory_public_share = 5;
+var GLib_UserDirectory_directory_templates = 6;
+var GLib_UserDirectory_directory_videos = 7;
+var GLib_UserDirectory_n_directories = 8;
+
+var GLib_VariantClass_boolean = 98;
+var GLib_VariantClass_byte = 121;
+var GLib_VariantClass_int16 = 110;
+var GLib_VariantClass_uint16 = 113;
+var GLib_VariantClass_int32 = 105;
+var GLib_VariantClass_uint32 = 117;
+var GLib_VariantClass_int64 = 120;
+var GLib_VariantClass_uint64 = 116;
+var GLib_VariantClass_handle = 104;
+var GLib_VariantClass_double = 100;
+var GLib_VariantClass_string = 115;
+var GLib_VariantClass_object_path = 111;
+var GLib_VariantClass_signature = 103;
+var GLib_VariantClass_variant = 118;
+var GLib_VariantClass_maybe = 109;
+var GLib_VariantClass_array = 97;
+var GLib_VariantClass_tuple = 40;
+var GLib_VariantClass_dict_entry = 123;
+
+var GLib_VariantParseError_failed = 0;
+var GLib_VariantParseError_basic_type_expected = 1;
+var GLib_VariantParseError_cannot_infer_type = 2;
+var GLib_VariantParseError_definite_type_expected = 3;
+var GLib_VariantParseError_input_not_at_end = 4;
+var GLib_VariantParseError_invalid_character = 5;
+var GLib_VariantParseError_invalid_format_string = 6;
+var GLib_VariantParseError_invalid_object_path = 7;
+var GLib_VariantParseError_invalid_signature = 8;
+var GLib_VariantParseError_invalid_type_string = 9;
+var GLib_VariantParseError_no_common_type = 10;
+var GLib_VariantParseError_number_out_of_range = 11;
+var GLib_VariantParseError_number_too_big = 12;
+var GLib_VariantParseError_type_error = 13;
+var GLib_VariantParseError_unexpected_token = 14;
+var GLib_VariantParseError_unknown_keyword = 15;
+var GLib_VariantParseError_unterminated_string_constant = 16;
+var GLib_VariantParseError_value_expected = 17;
+var GLib_VariantParseError_recursion = 18;
+
+var GLib_ANALYZER_ANALYZING_ANALYZER_ANALYZING = 1;
+
+var GLib_ASCII_DTOSTR_BUF_SIZE_ASCII_DTOSTR_BUF_SIZE = 39;
+
+var GLib_BIG_ENDIAN_BIG_ENDIAN = 4321;
+
+var GLib_CSET_A_2_Z_CSET_A_2_Z = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+var GLib_CSET_DIGITS_CSET_DIGITS = "0123456789";
+var GLib_CSET_a_2_z_CSET_a_2_z = "abcdefghijklmnopqrstuvwxyz";
+var GLib_DATALIST_FLAGS_MASK_DATALIST_FLAGS_MASK = 3;
+
+var GLib_DATE_BAD_DAY_DATE_BAD_DAY = 0;
+
+var GLib_DATE_BAD_JULIAN_DATE_BAD_JULIAN = 0;
+
+var GLib_DATE_BAD_YEAR_DATE_BAD_YEAR = 0;
+
+var GLib_DIR_SEPARATOR_DIR_SEPARATOR = 47;
+
+var GLib_DIR_SEPARATOR_S_DIR_SEPARATOR_S = "/";
+var GLib_GINT16_FORMAT_GINT16_FORMAT = "hi";
+var GLib_GINT16_MODIFIER_GINT16_MODIFIER = "h";
+var GLib_GINT32_FORMAT_GINT32_FORMAT = "i";
+var GLib_GINT32_MODIFIER_GINT32_MODIFIER = "";
+var GLib_GINT64_FORMAT_GINT64_FORMAT = "li";
+var GLib_GINT64_MODIFIER_GINT64_MODIFIER = "l";
+var GLib_GINTPTR_FORMAT_GINTPTR_FORMAT = "li";
+var GLib_GINTPTR_MODIFIER_GINTPTR_MODIFIER = "l";
+var GLib_GNUC_FUNCTION_GNUC_FUNCTION = "";
+var GLib_GNUC_PRETTY_FUNCTION_GNUC_PRETTY_FUNCTION = "";
+var GLib_GSIZE_FORMAT_GSIZE_FORMAT = "lu";
+var GLib_GSIZE_MODIFIER_GSIZE_MODIFIER = "l";
+var GLib_GSSIZE_FORMAT_GSSIZE_FORMAT = "li";
+var GLib_GSSIZE_MODIFIER_GSSIZE_MODIFIER = "l";
+var GLib_GUINT16_FORMAT_GUINT16_FORMAT = "hu";
+var GLib_GUINT32_FORMAT_GUINT32_FORMAT = "u";
+var GLib_GUINT64_FORMAT_GUINT64_FORMAT = "lu";
+var GLib_GUINTPTR_FORMAT_GUINTPTR_FORMAT = "lu";
+var GLib_HAVE_GINT64_HAVE_GINT64 = 1;
+
+var GLib_HAVE_GNUC_VARARGS_HAVE_GNUC_VARARGS = 1;
+
+var GLib_HAVE_GNUC_VISIBILITY_HAVE_GNUC_VISIBILITY = 1;
+
+var GLib_HAVE_GROWING_STACK_HAVE_GROWING_STACK = 0;
+
+var GLib_HAVE_ISO_VARARGS_HAVE_ISO_VARARGS = 1;
+
+var GLib_HOOK_FLAG_USER_SHIFT_HOOK_FLAG_USER_SHIFT = 4;
+
+var GLib_IEEE754_DOUBLE_BIAS_IEEE754_DOUBLE_BIAS = 1023;
+
+var GLib_IEEE754_FLOAT_BIAS_IEEE754_FLOAT_BIAS = 127;
+
+var GLib_KEY_FILE_DESKTOP_GROUP_KEY_FILE_DESKTOP_GROUP = "Desktop Entry";
+var GLib_KEY_FILE_DESKTOP_KEY_ACTIONS_KEY_FILE_DESKTOP_KEY_ACTIONS = "Actions";
+var GLib_KEY_FILE_DESKTOP_KEY_CATEGORIES_KEY_FILE_DESKTOP_KEY_CATEGORIES = "Categories";
+var GLib_KEY_FILE_DESKTOP_KEY_COMMENT_KEY_FILE_DESKTOP_KEY_COMMENT = "Comment";
+var GLib_KEY_FILE_DESKTOP_KEY_DBUS_ACTIVATABLE_KEY_FILE_DESKTOP_KEY_DBUS_ACTIVATABLE = "DBusActivatable";
+var GLib_KEY_FILE_DESKTOP_KEY_EXEC_KEY_FILE_DESKTOP_KEY_EXEC = "Exec";
+var GLib_KEY_FILE_DESKTOP_KEY_GENERIC_NAME_KEY_FILE_DESKTOP_KEY_GENERIC_NAME = "GenericName";
+var GLib_KEY_FILE_DESKTOP_KEY_HIDDEN_KEY_FILE_DESKTOP_KEY_HIDDEN = "Hidden";
+var GLib_KEY_FILE_DESKTOP_KEY_ICON_KEY_FILE_DESKTOP_KEY_ICON = "Icon";
+var GLib_KEY_FILE_DESKTOP_KEY_MIME_TYPE_KEY_FILE_DESKTOP_KEY_MIME_TYPE = "MimeType";
+var GLib_KEY_FILE_DESKTOP_KEY_NAME_KEY_FILE_DESKTOP_KEY_NAME = "Name";
+var GLib_KEY_FILE_DESKTOP_KEY_NOT_SHOW_IN_KEY_FILE_DESKTOP_KEY_NOT_SHOW_IN = "NotShowIn";
+var GLib_KEY_FILE_DESKTOP_KEY_NO_DISPLAY_KEY_FILE_DESKTOP_KEY_NO_DISPLAY = "NoDisplay";
+var GLib_KEY_FILE_DESKTOP_KEY_ONLY_SHOW_IN_KEY_FILE_DESKTOP_KEY_ONLY_SHOW_IN = "OnlyShowIn";
+var GLib_KEY_FILE_DESKTOP_KEY_PATH_KEY_FILE_DESKTOP_KEY_PATH = "Path";
+var GLib_KEY_FILE_DESKTOP_KEY_STARTUP_NOTIFY_KEY_FILE_DESKTOP_KEY_STARTUP_NOTIFY = "StartupNotify";
+var GLib_KEY_FILE_DESKTOP_KEY_STARTUP_WM_CLASS_KEY_FILE_DESKTOP_KEY_STARTUP_WM_CLASS = "StartupWMClass";
+var GLib_KEY_FILE_DESKTOP_KEY_TERMINAL_KEY_FILE_DESKTOP_KEY_TERMINAL = "Terminal";
+var GLib_KEY_FILE_DESKTOP_KEY_TRY_EXEC_KEY_FILE_DESKTOP_KEY_TRY_EXEC = "TryExec";
+var GLib_KEY_FILE_DESKTOP_KEY_TYPE_KEY_FILE_DESKTOP_KEY_TYPE = "Type";
+var GLib_KEY_FILE_DESKTOP_KEY_URL_KEY_FILE_DESKTOP_KEY_URL = "URL";
+var GLib_KEY_FILE_DESKTOP_KEY_VERSION_KEY_FILE_DESKTOP_KEY_VERSION = "Version";
+var GLib_KEY_FILE_DESKTOP_TYPE_APPLICATION_KEY_FILE_DESKTOP_TYPE_APPLICATION = "Application";
+var GLib_KEY_FILE_DESKTOP_TYPE_DIRECTORY_KEY_FILE_DESKTOP_TYPE_DIRECTORY = "Directory";
+var GLib_KEY_FILE_DESKTOP_TYPE_LINK_KEY_FILE_DESKTOP_TYPE_LINK = "Link";
+var GLib_LITTLE_ENDIAN_LITTLE_ENDIAN = 1234;
+
+var GLib_LOG_FATAL_MASK_LOG_FATAL_MASK = 5;
+
+var GLib_LOG_LEVEL_USER_SHIFT_LOG_LEVEL_USER_SHIFT = 8;
+
+var GLib_MAJOR_VERSION_MAJOR_VERSION = 2;
+
+var GLib_MAXINT32_MAXINT32 = 2147483647;
+
+var GLib_MICRO_VERSION_MICRO_VERSION = 3;
+
+var GLib_MININT32_MININT32 = -2147483648;
+
+var GLib_MINOR_VERSION_MINOR_VERSION = 71;
+
+var GLib_MODULE_SUFFIX_MODULE_SUFFIX = "so";
+var GLib_OPTION_REMAINING_OPTION_REMAINING = "";
+var GLib_PDP_ENDIAN_PDP_ENDIAN = 3412;
+
+var GLib_PID_FORMAT_PID_FORMAT = "i";
+var GLib_POLLFD_FORMAT_POLLFD_FORMAT = "%d";
+var GLib_PRIORITY_DEFAULT_PRIORITY_DEFAULT = 0;
+
+var GLib_PRIORITY_DEFAULT_IDLE_PRIORITY_DEFAULT_IDLE = 200;
+
+var GLib_PRIORITY_HIGH_PRIORITY_HIGH = -100;
+
+var GLib_PRIORITY_HIGH_IDLE_PRIORITY_HIGH_IDLE = 100;
+
+var GLib_PRIORITY_LOW_PRIORITY_LOW = 300;
+
+var GLib_SEARCHPATH_SEPARATOR_SEARCHPATH_SEPARATOR = 58;
+
+var GLib_SEARCHPATH_SEPARATOR_S_SEARCHPATH_SEPARATOR_S = ":";
+var GLib_SIZEOF_LONG_SIZEOF_LONG = 8;
+
+var GLib_SIZEOF_SIZE_T_SIZEOF_SIZE_T = 8;
+
+var GLib_SIZEOF_SSIZE_T_SIZEOF_SSIZE_T = 8;
+
+var GLib_SIZEOF_VOID_P_SIZEOF_VOID_P = 8;
+
+var GLib_STR_DELIMITERS_STR_DELIMITERS = "_-|> <.";
+var GLib_SYSDEF_AF_INET_SYSDEF_AF_INET = 2;
+
+var GLib_SYSDEF_AF_INET6_SYSDEF_AF_INET6 = 10;
+
+var GLib_SYSDEF_AF_UNIX_SYSDEF_AF_UNIX = 1;
+
+var GLib_SYSDEF_MSG_DONTROUTE_SYSDEF_MSG_DONTROUTE = 4;
+
+var GLib_SYSDEF_MSG_OOB_SYSDEF_MSG_OOB = 1;
+
+var GLib_SYSDEF_MSG_PEEK_SYSDEF_MSG_PEEK = 2;
+
+var GLib_TEST_OPTION_ISOLATE_DIRS_TEST_OPTION_ISOLATE_DIRS = "isolate_dirs";
+var GLib_UNICHAR_MAX_DECOMPOSITION_LENGTH_UNICHAR_MAX_DECOMPOSITION_LENGTH = 18;
+
+var GLib_URI_RESERVED_CHARS_GENERIC_DELIMITERS_URI_RESERVED_CHARS_GENERIC_DELIMITERS = ":/?#[]@";
+var GLib_URI_RESERVED_CHARS_SUBCOMPONENT_DELIMITERS_URI_RESERVED_CHARS_SUBCOMPONENT_DELIMITERS = "!$&'()*+,;=";
+var GLib_USEC_PER_SEC_USEC_PER_SEC = 1000000;
+
+var GLib_VA_COPY_AS_ARRAY_VA_COPY_AS_ARRAY = 1;
+
+var GLib_VERSION_MIN_REQUIRED_VERSION_MIN_REQUIRED = 2;
+
+var GLib_WIN32_MSG_HANDLE_WIN32_MSG_HANDLE = 19981206;
+
+var GLib_macro__has_attribute___noreturn___macro__has_attribute___noreturn__ = 0;
+
+
+////////////////////////
+

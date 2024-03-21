@@ -1,0 +1,10 @@
+
+var cwd = foreign.native("Kernel32.dll", "int", "GetCurrentDirectoryA", [ "int", "ptr" ] );
+
+
+var buf = sys.buffer();
+var r = cwd(buf.length,buf);
+//print r;
+//print io.cwd();
+print string(buf) == io.cwd(); // expect: true
+print buf.asString(r) == io.cwd(); // expect: true

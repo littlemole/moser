@@ -1,0 +1,7 @@
+deploy/
+moc/
+obj/
+wixobj/
+*.msi
+*.wixpdb
+moser/**

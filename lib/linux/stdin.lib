@@ -1,0 +1,64 @@
+
+extern {
+    ptr fopen( str, str );
+    ulong fread( ptr, ulong, ulong, ptr );
+    int fclose( ptr );
+    ptr fdopen( int, str );
+
+    int feof(ptr);
+    int ferror(ptr);
+
+
+    int fseek(ptr,long,int);
+    long ftell(ptr);
+    int fflush(ptr);
+
+    int remove(str);
+    int rename(str,str);
+    ptr tmpfile();
+
+    ptr tmpnam( ptr );
+
+    int fprintf( ptr, str, ...);
+    int printf( str, ...);
+    int sprintf( ptr, str, ...);
+
+    int fscanf( ptr, str, ...);
+    int scanf( str, ...);
+    int sscanf( str, str, ...);
+
+    int fgetc(ptr);
+    ptr fgets( ptr, int, ptr);
+    int fputc( int, ptr);
+    int fputs( str, ptr);
+    int getchar();
+    ptr gets(ptr);
+    int puts(str);
+    int ungetc( int, ptr);
+
+    void rewind(ptr);
+    int fgetpos(ptr, ptr);
+    int fsetpos(ptr, ptr);
+
+    ptr memcpy(ptr,ptr,long);
+
+    int isatty(int);
+}
+
+
+var EOF      = -1;
+var STDIN    = 0;
+var STDOUT   = 1;
+var STDERR   = 2;
+var SEEK_SET = 0;
+var SEEK_CUR = 1;
+var SEEK_END = 2;
+var L_tmpnam = 20;
+
+fun has_data(file)
+{
+    var tty = isatty(0);
+    if( tty == 0) return true;
+    return false;
+}
+

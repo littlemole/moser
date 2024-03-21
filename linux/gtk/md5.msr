@@ -1,0 +1,95 @@
+extern from "libgtk-3.so" {
+    ptr gtk_application_new( str, int );
+    ptr gtk_application_window_new( ptr );
+    void gtk_widget_show_all( ptr );
+    void gtk_window_set_title( ptr, str );
+    void gtk_window_set_default_size( ptr, int, int );
+    ptr gtk_button_new_with_label( str );
+    void gtk_container_add( ptr, ptr );
+    ptr gtk_text_view_new ();
+
+    ptr gtk_text_view_get_buffer ( ptr );
+    ptr gtk_box_new ( int, int );
+    void gtk_box_pack_start( ptr, ptr, int, int, uint );
+
+    ptr gtk_text_view_get_buffer ( ptr );
+    void gtk_text_buffer_set_text ( ptr, str, uint );
+    void gtk_text_view_set_monospace ( ptr, int );
+
+    ptr gtk_file_chooser_native_new ( str, ptr, int, str, str);
+
+    int gtk_native_dialog_run ( ptr);
+    str gtk_file_chooser_get_filename ( ptr );
+}
+
+extern from "libgio-2.0.so" {
+    int g_application_run( ptr, int, ptr);
+}
+
+extern from "libgobject-2.0.so" {
+    ulong g_signal_connect_data( ptr, str, ptr, ptr, ptr, int );
+}
+
+extern callback void gtk_cb( ptr, ptr );
+
+///////////////////////////////////////////
+
+var window;
+var output;
+var buffer;
+
+fun md5(path)
+{
+    var hash = sys.popen("bash -c \"md5sum " + path + " | cut -f1 -d' '\"");
+    return hash;
+}
+
+var hash = gtk_cb( fun(widget,ptr) 
+{
+    var dlg = gtk_file_chooser_native_new(
+        "Open File",
+        window,
+        0, // Open
+        "ok",
+        "cancel"
+    );
+
+    var r = gtk_native_dialog_run ( dlg );
+    if(r == -3) // accept
+    {
+        var path = gtk_file_chooser_get_filename(dlg);
+        var hash = "md5: " +md5(path);
+
+        var content = "file: " + path + "\r\n\r\n";
+        content += hash;
+
+        gtk_text_buffer_set_text(buffer,content,content.length);
+    }
+});
+
+var activate = gtk_cb( fun(app,ptr) 
+{
+    window = gtk_application_window_new (app);
+    gtk_window_set_title ( window, "MD5 HASH");
+    gtk_window_set_default_size (window, 300, 400);
+
+    var box = gtk_box_new(1,5);
+
+    var button = gtk_button_new_with_label ("compute md5");
+    g_signal_connect_data (button, "clicked", hash, 0, 0, 0);
+
+    var output = gtk_text_view_new();
+    gtk_text_view_set_monospace(output,true);
+
+    gtk_box_pack_start(box,button,false,false,5);
+    gtk_box_pack_start(box,output,true,true,5);
+
+    gtk_container_add (window, box);
+    gtk_widget_show_all(window);
+
+    buffer = gtk_text_view_get_buffer(output);
+});
+
+var app = gtk_application_new ("org.gtk.example", 0);
+g_signal_connect_data (app, "activate", activate, 0, 0, 0);
+var status = g_application_run (app, 0,0);

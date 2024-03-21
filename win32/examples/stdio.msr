@@ -1,0 +1,25 @@
+
+extern {
+    ptr fopen( str, str );
+    ulong fread( ptr, ulong, ulong, ptr );
+    int fclose( ptr );
+}
+
+var buf = sys.buffer(1024);
+
+var file = fopen("../../vcpkg.json", "rb" );
+
+var r = 1;
+var content = "";
+while(r != 0)
+{
+    r = fread( buf, 1, 1024, file);
+    content = content + buf.asString(r);
+}
+
+print content;
+
+fclose(file);
+
+var d = JSON.parse(content);
+print JSON.stringify(d.dependencies);

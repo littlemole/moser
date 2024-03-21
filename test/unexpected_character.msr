@@ -1,0 +1,2 @@
+
+var x = §y; // expect: [line 2] Error: Unexpected character.

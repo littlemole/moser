@@ -1,0 +1,16 @@
+class A {
+  A(param) {
+    this.field = param;
+  }
+
+  test() {
+    print this.field;
+  }
+}
+
+class B : A {}
+
+var b = B("value");
+b.test(); // expect: Expected 0 arguments but got 1.
+
+// expect: [line 13] in script

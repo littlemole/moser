@@ -1,0 +1,3808 @@
+{
+class WinRtInterface { 
+    queryInterface(iid) { return this.comPtr.queryInterface(iid); }
+    release() { this.comPtr.release(); this.comPtr = nil; }
+    valid() { return this.comPtr != nil && int(this.comPtr) != 0; }
+}
+
+if( runtime.global("moxaml") == nil ) { runtime.global("moxaml", {}); }
+var moxaml = runtime.global("moxaml");
+//@Interface("moxaml.IApp")
+//@IID("{A82AA28F-8A01-54CB-98B3-364894ADFF19}")
+class moxaml_IApp : WinRtInterface 
+{
+    moxaml_IApp( comPtr )
+    {
+        var moxaml = runtime.global("moxaml");
+        this.comPtr = comPtr.queryInterface( "{A82AA28F-8A01-54CB-98B3-364894ADFF19}");
+    }
+
+
+}
+moxaml_IApp.iid = "{A82AA28F-8A01-54CB-98B3-364894ADFF19}";
+moxaml.IApp = moxaml_IApp;
+
+
+//@Interface("moxaml.IBlankUserControl")
+//@IID("{B67B9E00-E42B-56E0-828E-67EEBF20407F}")
+class moxaml_IBlankUserControl : WinRtInterface 
+{
+    moxaml_IBlankUserControl( comPtr )
+    {
+        var moxaml = runtime.global("moxaml");
+        this.comPtr = comPtr.queryInterface( "{B67B9E00-E42B-56E0-828E-67EEBF20407F}");
+    }
+
+    //@VtableIndex(6)
+    //@Async(0)
+    //@Returns("Int32")
+    get_MyProperty()
+    {
+        var moxaml = runtime.global("moxaml");
+        var _r = this.comPtr.invoke( 6, "Int32", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(7)
+    //@Async(0)
+    //@Returns("void")
+    //@Parameters("Int32")
+    put_MyProperty(value)
+    {
+        var moxaml = runtime.global("moxaml");
+        var p1 = value;
+        this.comPtr.invoke( 7, "void", ["Int32"], [p1] );
+    }
+
+
+}
+moxaml_IBlankUserControl.iid = "{B67B9E00-E42B-56E0-828E-67EEBF20407F}";
+moxaml.IBlankUserControl = moxaml_IBlankUserControl;
+
+
+//@Interface("moxaml.IDoubleMap")
+//@IID("{E8EDA3E4-C855-521F-B39B-4D9BC7F371F5}")
+class moxaml_IDoubleMap : WinRtInterface 
+{
+    moxaml_IDoubleMap( comPtr )
+    {
+        var moxaml = runtime.global("moxaml");
+        this.comPtr = comPtr.queryInterface( "{E8EDA3E4-C855-521F-B39B-4D9BC7F371F5}");
+    }
+
+
+}
+moxaml_IDoubleMap.iid = "{E8EDA3E4-C855-521F-B39B-4D9BC7F371F5}";
+moxaml.IDoubleMap = moxaml_IDoubleMap;
+
+
+//@Interface("moxaml.IDoubleVector")
+//@IID("{1836B910-1F95-567B-9733-24041E529B18}")
+class moxaml_IDoubleVector : WinRtInterface 
+{
+    moxaml_IDoubleVector( comPtr )
+    {
+        var moxaml = runtime.global("moxaml");
+        this.comPtr = comPtr.queryInterface( "{1836B910-1F95-567B-9733-24041E529B18}");
+    }
+
+
+}
+moxaml_IDoubleVector.iid = "{1836B910-1F95-567B-9733-24041E529B18}";
+moxaml.IDoubleVector = moxaml_IDoubleVector;
+
+
+//@Interface("moxaml.IIntMap")
+//@IID("{209C7514-FFF5-5033-833A-D9BBE6A1C144}")
+class moxaml_IIntMap : WinRtInterface 
+{
+    moxaml_IIntMap( comPtr )
+    {
+        var moxaml = runtime.global("moxaml");
+        this.comPtr = comPtr.queryInterface( "{209C7514-FFF5-5033-833A-D9BBE6A1C144}");
+    }
+
+
+}
+moxaml_IIntMap.iid = "{209C7514-FFF5-5033-833A-D9BBE6A1C144}";
+moxaml.IIntMap = moxaml_IIntMap;
+
+
+//@Interface("moxaml.IIntVector")
+//@IID("{91D2768A-1AD7-5F48-9C63-744C37D2222A}")
+class moxaml_IIntVector : WinRtInterface 
+{
+    moxaml_IIntVector( comPtr )
+    {
+        var moxaml = runtime.global("moxaml");
+        this.comPtr = comPtr.queryInterface( "{91D2768A-1AD7-5F48-9C63-744C37D2222A}");
+    }
+
+
+}
+moxaml_IIntVector.iid = "{91D2768A-1AD7-5F48-9C63-744C37D2222A}";
+moxaml.IIntVector = moxaml_IIntVector;
+
+
+//@Interface("moxaml.IMap")
+//@IID("{FEE4551B-DE37-5F11-80A3-FCDC77A02D68}")
+class moxaml_IMap : WinRtInterface 
+{
+    moxaml_IMap( comPtr )
+    {
+        var moxaml = runtime.global("moxaml");
+        this.comPtr = comPtr.queryInterface( "{FEE4551B-DE37-5F11-80A3-FCDC77A02D68}");
+    }
+
+
+}
+moxaml_IMap.iid = "{FEE4551B-DE37-5F11-80A3-FCDC77A02D68}";
+moxaml.IMap = moxaml_IMap;
+
+
+//@Interface("moxaml.IStringMap")
+//@IID("{A759845A-A19A-5B00-9F8C-F151052BD815}")
+class moxaml_IStringMap : WinRtInterface 
+{
+    moxaml_IStringMap( comPtr )
+    {
+        var moxaml = runtime.global("moxaml");
+        this.comPtr = comPtr.queryInterface( "{A759845A-A19A-5B00-9F8C-F151052BD815}");
+    }
+
+
+}
+moxaml_IStringMap.iid = "{A759845A-A19A-5B00-9F8C-F151052BD815}";
+moxaml.IStringMap = moxaml_IStringMap;
+
+
+//@Interface("moxaml.IStringVector")
+//@IID("{0DBD4074-4947-534A-A269-E1E24FE26C1B}")
+class moxaml_IStringVector : WinRtInterface 
+{
+    moxaml_IStringVector( comPtr )
+    {
+        var moxaml = runtime.global("moxaml");
+        this.comPtr = comPtr.queryInterface( "{0DBD4074-4947-534A-A269-E1E24FE26C1B}");
+    }
+
+
+}
+moxaml_IStringVector.iid = "{0DBD4074-4947-534A-A269-E1E24FE26C1B}";
+moxaml.IStringVector = moxaml_IStringVector;
+
+
+//@Interface("moxaml.IVector")
+//@IID("{71F2EF8E-E27F-5366-BC27-2C1DF9CAFCE1}")
+class moxaml_IVector : WinRtInterface 
+{
+    moxaml_IVector( comPtr )
+    {
+        var moxaml = runtime.global("moxaml");
+        this.comPtr = comPtr.queryInterface( "{71F2EF8E-E27F-5366-BC27-2C1DF9CAFCE1}");
+    }
+
+
+}
+moxaml_IVector.iid = "{71F2EF8E-E27F-5366-BC27-2C1DF9CAFCE1}";
+moxaml.IVector = moxaml_IVector;
+
+
+//@Interface("moxaml.Imox")
+//@IID("{1013A1A3-7D96-57DE-A5A2-96B0F9FF44C7}")
+class moxaml_Imox : WinRtInterface 
+{
+    moxaml_Imox( comPtr )
+    {
+        var moxaml = runtime.global("moxaml");
+        this.comPtr = comPtr.queryInterface( "{1013A1A3-7D96-57DE-A5A2-96B0F9FF44C7}");
+    }
+
+
+}
+moxaml_Imox.iid = "{1013A1A3-7D96-57DE-A5A2-96B0F9FF44C7}";
+moxaml.Imox = moxaml_Imox;
+
+
+//@Interface("moxaml.ImoxStatics")
+//@IID("{A3606144-9716-5BBF-9022-53D0A9687AC4}")
+class moxaml_ImoxStatics : WinRtInterface 
+{
+    moxaml_ImoxStatics( comPtr )
+    {
+        var moxaml = runtime.global("moxaml");
+        this.comPtr = comPtr.queryInterface( "{A3606144-9716-5BBF-9022-53D0A9687AC4}");
+    }
+
+    //@VtableIndex(6)
+    //@Async(0)
+    //@Returns("Windows.UI.Xaml.DependencyProperty")
+    get_EventProperty()
+    {
+        var moxaml = runtime.global("moxaml");
+        var _r = Windows.UI.Xaml.DependencyProperty(
+            this.comPtr.invoke( 6, "Windows.UI.Xaml.DependencyProperty", [], [] )
+        );
+        return _r;
+    }
+
+    //@VtableIndex(7)
+    //@Async(0)
+    //@Returns("String")
+    //@Parameters("Windows.UI.Xaml.DependencyObject")
+    GetEvent(target)
+    {
+        var moxaml = runtime.global("moxaml");
+        var p1 = Windows.UI.Xaml.DependencyObject( target); 
+        var _r = this.comPtr.invoke( 7, "String", ["Windows.UI.Xaml.DependencyObject"], [p1] );
+        return _r;
+    }
+
+    //@VtableIndex(8)
+    //@Async(0)
+    //@Returns("void")
+    //@Parameters("Windows.UI.Xaml.DependencyObject","String")
+    SetEvent(target,value)
+    {
+        var moxaml = runtime.global("moxaml");
+        var p1 = Windows.UI.Xaml.DependencyObject( target); 
+        var p2 = value;
+        this.comPtr.invoke( 8, "void", ["Windows.UI.Xaml.DependencyObject", "String"], [p1, p2] );
+    }
+
+
+}
+moxaml_ImoxStatics.iid = "{A3606144-9716-5BBF-9022-53D0A9687AC4}";
+moxaml.ImoxStatics = moxaml_ImoxStatics;
+
+
+//@RuntimeClass("moxaml.App")
+//@Implements("moxaml.IApp")
+//@DefaultInterface("moxaml.IApp")
+@Proxy("WinRtProxy")
+class moxaml_App : WinRtInterface
+{
+    moxaml_App( comPtr )
+    {
+        var moxaml = runtime.global("moxaml");
+        this.comPtr = comPtr.queryInterface( moxaml.IApp.iid );
+    }
+
+    static Create()
+    {
+        return moxaml.App(
+            winrt.activate("moxaml.App")
+        );
+    }
+
+}
+moxaml.App = moxaml_App;
+
+//@RuntimeClass("moxaml.BlankUserControl")
+//@Implements("moxaml.IBlankUserControl")
+//@DefaultInterface("moxaml.IBlankUserControl")
+@Proxy("WinRtProxy")
+@Extends("Windows.UI.Xaml.Controls.UserControl")
+class moxaml_BlankUserControl : WinRtInterface
+{
+    moxaml_BlankUserControl( comPtr )
+    {
+        var moxaml = runtime.global("moxaml");
+        this.comPtr = comPtr.queryInterface( moxaml.IBlankUserControl.iid );
+    }
+
+    static Create()
+    {
+        return moxaml.BlankUserControl(
+            winrt.activate("moxaml.BlankUserControl")
+        );
+    }
+    //@Returns("Int32")
+    get_MyProperty()
+    {
+        var moxaml = runtime.global("moxaml");
+        var iface = moxaml.IBlankUserControl( this.comPtr );
+        var _r = iface.get_MyProperty(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Parameters("Int32")
+    //@Returns("void")
+    //@Parameters("Int32")
+    put_MyProperty(value)
+    {
+        var moxaml = runtime.global("moxaml");
+        var iface = moxaml.IBlankUserControl( this.comPtr );
+        iface.put_MyProperty( value );
+        iface.release();
+    }
+
+
+}
+moxaml.BlankUserControl = moxaml_BlankUserControl;
+
+//@RuntimeClass("moxaml.DoubleMap")
+//@Implements("moxaml.IDoubleMap")
+//@DefaultInterface("moxaml.IDoubleMap")
+@Proxy("WinRtProxy")
+class moxaml_DoubleMap : WinRtInterface
+{
+    moxaml_DoubleMap( comPtr )
+    {
+        var moxaml = runtime.global("moxaml");
+        this.comPtr = comPtr.queryInterface( moxaml.IDoubleMap.iid );
+    }
+
+    static Create()
+    {
+        return moxaml.DoubleMap(
+            winrt.activate("moxaml.DoubleMap")
+        );
+    }
+    //@Parameters("Windows.Foundation.Collections.MapChangedEventHandler`2<String,Double>")
+    //@Returns("Windows.Foundation.EventRegistrationToken")
+    //@Parameters("Windows.Foundation.Collections.MapChangedEventHandler`2<String,Double>")
+    add_MapChanged(vhnd)
+    {
+        var moxaml = runtime.global("moxaml");
+        var iface = Windows.Foundation.Collections.IObservableMap_2_String_Double_( this.comPtr );
+        var _r = iface.add_MapChanged( vhnd );
+        iface.release();
+        return _r;
+    }
+
+    //@Parameters("Windows.Foundation.EventRegistrationToken")
+    //@Returns("void")
+    //@Parameters("Windows.Foundation.EventRegistrationToken")
+    remove_MapChanged(token)
+    {
+        var moxaml = runtime.global("moxaml");
+        var iface = Windows.Foundation.Collections.IObservableMap_2_String_Double_( this.comPtr );
+        iface.remove_MapChanged( token );
+        iface.release();
+    }
+
+    //@Parameters("String")
+    //@Returns("Double")
+    //@Parameters("String")
+    Lookup(key)
+    {
+        var moxaml = runtime.global("moxaml");
+        var iface = Windows.Foundation.Collections.IMap_2_String_Double_( this.comPtr );
+        var _r = iface.Lookup( key );
+        iface.release();
+        return _r;
+    }
+
+    //@Returns("UInt32")
+    get_Size()
+    {
+        var moxaml = runtime.global("moxaml");
+        var iface = Windows.Foundation.Collections.IMap_2_String_Double_( this.comPtr );
+        var _r = iface.get_Size(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Parameters("String")
+    //@Returns("Boolean")
+    //@Parameters("String")
+    HasKey(key)
+    {
+        var moxaml = runtime.global("moxaml");
+        var iface = Windows.Foundation.Collections.IMap_2_String_Double_( this.comPtr );
+        var _r = iface.HasKey( key );
+        iface.release();
+        return _r;
+    }
+
+    //@Returns("Windows.Foundation.Collections.IMapView`2<String,Double>")
+    GetView()
+    {
+        var moxaml = runtime.global("moxaml");
+        var iface = Windows.Foundation.Collections.IMap_2_String_Double_( this.comPtr );
+        var _r = iface.GetView(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Parameters("String", "Double")
+    //@Returns("Boolean")
+    //@Parameters("String","Double")
+    Insert(key,value)
+    {
+        var moxaml = runtime.global("moxaml");
+        var iface = Windows.Foundation.Collections.IMap_2_String_Double_( this.comPtr );
+        var _r = iface.Insert( key, value );
+        iface.release();
+        return _r;
+    }
+
+    //@Parameters("String")
+    //@Returns("void")
+    //@Parameters("String")
+    Remove(key)
+    {
+        var moxaml = runtime.global("moxaml");
+        var iface = Windows.Foundation.Collections.IMap_2_String_Double_( this.comPtr );
+        iface.Remove( key );
+        iface.release();
+    }
+
+    //@Returns("void")
+    Clear()
+    {
+        var moxaml = runtime.global("moxaml");
+        var iface = Windows.Foundation.Collections.IMap_2_String_Double_( this.comPtr );
+        iface.Clear(  );
+        iface.release();
+    }
+
+    //@Returns("Windows.Foundation.Collections.IIterator`1<Windows.Foundation.Collections.IKeyValuePair`2<String,Double>>")
+    First()
+    {
+        var moxaml = runtime.global("moxaml");
+        var iface = Windows.Foundation.Collections.IIterable_1_Windows_Foundation_Collections_IKeyValuePair_2_String_Double__( this.comPtr );
+        var _r = iface.First(  );
+        iface.release();
+        return _r;
+    }
+
+
+}
+moxaml.DoubleMap = moxaml_DoubleMap;
+
+//@RuntimeClass("moxaml.DoubleVector")
+//@Implements("moxaml.IDoubleVector")
+//@DefaultInterface("moxaml.IDoubleVector")
+@Proxy("WinRtProxy")
+class moxaml_DoubleVector : WinRtInterface
+{
+    moxaml_DoubleVector( comPtr )
+    {
+        var moxaml = runtime.global("moxaml");
+        this.comPtr = comPtr.queryInterface( moxaml.IDoubleVector.iid );
+    }
+
+    static Create()
+    {
+        return moxaml.DoubleVector(
+            winrt.activate("moxaml.DoubleVector")
+        );
+    }
+    //@Parameters("Windows.Foundation.Collections.VectorChangedEventHandler`1<Double>")
+    //@Returns("Windows.Foundation.EventRegistrationToken")
+    //@Parameters("Windows.Foundation.Collections.VectorChangedEventHandler`1<Double>")
+    add_VectorChanged(vhnd)
+    {
+        var moxaml = runtime.global("moxaml");
+        var iface = Windows.Foundation.Collections.IObservableVector_1_Double_( this.comPtr );
+        var _r = iface.add_VectorChanged( vhnd );
+        iface.release();
+        return _r;
+    }
+
+    //@Parameters("Windows.Foundation.EventRegistrationToken")
+    //@Returns("void")
+    //@Parameters("Windows.Foundation.EventRegistrationToken")
+    remove_VectorChanged(token)
+    {
+        var moxaml = runtime.global("moxaml");
+        var iface = Windows.Foundation.Collections.IObservableVector_1_Double_( this.comPtr );
+        iface.remove_VectorChanged( token );
+        iface.release();
+    }
+
+    //@Parameters("UInt32")
+    //@Returns("Double")
+    //@Parameters("UInt32")
+    GetAt(index)
+    {
+        var moxaml = runtime.global("moxaml");
+        var iface = Windows.Foundation.Collections.IVector_1_Double_( this.comPtr );
+        var _r = iface.GetAt( index );
+        iface.release();
+        return _r;
+    }
+
+    //@Returns("UInt32")
+    get_Size()
+    {
+        var moxaml = runtime.global("moxaml");
+        var iface = Windows.Foundation.Collections.IVector_1_Double_( this.comPtr );
+        var _r = iface.get_Size(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Returns("Windows.Foundation.Collections.IVectorView`1<Double>")
+    GetView()
+    {
+        var moxaml = runtime.global("moxaml");
+        var iface = Windows.Foundation.Collections.IVector_1_Double_( this.comPtr );
+        var _r = iface.GetView(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Parameters("UInt32", "Double")
+    //@Returns("void")
+    //@Parameters("UInt32","Double")
+    SetAt(index,value)
+    {
+        var moxaml = runtime.global("moxaml");
+        var iface = Windows.Foundation.Collections.IVector_1_Double_( this.comPtr );
+        iface.SetAt( index, value );
+        iface.release();
+    }
+
+    //@Parameters("UInt32", "Double")
+    //@Returns("void")
+    //@Parameters("UInt32","Double")
+    InsertAt(index,value)
+    {
+        var moxaml = runtime.global("moxaml");
+        var iface = Windows.Foundation.Collections.IVector_1_Double_( this.comPtr );
+        iface.InsertAt( index, value );
+        iface.release();
+    }
+
+    //@Parameters("UInt32")
+    //@Returns("void")
+    //@Parameters("UInt32")
+    RemoveAt(index)
+    {
+        var moxaml = runtime.global("moxaml");
+        var iface = Windows.Foundation.Collections.IVector_1_Double_( this.comPtr );
+        iface.RemoveAt( index );
+        iface.release();
+    }
+
+    //@Parameters("Double")
+    //@Returns("void")
+    //@Parameters("Double")
+    Append(value)
+    {
+        var moxaml = runtime.global("moxaml");
+        var iface = Windows.Foundation.Collections.IVector_1_Double_( this.comPtr );
+        iface.Append( value );
+        iface.release();
+    }
+
+    //@Returns("void")
+    RemoveAtEnd()
+    {
+        var moxaml = runtime.global("moxaml");
+        var iface = Windows.Foundation.Collections.IVector_1_Double_( this.comPtr );
+        iface.RemoveAtEnd(  );
+        iface.release();
+    }
+
+    //@Returns("void")
+    Clear()
+    {
+        var moxaml = runtime.global("moxaml");
+        var iface = Windows.Foundation.Collections.IVector_1_Double_( this.comPtr );
+        iface.Clear(  );
+        iface.release();
+    }
+
+    //@Returns("Windows.Foundation.Collections.IIterator`1<Double>")
+    First()
+    {
+        var moxaml = runtime.global("moxaml");
+        var iface = Windows.Foundation.Collections.IIterable_1_Double_( this.comPtr );
+        var _r = iface.First(  );
+        iface.release();
+        return _r;
+    }
+
+
+}
+moxaml.DoubleVector = moxaml_DoubleVector;
+
+//@RuntimeClass("moxaml.IntMap")
+//@Implements("moxaml.IIntMap")
+//@DefaultInterface("moxaml.IIntMap")
+@Proxy("WinRtProxy")
+class moxaml_IntMap : WinRtInterface
+{
+    moxaml_IntMap( comPtr )
+    {
+        var moxaml = runtime.global("moxaml");
+        this.comPtr = comPtr.queryInterface( moxaml.IIntMap.iid );
+    }
+
+    static Create()
+    {
+        return moxaml.IntMap(
+            winrt.activate("moxaml.IntMap")
+        );
+    }
+    //@Parameters("Windows.Foundation.Collections.MapChangedEventHandler`2<String,Int32>")
+    //@Returns("Windows.Foundation.EventRegistrationToken")
+    //@Parameters("Windows.Foundation.Collections.MapChangedEventHandler`2<String,Int32>")
+    add_MapChanged(vhnd)
+    {
+        var moxaml = runtime.global("moxaml");
+        var iface = Windows.Foundation.Collections.IObservableMap_2_String_Int32_( this.comPtr );
+        var _r = iface.add_MapChanged( vhnd );
+        iface.release();
+        return _r;
+    }
+
+    //@Parameters("Windows.Foundation.EventRegistrationToken")
+    //@Returns("void")
+    //@Parameters("Windows.Foundation.EventRegistrationToken")
+    remove_MapChanged(token)
+    {
+        var moxaml = runtime.global("moxaml");
+        var iface = Windows.Foundation.Collections.IObservableMap_2_String_Int32_( this.comPtr );
+        iface.remove_MapChanged( token );
+        iface.release();
+    }
+
+    //@Parameters("String")
+    //@Returns("Int32")
+    //@Parameters("String")
+    Lookup(key)
+    {
+        var moxaml = runtime.global("moxaml");
+        var iface = Windows.Foundation.Collections.IMap_2_String_Int32_( this.comPtr );
+        var _r = iface.Lookup( key );
+        iface.release();
+        return _r;
+    }
+
+    //@Returns("UInt32")
+    get_Size()
+    {
+        var moxaml = runtime.global("moxaml");
+        var iface = Windows.Foundation.Collections.IMap_2_String_Int32_( this.comPtr );
+        var _r = iface.get_Size(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Parameters("String")
+    //@Returns("Boolean")
+    //@Parameters("String")
+    HasKey(key)
+    {
+        var moxaml = runtime.global("moxaml");
+        var iface = Windows.Foundation.Collections.IMap_2_String_Int32_( this.comPtr );
+        var _r = iface.HasKey( key );
+        iface.release();
+        return _r;
+    }
+
+    //@Returns("Windows.Foundation.Collections.IMapView`2<String,Int32>")
+    GetView()
+    {
+        var moxaml = runtime.global("moxaml");
+        var iface = Windows.Foundation.Collections.IMap_2_String_Int32_( this.comPtr );
+        var _r = iface.GetView(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Parameters("String", "Int32")
+    //@Returns("Boolean")
+    //@Parameters("String","Int32")
+    Insert(key,value)
+    {
+        var moxaml = runtime.global("moxaml");
+        var iface = Windows.Foundation.Collections.IMap_2_String_Int32_( this.comPtr );
+        var _r = iface.Insert( key, value );
+        iface.release();
+        return _r;
+    }
+
+    //@Parameters("String")
+    //@Returns("void")
+    //@Parameters("String")
+    Remove(key)
+    {
+        var moxaml = runtime.global("moxaml");
+        var iface = Windows.Foundation.Collections.IMap_2_String_Int32_( this.comPtr );
+        iface.Remove( key );
+        iface.release();
+    }
+
+    //@Returns("void")
+    Clear()
+    {
+        var moxaml = runtime.global("moxaml");
+        var iface = Windows.Foundation.Collections.IMap_2_String_Int32_( this.comPtr );
+        iface.Clear(  );
+        iface.release();
+    }
+
+    //@Returns("Windows.Foundation.Collections.IIterator`1<Windows.Foundation.Collections.IKeyValuePair`2<String,Int32>>")
+    First()
+    {
+        var moxaml = runtime.global("moxaml");
+        var iface = Windows.Foundation.Collections.IIterable_1_Windows_Foundation_Collections_IKeyValuePair_2_String_Int32__( this.comPtr );
+        var _r = iface.First(  );
+        iface.release();
+        return _r;
+    }
+
+
+}
+moxaml.IntMap = moxaml_IntMap;
+
+//@RuntimeClass("moxaml.IntVector")
+//@Implements("moxaml.IIntVector")
+//@DefaultInterface("moxaml.IIntVector")
+@Proxy("WinRtProxy")
+class moxaml_IntVector : WinRtInterface
+{
+    moxaml_IntVector( comPtr )
+    {
+        var moxaml = runtime.global("moxaml");
+        this.comPtr = comPtr.queryInterface( moxaml.IIntVector.iid );
+    }
+
+    static Create()
+    {
+        return moxaml.IntVector(
+            winrt.activate("moxaml.IntVector")
+        );
+    }
+    //@Parameters("Windows.Foundation.Collections.VectorChangedEventHandler`1<Int32>")
+    //@Returns("Windows.Foundation.EventRegistrationToken")
+    //@Parameters("Windows.Foundation.Collections.VectorChangedEventHandler`1<Int32>")
+    add_VectorChanged(vhnd)
+    {
+        var moxaml = runtime.global("moxaml");
+        var iface = Windows.Foundation.Collections.IObservableVector_1_Int32_( this.comPtr );
+        var _r = iface.add_VectorChanged( vhnd );
+        iface.release();
+        return _r;
+    }
+
+    //@Parameters("Windows.Foundation.EventRegistrationToken")
+    //@Returns("void")
+    //@Parameters("Windows.Foundation.EventRegistrationToken")
+    remove_VectorChanged(token)
+    {
+        var moxaml = runtime.global("moxaml");
+        var iface = Windows.Foundation.Collections.IObservableVector_1_Int32_( this.comPtr );
+        iface.remove_VectorChanged( token );
+        iface.release();
+    }
+
+    //@Parameters("UInt32")
+    //@Returns("Int32")
+    //@Parameters("UInt32")
+    GetAt(index)
+    {
+        var moxaml = runtime.global("moxaml");
+        var iface = Windows.Foundation.Collections.IVector_1_Int32_( this.comPtr );
+        var _r = iface.GetAt( index );
+        iface.release();
+        return _r;
+    }
+
+    //@Returns("UInt32")
+    get_Size()
+    {
+        var moxaml = runtime.global("moxaml");
+        var iface = Windows.Foundation.Collections.IVector_1_Int32_( this.comPtr );
+        var _r = iface.get_Size(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Returns("Windows.Foundation.Collections.IVectorView`1<Int32>")
+    GetView()
+    {
+        var moxaml = runtime.global("moxaml");
+        var iface = Windows.Foundation.Collections.IVector_1_Int32_( this.comPtr );
+        var _r = iface.GetView(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Parameters("UInt32", "Int32")
+    //@Returns("void")
+    //@Parameters("UInt32","Int32")
+    SetAt(index,value)
+    {
+        var moxaml = runtime.global("moxaml");
+        var iface = Windows.Foundation.Collections.IVector_1_Int32_( this.comPtr );
+        iface.SetAt( index, value );
+        iface.release();
+    }
+
+    //@Parameters("UInt32", "Int32")
+    //@Returns("void")
+    //@Parameters("UInt32","Int32")
+    InsertAt(index,value)
+    {
+        var moxaml = runtime.global("moxaml");
+        var iface = Windows.Foundation.Collections.IVector_1_Int32_( this.comPtr );
+        iface.InsertAt( index, value );
+        iface.release();
+    }
+
+    //@Parameters("UInt32")
+    //@Returns("void")
+    //@Parameters("UInt32")
+    RemoveAt(index)
+    {
+        var moxaml = runtime.global("moxaml");
+        var iface = Windows.Foundation.Collections.IVector_1_Int32_( this.comPtr );
+        iface.RemoveAt( index );
+        iface.release();
+    }
+
+    //@Parameters("Int32")
+    //@Returns("void")
+    //@Parameters("Int32")
+    Append(value)
+    {
+        var moxaml = runtime.global("moxaml");
+        var iface = Windows.Foundation.Collections.IVector_1_Int32_( this.comPtr );
+        iface.Append( value );
+        iface.release();
+    }
+
+    //@Returns("void")
+    RemoveAtEnd()
+    {
+        var moxaml = runtime.global("moxaml");
+        var iface = Windows.Foundation.Collections.IVector_1_Int32_( this.comPtr );
+        iface.RemoveAtEnd(  );
+        iface.release();
+    }
+
+    //@Returns("void")
+    Clear()
+    {
+        var moxaml = runtime.global("moxaml");
+        var iface = Windows.Foundation.Collections.IVector_1_Int32_( this.comPtr );
+        iface.Clear(  );
+        iface.release();
+    }
+
+    //@Returns("Windows.Foundation.Collections.IIterator`1<Int32>")
+    First()
+    {
+        var moxaml = runtime.global("moxaml");
+        var iface = Windows.Foundation.Collections.IIterable_1_Int32_( this.comPtr );
+        var _r = iface.First(  );
+        iface.release();
+        return _r;
+    }
+
+
+}
+moxaml.IntVector = moxaml_IntVector;
+
+//@RuntimeClass("moxaml.Map")
+//@Implements("moxaml.IMap")
+//@DefaultInterface("moxaml.IMap")
+@Proxy("WinRtProxy")
+class moxaml_Map : WinRtInterface
+{
+    moxaml_Map( comPtr )
+    {
+        var moxaml = runtime.global("moxaml");
+        this.comPtr = comPtr.queryInterface( moxaml.IMap.iid );
+    }
+
+    static Create()
+    {
+        return moxaml.Map(
+            winrt.activate("moxaml.Map")
+        );
+    }
+    //@Parameters("Windows.Foundation.Collections.MapChangedEventHandler`2<String,Object>")
+    //@Returns("Windows.Foundation.EventRegistrationToken")
+    //@Parameters("Windows.Foundation.Collections.MapChangedEventHandler`2<String,Object>")
+    add_MapChanged(vhnd)
+    {
+        var moxaml = runtime.global("moxaml");
+        var iface = Windows.Foundation.Collections.IObservableMap_2_String_Object_( this.comPtr );
+        var _r = iface.add_MapChanged( vhnd );
+        iface.release();
+        return _r;
+    }
+
+    //@Parameters("Windows.Foundation.EventRegistrationToken")
+    //@Returns("void")
+    //@Parameters("Windows.Foundation.EventRegistrationToken")
+    remove_MapChanged(token)
+    {
+        var moxaml = runtime.global("moxaml");
+        var iface = Windows.Foundation.Collections.IObservableMap_2_String_Object_( this.comPtr );
+        iface.remove_MapChanged( token );
+        iface.release();
+    }
+
+    //@Parameters("String")
+    //@Returns("Object")
+    //@Parameters("String")
+    Lookup(key)
+    {
+        var moxaml = runtime.global("moxaml");
+        var iface = Windows.Foundation.Collections.IMap_2_String_Object_( this.comPtr );
+        var _r = iface.Lookup( key );
+        iface.release();
+        return _r;
+    }
+
+    //@Returns("UInt32")
+    get_Size()
+    {
+        var moxaml = runtime.global("moxaml");
+        var iface = Windows.Foundation.Collections.IMap_2_String_Object_( this.comPtr );
+        var _r = iface.get_Size(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Parameters("String")
+    //@Returns("Boolean")
+    //@Parameters("String")
+    HasKey(key)
+    {
+        var moxaml = runtime.global("moxaml");
+        var iface = Windows.Foundation.Collections.IMap_2_String_Object_( this.comPtr );
+        var _r = iface.HasKey( key );
+        iface.release();
+        return _r;
+    }
+
+    //@Returns("Windows.Foundation.Collections.IMapView`2<String,Object>")
+    GetView()
+    {
+        var moxaml = runtime.global("moxaml");
+        var iface = Windows.Foundation.Collections.IMap_2_String_Object_( this.comPtr );
+        var _r = iface.GetView(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Parameters("String", "Object")
+    //@Returns("Boolean")
+    //@Parameters("String","Object")
+    Insert(key,value)
+    {
+        var moxaml = runtime.global("moxaml");
+        var iface = Windows.Foundation.Collections.IMap_2_String_Object_( this.comPtr );
+        var _r = iface.Insert( key, value );
+        iface.release();
+        return _r;
+    }
+
+    //@Parameters("String")
+    //@Returns("void")
+    //@Parameters("String")
+    Remove(key)
+    {
+        var moxaml = runtime.global("moxaml");
+        var iface = Windows.Foundation.Collections.IMap_2_String_Object_( this.comPtr );
+        iface.Remove( key );
+        iface.release();
+    }
+
+    //@Returns("void")
+    Clear()
+    {
+        var moxaml = runtime.global("moxaml");
+        var iface = Windows.Foundation.Collections.IMap_2_String_Object_( this.comPtr );
+        iface.Clear(  );
+        iface.release();
+    }
+
+    //@Returns("Windows.Foundation.Collections.IIterator`1<Windows.Foundation.Collections.IKeyValuePair`2<String,Object>>")
+    First()
+    {
+        var moxaml = runtime.global("moxaml");
+        var iface = Windows.Foundation.Collections.IIterable_1_Windows_Foundation_Collections_IKeyValuePair_2_String_Object__( this.comPtr );
+        var _r = iface.First(  );
+        iface.release();
+        return _r;
+    }
+
+
+}
+moxaml.Map = moxaml_Map;
+
+//@RuntimeClass("moxaml.StringMap")
+//@Implements("moxaml.IStringMap")
+//@DefaultInterface("moxaml.IStringMap")
+@Proxy("WinRtProxy")
+class moxaml_StringMap : WinRtInterface
+{
+    moxaml_StringMap( comPtr )
+    {
+        var moxaml = runtime.global("moxaml");
+        this.comPtr = comPtr.queryInterface( moxaml.IStringMap.iid );
+    }
+
+    static Create()
+    {
+        return moxaml.StringMap(
+            winrt.activate("moxaml.StringMap")
+        );
+    }
+    //@Parameters("Windows.Foundation.Collections.MapChangedEventHandler`2<String,String>")
+    //@Returns("Windows.Foundation.EventRegistrationToken")
+    //@Parameters("Windows.Foundation.Collections.MapChangedEventHandler`2<String,String>")
+    add_MapChanged(vhnd)
+    {
+        var moxaml = runtime.global("moxaml");
+        var iface = Windows.Foundation.Collections.IObservableMap_2_String_String_( this.comPtr );
+        var _r = iface.add_MapChanged( vhnd );
+        iface.release();
+        return _r;
+    }
+
+    //@Parameters("Windows.Foundation.EventRegistrationToken")
+    //@Returns("void")
+    //@Parameters("Windows.Foundation.EventRegistrationToken")
+    remove_MapChanged(token)
+    {
+        var moxaml = runtime.global("moxaml");
+        var iface = Windows.Foundation.Collections.IObservableMap_2_String_String_( this.comPtr );
+        iface.remove_MapChanged( token );
+        iface.release();
+    }
+
+    //@Parameters("String")
+    //@Returns("String")
+    //@Parameters("String")
+    Lookup(key)
+    {
+        var moxaml = runtime.global("moxaml");
+        var iface = Windows.Foundation.Collections.IMap_2_String_String_( this.comPtr );
+        var _r = iface.Lookup( key );
+        iface.release();
+        return _r;
+    }
+
+    //@Returns("UInt32")
+    get_Size()
+    {
+        var moxaml = runtime.global("moxaml");
+        var iface = Windows.Foundation.Collections.IMap_2_String_String_( this.comPtr );
+        var _r = iface.get_Size(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Parameters("String")
+    //@Returns("Boolean")
+    //@Parameters("String")
+    HasKey(key)
+    {
+        var moxaml = runtime.global("moxaml");
+        var iface = Windows.Foundation.Collections.IMap_2_String_String_( this.comPtr );
+        var _r = iface.HasKey( key );
+        iface.release();
+        return _r;
+    }
+
+    //@Returns("Windows.Foundation.Collections.IMapView`2<String,String>")
+    GetView()
+    {
+        var moxaml = runtime.global("moxaml");
+        var iface = Windows.Foundation.Collections.IMap_2_String_String_( this.comPtr );
+        var _r = iface.GetView(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Parameters("String", "String")
+    //@Returns("Boolean")
+    //@Parameters("String","String")
+    Insert(key,value)
+    {
+        var moxaml = runtime.global("moxaml");
+        var iface = Windows.Foundation.Collections.IMap_2_String_String_( this.comPtr );
+        var _r = iface.Insert( key, value );
+        iface.release();
+        return _r;
+    }
+
+    //@Parameters("String")
+    //@Returns("void")
+    //@Parameters("String")
+    Remove(key)
+    {
+        var moxaml = runtime.global("moxaml");
+        var iface = Windows.Foundation.Collections.IMap_2_String_String_( this.comPtr );
+        iface.Remove( key );
+        iface.release();
+    }
+
+    //@Returns("void")
+    Clear()
+    {
+        var moxaml = runtime.global("moxaml");
+        var iface = Windows.Foundation.Collections.IMap_2_String_String_( this.comPtr );
+        iface.Clear(  );
+        iface.release();
+    }
+
+    //@Returns("Windows.Foundation.Collections.IIterator`1<Windows.Foundation.Collections.IKeyValuePair`2<String,String>>")
+    First()
+    {
+        var moxaml = runtime.global("moxaml");
+        var iface = Windows.Foundation.Collections.IIterable_1_Windows_Foundation_Collections_IKeyValuePair_2_String_String__( this.comPtr );
+        var _r = iface.First(  );
+        iface.release();
+        return _r;
+    }
+
+
+}
+moxaml.StringMap = moxaml_StringMap;
+
+//@RuntimeClass("moxaml.StringVector")
+//@Implements("moxaml.IStringVector")
+//@DefaultInterface("moxaml.IStringVector")
+@Proxy("WinRtProxy")
+class moxaml_StringVector : WinRtInterface
+{
+    moxaml_StringVector( comPtr )
+    {
+        var moxaml = runtime.global("moxaml");
+        this.comPtr = comPtr.queryInterface( moxaml.IStringVector.iid );
+    }
+
+    static Create()
+    {
+        return moxaml.StringVector(
+            winrt.activate("moxaml.StringVector")
+        );
+    }
+    //@Parameters("Windows.Foundation.Collections.VectorChangedEventHandler`1<String>")
+    //@Returns("Windows.Foundation.EventRegistrationToken")
+    //@Parameters("Windows.Foundation.Collections.VectorChangedEventHandler`1<String>")
+    add_VectorChanged(vhnd)
+    {
+        var moxaml = runtime.global("moxaml");
+        var iface = Windows.Foundation.Collections.IObservableVector_1_String_( this.comPtr );
+        var _r = iface.add_VectorChanged( vhnd );
+        iface.release();
+        return _r;
+    }
+
+    //@Parameters("Windows.Foundation.EventRegistrationToken")
+    //@Returns("void")
+    //@Parameters("Windows.Foundation.EventRegistrationToken")
+    remove_VectorChanged(token)
+    {
+        var moxaml = runtime.global("moxaml");
+        var iface = Windows.Foundation.Collections.IObservableVector_1_String_( this.comPtr );
+        iface.remove_VectorChanged( token );
+        iface.release();
+    }
+
+    //@Parameters("UInt32")
+    //@Returns("String")
+    //@Parameters("UInt32")
+    GetAt(index)
+    {
+        var moxaml = runtime.global("moxaml");
+        var iface = Windows.Foundation.Collections.IVector_1_String_( this.comPtr );
+        var _r = iface.GetAt( index );
+        iface.release();
+        return _r;
+    }
+
+    //@Returns("UInt32")
+    get_Size()
+    {
+        var moxaml = runtime.global("moxaml");
+        var iface = Windows.Foundation.Collections.IVector_1_String_( this.comPtr );
+        var _r = iface.get_Size(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Returns("Windows.Foundation.Collections.IVectorView`1<String>")
+    GetView()
+    {
+        var moxaml = runtime.global("moxaml");
+        var iface = Windows.Foundation.Collections.IVector_1_String_( this.comPtr );
+        var _r = iface.GetView(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Parameters("UInt32", "String")
+    //@Returns("void")
+    //@Parameters("UInt32","String")
+    SetAt(index,value)
+    {
+        var moxaml = runtime.global("moxaml");
+        var iface = Windows.Foundation.Collections.IVector_1_String_( this.comPtr );
+        iface.SetAt( index, value );
+        iface.release();
+    }
+
+    //@Parameters("UInt32", "String")
+    //@Returns("void")
+    //@Parameters("UInt32","String")
+    InsertAt(index,value)
+    {
+        var moxaml = runtime.global("moxaml");
+        var iface = Windows.Foundation.Collections.IVector_1_String_( this.comPtr );
+        iface.InsertAt( index, value );
+        iface.release();
+    }
+
+    //@Parameters("UInt32")
+    //@Returns("void")
+    //@Parameters("UInt32")
+    RemoveAt(index)
+    {
+        var moxaml = runtime.global("moxaml");
+        var iface = Windows.Foundation.Collections.IVector_1_String_( this.comPtr );
+        iface.RemoveAt( index );
+        iface.release();
+    }
+
+    //@Parameters("String")
+    //@Returns("void")
+    //@Parameters("String")
+    Append(value)
+    {
+        var moxaml = runtime.global("moxaml");
+        var iface = Windows.Foundation.Collections.IVector_1_String_( this.comPtr );
+        iface.Append( value );
+        iface.release();
+    }
+
+    //@Returns("void")
+    RemoveAtEnd()
+    {
+        var moxaml = runtime.global("moxaml");
+        var iface = Windows.Foundation.Collections.IVector_1_String_( this.comPtr );
+        iface.RemoveAtEnd(  );
+        iface.release();
+    }
+
+    //@Returns("void")
+    Clear()
+    {
+        var moxaml = runtime.global("moxaml");
+        var iface = Windows.Foundation.Collections.IVector_1_String_( this.comPtr );
+        iface.Clear(  );
+        iface.release();
+    }
+
+    //@Returns("Windows.Foundation.Collections.IIterator`1<String>")
+    First()
+    {
+        var moxaml = runtime.global("moxaml");
+        var iface = Windows.Foundation.Collections.IIterable_1_String_( this.comPtr );
+        var _r = iface.First(  );
+        iface.release();
+        return _r;
+    }
+
+
+}
+moxaml.StringVector = moxaml_StringVector;
+
+//@RuntimeClass("moxaml.Vector")
+//@Implements("moxaml.IVector")
+//@DefaultInterface("moxaml.IVector")
+@Proxy("WinRtProxy")
+class moxaml_Vector : WinRtInterface
+{
+    moxaml_Vector( comPtr )
+    {
+        var moxaml = runtime.global("moxaml");
+        this.comPtr = comPtr.queryInterface( moxaml.IVector.iid );
+    }
+
+    static Create()
+    {
+        return moxaml.Vector(
+            winrt.activate("moxaml.Vector")
+        );
+    }
+    //@Parameters("Windows.Foundation.Collections.VectorChangedEventHandler`1<Object>")
+    //@Returns("Windows.Foundation.EventRegistrationToken")
+    //@Parameters("Windows.Foundation.Collections.VectorChangedEventHandler`1<Object>")
+    add_VectorChanged(vhnd)
+    {
+        var moxaml = runtime.global("moxaml");
+        var iface = Windows.Foundation.Collections.IObservableVector_1_Object_( this.comPtr );
+        var _r = iface.add_VectorChanged( vhnd );
+        iface.release();
+        return _r;
+    }
+
+    //@Parameters("Windows.Foundation.EventRegistrationToken")
+    //@Returns("void")
+    //@Parameters("Windows.Foundation.EventRegistrationToken")
+    remove_VectorChanged(token)
+    {
+        var moxaml = runtime.global("moxaml");
+        var iface = Windows.Foundation.Collections.IObservableVector_1_Object_( this.comPtr );
+        iface.remove_VectorChanged( token );
+        iface.release();
+    }
+
+    //@Parameters("UInt32")
+    //@Returns("Object")
+    //@Parameters("UInt32")
+    GetAt(index)
+    {
+        var moxaml = runtime.global("moxaml");
+        var iface = Windows.Foundation.Collections.IVector_1_Object_( this.comPtr );
+        var _r = iface.GetAt( index );
+        iface.release();
+        return _r;
+    }
+
+    //@Returns("UInt32")
+    get_Size()
+    {
+        var moxaml = runtime.global("moxaml");
+        var iface = Windows.Foundation.Collections.IVector_1_Object_( this.comPtr );
+        var _r = iface.get_Size(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Returns("Windows.Foundation.Collections.IVectorView`1<Object>")
+    GetView()
+    {
+        var moxaml = runtime.global("moxaml");
+        var iface = Windows.Foundation.Collections.IVector_1_Object_( this.comPtr );
+        var _r = iface.GetView(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Parameters("UInt32", "Object")
+    //@Returns("void")
+    //@Parameters("UInt32","Object")
+    SetAt(index,value)
+    {
+        var moxaml = runtime.global("moxaml");
+        var iface = Windows.Foundation.Collections.IVector_1_Object_( this.comPtr );
+        iface.SetAt( index, value );
+        iface.release();
+    }
+
+    //@Parameters("UInt32", "Object")
+    //@Returns("void")
+    //@Parameters("UInt32","Object")
+    InsertAt(index,value)
+    {
+        var moxaml = runtime.global("moxaml");
+        var iface = Windows.Foundation.Collections.IVector_1_Object_( this.comPtr );
+        iface.InsertAt( index, value );
+        iface.release();
+    }
+
+    //@Parameters("UInt32")
+    //@Returns("void")
+    //@Parameters("UInt32")
+    RemoveAt(index)
+    {
+        var moxaml = runtime.global("moxaml");
+        var iface = Windows.Foundation.Collections.IVector_1_Object_( this.comPtr );
+        iface.RemoveAt( index );
+        iface.release();
+    }
+
+    //@Parameters("Object")
+    //@Returns("void")
+    //@Parameters("Object")
+    Append(value)
+    {
+        var moxaml = runtime.global("moxaml");
+        var iface = Windows.Foundation.Collections.IVector_1_Object_( this.comPtr );
+        iface.Append( value );
+        iface.release();
+    }
+
+    //@Returns("void")
+    RemoveAtEnd()
+    {
+        var moxaml = runtime.global("moxaml");
+        var iface = Windows.Foundation.Collections.IVector_1_Object_( this.comPtr );
+        iface.RemoveAtEnd(  );
+        iface.release();
+    }
+
+    //@Returns("void")
+    Clear()
+    {
+        var moxaml = runtime.global("moxaml");
+        var iface = Windows.Foundation.Collections.IVector_1_Object_( this.comPtr );
+        iface.Clear(  );
+        iface.release();
+    }
+
+    //@Returns("Windows.Foundation.Collections.IIterator`1<Object>")
+    First()
+    {
+        var moxaml = runtime.global("moxaml");
+        var iface = Windows.Foundation.Collections.IIterable_1_Object_( this.comPtr );
+        var _r = iface.First(  );
+        iface.release();
+        return _r;
+    }
+
+
+}
+moxaml.Vector = moxaml_Vector;
+
+//@RuntimeClass("moxaml.XamlMetaDataProvider")
+//@Implements("Windows.UI.Xaml.Markup.IXamlMetadataProvider")
+//@DefaultInterface("Windows.UI.Xaml.Markup.IXamlMetadataProvider")
+@Proxy("WinRtProxy")
+class moxaml_XamlMetaDataProvider : WinRtInterface
+{
+    moxaml_XamlMetaDataProvider( comPtr )
+    {
+        var moxaml = runtime.global("moxaml");
+        this.comPtr = comPtr.queryInterface( Windows.UI.Xaml.Markup.IXamlMetadataProvider.iid );
+    }
+
+    static Create()
+    {
+        return moxaml.XamlMetaDataProvider(
+            winrt.activate("moxaml.XamlMetaDataProvider")
+        );
+    }
+
+}
+moxaml.XamlMetaDataProvider = moxaml_XamlMetaDataProvider;
+
+//@RuntimeClass("moxaml.mox")
+//@Implements("moxaml.Imox")
+//@DefaultInterface("moxaml.Imox")
+@Proxy("WinRtProxy")
+@Extends("Windows.UI.Xaml.DependencyObject")
+class moxaml_mox : WinRtInterface
+{
+    moxaml_mox( comPtr )
+    {
+        var moxaml = runtime.global("moxaml");
+        this.comPtr = comPtr.queryInterface( moxaml.Imox.iid );
+    }
+
+    // s moxaml.ImoxStatics
+    //@Async(0)
+    //@Returns("Windows.UI.Xaml.DependencyProperty")
+    static get_EventProperty( )
+    {
+        var moxaml = runtime.global("moxaml");
+        var factory = winrt.activationFactory( "moxaml.mox" );
+        var iface = moxaml.ImoxStatics( factory );
+        var _r = iface.get_EventProperty( );
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    //@Async(0)
+    //@Returns("String")
+    //@Parameters("Windows.UI.Xaml.DependencyObject")
+    static GetEvent( target)
+    {
+        var moxaml = runtime.global("moxaml");
+        var factory = winrt.activationFactory( "moxaml.mox" );
+        var iface = moxaml.ImoxStatics( factory );
+        var _r = iface.GetEvent( target);
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    //@Async(0)
+    //@Returns("void")
+    //@Parameters("Windows.UI.Xaml.DependencyObject","String")
+    static SetEvent( target, value)
+    {
+        var moxaml = runtime.global("moxaml");
+        var factory = winrt.activationFactory( "moxaml.mox" );
+        var iface = moxaml.ImoxStatics( factory );
+        iface.SetEvent( target, value);
+        iface.release();
+        factory.release();
+    }
+
+
+    static Create()
+    {
+        return moxaml.mox(
+            winrt.activate("moxaml.mox")
+        );
+    }
+
+}
+moxaml.mox = moxaml_mox;
+
+if ( Windows.Foundation == nil ) { Windows.Foundation = {}; }
+if ( Windows.Foundation.Collections == nil ) { Windows.Foundation.Collections = {}; }
+//@Interface("Windows.Foundation.Collections.IVector`1<String>")
+//@IID("{98B9ACC1-4B56-532E-AC73-03D5291CCA90}")
+class Windows_Foundation_Collections_IVector_1_String_ : WinRtInterface 
+{
+    Windows_Foundation_Collections_IVector_1_String_( comPtr )
+    {
+        this.comPtr = comPtr.queryInterface( "{98B9ACC1-4B56-532E-AC73-03D5291CCA90}");
+    }
+
+    //@VtableIndex(6)
+    //@Returns("T0")
+    //@Parameters("UInt32")
+    GetAt(index)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = index;
+        var _r = this.comPtr.invoke(6, "String", ["UInt32"], [p1] );
+        return _r;
+    }
+
+    //@VtableIndex(7)
+    //@Returns("UInt32")
+    get_Size()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke(7, "UInt32", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(8)
+    //@Returns("Windows.Foundation.Collections.IVectorView`1<T0>")
+    GetView()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = Windows.Foundation.Collections.IVectorView_1_String_(
+            this.comPtr.invoke(8, "Windows.Foundation.Collections.IVectorView`1<String>", [], [] )
+        );
+        return _r;
+    }
+
+    //@VtableIndex(10)
+    //@Returns("void")
+    //@Parameters("UInt32","T0")
+    SetAt(index,value)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = index;
+        var p2 = value;
+        this.comPtr.invoke(10, "void", ["UInt32", "String"], [p1, p2] );
+    }
+
+    //@VtableIndex(11)
+    //@Returns("void")
+    //@Parameters("UInt32","T0")
+    InsertAt(index,value)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = index;
+        var p2 = value;
+        this.comPtr.invoke(11, "void", ["UInt32", "String"], [p1, p2] );
+    }
+
+    //@VtableIndex(12)
+    //@Returns("void")
+    //@Parameters("UInt32")
+    RemoveAt(index)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = index;
+        this.comPtr.invoke(12, "void", ["UInt32"], [p1] );
+    }
+
+    //@VtableIndex(13)
+    //@Returns("void")
+    //@Parameters("T0")
+    Append(value)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = value;
+        this.comPtr.invoke(13, "void", ["String"], [p1] );
+    }
+
+    //@VtableIndex(14)
+    //@Returns("void")
+    RemoveAtEnd()
+    {
+        var Windows = runtime.global("Windows");
+        this.comPtr.invoke(14, "void", [], [] );
+    }
+
+    //@VtableIndex(15)
+    //@Returns("void")
+    Clear()
+    {
+        var Windows = runtime.global("Windows");
+        this.comPtr.invoke(15, "void", [], [] );
+    }
+
+
+}
+Windows_Foundation_Collections_IVector_1_String_.iid = "{98B9ACC1-4B56-532E-AC73-03D5291CCA90}";
+Windows.Foundation.Collections.IVector_1_String_ = Windows_Foundation_Collections_IVector_1_String_;
+
+
+if ( Windows.Foundation == nil ) { Windows.Foundation = {}; }
+if ( Windows.Foundation.Collections == nil ) { Windows.Foundation.Collections = {}; }
+//@Interface("Windows.Foundation.Collections.IVector`1<Object>")
+//@IID("{B32BDCA4-5E52-5B27-BC5D-D66A1A268C2A}")
+class Windows_Foundation_Collections_IVector_1_Object_ : WinRtInterface 
+{
+    Windows_Foundation_Collections_IVector_1_Object_( comPtr )
+    {
+        this.comPtr = comPtr.queryInterface( "{B32BDCA4-5E52-5B27-BC5D-D66A1A268C2A}");
+    }
+
+    //@VtableIndex(6)
+    //@Returns("T0")
+    //@Parameters("UInt32")
+    GetAt(index)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = index;
+        var _r = this.comPtr.invoke(6, "Object", ["UInt32"], [p1] );
+        return _r;
+    }
+
+    //@VtableIndex(7)
+    //@Returns("UInt32")
+    get_Size()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke(7, "UInt32", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(8)
+    //@Returns("Windows.Foundation.Collections.IVectorView`1<T0>")
+    GetView()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = Windows.Foundation.Collections.IVectorView_1_Object_(
+            this.comPtr.invoke(8, "Windows.Foundation.Collections.IVectorView`1<Object>", [], [] )
+        );
+        return _r;
+    }
+
+    //@VtableIndex(10)
+    //@Returns("void")
+    //@Parameters("UInt32","T0")
+    SetAt(index,value)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = index;
+        var p2 = value;
+        this.comPtr.invoke(10, "void", ["UInt32", "Object"], [p1, p2] );
+    }
+
+    //@VtableIndex(11)
+    //@Returns("void")
+    //@Parameters("UInt32","T0")
+    InsertAt(index,value)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = index;
+        var p2 = value;
+        this.comPtr.invoke(11, "void", ["UInt32", "Object"], [p1, p2] );
+    }
+
+    //@VtableIndex(12)
+    //@Returns("void")
+    //@Parameters("UInt32")
+    RemoveAt(index)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = index;
+        this.comPtr.invoke(12, "void", ["UInt32"], [p1] );
+    }
+
+    //@VtableIndex(13)
+    //@Returns("void")
+    //@Parameters("T0")
+    Append(value)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = value;
+        this.comPtr.invoke(13, "void", ["Object"], [p1] );
+    }
+
+    //@VtableIndex(14)
+    //@Returns("void")
+    RemoveAtEnd()
+    {
+        var Windows = runtime.global("Windows");
+        this.comPtr.invoke(14, "void", [], [] );
+    }
+
+    //@VtableIndex(15)
+    //@Returns("void")
+    Clear()
+    {
+        var Windows = runtime.global("Windows");
+        this.comPtr.invoke(15, "void", [], [] );
+    }
+
+
+}
+Windows_Foundation_Collections_IVector_1_Object_.iid = "{B32BDCA4-5E52-5B27-BC5D-D66A1A268C2A}";
+Windows.Foundation.Collections.IVector_1_Object_ = Windows_Foundation_Collections_IVector_1_Object_;
+
+
+if ( Windows.Foundation == nil ) { Windows.Foundation = {}; }
+if ( Windows.Foundation.Collections == nil ) { Windows.Foundation.Collections = {}; }
+//@Interface("Windows.Foundation.Collections.IVector`1<Int32>")
+//@IID("{B939AF5B-B45D-5489-9149-61442C1905FE}")
+class Windows_Foundation_Collections_IVector_1_Int32_ : WinRtInterface 
+{
+    Windows_Foundation_Collections_IVector_1_Int32_( comPtr )
+    {
+        this.comPtr = comPtr.queryInterface( "{B939AF5B-B45D-5489-9149-61442C1905FE}");
+    }
+
+    //@VtableIndex(6)
+    //@Returns("T0")
+    //@Parameters("UInt32")
+    GetAt(index)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = index;
+        var _r = this.comPtr.invoke(6, "Int32", ["UInt32"], [p1] );
+        return _r;
+    }
+
+    //@VtableIndex(7)
+    //@Returns("UInt32")
+    get_Size()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke(7, "UInt32", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(8)
+    //@Returns("Windows.Foundation.Collections.IVectorView`1<T0>")
+    GetView()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = Windows.Foundation.Collections.IVectorView_1_Int32_(
+            this.comPtr.invoke(8, "Windows.Foundation.Collections.IVectorView`1<Int32>", [], [] )
+        );
+        return _r;
+    }
+
+    //@VtableIndex(10)
+    //@Returns("void")
+    //@Parameters("UInt32","T0")
+    SetAt(index,value)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = index;
+        var p2 = value;
+        this.comPtr.invoke(10, "void", ["UInt32", "Int32"], [p1, p2] );
+    }
+
+    //@VtableIndex(11)
+    //@Returns("void")
+    //@Parameters("UInt32","T0")
+    InsertAt(index,value)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = index;
+        var p2 = value;
+        this.comPtr.invoke(11, "void", ["UInt32", "Int32"], [p1, p2] );
+    }
+
+    //@VtableIndex(12)
+    //@Returns("void")
+    //@Parameters("UInt32")
+    RemoveAt(index)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = index;
+        this.comPtr.invoke(12, "void", ["UInt32"], [p1] );
+    }
+
+    //@VtableIndex(13)
+    //@Returns("void")
+    //@Parameters("T0")
+    Append(value)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = value;
+        this.comPtr.invoke(13, "void", ["Int32"], [p1] );
+    }
+
+    //@VtableIndex(14)
+    //@Returns("void")
+    RemoveAtEnd()
+    {
+        var Windows = runtime.global("Windows");
+        this.comPtr.invoke(14, "void", [], [] );
+    }
+
+    //@VtableIndex(15)
+    //@Returns("void")
+    Clear()
+    {
+        var Windows = runtime.global("Windows");
+        this.comPtr.invoke(15, "void", [], [] );
+    }
+
+
+}
+Windows_Foundation_Collections_IVector_1_Int32_.iid = "{B939AF5B-B45D-5489-9149-61442C1905FE}";
+Windows.Foundation.Collections.IVector_1_Int32_ = Windows_Foundation_Collections_IVector_1_Int32_;
+
+
+if ( Windows.Foundation == nil ) { Windows.Foundation = {}; }
+if ( Windows.Foundation.Collections == nil ) { Windows.Foundation.Collections = {}; }
+//@Interface("Windows.Foundation.Collections.IVector`1<Double>")
+//@IID("{F452D23C-BF05-5F3E-88E7-D17A6716B911}")
+class Windows_Foundation_Collections_IVector_1_Double_ : WinRtInterface 
+{
+    Windows_Foundation_Collections_IVector_1_Double_( comPtr )
+    {
+        this.comPtr = comPtr.queryInterface( "{F452D23C-BF05-5F3E-88E7-D17A6716B911}");
+    }
+
+    //@VtableIndex(6)
+    //@Returns("T0")
+    //@Parameters("UInt32")
+    GetAt(index)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = index;
+        var _r = this.comPtr.invoke(6, "Double", ["UInt32"], [p1] );
+        return _r;
+    }
+
+    //@VtableIndex(7)
+    //@Returns("UInt32")
+    get_Size()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke(7, "UInt32", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(8)
+    //@Returns("Windows.Foundation.Collections.IVectorView`1<T0>")
+    GetView()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = Windows.Foundation.Collections.IVectorView_1_Double_(
+            this.comPtr.invoke(8, "Windows.Foundation.Collections.IVectorView`1<Double>", [], [] )
+        );
+        return _r;
+    }
+
+    //@VtableIndex(10)
+    //@Returns("void")
+    //@Parameters("UInt32","T0")
+    SetAt(index,value)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = index;
+        var p2 = value;
+        this.comPtr.invoke(10, "void", ["UInt32", "Double"], [p1, p2] );
+    }
+
+    //@VtableIndex(11)
+    //@Returns("void")
+    //@Parameters("UInt32","T0")
+    InsertAt(index,value)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = index;
+        var p2 = value;
+        this.comPtr.invoke(11, "void", ["UInt32", "Double"], [p1, p2] );
+    }
+
+    //@VtableIndex(12)
+    //@Returns("void")
+    //@Parameters("UInt32")
+    RemoveAt(index)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = index;
+        this.comPtr.invoke(12, "void", ["UInt32"], [p1] );
+    }
+
+    //@VtableIndex(13)
+    //@Returns("void")
+    //@Parameters("T0")
+    Append(value)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = value;
+        this.comPtr.invoke(13, "void", ["Double"], [p1] );
+    }
+
+    //@VtableIndex(14)
+    //@Returns("void")
+    RemoveAtEnd()
+    {
+        var Windows = runtime.global("Windows");
+        this.comPtr.invoke(14, "void", [], [] );
+    }
+
+    //@VtableIndex(15)
+    //@Returns("void")
+    Clear()
+    {
+        var Windows = runtime.global("Windows");
+        this.comPtr.invoke(15, "void", [], [] );
+    }
+
+
+}
+Windows_Foundation_Collections_IVector_1_Double_.iid = "{F452D23C-BF05-5F3E-88E7-D17A6716B911}";
+Windows.Foundation.Collections.IVector_1_Double_ = Windows_Foundation_Collections_IVector_1_Double_;
+
+
+if ( Windows.Foundation == nil ) { Windows.Foundation = {}; }
+if ( Windows.Foundation.Collections == nil ) { Windows.Foundation.Collections = {}; }
+//@Interface("Windows.Foundation.Collections.IVectorView`1<String>")
+//@IID("{2F13C006-A03A-5F69-B090-75A43E33423E}")
+class Windows_Foundation_Collections_IVectorView_1_String_ : WinRtInterface 
+{
+    Windows_Foundation_Collections_IVectorView_1_String_( comPtr )
+    {
+        this.comPtr = comPtr.queryInterface( "{2F13C006-A03A-5F69-B090-75A43E33423E}");
+    }
+
+    //@VtableIndex(6)
+    //@Returns("T0")
+    //@Parameters("UInt32")
+    GetAt(index)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = index;
+        var _r = this.comPtr.invoke(6, "String", ["UInt32"], [p1] );
+        return _r;
+    }
+
+    //@VtableIndex(7)
+    //@Returns("UInt32")
+    get_Size()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke(7, "UInt32", [], [] );
+        return _r;
+    }
+
+
+}
+Windows_Foundation_Collections_IVectorView_1_String_.iid = "{2F13C006-A03A-5F69-B090-75A43E33423E}";
+Windows.Foundation.Collections.IVectorView_1_String_ = Windows_Foundation_Collections_IVectorView_1_String_;
+
+
+if ( Windows.Foundation == nil ) { Windows.Foundation = {}; }
+if ( Windows.Foundation.Collections == nil ) { Windows.Foundation.Collections = {}; }
+//@Interface("Windows.Foundation.Collections.IVectorView`1<Object>")
+//@IID("{A6487363-B074-5C60-AB16-866DCE4EE54D}")
+class Windows_Foundation_Collections_IVectorView_1_Object_ : WinRtInterface 
+{
+    Windows_Foundation_Collections_IVectorView_1_Object_( comPtr )
+    {
+        this.comPtr = comPtr.queryInterface( "{A6487363-B074-5C60-AB16-866DCE4EE54D}");
+    }
+
+    //@VtableIndex(6)
+    //@Returns("T0")
+    //@Parameters("UInt32")
+    GetAt(index)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = index;
+        var _r = this.comPtr.invoke(6, "Object", ["UInt32"], [p1] );
+        return _r;
+    }
+
+    //@VtableIndex(7)
+    //@Returns("UInt32")
+    get_Size()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke(7, "UInt32", [], [] );
+        return _r;
+    }
+
+
+}
+Windows_Foundation_Collections_IVectorView_1_Object_.iid = "{A6487363-B074-5C60-AB16-866DCE4EE54D}";
+Windows.Foundation.Collections.IVectorView_1_Object_ = Windows_Foundation_Collections_IVectorView_1_Object_;
+
+
+if ( Windows.Foundation == nil ) { Windows.Foundation = {}; }
+if ( Windows.Foundation.Collections == nil ) { Windows.Foundation.Collections = {}; }
+//@Interface("Windows.Foundation.Collections.IVectorView`1<Int32>")
+//@IID("{8D720CDF-3934-5D3F-9A55-40E8063B086A}")
+class Windows_Foundation_Collections_IVectorView_1_Int32_ : WinRtInterface 
+{
+    Windows_Foundation_Collections_IVectorView_1_Int32_( comPtr )
+    {
+        this.comPtr = comPtr.queryInterface( "{8D720CDF-3934-5D3F-9A55-40E8063B086A}");
+    }
+
+    //@VtableIndex(6)
+    //@Returns("T0")
+    //@Parameters("UInt32")
+    GetAt(index)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = index;
+        var _r = this.comPtr.invoke(6, "Int32", ["UInt32"], [p1] );
+        return _r;
+    }
+
+    //@VtableIndex(7)
+    //@Returns("UInt32")
+    get_Size()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke(7, "UInt32", [], [] );
+        return _r;
+    }
+
+
+}
+Windows_Foundation_Collections_IVectorView_1_Int32_.iid = "{8D720CDF-3934-5D3F-9A55-40E8063B086A}";
+Windows.Foundation.Collections.IVectorView_1_Int32_ = Windows_Foundation_Collections_IVectorView_1_Int32_;
+
+
+if ( Windows.Foundation == nil ) { Windows.Foundation = {}; }
+if ( Windows.Foundation.Collections == nil ) { Windows.Foundation.Collections = {}; }
+//@Interface("Windows.Foundation.Collections.IVectorView`1<Double>")
+//@IID("{AF7586A8-6B21-5F61-BFF1-1B682293AD96}")
+class Windows_Foundation_Collections_IVectorView_1_Double_ : WinRtInterface 
+{
+    Windows_Foundation_Collections_IVectorView_1_Double_( comPtr )
+    {
+        this.comPtr = comPtr.queryInterface( "{AF7586A8-6B21-5F61-BFF1-1B682293AD96}");
+    }
+
+    //@VtableIndex(6)
+    //@Returns("T0")
+    //@Parameters("UInt32")
+    GetAt(index)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = index;
+        var _r = this.comPtr.invoke(6, "Double", ["UInt32"], [p1] );
+        return _r;
+    }
+
+    //@VtableIndex(7)
+    //@Returns("UInt32")
+    get_Size()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke(7, "UInt32", [], [] );
+        return _r;
+    }
+
+
+}
+Windows_Foundation_Collections_IVectorView_1_Double_.iid = "{AF7586A8-6B21-5F61-BFF1-1B682293AD96}";
+Windows.Foundation.Collections.IVectorView_1_Double_ = Windows_Foundation_Collections_IVectorView_1_Double_;
+
+
+if ( Windows.Foundation == nil ) { Windows.Foundation = {}; }
+if ( Windows.Foundation.Collections == nil ) { Windows.Foundation.Collections = {}; }
+//@Interface("Windows.Foundation.Collections.IObservableVector`1<String>")
+//@IID("{37500595-DCF0-5D27-B8C4-CF388E374DE8}")
+class Windows_Foundation_Collections_IObservableVector_1_String_ : WinRtInterface 
+{
+    Windows_Foundation_Collections_IObservableVector_1_String_( comPtr )
+    {
+        this.comPtr = comPtr.queryInterface( "{37500595-DCF0-5D27-B8C4-CF388E374DE8}");
+    }
+
+    //@VtableIndex(6)
+    //@Returns("Windows.Foundation.EventRegistrationToken")
+    //@Parameters("Windows.Foundation.Collections.VectorChangedEventHandler`1<T0>")
+    add_VectorChanged(vhnd)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = nil; 
+        if( typeof(vhnd) == "comptr" ) { 
+            p1 = vhnd;
+        } else {
+            p1 = Windows.Foundation.Collections.VectorChangedEventHandler_1_String_.Create( vhnd); 
+        }
+        var _r = this.comPtr.invoke(6, "Windows.Foundation.EventRegistrationToken", ["Windows.Foundation.Collections.VectorChangedEventHandler`1<String>"], [p1] );
+        return _r;
+    }
+
+    //@VtableIndex(7)
+    //@Returns("void")
+    //@Parameters("Windows.Foundation.EventRegistrationToken")
+    remove_VectorChanged(token)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = token;
+        this.comPtr.invoke(7, "void", ["Windows.Foundation.EventRegistrationToken"], [p1] );
+    }
+
+
+}
+Windows_Foundation_Collections_IObservableVector_1_String_.iid = "{37500595-DCF0-5D27-B8C4-CF388E374DE8}";
+Windows.Foundation.Collections.IObservableVector_1_String_ = Windows_Foundation_Collections_IObservableVector_1_String_;
+
+
+if ( Windows.Foundation == nil ) { Windows.Foundation = {}; }
+if ( Windows.Foundation.Collections == nil ) { Windows.Foundation.Collections = {}; }
+//@Interface("Windows.Foundation.Collections.IObservableVector`1<Object>")
+//@IID("{7B81C56A-0985-518D-BAA9-0DA9AE009F65}")
+class Windows_Foundation_Collections_IObservableVector_1_Object_ : WinRtInterface 
+{
+    Windows_Foundation_Collections_IObservableVector_1_Object_( comPtr )
+    {
+        this.comPtr = comPtr.queryInterface( "{7B81C56A-0985-518D-BAA9-0DA9AE009F65}");
+    }
+
+    //@VtableIndex(6)
+    //@Returns("Windows.Foundation.EventRegistrationToken")
+    //@Parameters("Windows.Foundation.Collections.VectorChangedEventHandler`1<T0>")
+    add_VectorChanged(vhnd)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = nil; 
+        if( typeof(vhnd) == "comptr" ) { 
+            p1 = vhnd;
+        } else {
+            p1 = Windows.Foundation.Collections.VectorChangedEventHandler_1_Object_.Create( vhnd); 
+        }
+        var _r = this.comPtr.invoke(6, "Windows.Foundation.EventRegistrationToken", ["Windows.Foundation.Collections.VectorChangedEventHandler`1<Object>"], [p1] );
+        return _r;
+    }
+
+    //@VtableIndex(7)
+    //@Returns("void")
+    //@Parameters("Windows.Foundation.EventRegistrationToken")
+    remove_VectorChanged(token)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = token;
+        this.comPtr.invoke(7, "void", ["Windows.Foundation.EventRegistrationToken"], [p1] );
+    }
+
+
+}
+Windows_Foundation_Collections_IObservableVector_1_Object_.iid = "{7B81C56A-0985-518D-BAA9-0DA9AE009F65}";
+Windows.Foundation.Collections.IObservableVector_1_Object_ = Windows_Foundation_Collections_IObservableVector_1_Object_;
+
+
+if ( Windows.Foundation == nil ) { Windows.Foundation = {}; }
+if ( Windows.Foundation.Collections == nil ) { Windows.Foundation.Collections = {}; }
+//@Interface("Windows.Foundation.Collections.IObservableVector`1<Int32>")
+//@IID("{95C02345-5B4A-5310-A6BF-F17E0D682DA7}")
+class Windows_Foundation_Collections_IObservableVector_1_Int32_ : WinRtInterface 
+{
+    Windows_Foundation_Collections_IObservableVector_1_Int32_( comPtr )
+    {
+        this.comPtr = comPtr.queryInterface( "{95C02345-5B4A-5310-A6BF-F17E0D682DA7}");
+    }
+
+    //@VtableIndex(6)
+    //@Returns("Windows.Foundation.EventRegistrationToken")
+    //@Parameters("Windows.Foundation.Collections.VectorChangedEventHandler`1<T0>")
+    add_VectorChanged(vhnd)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = nil; 
+        if( typeof(vhnd) == "comptr" ) { 
+            p1 = vhnd;
+        } else {
+            p1 = Windows.Foundation.Collections.VectorChangedEventHandler_1_Int32_.Create( vhnd); 
+        }
+        var _r = this.comPtr.invoke(6, "Windows.Foundation.EventRegistrationToken", ["Windows.Foundation.Collections.VectorChangedEventHandler`1<Int32>"], [p1] );
+        return _r;
+    }
+
+    //@VtableIndex(7)
+    //@Returns("void")
+    //@Parameters("Windows.Foundation.EventRegistrationToken")
+    remove_VectorChanged(token)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = token;
+        this.comPtr.invoke(7, "void", ["Windows.Foundation.EventRegistrationToken"], [p1] );
+    }
+
+
+}
+Windows_Foundation_Collections_IObservableVector_1_Int32_.iid = "{95C02345-5B4A-5310-A6BF-F17E0D682DA7}";
+Windows.Foundation.Collections.IObservableVector_1_Int32_ = Windows_Foundation_Collections_IObservableVector_1_Int32_;
+
+
+if ( Windows.Foundation == nil ) { Windows.Foundation = {}; }
+if ( Windows.Foundation.Collections == nil ) { Windows.Foundation.Collections = {}; }
+//@Interface("Windows.Foundation.Collections.IObservableVector`1<Double>")
+//@IID("{C84E0FBC-E7AF-56F4-9BB1-829FE6F6EAB3}")
+class Windows_Foundation_Collections_IObservableVector_1_Double_ : WinRtInterface 
+{
+    Windows_Foundation_Collections_IObservableVector_1_Double_( comPtr )
+    {
+        this.comPtr = comPtr.queryInterface( "{C84E0FBC-E7AF-56F4-9BB1-829FE6F6EAB3}");
+    }
+
+    //@VtableIndex(6)
+    //@Returns("Windows.Foundation.EventRegistrationToken")
+    //@Parameters("Windows.Foundation.Collections.VectorChangedEventHandler`1<T0>")
+    add_VectorChanged(vhnd)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = nil; 
+        if( typeof(vhnd) == "comptr" ) { 
+            p1 = vhnd;
+        } else {
+            p1 = Windows.Foundation.Collections.VectorChangedEventHandler_1_Double_.Create( vhnd); 
+        }
+        var _r = this.comPtr.invoke(6, "Windows.Foundation.EventRegistrationToken", ["Windows.Foundation.Collections.VectorChangedEventHandler`1<Double>"], [p1] );
+        return _r;
+    }
+
+    //@VtableIndex(7)
+    //@Returns("void")
+    //@Parameters("Windows.Foundation.EventRegistrationToken")
+    remove_VectorChanged(token)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = token;
+        this.comPtr.invoke(7, "void", ["Windows.Foundation.EventRegistrationToken"], [p1] );
+    }
+
+
+}
+Windows_Foundation_Collections_IObservableVector_1_Double_.iid = "{C84E0FBC-E7AF-56F4-9BB1-829FE6F6EAB3}";
+Windows.Foundation.Collections.IObservableVector_1_Double_ = Windows_Foundation_Collections_IObservableVector_1_Double_;
+
+
+if ( Windows.Foundation == nil ) { Windows.Foundation = {}; }
+if ( Windows.Foundation.Collections == nil ) { Windows.Foundation.Collections = {}; }
+//@Interface("Windows.Foundation.Collections.IObservableMap`2<String,String>")
+//@IID("{1E036276-2F60-55F6-B7F3-F86079E6900B}")
+class Windows_Foundation_Collections_IObservableMap_2_String_String_ : WinRtInterface 
+{
+    Windows_Foundation_Collections_IObservableMap_2_String_String_( comPtr )
+    {
+        this.comPtr = comPtr.queryInterface( "{1E036276-2F60-55F6-B7F3-F86079E6900B}");
+    }
+
+    //@VtableIndex(6)
+    //@Returns("Windows.Foundation.EventRegistrationToken")
+    //@Parameters("Windows.Foundation.Collections.MapChangedEventHandler`2<T0,T1>")
+    add_MapChanged(vhnd)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = nil; 
+        if( typeof(vhnd) == "comptr" ) { 
+            p1 = vhnd;
+        } else {
+            p1 = Windows.Foundation.Collections.MapChangedEventHandler_2_String_String_.Create( vhnd); 
+        }
+        var _r = this.comPtr.invoke(6, "Windows.Foundation.EventRegistrationToken", ["Windows.Foundation.Collections.MapChangedEventHandler`2<String,String>"], [p1] );
+        return _r;
+    }
+
+    //@VtableIndex(7)
+    //@Returns("void")
+    //@Parameters("Windows.Foundation.EventRegistrationToken")
+    remove_MapChanged(token)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = token;
+        this.comPtr.invoke(7, "void", ["Windows.Foundation.EventRegistrationToken"], [p1] );
+    }
+
+
+}
+Windows_Foundation_Collections_IObservableMap_2_String_String_.iid = "{1E036276-2F60-55F6-B7F3-F86079E6900B}";
+Windows.Foundation.Collections.IObservableMap_2_String_String_ = Windows_Foundation_Collections_IObservableMap_2_String_String_;
+
+
+if ( Windows.Foundation == nil ) { Windows.Foundation = {}; }
+if ( Windows.Foundation.Collections == nil ) { Windows.Foundation.Collections = {}; }
+//@Interface("Windows.Foundation.Collections.IObservableMap`2<String,Object>")
+//@IID("{236AAC9D-FB12-5C4D-A41C-9E445FB4D7EC}")
+class Windows_Foundation_Collections_IObservableMap_2_String_Object_ : WinRtInterface 
+{
+    Windows_Foundation_Collections_IObservableMap_2_String_Object_( comPtr )
+    {
+        this.comPtr = comPtr.queryInterface( "{236AAC9D-FB12-5C4D-A41C-9E445FB4D7EC}");
+    }
+
+    //@VtableIndex(6)
+    //@Returns("Windows.Foundation.EventRegistrationToken")
+    //@Parameters("Windows.Foundation.Collections.MapChangedEventHandler`2<T0,T1>")
+    add_MapChanged(vhnd)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = nil; 
+        if( typeof(vhnd) == "comptr" ) { 
+            p1 = vhnd;
+        } else {
+            p1 = Windows.Foundation.Collections.MapChangedEventHandler_2_String_Object_.Create( vhnd); 
+        }
+        var _r = this.comPtr.invoke(6, "Windows.Foundation.EventRegistrationToken", ["Windows.Foundation.Collections.MapChangedEventHandler`2<String,Object>"], [p1] );
+        return _r;
+    }
+
+    //@VtableIndex(7)
+    //@Returns("void")
+    //@Parameters("Windows.Foundation.EventRegistrationToken")
+    remove_MapChanged(token)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = token;
+        this.comPtr.invoke(7, "void", ["Windows.Foundation.EventRegistrationToken"], [p1] );
+    }
+
+
+}
+Windows_Foundation_Collections_IObservableMap_2_String_Object_.iid = "{236AAC9D-FB12-5C4D-A41C-9E445FB4D7EC}";
+Windows.Foundation.Collections.IObservableMap_2_String_Object_ = Windows_Foundation_Collections_IObservableMap_2_String_Object_;
+
+
+if ( Windows.Foundation == nil ) { Windows.Foundation = {}; }
+if ( Windows.Foundation.Collections == nil ) { Windows.Foundation.Collections = {}; }
+//@Interface("Windows.Foundation.Collections.IObservableMap`2<String,Int32>")
+//@IID("{1205D34E-4288-51B1-8279-9F9A22845BAE}")
+class Windows_Foundation_Collections_IObservableMap_2_String_Int32_ : WinRtInterface 
+{
+    Windows_Foundation_Collections_IObservableMap_2_String_Int32_( comPtr )
+    {
+        this.comPtr = comPtr.queryInterface( "{1205D34E-4288-51B1-8279-9F9A22845BAE}");
+    }
+
+    //@VtableIndex(6)
+    //@Returns("Windows.Foundation.EventRegistrationToken")
+    //@Parameters("Windows.Foundation.Collections.MapChangedEventHandler`2<T0,T1>")
+    add_MapChanged(vhnd)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = nil; 
+        if( typeof(vhnd) == "comptr" ) { 
+            p1 = vhnd;
+        } else {
+            p1 = Windows.Foundation.Collections.MapChangedEventHandler_2_String_Int32_.Create( vhnd); 
+        }
+        var _r = this.comPtr.invoke(6, "Windows.Foundation.EventRegistrationToken", ["Windows.Foundation.Collections.MapChangedEventHandler`2<String,Int32>"], [p1] );
+        return _r;
+    }
+
+    //@VtableIndex(7)
+    //@Returns("void")
+    //@Parameters("Windows.Foundation.EventRegistrationToken")
+    remove_MapChanged(token)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = token;
+        this.comPtr.invoke(7, "void", ["Windows.Foundation.EventRegistrationToken"], [p1] );
+    }
+
+
+}
+Windows_Foundation_Collections_IObservableMap_2_String_Int32_.iid = "{1205D34E-4288-51B1-8279-9F9A22845BAE}";
+Windows.Foundation.Collections.IObservableMap_2_String_Int32_ = Windows_Foundation_Collections_IObservableMap_2_String_Int32_;
+
+
+if ( Windows.Foundation == nil ) { Windows.Foundation = {}; }
+if ( Windows.Foundation.Collections == nil ) { Windows.Foundation.Collections = {}; }
+//@Interface("Windows.Foundation.Collections.IObservableMap`2<String,Double>")
+//@IID("{0FF598CF-B514-55A9-9FE1-B8625988B005}")
+class Windows_Foundation_Collections_IObservableMap_2_String_Double_ : WinRtInterface 
+{
+    Windows_Foundation_Collections_IObservableMap_2_String_Double_( comPtr )
+    {
+        this.comPtr = comPtr.queryInterface( "{0FF598CF-B514-55A9-9FE1-B8625988B005}");
+    }
+
+    //@VtableIndex(6)
+    //@Returns("Windows.Foundation.EventRegistrationToken")
+    //@Parameters("Windows.Foundation.Collections.MapChangedEventHandler`2<T0,T1>")
+    add_MapChanged(vhnd)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = nil; 
+        if( typeof(vhnd) == "comptr" ) { 
+            p1 = vhnd;
+        } else {
+            p1 = Windows.Foundation.Collections.MapChangedEventHandler_2_String_Double_.Create( vhnd); 
+        }
+        var _r = this.comPtr.invoke(6, "Windows.Foundation.EventRegistrationToken", ["Windows.Foundation.Collections.MapChangedEventHandler`2<String,Double>"], [p1] );
+        return _r;
+    }
+
+    //@VtableIndex(7)
+    //@Returns("void")
+    //@Parameters("Windows.Foundation.EventRegistrationToken")
+    remove_MapChanged(token)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = token;
+        this.comPtr.invoke(7, "void", ["Windows.Foundation.EventRegistrationToken"], [p1] );
+    }
+
+
+}
+Windows_Foundation_Collections_IObservableMap_2_String_Double_.iid = "{0FF598CF-B514-55A9-9FE1-B8625988B005}";
+Windows.Foundation.Collections.IObservableMap_2_String_Double_ = Windows_Foundation_Collections_IObservableMap_2_String_Double_;
+
+
+if ( Windows.Foundation == nil ) { Windows.Foundation = {}; }
+if ( Windows.Foundation.Collections == nil ) { Windows.Foundation.Collections = {}; }
+//@Interface("Windows.Foundation.Collections.IMap`2<String,String>")
+//@IID("{F6D1F700-49C2-52AE-8154-826F9908773C}")
+class Windows_Foundation_Collections_IMap_2_String_String_ : WinRtInterface 
+{
+    Windows_Foundation_Collections_IMap_2_String_String_( comPtr )
+    {
+        this.comPtr = comPtr.queryInterface( "{F6D1F700-49C2-52AE-8154-826F9908773C}");
+    }
+
+    //@VtableIndex(6)
+    //@Returns("T1")
+    //@Parameters("T0")
+    Lookup(key)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = key;
+        var _r = this.comPtr.invoke(6, "String", ["String"], [p1] );
+        return _r;
+    }
+
+    //@VtableIndex(7)
+    //@Returns("UInt32")
+    get_Size()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke(7, "UInt32", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(8)
+    //@Returns("Boolean")
+    //@Parameters("T0")
+    HasKey(key)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = key;
+        var _r = this.comPtr.invoke(8, "Boolean", ["String"], [p1] );
+        return _r;
+    }
+
+    //@VtableIndex(9)
+    //@Returns("Windows.Foundation.Collections.IMapView`2<T0,T1>")
+    GetView()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = Windows.Foundation.Collections.IMapView_2_String_String_(
+            this.comPtr.invoke(9, "Windows.Foundation.Collections.IMapView`2<String,String>", [], [] )
+        );
+        return _r;
+    }
+
+    //@VtableIndex(10)
+    //@Returns("Boolean")
+    //@Parameters("T0","T1")
+    Insert(key,value)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = key;
+        var p2 = value;
+        var _r = this.comPtr.invoke(10, "Boolean", ["String", "String"], [p1, p2] );
+        return _r;
+    }
+
+    //@VtableIndex(11)
+    //@Returns("void")
+    //@Parameters("T0")
+    Remove(key)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = key;
+        this.comPtr.invoke(11, "void", ["String"], [p1] );
+    }
+
+    //@VtableIndex(12)
+    //@Returns("void")
+    Clear()
+    {
+        var Windows = runtime.global("Windows");
+        this.comPtr.invoke(12, "void", [], [] );
+    }
+
+
+}
+Windows_Foundation_Collections_IMap_2_String_String_.iid = "{F6D1F700-49C2-52AE-8154-826F9908773C}";
+Windows.Foundation.Collections.IMap_2_String_String_ = Windows_Foundation_Collections_IMap_2_String_String_;
+
+
+if ( Windows.Foundation == nil ) { Windows.Foundation = {}; }
+if ( Windows.Foundation.Collections == nil ) { Windows.Foundation.Collections = {}; }
+//@Interface("Windows.Foundation.Collections.IMap`2<String,Object>")
+//@IID("{1B0D3570-0877-5EC2-8A2C-3B9539506ACA}")
+class Windows_Foundation_Collections_IMap_2_String_Object_ : WinRtInterface 
+{
+    Windows_Foundation_Collections_IMap_2_String_Object_( comPtr )
+    {
+        this.comPtr = comPtr.queryInterface( "{1B0D3570-0877-5EC2-8A2C-3B9539506ACA}");
+    }
+
+    //@VtableIndex(6)
+    //@Returns("T1")
+    //@Parameters("T0")
+    Lookup(key)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = key;
+        var _r = this.comPtr.invoke(6, "Object", ["String"], [p1] );
+        return _r;
+    }
+
+    //@VtableIndex(7)
+    //@Returns("UInt32")
+    get_Size()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke(7, "UInt32", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(8)
+    //@Returns("Boolean")
+    //@Parameters("T0")
+    HasKey(key)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = key;
+        var _r = this.comPtr.invoke(8, "Boolean", ["String"], [p1] );
+        return _r;
+    }
+
+    //@VtableIndex(9)
+    //@Returns("Windows.Foundation.Collections.IMapView`2<T0,T1>")
+    GetView()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = Windows.Foundation.Collections.IMapView_2_String_Object_(
+            this.comPtr.invoke(9, "Windows.Foundation.Collections.IMapView`2<String,Object>", [], [] )
+        );
+        return _r;
+    }
+
+    //@VtableIndex(10)
+    //@Returns("Boolean")
+    //@Parameters("T0","T1")
+    Insert(key,value)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = key;
+        var p2 = value;
+        var _r = this.comPtr.invoke(10, "Boolean", ["String", "Object"], [p1, p2] );
+        return _r;
+    }
+
+    //@VtableIndex(11)
+    //@Returns("void")
+    //@Parameters("T0")
+    Remove(key)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = key;
+        this.comPtr.invoke(11, "void", ["String"], [p1] );
+    }
+
+    //@VtableIndex(12)
+    //@Returns("void")
+    Clear()
+    {
+        var Windows = runtime.global("Windows");
+        this.comPtr.invoke(12, "void", [], [] );
+    }
+
+
+}
+Windows_Foundation_Collections_IMap_2_String_Object_.iid = "{1B0D3570-0877-5EC2-8A2C-3B9539506ACA}";
+Windows.Foundation.Collections.IMap_2_String_Object_ = Windows_Foundation_Collections_IMap_2_String_Object_;
+
+
+if ( Windows.Foundation == nil ) { Windows.Foundation = {}; }
+if ( Windows.Foundation.Collections == nil ) { Windows.Foundation.Collections = {}; }
+//@Interface("Windows.Foundation.Collections.IMap`2<String,Int32>")
+//@IID("{AE681871-DD82-5299-93EA-0275E4E073E7}")
+class Windows_Foundation_Collections_IMap_2_String_Int32_ : WinRtInterface 
+{
+    Windows_Foundation_Collections_IMap_2_String_Int32_( comPtr )
+    {
+        this.comPtr = comPtr.queryInterface( "{AE681871-DD82-5299-93EA-0275E4E073E7}");
+    }
+
+    //@VtableIndex(6)
+    //@Returns("T1")
+    //@Parameters("T0")
+    Lookup(key)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = key;
+        var _r = this.comPtr.invoke(6, "Int32", ["String"], [p1] );
+        return _r;
+    }
+
+    //@VtableIndex(7)
+    //@Returns("UInt32")
+    get_Size()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke(7, "UInt32", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(8)
+    //@Returns("Boolean")
+    //@Parameters("T0")
+    HasKey(key)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = key;
+        var _r = this.comPtr.invoke(8, "Boolean", ["String"], [p1] );
+        return _r;
+    }
+
+    //@VtableIndex(9)
+    //@Returns("Windows.Foundation.Collections.IMapView`2<T0,T1>")
+    GetView()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = Windows.Foundation.Collections.IMapView_2_String_Int32_(
+            this.comPtr.invoke(9, "Windows.Foundation.Collections.IMapView`2<String,Int32>", [], [] )
+        );
+        return _r;
+    }
+
+    //@VtableIndex(10)
+    //@Returns("Boolean")
+    //@Parameters("T0","T1")
+    Insert(key,value)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = key;
+        var p2 = value;
+        var _r = this.comPtr.invoke(10, "Boolean", ["String", "Int32"], [p1, p2] );
+        return _r;
+    }
+
+    //@VtableIndex(11)
+    //@Returns("void")
+    //@Parameters("T0")
+    Remove(key)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = key;
+        this.comPtr.invoke(11, "void", ["String"], [p1] );
+    }
+
+    //@VtableIndex(12)
+    //@Returns("void")
+    Clear()
+    {
+        var Windows = runtime.global("Windows");
+        this.comPtr.invoke(12, "void", [], [] );
+    }
+
+
+}
+Windows_Foundation_Collections_IMap_2_String_Int32_.iid = "{AE681871-DD82-5299-93EA-0275E4E073E7}";
+Windows.Foundation.Collections.IMap_2_String_Int32_ = Windows_Foundation_Collections_IMap_2_String_Int32_;
+
+
+if ( Windows.Foundation == nil ) { Windows.Foundation = {}; }
+if ( Windows.Foundation.Collections == nil ) { Windows.Foundation.Collections = {}; }
+//@Interface("Windows.Foundation.Collections.IMap`2<String,Double>")
+//@IID("{A765A6A4-2386-5E7A-910A-2EE92999FBF4}")
+class Windows_Foundation_Collections_IMap_2_String_Double_ : WinRtInterface 
+{
+    Windows_Foundation_Collections_IMap_2_String_Double_( comPtr )
+    {
+        this.comPtr = comPtr.queryInterface( "{A765A6A4-2386-5E7A-910A-2EE92999FBF4}");
+    }
+
+    //@VtableIndex(6)
+    //@Returns("T1")
+    //@Parameters("T0")
+    Lookup(key)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = key;
+        var _r = this.comPtr.invoke(6, "Double", ["String"], [p1] );
+        return _r;
+    }
+
+    //@VtableIndex(7)
+    //@Returns("UInt32")
+    get_Size()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke(7, "UInt32", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(8)
+    //@Returns("Boolean")
+    //@Parameters("T0")
+    HasKey(key)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = key;
+        var _r = this.comPtr.invoke(8, "Boolean", ["String"], [p1] );
+        return _r;
+    }
+
+    //@VtableIndex(9)
+    //@Returns("Windows.Foundation.Collections.IMapView`2<T0,T1>")
+    GetView()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = Windows.Foundation.Collections.IMapView_2_String_Double_(
+            this.comPtr.invoke(9, "Windows.Foundation.Collections.IMapView`2<String,Double>", [], [] )
+        );
+        return _r;
+    }
+
+    //@VtableIndex(10)
+    //@Returns("Boolean")
+    //@Parameters("T0","T1")
+    Insert(key,value)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = key;
+        var p2 = value;
+        var _r = this.comPtr.invoke(10, "Boolean", ["String", "Double"], [p1, p2] );
+        return _r;
+    }
+
+    //@VtableIndex(11)
+    //@Returns("void")
+    //@Parameters("T0")
+    Remove(key)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = key;
+        this.comPtr.invoke(11, "void", ["String"], [p1] );
+    }
+
+    //@VtableIndex(12)
+    //@Returns("void")
+    Clear()
+    {
+        var Windows = runtime.global("Windows");
+        this.comPtr.invoke(12, "void", [], [] );
+    }
+
+
+}
+Windows_Foundation_Collections_IMap_2_String_Double_.iid = "{A765A6A4-2386-5E7A-910A-2EE92999FBF4}";
+Windows.Foundation.Collections.IMap_2_String_Double_ = Windows_Foundation_Collections_IMap_2_String_Double_;
+
+
+if ( Windows.Foundation == nil ) { Windows.Foundation = {}; }
+if ( Windows.Foundation.Collections == nil ) { Windows.Foundation.Collections = {}; }
+//@Interface("Windows.Foundation.Collections.IMapView`2<String,String>")
+//@IID("{AC7F26F2-FEB7-5B2A-8AC4-345BC62CAEDE}")
+class Windows_Foundation_Collections_IMapView_2_String_String_ : WinRtInterface 
+{
+    Windows_Foundation_Collections_IMapView_2_String_String_( comPtr )
+    {
+        this.comPtr = comPtr.queryInterface( "{AC7F26F2-FEB7-5B2A-8AC4-345BC62CAEDE}");
+    }
+
+    //@VtableIndex(6)
+    //@Returns("T1")
+    //@Parameters("T0")
+    Lookup(key)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = key;
+        var _r = this.comPtr.invoke(6, "String", ["String"], [p1] );
+        return _r;
+    }
+
+    //@VtableIndex(7)
+    //@Returns("UInt32")
+    get_Size()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke(7, "UInt32", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(8)
+    //@Returns("Boolean")
+    //@Parameters("T0")
+    HasKey(key)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = key;
+        var _r = this.comPtr.invoke(8, "Boolean", ["String"], [p1] );
+        return _r;
+    }
+
+
+}
+Windows_Foundation_Collections_IMapView_2_String_String_.iid = "{AC7F26F2-FEB7-5B2A-8AC4-345BC62CAEDE}";
+Windows.Foundation.Collections.IMapView_2_String_String_ = Windows_Foundation_Collections_IMapView_2_String_String_;
+
+
+if ( Windows.Foundation == nil ) { Windows.Foundation = {}; }
+if ( Windows.Foundation.Collections == nil ) { Windows.Foundation.Collections = {}; }
+//@Interface("Windows.Foundation.Collections.IMapView`2<String,Object>")
+//@IID("{BB78502A-F79D-54FA-92C9-90C5039FDF7E}")
+class Windows_Foundation_Collections_IMapView_2_String_Object_ : WinRtInterface 
+{
+    Windows_Foundation_Collections_IMapView_2_String_Object_( comPtr )
+    {
+        this.comPtr = comPtr.queryInterface( "{BB78502A-F79D-54FA-92C9-90C5039FDF7E}");
+    }
+
+    //@VtableIndex(6)
+    //@Returns("T1")
+    //@Parameters("T0")
+    Lookup(key)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = key;
+        var _r = this.comPtr.invoke(6, "Object", ["String"], [p1] );
+        return _r;
+    }
+
+    //@VtableIndex(7)
+    //@Returns("UInt32")
+    get_Size()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke(7, "UInt32", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(8)
+    //@Returns("Boolean")
+    //@Parameters("T0")
+    HasKey(key)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = key;
+        var _r = this.comPtr.invoke(8, "Boolean", ["String"], [p1] );
+        return _r;
+    }
+
+
+}
+Windows_Foundation_Collections_IMapView_2_String_Object_.iid = "{BB78502A-F79D-54FA-92C9-90C5039FDF7E}";
+Windows.Foundation.Collections.IMapView_2_String_Object_ = Windows_Foundation_Collections_IMapView_2_String_Object_;
+
+
+if ( Windows.Foundation == nil ) { Windows.Foundation = {}; }
+if ( Windows.Foundation.Collections == nil ) { Windows.Foundation.Collections = {}; }
+//@Interface("Windows.Foundation.Collections.IMapView`2<String,Int32>")
+//@IID("{06C17849-DFC8-501A-BF47-16152FA21D4B}")
+class Windows_Foundation_Collections_IMapView_2_String_Int32_ : WinRtInterface 
+{
+    Windows_Foundation_Collections_IMapView_2_String_Int32_( comPtr )
+    {
+        this.comPtr = comPtr.queryInterface( "{06C17849-DFC8-501A-BF47-16152FA21D4B}");
+    }
+
+    //@VtableIndex(6)
+    //@Returns("T1")
+    //@Parameters("T0")
+    Lookup(key)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = key;
+        var _r = this.comPtr.invoke(6, "Int32", ["String"], [p1] );
+        return _r;
+    }
+
+    //@VtableIndex(7)
+    //@Returns("UInt32")
+    get_Size()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke(7, "UInt32", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(8)
+    //@Returns("Boolean")
+    //@Parameters("T0")
+    HasKey(key)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = key;
+        var _r = this.comPtr.invoke(8, "Boolean", ["String"], [p1] );
+        return _r;
+    }
+
+
+}
+Windows_Foundation_Collections_IMapView_2_String_Int32_.iid = "{06C17849-DFC8-501A-BF47-16152FA21D4B}";
+Windows.Foundation.Collections.IMapView_2_String_Int32_ = Windows_Foundation_Collections_IMapView_2_String_Int32_;
+
+
+if ( Windows.Foundation == nil ) { Windows.Foundation = {}; }
+if ( Windows.Foundation.Collections == nil ) { Windows.Foundation.Collections = {}; }
+//@Interface("Windows.Foundation.Collections.IMapView`2<String,Double>")
+//@IID("{D18743CF-94D6-54AC-9DA2-F4755FA8E4F2}")
+class Windows_Foundation_Collections_IMapView_2_String_Double_ : WinRtInterface 
+{
+    Windows_Foundation_Collections_IMapView_2_String_Double_( comPtr )
+    {
+        this.comPtr = comPtr.queryInterface( "{D18743CF-94D6-54AC-9DA2-F4755FA8E4F2}");
+    }
+
+    //@VtableIndex(6)
+    //@Returns("T1")
+    //@Parameters("T0")
+    Lookup(key)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = key;
+        var _r = this.comPtr.invoke(6, "Double", ["String"], [p1] );
+        return _r;
+    }
+
+    //@VtableIndex(7)
+    //@Returns("UInt32")
+    get_Size()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke(7, "UInt32", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(8)
+    //@Returns("Boolean")
+    //@Parameters("T0")
+    HasKey(key)
+    {
+        var Windows = runtime.global("Windows");
+        var p1 = key;
+        var _r = this.comPtr.invoke(8, "Boolean", ["String"], [p1] );
+        return _r;
+    }
+
+
+}
+Windows_Foundation_Collections_IMapView_2_String_Double_.iid = "{D18743CF-94D6-54AC-9DA2-F4755FA8E4F2}";
+Windows.Foundation.Collections.IMapView_2_String_Double_ = Windows_Foundation_Collections_IMapView_2_String_Double_;
+
+
+if ( Windows.Foundation == nil ) { Windows.Foundation = {}; }
+if ( Windows.Foundation.Collections == nil ) { Windows.Foundation.Collections = {}; }
+//@Interface("Windows.Foundation.Collections.IKeyValuePair`2<String,String>")
+//@IID("{60310303-49C5-52E6-ABC6-A9B36ECCC716}")
+class Windows_Foundation_Collections_IKeyValuePair_2_String_String_ : WinRtInterface 
+{
+    Windows_Foundation_Collections_IKeyValuePair_2_String_String_( comPtr )
+    {
+        this.comPtr = comPtr.queryInterface( "{60310303-49C5-52E6-ABC6-A9B36ECCC716}");
+    }
+
+    //@VtableIndex(6)
+    //@Returns("T0")
+    get_Key()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke(6, "String", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(7)
+    //@Returns("T1")
+    get_Value()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke(7, "String", [], [] );
+        return _r;
+    }
+
+
+}
+Windows_Foundation_Collections_IKeyValuePair_2_String_String_.iid = "{60310303-49C5-52E6-ABC6-A9B36ECCC716}";
+Windows.Foundation.Collections.IKeyValuePair_2_String_String_ = Windows_Foundation_Collections_IKeyValuePair_2_String_String_;
+
+
+if ( Windows.Foundation == nil ) { Windows.Foundation = {}; }
+if ( Windows.Foundation.Collections == nil ) { Windows.Foundation.Collections = {}; }
+//@Interface("Windows.Foundation.Collections.IKeyValuePair`2<String,Object>")
+//@IID("{09335560-6C6B-5A26-9348-97B781132B20}")
+class Windows_Foundation_Collections_IKeyValuePair_2_String_Object_ : WinRtInterface 
+{
+    Windows_Foundation_Collections_IKeyValuePair_2_String_Object_( comPtr )
+    {
+        this.comPtr = comPtr.queryInterface( "{09335560-6C6B-5A26-9348-97B781132B20}");
+    }
+
+    //@VtableIndex(6)
+    //@Returns("T0")
+    get_Key()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke(6, "String", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(7)
+    //@Returns("T1")
+    get_Value()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke(7, "Object", [], [] );
+        return _r;
+    }
+
+
+}
+Windows_Foundation_Collections_IKeyValuePair_2_String_Object_.iid = "{09335560-6C6B-5A26-9348-97B781132B20}";
+Windows.Foundation.Collections.IKeyValuePair_2_String_Object_ = Windows_Foundation_Collections_IKeyValuePair_2_String_Object_;
+
+
+if ( Windows.Foundation == nil ) { Windows.Foundation = {}; }
+if ( Windows.Foundation.Collections == nil ) { Windows.Foundation.Collections = {}; }
+//@Interface("Windows.Foundation.Collections.IKeyValuePair`2<String,Int32>")
+//@IID("{40E7E72D-CBAB-588B-A227-9E60532F0121}")
+class Windows_Foundation_Collections_IKeyValuePair_2_String_Int32_ : WinRtInterface 
+{
+    Windows_Foundation_Collections_IKeyValuePair_2_String_Int32_( comPtr )
+    {
+        this.comPtr = comPtr.queryInterface( "{40E7E72D-CBAB-588B-A227-9E60532F0121}");
+    }
+
+    //@VtableIndex(6)
+    //@Returns("T0")
+    get_Key()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke(6, "String", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(7)
+    //@Returns("T1")
+    get_Value()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke(7, "Int32", [], [] );
+        return _r;
+    }
+
+
+}
+Windows_Foundation_Collections_IKeyValuePair_2_String_Int32_.iid = "{40E7E72D-CBAB-588B-A227-9E60532F0121}";
+Windows.Foundation.Collections.IKeyValuePair_2_String_Int32_ = Windows_Foundation_Collections_IKeyValuePair_2_String_Int32_;
+
+
+if ( Windows.Foundation == nil ) { Windows.Foundation = {}; }
+if ( Windows.Foundation.Collections == nil ) { Windows.Foundation.Collections = {}; }
+//@Interface("Windows.Foundation.Collections.IKeyValuePair`2<String,Double>")
+//@IID("{F3F8B9B7-456E-5A34-93A8-FBC5C63E9F0A}")
+class Windows_Foundation_Collections_IKeyValuePair_2_String_Double_ : WinRtInterface 
+{
+    Windows_Foundation_Collections_IKeyValuePair_2_String_Double_( comPtr )
+    {
+        this.comPtr = comPtr.queryInterface( "{F3F8B9B7-456E-5A34-93A8-FBC5C63E9F0A}");
+    }
+
+    //@VtableIndex(6)
+    //@Returns("T0")
+    get_Key()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke(6, "String", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(7)
+    //@Returns("T1")
+    get_Value()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke(7, "Double", [], [] );
+        return _r;
+    }
+
+
+}
+Windows_Foundation_Collections_IKeyValuePair_2_String_Double_.iid = "{F3F8B9B7-456E-5A34-93A8-FBC5C63E9F0A}";
+Windows.Foundation.Collections.IKeyValuePair_2_String_Double_ = Windows_Foundation_Collections_IKeyValuePair_2_String_Double_;
+
+
+if ( Windows.Foundation == nil ) { Windows.Foundation = {}; }
+if ( Windows.Foundation.Collections == nil ) { Windows.Foundation.Collections = {}; }
+//@Interface("Windows.Foundation.Collections.IIterator`1<Windows.Foundation.Collections.IKeyValuePair`2<String,String>>")
+//@IID("{05EB86F1-7140-5517-B88D-CBAEBE57E6B1}")
+class Windows_Foundation_Collections_IIterator_1_Windows_Foundation_Collections_IKeyValuePair_2_String_String__ : WinRtInterface 
+{
+    Windows_Foundation_Collections_IIterator_1_Windows_Foundation_Collections_IKeyValuePair_2_String_String__( comPtr )
+    {
+        this.comPtr = comPtr.queryInterface( "{05EB86F1-7140-5517-B88D-CBAEBE57E6B1}");
+    }
+
+    //@VtableIndex(6)
+    //@Returns("T0")
+    get_Current()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = Windows.Foundation.Collections.IKeyValuePair_2_String_String_(
+            this.comPtr.invoke(6, "Windows.Foundation.Collections.IKeyValuePair`2<String,String>", [], [] )
+        );
+        return _r;
+    }
+
+    //@VtableIndex(7)
+    //@Returns("Boolean")
+    get_HasCurrent()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke(7, "Boolean", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(8)
+    //@Returns("Boolean")
+    MoveNext()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke(8, "Boolean", [], [] );
+        return _r;
+    }
+
+
+}
+Windows_Foundation_Collections_IIterator_1_Windows_Foundation_Collections_IKeyValuePair_2_String_String__.iid = "{05EB86F1-7140-5517-B88D-CBAEBE57E6B1}";
+Windows.Foundation.Collections.IIterator_1_Windows_Foundation_Collections_IKeyValuePair_2_String_String__ = Windows_Foundation_Collections_IIterator_1_Windows_Foundation_Collections_IKeyValuePair_2_String_String__;
+
+
+if ( Windows.Foundation == nil ) { Windows.Foundation = {}; }
+if ( Windows.Foundation.Collections == nil ) { Windows.Foundation.Collections = {}; }
+//@Interface("Windows.Foundation.Collections.IIterator`1<Windows.Foundation.Collections.IKeyValuePair`2<String,Object>>")
+//@IID("{5DB5FA32-707C-5849-A06B-91C8EB9D10E8}")
+class Windows_Foundation_Collections_IIterator_1_Windows_Foundation_Collections_IKeyValuePair_2_String_Object__ : WinRtInterface 
+{
+    Windows_Foundation_Collections_IIterator_1_Windows_Foundation_Collections_IKeyValuePair_2_String_Object__( comPtr )
+    {
+        this.comPtr = comPtr.queryInterface( "{5DB5FA32-707C-5849-A06B-91C8EB9D10E8}");
+    }
+
+    //@VtableIndex(6)
+    //@Returns("T0")
+    get_Current()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = Windows.Foundation.Collections.IKeyValuePair_2_String_Object_(
+            this.comPtr.invoke(6, "Windows.Foundation.Collections.IKeyValuePair`2<String,Object>", [], [] )
+        );
+        return _r;
+    }
+
+    //@VtableIndex(7)
+    //@Returns("Boolean")
+    get_HasCurrent()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke(7, "Boolean", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(8)
+    //@Returns("Boolean")
+    MoveNext()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke(8, "Boolean", [], [] );
+        return _r;
+    }
+
+
+}
+Windows_Foundation_Collections_IIterator_1_Windows_Foundation_Collections_IKeyValuePair_2_String_Object__.iid = "{5DB5FA32-707C-5849-A06B-91C8EB9D10E8}";
+Windows.Foundation.Collections.IIterator_1_Windows_Foundation_Collections_IKeyValuePair_2_String_Object__ = Windows_Foundation_Collections_IIterator_1_Windows_Foundation_Collections_IKeyValuePair_2_String_Object__;
+
+
+if ( Windows.Foundation == nil ) { Windows.Foundation = {}; }
+if ( Windows.Foundation.Collections == nil ) { Windows.Foundation.Collections = {}; }
+//@Interface("Windows.Foundation.Collections.IIterator`1<Windows.Foundation.Collections.IKeyValuePair`2<String,Int32>>")
+//@IID("{96C8B304-4108-5F67-8B2F-213975F085B2}")
+class Windows_Foundation_Collections_IIterator_1_Windows_Foundation_Collections_IKeyValuePair_2_String_Int32__ : WinRtInterface 
+{
+    Windows_Foundation_Collections_IIterator_1_Windows_Foundation_Collections_IKeyValuePair_2_String_Int32__( comPtr )
+    {
+        this.comPtr = comPtr.queryInterface( "{96C8B304-4108-5F67-8B2F-213975F085B2}");
+    }
+
+    //@VtableIndex(6)
+    //@Returns("T0")
+    get_Current()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = Windows.Foundation.Collections.IKeyValuePair_2_String_Int32_(
+            this.comPtr.invoke(6, "Windows.Foundation.Collections.IKeyValuePair`2<String,Int32>", [], [] )
+        );
+        return _r;
+    }
+
+    //@VtableIndex(7)
+    //@Returns("Boolean")
+    get_HasCurrent()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke(7, "Boolean", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(8)
+    //@Returns("Boolean")
+    MoveNext()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke(8, "Boolean", [], [] );
+        return _r;
+    }
+
+
+}
+Windows_Foundation_Collections_IIterator_1_Windows_Foundation_Collections_IKeyValuePair_2_String_Int32__.iid = "{96C8B304-4108-5F67-8B2F-213975F085B2}";
+Windows.Foundation.Collections.IIterator_1_Windows_Foundation_Collections_IKeyValuePair_2_String_Int32__ = Windows_Foundation_Collections_IIterator_1_Windows_Foundation_Collections_IKeyValuePair_2_String_Int32__;
+
+
+if ( Windows.Foundation == nil ) { Windows.Foundation = {}; }
+if ( Windows.Foundation.Collections == nil ) { Windows.Foundation.Collections = {}; }
+//@Interface("Windows.Foundation.Collections.IIterator`1<Windows.Foundation.Collections.IKeyValuePair`2<String,Double>>")
+//@IID("{4E32FE35-DF21-5EF4-BA75-7E351D69CF7E}")
+class Windows_Foundation_Collections_IIterator_1_Windows_Foundation_Collections_IKeyValuePair_2_String_Double__ : WinRtInterface 
+{
+    Windows_Foundation_Collections_IIterator_1_Windows_Foundation_Collections_IKeyValuePair_2_String_Double__( comPtr )
+    {
+        this.comPtr = comPtr.queryInterface( "{4E32FE35-DF21-5EF4-BA75-7E351D69CF7E}");
+    }
+
+    //@VtableIndex(6)
+    //@Returns("T0")
+    get_Current()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = Windows.Foundation.Collections.IKeyValuePair_2_String_Double_(
+            this.comPtr.invoke(6, "Windows.Foundation.Collections.IKeyValuePair`2<String,Double>", [], [] )
+        );
+        return _r;
+    }
+
+    //@VtableIndex(7)
+    //@Returns("Boolean")
+    get_HasCurrent()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke(7, "Boolean", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(8)
+    //@Returns("Boolean")
+    MoveNext()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke(8, "Boolean", [], [] );
+        return _r;
+    }
+
+
+}
+Windows_Foundation_Collections_IIterator_1_Windows_Foundation_Collections_IKeyValuePair_2_String_Double__.iid = "{4E32FE35-DF21-5EF4-BA75-7E351D69CF7E}";
+Windows.Foundation.Collections.IIterator_1_Windows_Foundation_Collections_IKeyValuePair_2_String_Double__ = Windows_Foundation_Collections_IIterator_1_Windows_Foundation_Collections_IKeyValuePair_2_String_Double__;
+
+
+if ( Windows.Foundation == nil ) { Windows.Foundation = {}; }
+if ( Windows.Foundation.Collections == nil ) { Windows.Foundation.Collections = {}; }
+//@Interface("Windows.Foundation.Collections.IIterator`1<String>")
+//@IID("{8C304EBB-6615-50A4-8829-879ECD443236}")
+class Windows_Foundation_Collections_IIterator_1_String_ : WinRtInterface 
+{
+    Windows_Foundation_Collections_IIterator_1_String_( comPtr )
+    {
+        this.comPtr = comPtr.queryInterface( "{8C304EBB-6615-50A4-8829-879ECD443236}");
+    }
+
+    //@VtableIndex(6)
+    //@Returns("T0")
+    get_Current()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke(6, "String", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(7)
+    //@Returns("Boolean")
+    get_HasCurrent()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke(7, "Boolean", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(8)
+    //@Returns("Boolean")
+    MoveNext()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke(8, "Boolean", [], [] );
+        return _r;
+    }
+
+
+}
+Windows_Foundation_Collections_IIterator_1_String_.iid = "{8C304EBB-6615-50A4-8829-879ECD443236}";
+Windows.Foundation.Collections.IIterator_1_String_ = Windows_Foundation_Collections_IIterator_1_String_;
+
+
+if ( Windows.Foundation == nil ) { Windows.Foundation = {}; }
+if ( Windows.Foundation.Collections == nil ) { Windows.Foundation.Collections = {}; }
+//@Interface("Windows.Foundation.Collections.IIterator`1<Object>")
+//@IID("{44A94F2D-04F8-5091-B336-BE7892DD10BE}")
+class Windows_Foundation_Collections_IIterator_1_Object_ : WinRtInterface 
+{
+    Windows_Foundation_Collections_IIterator_1_Object_( comPtr )
+    {
+        this.comPtr = comPtr.queryInterface( "{44A94F2D-04F8-5091-B336-BE7892DD10BE}");
+    }
+
+    //@VtableIndex(6)
+    //@Returns("T0")
+    get_Current()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke(6, "Object", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(7)
+    //@Returns("Boolean")
+    get_HasCurrent()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke(7, "Boolean", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(8)
+    //@Returns("Boolean")
+    MoveNext()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke(8, "Boolean", [], [] );
+        return _r;
+    }
+
+
+}
+Windows_Foundation_Collections_IIterator_1_Object_.iid = "{44A94F2D-04F8-5091-B336-BE7892DD10BE}";
+Windows.Foundation.Collections.IIterator_1_Object_ = Windows_Foundation_Collections_IIterator_1_Object_;
+
+
+if ( Windows.Foundation == nil ) { Windows.Foundation = {}; }
+if ( Windows.Foundation.Collections == nil ) { Windows.Foundation.Collections = {}; }
+//@Interface("Windows.Foundation.Collections.IIterator`1<Int32>")
+//@IID("{BFEA7F78-50C2-5F1D-A6EA-9E978D2699FF}")
+class Windows_Foundation_Collections_IIterator_1_Int32_ : WinRtInterface 
+{
+    Windows_Foundation_Collections_IIterator_1_Int32_( comPtr )
+    {
+        this.comPtr = comPtr.queryInterface( "{BFEA7F78-50C2-5F1D-A6EA-9E978D2699FF}");
+    }
+
+    //@VtableIndex(6)
+    //@Returns("T0")
+    get_Current()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke(6, "Int32", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(7)
+    //@Returns("Boolean")
+    get_HasCurrent()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke(7, "Boolean", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(8)
+    //@Returns("Boolean")
+    MoveNext()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke(8, "Boolean", [], [] );
+        return _r;
+    }
+
+
+}
+Windows_Foundation_Collections_IIterator_1_Int32_.iid = "{BFEA7F78-50C2-5F1D-A6EA-9E978D2699FF}";
+Windows.Foundation.Collections.IIterator_1_Int32_ = Windows_Foundation_Collections_IIterator_1_Int32_;
+
+
+if ( Windows.Foundation == nil ) { Windows.Foundation = {}; }
+if ( Windows.Foundation.Collections == nil ) { Windows.Foundation.Collections = {}; }
+//@Interface("Windows.Foundation.Collections.IIterator`1<Double>")
+//@IID("{638A2CF4-F474-5318-9055-141CB909AC4B}")
+class Windows_Foundation_Collections_IIterator_1_Double_ : WinRtInterface 
+{
+    Windows_Foundation_Collections_IIterator_1_Double_( comPtr )
+    {
+        this.comPtr = comPtr.queryInterface( "{638A2CF4-F474-5318-9055-141CB909AC4B}");
+    }
+
+    //@VtableIndex(6)
+    //@Returns("T0")
+    get_Current()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke(6, "Double", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(7)
+    //@Returns("Boolean")
+    get_HasCurrent()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke(7, "Boolean", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(8)
+    //@Returns("Boolean")
+    MoveNext()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke(8, "Boolean", [], [] );
+        return _r;
+    }
+
+
+}
+Windows_Foundation_Collections_IIterator_1_Double_.iid = "{638A2CF4-F474-5318-9055-141CB909AC4B}";
+Windows.Foundation.Collections.IIterator_1_Double_ = Windows_Foundation_Collections_IIterator_1_Double_;
+
+
+if ( Windows.Foundation == nil ) { Windows.Foundation = {}; }
+if ( Windows.Foundation.Collections == nil ) { Windows.Foundation.Collections = {}; }
+//@Interface("Windows.Foundation.Collections.IIterable`1<Windows.Foundation.Collections.IKeyValuePair`2>")
+//@IID("{822B22EF-209F-56AA-A4C3-DC0113B25E4C}")
+class Windows_Foundation_Collections_IIterable_1_Windows_Foundation_Collections_IKeyValuePair_2_ : WinRtInterface 
+{
+    Windows_Foundation_Collections_IIterable_1_Windows_Foundation_Collections_IKeyValuePair_2_( comPtr )
+    {
+        this.comPtr = comPtr.queryInterface( "{822B22EF-209F-56AA-A4C3-DC0113B25E4C}");
+    }
+
+    //@VtableIndex(6)
+    //@Returns("Windows.Foundation.Collections.IIterator`1<T0>")
+    First()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = Windows.Foundation.Collections.IIterator_1_Windows_Foundation_Collections_IKeyValuePair_2_(
+            this.comPtr.invoke(6, "Windows.Foundation.Collections.IIterator`1<Windows.Foundation.Collections.IKeyValuePair`2>", [], [] )
+        );
+        return _r;
+    }
+
+
+}
+Windows_Foundation_Collections_IIterable_1_Windows_Foundation_Collections_IKeyValuePair_2_.iid = "{822B22EF-209F-56AA-A4C3-DC0113B25E4C}";
+Windows.Foundation.Collections.IIterable_1_Windows_Foundation_Collections_IKeyValuePair_2_ = Windows_Foundation_Collections_IIterable_1_Windows_Foundation_Collections_IKeyValuePair_2_;
+
+
+if ( Windows.Foundation == nil ) { Windows.Foundation = {}; }
+if ( Windows.Foundation.Collections == nil ) { Windows.Foundation.Collections = {}; }
+//@Interface("Windows.Foundation.Collections.IIterable`1<String>")
+//@IID("{E2FCC7C1-3BFC-5A0B-B2B0-72E769D1CB7E}")
+class Windows_Foundation_Collections_IIterable_1_String_ : WinRtInterface 
+{
+    Windows_Foundation_Collections_IIterable_1_String_( comPtr )
+    {
+        this.comPtr = comPtr.queryInterface( "{E2FCC7C1-3BFC-5A0B-B2B0-72E769D1CB7E}");
+    }
+
+    //@VtableIndex(6)
+    //@Returns("Windows.Foundation.Collections.IIterator`1<T0>")
+    First()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = Windows.Foundation.Collections.IIterator_1_String_(
+            this.comPtr.invoke(6, "Windows.Foundation.Collections.IIterator`1<String>", [], [] )
+        );
+        return _r;
+    }
+
+
+}
+Windows_Foundation_Collections_IIterable_1_String_.iid = "{E2FCC7C1-3BFC-5A0B-B2B0-72E769D1CB7E}";
+Windows.Foundation.Collections.IIterable_1_String_ = Windows_Foundation_Collections_IIterable_1_String_;
+
+
+if ( Windows.Foundation == nil ) { Windows.Foundation = {}; }
+if ( Windows.Foundation.Collections == nil ) { Windows.Foundation.Collections = {}; }
+//@Interface("Windows.Foundation.Collections.IIterable`1<Object>")
+//@IID("{092B849B-60B1-52BE-A44A-6FE8E933CBE4}")
+class Windows_Foundation_Collections_IIterable_1_Object_ : WinRtInterface 
+{
+    Windows_Foundation_Collections_IIterable_1_Object_( comPtr )
+    {
+        this.comPtr = comPtr.queryInterface( "{092B849B-60B1-52BE-A44A-6FE8E933CBE4}");
+    }
+
+    //@VtableIndex(6)
+    //@Returns("Windows.Foundation.Collections.IIterator`1<T0>")
+    First()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = Windows.Foundation.Collections.IIterator_1_Object_(
+            this.comPtr.invoke(6, "Windows.Foundation.Collections.IIterator`1<Object>", [], [] )
+        );
+        return _r;
+    }
+
+
+}
+Windows_Foundation_Collections_IIterable_1_Object_.iid = "{092B849B-60B1-52BE-A44A-6FE8E933CBE4}";
+Windows.Foundation.Collections.IIterable_1_Object_ = Windows_Foundation_Collections_IIterable_1_Object_;
+
+
+if ( Windows.Foundation == nil ) { Windows.Foundation = {}; }
+if ( Windows.Foundation.Collections == nil ) { Windows.Foundation.Collections = {}; }
+//@Interface("Windows.Foundation.Collections.IIterable`1<Int32>")
+//@IID("{81A643FB-F51C-5565-83C4-F96425777B66}")
+class Windows_Foundation_Collections_IIterable_1_Int32_ : WinRtInterface 
+{
+    Windows_Foundation_Collections_IIterable_1_Int32_( comPtr )
+    {
+        this.comPtr = comPtr.queryInterface( "{81A643FB-F51C-5565-83C4-F96425777B66}");
+    }
+
+    //@VtableIndex(6)
+    //@Returns("Windows.Foundation.Collections.IIterator`1<T0>")
+    First()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = Windows.Foundation.Collections.IIterator_1_Int32_(
+            this.comPtr.invoke(6, "Windows.Foundation.Collections.IIterator`1<Int32>", [], [] )
+        );
+        return _r;
+    }
+
+
+}
+Windows_Foundation_Collections_IIterable_1_Int32_.iid = "{81A643FB-F51C-5565-83C4-F96425777B66}";
+Windows.Foundation.Collections.IIterable_1_Int32_ = Windows_Foundation_Collections_IIterable_1_Int32_;
+
+
+if ( Windows.Foundation == nil ) { Windows.Foundation = {}; }
+if ( Windows.Foundation.Collections == nil ) { Windows.Foundation.Collections = {}; }
+//@Interface("Windows.Foundation.Collections.IIterable`1<Double>")
+//@IID("{C738964E-9C64-5BCE-B5CE-61E9A282EC4A}")
+class Windows_Foundation_Collections_IIterable_1_Double_ : WinRtInterface 
+{
+    Windows_Foundation_Collections_IIterable_1_Double_( comPtr )
+    {
+        this.comPtr = comPtr.queryInterface( "{C738964E-9C64-5BCE-B5CE-61E9A282EC4A}");
+    }
+
+    //@VtableIndex(6)
+    //@Returns("Windows.Foundation.Collections.IIterator`1<T0>")
+    First()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = Windows.Foundation.Collections.IIterator_1_Double_(
+            this.comPtr.invoke(6, "Windows.Foundation.Collections.IIterator`1<Double>", [], [] )
+        );
+        return _r;
+    }
+
+
+}
+Windows_Foundation_Collections_IIterable_1_Double_.iid = "{C738964E-9C64-5BCE-B5CE-61E9A282EC4A}";
+Windows.Foundation.Collections.IIterable_1_Double_ = Windows_Foundation_Collections_IIterable_1_Double_;
+
+
+if ( Windows.Foundation == nil ) { Windows.Foundation = {}; }
+if ( Windows.Foundation.Collections == nil ) { Windows.Foundation.Collections = {}; }
+//@Delegate("Windows.Foundation.Collections.VectorChangedEventHandler`1<String>")
+//@IID("{CB6C396F-4861-5296-B14B-BD90B941A3E0}")
+class Windows_Foundation_Collections_VectorChangedEventHandler_1_String_{
+    static Create( cb ) 
+    {
+        var callback = fun( s, arg ) {
+            cb( s, Windows.Foundation.Collections.IVectorChangedEventArgs(arg) );
+        };
+        return winrt.Delegate(["Windows.Foundation.Collections.IObservableVector`1<String>", "Windows.Foundation.Collections.IVectorChangedEventArgs"], "{CB6C396F-4861-5296-B14B-BD90B941A3E0}", callback );
+    }
+}
+Windows_Foundation_Collections_VectorChangedEventHandler_1_String_.iid = "{CB6C396F-4861-5296-B14B-BD90B941A3E0}";
+Windows.Foundation.Collections.VectorChangedEventHandler_1_String_ = Windows_Foundation_Collections_VectorChangedEventHandler_1_String_;
+
+
+if ( Windows.Foundation == nil ) { Windows.Foundation = {}; }
+if ( Windows.Foundation.Collections == nil ) { Windows.Foundation.Collections = {}; }
+//@Delegate("Windows.Foundation.Collections.VectorChangedEventHandler`1<Object>")
+//@IID("{B423A801-D35E-56B9-813B-00889536CB98}")
+class Windows_Foundation_Collections_VectorChangedEventHandler_1_Object_{
+    static Create( cb ) 
+    {
+        var callback = fun( s, arg ) {
+            cb( s, Windows.Foundation.Collections.IVectorChangedEventArgs(arg) );
+        };
+        return winrt.Delegate(["Windows.Foundation.Collections.IObservableVector`1<Object>", "Windows.Foundation.Collections.IVectorChangedEventArgs"], "{B423A801-D35E-56B9-813B-00889536CB98}", callback );
+    }
+}
+Windows_Foundation_Collections_VectorChangedEventHandler_1_Object_.iid = "{B423A801-D35E-56B9-813B-00889536CB98}";
+Windows.Foundation.Collections.VectorChangedEventHandler_1_Object_ = Windows_Foundation_Collections_VectorChangedEventHandler_1_Object_;
+
+
+if ( Windows.Foundation == nil ) { Windows.Foundation = {}; }
+if ( Windows.Foundation.Collections == nil ) { Windows.Foundation.Collections = {}; }
+//@Delegate("Windows.Foundation.Collections.VectorChangedEventHandler`1<Int32>")
+//@IID("{A6C4D746-B4FB-58C8-B919-B359D7769103}")
+class Windows_Foundation_Collections_VectorChangedEventHandler_1_Int32_{
+    static Create( cb ) 
+    {
+        var callback = fun( s, arg ) {
+            cb( s, Windows.Foundation.Collections.IVectorChangedEventArgs(arg) );
+        };
+        return winrt.Delegate(["Windows.Foundation.Collections.IObservableVector`1<Int32>", "Windows.Foundation.Collections.IVectorChangedEventArgs"], "{A6C4D746-B4FB-58C8-B919-B359D7769103}", callback );
+    }
+}
+Windows_Foundation_Collections_VectorChangedEventHandler_1_Int32_.iid = "{A6C4D746-B4FB-58C8-B919-B359D7769103}";
+Windows.Foundation.Collections.VectorChangedEventHandler_1_Int32_ = Windows_Foundation_Collections_VectorChangedEventHandler_1_Int32_;
+
+
+if ( Windows.Foundation == nil ) { Windows.Foundation = {}; }
+if ( Windows.Foundation.Collections == nil ) { Windows.Foundation.Collections = {}; }
+//@Delegate("Windows.Foundation.Collections.VectorChangedEventHandler`1<Double>")
+//@IID("{AC9AE881-B3F2-5B48-8642-22E7B56CAC02}")
+class Windows_Foundation_Collections_VectorChangedEventHandler_1_Double_{
+    static Create( cb ) 
+    {
+        var callback = fun( s, arg ) {
+            cb( s, Windows.Foundation.Collections.IVectorChangedEventArgs(arg) );
+        };
+        return winrt.Delegate(["Windows.Foundation.Collections.IObservableVector`1<Double>", "Windows.Foundation.Collections.IVectorChangedEventArgs"], "{AC9AE881-B3F2-5B48-8642-22E7B56CAC02}", callback );
+    }
+}
+Windows_Foundation_Collections_VectorChangedEventHandler_1_Double_.iid = "{AC9AE881-B3F2-5B48-8642-22E7B56CAC02}";
+Windows.Foundation.Collections.VectorChangedEventHandler_1_Double_ = Windows_Foundation_Collections_VectorChangedEventHandler_1_Double_;
+
+
+if ( Windows.Foundation == nil ) { Windows.Foundation = {}; }
+if ( Windows.Foundation.Collections == nil ) { Windows.Foundation.Collections = {}; }
+//@Delegate("Windows.Foundation.Collections.MapChangedEventHandler`2<String,String>")
+//@IID("{E2663F37-2E1B-500C-AD68-C3ED7A8F74C8}")
+class Windows_Foundation_Collections_MapChangedEventHandler_2_String_String_{
+    static Create( cb ) 
+    {
+        var callback = fun( s, arg ) {
+            cb( s, Windows.Foundation.Collections.IMapChangedEventArgs_1_String_(arg) );
+        };
+        return winrt.Delegate(["Windows.Foundation.Collections.IObservableMap`2<String,String>", "Windows.Foundation.Collections.IMapChangedEventArgs`1<String>"], "{E2663F37-2E1B-500C-AD68-C3ED7A8F74C8}", callback );
+    }
+}
+Windows_Foundation_Collections_MapChangedEventHandler_2_String_String_.iid = "{E2663F37-2E1B-500C-AD68-C3ED7A8F74C8}";
+Windows.Foundation.Collections.MapChangedEventHandler_2_String_String_ = Windows_Foundation_Collections_MapChangedEventHandler_2_String_String_;
+
+
+//@Interface("Windows.Foundation.Collections.IMapChangedEventArgs`1<String>")
+//@IID("{60141EFB-F2F9-5377-96FD-F8C60D9558B5}")
+class Windows_Foundation_Collections_IMapChangedEventArgs_1_String_ : WinRtInterface 
+{
+    Windows_Foundation_Collections_IMapChangedEventArgs_1_String_( comPtr )
+    {
+        this.comPtr = comPtr.queryInterface( "{60141EFB-F2F9-5377-96FD-F8C60D9558B5}");
+    }
+
+    //@VtableIndex(6)
+    //@Returns("Windows.Foundation.Collections.CollectionChange")
+    get_CollectionChange()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke(6, "UInt32", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(7)
+    //@Returns("T0")
+    get_Key()
+    {
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke(7, "String", [], [] );
+        return _r;
+    }
+
+
+}
+Windows_Foundation_Collections_IMapChangedEventArgs_1_String_.iid = "{60141EFB-F2F9-5377-96FD-F8C60D9558B5}";
+Windows.Foundation.Collections.IMapChangedEventArgs_1_String_ = Windows_Foundation_Collections_IMapChangedEventArgs_1_String_;
+
+
+if ( Windows.Foundation == nil ) { Windows.Foundation = {}; }
+if ( Windows.Foundation.Collections == nil ) { Windows.Foundation.Collections = {}; }
+//@Delegate("Windows.Foundation.Collections.MapChangedEventHandler`2<String,Object>")
+//@IID("{24F981E5-DDCA-538D-AADA-A59906084CF1}")
+class Windows_Foundation_Collections_MapChangedEventHandler_2_String_Object_{
+    static Create( cb ) 
+    {
+        var callback = fun( s, arg ) {
+            cb( s, Windows.Foundation.Collections.IMapChangedEventArgs_1_String_(arg) );
+        };
+        return winrt.Delegate(["Windows.Foundation.Collections.IObservableMap`2<String,Object>", "Windows.Foundation.Collections.IMapChangedEventArgs`1<String>"], "{24F981E5-DDCA-538D-AADA-A59906084CF1}", callback );
+    }
+}
+Windows_Foundation_Collections_MapChangedEventHandler_2_String_Object_.iid = "{24F981E5-DDCA-538D-AADA-A59906084CF1}";
+Windows.Foundation.Collections.MapChangedEventHandler_2_String_Object_ = Windows_Foundation_Collections_MapChangedEventHandler_2_String_Object_;
+
+
+if ( Windows.Foundation == nil ) { Windows.Foundation = {}; }
+if ( Windows.Foundation.Collections == nil ) { Windows.Foundation.Collections = {}; }
+//@Delegate("Windows.Foundation.Collections.MapChangedEventHandler`2<String,Int32>")
+//@IID("{EFD45578-F8AF-58FC-9F5F-A2F93D5D99DF}")
+class Windows_Foundation_Collections_MapChangedEventHandler_2_String_Int32_{
+    static Create( cb ) 
+    {
+        var callback = fun( s, arg ) {
+            cb( s, Windows.Foundation.Collections.IMapChangedEventArgs_1_String_(arg) );
+        };
+        return winrt.Delegate(["Windows.Foundation.Collections.IObservableMap`2<String,Int32>", "Windows.Foundation.Collections.IMapChangedEventArgs`1<String>"], "{EFD45578-F8AF-58FC-9F5F-A2F93D5D99DF}", callback );
+    }
+}
+Windows_Foundation_Collections_MapChangedEventHandler_2_String_Int32_.iid = "{EFD45578-F8AF-58FC-9F5F-A2F93D5D99DF}";
+Windows.Foundation.Collections.MapChangedEventHandler_2_String_Int32_ = Windows_Foundation_Collections_MapChangedEventHandler_2_String_Int32_;
+
+
+if ( Windows.Foundation == nil ) { Windows.Foundation = {}; }
+if ( Windows.Foundation.Collections == nil ) { Windows.Foundation.Collections = {}; }
+//@Delegate("Windows.Foundation.Collections.MapChangedEventHandler`2<String,Double>")
+//@IID("{D581E4D8-8633-557B-A322-F7FA7467A20A}")
+class Windows_Foundation_Collections_MapChangedEventHandler_2_String_Double_{
+    static Create( cb ) 
+    {
+        var callback = fun( s, arg ) {
+            cb( s, Windows.Foundation.Collections.IMapChangedEventArgs_1_String_(arg) );
+        };
+        return winrt.Delegate(["Windows.Foundation.Collections.IObservableMap`2<String,Double>", "Windows.Foundation.Collections.IMapChangedEventArgs`1<String>"], "{D581E4D8-8633-557B-A322-F7FA7467A20A}", callback );
+    }
+}
+Windows_Foundation_Collections_MapChangedEventHandler_2_String_Double_.iid = "{D581E4D8-8633-557B-A322-F7FA7467A20A}";
+Windows.Foundation.Collections.MapChangedEventHandler_2_String_Double_ = Windows_Foundation_Collections_MapChangedEventHandler_2_String_Double_;
+
+
+
+}

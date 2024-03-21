@@ -1,0 +1,17 @@
+
+import("win32/com");
+com.init();
+
+var excel = com.createObject("Excel.Application",Win32.CLSCTX.CLSCTX_LOCAL_SERVER) ;
+excel.Visible = true;
+
+var workbooks = excel.Workbooks;
+print workbooks;
+var wb = workbooks.Add(); 
+
+var ws = wb.ActiveSheet;
+var rgn = ws.Range("A1");
+rgn.Value = "new value";
+
+wb.Close();
+excel.Quit();

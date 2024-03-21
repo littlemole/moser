@@ -1,0 +1,2165 @@
+{
+
+if( runtime.global("Win32") == nil ) { runtime.global("Win32", {}); }
+var Win32 = runtime.global("Win32");
+
+Win32.CACHE_CONFIG = {
+    "CACHE_CONFIG_FORCE_CLEANUP_FC" : 32, 
+    "CACHE_CONFIG_DISK_CACHE_PATHS_FC" : 64, 
+    "CACHE_CONFIG_SYNC_MODE_FC" : 128, 
+    "CACHE_CONFIG_CONTENT_PATHS_FC" : 256, 
+    "CACHE_CONFIG_HISTORY_PATHS_FC" : 1024, 
+    "CACHE_CONFIG_COOKIES_PATHS_FC" : 512, 
+    "CACHE_CONFIG_QUOTA_FC" : 2048, 
+    "CACHE_CONFIG_USER_MODE_FC" : 4096, 
+    "CACHE_CONFIG_CONTENT_USAGE_FC" : 8192, 
+    "CACHE_CONFIG_STICKY_CONTENT_USAGE_FC" : 16384
+};
+
+
+Win32.FTP_FLAGS = {
+    "FTP_TRANSFER_TYPE_ASCII" : 1, 
+    "FTP_TRANSFER_TYPE_BINARY" : 2, 
+    "FTP_TRANSFER_TYPE_UNKNOWN" : 0, 
+    "INTERNET_FLAG_TRANSFER_ASCII" : 1, 
+    "INTERNET_FLAG_TRANSFER_BINARY" : 2
+};
+
+
+Win32.INTERNET_CONNECTION = {
+    "INTERNET_CONNECTION_CONFIGURED" : 64, 
+    "INTERNET_CONNECTION_LAN" : 2, 
+    "INTERNET_CONNECTION_MODEM" : 1, 
+    "INTERNET_CONNECTION_MODEM_BUSY" : 8, 
+    "INTERNET_CONNECTION_OFFLINE" : 32, 
+    "INTERNET_CONNECTION_PROXY" : 4, 
+    "INTERNET_RAS_INSTALLED" : 16
+};
+
+
+Win32.HTTP_ADDREQ_FLAG = {
+    "HTTP_ADDREQ_FLAG_ADD" : 536870912, 
+    "HTTP_ADDREQ_FLAG_ADD_IF_NEW" : 268435456, 
+    "HTTP_ADDREQ_FLAG_COALESCE" : 1073741824, 
+    "HTTP_ADDREQ_FLAG_COALESCE_WITH_COMMA" : 1073741824, 
+    "HTTP_ADDREQ_FLAG_COALESCE_WITH_SEMICOLON" : 16777216, 
+    "HTTP_ADDREQ_FLAG_REPLACE" : 2147483648
+};
+
+
+Win32.INTERNET_COOKIE_FLAGS = {
+    "INTERNET_COOKIE_HTTPONLY" : 8192, 
+    "INTERNET_COOKIE_THIRD_PARTY" : 16, 
+    "INTERNET_FLAG_RESTRICTED_ZONE" : 131072
+};
+
+
+Win32.PROXY_AUTO_DETECT_TYPE = {
+    "PROXY_AUTO_DETECT_TYPE_DHCP" : 1, 
+    "PROXY_AUTO_DETECT_TYPE_DNS_A" : 2
+};
+
+
+Win32.INTERNET_AUTODIAL = {
+    "INTERNET_AUTODIAL_FAILIFSECURITYCHECK" : 4, 
+    "INTERNET_AUTODIAL_FORCE_ONLINE" : 1, 
+    "INTERNET_AUTODIAL_FORCE_UNATTENDED" : 2, 
+    "INTERNET_AUTODIAL_OVERRIDE_NET_PRESENT" : 8
+};
+
+
+Win32.GOPHER_TYPE = {
+    "GOPHER_TYPE_ASK" : 1073741824, 
+    "GOPHER_TYPE_BINARY" : 512, 
+    "GOPHER_TYPE_BITMAP" : 16384, 
+    "GOPHER_TYPE_CALENDAR" : 524288, 
+    "GOPHER_TYPE_CSO" : 4, 
+    "GOPHER_TYPE_DIRECTORY" : 2, 
+    "GOPHER_TYPE_DOS_ARCHIVE" : 32, 
+    "GOPHER_TYPE_ERROR" : 8, 
+    "GOPHER_TYPE_GIF" : 4096, 
+    "GOPHER_TYPE_GOPHER_PLUS" : 2147483648, 
+    "GOPHER_TYPE_HTML" : 131072, 
+    "GOPHER_TYPE_IMAGE" : 8192, 
+    "GOPHER_TYPE_INDEX_SERVER" : 128, 
+    "GOPHER_TYPE_INLINE" : 1048576, 
+    "GOPHER_TYPE_MAC_BINHEX" : 16, 
+    "GOPHER_TYPE_MOVIE" : 32768, 
+    "GOPHER_TYPE_PDF" : 262144, 
+    "GOPHER_TYPE_REDUNDANT" : 1024, 
+    "GOPHER_TYPE_SOUND" : 65536, 
+    "GOPHER_TYPE_TELNET" : 256, 
+    "GOPHER_TYPE_TEXT_FILE" : 1, 
+    "GOPHER_TYPE_TN3270" : 2048, 
+    "GOPHER_TYPE_UNIX_UUENCODED" : 64, 
+    "GOPHER_TYPE_UNKNOWN" : 536870912
+};
+
+
+Win32.INTERNET_PER_CONN = {
+    "INTERNET_PER_CONN_AUTOCONFIG_URL" : 4, 
+    "INTERNET_PER_CONN_AUTODISCOVERY_FLAGS" : 5, 
+    "INTERNET_PER_CONN_FLAGS" : 1, 
+    "INTERNET_PER_CONN_PROXY_BYPASS" : 3, 
+    "INTERNET_PER_CONN_PROXY_SERVER" : 2, 
+    "INTERNET_PER_CONN_AUTOCONFIG_SECONDARY_URL" : 6, 
+    "INTERNET_PER_CONN_AUTOCONFIG_RELOAD_DELAY_MINS" : 7, 
+    "INTERNET_PER_CONN_AUTOCONFIG_LAST_DETECT_TIME" : 8, 
+    "INTERNET_PER_CONN_AUTOCONFIG_LAST_DETECT_URL" : 9
+};
+
+
+Win32.INTERNET_ACCESS_TYPE = {
+    "INTERNET_OPEN_TYPE_DIRECT" : 1, 
+    "INTERNET_OPEN_TYPE_PRECONFIG" : 0, 
+    "INTERNET_OPEN_TYPE_PROXY" : 3
+};
+
+
+Win32.INTERNET_STATE = {
+    "INTERNET_STATE_CONNECTED" : 1, 
+    "INTERNET_STATE_DISCONNECTED" : 2, 
+    "INTERNET_STATE_DISCONNECTED_BY_USER" : 16, 
+    "INTERNET_STATE_IDLE" : 256, 
+    "INTERNET_STATE_BUSY" : 512
+};
+
+
+Win32.INTERNET_SCHEME = {
+    "INTERNET_SCHEME_PARTIAL" : -2, 
+    "INTERNET_SCHEME_UNKNOWN" : -1, 
+    "INTERNET_SCHEME_DEFAULT" : 0, 
+    "INTERNET_SCHEME_FTP" : 1, 
+    "INTERNET_SCHEME_GOPHER" : 2, 
+    "INTERNET_SCHEME_HTTP" : 3, 
+    "INTERNET_SCHEME_HTTPS" : 4, 
+    "INTERNET_SCHEME_FILE" : 5, 
+    "INTERNET_SCHEME_NEWS" : 6, 
+    "INTERNET_SCHEME_MAILTO" : 7, 
+    "INTERNET_SCHEME_SOCKS" : 8, 
+    "INTERNET_SCHEME_JAVASCRIPT" : 9, 
+    "INTERNET_SCHEME_VBSCRIPT" : 10, 
+    "INTERNET_SCHEME_RES" : 11, 
+    "INTERNET_SCHEME_FIRST" : 1, 
+    "INTERNET_SCHEME_LAST" : 11
+};
+
+
+Win32.InternetCookieState = {
+    "COOKIE_STATE_UNKNOWN" : 0, 
+    "COOKIE_STATE_ACCEPT" : 1, 
+    "COOKIE_STATE_PROMPT" : 2, 
+    "COOKIE_STATE_LEASH" : 3, 
+    "COOKIE_STATE_DOWNGRADE" : 4, 
+    "COOKIE_STATE_REJECT" : 5, 
+    "COOKIE_STATE_MAX" : 5
+};
+
+
+Win32.WPAD_CACHE_DELETE = {
+    "WPAD_CACHE_DELETE_CURRENT" : 0, 
+    "WPAD_CACHE_DELETE_ALL" : 1
+};
+
+
+Win32.FORTCMD = {
+    "FORTCMD_LOGON" : 1, 
+    "FORTCMD_LOGOFF" : 2, 
+    "FORTCMD_CHG_PERSONALITY" : 3
+};
+
+
+Win32.FORTSTAT = {
+    "FORTSTAT_INSTALLED" : 1, 
+    "FORTSTAT_LOGGEDON" : 2
+};
+
+
+Win32.REQUEST_TIMES = {
+    "NameResolutionStart" : 0, 
+    "NameResolutionEnd" : 1, 
+    "ConnectionEstablishmentStart" : 2, 
+    "ConnectionEstablishmentEnd" : 3, 
+    "TLSHandshakeStart" : 4, 
+    "TLSHandshakeEnd" : 5, 
+    "HttpRequestTimeMax" : 32
+};
+
+
+Win32.HTTP_PUSH_WAIT_TYPE = {
+    "HttpPushWaitEnableComplete" : 0, 
+    "HttpPushWaitReceiveComplete" : 1, 
+    "HttpPushWaitSendComplete" : 2
+};
+
+
+Win32.WININET_SYNC_MODE = {
+    "WININET_SYNC_MODE_NEVER" : 0, 
+    "WININET_SYNC_MODE_ON_EXPIRY" : 1, 
+    "WININET_SYNC_MODE_ONCE_PER_SESSION" : 2, 
+    "WININET_SYNC_MODE_ALWAYS" : 3, 
+    "WININET_SYNC_MODE_AUTOMATIC" : 4, 
+    "WININET_SYNC_MODE_DEFAULT" : 4
+};
+
+
+Win32.APP_CACHE_STATE = {
+    "AppCacheStateNoUpdateNeeded" : 0, 
+    "AppCacheStateUpdateNeeded" : 1, 
+    "AppCacheStateUpdateNeededNew" : 2, 
+    "AppCacheStateUpdateNeededMasterOnly" : 3
+};
+
+
+Win32.APP_CACHE_FINALIZE_STATE = {
+    "AppCacheFinalizeStateIncomplete" : 0, 
+    "AppCacheFinalizeStateManifestChange" : 1, 
+    "AppCacheFinalizeStateComplete" : 2
+};
+
+
+Win32.URL_CACHE_LIMIT_TYPE = {
+    "UrlCacheLimitTypeIE" : 0, 
+    "UrlCacheLimitTypeIETotal" : 1, 
+    "UrlCacheLimitTypeAppContainer" : 2, 
+    "UrlCacheLimitTypeAppContainerTotal" : 3, 
+    "UrlCacheLimitTypeNum" : 4
+};
+
+
+Win32.HTTP_WEB_SOCKET_OPERATION = {
+    "HTTP_WEB_SOCKET_SEND_OPERATION" : 0, 
+    "HTTP_WEB_SOCKET_RECEIVE_OPERATION" : 1, 
+    "HTTP_WEB_SOCKET_CLOSE_OPERATION" : 2, 
+    "HTTP_WEB_SOCKET_SHUTDOWN_OPERATION" : 3
+};
+
+
+Win32.HTTP_WEB_SOCKET_BUFFER_TYPE = {
+    "HTTP_WEB_SOCKET_BINARY_MESSAGE_TYPE" : 0, 
+    "HTTP_WEB_SOCKET_BINARY_FRAGMENT_TYPE" : 1, 
+    "HTTP_WEB_SOCKET_UTF8_MESSAGE_TYPE" : 2, 
+    "HTTP_WEB_SOCKET_UTF8_FRAGMENT_TYPE" : 3, 
+    "HTTP_WEB_SOCKET_CLOSE_TYPE" : 4, 
+    "HTTP_WEB_SOCKET_PING_TYPE" : 5
+};
+
+
+Win32.HTTP_WEB_SOCKET_CLOSE_STATUS = {
+    "HTTP_WEB_SOCKET_SUCCESS_CLOSE_STATUS" : 1000, 
+    "HTTP_WEB_SOCKET_ENDPOINT_TERMINATED_CLOSE_STATUS" : 1001, 
+    "HTTP_WEB_SOCKET_PROTOCOL_ERROR_CLOSE_STATUS" : 1002, 
+    "HTTP_WEB_SOCKET_INVALID_DATA_TYPE_CLOSE_STATUS" : 1003, 
+    "HTTP_WEB_SOCKET_EMPTY_CLOSE_STATUS" : 1005, 
+    "HTTP_WEB_SOCKET_ABORTED_CLOSE_STATUS" : 1006, 
+    "HTTP_WEB_SOCKET_INVALID_PAYLOAD_CLOSE_STATUS" : 1007, 
+    "HTTP_WEB_SOCKET_POLICY_VIOLATION_CLOSE_STATUS" : 1008, 
+    "HTTP_WEB_SOCKET_MESSAGE_TOO_BIG_CLOSE_STATUS" : 1009, 
+    "HTTP_WEB_SOCKET_UNSUPPORTED_EXTENSIONS_CLOSE_STATUS" : 1010, 
+    "HTTP_WEB_SOCKET_SERVER_ERROR_CLOSE_STATUS" : 1011, 
+    "HTTP_WEB_SOCKET_SECURE_HANDSHAKE_ERROR_CLOSE_STATUS" : 1015
+};
+
+
+Win32.HTTP_POLICY_EXTENSION_TYPE = {
+    "POLICY_EXTENSION_TYPE_NONE" : 0, 
+    "POLICY_EXTENSION_TYPE_WINHTTP" : 1, 
+    "POLICY_EXTENSION_TYPE_WININET" : 2
+};
+
+
+Win32.HTTP_POLICY_EXTENSION_VERSION = {
+    "POLICY_EXTENSION_VERSION1" : 1
+};
+
+
+Win32.HTTP_PUSH_WAIT_HANDLE = foreign.named_struct( "Windows.Win32.Networking.WinInet.HTTP_PUSH_WAIT_HANDLE", [ 
+    "Value:ptr"
+]); 
+
+
+Win32.INTERNET_ASYNC_RESULT = foreign.named_struct( "Windows.Win32.Networking.WinInet.INTERNET_ASYNC_RESULT", [ 
+    "dwResult:ptr", 
+    "dwError:uint"
+]); 
+
+
+Win32.INTERNET_DIAGNOSTIC_SOCKET_INFO = foreign.named_struct( "Windows.Win32.Networking.WinInet.INTERNET_DIAGNOSTIC_SOCKET_INFO", [ 
+    "Socket:ptr", 
+    "SourcePort:uint", 
+    "DestPort:uint", 
+    "Flags:uint"
+]); 
+
+
+Win32.INTERNET_PROXY_INFO = foreign.named_struct( "Windows.Win32.Networking.WinInet.INTERNET_PROXY_INFO", [ 
+    "dwAccessType:uint", 
+    "lpszProxy:ptr", 
+    "lpszProxyBypass:ptr"
+]); 
+
+
+Win32.INTERNET_PER_CONN_OPTIONA = foreign.named_struct( "Windows.Win32.Networking.WinInet.INTERNET_PER_CONN_OPTIONA", [ 
+    "dwOption:uint", 
+    "Value:._Value_e__Union"
+]); 
+
+
+Win32.INTERNET_PER_CONN_OPTIONW = foreign.named_struct( "Windows.Win32.Networking.WinInet.INTERNET_PER_CONN_OPTIONW", [ 
+    "dwOption:uint", 
+    "Value:._Value_e__Union"
+]); 
+
+
+Win32.INTERNET_PER_CONN_OPTION_LISTA = foreign.named_struct( "Windows.Win32.Networking.WinInet.INTERNET_PER_CONN_OPTION_LISTA", [ 
+    "dwSize:uint", 
+    "pszConnection:str", 
+    "dwOptionCount:uint", 
+    "dwOptionError:uint", 
+    "pOptions:ptr"
+]); 
+
+
+Win32.INTERNET_PER_CONN_OPTION_LISTW = foreign.named_struct( "Windows.Win32.Networking.WinInet.INTERNET_PER_CONN_OPTION_LISTW", [ 
+    "dwSize:uint", 
+    "pszConnection:wstr", 
+    "dwOptionCount:uint", 
+    "dwOptionError:uint", 
+    "pOptions:ptr"
+]); 
+
+
+Win32.INTERNET_VERSION_INFO = foreign.named_struct( "Windows.Win32.Networking.WinInet.INTERNET_VERSION_INFO", [ 
+    "dwMajorVersion:uint", 
+    "dwMinorVersion:uint"
+]); 
+
+
+Win32.INTERNET_CONNECTED_INFO = foreign.named_struct( "Windows.Win32.Networking.WinInet.INTERNET_CONNECTED_INFO", [ 
+    "dwConnectedState:uint", 
+    "dwFlags:uint"
+]); 
+
+
+Win32.URL_COMPONENTSA = foreign.named_struct( "Windows.Win32.Networking.WinInet.URL_COMPONENTSA", [ 
+    "dwStructSize:uint", 
+    "lpszScheme:str", 
+    "dwSchemeLength:uint", 
+    "nScheme:int", 
+    "lpszHostName:str", 
+    "dwHostNameLength:uint", 
+    "nPort:ushort", 
+    "lpszUserName:str", 
+    "dwUserNameLength:uint", 
+    "lpszPassword:str", 
+    "dwPasswordLength:uint", 
+    "lpszUrlPath:str", 
+    "dwUrlPathLength:uint", 
+    "lpszExtraInfo:str", 
+    "dwExtraInfoLength:uint"
+]); 
+
+
+Win32.URL_COMPONENTSW = foreign.named_struct( "Windows.Win32.Networking.WinInet.URL_COMPONENTSW", [ 
+    "dwStructSize:uint", 
+    "lpszScheme:wstr", 
+    "dwSchemeLength:uint", 
+    "nScheme:int", 
+    "lpszHostName:wstr", 
+    "dwHostNameLength:uint", 
+    "nPort:ushort", 
+    "lpszUserName:wstr", 
+    "dwUserNameLength:uint", 
+    "lpszPassword:wstr", 
+    "dwPasswordLength:uint", 
+    "lpszUrlPath:wstr", 
+    "dwUrlPathLength:uint", 
+    "lpszExtraInfo:wstr", 
+    "dwExtraInfoLength:uint"
+]); 
+
+
+Win32.INTERNET_CERTIFICATE_INFO = foreign.named_struct( "Windows.Win32.Networking.WinInet.INTERNET_CERTIFICATE_INFO", [ 
+    "ftExpiry:Windows.Win32.Foundation.FILETIME", 
+    "ftStart:Windows.Win32.Foundation.FILETIME", 
+    "lpszSubjectInfo:ptr", 
+    "lpszIssuerInfo:ptr", 
+    "lpszProtocolName:ptr", 
+    "lpszSignatureAlgName:ptr", 
+    "lpszEncryptionAlgName:ptr", 
+    "dwKeySize:uint"
+]); 
+
+
+Win32.INTERNET_BUFFERSA = foreign.named_struct( "Windows.Win32.Networking.WinInet.INTERNET_BUFFERSA", [ 
+    "dwStructSize:uint", 
+    "Next:ptr", 
+    "lpcszHeader:str", 
+    "dwHeadersLength:uint", 
+    "dwHeadersTotal:uint", 
+    "lpvBuffer:ptr", 
+    "dwBufferLength:uint", 
+    "dwBufferTotal:uint", 
+    "dwOffsetLow:uint", 
+    "dwOffsetHigh:uint"
+]); 
+
+
+Win32.INTERNET_BUFFERSW = foreign.named_struct( "Windows.Win32.Networking.WinInet.INTERNET_BUFFERSW", [ 
+    "dwStructSize:uint", 
+    "Next:ptr", 
+    "lpcszHeader:wstr", 
+    "dwHeadersLength:uint", 
+    "dwHeadersTotal:uint", 
+    "lpvBuffer:ptr", 
+    "dwBufferLength:uint", 
+    "dwBufferTotal:uint", 
+    "dwOffsetLow:uint", 
+    "dwOffsetHigh:uint"
+]); 
+
+
+Win32.IncomingCookieState = foreign.named_struct( "Windows.Win32.Networking.WinInet.IncomingCookieState", [ 
+    "cSession:int", 
+    "cPersistent:int", 
+    "cAccepted:int", 
+    "cLeashed:int", 
+    "cDowngraded:int", 
+    "cBlocked:int", 
+    "pszLocation:str"
+]); 
+
+
+Win32.OutgoingCookieState = foreign.named_struct( "Windows.Win32.Networking.WinInet.OutgoingCookieState", [ 
+    "cSent:int", 
+    "cSuppressed:int", 
+    "pszLocation:str"
+]); 
+
+
+Win32.InternetCookieHistory = foreign.named_struct( "Windows.Win32.Networking.WinInet.InternetCookieHistory", [ 
+    "fAccepted:Windows.Win32.Foundation.BOOL", 
+    "fLeashed:Windows.Win32.Foundation.BOOL", 
+    "fDowngraded:Windows.Win32.Foundation.BOOL", 
+    "fRejected:Windows.Win32.Foundation.BOOL"
+]); 
+
+
+Win32.CookieDecision = foreign.named_struct( "Windows.Win32.Networking.WinInet.CookieDecision", [ 
+    "dwCookieState:uint", 
+    "fAllowSession:Windows.Win32.Foundation.BOOL"
+]); 
+
+
+Win32.GOPHER_FIND_DATAA = foreign.named_struct( "Windows.Win32.Networking.WinInet.GOPHER_FIND_DATAA", [ 
+    "DisplayString[129]:Windows.Win32.Foundation.CHAR", 
+    "GopherType:uint", 
+    "SizeLow:uint", 
+    "SizeHigh:uint", 
+    "LastModificationTime:Windows.Win32.Foundation.FILETIME", 
+    "Locator[654]:Windows.Win32.Foundation.CHAR"
+]); 
+
+
+Win32.GOPHER_FIND_DATAW = foreign.named_struct( "Windows.Win32.Networking.WinInet.GOPHER_FIND_DATAW", [ 
+    "DisplayString[129]:short", 
+    "GopherType:uint", 
+    "SizeLow:uint", 
+    "SizeHigh:uint", 
+    "LastModificationTime:Windows.Win32.Foundation.FILETIME", 
+    "Locator[654]:short"
+]); 
+
+
+Win32.GOPHER_ADMIN_ATTRIBUTE_TYPE = foreign.named_struct( "Windows.Win32.Networking.WinInet.GOPHER_ADMIN_ATTRIBUTE_TYPE", [ 
+    "Comment:ptr", 
+    "EmailAddress:ptr"
+]); 
+
+
+Win32.GOPHER_MOD_DATE_ATTRIBUTE_TYPE = foreign.named_struct( "Windows.Win32.Networking.WinInet.GOPHER_MOD_DATE_ATTRIBUTE_TYPE", [ 
+    "DateAndTime:Windows.Win32.Foundation.FILETIME"
+]); 
+
+
+Win32.GOPHER_TTL_ATTRIBUTE_TYPE = foreign.named_struct( "Windows.Win32.Networking.WinInet.GOPHER_TTL_ATTRIBUTE_TYPE", [ 
+    "Ttl:uint"
+]); 
+
+
+Win32.GOPHER_SCORE_ATTRIBUTE_TYPE = foreign.named_struct( "Windows.Win32.Networking.WinInet.GOPHER_SCORE_ATTRIBUTE_TYPE", [ 
+    "Score:int"
+]); 
+
+
+Win32.GOPHER_SCORE_RANGE_ATTRIBUTE_TYPE = foreign.named_struct( "Windows.Win32.Networking.WinInet.GOPHER_SCORE_RANGE_ATTRIBUTE_TYPE", [ 
+    "LowerBound:int", 
+    "UpperBound:int"
+]); 
+
+
+Win32.GOPHER_SITE_ATTRIBUTE_TYPE = foreign.named_struct( "Windows.Win32.Networking.WinInet.GOPHER_SITE_ATTRIBUTE_TYPE", [ 
+    "Site:ptr"
+]); 
+
+
+Win32.GOPHER_ORGANIZATION_ATTRIBUTE_TYPE = foreign.named_struct( "Windows.Win32.Networking.WinInet.GOPHER_ORGANIZATION_ATTRIBUTE_TYPE", [ 
+    "Organization:ptr"
+]); 
+
+
+Win32.GOPHER_LOCATION_ATTRIBUTE_TYPE = foreign.named_struct( "Windows.Win32.Networking.WinInet.GOPHER_LOCATION_ATTRIBUTE_TYPE", [ 
+    "Location:ptr"
+]); 
+
+
+Win32.GOPHER_GEOGRAPHICAL_LOCATION_ATTRIBUTE_TYPE = foreign.named_struct( "Windows.Win32.Networking.WinInet.GOPHER_GEOGRAPHICAL_LOCATION_ATTRIBUTE_TYPE", [ 
+    "DegreesNorth:int", 
+    "MinutesNorth:int", 
+    "SecondsNorth:int", 
+    "DegreesEast:int", 
+    "MinutesEast:int", 
+    "SecondsEast:int"
+]); 
+
+
+Win32.GOPHER_TIMEZONE_ATTRIBUTE_TYPE = foreign.named_struct( "Windows.Win32.Networking.WinInet.GOPHER_TIMEZONE_ATTRIBUTE_TYPE", [ 
+    "Zone:int"
+]); 
+
+
+Win32.GOPHER_PROVIDER_ATTRIBUTE_TYPE = foreign.named_struct( "Windows.Win32.Networking.WinInet.GOPHER_PROVIDER_ATTRIBUTE_TYPE", [ 
+    "Provider:ptr"
+]); 
+
+
+Win32.GOPHER_VERSION_ATTRIBUTE_TYPE = foreign.named_struct( "Windows.Win32.Networking.WinInet.GOPHER_VERSION_ATTRIBUTE_TYPE", [ 
+    "Version:ptr"
+]); 
+
+
+Win32.GOPHER_ABSTRACT_ATTRIBUTE_TYPE = foreign.named_struct( "Windows.Win32.Networking.WinInet.GOPHER_ABSTRACT_ATTRIBUTE_TYPE", [ 
+    "ShortAbstract:ptr", 
+    "AbstractFile:ptr"
+]); 
+
+
+Win32.GOPHER_VIEW_ATTRIBUTE_TYPE = foreign.named_struct( "Windows.Win32.Networking.WinInet.GOPHER_VIEW_ATTRIBUTE_TYPE", [ 
+    "ContentType:ptr", 
+    "Language:ptr", 
+    "Size:uint"
+]); 
+
+
+Win32.GOPHER_VERONICA_ATTRIBUTE_TYPE = foreign.named_struct( "Windows.Win32.Networking.WinInet.GOPHER_VERONICA_ATTRIBUTE_TYPE", [ 
+    "TreeWalk:Windows.Win32.Foundation.BOOL"
+]); 
+
+
+Win32.GOPHER_ASK_ATTRIBUTE_TYPE = foreign.named_struct( "Windows.Win32.Networking.WinInet.GOPHER_ASK_ATTRIBUTE_TYPE", [ 
+    "QuestionType:ptr", 
+    "QuestionText:ptr"
+]); 
+
+
+Win32.GOPHER_UNKNOWN_ATTRIBUTE_TYPE = foreign.named_struct( "Windows.Win32.Networking.WinInet.GOPHER_UNKNOWN_ATTRIBUTE_TYPE", [ 
+    "Text:ptr"
+]); 
+
+
+Win32.GOPHER_ATTRIBUTE_TYPE = foreign.named_struct( "Windows.Win32.Networking.WinInet.GOPHER_ATTRIBUTE_TYPE", [ 
+    "CategoryId:uint", 
+    "AttributeId:uint", 
+    "AttributeType:._AttributeType_e__Union"
+]); 
+
+
+Win32.INTERNET_COOKIE2 = foreign.named_struct( "Windows.Win32.Networking.WinInet.INTERNET_COOKIE2", [ 
+    "pwszName:wstr", 
+    "pwszValue:wstr", 
+    "pwszDomain:wstr", 
+    "pwszPath:wstr", 
+    "dwFlags:uint", 
+    "ftExpires:Windows.Win32.Foundation.FILETIME", 
+    "fExpiresSet:Windows.Win32.Foundation.BOOL"
+]); 
+
+
+Win32.INTERNET_AUTH_NOTIFY_DATA = foreign.named_struct( "Windows.Win32.Networking.WinInet.INTERNET_AUTH_NOTIFY_DATA", [ 
+    "cbStruct:uint", 
+    "dwOptions:uint", 
+    "pfnNotify:ptr", 
+    "dwContext:ptr"
+]); 
+
+
+Win32.INTERNET_CACHE_ENTRY_INFOA = foreign.named_struct( "Windows.Win32.Networking.WinInet.INTERNET_CACHE_ENTRY_INFOA", [ 
+    "dwStructSize:uint", 
+    "lpszSourceUrlName:str", 
+    "lpszLocalFileName:str", 
+    "CacheEntryType:uint", 
+    "dwUseCount:uint", 
+    "dwHitRate:uint", 
+    "dwSizeLow:uint", 
+    "dwSizeHigh:uint", 
+    "LastModifiedTime:Windows.Win32.Foundation.FILETIME", 
+    "ExpireTime:Windows.Win32.Foundation.FILETIME", 
+    "LastAccessTime:Windows.Win32.Foundation.FILETIME", 
+    "LastSyncTime:Windows.Win32.Foundation.FILETIME", 
+    "lpHeaderInfo:str", 
+    "dwHeaderInfoSize:uint", 
+    "lpszFileExtension:str", 
+    "Anonymous:._Anonymous_e__Union"
+]); 
+
+
+Win32.INTERNET_CACHE_ENTRY_INFOW = foreign.named_struct( "Windows.Win32.Networking.WinInet.INTERNET_CACHE_ENTRY_INFOW", [ 
+    "dwStructSize:uint", 
+    "lpszSourceUrlName:wstr", 
+    "lpszLocalFileName:wstr", 
+    "CacheEntryType:uint", 
+    "dwUseCount:uint", 
+    "dwHitRate:uint", 
+    "dwSizeLow:uint", 
+    "dwSizeHigh:uint", 
+    "LastModifiedTime:Windows.Win32.Foundation.FILETIME", 
+    "ExpireTime:Windows.Win32.Foundation.FILETIME", 
+    "LastAccessTime:Windows.Win32.Foundation.FILETIME", 
+    "LastSyncTime:Windows.Win32.Foundation.FILETIME", 
+    "lpHeaderInfo:wstr", 
+    "dwHeaderInfoSize:uint", 
+    "lpszFileExtension:wstr", 
+    "Anonymous:._Anonymous_e__Union"
+]); 
+
+
+Win32.INTERNET_CACHE_TIMESTAMPS = foreign.named_struct( "Windows.Win32.Networking.WinInet.INTERNET_CACHE_TIMESTAMPS", [ 
+    "ftExpires:Windows.Win32.Foundation.FILETIME", 
+    "ftLastModified:Windows.Win32.Foundation.FILETIME"
+]); 
+
+
+Win32.INTERNET_CACHE_GROUP_INFOA = foreign.named_struct( "Windows.Win32.Networking.WinInet.INTERNET_CACHE_GROUP_INFOA", [ 
+    "dwGroupSize:uint", 
+    "dwGroupFlags:uint", 
+    "dwGroupType:uint", 
+    "dwDiskUsage:uint", 
+    "dwDiskQuota:uint", 
+    "dwOwnerStorage[4]:uint", 
+    "szGroupName[120]:Windows.Win32.Foundation.CHAR"
+]); 
+
+
+Win32.INTERNET_CACHE_GROUP_INFOW = foreign.named_struct( "Windows.Win32.Networking.WinInet.INTERNET_CACHE_GROUP_INFOW", [ 
+    "dwGroupSize:uint", 
+    "dwGroupFlags:uint", 
+    "dwGroupType:uint", 
+    "dwDiskUsage:uint", 
+    "dwDiskQuota:uint", 
+    "dwOwnerStorage[4]:uint", 
+    "szGroupName[120]:short"
+]); 
+
+
+Win32.AutoProxyHelperVtbl = foreign.named_struct( "Windows.Win32.Networking.WinInet.AutoProxyHelperVtbl", [ 
+    "IsResolvable:ptr", 
+    "GetIPAddress:ptr", 
+    "ResolveHostName:ptr", 
+    "IsInNet:ptr", 
+    "IsResolvableEx:ptr", 
+    "GetIPAddressEx:ptr", 
+    "ResolveHostNameEx:ptr", 
+    "IsInNetEx:ptr", 
+    "SortIpList:ptr"
+]); 
+
+
+Win32.AUTO_PROXY_SCRIPT_BUFFER = foreign.named_struct( "Windows.Win32.Networking.WinInet.AUTO_PROXY_SCRIPT_BUFFER", [ 
+    "dwStructSize:uint", 
+    "lpszScriptBuffer:str", 
+    "dwScriptBufferSize:uint"
+]); 
+
+
+Win32.AutoProxyHelperFunctions = foreign.named_struct( "Windows.Win32.Networking.WinInet.AutoProxyHelperFunctions", [ 
+    "lpVtbl:ptr"
+]); 
+
+
+Win32.INTERNET_PREFETCH_STATUS = foreign.named_struct( "Windows.Win32.Networking.WinInet.INTERNET_PREFETCH_STATUS", [ 
+    "dwStatus:uint", 
+    "dwSize:uint"
+]); 
+
+
+Win32.INTERNET_SECURITY_INFO = foreign.named_struct( "Windows.Win32.Networking.WinInet.INTERNET_SECURITY_INFO", [ 
+    "dwSize:uint", 
+    "pCertificate:ptr", 
+    "pcCertChain:ptr", 
+    "connectionInfo:Windows.Win32.Security.Authentication.Identity.SecPkgContext_ConnectionInfo", 
+    "cipherInfo:Windows.Win32.Security.Authentication.Identity.SecPkgContext_CipherInfo", 
+    "pcUnverifiedCertChain:ptr", 
+    "channelBindingToken:Windows.Win32.Security.Authentication.Identity.SecPkgContext_Bindings"
+]); 
+
+
+Win32.INTERNET_SECURITY_CONNECTION_INFO = foreign.named_struct( "Windows.Win32.Networking.WinInet.INTERNET_SECURITY_CONNECTION_INFO", [ 
+    "dwSize:uint", 
+    "fSecure:Windows.Win32.Foundation.BOOL", 
+    "connectionInfo:Windows.Win32.Security.Authentication.Identity.SecPkgContext_ConnectionInfo", 
+    "cipherInfo:Windows.Win32.Security.Authentication.Identity.SecPkgContext_CipherInfo"
+]); 
+
+
+Win32.INTERNET_DOWNLOAD_MODE_HANDLE = foreign.named_struct( "Windows.Win32.Networking.WinInet.INTERNET_DOWNLOAD_MODE_HANDLE", [ 
+    "pcwszFileName:wstr", 
+    "phFile:ptr"
+]); 
+
+
+Win32.HTTP_REQUEST_TIMES = foreign.named_struct( "Windows.Win32.Networking.WinInet.HTTP_REQUEST_TIMES", [ 
+    "cTimes:uint", 
+    "rgTimes[32]:ulong"
+]); 
+
+
+Win32.INTERNET_SERVER_CONNECTION_STATE = foreign.named_struct( "Windows.Win32.Networking.WinInet.INTERNET_SERVER_CONNECTION_STATE", [ 
+    "lpcwszHostName:wstr", 
+    "fProxy:Windows.Win32.Foundation.BOOL", 
+    "dwCounter:uint", 
+    "dwConnectionLimit:uint", 
+    "dwAvailableCreates:uint", 
+    "dwAvailableKeepAlives:uint", 
+    "dwActiveConnections:uint", 
+    "dwWaiters:uint"
+]); 
+
+
+Win32.INTERNET_END_BROWSER_SESSION_DATA = foreign.named_struct( "Windows.Win32.Networking.WinInet.INTERNET_END_BROWSER_SESSION_DATA", [ 
+    "lpBuffer:ptr", 
+    "dwBufferLength:uint"
+]); 
+
+
+Win32.INTERNET_CALLBACK_COOKIE = foreign.named_struct( "Windows.Win32.Networking.WinInet.INTERNET_CALLBACK_COOKIE", [ 
+    "pcwszName:wstr", 
+    "pcwszValue:wstr", 
+    "pcwszDomain:wstr", 
+    "pcwszPath:wstr", 
+    "ftExpires:Windows.Win32.Foundation.FILETIME", 
+    "dwFlags:uint"
+]); 
+
+
+Win32.INTERNET_CREDENTIALS = foreign.named_struct( "Windows.Win32.Networking.WinInet.INTERNET_CREDENTIALS", [ 
+    "lpcwszHostName:wstr", 
+    "dwPort:uint", 
+    "dwScheme:uint", 
+    "lpcwszUrl:wstr", 
+    "lpcwszRealm:wstr", 
+    "fAuthIdentity:Windows.Win32.Foundation.BOOL", 
+    "Anonymous:._Anonymous_e__Union"
+]); 
+
+
+Win32.HTTP_PUSH_TRANSPORT_SETTING = foreign.named_struct( "Windows.Win32.Networking.WinInet.HTTP_PUSH_TRANSPORT_SETTING", [ 
+    "TransportSettingId:ptr", 
+    "BrokerEventId:ptr"
+]); 
+
+
+Win32.HTTP_PUSH_NOTIFICATION_STATUS = foreign.named_struct( "Windows.Win32.Networking.WinInet.HTTP_PUSH_NOTIFICATION_STATUS", [ 
+    "ChannelStatusValid:Windows.Win32.Foundation.BOOL", 
+    "ChannelStatus:uint"
+]); 
+
+
+Win32.INTERNET_COOKIE = foreign.named_struct( "Windows.Win32.Networking.WinInet.INTERNET_COOKIE", [ 
+    "cbSize:uint", 
+    "pszName:str", 
+    "pszData:str", 
+    "pszDomain:str", 
+    "pszPath:str", 
+    "pftExpires:ptr", 
+    "dwFlags:uint", 
+    "pszUrl:str", 
+    "pszP3PPolicy:str"
+]); 
+
+
+Win32.COOKIE_DLG_INFO = foreign.named_struct( "Windows.Win32.Networking.WinInet.COOKIE_DLG_INFO", [ 
+    "pszServer:wstr", 
+    "pic:ptr", 
+    "dwStopWarning:uint", 
+    "cx:int", 
+    "cy:int", 
+    "pszHeader:wstr", 
+    "dwOperation:uint"
+]); 
+
+
+Win32.INTERNET_CACHE_CONFIG_PATH_ENTRYA = foreign.named_struct( "Windows.Win32.Networking.WinInet.INTERNET_CACHE_CONFIG_PATH_ENTRYA", [ 
+    "CachePath[260]:Windows.Win32.Foundation.CHAR", 
+    "dwCacheSize:uint"
+]); 
+
+
+Win32.INTERNET_CACHE_CONFIG_PATH_ENTRYW = foreign.named_struct( "Windows.Win32.Networking.WinInet.INTERNET_CACHE_CONFIG_PATH_ENTRYW", [ 
+    "CachePath[260]:short", 
+    "dwCacheSize:uint"
+]); 
+
+
+Win32.INTERNET_CACHE_CONFIG_INFOA = foreign.named_struct( "Windows.Win32.Networking.WinInet.INTERNET_CACHE_CONFIG_INFOA", [ 
+    "dwStructSize:uint", 
+    "dwContainer:uint", 
+    "dwQuota:uint", 
+    "dwReserved4:uint", 
+    "fPerUser:Windows.Win32.Foundation.BOOL", 
+    "dwSyncMode:uint", 
+    "dwNumCachePaths:uint", 
+    "Anonymous:._Anonymous_e__Union", 
+    "dwNormalUsage:uint", 
+    "dwExemptUsage:uint"
+]); 
+
+
+Win32.INTERNET_CACHE_CONFIG_INFOW = foreign.named_struct( "Windows.Win32.Networking.WinInet.INTERNET_CACHE_CONFIG_INFOW", [ 
+    "dwStructSize:uint", 
+    "dwContainer:uint", 
+    "dwQuota:uint", 
+    "dwReserved4:uint", 
+    "fPerUser:Windows.Win32.Foundation.BOOL", 
+    "dwSyncMode:uint", 
+    "dwNumCachePaths:uint", 
+    "Anonymous:._Anonymous_e__Union", 
+    "dwNormalUsage:uint", 
+    "dwExemptUsage:uint"
+]); 
+
+
+Win32.INTERNET_CACHE_CONTAINER_INFOA = foreign.named_struct( "Windows.Win32.Networking.WinInet.INTERNET_CACHE_CONTAINER_INFOA", [ 
+    "dwCacheVersion:uint", 
+    "lpszName:str", 
+    "lpszCachePrefix:str", 
+    "lpszVolumeLabel:str", 
+    "lpszVolumeTitle:str"
+]); 
+
+
+Win32.INTERNET_CACHE_CONTAINER_INFOW = foreign.named_struct( "Windows.Win32.Networking.WinInet.INTERNET_CACHE_CONTAINER_INFOW", [ 
+    "dwCacheVersion:uint", 
+    "lpszName:wstr", 
+    "lpszCachePrefix:wstr", 
+    "lpszVolumeLabel:wstr", 
+    "lpszVolumeTitle:wstr"
+]); 
+
+
+Win32.APP_CACHE_DOWNLOAD_ENTRY = foreign.named_struct( "Windows.Win32.Networking.WinInet.APP_CACHE_DOWNLOAD_ENTRY", [ 
+    "pwszUrl:wstr", 
+    "dwEntryType:uint"
+]); 
+
+
+Win32.APP_CACHE_DOWNLOAD_LIST = foreign.named_struct( "Windows.Win32.Networking.WinInet.APP_CACHE_DOWNLOAD_LIST", [ 
+    "dwEntryCount:uint", 
+    "pEntries:ptr"
+]); 
+
+
+Win32.APP_CACHE_GROUP_INFO = foreign.named_struct( "Windows.Win32.Networking.WinInet.APP_CACHE_GROUP_INFO", [ 
+    "pwszManifestUrl:wstr", 
+    "ftLastAccessTime:Windows.Win32.Foundation.FILETIME", 
+    "ullSize:ulong"
+]); 
+
+
+Win32.APP_CACHE_GROUP_LIST = foreign.named_struct( "Windows.Win32.Networking.WinInet.APP_CACHE_GROUP_LIST", [ 
+    "dwAppCacheGroupCount:uint", 
+    "pAppCacheGroups:ptr"
+]); 
+
+
+Win32.URLCACHE_ENTRY_INFO = foreign.named_struct( "Windows.Win32.Networking.WinInet.URLCACHE_ENTRY_INFO", [ 
+    "pwszSourceUrlName:wstr", 
+    "pwszLocalFileName:wstr", 
+    "dwCacheEntryType:uint", 
+    "dwUseCount:uint", 
+    "dwHitRate:uint", 
+    "dwSizeLow:uint", 
+    "dwSizeHigh:uint", 
+    "ftLastModifiedTime:Windows.Win32.Foundation.FILETIME", 
+    "ftExpireTime:Windows.Win32.Foundation.FILETIME", 
+    "ftLastAccessTime:Windows.Win32.Foundation.FILETIME", 
+    "ftLastSyncTime:Windows.Win32.Foundation.FILETIME", 
+    "pbHeaderInfo:ptr", 
+    "cbHeaderInfoSize:uint", 
+    "pbExtraData:ptr", 
+    "cbExtraDataSize:uint"
+]); 
+
+
+Win32.WININET_PROXY_INFO = foreign.named_struct( "Windows.Win32.Networking.WinInet.WININET_PROXY_INFO", [ 
+    "fProxy:Windows.Win32.Foundation.BOOL", 
+    "fBypass:Windows.Win32.Foundation.BOOL", 
+    "ProxyScheme:int", 
+    "pwszProxy:wstr", 
+    "ProxyPort:ushort"
+]); 
+
+
+Win32.WININET_PROXY_INFO_LIST = foreign.named_struct( "Windows.Win32.Networking.WinInet.WININET_PROXY_INFO_LIST", [ 
+    "dwProxyInfoCount:uint", 
+    "pProxyInfo:ptr"
+]); 
+
+
+Win32.HTTP_WEB_SOCKET_ASYNC_RESULT = foreign.named_struct( "Windows.Win32.Networking.WinInet.HTTP_WEB_SOCKET_ASYNC_RESULT", [ 
+    "AsyncResult:Windows.Win32.Networking.WinInet.INTERNET_ASYNC_RESULT", 
+    "Operation:int", 
+    "BufferType:int", 
+    "dwBytesTransferred:uint"
+]); 
+
+
+Win32.ProofOfPossessionCookieInfoManager = foreign.named_struct( "Windows.Win32.Networking.WinInet.ProofOfPossessionCookieInfoManager", [ 
+    
+]); 
+
+
+Win32.ProofOfPossessionCookieInfo = foreign.named_struct( "Windows.Win32.Networking.WinInet.ProofOfPossessionCookieInfo", [ 
+    "name:wstr", 
+    "data:wstr", 
+    "flags:uint", 
+    "p3pHeader:wstr"
+]); 
+
+Win32.DIALPROP_USERNAME = "UserName";
+Win32.DIALPROP_PASSWORD = "Password";
+Win32.DIALPROP_DOMAIN = "Domain";
+Win32.DIALPROP_SAVEPASSWORD = "SavePassword";
+Win32.DIALPROP_REDIALCOUNT = "RedialCount";
+Win32.DIALPROP_REDIALINTERVAL = "RedialInterval";
+Win32.DIALPROP_PHONENUMBER = "PhoneNumber";
+Win32.DIALPROP_LASTERROR = "LastError";
+Win32.DIALPROP_RESOLVEDPHONE = "ResolvedPhone";
+Win32.DIALENG_OperationComplete = 65536;
+Win32.DIALENG_RedialAttempt = 65537;
+Win32.DIALENG_RedialWait = 65538;
+Win32.INTERNET_INVALID_PORT_NUMBER = 0;
+Win32.INTERNET_DEFAULT_FTP_PORT = 21;
+Win32.INTERNET_DEFAULT_GOPHER_PORT = 70;
+Win32.INTERNET_DEFAULT_SOCKS_PORT = 1080;
+Win32.INTERNET_MAX_HOST_NAME_LENGTH = 256;
+Win32.INTERNET_MAX_USER_NAME_LENGTH = 128;
+Win32.INTERNET_MAX_PASSWORD_LENGTH = 128;
+Win32.INTERNET_MAX_PORT_NUMBER_LENGTH = 5;
+Win32.INTERNET_MAX_PORT_NUMBER_VALUE = 65535;
+Win32.INTERNET_KEEP_ALIVE_UNKNOWN = 4294967295;
+Win32.INTERNET_KEEP_ALIVE_ENABLED = 1;
+Win32.INTERNET_KEEP_ALIVE_DISABLED = 0;
+Win32.INTERNET_REQFLAG_FROM_CACHE = 1;
+Win32.INTERNET_REQFLAG_ASYNC = 2;
+Win32.INTERNET_REQFLAG_VIA_PROXY = 4;
+Win32.INTERNET_REQFLAG_NO_HEADERS = 8;
+Win32.INTERNET_REQFLAG_PASSIVE = 16;
+Win32.INTERNET_REQFLAG_CACHE_WRITE_DISABLED = 64;
+Win32.INTERNET_REQFLAG_NET_TIMEOUT = 128;
+Win32.INTERNET_FLAG_IDN_DIRECT = 1;
+Win32.INTERNET_FLAG_IDN_PROXY = 2;
+Win32.INTERNET_FLAG_RELOAD = 2147483648;
+Win32.INTERNET_FLAG_RAW_DATA = 1073741824;
+Win32.INTERNET_FLAG_EXISTING_CONNECT = 536870912;
+Win32.INTERNET_FLAG_ASYNC = 268435456;
+Win32.INTERNET_FLAG_PASSIVE = 134217728;
+Win32.INTERNET_FLAG_NO_CACHE_WRITE = 67108864;
+Win32.INTERNET_FLAG_DONT_CACHE = 67108864;
+Win32.INTERNET_FLAG_MAKE_PERSISTENT = 33554432;
+Win32.INTERNET_FLAG_FROM_CACHE = 16777216;
+Win32.INTERNET_FLAG_OFFLINE = 16777216;
+Win32.INTERNET_FLAG_SECURE = 8388608;
+Win32.INTERNET_FLAG_KEEP_CONNECTION = 4194304;
+Win32.INTERNET_FLAG_NO_AUTO_REDIRECT = 2097152;
+Win32.INTERNET_FLAG_READ_PREFETCH = 1048576;
+Win32.INTERNET_FLAG_NO_COOKIES = 524288;
+Win32.INTERNET_FLAG_NO_AUTH = 262144;
+Win32.INTERNET_FLAG_CACHE_IF_NET_FAIL = 65536;
+Win32.INTERNET_FLAG_IGNORE_REDIRECT_TO_HTTP = 32768;
+Win32.INTERNET_FLAG_IGNORE_REDIRECT_TO_HTTPS = 16384;
+Win32.INTERNET_FLAG_IGNORE_CERT_DATE_INVALID = 8192;
+Win32.INTERNET_FLAG_IGNORE_CERT_CN_INVALID = 4096;
+Win32.INTERNET_FLAG_RESYNCHRONIZE = 2048;
+Win32.INTERNET_FLAG_HYPERLINK = 1024;
+Win32.INTERNET_FLAG_NO_UI = 512;
+Win32.INTERNET_FLAG_PRAGMA_NOCACHE = 256;
+Win32.INTERNET_FLAG_CACHE_ASYNC = 128;
+Win32.INTERNET_FLAG_FORMS_SUBMIT = 64;
+Win32.INTERNET_FLAG_FWD_BACK = 32;
+Win32.INTERNET_FLAG_NEED_FILE = 16;
+Win32.INTERNET_FLAG_MUST_CACHE_REQUEST = 16;
+Win32.INTERNET_ERROR_MASK_INSERT_CDROM = 1;
+Win32.INTERNET_ERROR_MASK_COMBINED_SEC_CERT = 2;
+Win32.INTERNET_ERROR_MASK_NEED_MSN_SSPI_PKG = 4;
+Win32.INTERNET_ERROR_MASK_LOGIN_FAILURE_DISPLAY_ENTITY_BODY = 8;
+Win32.WININET_API_FLAG_ASYNC = 1;
+Win32.WININET_API_FLAG_SYNC = 4;
+Win32.WININET_API_FLAG_USE_CONTEXT = 8;
+Win32.INTERNET_NO_CALLBACK = 0;
+Win32.IDSI_FLAG_KEEP_ALIVE = 1;
+Win32.IDSI_FLAG_SECURE = 2;
+Win32.IDSI_FLAG_PROXY = 4;
+Win32.IDSI_FLAG_TUNNEL = 8;
+Win32.INTERNET_PER_CONN_FLAGS_UI = 10;
+Win32.PROXY_TYPE_DIRECT = 1;
+Win32.PROXY_TYPE_PROXY = 2;
+Win32.PROXY_TYPE_AUTO_PROXY_URL = 4;
+Win32.PROXY_TYPE_AUTO_DETECT = 8;
+Win32.AUTO_PROXY_FLAG_USER_SET = 1;
+Win32.AUTO_PROXY_FLAG_ALWAYS_DETECT = 2;
+Win32.AUTO_PROXY_FLAG_DETECTION_RUN = 4;
+Win32.AUTO_PROXY_FLAG_MIGRATED = 8;
+Win32.AUTO_PROXY_FLAG_DONT_CACHE_PROXY_RESULT = 16;
+Win32.AUTO_PROXY_FLAG_CACHE_INIT_RUN = 32;
+Win32.AUTO_PROXY_FLAG_DETECTION_SUSPECT = 64;
+Win32.ISO_FORCE_DISCONNECTED = 1;
+Win32.INTERNET_RFC1123_FORMAT = 0;
+Win32.INTERNET_RFC1123_BUFSIZE = 30;
+Win32.ICU_USERNAME = 1073741824;
+Win32.INTERNET_OPEN_TYPE_PRECONFIG_WITH_NO_AUTOPROXY = 4;
+Win32.INTERNET_SERVICE_FTP = 1;
+Win32.INTERNET_SERVICE_GOPHER = 2;
+Win32.INTERNET_SERVICE_HTTP = 3;
+Win32.IRF_ASYNC = 1;
+Win32.IRF_SYNC = 4;
+Win32.IRF_USE_CONTEXT = 8;
+Win32.IRF_NO_WAIT = 8;
+Win32.ISO_GLOBAL = 1;
+Win32.ISO_REGISTRY = 2;
+Win32.INTERNET_OPTION_CALLBACK = 1;
+Win32.INTERNET_OPTION_CONNECT_TIMEOUT = 2;
+Win32.INTERNET_OPTION_CONNECT_RETRIES = 3;
+Win32.INTERNET_OPTION_CONNECT_BACKOFF = 4;
+Win32.INTERNET_OPTION_SEND_TIMEOUT = 5;
+Win32.INTERNET_OPTION_CONTROL_SEND_TIMEOUT = 5;
+Win32.INTERNET_OPTION_RECEIVE_TIMEOUT = 6;
+Win32.INTERNET_OPTION_CONTROL_RECEIVE_TIMEOUT = 6;
+Win32.INTERNET_OPTION_DATA_SEND_TIMEOUT = 7;
+Win32.INTERNET_OPTION_DATA_RECEIVE_TIMEOUT = 8;
+Win32.INTERNET_OPTION_HANDLE_TYPE = 9;
+Win32.INTERNET_OPTION_LISTEN_TIMEOUT = 11;
+Win32.INTERNET_OPTION_READ_BUFFER_SIZE = 12;
+Win32.INTERNET_OPTION_WRITE_BUFFER_SIZE = 13;
+Win32.INTERNET_OPTION_ASYNC_ID = 15;
+Win32.INTERNET_OPTION_ASYNC_PRIORITY = 16;
+Win32.INTERNET_OPTION_PARENT_HANDLE = 21;
+Win32.INTERNET_OPTION_KEEP_CONNECTION = 22;
+Win32.INTERNET_OPTION_REQUEST_FLAGS = 23;
+Win32.INTERNET_OPTION_EXTENDED_ERROR = 24;
+Win32.INTERNET_OPTION_OFFLINE_MODE = 26;
+Win32.INTERNET_OPTION_CACHE_STREAM_HANDLE = 27;
+Win32.INTERNET_OPTION_USERNAME = 28;
+Win32.INTERNET_OPTION_PASSWORD = 29;
+Win32.INTERNET_OPTION_ASYNC = 30;
+Win32.INTERNET_OPTION_SECURITY_FLAGS = 31;
+Win32.INTERNET_OPTION_SECURITY_CERTIFICATE_STRUCT = 32;
+Win32.INTERNET_OPTION_DATAFILE_NAME = 33;
+Win32.INTERNET_OPTION_URL = 34;
+Win32.INTERNET_OPTION_SECURITY_CERTIFICATE = 35;
+Win32.INTERNET_OPTION_SECURITY_KEY_BITNESS = 36;
+Win32.INTERNET_OPTION_REFRESH = 37;
+Win32.INTERNET_OPTION_PROXY = 38;
+Win32.INTERNET_OPTION_SETTINGS_CHANGED = 39;
+Win32.INTERNET_OPTION_VERSION = 40;
+Win32.INTERNET_OPTION_USER_AGENT = 41;
+Win32.INTERNET_OPTION_END_BROWSER_SESSION = 42;
+Win32.INTERNET_OPTION_PROXY_USERNAME = 43;
+Win32.INTERNET_OPTION_PROXY_PASSWORD = 44;
+Win32.INTERNET_OPTION_CONTEXT_VALUE = 45;
+Win32.INTERNET_OPTION_CONNECT_LIMIT = 46;
+Win32.INTERNET_OPTION_SECURITY_SELECT_CLIENT_CERT = 47;
+Win32.INTERNET_OPTION_POLICY = 48;
+Win32.INTERNET_OPTION_DISCONNECTED_TIMEOUT = 49;
+Win32.INTERNET_OPTION_CONNECTED_STATE = 50;
+Win32.INTERNET_OPTION_IDLE_STATE = 51;
+Win32.INTERNET_OPTION_OFFLINE_SEMANTICS = 52;
+Win32.INTERNET_OPTION_SECONDARY_CACHE_KEY = 53;
+Win32.INTERNET_OPTION_CALLBACK_FILTER = 54;
+Win32.INTERNET_OPTION_CONNECT_TIME = 55;
+Win32.INTERNET_OPTION_SEND_THROUGHPUT = 56;
+Win32.INTERNET_OPTION_RECEIVE_THROUGHPUT = 57;
+Win32.INTERNET_OPTION_REQUEST_PRIORITY = 58;
+Win32.INTERNET_OPTION_HTTP_VERSION = 59;
+Win32.INTERNET_OPTION_RESET_URLCACHE_SESSION = 60;
+Win32.INTERNET_OPTION_ERROR_MASK = 62;
+Win32.INTERNET_OPTION_FROM_CACHE_TIMEOUT = 63;
+Win32.INTERNET_OPTION_BYPASS_EDITED_ENTRY = 64;
+Win32.INTERNET_OPTION_HTTP_DECODING = 65;
+Win32.INTERNET_OPTION_DIAGNOSTIC_SOCKET_INFO = 67;
+Win32.INTERNET_OPTION_CODEPAGE = 68;
+Win32.INTERNET_OPTION_CACHE_TIMESTAMPS = 69;
+Win32.INTERNET_OPTION_DISABLE_AUTODIAL = 70;
+Win32.INTERNET_OPTION_MAX_CONNS_PER_SERVER = 73;
+Win32.INTERNET_OPTION_MAX_CONNS_PER_1_0_SERVER = 74;
+Win32.INTERNET_OPTION_PER_CONNECTION_OPTION = 75;
+Win32.INTERNET_OPTION_DIGEST_AUTH_UNLOAD = 76;
+Win32.INTERNET_OPTION_IGNORE_OFFLINE = 77;
+Win32.INTERNET_OPTION_IDENTITY = 78;
+Win32.INTERNET_OPTION_REMOVE_IDENTITY = 79;
+Win32.INTERNET_OPTION_ALTER_IDENTITY = 80;
+Win32.INTERNET_OPTION_SUPPRESS_BEHAVIOR = 81;
+Win32.INTERNET_OPTION_AUTODIAL_MODE = 82;
+Win32.INTERNET_OPTION_AUTODIAL_CONNECTION = 83;
+Win32.INTERNET_OPTION_CLIENT_CERT_CONTEXT = 84;
+Win32.INTERNET_OPTION_AUTH_FLAGS = 85;
+Win32.INTERNET_OPTION_COOKIES_3RD_PARTY = 86;
+Win32.INTERNET_OPTION_DISABLE_PASSPORT_AUTH = 87;
+Win32.INTERNET_OPTION_SEND_UTF8_SERVERNAME_TO_PROXY = 88;
+Win32.INTERNET_OPTION_EXEMPT_CONNECTION_LIMIT = 89;
+Win32.INTERNET_OPTION_ENABLE_PASSPORT_AUTH = 90;
+Win32.INTERNET_OPTION_HIBERNATE_INACTIVE_WORKER_THREADS = 91;
+Win32.INTERNET_OPTION_ACTIVATE_WORKER_THREADS = 92;
+Win32.INTERNET_OPTION_RESTORE_WORKER_THREAD_DEFAULTS = 93;
+Win32.INTERNET_OPTION_SOCKET_SEND_BUFFER_LENGTH = 94;
+Win32.INTERNET_OPTION_PROXY_SETTINGS_CHANGED = 95;
+Win32.INTERNET_OPTION_DATAFILE_EXT = 96;
+Win32.INTERNET_OPTION_CODEPAGE_PATH = 100;
+Win32.INTERNET_OPTION_CODEPAGE_EXTRA = 101;
+Win32.INTERNET_OPTION_IDN = 102;
+Win32.INTERNET_OPTION_MAX_CONNS_PER_PROXY = 103;
+Win32.INTERNET_OPTION_SUPPRESS_SERVER_AUTH = 104;
+Win32.INTERNET_OPTION_SERVER_CERT_CHAIN_CONTEXT = 105;
+Win32.INTERNET_OPTION_ENABLE_REDIRECT_CACHE_READ = 122;
+Win32.INTERNET_OPTION_COMPRESSED_CONTENT_LENGTH = 147;
+Win32.INTERNET_OPTION_ENABLE_HTTP_PROTOCOL = 148;
+Win32.INTERNET_OPTION_HTTP_PROTOCOL_USED = 149;
+Win32.INTERNET_OPTION_ENCODE_EXTRA = 155;
+Win32.INTERNET_OPTION_HSTS = 157;
+Win32.INTERNET_OPTION_ENTERPRISE_CONTEXT = 159;
+Win32.INTERNET_OPTION_CONNECTION_FILTER = 162;
+Win32.INTERNET_OPTION_REFERER_TOKEN_BINDING_HOSTNAME = 163;
+Win32.INTERNET_OPTION_TOKEN_BINDING_PUBLIC_KEY = 181;
+Win32.INTERNET_OPTION_COOKIES_SAME_SITE_LEVEL = 187;
+Win32.INTERNET_FIRST_OPTION = 1;
+Win32.INTERNET_LAST_OPTION = 187;
+Win32.INTERNET_PRIORITY_FOREGROUND = 1000;
+Win32.HTTP_COOKIES_SAME_SITE_LEVEL_UNKNOWN = 0;
+Win32.HTTP_COOKIES_SAME_SITE_LEVEL_SAME_SITE = 1;
+Win32.HTTP_COOKIES_SAME_SITE_LEVEL_CROSS_SITE_LAX = 2;
+Win32.HTTP_COOKIES_SAME_SITE_LEVEL_CROSS_SITE = 3;
+Win32.HTTP_COOKIES_SAME_SITE_LEVEL_MAX = 3;
+Win32.HTTP_PROTOCOL_FLAG_HTTP2 = 2;
+Win32.HTTP_PROTOCOL_MASK = 2;
+Win32.INTERNET_HANDLE_TYPE_INTERNET = 1;
+Win32.INTERNET_HANDLE_TYPE_CONNECT_FTP = 2;
+Win32.INTERNET_HANDLE_TYPE_CONNECT_GOPHER = 3;
+Win32.INTERNET_HANDLE_TYPE_CONNECT_HTTP = 4;
+Win32.INTERNET_HANDLE_TYPE_FTP_FIND = 5;
+Win32.INTERNET_HANDLE_TYPE_FTP_FIND_HTML = 6;
+Win32.INTERNET_HANDLE_TYPE_FTP_FILE = 7;
+Win32.INTERNET_HANDLE_TYPE_FTP_FILE_HTML = 8;
+Win32.INTERNET_HANDLE_TYPE_GOPHER_FIND = 9;
+Win32.INTERNET_HANDLE_TYPE_GOPHER_FIND_HTML = 10;
+Win32.INTERNET_HANDLE_TYPE_GOPHER_FILE = 11;
+Win32.INTERNET_HANDLE_TYPE_GOPHER_FILE_HTML = 12;
+Win32.INTERNET_HANDLE_TYPE_HTTP_REQUEST = 13;
+Win32.INTERNET_HANDLE_TYPE_FILE_REQUEST = 14;
+Win32.AUTH_FLAG_DISABLE_NEGOTIATE = 1;
+Win32.AUTH_FLAG_ENABLE_NEGOTIATE = 2;
+Win32.AUTH_FLAG_DISABLE_BASIC_CLEARCHANNEL = 4;
+Win32.AUTH_FLAG_DISABLE_SERVER_AUTH = 8;
+Win32.SECURITY_FLAG_UNKNOWNBIT = 2147483648;
+Win32.SECURITY_FLAG_FORTEZZA = 134217728;
+Win32.SECURITY_FLAG_NORMALBITNESS = 268435456;
+Win32.SECURITY_FLAG_SSL = 2;
+Win32.SECURITY_FLAG_SSL3 = 4;
+Win32.SECURITY_FLAG_PCT = 8;
+Win32.SECURITY_FLAG_PCT4 = 16;
+Win32.SECURITY_FLAG_IETFSSL4 = 32;
+Win32.SECURITY_FLAG_40BIT = 268435456;
+Win32.SECURITY_FLAG_128BIT = 536870912;
+Win32.SECURITY_FLAG_56BIT = 1073741824;
+Win32.SECURITY_FLAG_IGNORE_REVOCATION = 128;
+Win32.SECURITY_FLAG_IGNORE_WRONG_USAGE = 512;
+Win32.SECURITY_FLAG_IGNORE_WEAK_SIGNATURE = 65536;
+Win32.SECURITY_FLAG_IGNORE_REDIRECT_TO_HTTPS = 16384;
+Win32.SECURITY_FLAG_IGNORE_REDIRECT_TO_HTTP = 32768;
+Win32.SECURITY_FLAG_OPT_IN_WEAK_SIGNATURE = 131072;
+Win32.AUTODIAL_MODE_NEVER = 1;
+Win32.AUTODIAL_MODE_ALWAYS = 2;
+Win32.AUTODIAL_MODE_NO_NETWORK_PRESENT = 4;
+Win32.INTERNET_STATUS_RESOLVING_NAME = 10;
+Win32.INTERNET_STATUS_NAME_RESOLVED = 11;
+Win32.INTERNET_STATUS_CONNECTING_TO_SERVER = 20;
+Win32.INTERNET_STATUS_CONNECTED_TO_SERVER = 21;
+Win32.INTERNET_STATUS_SENDING_REQUEST = 30;
+Win32.INTERNET_STATUS_REQUEST_SENT = 31;
+Win32.INTERNET_STATUS_RECEIVING_RESPONSE = 40;
+Win32.INTERNET_STATUS_RESPONSE_RECEIVED = 41;
+Win32.INTERNET_STATUS_CTL_RESPONSE_RECEIVED = 42;
+Win32.INTERNET_STATUS_PREFETCH = 43;
+Win32.INTERNET_STATUS_CLOSING_CONNECTION = 50;
+Win32.INTERNET_STATUS_CONNECTION_CLOSED = 51;
+Win32.INTERNET_STATUS_HANDLE_CREATED = 60;
+Win32.INTERNET_STATUS_HANDLE_CLOSING = 70;
+Win32.INTERNET_STATUS_DETECTING_PROXY = 80;
+Win32.INTERNET_STATUS_REQUEST_COMPLETE = 100;
+Win32.INTERNET_STATUS_REDIRECT = 110;
+Win32.INTERNET_STATUS_INTERMEDIATE_RESPONSE = 120;
+Win32.INTERNET_STATUS_USER_INPUT_REQUIRED = 140;
+Win32.INTERNET_STATUS_STATE_CHANGE = 200;
+Win32.INTERNET_STATUS_COOKIE_SENT = 320;
+Win32.INTERNET_STATUS_COOKIE_RECEIVED = 321;
+Win32.INTERNET_STATUS_PRIVACY_IMPACTED = 324;
+Win32.INTERNET_STATUS_P3P_HEADER = 325;
+Win32.INTERNET_STATUS_P3P_POLICYREF = 326;
+Win32.INTERNET_STATUS_COOKIE_HISTORY = 327;
+Win32.MAX_GOPHER_DISPLAY_TEXT = 128;
+Win32.MAX_GOPHER_SELECTOR_TEXT = 256;
+Win32.MAX_GOPHER_HOST_NAME = 256;
+Win32.MAX_GOPHER_CATEGORY_NAME = 128;
+Win32.MAX_GOPHER_ATTRIBUTE_NAME = 128;
+Win32.MIN_GOPHER_ATTRIBUTE_LENGTH = 256;
+Win32.GOPHER_INFO_CATEGORY = "+INFO";
+Win32.GOPHER_ADMIN_CATEGORY = "+ADMIN";
+Win32.GOPHER_VIEWS_CATEGORY = "+VIEWS";
+Win32.GOPHER_ABSTRACT_CATEGORY = "+ABSTRACT";
+Win32.GOPHER_VERONICA_CATEGORY = "+VERONICA";
+Win32.GOPHER_ADMIN_ATTRIBUTE = "Admin";
+Win32.GOPHER_MOD_DATE_ATTRIBUTE = "Mod-Date";
+Win32.GOPHER_TTL_ATTRIBUTE = "TTL";
+Win32.GOPHER_SCORE_ATTRIBUTE = "Score";
+Win32.GOPHER_RANGE_ATTRIBUTE = "Score-range";
+Win32.GOPHER_SITE_ATTRIBUTE = "Site";
+Win32.GOPHER_ORG_ATTRIBUTE = "Org";
+Win32.GOPHER_LOCATION_ATTRIBUTE = "Loc";
+Win32.GOPHER_GEOG_ATTRIBUTE = "Geog";
+Win32.GOPHER_TIMEZONE_ATTRIBUTE = "TZ";
+Win32.GOPHER_PROVIDER_ATTRIBUTE = "Provider";
+Win32.GOPHER_VERSION_ATTRIBUTE = "Version";
+Win32.GOPHER_ABSTRACT_ATTRIBUTE = "Abstract";
+Win32.GOPHER_VIEW_ATTRIBUTE = "View";
+Win32.GOPHER_TREEWALK_ATTRIBUTE = "treewalk";
+Win32.GOPHER_ATTRIBUTE_ID_BASE = 2882325504;
+Win32.GOPHER_CATEGORY_ID_ALL = 2882325505;
+Win32.GOPHER_CATEGORY_ID_INFO = 2882325506;
+Win32.GOPHER_CATEGORY_ID_ADMIN = 2882325507;
+Win32.GOPHER_CATEGORY_ID_VIEWS = 2882325508;
+Win32.GOPHER_CATEGORY_ID_ABSTRACT = 2882325509;
+Win32.GOPHER_CATEGORY_ID_VERONICA = 2882325510;
+Win32.GOPHER_CATEGORY_ID_ASK = 2882325511;
+Win32.GOPHER_CATEGORY_ID_UNKNOWN = 2882325512;
+Win32.GOPHER_ATTRIBUTE_ID_ALL = 2882325513;
+Win32.GOPHER_ATTRIBUTE_ID_ADMIN = 2882325514;
+Win32.GOPHER_ATTRIBUTE_ID_MOD_DATE = 2882325515;
+Win32.GOPHER_ATTRIBUTE_ID_TTL = 2882325516;
+Win32.GOPHER_ATTRIBUTE_ID_SCORE = 2882325517;
+Win32.GOPHER_ATTRIBUTE_ID_RANGE = 2882325518;
+Win32.GOPHER_ATTRIBUTE_ID_SITE = 2882325519;
+Win32.GOPHER_ATTRIBUTE_ID_ORG = 2882325520;
+Win32.GOPHER_ATTRIBUTE_ID_LOCATION = 2882325521;
+Win32.GOPHER_ATTRIBUTE_ID_GEOG = 2882325522;
+Win32.GOPHER_ATTRIBUTE_ID_TIMEZONE = 2882325523;
+Win32.GOPHER_ATTRIBUTE_ID_PROVIDER = 2882325524;
+Win32.GOPHER_ATTRIBUTE_ID_VERSION = 2882325525;
+Win32.GOPHER_ATTRIBUTE_ID_ABSTRACT = 2882325526;
+Win32.GOPHER_ATTRIBUTE_ID_VIEW = 2882325527;
+Win32.GOPHER_ATTRIBUTE_ID_TREEWALK = 2882325528;
+Win32.GOPHER_ATTRIBUTE_ID_UNKNOWN = 2882325529;
+Win32.HTTP_MAJOR_VERSION = 1;
+Win32.HTTP_MINOR_VERSION = 0;
+Win32.HTTP_VERSIONA = "HTTP/1.0";
+Win32.HTTP_VERSIONW = "HTTP/1.0";
+Win32.HTTP_QUERY_MIME_VERSION = 0;
+Win32.HTTP_QUERY_CONTENT_TYPE = 1;
+Win32.HTTP_QUERY_CONTENT_TRANSFER_ENCODING = 2;
+Win32.HTTP_QUERY_CONTENT_ID = 3;
+Win32.HTTP_QUERY_CONTENT_DESCRIPTION = 4;
+Win32.HTTP_QUERY_CONTENT_LENGTH = 5;
+Win32.HTTP_QUERY_CONTENT_LANGUAGE = 6;
+Win32.HTTP_QUERY_ALLOW = 7;
+Win32.HTTP_QUERY_PUBLIC = 8;
+Win32.HTTP_QUERY_DATE = 9;
+Win32.HTTP_QUERY_EXPIRES = 10;
+Win32.HTTP_QUERY_LAST_MODIFIED = 11;
+Win32.HTTP_QUERY_MESSAGE_ID = 12;
+Win32.HTTP_QUERY_URI = 13;
+Win32.HTTP_QUERY_DERIVED_FROM = 14;
+Win32.HTTP_QUERY_COST = 15;
+Win32.HTTP_QUERY_LINK = 16;
+Win32.HTTP_QUERY_PRAGMA = 17;
+Win32.HTTP_QUERY_VERSION = 18;
+Win32.HTTP_QUERY_STATUS_CODE = 19;
+Win32.HTTP_QUERY_STATUS_TEXT = 20;
+Win32.HTTP_QUERY_RAW_HEADERS = 21;
+Win32.HTTP_QUERY_RAW_HEADERS_CRLF = 22;
+Win32.HTTP_QUERY_CONNECTION = 23;
+Win32.HTTP_QUERY_ACCEPT = 24;
+Win32.HTTP_QUERY_ACCEPT_CHARSET = 25;
+Win32.HTTP_QUERY_ACCEPT_ENCODING = 26;
+Win32.HTTP_QUERY_ACCEPT_LANGUAGE = 27;
+Win32.HTTP_QUERY_AUTHORIZATION = 28;
+Win32.HTTP_QUERY_CONTENT_ENCODING = 29;
+Win32.HTTP_QUERY_FORWARDED = 30;
+Win32.HTTP_QUERY_FROM = 31;
+Win32.HTTP_QUERY_IF_MODIFIED_SINCE = 32;
+Win32.HTTP_QUERY_LOCATION = 33;
+Win32.HTTP_QUERY_ORIG_URI = 34;
+Win32.HTTP_QUERY_REFERER = 35;
+Win32.HTTP_QUERY_RETRY_AFTER = 36;
+Win32.HTTP_QUERY_SERVER = 37;
+Win32.HTTP_QUERY_TITLE = 38;
+Win32.HTTP_QUERY_USER_AGENT = 39;
+Win32.HTTP_QUERY_WWW_AUTHENTICATE = 40;
+Win32.HTTP_QUERY_PROXY_AUTHENTICATE = 41;
+Win32.HTTP_QUERY_ACCEPT_RANGES = 42;
+Win32.HTTP_QUERY_SET_COOKIE = 43;
+Win32.HTTP_QUERY_COOKIE = 44;
+Win32.HTTP_QUERY_REQUEST_METHOD = 45;
+Win32.HTTP_QUERY_REFRESH = 46;
+Win32.HTTP_QUERY_CONTENT_DISPOSITION = 47;
+Win32.HTTP_QUERY_AGE = 48;
+Win32.HTTP_QUERY_CACHE_CONTROL = 49;
+Win32.HTTP_QUERY_CONTENT_BASE = 50;
+Win32.HTTP_QUERY_CONTENT_LOCATION = 51;
+Win32.HTTP_QUERY_CONTENT_MD5 = 52;
+Win32.HTTP_QUERY_CONTENT_RANGE = 53;
+Win32.HTTP_QUERY_ETAG = 54;
+Win32.HTTP_QUERY_HOST = 55;
+Win32.HTTP_QUERY_IF_MATCH = 56;
+Win32.HTTP_QUERY_IF_NONE_MATCH = 57;
+Win32.HTTP_QUERY_IF_RANGE = 58;
+Win32.HTTP_QUERY_IF_UNMODIFIED_SINCE = 59;
+Win32.HTTP_QUERY_MAX_FORWARDS = 60;
+Win32.HTTP_QUERY_PROXY_AUTHORIZATION = 61;
+Win32.HTTP_QUERY_RANGE = 62;
+Win32.HTTP_QUERY_TRANSFER_ENCODING = 63;
+Win32.HTTP_QUERY_UPGRADE = 64;
+Win32.HTTP_QUERY_VARY = 65;
+Win32.HTTP_QUERY_VIA = 66;
+Win32.HTTP_QUERY_WARNING = 67;
+Win32.HTTP_QUERY_EXPECT = 68;
+Win32.HTTP_QUERY_PROXY_CONNECTION = 69;
+Win32.HTTP_QUERY_UNLESS_MODIFIED_SINCE = 70;
+Win32.HTTP_QUERY_ECHO_REQUEST = 71;
+Win32.HTTP_QUERY_ECHO_REPLY = 72;
+Win32.HTTP_QUERY_ECHO_HEADERS = 73;
+Win32.HTTP_QUERY_ECHO_HEADERS_CRLF = 74;
+Win32.HTTP_QUERY_PROXY_SUPPORT = 75;
+Win32.HTTP_QUERY_AUTHENTICATION_INFO = 76;
+Win32.HTTP_QUERY_PASSPORT_URLS = 77;
+Win32.HTTP_QUERY_PASSPORT_CONFIG = 78;
+Win32.HTTP_QUERY_X_CONTENT_TYPE_OPTIONS = 79;
+Win32.HTTP_QUERY_P3P = 80;
+Win32.HTTP_QUERY_X_P2P_PEERDIST = 81;
+Win32.HTTP_QUERY_TRANSLATE = 82;
+Win32.HTTP_QUERY_X_UA_COMPATIBLE = 83;
+Win32.HTTP_QUERY_DEFAULT_STYLE = 84;
+Win32.HTTP_QUERY_X_FRAME_OPTIONS = 85;
+Win32.HTTP_QUERY_X_XSS_PROTECTION = 86;
+Win32.HTTP_QUERY_SET_COOKIE2 = 87;
+Win32.HTTP_QUERY_DO_NOT_TRACK = 88;
+Win32.HTTP_QUERY_KEEP_ALIVE = 89;
+Win32.HTTP_QUERY_HTTP2_SETTINGS = 90;
+Win32.HTTP_QUERY_STRICT_TRANSPORT_SECURITY = 91;
+Win32.HTTP_QUERY_TOKEN_BINDING = 92;
+Win32.HTTP_QUERY_INCLUDE_REFERRED_TOKEN_BINDING_ID = 93;
+Win32.HTTP_QUERY_INCLUDE_REFERER_TOKEN_BINDING_ID = 93;
+Win32.HTTP_QUERY_PUBLIC_KEY_PINS = 94;
+Win32.HTTP_QUERY_PUBLIC_KEY_PINS_REPORT_ONLY = 95;
+Win32.HTTP_QUERY_MAX = 95;
+Win32.HTTP_QUERY_CUSTOM = 65535;
+Win32.HTTP_QUERY_FLAG_REQUEST_HEADERS = 2147483648;
+Win32.HTTP_QUERY_FLAG_SYSTEMTIME = 1073741824;
+Win32.HTTP_QUERY_FLAG_NUMBER = 536870912;
+Win32.HTTP_QUERY_FLAG_COALESCE = 268435456;
+Win32.HTTP_QUERY_FLAG_NUMBER64 = 134217728;
+Win32.HTTP_QUERY_FLAG_COALESCE_WITH_COMMA = 67108864;
+Win32.HTTP_STATUS_MISDIRECTED_REQUEST = 421;
+Win32.HTTP_ADDREQ_INDEX_MASK = 65535;
+Win32.HTTP_ADDREQ_FLAGS_MASK = 4294901760;
+Win32.HSR_ASYNC = 1;
+Win32.HSR_SYNC = 4;
+Win32.HSR_USE_CONTEXT = 8;
+Win32.HSR_INITIATE = 8;
+Win32.HSR_DOWNLOAD = 16;
+Win32.HSR_CHUNKED = 32;
+Win32.INTERNET_COOKIE_IS_SECURE = 1;
+Win32.INTERNET_COOKIE_IS_SESSION = 2;
+Win32.INTERNET_COOKIE_PROMPT_REQUIRED = 32;
+Win32.INTERNET_COOKIE_EVALUATE_P3P = 64;
+Win32.INTERNET_COOKIE_APPLY_P3P = 128;
+Win32.INTERNET_COOKIE_P3P_ENABLED = 256;
+Win32.INTERNET_COOKIE_IS_RESTRICTED = 512;
+Win32.INTERNET_COOKIE_IE6 = 1024;
+Win32.INTERNET_COOKIE_IS_LEGACY = 2048;
+Win32.INTERNET_COOKIE_NON_SCRIPT = 4096;
+Win32.INTERNET_COOKIE_HOST_ONLY = 16384;
+Win32.INTERNET_COOKIE_APPLY_HOST_ONLY = 32768;
+Win32.INTERNET_COOKIE_HOST_ONLY_APPLIED = 524288;
+Win32.INTERNET_COOKIE_SAME_SITE_STRICT = 1048576;
+Win32.INTERNET_COOKIE_SAME_SITE_LAX = 2097152;
+Win32.INTERNET_COOKIE_SAME_SITE_LEVEL_CROSS_SITE = 4194304;
+Win32.FLAG_ICC_FORCE_CONNECTION = 1;
+Win32.FLAGS_ERROR_UI_FILTER_FOR_ERRORS = 1;
+Win32.FLAGS_ERROR_UI_FLAGS_CHANGE_OPTIONS = 2;
+Win32.FLAGS_ERROR_UI_FLAGS_GENERATE_DATA = 4;
+Win32.FLAGS_ERROR_UI_FLAGS_NO_UI = 8;
+Win32.FLAGS_ERROR_UI_SERIALIZE_DIALOGS = 16;
+Win32.INTERNET_ERROR_BASE = 12000;
+Win32.ERROR_INTERNET_OUT_OF_HANDLES = 12001;
+Win32.ERROR_INTERNET_TIMEOUT = 12002;
+Win32.ERROR_INTERNET_EXTENDED_ERROR = 12003;
+Win32.ERROR_INTERNET_INTERNAL_ERROR = 12004;
+Win32.ERROR_INTERNET_INVALID_URL = 12005;
+Win32.ERROR_INTERNET_UNRECOGNIZED_SCHEME = 12006;
+Win32.ERROR_INTERNET_NAME_NOT_RESOLVED = 12007;
+Win32.ERROR_INTERNET_PROTOCOL_NOT_FOUND = 12008;
+Win32.ERROR_INTERNET_INVALID_OPTION = 12009;
+Win32.ERROR_INTERNET_BAD_OPTION_LENGTH = 12010;
+Win32.ERROR_INTERNET_OPTION_NOT_SETTABLE = 12011;
+Win32.ERROR_INTERNET_SHUTDOWN = 12012;
+Win32.ERROR_INTERNET_INCORRECT_USER_NAME = 12013;
+Win32.ERROR_INTERNET_INCORRECT_PASSWORD = 12014;
+Win32.ERROR_INTERNET_LOGIN_FAILURE = 12015;
+Win32.ERROR_INTERNET_INVALID_OPERATION = 12016;
+Win32.ERROR_INTERNET_OPERATION_CANCELLED = 12017;
+Win32.ERROR_INTERNET_INCORRECT_HANDLE_TYPE = 12018;
+Win32.ERROR_INTERNET_INCORRECT_HANDLE_STATE = 12019;
+Win32.ERROR_INTERNET_NOT_PROXY_REQUEST = 12020;
+Win32.ERROR_INTERNET_REGISTRY_VALUE_NOT_FOUND = 12021;
+Win32.ERROR_INTERNET_BAD_REGISTRY_PARAMETER = 12022;
+Win32.ERROR_INTERNET_NO_DIRECT_ACCESS = 12023;
+Win32.ERROR_INTERNET_NO_CONTEXT = 12024;
+Win32.ERROR_INTERNET_NO_CALLBACK = 12025;
+Win32.ERROR_INTERNET_REQUEST_PENDING = 12026;
+Win32.ERROR_INTERNET_INCORRECT_FORMAT = 12027;
+Win32.ERROR_INTERNET_ITEM_NOT_FOUND = 12028;
+Win32.ERROR_INTERNET_CANNOT_CONNECT = 12029;
+Win32.ERROR_INTERNET_CONNECTION_ABORTED = 12030;
+Win32.ERROR_INTERNET_CONNECTION_RESET = 12031;
+Win32.ERROR_INTERNET_FORCE_RETRY = 12032;
+Win32.ERROR_INTERNET_INVALID_PROXY_REQUEST = 12033;
+Win32.ERROR_INTERNET_NEED_UI = 12034;
+Win32.ERROR_INTERNET_HANDLE_EXISTS = 12036;
+Win32.ERROR_INTERNET_SEC_CERT_DATE_INVALID = 12037;
+Win32.ERROR_INTERNET_SEC_CERT_CN_INVALID = 12038;
+Win32.ERROR_INTERNET_HTTP_TO_HTTPS_ON_REDIR = 12039;
+Win32.ERROR_INTERNET_HTTPS_TO_HTTP_ON_REDIR = 12040;
+Win32.ERROR_INTERNET_MIXED_SECURITY = 12041;
+Win32.ERROR_INTERNET_CHG_POST_IS_NON_SECURE = 12042;
+Win32.ERROR_INTERNET_POST_IS_NON_SECURE = 12043;
+Win32.ERROR_INTERNET_CLIENT_AUTH_CERT_NEEDED = 12044;
+Win32.ERROR_INTERNET_INVALID_CA = 12045;
+Win32.ERROR_INTERNET_CLIENT_AUTH_NOT_SETUP = 12046;
+Win32.ERROR_INTERNET_ASYNC_THREAD_FAILED = 12047;
+Win32.ERROR_INTERNET_REDIRECT_SCHEME_CHANGE = 12048;
+Win32.ERROR_INTERNET_DIALOG_PENDING = 12049;
+Win32.ERROR_INTERNET_RETRY_DIALOG = 12050;
+Win32.ERROR_INTERNET_HTTPS_HTTP_SUBMIT_REDIR = 12052;
+Win32.ERROR_INTERNET_INSERT_CDROM = 12053;
+Win32.ERROR_INTERNET_FORTEZZA_LOGIN_NEEDED = 12054;
+Win32.ERROR_INTERNET_SEC_CERT_ERRORS = 12055;
+Win32.ERROR_INTERNET_SEC_CERT_NO_REV = 12056;
+Win32.ERROR_INTERNET_SEC_CERT_REV_FAILED = 12057;
+Win32.ERROR_HTTP_HSTS_REDIRECT_REQUIRED = 12060;
+Win32.ERROR_INTERNET_SEC_CERT_WEAK_SIGNATURE = 12062;
+Win32.ERROR_FTP_TRANSFER_IN_PROGRESS = 12110;
+Win32.ERROR_FTP_DROPPED = 12111;
+Win32.ERROR_FTP_NO_PASSIVE_MODE = 12112;
+Win32.ERROR_GOPHER_PROTOCOL_ERROR = 12130;
+Win32.ERROR_GOPHER_NOT_FILE = 12131;
+Win32.ERROR_GOPHER_DATA_ERROR = 12132;
+Win32.ERROR_GOPHER_END_OF_DATA = 12133;
+Win32.ERROR_GOPHER_INVALID_LOCATOR = 12134;
+Win32.ERROR_GOPHER_INCORRECT_LOCATOR_TYPE = 12135;
+Win32.ERROR_GOPHER_NOT_GOPHER_PLUS = 12136;
+Win32.ERROR_GOPHER_ATTRIBUTE_NOT_FOUND = 12137;
+Win32.ERROR_GOPHER_UNKNOWN_LOCATOR = 12138;
+Win32.ERROR_HTTP_HEADER_NOT_FOUND = 12150;
+Win32.ERROR_HTTP_DOWNLEVEL_SERVER = 12151;
+Win32.ERROR_HTTP_INVALID_SERVER_RESPONSE = 12152;
+Win32.ERROR_HTTP_INVALID_HEADER = 12153;
+Win32.ERROR_HTTP_INVALID_QUERY_REQUEST = 12154;
+Win32.ERROR_HTTP_HEADER_ALREADY_EXISTS = 12155;
+Win32.ERROR_HTTP_REDIRECT_FAILED = 12156;
+Win32.ERROR_HTTP_NOT_REDIRECTED = 12160;
+Win32.ERROR_HTTP_COOKIE_NEEDS_CONFIRMATION = 12161;
+Win32.ERROR_HTTP_COOKIE_DECLINED = 12162;
+Win32.ERROR_HTTP_REDIRECT_NEEDS_CONFIRMATION = 12168;
+Win32.ERROR_INTERNET_SECURITY_CHANNEL_ERROR = 12157;
+Win32.ERROR_INTERNET_UNABLE_TO_CACHE_FILE = 12158;
+Win32.ERROR_INTERNET_TCPIP_NOT_INSTALLED = 12159;
+Win32.ERROR_INTERNET_DISCONNECTED = 12163;
+Win32.ERROR_INTERNET_SERVER_UNREACHABLE = 12164;
+Win32.ERROR_INTERNET_PROXY_SERVER_UNREACHABLE = 12165;
+Win32.ERROR_INTERNET_BAD_AUTO_PROXY_SCRIPT = 12166;
+Win32.ERROR_INTERNET_UNABLE_TO_DOWNLOAD_SCRIPT = 12167;
+Win32.ERROR_INTERNET_SEC_INVALID_CERT = 12169;
+Win32.ERROR_INTERNET_SEC_CERT_REVOKED = 12170;
+Win32.ERROR_INTERNET_FAILED_DUETOSECURITYCHECK = 12171;
+Win32.ERROR_INTERNET_NOT_INITIALIZED = 12172;
+Win32.ERROR_INTERNET_NEED_MSN_SSPI_PKG = 12173;
+Win32.ERROR_INTERNET_LOGIN_FAILURE_DISPLAY_ENTITY_BODY = 12174;
+Win32.ERROR_INTERNET_DECODING_FAILED = 12175;
+Win32.ERROR_INTERNET_CLIENT_AUTH_CERT_NEEDED_PROXY = 12187;
+Win32.ERROR_INTERNET_SECURE_FAILURE_PROXY = 12188;
+Win32.ERROR_INTERNET_HTTP_PROTOCOL_MISMATCH = 12190;
+Win32.ERROR_INTERNET_GLOBAL_CALLBACK_FAILED = 12191;
+Win32.ERROR_INTERNET_FEATURE_DISABLED = 12192;
+Win32.INTERNET_ERROR_LAST = 12192;
+Win32.NORMAL_CACHE_ENTRY = 1;
+Win32.STICKY_CACHE_ENTRY = 4;
+Win32.EDITED_CACHE_ENTRY = 8;
+Win32.TRACK_OFFLINE_CACHE_ENTRY = 16;
+Win32.TRACK_ONLINE_CACHE_ENTRY = 32;
+Win32.SPARSE_CACHE_ENTRY = 65536;
+Win32.COOKIE_CACHE_ENTRY = 1048576;
+Win32.URLHISTORY_CACHE_ENTRY = 2097152;
+Win32.CACHEGROUP_ATTRIBUTE_GET_ALL = 4294967295;
+Win32.CACHEGROUP_ATTRIBUTE_BASIC = 1;
+Win32.CACHEGROUP_ATTRIBUTE_FLAG = 2;
+Win32.CACHEGROUP_ATTRIBUTE_TYPE = 4;
+Win32.CACHEGROUP_ATTRIBUTE_QUOTA = 8;
+Win32.CACHEGROUP_ATTRIBUTE_GROUPNAME = 16;
+Win32.CACHEGROUP_ATTRIBUTE_STORAGE = 32;
+Win32.CACHEGROUP_FLAG_NONPURGEABLE = 1;
+Win32.CACHEGROUP_FLAG_GIDONLY = 4;
+Win32.CACHEGROUP_FLAG_FLUSHURL_ONDELETE = 2;
+Win32.CACHEGROUP_SEARCH_ALL = 0;
+Win32.CACHEGROUP_SEARCH_BYURL = 1;
+Win32.CACHEGROUP_TYPE_INVALID = 1;
+Win32.GROUPNAME_MAX_LENGTH = 120;
+Win32.GROUP_OWNER_STORAGE_SIZE = 4;
+Win32.CACHE_ENTRY_ATTRIBUTE_FC = 4;
+Win32.CACHE_ENTRY_HITRATE_FC = 16;
+Win32.CACHE_ENTRY_MODTIME_FC = 64;
+Win32.CACHE_ENTRY_EXPTIME_FC = 128;
+Win32.CACHE_ENTRY_ACCTIME_FC = 256;
+Win32.CACHE_ENTRY_SYNCTIME_FC = 512;
+Win32.CACHE_ENTRY_HEADERINFO_FC = 1024;
+Win32.CACHE_ENTRY_EXEMPT_DELTA_FC = 2048;
+Win32.INTERNET_CACHE_GROUP_ADD = 0;
+Win32.INTERNET_CACHE_GROUP_REMOVE = 1;
+Win32.INTERNET_DIAL_FORCE_PROMPT = 8192;
+Win32.INTERNET_DIAL_SHOW_OFFLINE = 16384;
+Win32.INTERNET_DIAL_UNATTENDED = 32768;
+Win32.INTERENT_GOONLINE_REFRESH = 1;
+Win32.INTERENT_GOONLINE_NOPROMPT = 2;
+Win32.INTERENT_GOONLINE_MASK = 3;
+Win32.INTERNET_CUSTOMDIAL_CONNECT = 0;
+Win32.INTERNET_CUSTOMDIAL_UNATTENDED = 1;
+Win32.INTERNET_CUSTOMDIAL_DISCONNECT = 2;
+Win32.INTERNET_CUSTOMDIAL_SHOWOFFLINE = 4;
+Win32.INTERNET_CUSTOMDIAL_SAFE_FOR_UNATTENDED = 1;
+Win32.INTERNET_CUSTOMDIAL_WILL_SUPPLY_STATE = 2;
+Win32.INTERNET_CUSTOMDIAL_CAN_HANGUP = 4;
+Win32.INTERNET_DIALSTATE_DISCONNECTED = 1;
+Win32.INTERNET_IDENTITY_FLAG_PRIVATE_CACHE = 1;
+Win32.INTERNET_IDENTITY_FLAG_SHARED_CACHE = 2;
+Win32.INTERNET_IDENTITY_FLAG_CLEAR_DATA = 4;
+Win32.INTERNET_IDENTITY_FLAG_CLEAR_COOKIES = 8;
+Win32.INTERNET_IDENTITY_FLAG_CLEAR_HISTORY = 16;
+Win32.INTERNET_IDENTITY_FLAG_CLEAR_CONTENT = 32;
+Win32.INTERNET_SUPPRESS_RESET_ALL = 0;
+Win32.INTERNET_SUPPRESS_COOKIE_POLICY = 1;
+Win32.INTERNET_SUPPRESS_COOKIE_POLICY_RESET = 2;
+Win32.PRIVACY_TEMPLATE_NO_COOKIES = 0;
+Win32.PRIVACY_TEMPLATE_HIGH = 1;
+Win32.PRIVACY_TEMPLATE_MEDIUM_HIGH = 2;
+Win32.PRIVACY_TEMPLATE_MEDIUM = 3;
+Win32.PRIVACY_TEMPLATE_MEDIUM_LOW = 4;
+Win32.PRIVACY_TEMPLATE_LOW = 5;
+Win32.PRIVACY_TEMPLATE_CUSTOM = 100;
+Win32.PRIVACY_TEMPLATE_ADVANCED = 101;
+Win32.PRIVACY_TEMPLATE_MAX = 5;
+Win32.PRIVACY_TYPE_FIRST_PARTY = 0;
+Win32.PRIVACY_TYPE_THIRD_PARTY = 1;
+Win32.MAX_CACHE_ENTRY_INFO_SIZE = 4096;
+Win32.INTERNET_REQFLAG_FROM_APP_CACHE = 256;
+Win32.INTERNET_FLAG_BGUPDATE = 8;
+Win32.INTERNET_FLAG_FTP_FOLDER_VIEW = 4;
+Win32.INTERNET_PREFETCH_PROGRESS = 0;
+Win32.INTERNET_PREFETCH_COMPLETE = 1;
+Win32.INTERNET_PREFETCH_ABORTED = 2;
+Win32.ISO_FORCE_OFFLINE = 1;
+Win32.DLG_FLAGS_INVALID_CA = 16777216;
+Win32.DLG_FLAGS_SEC_CERT_CN_INVALID = 33554432;
+Win32.DLG_FLAGS_SEC_CERT_DATE_INVALID = 67108864;
+Win32.DLG_FLAGS_WEAK_SIGNATURE = 2097152;
+Win32.DLG_FLAGS_INSECURE_FALLBACK = 4194304;
+Win32.DLG_FLAGS_SEC_CERT_REV_FAILED = 8388608;
+Win32.INTERNET_SERVICE_URL = 0;
+Win32.INTERNET_OPTION_CONTEXT_VALUE_OLD = 10;
+Win32.INTERNET_OPTION_NET_SPEED = 61;
+Win32.INTERNET_OPTION_SECURITY_CONNECTION_INFO = 66;
+Win32.INTERNET_OPTION_DETECT_POST_SEND = 71;
+Win32.INTERNET_OPTION_DISABLE_NTLM_PREAUTH = 72;
+Win32.INTERNET_OPTION_ORIGINAL_CONNECT_FLAGS = 97;
+Win32.INTERNET_OPTION_CERT_ERROR_FLAGS = 98;
+Win32.INTERNET_OPTION_IGNORE_CERT_ERROR_FLAGS = 99;
+Win32.INTERNET_OPTION_SESSION_START_TIME = 106;
+Win32.INTERNET_OPTION_PROXY_CREDENTIALS = 107;
+Win32.INTERNET_OPTION_EXTENDED_CALLBACKS = 108;
+Win32.INTERNET_OPTION_PROXY_FROM_REQUEST = 109;
+Win32.INTERNET_OPTION_ALLOW_FAILED_CONNECT_CONTENT = 110;
+Win32.INTERNET_OPTION_CACHE_PARTITION = 111;
+Win32.INTERNET_OPTION_AUTODIAL_HWND = 112;
+Win32.INTERNET_OPTION_SERVER_CREDENTIALS = 113;
+Win32.INTERNET_OPTION_WPAD_SLEEP = 114;
+Win32.INTERNET_OPTION_FAIL_ON_CACHE_WRITE_ERROR = 115;
+Win32.INTERNET_OPTION_DOWNLOAD_MODE = 116;
+Win32.INTERNET_OPTION_RESPONSE_RESUMABLE = 117;
+Win32.INTERNET_OPTION_CM_HANDLE_COPY_REF = 118;
+Win32.INTERNET_OPTION_CONNECTION_INFO = 120;
+Win32.INTERNET_OPTION_BACKGROUND_CONNECTIONS = 121;
+Win32.INTERNET_OPTION_DO_NOT_TRACK = 123;
+Win32.INTERNET_OPTION_USE_MODIFIED_HEADER_FILTER = 124;
+Win32.INTERNET_OPTION_WWA_MODE = 125;
+Win32.INTERNET_OPTION_UPGRADE_TO_WEB_SOCKET = 126;
+Win32.INTERNET_OPTION_WEB_SOCKET_KEEPALIVE_INTERVAL = 127;
+Win32.INTERNET_OPTION_UNLOAD_NOTIFY_EVENT = 128;
+Win32.INTERNET_OPTION_SOCKET_NODELAY = 129;
+Win32.INTERNET_OPTION_APP_CACHE = 130;
+Win32.INTERNET_OPTION_DEPENDENCY_HANDLE = 131;
+Win32.INTERNET_OPTION_USE_FIRST_AVAILABLE_CONNECTION = 132;
+Win32.INTERNET_OPTION_TIMED_CONNECTION_LIMIT_BYPASS = 133;
+Win32.INTERNET_OPTION_WEB_SOCKET_CLOSE_TIMEOUT = 134;
+Win32.INTERNET_OPTION_FLUSH_STATE = 135;
+Win32.INTERNET_OPTION_DISALLOW_PREMATURE_EOF = 137;
+Win32.INTERNET_OPTION_SOCKET_NOTIFICATION_IOCTL = 138;
+Win32.INTERNET_OPTION_CACHE_ENTRY_EXTRA_DATA = 139;
+Win32.INTERNET_OPTION_MAX_QUERY_BUFFER_SIZE = 140;
+Win32.INTERNET_OPTION_FALSE_START = 141;
+Win32.INTERNET_OPTION_USER_PASS_SERVER_ONLY = 142;
+Win32.INTERNET_OPTION_SERVER_AUTH_SCHEME = 143;
+Win32.INTERNET_OPTION_PROXY_AUTH_SCHEME = 144;
+Win32.INTERNET_OPTION_TUNNEL_ONLY = 145;
+Win32.INTERNET_OPTION_SOURCE_PORT = 146;
+Win32.INTERNET_OPTION_ENABLE_DUO = 148;
+Win32.INTERNET_OPTION_DUO_USED = 149;
+Win32.INTERNET_OPTION_CHUNK_ENCODE_REQUEST = 150;
+Win32.INTERNET_OPTION_SECURE_FAILURE = 151;
+Win32.INTERNET_OPTION_NOTIFY_SENDING_COOKIE = 152;
+Win32.INTERNET_OPTION_CLIENT_CERT_ISSUER_LIST = 153;
+Win32.INTERNET_OPTION_RESET = 154;
+Win32.INTERNET_OPTION_SERVER_ADDRESS_INFO = 156;
+Win32.INTERNET_OPTION_ENABLE_WBOEXT = 158;
+Win32.INTERNET_OPTION_DISABLE_INSECURE_FALLBACK = 160;
+Win32.INTERNET_OPTION_ALLOW_INSECURE_FALLBACK = 161;
+Win32.INTERNET_OPTION_SET_IN_PRIVATE = 164;
+Win32.INTERNET_OPTION_DOWNLOAD_MODE_HANDLE = 165;
+Win32.INTERNET_OPTION_EDGE_COOKIES = 166;
+Win32.INTERNET_OPTION_NO_HTTP_SERVER_AUTH = 167;
+Win32.INTERNET_OPTION_ENABLE_HEADER_CALLBACKS = 168;
+Win32.INTERNET_OPTION_PRESERVE_REQUEST_SERVER_CREDENTIALS_ON_REDIRECT = 169;
+Win32.INTERNET_OPTION_PRESERVE_REFERER_ON_HTTPS_TO_HTTP_REDIRECT = 170;
+Win32.INTERNET_OPTION_TCP_FAST_OPEN = 171;
+Win32.INTERNET_OPTION_SYNC_MODE_AUTOMATIC_SESSION_DISABLED = 172;
+Win32.INTERNET_OPTION_ENABLE_ZLIB_DEFLATE = 173;
+Win32.INTERNET_OPTION_ENCODE_FALLBACK_FOR_REDIRECT_URI = 174;
+Win32.INTERNET_OPTION_EDGE_COOKIES_TEMP = 175;
+Win32.INTERNET_OPTION_OPT_IN_WEAK_SIGNATURE = 176;
+Win32.INTERNET_OPTION_PARSE_LINE_FOLDING = 177;
+Win32.INTERNET_OPTION_FORCE_DECODE = 178;
+Win32.INTERNET_OPTION_COOKIES_APPLY_HOST_ONLY = 179;
+Win32.INTERNET_OPTION_EDGE_MODE = 180;
+Win32.INTERNET_OPTION_CANCEL_CACHE_WRITE = 182;
+Win32.INTERNET_OPTION_AUTH_SCHEME_SELECTED = 183;
+Win32.INTERNET_OPTION_NOCACHE_WRITE_IN_PRIVATE = 184;
+Win32.INTERNET_OPTION_ACTIVITY_ID = 185;
+Win32.INTERNET_OPTION_REQUEST_TIMES = 186;
+Win32.INTERNET_OPTION_GLOBAL_CALLBACK = 188;
+Win32.INTERNET_OPTION_ENABLE_TEST_SIGNING = 189;
+Win32.INTERNET_OPTION_DISABLE_PROXY_LINK_LOCAL_NAME_RESOLUTION = 190;
+Win32.INTERNET_OPTION_HTTP_09 = 191;
+Win32.INTERNET_LAST_OPTION_INTERNAL = 191;
+Win32.INTERNET_OPTION_OFFLINE_TIMEOUT = 49;
+Win32.INTERNET_OPTION_LINE_STATE = 50;
+Win32.DUO_PROTOCOL_FLAG_SPDY3 = 1;
+Win32.DUO_PROTOCOL_MASK = 1;
+Win32.AUTH_FLAG_RESET = 0;
+Win32.INTERNET_AUTH_SCHEME_BASIC = 0;
+Win32.INTERNET_AUTH_SCHEME_DIGEST = 1;
+Win32.INTERNET_AUTH_SCHEME_NTLM = 2;
+Win32.INTERNET_AUTH_SCHEME_KERBEROS = 3;
+Win32.INTERNET_AUTH_SCHEME_NEGOTIATE = 4;
+Win32.INTERNET_AUTH_SCHEME_PASSPORT = 5;
+Win32.INTERNET_AUTH_SCHEME_UNKNOWN = 6;
+Win32.INTERNET_STATUS_SENDING_COOKIE = 328;
+Win32.INTERNET_STATUS_REQUEST_HEADERS_SET = 329;
+Win32.INTERNET_STATUS_RESPONSE_HEADERS_SET = 330;
+Win32.INTERNET_STATUS_PROXY_CREDENTIALS = 400;
+Win32.INTERNET_STATUS_SERVER_CREDENTIALS = 401;
+Win32.INTERNET_STATUS_SERVER_CONNECTION_STATE = 410;
+Win32.INTERNET_STATUS_END_BROWSER_SESSION = 420;
+Win32.INTERNET_STATUS_COOKIE = 430;
+Win32.COOKIE_STATE_LB = 0;
+Win32.COOKIE_STATE_UB = 5;
+Win32.MaxPrivacySettings = 16384;
+Win32.INTERNET_STATUS_FILTER_RESOLVING = 1;
+Win32.INTERNET_STATUS_FILTER_RESOLVED = 2;
+Win32.INTERNET_STATUS_FILTER_CONNECTING = 4;
+Win32.INTERNET_STATUS_FILTER_CONNECTED = 8;
+Win32.INTERNET_STATUS_FILTER_SENDING = 16;
+Win32.INTERNET_STATUS_FILTER_SENT = 32;
+Win32.INTERNET_STATUS_FILTER_RECEIVING = 64;
+Win32.INTERNET_STATUS_FILTER_RECEIVED = 128;
+Win32.INTERNET_STATUS_FILTER_CLOSING = 256;
+Win32.INTERNET_STATUS_FILTER_CLOSED = 512;
+Win32.INTERNET_STATUS_FILTER_HANDLE_CREATED = 1024;
+Win32.INTERNET_STATUS_FILTER_HANDLE_CLOSING = 2048;
+Win32.INTERNET_STATUS_FILTER_PREFETCH = 4096;
+Win32.INTERNET_STATUS_FILTER_REDIRECT = 8192;
+Win32.INTERNET_STATUS_FILTER_STATE_CHANGE = 16384;
+Win32.HTTP_ADDREQ_FLAG_RESPONSE_HEADERS = 33554432;
+Win32.HTTP_ADDREQ_FLAG_ALLOW_EMPTY_VALUES = 67108864;
+Win32.COOKIE_DONT_ALLOW = 1;
+Win32.COOKIE_ALLOW = 2;
+Win32.COOKIE_ALLOW_ALL = 4;
+Win32.COOKIE_DONT_ALLOW_ALL = 8;
+Win32.COOKIE_OP_SET = 1;
+Win32.COOKIE_OP_MODIFY = 2;
+Win32.COOKIE_OP_GET = 4;
+Win32.COOKIE_OP_SESSION = 8;
+Win32.COOKIE_OP_PERSISTENT = 16;
+Win32.COOKIE_OP_3RD_PARTY = 32;
+Win32.INTERNET_COOKIE_PERSISTENT_HOST_ONLY = 65536;
+Win32.INTERNET_COOKIE_RESTRICTED_ZONE = 131072;
+Win32.INTERNET_COOKIE_EDGE_COOKIES = 262144;
+Win32.INTERNET_COOKIE_ALL_COOKIES = 536870912;
+Win32.INTERNET_COOKIE_NO_CALLBACK = 1073741824;
+Win32.INTERNET_COOKIE_ECTX_3RDPARTY = 2147483648;
+Win32.FLAGS_ERROR_UI_SHOW_IDN_HOSTNAME = 32;
+Win32.ERROR_INTERNET_NO_NEW_CONTAINERS = 12051;
+Win32.ERROR_INTERNET_SOURCE_PORT_IN_USE = 12058;
+Win32.ERROR_INTERNET_INSECURE_FALLBACK_REQUIRED = 12059;
+Win32.ERROR_INTERNET_PROXY_ALERT = 12061;
+Win32.ERROR_INTERNET_NO_CM_CONNECTION = 12080;
+Win32.ERROR_HTTP_PUSH_STATUS_CODE_NOT_SUPPORTED = 12147;
+Win32.ERROR_HTTP_PUSH_RETRY_NOT_SUPPORTED = 12148;
+Win32.ERROR_HTTP_PUSH_ENABLE_FAILED = 12149;
+Win32.ERROR_INTERNET_DISALLOW_INPRIVATE = 12189;
+Win32.ERROR_INTERNET_OFFLINE = 12163;
+Win32.INTERNET_INTERNAL_ERROR_BASE = 12900;
+Win32.ERROR_INTERNET_INTERNAL_SOCKET_ERROR = 12901;
+Win32.ERROR_INTERNET_CONNECTION_AVAILABLE = 12902;
+Win32.ERROR_INTERNET_NO_KNOWN_SERVERS = 12903;
+Win32.ERROR_INTERNET_PING_FAILED = 12904;
+Win32.ERROR_INTERNET_NO_PING_SUPPORT = 12905;
+Win32.ERROR_INTERNET_CACHE_SUCCESS = 12906;
+Win32.ERROR_HTTP_COOKIE_NEEDS_CONFIRMATION_EX = 12907;
+Win32.HTTP_1_1_CACHE_ENTRY = 64;
+Win32.STATIC_CACHE_ENTRY = 128;
+Win32.MUST_REVALIDATE_CACHE_ENTRY = 256;
+Win32.SHORTPATH_CACHE_ENTRY = 512;
+Win32.DOWNLOAD_CACHE_ENTRY = 1024;
+Win32.REDIRECT_CACHE_ENTRY = 2048;
+Win32.COOKIE_ACCEPTED_CACHE_ENTRY = 4096;
+Win32.COOKIE_LEASHED_CACHE_ENTRY = 8192;
+Win32.COOKIE_DOWNGRADED_CACHE_ENTRY = 16384;
+Win32.COOKIE_REJECTED_CACHE_ENTRY = 32768;
+Win32.PRIVACY_MODE_CACHE_ENTRY = 131072;
+Win32.XDR_CACHE_ENTRY = 262144;
+Win32.IMMUTABLE_CACHE_ENTRY = 524288;
+Win32.PENDING_DELETE_CACHE_ENTRY = 4194304;
+Win32.OTHER_USER_CACHE_ENTRY = 8388608;
+Win32.PRIVACY_IMPACTED_CACHE_ENTRY = 33554432;
+Win32.POST_RESPONSE_CACHE_ENTRY = 67108864;
+Win32.INSTALLED_CACHE_ENTRY = 268435456;
+Win32.POST_CHECK_CACHE_ENTRY = 536870912;
+Win32.IDENTITY_CACHE_ENTRY = 2147483648;
+Win32.ANY_CACHE_ENTRY = 4294967295;
+Win32.CACHEGROUP_FLAG_VALID = 7;
+Win32.CACHEGROUP_ID_BUILTIN_STICKY = 1152921504606846983;
+Win32.INTERNET_CACHE_FLAG_ALLOW_COLLISIONS = 256;
+Win32.INTERNET_CACHE_FLAG_INSTALLED_ENTRY = 512;
+Win32.INTERNET_CACHE_FLAG_ENTRY_OR_MAPPING = 1024;
+Win32.INTERNET_CACHE_FLAG_ADD_FILENAME_ONLY = 2048;
+Win32.INTERNET_CACHE_FLAG_GET_STRUCT_ONLY = 4096;
+Win32.CACHE_ENTRY_TYPE_FC = 4096;
+Win32.CACHE_ENTRY_MODIFY_DATA_FC = 2147483648;
+Win32.INTERNET_CACHE_CONTAINER_NOSUBDIRS = 1;
+Win32.INTERNET_CACHE_CONTAINER_AUTODELETE = 2;
+Win32.INTERNET_CACHE_CONTAINER_RESERVED1 = 4;
+Win32.INTERNET_CACHE_CONTAINER_NODESKTOPINIT = 8;
+Win32.INTERNET_CACHE_CONTAINER_MAP_ENABLED = 16;
+Win32.INTERNET_CACHE_CONTAINER_BLOOM_FILTER = 32;
+Win32.INTERNET_CACHE_CONTAINER_SHARE_READ = 256;
+Win32.INTERNET_CACHE_CONTAINER_SHARE_READ_WRITE = 768;
+Win32.CACHE_FIND_CONTAINER_RETURN_NOCHANGE = 1;
+Win32.CACHE_HEADER_DATA_CURRENT_SETTINGS_VERSION = 0;
+Win32.CACHE_HEADER_DATA_CONLIST_CHANGE_COUNT = 1;
+Win32.CACHE_HEADER_DATA_COOKIE_CHANGE_COUNT = 2;
+Win32.CACHE_HEADER_DATA_NOTIFICATION_HWND = 3;
+Win32.CACHE_HEADER_DATA_NOTIFICATION_MESG = 4;
+Win32.CACHE_HEADER_DATA_ROOTGROUP_OFFSET = 5;
+Win32.CACHE_HEADER_DATA_GID_LOW = 6;
+Win32.CACHE_HEADER_DATA_GID_HIGH = 7;
+Win32.CACHE_HEADER_DATA_LAST_SCAVENGE_TIMESTAMP = 8;
+Win32.CACHE_HEADER_DATA_CACHE_READ_COUNT_SINCE_LAST_SCAVENGE = 9;
+Win32.CACHE_HEADER_DATA_CACHE_WRITE_COUNT_SINCE_LAST_SCAVENGE = 10;
+Win32.CACHE_HEADER_DATA_HSTS_CHANGE_COUNT = 11;
+Win32.CACHE_HEADER_DATA_CACHE_RESERVED_12 = 12;
+Win32.CACHE_HEADER_DATA_CACHE_RESERVED_13 = 13;
+Win32.CACHE_HEADER_DATA_SSL_STATE_COUNT = 14;
+Win32.CACHE_HEADER_DATA_DOWNLOAD_PARTIAL = 14;
+Win32.CACHE_HEADER_DATA_CACHE_RESERVED_15 = 15;
+Win32.CACHE_HEADER_DATA_CACHE_RESERVED_16 = 16;
+Win32.CACHE_HEADER_DATA_CACHE_RESERVED_17 = 17;
+Win32.CACHE_HEADER_DATA_CACHE_RESERVED_18 = 18;
+Win32.CACHE_HEADER_DATA_CACHE_RESERVED_19 = 19;
+Win32.CACHE_HEADER_DATA_CACHE_RESERVED_20 = 20;
+Win32.CACHE_HEADER_DATA_NOTIFICATION_FILTER = 21;
+Win32.CACHE_HEADER_DATA_ROOT_LEAK_OFFSET = 22;
+Win32.CACHE_HEADER_DATA_CACHE_RESERVED_23 = 23;
+Win32.CACHE_HEADER_DATA_CACHE_RESERVED_24 = 24;
+Win32.CACHE_HEADER_DATA_CACHE_RESERVED_25 = 25;
+Win32.CACHE_HEADER_DATA_CACHE_RESERVED_26 = 26;
+Win32.CACHE_HEADER_DATA_ROOT_GROUPLIST_OFFSET = 27;
+Win32.CACHE_HEADER_DATA_CACHE_RESERVED_28 = 28;
+Win32.CACHE_HEADER_DATA_CACHE_RESERVED_29 = 29;
+Win32.CACHE_HEADER_DATA_CACHE_RESERVED_30 = 30;
+Win32.CACHE_HEADER_DATA_CACHE_RESERVED_31 = 31;
+Win32.CACHE_HEADER_DATA_LAST = 31;
+Win32.CACHE_NOTIFY_ADD_URL = 1;
+Win32.CACHE_NOTIFY_DELETE_URL = 2;
+Win32.CACHE_NOTIFY_UPDATE_URL = 4;
+Win32.CACHE_NOTIFY_DELETE_ALL = 8;
+Win32.CACHE_NOTIFY_URL_SET_STICKY = 16;
+Win32.CACHE_NOTIFY_URL_UNSET_STICKY = 32;
+Win32.CACHE_NOTIFY_SET_ONLINE = 256;
+Win32.CACHE_NOTIFY_SET_OFFLINE = 512;
+Win32.CACHE_NOTIFY_FILTER_CHANGED = 268435456;
+Win32.APP_CACHE_LOOKUP_NO_MASTER_ONLY = 1;
+Win32.APP_CACHE_ENTRY_TYPE_MASTER = 1;
+Win32.APP_CACHE_ENTRY_TYPE_EXPLICIT = 2;
+Win32.APP_CACHE_ENTRY_TYPE_FALLBACK = 4;
+Win32.APP_CACHE_ENTRY_TYPE_FOREIGN = 8;
+Win32.APP_CACHE_ENTRY_TYPE_MANIFEST = 16;
+Win32.CACHE_CONFIG_CONTENT_QUOTA_FC = 32768;
+Win32.CACHE_CONFIG_TOTAL_CONTENT_QUOTA_FC = 65536;
+Win32.CACHE_CONFIG_APPCONTAINER_CONTENT_QUOTA_FC = 131072;
+Win32.CACHE_CONFIG_APPCONTAINER_TOTAL_CONTENT_QUOTA_FC = 262144;
+Win32.INTERNET_AUTOPROXY_INIT_DEFAULT = 1;
+Win32.INTERNET_AUTOPROXY_INIT_DOWNLOADSYNC = 2;
+Win32.INTERNET_AUTOPROXY_INIT_QUERYSTATE = 4;
+Win32.INTERNET_AUTOPROXY_INIT_ONLYQUERY = 8;
+Win32.REGSTR_DIAL_AUTOCONNECT = "AutoConnect";
+Win32.REGSTR_LEASH_LEGACY_COOKIES = "LeashLegacyCookies";
+Win32.LOCAL_NAMESPACE_PREFIX = "Local\\";
+Win32.LOCAL_NAMESPACE_PREFIX_W = "Local\\";
+Win32.INTERNET_SUPPRESS_COOKIE_PERSIST = 3;
+Win32.INTERNET_SUPPRESS_COOKIE_PERSIST_RESET = 4;
+Win32.HTTP_WEB_SOCKET_MAX_CLOSE_REASON_LENGTH = 123;
+Win32.HTTP_WEB_SOCKET_MIN_KEEPALIVE_VALUE = 10000;
+Win32.INTERNET_GLOBAL_CALLBACK_SENDING_HTTP_HEADERS = 1;
+Win32.InternetTimeFromSystemTimeA = foreign.native( "WININET.dll", "int", "InternetTimeFromSystemTimeA", [ "ptr", "uint", "ptr", "uint" ] ); 
+Win32.InternetTimeFromSystemTimeW = foreign.native( "WININET.dll", "int", "InternetTimeFromSystemTimeW", [ "ptr", "uint", "wstr", "uint" ] ); 
+Win32.InternetTimeFromSystemTime = foreign.native( "WININET.dll", "int", "InternetTimeFromSystemTime", [ "ptr", "uint", "ptr", "uint" ] ); 
+Win32.InternetTimeToSystemTimeA = foreign.native( "WININET.dll", "int", "InternetTimeToSystemTimeA", [ "ptr", "ptr", "uint" ] ); 
+Win32.InternetTimeToSystemTimeW = foreign.native( "WININET.dll", "int", "InternetTimeToSystemTimeW", [ "wstr", "ptr", "uint" ] ); 
+Win32.InternetTimeToSystemTime = foreign.native( "WININET.dll", "int", "InternetTimeToSystemTime", [ "ptr", "ptr", "uint" ] ); 
+Win32.InternetCrackUrlA = foreign.native( "WININET.dll", "int", "InternetCrackUrlA", [ "ptr", "uint", "uint", "ptr" ] ); 
+Win32.InternetCrackUrlW = foreign.native( "WININET.dll", "int", "InternetCrackUrlW", [ "wstr", "uint", "uint", "ptr" ] ); 
+Win32.InternetCreateUrlA = foreign.native( "WININET.dll", "int", "InternetCreateUrlA", [ "ptr", "uint", "ptr", "ptr" ] ); 
+Win32.InternetCreateUrlW = foreign.native( "WININET.dll", "int", "InternetCreateUrlW", [ "ptr", "uint", "wstr", "ptr" ] ); 
+Win32.InternetCanonicalizeUrlA = foreign.native( "WININET.dll", "int", "InternetCanonicalizeUrlA", [ "ptr", "ptr", "ptr", "uint" ] ); 
+Win32.InternetCanonicalizeUrlW = foreign.native( "WININET.dll", "int", "InternetCanonicalizeUrlW", [ "wstr", "wstr", "ptr", "uint" ] ); 
+Win32.InternetCombineUrlA = foreign.native( "WININET.dll", "int", "InternetCombineUrlA", [ "ptr", "ptr", "ptr", "ptr", "uint" ] ); 
+Win32.InternetCombineUrlW = foreign.native( "WININET.dll", "int", "InternetCombineUrlW", [ "wstr", "wstr", "wstr", "ptr", "uint" ] ); 
+Win32.InternetOpenA = foreign.native( "WININET.dll", "ptr", "InternetOpenA", [ "ptr", "uint", "ptr", "ptr", "uint" ] ); 
+Win32.InternetOpenW = foreign.native( "WININET.dll", "ptr", "InternetOpenW", [ "wstr", "uint", "wstr", "wstr", "uint" ] ); 
+Win32.InternetCloseHandle = foreign.native( "WININET.dll", "int", "InternetCloseHandle", [ "ptr" ] ); 
+Win32.InternetConnectA = foreign.native( "WININET.dll", "ptr", "InternetConnectA", [ "ptr", "ptr", "ushort", "ptr", "ptr", "uint", "uint", "ptr" ] ); 
+Win32.InternetConnectW = foreign.native( "WININET.dll", "ptr", "InternetConnectW", [ "ptr", "wstr", "ushort", "wstr", "wstr", "uint", "uint", "ptr" ] ); 
+Win32.InternetOpenUrlA = foreign.native( "WININET.dll", "ptr", "InternetOpenUrlA", [ "ptr", "ptr", "ptr", "uint", "uint", "ptr" ] ); 
+Win32.InternetOpenUrlW = foreign.native( "WININET.dll", "ptr", "InternetOpenUrlW", [ "ptr", "wstr", "wstr", "uint", "uint", "ptr" ] ); 
+Win32.InternetReadFile = foreign.native( "WININET.dll", "int", "InternetReadFile", [ "ptr", "ptr", "uint", "ptr" ] ); 
+Win32.InternetReadFileExA = foreign.native( "WININET.dll", "int", "InternetReadFileExA", [ "ptr", "ptr", "uint", "ptr" ] ); 
+Win32.InternetReadFileExW = foreign.native( "WININET.dll", "int", "InternetReadFileExW", [ "ptr", "ptr", "uint", "ptr" ] ); 
+Win32.InternetSetFilePointer = foreign.native( "WININET.dll", "uint", "InternetSetFilePointer", [ "ptr", "int", "ptr", "uint", "ptr" ] ); 
+Win32.InternetWriteFile = foreign.native( "WININET.dll", "int", "InternetWriteFile", [ "ptr", "ptr", "uint", "ptr" ] ); 
+Win32.InternetQueryDataAvailable = foreign.native( "WININET.dll", "int", "InternetQueryDataAvailable", [ "ptr", "ptr", "uint", "ptr" ] ); 
+Win32.InternetFindNextFileA = foreign.native( "WININET.dll", "int", "InternetFindNextFileA", [ "ptr", "ptr" ] ); 
+Win32.InternetFindNextFileW = foreign.native( "WININET.dll", "int", "InternetFindNextFileW", [ "ptr", "ptr" ] ); 
+Win32.InternetQueryOptionA = foreign.native( "WININET.dll", "int", "InternetQueryOptionA", [ "ptr", "uint", "ptr", "ptr" ] ); 
+Win32.InternetQueryOptionW = foreign.native( "WININET.dll", "int", "InternetQueryOptionW", [ "ptr", "uint", "ptr", "ptr" ] ); 
+Win32.InternetSetOptionA = foreign.native( "WININET.dll", "int", "InternetSetOptionA", [ "ptr", "uint", "ptr", "uint" ] ); 
+Win32.InternetSetOptionW = foreign.native( "WININET.dll", "int", "InternetSetOptionW", [ "ptr", "uint", "ptr", "uint" ] ); 
+Win32.InternetSetOptionExA = foreign.native( "WININET.dll", "int", "InternetSetOptionExA", [ "ptr", "uint", "ptr", "uint", "uint" ] ); 
+Win32.InternetSetOptionExW = foreign.native( "WININET.dll", "int", "InternetSetOptionExW", [ "ptr", "uint", "ptr", "uint", "uint" ] ); 
+Win32.InternetLockRequestFile = foreign.native( "WININET.dll", "int", "InternetLockRequestFile", [ "ptr", "ptr" ] ); 
+Win32.InternetUnlockRequestFile = foreign.native( "WININET.dll", "int", "InternetUnlockRequestFile", [ "ptr" ] ); 
+Win32.InternetGetLastResponseInfoA = foreign.native( "WININET.dll", "int", "InternetGetLastResponseInfoA", [ "ptr", "ptr", "ptr" ] ); 
+Win32.InternetGetLastResponseInfoW = foreign.native( "WININET.dll", "int", "InternetGetLastResponseInfoW", [ "ptr", "wstr", "ptr" ] ); 
+Win32.InternetSetStatusCallbackA = foreign.native( "WININET.dll", "ptr", "InternetSetStatusCallbackA", [ "ptr", "ptr" ] ); 
+Win32.InternetSetStatusCallbackW = foreign.native( "WININET.dll", "ptr", "InternetSetStatusCallbackW", [ "ptr", "ptr" ] ); 
+Win32.InternetSetStatusCallback = foreign.native( "WININET.dll", "ptr", "InternetSetStatusCallback", [ "ptr", "ptr" ] ); 
+Win32.FtpFindFirstFileA = foreign.native( "WININET.dll", "ptr", "FtpFindFirstFileA", [ "ptr", "ptr", "ptr", "uint", "ptr" ] ); 
+Win32.FtpFindFirstFileW = foreign.native( "WININET.dll", "ptr", "FtpFindFirstFileW", [ "ptr", "wstr", "ptr", "uint", "ptr" ] ); 
+Win32.FtpGetFileA = foreign.native( "WININET.dll", "int", "FtpGetFileA", [ "ptr", "ptr", "ptr", "int", "uint", "uint", "ptr" ] ); 
+Win32.FtpGetFileW = foreign.native( "WININET.dll", "int", "FtpGetFileW", [ "ptr", "wstr", "wstr", "int", "uint", "uint", "ptr" ] ); 
+Win32.FtpPutFileA = foreign.native( "WININET.dll", "int", "FtpPutFileA", [ "ptr", "ptr", "ptr", "uint", "ptr" ] ); 
+Win32.FtpPutFileW = foreign.native( "WININET.dll", "int", "FtpPutFileW", [ "ptr", "wstr", "wstr", "uint", "ptr" ] ); 
+Win32.FtpGetFileEx = foreign.native( "WININET.dll", "int", "FtpGetFileEx", [ "ptr", "ptr", "wstr", "int", "uint", "uint", "ptr" ] ); 
+Win32.FtpPutFileEx = foreign.native( "WININET.dll", "int", "FtpPutFileEx", [ "ptr", "wstr", "ptr", "uint", "ptr" ] ); 
+Win32.FtpDeleteFileA = foreign.native( "WININET.dll", "int", "FtpDeleteFileA", [ "ptr", "ptr" ] ); 
+Win32.FtpDeleteFileW = foreign.native( "WININET.dll", "int", "FtpDeleteFileW", [ "ptr", "wstr" ] ); 
+Win32.FtpRenameFileA = foreign.native( "WININET.dll", "int", "FtpRenameFileA", [ "ptr", "ptr", "ptr" ] ); 
+Win32.FtpRenameFileW = foreign.native( "WININET.dll", "int", "FtpRenameFileW", [ "ptr", "wstr", "wstr" ] ); 
+Win32.FtpOpenFileA = foreign.native( "WININET.dll", "ptr", "FtpOpenFileA", [ "ptr", "ptr", "uint", "uint", "ptr" ] ); 
+Win32.FtpOpenFileW = foreign.native( "WININET.dll", "ptr", "FtpOpenFileW", [ "ptr", "wstr", "uint", "uint", "ptr" ] ); 
+Win32.FtpCreateDirectoryA = foreign.native( "WININET.dll", "int", "FtpCreateDirectoryA", [ "ptr", "ptr" ] ); 
+Win32.FtpCreateDirectoryW = foreign.native( "WININET.dll", "int", "FtpCreateDirectoryW", [ "ptr", "wstr" ] ); 
+Win32.FtpRemoveDirectoryA = foreign.native( "WININET.dll", "int", "FtpRemoveDirectoryA", [ "ptr", "ptr" ] ); 
+Win32.FtpRemoveDirectoryW = foreign.native( "WININET.dll", "int", "FtpRemoveDirectoryW", [ "ptr", "wstr" ] ); 
+Win32.FtpSetCurrentDirectoryA = foreign.native( "WININET.dll", "int", "FtpSetCurrentDirectoryA", [ "ptr", "ptr" ] ); 
+Win32.FtpSetCurrentDirectoryW = foreign.native( "WININET.dll", "int", "FtpSetCurrentDirectoryW", [ "ptr", "wstr" ] ); 
+Win32.FtpGetCurrentDirectoryA = foreign.native( "WININET.dll", "int", "FtpGetCurrentDirectoryA", [ "ptr", "ptr", "ptr" ] ); 
+Win32.FtpGetCurrentDirectoryW = foreign.native( "WININET.dll", "int", "FtpGetCurrentDirectoryW", [ "ptr", "wstr", "ptr" ] ); 
+Win32.FtpCommandA = foreign.native( "WININET.dll", "int", "FtpCommandA", [ "ptr", "int", "uint", "ptr", "ptr", "ptr" ] ); 
+Win32.FtpCommandW = foreign.native( "WININET.dll", "int", "FtpCommandW", [ "ptr", "int", "uint", "wstr", "ptr", "ptr" ] ); 
+Win32.FtpGetFileSize = foreign.native( "WININET.dll", "uint", "FtpGetFileSize", [ "ptr", "ptr" ] ); 
+Win32.GopherCreateLocatorA = foreign.native( "WININET.dll", "int", "GopherCreateLocatorA", [ "ptr", "ushort", "ptr", "ptr", "uint", "ptr", "ptr" ] ); 
+Win32.GopherCreateLocatorW = foreign.native( "WININET.dll", "int", "GopherCreateLocatorW", [ "wstr", "ushort", "wstr", "wstr", "uint", "wstr", "ptr" ] ); 
+Win32.GopherGetLocatorTypeA = foreign.native( "WININET.dll", "int", "GopherGetLocatorTypeA", [ "ptr", "ptr" ] ); 
+Win32.GopherGetLocatorTypeW = foreign.native( "WININET.dll", "int", "GopherGetLocatorTypeW", [ "wstr", "ptr" ] ); 
+Win32.GopherFindFirstFileA = foreign.native( "WININET.dll", "ptr", "GopherFindFirstFileA", [ "ptr", "ptr", "ptr", "ptr", "uint", "ptr" ] ); 
+Win32.GopherFindFirstFileW = foreign.native( "WININET.dll", "ptr", "GopherFindFirstFileW", [ "ptr", "wstr", "wstr", "ptr", "uint", "ptr" ] ); 
+Win32.GopherOpenFileA = foreign.native( "WININET.dll", "ptr", "GopherOpenFileA", [ "ptr", "ptr", "ptr", "uint", "ptr" ] ); 
+Win32.GopherOpenFileW = foreign.native( "WININET.dll", "ptr", "GopherOpenFileW", [ "ptr", "wstr", "wstr", "uint", "ptr" ] ); 
+Win32.GopherGetAttributeA = foreign.native( "WININET.dll", "int", "GopherGetAttributeA", [ "ptr", "ptr", "ptr", "ptr", "uint", "ptr", "ptr", "ptr" ] ); 
+Win32.GopherGetAttributeW = foreign.native( "WININET.dll", "int", "GopherGetAttributeW", [ "ptr", "wstr", "wstr", "ptr", "uint", "ptr", "ptr", "ptr" ] ); 
+Win32.HttpOpenRequestA = foreign.native( "WININET.dll", "ptr", "HttpOpenRequestA", [ "ptr", "ptr", "ptr", "ptr", "ptr", "ptr", "uint", "ptr" ] ); 
+Win32.HttpOpenRequestW = foreign.native( "WININET.dll", "ptr", "HttpOpenRequestW", [ "ptr", "wstr", "wstr", "wstr", "wstr", "ptr", "uint", "ptr" ] ); 
+Win32.HttpAddRequestHeadersA = foreign.native( "WININET.dll", "int", "HttpAddRequestHeadersA", [ "ptr", "ptr", "uint", "uint" ] ); 
+Win32.HttpAddRequestHeadersW = foreign.native( "WININET.dll", "int", "HttpAddRequestHeadersW", [ "ptr", "wstr", "uint", "uint" ] ); 
+Win32.HttpSendRequestA = foreign.native( "WININET.dll", "int", "HttpSendRequestA", [ "ptr", "ptr", "uint", "ptr", "uint" ] ); 
+Win32.HttpSendRequestW = foreign.native( "WININET.dll", "int", "HttpSendRequestW", [ "ptr", "wstr", "uint", "ptr", "uint" ] ); 
+Win32.HttpSendRequestExA = foreign.native( "WININET.dll", "int", "HttpSendRequestExA", [ "ptr", "ptr", "ptr", "uint", "ptr" ] ); 
+Win32.HttpSendRequestExW = foreign.native( "WININET.dll", "int", "HttpSendRequestExW", [ "ptr", "ptr", "ptr", "uint", "ptr" ] ); 
+Win32.HttpEndRequestA = foreign.native( "WININET.dll", "int", "HttpEndRequestA", [ "ptr", "ptr", "uint", "ptr" ] ); 
+Win32.HttpEndRequestW = foreign.native( "WININET.dll", "int", "HttpEndRequestW", [ "ptr", "ptr", "uint", "ptr" ] ); 
+Win32.HttpQueryInfoA = foreign.native( "WININET.dll", "int", "HttpQueryInfoA", [ "ptr", "uint", "ptr", "ptr", "ptr" ] ); 
+Win32.HttpQueryInfoW = foreign.native( "WININET.dll", "int", "HttpQueryInfoW", [ "ptr", "uint", "ptr", "ptr", "ptr" ] ); 
+Win32.InternetSetCookieA = foreign.native( "WININET.dll", "int", "InternetSetCookieA", [ "ptr", "ptr", "ptr" ] ); 
+Win32.InternetSetCookieW = foreign.native( "WININET.dll", "int", "InternetSetCookieW", [ "wstr", "wstr", "wstr" ] ); 
+Win32.InternetGetCookieA = foreign.native( "WININET.dll", "int", "InternetGetCookieA", [ "ptr", "ptr", "ptr", "ptr" ] ); 
+Win32.InternetGetCookieW = foreign.native( "WININET.dll", "int", "InternetGetCookieW", [ "wstr", "wstr", "wstr", "ptr" ] ); 
+Win32.InternetSetCookieExA = foreign.native( "WININET.dll", "uint", "InternetSetCookieExA", [ "ptr", "ptr", "ptr", "uint", "ptr" ] ); 
+Win32.InternetSetCookieExW = foreign.native( "WININET.dll", "uint", "InternetSetCookieExW", [ "wstr", "wstr", "wstr", "uint", "ptr" ] ); 
+Win32.InternetGetCookieExA = foreign.native( "WININET.dll", "int", "InternetGetCookieExA", [ "ptr", "ptr", "ptr", "ptr", "uint", "ptr" ] ); 
+Win32.InternetGetCookieExW = foreign.native( "WININET.dll", "int", "InternetGetCookieExW", [ "wstr", "wstr", "wstr", "ptr", "uint", "ptr" ] ); 
+Win32.InternetFreeCookies = foreign.native( "WININET.dll", "void", "InternetFreeCookies", [ "ptr", "uint" ] ); 
+Win32.InternetGetCookieEx2 = foreign.native( "WININET.dll", "uint", "InternetGetCookieEx2", [ "wstr", "wstr", "uint", "ptr", "ptr" ] ); 
+Win32.InternetSetCookieEx2 = foreign.native( "WININET.dll", "uint", "InternetSetCookieEx2", [ "wstr", "ptr", "wstr", "uint", "ptr" ] ); 
+Win32.InternetAttemptConnect = foreign.native( "WININET.dll", "uint", "InternetAttemptConnect", [ "uint" ] ); 
+Win32.InternetCheckConnectionA = foreign.native( "WININET.dll", "int", "InternetCheckConnectionA", [ "ptr", "uint", "uint" ] ); 
+Win32.InternetCheckConnectionW = foreign.native( "WININET.dll", "int", "InternetCheckConnectionW", [ "wstr", "uint", "uint" ] ); 
+Win32.ResumeSuspendedDownload = foreign.native( "WININET.dll", "int", "ResumeSuspendedDownload", [ "ptr", "uint" ] ); 
+Win32.InternetErrorDlg = foreign.native( "WININET.dll", "uint", "InternetErrorDlg", [ "ptr", "ptr", "uint", "uint", "ptr" ] ); 
+Win32.InternetConfirmZoneCrossingA = foreign.native( "WININET.dll", "uint", "InternetConfirmZoneCrossingA", [ "ptr", "ptr", "ptr", "int" ] ); 
+Win32.InternetConfirmZoneCrossingW = foreign.native( "WININET.dll", "uint", "InternetConfirmZoneCrossingW", [ "ptr", "wstr", "wstr", "int" ] ); 
+Win32.InternetConfirmZoneCrossing = foreign.native( "WININET.dll", "uint", "InternetConfirmZoneCrossing", [ "ptr", "ptr", "ptr", "int" ] ); 
+Win32.CreateUrlCacheEntryA = foreign.native( "WININET.dll", "int", "CreateUrlCacheEntryA", [ "ptr", "uint", "ptr", "ptr", "uint" ] ); 
+Win32.CreateUrlCacheEntryW = foreign.native( "WININET.dll", "int", "CreateUrlCacheEntryW", [ "wstr", "uint", "wstr", "wstr", "uint" ] ); 
+Win32.CommitUrlCacheEntryA = foreign.native( "WININET.dll", "int", "CommitUrlCacheEntryA", [ "ptr", "ptr", "ptr", "ptr", "uint", "ptr", "uint", "ptr", "ptr" ] ); 
+Win32.CommitUrlCacheEntryW = foreign.native( "WININET.dll", "int", "CommitUrlCacheEntryW", [ "wstr", "wstr", "ptr", "ptr", "uint", "wstr", "uint", "wstr", "wstr" ] ); 
+Win32.RetrieveUrlCacheEntryFileA = foreign.native( "WININET.dll", "int", "RetrieveUrlCacheEntryFileA", [ "ptr", "ptr", "ptr", "uint" ] ); 
+Win32.RetrieveUrlCacheEntryFileW = foreign.native( "WININET.dll", "int", "RetrieveUrlCacheEntryFileW", [ "wstr", "ptr", "ptr", "uint" ] ); 
+Win32.UnlockUrlCacheEntryFileA = foreign.native( "WININET.dll", "int", "UnlockUrlCacheEntryFileA", [ "ptr", "uint" ] ); 
+Win32.UnlockUrlCacheEntryFileW = foreign.native( "WININET.dll", "int", "UnlockUrlCacheEntryFileW", [ "wstr", "uint" ] ); 
+Win32.UnlockUrlCacheEntryFile = foreign.native( "WININET.dll", "int", "UnlockUrlCacheEntryFile", [ "ptr", "uint" ] ); 
+Win32.RetrieveUrlCacheEntryStreamA = foreign.native( "WININET.dll", "ptr", "RetrieveUrlCacheEntryStreamA", [ "ptr", "ptr", "ptr", "int", "uint" ] ); 
+Win32.RetrieveUrlCacheEntryStreamW = foreign.native( "WININET.dll", "ptr", "RetrieveUrlCacheEntryStreamW", [ "wstr", "ptr", "ptr", "int", "uint" ] ); 
+Win32.ReadUrlCacheEntryStream = foreign.native( "WININET.dll", "int", "ReadUrlCacheEntryStream", [ "ptr", "uint", "ptr", "ptr", "uint" ] ); 
+Win32.ReadUrlCacheEntryStreamEx = foreign.native( "WININET.dll", "int", "ReadUrlCacheEntryStreamEx", [ "ptr", "ulong", "ptr", "ptr" ] ); 
+Win32.UnlockUrlCacheEntryStream = foreign.native( "WININET.dll", "int", "UnlockUrlCacheEntryStream", [ "ptr", "uint" ] ); 
+Win32.GetUrlCacheEntryInfoA = foreign.native( "WININET.dll", "int", "GetUrlCacheEntryInfoA", [ "ptr", "ptr", "ptr" ] ); 
+Win32.GetUrlCacheEntryInfoW = foreign.native( "WININET.dll", "int", "GetUrlCacheEntryInfoW", [ "wstr", "ptr", "ptr" ] ); 
+Win32.FindFirstUrlCacheGroup = foreign.native( "WININET.dll", "ptr", "FindFirstUrlCacheGroup", [ "uint", "uint", "ptr", "uint", "ptr", "ptr" ] ); 
+Win32.FindNextUrlCacheGroup = foreign.native( "WININET.dll", "int", "FindNextUrlCacheGroup", [ "ptr", "ptr", "ptr" ] ); 
+Win32.GetUrlCacheGroupAttributeA = foreign.native( "WININET.dll", "int", "GetUrlCacheGroupAttributeA", [ "long", "uint", "uint", "ptr", "ptr", "ptr" ] ); 
+Win32.GetUrlCacheGroupAttributeW = foreign.native( "WININET.dll", "int", "GetUrlCacheGroupAttributeW", [ "long", "uint", "uint", "ptr", "ptr", "ptr" ] ); 
+Win32.SetUrlCacheGroupAttributeA = foreign.native( "WININET.dll", "int", "SetUrlCacheGroupAttributeA", [ "long", "uint", "uint", "ptr", "ptr" ] ); 
+Win32.SetUrlCacheGroupAttributeW = foreign.native( "WININET.dll", "int", "SetUrlCacheGroupAttributeW", [ "long", "uint", "uint", "ptr", "ptr" ] ); 
+Win32.GetUrlCacheEntryInfoExA = foreign.native( "WININET.dll", "int", "GetUrlCacheEntryInfoExA", [ "ptr", "ptr", "ptr", "ptr", "ptr", "ptr", "uint" ] ); 
+Win32.GetUrlCacheEntryInfoExW = foreign.native( "WININET.dll", "int", "GetUrlCacheEntryInfoExW", [ "wstr", "ptr", "ptr", "wstr", "ptr", "ptr", "uint" ] ); 
+Win32.SetUrlCacheEntryInfoA = foreign.native( "WININET.dll", "int", "SetUrlCacheEntryInfoA", [ "ptr", "ptr", "uint" ] ); 
+Win32.SetUrlCacheEntryInfoW = foreign.native( "WININET.dll", "int", "SetUrlCacheEntryInfoW", [ "wstr", "ptr", "uint" ] ); 
+Win32.CreateUrlCacheGroup = foreign.native( "WININET.dll", "long", "CreateUrlCacheGroup", [ "uint", "ptr" ] ); 
+Win32.DeleteUrlCacheGroup = foreign.native( "WININET.dll", "int", "DeleteUrlCacheGroup", [ "long", "uint", "ptr" ] ); 
+Win32.SetUrlCacheEntryGroupA = foreign.native( "WININET.dll", "int", "SetUrlCacheEntryGroupA", [ "ptr", "uint", "long", "ptr", "uint", "ptr" ] ); 
+Win32.SetUrlCacheEntryGroupW = foreign.native( "WININET.dll", "int", "SetUrlCacheEntryGroupW", [ "wstr", "uint", "long", "ptr", "uint", "ptr" ] ); 
+Win32.SetUrlCacheEntryGroup = foreign.native( "WININET.dll", "int", "SetUrlCacheEntryGroup", [ "ptr", "uint", "long", "ptr", "uint", "ptr" ] ); 
+Win32.FindFirstUrlCacheEntryExA = foreign.native( "WININET.dll", "ptr", "FindFirstUrlCacheEntryExA", [ "ptr", "uint", "uint", "long", "ptr", "ptr", "ptr", "ptr", "ptr" ] ); 
+Win32.FindFirstUrlCacheEntryExW = foreign.native( "WININET.dll", "ptr", "FindFirstUrlCacheEntryExW", [ "wstr", "uint", "uint", "long", "ptr", "ptr", "ptr", "ptr", "ptr" ] ); 
+Win32.FindNextUrlCacheEntryExA = foreign.native( "WININET.dll", "int", "FindNextUrlCacheEntryExA", [ "ptr", "ptr", "ptr", "ptr", "ptr", "ptr" ] ); 
+Win32.FindNextUrlCacheEntryExW = foreign.native( "WININET.dll", "int", "FindNextUrlCacheEntryExW", [ "ptr", "ptr", "ptr", "ptr", "ptr", "ptr" ] ); 
+Win32.FindFirstUrlCacheEntryA = foreign.native( "WININET.dll", "ptr", "FindFirstUrlCacheEntryA", [ "ptr", "ptr", "ptr" ] ); 
+Win32.FindFirstUrlCacheEntryW = foreign.native( "WININET.dll", "ptr", "FindFirstUrlCacheEntryW", [ "wstr", "ptr", "ptr" ] ); 
+Win32.FindNextUrlCacheEntryA = foreign.native( "WININET.dll", "int", "FindNextUrlCacheEntryA", [ "ptr", "ptr", "ptr" ] ); 
+Win32.FindNextUrlCacheEntryW = foreign.native( "WININET.dll", "int", "FindNextUrlCacheEntryW", [ "ptr", "ptr", "ptr" ] ); 
+Win32.FindCloseUrlCache = foreign.native( "WININET.dll", "int", "FindCloseUrlCache", [ "ptr" ] ); 
+Win32.DeleteUrlCacheEntryA = foreign.native( "WININET.dll", "int", "DeleteUrlCacheEntryA", [ "ptr" ] ); 
+Win32.DeleteUrlCacheEntryW = foreign.native( "WININET.dll", "int", "DeleteUrlCacheEntryW", [ "wstr" ] ); 
+Win32.DeleteUrlCacheEntry = foreign.native( "WININET.dll", "int", "DeleteUrlCacheEntry", [ "ptr" ] ); 
+Win32.InternetDialA = foreign.native( "WININET.dll", "uint", "InternetDialA", [ "ptr", "ptr", "uint", "ptr", "uint" ] ); 
+Win32.InternetDialW = foreign.native( "WININET.dll", "uint", "InternetDialW", [ "ptr", "wstr", "uint", "ptr", "uint" ] ); 
+Win32.InternetDial = foreign.native( "WININET.dll", "uint", "InternetDial", [ "ptr", "ptr", "uint", "ptr", "uint" ] ); 
+Win32.InternetHangUp = foreign.native( "WININET.dll", "uint", "InternetHangUp", [ "ptr", "uint" ] ); 
+Win32.InternetGoOnlineA = foreign.native( "WININET.dll", "int", "InternetGoOnlineA", [ "ptr", "ptr", "uint" ] ); 
+Win32.InternetGoOnlineW = foreign.native( "WININET.dll", "int", "InternetGoOnlineW", [ "wstr", "ptr", "uint" ] ); 
+Win32.InternetGoOnline = foreign.native( "WININET.dll", "int", "InternetGoOnline", [ "ptr", "ptr", "uint" ] ); 
+Win32.InternetAutodial = foreign.native( "WININET.dll", "int", "InternetAutodial", [ "uint", "ptr" ] ); 
+Win32.InternetAutodialHangup = foreign.native( "WININET.dll", "int", "InternetAutodialHangup", [ "uint" ] ); 
+Win32.InternetGetConnectedState = foreign.native( "WININET.dll", "int", "InternetGetConnectedState", [ "ptr", "uint" ] ); 
+Win32.InternetGetConnectedStateExA = foreign.native( "WININET.dll", "int", "InternetGetConnectedStateExA", [ "ptr", "ptr", "uint", "uint" ] ); 
+Win32.InternetGetConnectedStateExW = foreign.native( "WININET.dll", "int", "InternetGetConnectedStateExW", [ "ptr", "wstr", "uint", "uint" ] ); 
+Win32.DeleteWpadCacheForNetworks = foreign.native( "WININET.dll", "int", "DeleteWpadCacheForNetworks", [ "int" ] ); 
+Win32.InternetInitializeAutoProxyDll = foreign.native( "WININET.dll", "int", "InternetInitializeAutoProxyDll", [ "uint" ] ); 
+Win32.DetectAutoProxyUrl = foreign.native( "WININET.dll", "int", "DetectAutoProxyUrl", [ "ptr", "uint", "uint" ] ); 
+Win32.CreateMD5SSOHash = foreign.native( "WININET.dll", "int", "CreateMD5SSOHash", [ "wstr", "wstr", "wstr", "ptr" ] ); 
+Win32.InternetGetConnectedStateEx = foreign.native( "WININET.dll", "int", "InternetGetConnectedStateEx", [ "ptr", "ptr", "uint", "uint" ] ); 
+Win32.InternetSetDialStateA = foreign.native( "WININET.dll", "int", "InternetSetDialStateA", [ "ptr", "uint", "uint" ] ); 
+Win32.InternetSetDialStateW = foreign.native( "WININET.dll", "int", "InternetSetDialStateW", [ "wstr", "uint", "uint" ] ); 
+Win32.InternetSetDialState = foreign.native( "WININET.dll", "int", "InternetSetDialState", [ "ptr", "uint", "uint" ] ); 
+Win32.InternetSetPerSiteCookieDecisionA = foreign.native( "WININET.dll", "int", "InternetSetPerSiteCookieDecisionA", [ "ptr", "uint" ] ); 
+Win32.InternetSetPerSiteCookieDecisionW = foreign.native( "WININET.dll", "int", "InternetSetPerSiteCookieDecisionW", [ "wstr", "uint" ] ); 
+Win32.InternetGetPerSiteCookieDecisionA = foreign.native( "WININET.dll", "int", "InternetGetPerSiteCookieDecisionA", [ "ptr", "ptr" ] ); 
+Win32.InternetGetPerSiteCookieDecisionW = foreign.native( "WININET.dll", "int", "InternetGetPerSiteCookieDecisionW", [ "wstr", "ptr" ] ); 
+Win32.InternetClearAllPerSiteCookieDecisions = foreign.native( "WININET.dll", "int", "InternetClearAllPerSiteCookieDecisions", [  ] ); 
+Win32.InternetEnumPerSiteCookieDecisionA = foreign.native( "WININET.dll", "int", "InternetEnumPerSiteCookieDecisionA", [ "ptr", "ptr", "ptr", "uint" ] ); 
+Win32.InternetEnumPerSiteCookieDecisionW = foreign.native( "WININET.dll", "int", "InternetEnumPerSiteCookieDecisionW", [ "wstr", "ptr", "ptr", "uint" ] ); 
+Win32.PrivacySetZonePreferenceW = foreign.native( "WININET.dll", "uint", "PrivacySetZonePreferenceW", [ "uint", "uint", "uint", "wstr" ] ); 
+Win32.PrivacyGetZonePreferenceW = foreign.native( "WININET.dll", "uint", "PrivacyGetZonePreferenceW", [ "uint", "uint", "ptr", "wstr", "ptr" ] ); 
+Win32.HttpIsHostHstsEnabled = foreign.native( "WININET.dll", "uint", "HttpIsHostHstsEnabled", [ "wstr", "ptr" ] ); 
+Win32.InternetAlgIdToStringA = foreign.native( "WININET.dll", "int", "InternetAlgIdToStringA", [ "uint", "ptr", "ptr", "uint" ] ); 
+Win32.InternetAlgIdToStringW = foreign.native( "WININET.dll", "int", "InternetAlgIdToStringW", [ "uint", "wstr", "ptr", "uint" ] ); 
+Win32.InternetSecurityProtocolToStringA = foreign.native( "WININET.dll", "int", "InternetSecurityProtocolToStringA", [ "uint", "ptr", "ptr", "uint" ] ); 
+Win32.InternetSecurityProtocolToStringW = foreign.native( "WININET.dll", "int", "InternetSecurityProtocolToStringW", [ "uint", "wstr", "ptr", "uint" ] ); 
+Win32.InternetGetSecurityInfoByURLA = foreign.native( "WININET.dll", "int", "InternetGetSecurityInfoByURLA", [ "ptr", "ptr", "ptr" ] ); 
+Win32.InternetGetSecurityInfoByURLW = foreign.native( "WININET.dll", "int", "InternetGetSecurityInfoByURLW", [ "wstr", "ptr", "ptr" ] ); 
+Win32.InternetGetSecurityInfoByURL = foreign.native( "WININET.dll", "int", "InternetGetSecurityInfoByURL", [ "ptr", "ptr", "ptr" ] ); 
+Win32.ShowSecurityInfo = foreign.native( "WININET.dll", "uint", "ShowSecurityInfo", [ "ptr", "ptr" ] ); 
+Win32.ShowX509EncodedCertificate = foreign.native( "WININET.dll", "uint", "ShowX509EncodedCertificate", [ "ptr", "ptr", "uint" ] ); 
+Win32.ShowClientAuthCerts = foreign.native( "WININET.dll", "uint", "ShowClientAuthCerts", [ "ptr" ] ); 
+Win32.ParseX509EncodedCertificateForListBoxEntry = foreign.native( "WININET.dll", "uint", "ParseX509EncodedCertificateForListBoxEntry", [ "ptr", "uint", "ptr", "ptr" ] ); 
+Win32.InternetShowSecurityInfoByURLA = foreign.native( "WININET.dll", "int", "InternetShowSecurityInfoByURLA", [ "ptr", "ptr" ] ); 
+Win32.InternetShowSecurityInfoByURLW = foreign.native( "WININET.dll", "int", "InternetShowSecurityInfoByURLW", [ "wstr", "ptr" ] ); 
+Win32.InternetShowSecurityInfoByURL = foreign.native( "WININET.dll", "int", "InternetShowSecurityInfoByURL", [ "ptr", "ptr" ] ); 
+Win32.InternetFortezzaCommand = foreign.native( "WININET.dll", "int", "InternetFortezzaCommand", [ "uint", "ptr", "ptr" ] ); 
+Win32.InternetQueryFortezzaStatus = foreign.native( "WININET.dll", "int", "InternetQueryFortezzaStatus", [ "ptr", "ptr" ] ); 
+Win32.InternetWriteFileExA = foreign.native( "WININET.dll", "int", "InternetWriteFileExA", [ "ptr", "ptr", "uint", "ptr" ] ); 
+Win32.InternetWriteFileExW = foreign.native( "WININET.dll", "int", "InternetWriteFileExW", [ "ptr", "ptr", "uint", "ptr" ] ); 
+Win32.FindP3PPolicySymbol = foreign.native( "WININET.dll", "int", "FindP3PPolicySymbol", [ "ptr" ] ); 
+Win32.HttpGetServerCredentials = foreign.native( "WININET.dll", "uint", "HttpGetServerCredentials", [ "wstr", "ptr", "ptr" ] ); 
+Win32.HttpPushEnable = foreign.native( "WININET.dll", "uint", "HttpPushEnable", [ "ptr", "ptr", "ptr" ] ); 
+Win32.HttpPushWait = foreign.native( "WININET.dll", "uint", "HttpPushWait", [ "ptr", "int", "ptr" ] ); 
+Win32.HttpPushClose = foreign.native( "WININET.dll", "void", "HttpPushClose", [ "ptr" ] ); 
+Win32.HttpCheckDavComplianceA = foreign.native( "WININET.dll", "int", "HttpCheckDavComplianceA", [ "ptr", "ptr", "ptr", "ptr", "ptr" ] ); 
+Win32.HttpCheckDavComplianceW = foreign.native( "WININET.dll", "int", "HttpCheckDavComplianceW", [ "wstr", "wstr", "ptr", "ptr", "ptr" ] ); 
+Win32.IsUrlCacheEntryExpiredA = foreign.native( "WININET.dll", "int", "IsUrlCacheEntryExpiredA", [ "ptr", "uint", "ptr" ] ); 
+Win32.IsUrlCacheEntryExpiredW = foreign.native( "WININET.dll", "int", "IsUrlCacheEntryExpiredW", [ "wstr", "uint", "ptr" ] ); 
+Win32.CreateUrlCacheEntryExW = foreign.native( "WININET.dll", "int", "CreateUrlCacheEntryExW", [ "wstr", "uint", "wstr", "wstr", "uint", "int" ] ); 
+Win32.GetUrlCacheEntryBinaryBlob = foreign.native( "WININET.dll", "uint", "GetUrlCacheEntryBinaryBlob", [ "wstr", "ptr", "ptr", "ptr", "ptr", "ptr", "ptr" ] ); 
+Win32.CommitUrlCacheEntryBinaryBlob = foreign.native( "WININET.dll", "uint", "CommitUrlCacheEntryBinaryBlob", [ "wstr", "uint", "ptr", "ptr", "ptr", "uint" ] ); 
+Win32.CreateUrlCacheContainerA = foreign.native( "WININET.dll", "int", "CreateUrlCacheContainerA", [ "ptr", "ptr", "ptr", "uint", "uint", "uint", "ptr", "ptr" ] ); 
+Win32.CreateUrlCacheContainerW = foreign.native( "WININET.dll", "int", "CreateUrlCacheContainerW", [ "wstr", "wstr", "wstr", "uint", "uint", "uint", "ptr", "ptr" ] ); 
+Win32.DeleteUrlCacheContainerA = foreign.native( "WININET.dll", "int", "DeleteUrlCacheContainerA", [ "ptr", "uint" ] ); 
+Win32.DeleteUrlCacheContainerW = foreign.native( "WININET.dll", "int", "DeleteUrlCacheContainerW", [ "wstr", "uint" ] ); 
+Win32.FindFirstUrlCacheContainerA = foreign.native( "WININET.dll", "ptr", "FindFirstUrlCacheContainerA", [ "ptr", "ptr", "ptr", "uint" ] ); 
+Win32.FindFirstUrlCacheContainerW = foreign.native( "WININET.dll", "ptr", "FindFirstUrlCacheContainerW", [ "ptr", "ptr", "ptr", "uint" ] ); 
+Win32.FindNextUrlCacheContainerA = foreign.native( "WININET.dll", "int", "FindNextUrlCacheContainerA", [ "ptr", "ptr", "ptr" ] ); 
+Win32.FindNextUrlCacheContainerW = foreign.native( "WININET.dll", "int", "FindNextUrlCacheContainerW", [ "ptr", "ptr", "ptr" ] ); 
+Win32.FreeUrlCacheSpaceA = foreign.native( "WININET.dll", "int", "FreeUrlCacheSpaceA", [ "ptr", "uint", "uint" ] ); 
+Win32.FreeUrlCacheSpaceW = foreign.native( "WININET.dll", "int", "FreeUrlCacheSpaceW", [ "wstr", "uint", "uint" ] ); 
+Win32.UrlCacheFreeGlobalSpace = foreign.native( "WININET.dll", "uint", "UrlCacheFreeGlobalSpace", [ "ulong", "uint" ] ); 
+Win32.UrlCacheGetGlobalCacheSize = foreign.native( "WININET.dll", "uint", "UrlCacheGetGlobalCacheSize", [ "uint", "ptr", "ptr" ] ); 
+Win32.GetUrlCacheConfigInfoA = foreign.native( "WININET.dll", "int", "GetUrlCacheConfigInfoA", [ "ptr", "ptr", "uint" ] ); 
+Win32.GetUrlCacheConfigInfoW = foreign.native( "WININET.dll", "int", "GetUrlCacheConfigInfoW", [ "ptr", "ptr", "uint" ] ); 
+Win32.SetUrlCacheConfigInfoA = foreign.native( "WININET.dll", "int", "SetUrlCacheConfigInfoA", [ "ptr", "uint" ] ); 
+Win32.SetUrlCacheConfigInfoW = foreign.native( "WININET.dll", "int", "SetUrlCacheConfigInfoW", [ "ptr", "uint" ] ); 
+Win32.RunOnceUrlCache = foreign.native( "WININET.dll", "uint", "RunOnceUrlCache", [ "ptr", "ptr", "ptr", "int" ] ); 
+Win32.DeleteIE3Cache = foreign.native( "WININET.dll", "uint", "DeleteIE3Cache", [ "ptr", "ptr", "ptr", "int" ] ); 
+Win32.UpdateUrlCacheContentPath = foreign.native( "WININET.dll", "int", "UpdateUrlCacheContentPath", [ "ptr" ] ); 
+Win32.RegisterUrlCacheNotification = foreign.native( "WININET.dll", "int", "RegisterUrlCacheNotification", [ "ptr", "uint", "long", "uint", "uint" ] ); 
+Win32.GetUrlCacheHeaderData = foreign.native( "WININET.dll", "int", "GetUrlCacheHeaderData", [ "uint", "ptr" ] ); 
+Win32.SetUrlCacheHeaderData = foreign.native( "WININET.dll", "int", "SetUrlCacheHeaderData", [ "uint", "uint" ] ); 
+Win32.IncrementUrlCacheHeaderData = foreign.native( "WININET.dll", "int", "IncrementUrlCacheHeaderData", [ "uint", "ptr" ] ); 
+Win32.LoadUrlCacheContent = foreign.native( "WININET.dll", "int", "LoadUrlCacheContent", [  ] ); 
+Win32.AppCacheLookup = foreign.native( "WININET.dll", "uint", "AppCacheLookup", [ "wstr", "uint", "ptr" ] ); 
+Win32.AppCacheCheckManifest = foreign.native( "WININET.dll", "uint", "AppCacheCheckManifest", [ "wstr", "wstr", "ptr", "uint", "ptr", "uint", "ptr", "ptr" ] ); 
+Win32.AppCacheGetDownloadList = foreign.native( "WININET.dll", "uint", "AppCacheGetDownloadList", [ "ptr", "ptr" ] ); 
+Win32.AppCacheFreeDownloadList = foreign.native( "WININET.dll", "void", "AppCacheFreeDownloadList", [ "ptr" ] ); 
+Win32.AppCacheFinalize = foreign.native( "WININET.dll", "uint", "AppCacheFinalize", [ "ptr", "ptr", "uint", "ptr" ] ); 
+Win32.AppCacheGetFallbackUrl = foreign.native( "WININET.dll", "uint", "AppCacheGetFallbackUrl", [ "ptr", "wstr", "ptr" ] ); 
+Win32.AppCacheGetManifestUrl = foreign.native( "WININET.dll", "uint", "AppCacheGetManifestUrl", [ "ptr", "ptr" ] ); 
+Win32.AppCacheDuplicateHandle = foreign.native( "WININET.dll", "uint", "AppCacheDuplicateHandle", [ "ptr", "ptr" ] ); 
+Win32.AppCacheCloseHandle = foreign.native( "WININET.dll", "void", "AppCacheCloseHandle", [ "ptr" ] ); 
+Win32.AppCacheFreeGroupList = foreign.native( "WININET.dll", "void", "AppCacheFreeGroupList", [ "ptr" ] ); 
+Win32.AppCacheGetGroupList = foreign.native( "WININET.dll", "uint", "AppCacheGetGroupList", [ "ptr" ] ); 
+Win32.AppCacheGetInfo = foreign.native( "WININET.dll", "uint", "AppCacheGetInfo", [ "ptr", "ptr" ] ); 
+Win32.AppCacheDeleteGroup = foreign.native( "WININET.dll", "uint", "AppCacheDeleteGroup", [ "wstr" ] ); 
+Win32.AppCacheFreeSpace = foreign.native( "WININET.dll", "uint", "AppCacheFreeSpace", [ "ptr" ] ); 
+Win32.AppCacheGetIEGroupList = foreign.native( "WININET.dll", "uint", "AppCacheGetIEGroupList", [ "ptr" ] ); 
+Win32.AppCacheDeleteIEGroup = foreign.native( "WININET.dll", "uint", "AppCacheDeleteIEGroup", [ "wstr" ] ); 
+Win32.AppCacheFreeIESpace = foreign.native( "WININET.dll", "uint", "AppCacheFreeIESpace", [ "ptr" ] ); 
+Win32.AppCacheCreateAndCommitFile = foreign.native( "WININET.dll", "uint", "AppCacheCreateAndCommitFile", [ "ptr", "wstr", "wstr", "ptr", "uint" ] ); 
+Win32.HttpOpenDependencyHandle = foreign.native( "WININET.dll", "uint", "HttpOpenDependencyHandle", [ "ptr", "int", "ptr" ] ); 
+Win32.HttpCloseDependencyHandle = foreign.native( "WININET.dll", "void", "HttpCloseDependencyHandle", [ "ptr" ] ); 
+Win32.HttpDuplicateDependencyHandle = foreign.native( "WININET.dll", "uint", "HttpDuplicateDependencyHandle", [ "ptr", "ptr" ] ); 
+Win32.HttpIndicatePageLoadComplete = foreign.native( "WININET.dll", "uint", "HttpIndicatePageLoadComplete", [ "ptr" ] ); 
+Win32.UrlCacheFreeEntryInfo = foreign.native( "WININET.dll", "void", "UrlCacheFreeEntryInfo", [ "ptr" ] ); 
+Win32.UrlCacheGetEntryInfo = foreign.native( "WININET.dll", "uint", "UrlCacheGetEntryInfo", [ "ptr", "wstr", "ptr" ] ); 
+Win32.UrlCacheCloseEntryHandle = foreign.native( "WININET.dll", "void", "UrlCacheCloseEntryHandle", [ "ptr" ] ); 
+Win32.UrlCacheRetrieveEntryFile = foreign.native( "WININET.dll", "uint", "UrlCacheRetrieveEntryFile", [ "ptr", "wstr", "ptr", "ptr" ] ); 
+Win32.UrlCacheReadEntryStream = foreign.native( "WININET.dll", "uint", "UrlCacheReadEntryStream", [ "ptr", "ulong", "ptr", "uint", "ptr" ] ); 
+Win32.UrlCacheRetrieveEntryStream = foreign.native( "WININET.dll", "uint", "UrlCacheRetrieveEntryStream", [ "ptr", "wstr", "int", "ptr", "ptr" ] ); 
+Win32.UrlCacheUpdateEntryExtraData = foreign.native( "WININET.dll", "uint", "UrlCacheUpdateEntryExtraData", [ "ptr", "wstr", "ptr", "uint" ] ); 
+Win32.UrlCacheCreateContainer = foreign.native( "WININET.dll", "uint", "UrlCacheCreateContainer", [ "wstr", "wstr", "wstr", "ulong", "uint" ] ); 
+Win32.UrlCacheCheckEntriesExist = foreign.native( "WININET.dll", "uint", "UrlCacheCheckEntriesExist", [ "ptr", "uint", "ptr" ] ); 
+Win32.UrlCacheGetContentPaths = foreign.native( "WININET.dll", "uint", "UrlCacheGetContentPaths", [ "ptr", "ptr" ] ); 
+Win32.UrlCacheGetGlobalLimit = foreign.native( "WININET.dll", "uint", "UrlCacheGetGlobalLimit", [ "int", "ptr" ] ); 
+Win32.UrlCacheSetGlobalLimit = foreign.native( "WININET.dll", "uint", "UrlCacheSetGlobalLimit", [ "int", "ulong" ] ); 
+Win32.UrlCacheReloadSettings = foreign.native( "WININET.dll", "uint", "UrlCacheReloadSettings", [  ] ); 
+Win32.UrlCacheContainerSetEntryMaximumAge = foreign.native( "WININET.dll", "uint", "UrlCacheContainerSetEntryMaximumAge", [ "wstr", "uint" ] ); 
+Win32.UrlCacheFindFirstEntry = foreign.native( "WININET.dll", "uint", "UrlCacheFindFirstEntry", [ "wstr", "uint", "uint", "long", "ptr", "ptr" ] ); 
+Win32.UrlCacheFindNextEntry = foreign.native( "WININET.dll", "uint", "UrlCacheFindNextEntry", [ "ptr", "ptr" ] ); 
+Win32.UrlCacheServer = foreign.native( "WININET.dll", "uint", "UrlCacheServer", [  ] ); 
+Win32.ReadGuidsForConnectedNetworks = foreign.native( "WININET.dll", "int", "ReadGuidsForConnectedNetworks", [ "ptr", "ptr", "ptr", "ptr", "ptr", "ptr" ] ); 
+Win32.IsHostInProxyBypassList = foreign.native( "WININET.dll", "int", "IsHostInProxyBypassList", [ "int", "ptr", "uint" ] ); 
+Win32.InternetFreeProxyInfoList = foreign.native( "WININET.dll", "void", "InternetFreeProxyInfoList", [ "ptr" ] ); 
+Win32.InternetGetProxyForUrl = foreign.native( "WININET.dll", "uint", "InternetGetProxyForUrl", [ "ptr", "wstr", "ptr" ] ); 
+Win32.DoConnectoidsExist = foreign.native( "WININET.dll", "int", "DoConnectoidsExist", [  ] ); 
+Win32.GetDiskInfoA = foreign.native( "WININET.dll", "int", "GetDiskInfoA", [ "ptr", "ptr", "ptr", "ptr" ] ); 
+Win32.PerformOperationOverUrlCacheA = foreign.native( "WININET.dll", "int", "PerformOperationOverUrlCacheA", [ "ptr", "uint", "uint", "long", "ptr", "ptr", "ptr", "ptr", "ptr" ] ); 
+Win32.IsProfilesEnabled = foreign.native( "WININET.dll", "int", "IsProfilesEnabled", [  ] ); 
+Win32.InternalInternetGetCookie = foreign.native( "WININET.dll", "uint", "InternalInternetGetCookie", [ "ptr", "ptr", "ptr" ] ); 
+Win32.ImportCookieFileA = foreign.native( "WININET.dll", "int", "ImportCookieFileA", [ "ptr" ] ); 
+Win32.ImportCookieFileW = foreign.native( "WININET.dll", "int", "ImportCookieFileW", [ "wstr" ] ); 
+Win32.ExportCookieFileA = foreign.native( "WININET.dll", "int", "ExportCookieFileA", [ "ptr", "int" ] ); 
+Win32.ExportCookieFileW = foreign.native( "WININET.dll", "int", "ExportCookieFileW", [ "wstr", "int" ] ); 
+Win32.IsDomainLegalCookieDomainA = foreign.native( "WININET.dll", "int", "IsDomainLegalCookieDomainA", [ "ptr", "ptr" ] ); 
+Win32.IsDomainLegalCookieDomainW = foreign.native( "WININET.dll", "int", "IsDomainLegalCookieDomainW", [ "wstr", "wstr" ] ); 
+Win32.HttpWebSocketCompleteUpgrade = foreign.native( "WININET.dll", "ptr", "HttpWebSocketCompleteUpgrade", [ "ptr", "ptr" ] ); 
+Win32.HttpWebSocketSend = foreign.native( "WININET.dll", "int", "HttpWebSocketSend", [ "ptr", "int", "ptr", "uint" ] ); 
+Win32.HttpWebSocketReceive = foreign.native( "WININET.dll", "int", "HttpWebSocketReceive", [ "ptr", "ptr", "uint", "ptr", "ptr" ] ); 
+Win32.HttpWebSocketClose = foreign.native( "WININET.dll", "int", "HttpWebSocketClose", [ "ptr", "ushort", "ptr", "uint" ] ); 
+Win32.HttpWebSocketShutdown = foreign.native( "WININET.dll", "int", "HttpWebSocketShutdown", [ "ptr", "ushort", "ptr", "uint" ] ); 
+Win32.HttpWebSocketQueryCloseStatus = foreign.native( "WININET.dll", "int", "HttpWebSocketQueryCloseStatus", [ "ptr", "ptr", "ptr", "uint", "ptr" ] ); 
+Win32.InternetConvertUrlFromWireToWideChar = foreign.native( "WININET.dll", "uint", "InternetConvertUrlFromWireToWideChar", [ "ptr", "uint", "wstr", "uint", "uint", "int", "uint", "ptr" ] ); 
+Win32.LPINTERNET_STATUS_CALLBACK = foreign.callback( "void", [ "ptr", "ptr", "uint", "ptr", "uint"] );
+Win32.GOPHER_ATTRIBUTE_ENUMERATOR = foreign.callback( "int", [ "ptr", "uint"] );
+Win32.PFN_AUTH_NOTIFY = foreign.callback( "uint", [ "ptr", "uint", "ptr"] );
+Win32.pfnInternetInitializeAutoProxyDll = foreign.callback( "int", [ "uint", "ptr", "ptr", "ptr", "ptr"] );
+Win32.pfnInternetDeInitializeAutoProxyDll = foreign.callback( "int", [ "ptr", "uint"] );
+Win32.pfnInternetGetProxyInfo = foreign.callback( "int", [ "ptr", "uint", "ptr", "uint", "ptr", "ptr"] );
+Win32.PFN_DIAL_HANDLER = foreign.callback( "uint", [ "ptr", "ptr", "uint", "ptr"] );
+Win32.CACHE_OPERATOR = foreign.callback( "int", [ "ptr", "ptr", "ptr"] );
+Win32.HTTP_POLICY_EXTENSION_INIT = foreign.callback( "uint", [ "int", "int", "ptr", "uint"] );
+Win32.HTTP_POLICY_EXTENSION_SHUTDOWN = foreign.callback( "uint", [ "int"] );
+
+}
+
