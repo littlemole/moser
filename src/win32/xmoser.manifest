@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<assembly xmlns="urn:schemas-microsoft-com:asm.v1" xmlns:asmv3="urn:schemas-microsoft-com:asm.v3" manifestVersion="1.0">
+	<asmv3:file name="moxaml.dll">
+		<activatableClass name="moxaml.mox" threadingModel="both" xmlns="urn:schemas-microsoft-com:winrt.v1"></activatableClass>
+		<activatableClass name="moxaml.Vector" threadingModel="both" xmlns="urn:schemas-microsoft-com:winrt.v1"></activatableClass>
+		<activatableClass name="moxaml.IntVector" threadingModel="both" xmlns="urn:schemas-microsoft-com:winrt.v1"></activatableClass>
+		<activatableClass name="moxaml.DoubleVector" threadingModel="both" xmlns="urn:schemas-microsoft-com:winrt.v1"></activatableClass>
+		<activatableClass name="moxaml.StringVector" threadingModel="both" xmlns="urn:schemas-microsoft-com:winrt.v1"></activatableClass>
+		<activatableClass name="moxaml.Map" threadingModel="both" xmlns="urn:schemas-microsoft-com:winrt.v1"></activatableClass>
+		<activatableClass name="moxaml.IntMap" threadingModel="both" xmlns="urn:schemas-microsoft-com:winrt.v1"></activatableClass>
+		<activatableClass name="moxaml.DoubleMap" threadingModel="both" xmlns="urn:schemas-microsoft-com:winrt.v1"></activatableClass>
+		<activatableClass name="moxaml.StringMap" threadingModel="both" xmlns="urn:schemas-microsoft-com:winrt.v1"></activatableClass>
+	</asmv3:file>
+
+
+	<trustInfo xmlns="urn:schemas-microsoft-com:asm.v2">
+		<security>
+			<requestedPrivileges xmlns="urn:schemas-microsoft-com:asm.v3">
+				<requestedExecutionLevel level="asInvoker" uiAccess="false"></requestedExecutionLevel>
+			</requestedPrivileges>
+		</security>
+	</trustInfo>
+	<ms_asmv3:application xmlns:ms_asmv3="urn:schemas-microsoft-com:asm.v3" xmlns="urn:schemas-microsoft-com:asm.v3">
+		<ms_asmv3:windowsSettings xmlns:ms_asmv3="urn:schemas-microsoft-com:asm.v3">
+			<ms_windowsSettings:dpiAware xmlns:ms_windowsSettings="http://schemas.microsoft.com/SMI/2005/WindowsSettings" xmlns="http://schemas.microsoft.com/SMI/2005/WindowsSettings">true/PM</ms_windowsSettings:dpiAware>
+			<ms_windowsSettings2016:dpiAwareness xmlns:ms_windowsSettings2016="http://schemas.microsoft.com/SMI/2016/WindowsSettings" xmlns="http://schemas.microsoft.com/SMI/2016/WindowsSettings">PerMonitorV2, PerMonitor</ms_windowsSettings2016:dpiAwareness>
+		</ms_asmv3:windowsSettings>
+	</ms_asmv3:application>
+	<ms_compatibility:compatibility xmlns:ms_compatibility="urn:schemas-microsoft-com:compatibility.v1" xmlns="urn:schemas-microsoft-com:compatibility.v1">
+		<ms_compatibility:application xmlns:ms_compatibility="urn:schemas-microsoft-com:compatibility.v1">
+			<ms_compatibility:supportedOS xmlns:ms_compatibility="urn:schemas-microsoft-com:compatibility.v1" Id="{8e0f7a12-bfb3-4fe8-b9a5-48fd50a15a9a}"></ms_compatibility:supportedOS>
+			<ms_compatibility:maxversiontested xmlns:ms_compatibility="urn:schemas-microsoft-com:compatibility.v1" Id="10.0.18362.0"></ms_compatibility:maxversiontested>
+		</ms_compatibility:application>
+	</ms_compatibility:compatibility>
+</assembly>

@@ -23,6 +23,88 @@ Microsoft.UI.WindowId = foreign.named_struct( "Microsoft.UI.WindowId", [
     "Value:ulong"
 ]); 
 
+//@Interface("Microsoft.UI.IClosableNotifier")
+//@IID("{2989E93B-ED0F-5E79-90F2-EAC592FC6E6A}")
+class Microsoft_UI_IClosableNotifier : WinRtInterface 
+{
+    Microsoft_UI_IClosableNotifier( comPtr )
+    {
+        var Microsoft = runtime.global("Microsoft");
+        this.comPtr = comPtr.queryInterface( "{2989E93B-ED0F-5E79-90F2-EAC592FC6E6A}");
+    }
+
+    //@VtableIndex(6)
+    //@Async(0)
+    //@Returns("Boolean")
+    get_IsClosed()
+    {
+        var Microsoft = runtime.global("Microsoft");
+        var _r = this.comPtr.invoke( 6, "Boolean", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(7)
+    //@Async(0)
+    //@Returns("Windows.Foundation.EventRegistrationToken")
+    //@Parameters("Microsoft.UI.ClosableNotifierHandler")
+    add_Closed(handler)
+    {
+        var Microsoft = runtime.global("Microsoft");
+        var p1 = nil; 
+        if( typeof(handler) == "comptr" ) { 
+            p1 = handler;
+        } else {
+            p1 = Microsoft.UI.ClosableNotifierHandler.Create( handler); 
+        }
+        var _r = this.comPtr.invoke( 7, "Windows.Foundation.EventRegistrationToken", ["Microsoft.UI.ClosableNotifierHandler"], [p1] );
+        return _r;
+    }
+
+    //@VtableIndex(8)
+    //@Async(0)
+    //@Returns("void")
+    //@Parameters("Windows.Foundation.EventRegistrationToken")
+    remove_Closed(token)
+    {
+        var Microsoft = runtime.global("Microsoft");
+        var p1 = token;
+        this.comPtr.invoke( 8, "void", ["Windows.Foundation.EventRegistrationToken"], [p1] );
+    }
+
+    //@VtableIndex(9)
+    //@Async(0)
+    //@Returns("Windows.Foundation.EventRegistrationToken")
+    //@Parameters("Microsoft.UI.ClosableNotifierHandler")
+    add_FrameworkClosed(handler)
+    {
+        var Microsoft = runtime.global("Microsoft");
+        var p1 = nil; 
+        if( typeof(handler) == "comptr" ) { 
+            p1 = handler;
+        } else {
+            p1 = Microsoft.UI.ClosableNotifierHandler.Create( handler); 
+        }
+        var _r = this.comPtr.invoke( 9, "Windows.Foundation.EventRegistrationToken", ["Microsoft.UI.ClosableNotifierHandler"], [p1] );
+        return _r;
+    }
+
+    //@VtableIndex(10)
+    //@Async(0)
+    //@Returns("void")
+    //@Parameters("Windows.Foundation.EventRegistrationToken")
+    remove_FrameworkClosed(token)
+    {
+        var Microsoft = runtime.global("Microsoft");
+        var p1 = token;
+        this.comPtr.invoke( 10, "void", ["Windows.Foundation.EventRegistrationToken"], [p1] );
+    }
+
+
+}
+Microsoft_UI_IClosableNotifier.iid = "{2989E93B-ED0F-5E79-90F2-EAC592FC6E6A}";
+Microsoft.UI.IClosableNotifier = Microsoft_UI_IClosableNotifier;
+
+
 //@Interface("Microsoft.UI.IColorHelper")
 //@IID("{3ADDDCCD-3949-585B-A566-CCB8350DD221}")
 class Microsoft_UI_IColorHelper : WinRtInterface 
@@ -3546,6 +3628,20 @@ class Microsoft_UI_Colors : WinRtInterface
 
 }
 Microsoft.UI.Colors = Microsoft_UI_Colors;
+
+//@Delegate("Microsoft.UI.ClosableNotifierHandler")
+//@IID("{478CEC68-EA8E-52FC-87E2-C819DE000F92}")
+class Microsoft_UI_ClosableNotifierHandler
+{
+    static Create( cb ) 
+    {
+        var callback = cb;
+        return winrt.Delegate([], "{478CEC68-EA8E-52FC-87E2-C819DE000F92}", callback );
+    }
+}
+Microsoft_UI_ClosableNotifierHandler.iid = "{478CEC68-EA8E-52FC-87E2-C819DE000F92}";
+Microsoft.UI.ClosableNotifierHandler = Microsoft_UI_ClosableNotifierHandler;
+
 
 
 }

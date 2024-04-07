@@ -1,4 +1,4 @@
-
+#include "pch.h"
 #include "must.h"
 #include "object.h"
 
@@ -64,7 +64,7 @@ mustache::Data mustache::fromValue(Value& data)
         auto array = as<Indexable>(data.as.obj);
         if(array)
         {
-            unsigned int len = array->size().to_int();
+            unsigned int len = (unsigned int)array->size().to_int();
             Data d(Data::type::list);
             for( unsigned int i = 0; i < len; i++)
             {

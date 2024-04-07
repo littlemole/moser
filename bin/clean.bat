@@ -14,7 +14,11 @@ del /s /q /f win32\moxaml\AppPackages
 rmdir /s /q win32\moxaml\AppPackages
 del /s /q /f win32\winmeta\x64
 rmdir /s /q win32\winmeta\x64
+del /s /q /f win32\winmeta\lib
+del /s /q /f win32\winmeta\*.winmd
 del /s /q /f win32\winmeta\metamoc\x64
+del /s /q /f win32\winmeta\winmetamoc\*.winmd
+del /s /q /f win32\winmeta\winmetamoc\*.dll
 rmdir /s /q win32\winmeta\metamoc\x64
 del /s /q /f win32\winmeta\winmetamoc\x64
 rmdir /s /q win32\winmeta\winmetamoc\x64
@@ -26,5 +30,8 @@ del /s /q /f win32\winuidep\x64
 rmdir /s /q win32\winuidep\x64
 del /s /q /f win32\winuidep\winuiapp
 rmdir /s /q win32\winuidep\winuiapp
+
+del /s /q /f win32\obj
+rmdir /s /q win32\obj
 
 del /S *.mbc

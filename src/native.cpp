@@ -1,3 +1,4 @@
+#include "pch.h"
 #include "native.h"
 
 #ifdef _WIN32

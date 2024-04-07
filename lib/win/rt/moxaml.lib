@@ -7,59 +7,6 @@ class WinRtInterface {
 
 if( runtime.global("moxaml") == nil ) { runtime.global("moxaml", {}); }
 var moxaml = runtime.global("moxaml");
-//@Interface("moxaml.IApp")
-//@IID("{A82AA28F-8A01-54CB-98B3-364894ADFF19}")
-class moxaml_IApp : WinRtInterface 
-{
-    moxaml_IApp( comPtr )
-    {
-        var moxaml = runtime.global("moxaml");
-        this.comPtr = comPtr.queryInterface( "{A82AA28F-8A01-54CB-98B3-364894ADFF19}");
-    }
-
-
-}
-moxaml_IApp.iid = "{A82AA28F-8A01-54CB-98B3-364894ADFF19}";
-moxaml.IApp = moxaml_IApp;
-
-
-//@Interface("moxaml.IBlankUserControl")
-//@IID("{B67B9E00-E42B-56E0-828E-67EEBF20407F}")
-class moxaml_IBlankUserControl : WinRtInterface 
-{
-    moxaml_IBlankUserControl( comPtr )
-    {
-        var moxaml = runtime.global("moxaml");
-        this.comPtr = comPtr.queryInterface( "{B67B9E00-E42B-56E0-828E-67EEBF20407F}");
-    }
-
-    //@VtableIndex(6)
-    //@Async(0)
-    //@Returns("Int32")
-    get_MyProperty()
-    {
-        var moxaml = runtime.global("moxaml");
-        var _r = this.comPtr.invoke( 6, "Int32", [], [] );
-        return _r;
-    }
-
-    //@VtableIndex(7)
-    //@Async(0)
-    //@Returns("void")
-    //@Parameters("Int32")
-    put_MyProperty(value)
-    {
-        var moxaml = runtime.global("moxaml");
-        var p1 = value;
-        this.comPtr.invoke( 7, "void", ["Int32"], [p1] );
-    }
-
-
-}
-moxaml_IBlankUserControl.iid = "{B67B9E00-E42B-56E0-828E-67EEBF20407F}";
-moxaml.IBlankUserControl = moxaml_IBlankUserControl;
-
-
 //@Interface("moxaml.IDoubleMap")
 //@IID("{E8EDA3E4-C855-521F-B39B-4D9BC7F371F5}")
 class moxaml_IDoubleMap : WinRtInterface 
@@ -205,23 +152,23 @@ moxaml.Imox = moxaml_Imox;
 
 
 //@Interface("moxaml.ImoxStatics")
-//@IID("{A3606144-9716-5BBF-9022-53D0A9687AC4}")
+//@IID("{758D0FA2-4E0C-5FDA-AC02-51AE9FCF1DF7}")
 class moxaml_ImoxStatics : WinRtInterface 
 {
     moxaml_ImoxStatics( comPtr )
     {
         var moxaml = runtime.global("moxaml");
-        this.comPtr = comPtr.queryInterface( "{A3606144-9716-5BBF-9022-53D0A9687AC4}");
+        this.comPtr = comPtr.queryInterface( "{758D0FA2-4E0C-5FDA-AC02-51AE9FCF1DF7}");
     }
 
     //@VtableIndex(6)
     //@Async(0)
-    //@Returns("Windows.UI.Xaml.DependencyProperty")
+    //@Returns("Microsoft.UI.Xaml.DependencyProperty")
     get_EventProperty()
     {
         var moxaml = runtime.global("moxaml");
-        var _r = Windows.UI.Xaml.DependencyProperty(
-            this.comPtr.invoke( 6, "Windows.UI.Xaml.DependencyProperty", [], [] )
+        var _r = Microsoft.UI.Xaml.DependencyProperty(
+            this.comPtr.invoke( 6, "Microsoft.UI.Xaml.DependencyProperty", [], [] )
         );
         return _r;
     }
@@ -229,98 +176,32 @@ class moxaml_ImoxStatics : WinRtInterface
     //@VtableIndex(7)
     //@Async(0)
     //@Returns("String")
-    //@Parameters("Windows.UI.Xaml.DependencyObject")
+    //@Parameters("Microsoft.UI.Xaml.DependencyObject")
     GetEvent(target)
     {
         var moxaml = runtime.global("moxaml");
-        var p1 = Windows.UI.Xaml.DependencyObject( target); 
-        var _r = this.comPtr.invoke( 7, "String", ["Windows.UI.Xaml.DependencyObject"], [p1] );
+        var p1 = Microsoft.UI.Xaml.DependencyObject( target); 
+        var _r = this.comPtr.invoke( 7, "String", ["Microsoft.UI.Xaml.DependencyObject"], [p1] );
         return _r;
     }
 
     //@VtableIndex(8)
     //@Async(0)
     //@Returns("void")
-    //@Parameters("Windows.UI.Xaml.DependencyObject","String")
+    //@Parameters("Microsoft.UI.Xaml.DependencyObject","String")
     SetEvent(target,value)
     {
         var moxaml = runtime.global("moxaml");
-        var p1 = Windows.UI.Xaml.DependencyObject( target); 
+        var p1 = Microsoft.UI.Xaml.DependencyObject( target); 
         var p2 = value;
-        this.comPtr.invoke( 8, "void", ["Windows.UI.Xaml.DependencyObject", "String"], [p1, p2] );
+        this.comPtr.invoke( 8, "void", ["Microsoft.UI.Xaml.DependencyObject", "String"], [p1, p2] );
     }
 
 
 }
-moxaml_ImoxStatics.iid = "{A3606144-9716-5BBF-9022-53D0A9687AC4}";
+moxaml_ImoxStatics.iid = "{758D0FA2-4E0C-5FDA-AC02-51AE9FCF1DF7}";
 moxaml.ImoxStatics = moxaml_ImoxStatics;
 
-
-//@RuntimeClass("moxaml.App")
-//@Implements("moxaml.IApp")
-//@DefaultInterface("moxaml.IApp")
-@Proxy("WinRtProxy")
-class moxaml_App : WinRtInterface
-{
-    moxaml_App( comPtr )
-    {
-        var moxaml = runtime.global("moxaml");
-        this.comPtr = comPtr.queryInterface( moxaml.IApp.iid );
-    }
-
-    static Create()
-    {
-        return moxaml.App(
-            winrt.activate("moxaml.App")
-        );
-    }
-
-}
-moxaml.App = moxaml_App;
-
-//@RuntimeClass("moxaml.BlankUserControl")
-//@Implements("moxaml.IBlankUserControl")
-//@DefaultInterface("moxaml.IBlankUserControl")
-@Proxy("WinRtProxy")
-@Extends("Windows.UI.Xaml.Controls.UserControl")
-class moxaml_BlankUserControl : WinRtInterface
-{
-    moxaml_BlankUserControl( comPtr )
-    {
-        var moxaml = runtime.global("moxaml");
-        this.comPtr = comPtr.queryInterface( moxaml.IBlankUserControl.iid );
-    }
-
-    static Create()
-    {
-        return moxaml.BlankUserControl(
-            winrt.activate("moxaml.BlankUserControl")
-        );
-    }
-    //@Returns("Int32")
-    get_MyProperty()
-    {
-        var moxaml = runtime.global("moxaml");
-        var iface = moxaml.IBlankUserControl( this.comPtr );
-        var _r = iface.get_MyProperty(  );
-        iface.release();
-        return _r;
-    }
-
-    //@Parameters("Int32")
-    //@Returns("void")
-    //@Parameters("Int32")
-    put_MyProperty(value)
-    {
-        var moxaml = runtime.global("moxaml");
-        var iface = moxaml.IBlankUserControl( this.comPtr );
-        iface.put_MyProperty( value );
-        iface.release();
-    }
-
-
-}
-moxaml.BlankUserControl = moxaml_BlankUserControl;
 
 //@RuntimeClass("moxaml.DoubleMap")
 //@Implements("moxaml.IDoubleMap")
@@ -1443,15 +1324,15 @@ class moxaml_Vector : WinRtInterface
 moxaml.Vector = moxaml_Vector;
 
 //@RuntimeClass("moxaml.XamlMetaDataProvider")
-//@Implements("Windows.UI.Xaml.Markup.IXamlMetadataProvider")
-//@DefaultInterface("Windows.UI.Xaml.Markup.IXamlMetadataProvider")
+//@Implements("Microsoft.UI.Xaml.Markup.IXamlMetadataProvider")
+//@DefaultInterface("Microsoft.UI.Xaml.Markup.IXamlMetadataProvider")
 @Proxy("WinRtProxy")
 class moxaml_XamlMetaDataProvider : WinRtInterface
 {
     moxaml_XamlMetaDataProvider( comPtr )
     {
         var moxaml = runtime.global("moxaml");
-        this.comPtr = comPtr.queryInterface( Windows.UI.Xaml.Markup.IXamlMetadataProvider.iid );
+        this.comPtr = comPtr.queryInterface( Microsoft.UI.Xaml.Markup.IXamlMetadataProvider.iid );
     }
 
     static Create()
@@ -1468,7 +1349,7 @@ moxaml.XamlMetaDataProvider = moxaml_XamlMetaDataProvider;
 //@Implements("moxaml.Imox")
 //@DefaultInterface("moxaml.Imox")
 @Proxy("WinRtProxy")
-@Extends("Windows.UI.Xaml.DependencyObject")
+@Extends("Microsoft.UI.Xaml.DependencyObject")
 class moxaml_mox : WinRtInterface
 {
     moxaml_mox( comPtr )
@@ -1479,7 +1360,7 @@ class moxaml_mox : WinRtInterface
 
     // s moxaml.ImoxStatics
     //@Async(0)
-    //@Returns("Windows.UI.Xaml.DependencyProperty")
+    //@Returns("Microsoft.UI.Xaml.DependencyProperty")
     static get_EventProperty( )
     {
         var moxaml = runtime.global("moxaml");
@@ -1494,7 +1375,7 @@ class moxaml_mox : WinRtInterface
 
     //@Async(0)
     //@Returns("String")
-    //@Parameters("Windows.UI.Xaml.DependencyObject")
+    //@Parameters("Microsoft.UI.Xaml.DependencyObject")
     static GetEvent( target)
     {
         var moxaml = runtime.global("moxaml");
@@ -1509,7 +1390,7 @@ class moxaml_mox : WinRtInterface
 
     //@Async(0)
     //@Returns("void")
-    //@Parameters("Windows.UI.Xaml.DependencyObject","String")
+    //@Parameters("Microsoft.UI.Xaml.DependencyObject","String")
     static SetEvent( target, value)
     {
         var moxaml = runtime.global("moxaml");

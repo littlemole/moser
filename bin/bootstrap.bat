@@ -1,10 +1,19 @@
 @echo off
+
+rem *************
+rem init vcpkg
+rem *************
+
 if not exist vcpkg (
 git clone https://github.com/microsoft/vcpkg.git || goto :error
 cd vcpkg
 cmd /C bootstrap-vcpkg.bat || goto :error
 cd ..
 )
+
+rem *************
+rem prepare dirs
+rem *************
 
 
 if not exist "out" mkdir out
@@ -21,49 +30,104 @@ cd win32
 if not exist "winmd" mkdir winmd
 if not exist "idl" mkdir idl
 
-cd winuidep
-cmd /C prepare.bat || goto :error
-cd ..
+rem *************
+rem restore nuget
+rem *************
 
-cd winmd
-cmd /c gen.bat || goto :error
-cd ..
 
-cd idl
-cmd /c gen.bat || goto :error
-cd ..
+msbuild xmoser.vcxproj -t:restore -p:RestorePackagesConfig=true || goto :error
 
-cd mocres
-msbuild mocres.sln /P:Configuration=Debug || goto :error
-msbuild mocres.sln /P:Configuration=Release || goto :error
-cd ..
+rem *************
+rem build moxaml
+rem *************
+
 
 cd moxaml
-del /s /q packages
-nuget restore || goto :error
-rem msbuild moxaml.sln /P:Configuration=Debug /T:Clean
-rem msbuild moxaml.sln /P:Configuration=Release /T:Clean
-msbuild moxaml.sln /P:Configuration=Debug || goto :error
-msbuild moxaml.sln /P:Configuration=Release || goto :error
-copy ..\..\out\build\x64-Release\moxaml.winmd ..\winmd || goto :error
-copy .\packages\Microsoft.Web.WebView2.1.0.1264.42\lib\*.winmd ..\winmd || goto :error
-copy .\packages\Microsoft.UI.Xaml.2.8.0-prerelease.220712001\lib\uap10.0\*.winmd ..\winmd || goto :error
+
+msbuild  moxaml.vcxproj -t:build -p:Configuration=Debug || goto :error
+msbuild  moxaml.vcxproj -t:build -p:Configuration=Release || goto :error
 
 cd ..
 
+rem *************
+rem build xmoser
+rem *************
+
+
+msbuild  xmoser.vcxproj -t:build -p:Configuration=Debug || goto :error
+msbuild  xmoser.vcxproj -t:build -p:Configuration=Release || goto :error
+
+rem *************
+rem copy vcredist
+rem *************
+
+
+copy /Y "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Redist\MSVC\14.38.33135\x64\Microsoft.VC143.CRT\*.dll ../out/ || goto :error
+copy /Y "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Redist\MSVC\14.38.33135\x64\Microsoft.VC143.CXXAMP\*.dll ../out/ || goto :error
+copy /Y "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Redist\MSVC\14.38.33135\x64\Microsoft.VC143.OpenMP\*.dll ../out/ || goto :error
+
+rem *************
+rem copy winmds
+rem *************
+
+copy ..\out\build\x64-Release\moxaml.winmd winmd || goto :error
+copy .\packages\Microsoft.WindowsAppSDK.1.5.240311000\lib\uap10.0\*.winmd winmd || goto :error
+copy .\packages\Microsoft.WindowsAppSDK.1.5.240311000\lib\uap10.0.17763\*.winmd winmd || goto :error
+copy .\packages\Microsoft.Windows.SDK.Win32Metadata.59.0.13-preview\*.winmd winmd || goto :error
+
+
+copy .\packages\Microsoft.Windows.SDK.Win32Metadata.59.0.13-preview\Windows.Win32.winmd winmeta\winmetamoc || goto :error
+rem copy .\packages\Microsoft.Windows.SDK.Win32Metadata.59.0.13-preview\Windows.Win32.Interop.dll winmeta\winmetamoc || goto :error
+
+
+rem *************
+rem build res.dll
+rem *************
+
+cd mocres
+
+msbuild mocres.sln /P:Configuration=Debug || goto :error
+msbuild mocres.sln /P:Configuration=Release || goto :error
+
+cd ..
+
+rem *************
+rem build meta parsers
+rem *************
+
+
 cd winmeta
-copy ..\winmd\*.winmd .
-msbuild winmeta.sln /P:Configuration=Release
+copy ..\winmd\*.winmd . || goto :error
+
+msbuild winmeta.sln /P:Configuration=Release || goto :error
+
 if not exist "lib" mkdir lib
 if not exist "lib\rt" mkdir lib\rt
-cmd /C gen.bat
-copy lib\rt\*.lib ..\..\lib\win\rt
+
+rem *************
+rem gen winrt lib
+rem *************
+
+cmd /C gen.bat || goto :error
+
+copy lib\rt\*.lib ..\..\lib\win\rt || goto :error
+
+rem *************
+rem gen win32 lib
+rem *************
+
 
 cd winmetamoc
 if not exist "lib" mkdir lib
 if not exist "lib\win32" mkdir lib\win32
-cmd /C gen.bat
-copy lib\win32\*.lib ..\..\..\lib\win\win32
+cmd /C gen.bat || goto :error
+
+rem *************
+rem update lib
+rem *************
+
+copy lib\win32\*.lib ..\..\..\lib\win\win32 || goto :error
+
 
 cd ..
 
@@ -71,15 +135,23 @@ cd ..
 
 cd ..
 
+rem *************
+rem precompile libs
+rem *************
 
-rem set CMAKE_TOOLCHAIN_FILE=%~dp0vcpkg\scripts\toolchains\windows.cmake
-set CMAKE_TOOLCHAIN_FILE=%~dp0vcpkg\scripts\buildsystems\vcpkg.cmake
-echo CMAKE_TOOLCHAIN_FILE=%CMAKE_TOOLCHAIN_FILE%
+bin\precompile.bat
 
-cmd /C bin\build.bat || goto :error
+rem *************
+rem done
+rem *************
 
 exit /b %errorlevel%
 
 :error
+
+rem *************
+rem goto hell
+rem *************
+
 echo Failed with error #%errorlevel%.
 exit /b %errorlevel%

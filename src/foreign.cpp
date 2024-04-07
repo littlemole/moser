@@ -1,3 +1,4 @@
+//#include "pch.h"
 #include "foreign.h"
 #include "vm.h"
 #include "gc.h"
@@ -126,7 +127,7 @@ public:
              return Value( new ObjPointer(vm,  (void*)arg));
         }
 
-        return NIL_VAL;
+//        return NIL_VAL;
     }
 
     static void to_foreign(ffi_type* type, void* ret, Value val)

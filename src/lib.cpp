@@ -1,3 +1,4 @@
+//#include "pch.h"
 #include "lib.h"
 #include "foreign.h"
 #include "gc.h"
@@ -31,6 +32,10 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <unistd.h>
+#endif
+
+#ifdef ENABLE_MOSER_XAML
+#include "MoserX.h"
 #endif
 
 using namespace nlohmann;
@@ -781,7 +786,7 @@ bool file_exists(const std::string& file)
     struct stat buffer;
     return (stat(file.c_str(), &buffer) == 0);
 #endif
-    return false;
+//    return false;
 }
 
 #ifdef _WIN32
@@ -1015,7 +1020,7 @@ Value floatNative(VM&, int argCount, Value* args)
         }
         default: return NIL_VAL;
     }
-    return NIL_VAL;
+//    return NIL_VAL;
 }
 
 Value randNative(VM&, int argCount, Value* args) 
@@ -1855,6 +1860,137 @@ Value wrtInitNative(VM& vm, int /* argCount */, Value* /* args */)
     return NIL_VAL;
 }
 
+#ifdef ENABLE_MOSER_XAML
+
+MoserX xmos;
+
+Value xamlInitNative(VM& /*vm*/, int /* argCount */, Value* /* args */)
+{
+    xmos.init();
+    return NIL_VAL;
+}
+
+Value xamlCreateNative(VM& /*vm*/, int argCount , Value* args )
+{
+    if (argCount < 1) return NIL_VAL;
+
+    Value wnd = args[0];
+
+    auto hwnd = as<ObjPointer>(wnd);
+    if (!hwnd) return NIL_VAL;
+
+    xmos.create((HWND)hwnd->pointer());
+    return NIL_VAL;
+}
+
+Value xamlLoadNative(VM& /*vm*/, int argCount, Value* args)
+{
+    if (argCount < 2) return NIL_VAL;
+
+    Value wnd = args[0];
+
+    auto hwnd = as<ObjPointer>(wnd);
+    if (!hwnd) return NIL_VAL;
+
+    Value txt = args[1];
+    auto xaml_str = as<ObjString>(txt);
+    if (!xaml_str) return NIL_VAL;
+
+    std::wstring xaml_wstr = to_wstring(xaml_str->toString(), CP_UTF8);
+
+    xmos.load((HWND)hwnd->pointer(),xaml_wstr);
+    return NIL_VAL;
+}
+
+Value xamlActivateNative(VM& /*vm*/, int argCount, Value* args)
+{
+    if (argCount < 2) return NIL_VAL;
+
+    Value wnd = args[0];
+
+    auto hwnd = as<ObjPointer>(wnd);
+    if (!hwnd) return NIL_VAL;
+
+    Value intval = args[1];
+    WPARAM wParam = (WPARAM)intval.as.integer;
+
+    xmos.activate((HWND)hwnd->pointer(), wParam);
+    return NIL_VAL;
+}
+
+Value xamlSizeNative(VM& /*vm*/, int argCount, Value* args)
+{
+    if (argCount < 1) return NIL_VAL;
+
+    Value wnd = args[0];
+
+    auto hwnd = as<ObjPointer>(wnd);
+    if (!hwnd) return NIL_VAL;
+
+    RECT rect;
+    ::GetClientRect((HWND)hwnd->pointer(), &rect);
+    rect.right = rect.right - 80;
+    rect.bottom = 64;
+
+    if (argCount > 1)
+    {
+        rect.left = (LONG)args[1].as.integer;
+        rect.right = rect.right - rect.left;
+    }
+
+    if (argCount > 2)
+    {
+        rect.top = (LONG)args[2].as.integer;
+    }
+
+    if (argCount > 3)
+    {
+        rect.right = (LONG)args[3].as.integer;
+    }
+
+    if (argCount > 4)
+    {
+        rect.bottom = (LONG)args[4].as.integer;
+    }
+
+    xmos.size((HWND)hwnd->pointer(), rect);
+    return NIL_VAL;
+}
+
+Value xamlTranslateNative(VM& /*vm*/, int argCount, Value* args)
+{
+    if (argCount < 1) return NIL_VAL;
+
+    Value v = args[0];
+
+    auto msg = as<ObjPointer>(v);
+    if (!msg) return NIL_VAL;
+
+    xmos.translate(*(MSG*)msg->pointer());
+    return NIL_VAL;
+}
+
+Value xamlDestroyNative(VM& /*vm*/, int argCount, Value* args)
+{
+    if (argCount < 1) return NIL_VAL;
+
+    Value wnd = args[0];
+
+    auto hwnd = as<ObjPointer>(wnd);
+    if (!hwnd) return NIL_VAL;
+
+    xmos.destroy((HWND)hwnd->pointer());
+    return NIL_VAL;
+}
+
+Value xamlShutdownNative(VM& /*vm*/, int /*argCount*/, Value* /*args*/ )
+{
+    xmos.shutdown();
+    return NIL_VAL;
+}
+
+#endif
+
 #endif
 
 void init_stdlib(VM& vm)
@@ -1990,6 +2126,21 @@ void init_stdlib(VM& vm)
     winrt->item("Delegate", new ObjNativeFun(vm, delegateNative));
     winrt->item("init", new ObjNativeFun(vm, wrtInitNative));
     vm.defineGlobal("winrt", winrt);
+
+#ifdef ENABLE_MOSER_XAML
+
+    // xaml
+    auto xaml = new ObjMap(vm);
+    xaml->item("init", new ObjNativeFun(vm, xamlInitNative));
+    xaml->item("create", new ObjNativeFun(vm, xamlCreateNative));
+    xaml->item("load", new ObjNativeFun(vm, xamlLoadNative));
+    xaml->item("activate", new ObjNativeFun(vm, xamlActivateNative));
+    xaml->item("size", new ObjNativeFun(vm, xamlSizeNative));
+    xaml->item("destroy", new ObjNativeFun(vm, xamlDestroyNative));
+    xaml->item("shutdown", new ObjNativeFun(vm, xamlShutdownNative));
+
+    winrt->item("xaml", xaml);
+#endif
 
 #endif
 }

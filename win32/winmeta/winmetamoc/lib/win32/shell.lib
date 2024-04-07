@@ -354,6 +354,29 @@ Win32.SSF_MASK = {
 };
 
 
+Win32.ASSOCF = {
+    "ASSOCF_NONE" : 0, 
+    "ASSOCF_INIT_NOREMAPCLSID" : 1, 
+    "ASSOCF_INIT_BYEXENAME" : 2, 
+    "ASSOCF_OPEN_BYEXENAME" : 2, 
+    "ASSOCF_INIT_DEFAULTTOSTAR" : 4, 
+    "ASSOCF_INIT_DEFAULTTOFOLDER" : 8, 
+    "ASSOCF_NOUSERSETTINGS" : 16, 
+    "ASSOCF_NOTRUNCATE" : 32, 
+    "ASSOCF_VERIFY" : 64, 
+    "ASSOCF_REMAPRUNDLL" : 128, 
+    "ASSOCF_NOFIXUPS" : 256, 
+    "ASSOCF_IGNOREBASECLASS" : 512, 
+    "ASSOCF_INIT_IGNOREUNKNOWN" : 1024, 
+    "ASSOCF_INIT_FIXED_PROGID" : 2048, 
+    "ASSOCF_IS_PROTOCOL" : 4096, 
+    "ASSOCF_INIT_FOR_FILE" : 8192, 
+    "ASSOCF_IS_FULL_URI" : 16384, 
+    "ASSOCF_PER_MACHINE_ONLY" : 32768, 
+    "ASSOCF_APP_TO_APP" : 65536
+};
+
+
 Win32.NOTIFY_ICON_MESSAGE = {
     "NIM_ADD" : 0, 
     "NIM_MODIFY" : 1, 
@@ -461,6 +484,55 @@ Win32.GPFIDL_FLAGS = {
     "GPFIDL_DEFAULT" : 0, 
     "GPFIDL_ALTNAME" : 1, 
     "GPFIDL_UNCPRINTER" : 2
+};
+
+
+Win32.SHGSI_FLAGS = {
+    "SHGSI_ICONLOCATION" : 0, 
+    "SHGSI_ICON" : 256, 
+    "SHGSI_SYSICONINDEX" : 16384, 
+    "SHGSI_LINKOVERLAY" : 32768, 
+    "SHGSI_SELECTED" : 65536, 
+    "SHGSI_LARGEICON" : 0, 
+    "SHGSI_SMALLICON" : 1, 
+    "SHGSI_SHELLICONSIZE" : 4
+};
+
+
+Win32.FILEOPERATION_FLAGS = {
+    "FOFX_NOSKIPJUNCTIONS" : 65536, 
+    "FOFX_PREFERHARDLINK" : 131072, 
+    "FOFX_SHOWELEVATIONPROMPT" : 262144, 
+    "FOFX_RECYCLEONDELETE" : 524288, 
+    "FOFX_EARLYFAILURE" : 1048576, 
+    "FOFX_PRESERVEFILEEXTENSIONS" : 2097152, 
+    "FOFX_KEEPNEWERFILE" : 4194304, 
+    "FOFX_NOCOPYHOOKS" : 8388608, 
+    "FOFX_NOMINIMIZEBOX" : 16777216, 
+    "FOFX_MOVEACLSACROSSVOLUMES" : 33554432, 
+    "FOFX_DONTDISPLAYSOURCEPATH" : 67108864, 
+    "FOFX_DONTDISPLAYDESTPATH" : 134217728, 
+    "FOFX_REQUIREELEVATION" : 268435456, 
+    "FOFX_ADDUNDORECORD" : 536870912, 
+    "FOFX_COPYASDOWNLOAD" : 1073741824, 
+    "FOFX_DONTDISPLAYLOCATIONS" : 2147483648, 
+    "FOF_MULTIDESTFILES" : 1, 
+    "FOF_CONFIRMMOUSE" : 2, 
+    "FOF_SILENT" : 4, 
+    "FOF_RENAMEONCOLLISION" : 8, 
+    "FOF_NOCONFIRMATION" : 16, 
+    "FOF_WANTMAPPINGHANDLE" : 32, 
+    "FOF_ALLOWUNDO" : 64, 
+    "FOF_FILESONLY" : 128, 
+    "FOF_SIMPLEPROGRESS" : 256, 
+    "FOF_NOCONFIRMMKDIR" : 512, 
+    "FOF_NOERRORUI" : 1024, 
+    "FOF_NOCOPYSECURITYATTRIBS" : 2048, 
+    "FOF_NORECURSION" : 4096, 
+    "FOF_NO_CONNECTED_ELEMENTS" : 8192, 
+    "FOF_WANTNUKEWARNING" : 16384, 
+    "FOF_NORECURSEREPARSE" : 32768, 
+    "FOF_NO_UI" : 1556
 };
 
 
@@ -2808,27 +2880,22 @@ Win32.MIMEASSOCIATIONDIALOG_IN_FLAGS = {
 };
 
 
-Win32.APPSTATE_REGISTRATION = foreign.named_struct( "Windows.Win32.UI.Shell._APPSTATE_REGISTRATION", [ 
-    
-]); 
-
-
-Win32.APPCONSTRAIN_REGISTRATION = foreign.named_struct( "Windows.Win32.UI.Shell._APPCONSTRAIN_REGISTRATION", [ 
-    
-]); 
-
-
-Win32.ShFindChangeNotificationHandle = foreign.named_struct( "Windows.Win32.UI.Shell.ShFindChangeNotificationHandle", [ 
-    "Value:ptr"
-]); 
-
-
 Win32.HDROP = foreign.named_struct( "Windows.Win32.UI.Shell.HDROP", [ 
     "Value:ptr"
 ]); 
 
 
 Win32.HPSXA = foreign.named_struct( "Windows.Win32.UI.Shell.HPSXA", [ 
+    "Value:ptr"
+]); 
+
+
+Win32.PAPPCONSTRAIN_REGISTRATION = foreign.named_struct( "Windows.Win32.UI.Shell.PAPPCONSTRAIN_REGISTRATION", [ 
+    "Value:ptr"
+]); 
+
+
+Win32.PAPPSTATE_REGISTRATION = foreign.named_struct( "Windows.Win32.UI.Shell.PAPPSTATE_REGISTRATION", [ 
     "Value:ptr"
 ]); 
 
@@ -3120,356 +3187,6 @@ Win32.HELPWININFOW = foreign.named_struct( "Windows.Win32.UI.Shell.HELPWININFOW"
 ]); 
 
 
-Win32.QueryCancelAutoPlay = foreign.named_struct( "Windows.Win32.UI.Shell.QueryCancelAutoPlay", [ 
-    
-]); 
-
-
-Win32.TimeCategorizer = foreign.named_struct( "Windows.Win32.UI.Shell.TimeCategorizer", [ 
-    
-]); 
-
-
-Win32.AlphabeticalCategorizer = foreign.named_struct( "Windows.Win32.UI.Shell.AlphabeticalCategorizer", [ 
-    
-]); 
-
-
-Win32.MergedCategorizer = foreign.named_struct( "Windows.Win32.UI.Shell.MergedCategorizer", [ 
-    
-]); 
-
-
-Win32.ImageProperties = foreign.named_struct( "Windows.Win32.UI.Shell.ImageProperties", [ 
-    
-]); 
-
-
-Win32.CDBurn = foreign.named_struct( "Windows.Win32.UI.Shell.CDBurn", [ 
-    
-]); 
-
-
-Win32.StartMenuPin = foreign.named_struct( "Windows.Win32.UI.Shell.StartMenuPin", [ 
-    
-]); 
-
-
-Win32.WebWizardHost = foreign.named_struct( "Windows.Win32.UI.Shell.WebWizardHost", [ 
-    
-]); 
-
-
-Win32.PublishDropTarget = foreign.named_struct( "Windows.Win32.UI.Shell.PublishDropTarget", [ 
-    
-]); 
-
-
-Win32.PublishingWizard = foreign.named_struct( "Windows.Win32.UI.Shell.PublishingWizard", [ 
-    
-]); 
-
-
-Win32.InternetPrintOrdering = foreign.named_struct( "Windows.Win32.UI.Shell.InternetPrintOrdering", [ 
-    
-]); 
-
-
-Win32.FolderViewHost = foreign.named_struct( "Windows.Win32.UI.Shell.FolderViewHost", [ 
-    
-]); 
-
-
-Win32.ExplorerBrowser = foreign.named_struct( "Windows.Win32.UI.Shell.ExplorerBrowser", [ 
-    
-]); 
-
-
-Win32.ImageRecompress = foreign.named_struct( "Windows.Win32.UI.Shell.ImageRecompress", [ 
-    
-]); 
-
-
-Win32.TrayBandSiteService = foreign.named_struct( "Windows.Win32.UI.Shell.TrayBandSiteService", [ 
-    
-]); 
-
-
-Win32.TrayDeskBand = foreign.named_struct( "Windows.Win32.UI.Shell.TrayDeskBand", [ 
-    
-]); 
-
-
-Win32.AttachmentServices = foreign.named_struct( "Windows.Win32.UI.Shell.AttachmentServices", [ 
-    
-]); 
-
-
-Win32.DocPropShellExtension = foreign.named_struct( "Windows.Win32.UI.Shell.DocPropShellExtension", [ 
-    
-]); 
-
-
-Win32.FSCopyHandler = foreign.named_struct( "Windows.Win32.UI.Shell.FSCopyHandler", [ 
-    
-]); 
-
-
-Win32.PreviousVersions = foreign.named_struct( "Windows.Win32.UI.Shell.PreviousVersions", [ 
-    
-]); 
-
-
-Win32.NamespaceTreeControl = foreign.named_struct( "Windows.Win32.UI.Shell.NamespaceTreeControl", [ 
-    
-]); 
-
-
-Win32.IENamespaceTreeControl = foreign.named_struct( "Windows.Win32.UI.Shell.IENamespaceTreeControl", [ 
-    
-]); 
-
-
-Win32.ApplicationAssociationRegistrationUI = foreign.named_struct( "Windows.Win32.UI.Shell.ApplicationAssociationRegistrationUI", [ 
-    
-]); 
-
-
-Win32.DesktopGadget = foreign.named_struct( "Windows.Win32.UI.Shell.DesktopGadget", [ 
-    
-]); 
-
-
-Win32.AccessibilityDockingService = foreign.named_struct( "Windows.Win32.UI.Shell.AccessibilityDockingService", [ 
-    
-]); 
-
-
-Win32.ExecuteFolder = foreign.named_struct( "Windows.Win32.UI.Shell.ExecuteFolder", [ 
-    
-]); 
-
-
-Win32.VirtualDesktopManager = foreign.named_struct( "Windows.Win32.UI.Shell.VirtualDesktopManager", [ 
-    
-]); 
-
-
-Win32.StorageProviderBanners = foreign.named_struct( "Windows.Win32.UI.Shell.StorageProviderBanners", [ 
-    
-]); 
-
-
-Win32.DesktopWallpaper = foreign.named_struct( "Windows.Win32.UI.Shell.DesktopWallpaper", [ 
-    
-]); 
-
-
-Win32.ShellDesktop = foreign.named_struct( "Windows.Win32.UI.Shell.ShellDesktop", [ 
-    
-]); 
-
-
-Win32.ShellFSFolder = foreign.named_struct( "Windows.Win32.UI.Shell.ShellFSFolder", [ 
-    
-]); 
-
-
-Win32.NetworkPlaces = foreign.named_struct( "Windows.Win32.UI.Shell.NetworkPlaces", [ 
-    
-]); 
-
-
-Win32.ShellLink = foreign.named_struct( "Windows.Win32.UI.Shell.ShellLink", [ 
-    
-]); 
-
-
-Win32.DriveSizeCategorizer = foreign.named_struct( "Windows.Win32.UI.Shell.DriveSizeCategorizer", [ 
-    
-]); 
-
-
-Win32.DriveTypeCategorizer = foreign.named_struct( "Windows.Win32.UI.Shell.DriveTypeCategorizer", [ 
-    
-]); 
-
-
-Win32.FreeSpaceCategorizer = foreign.named_struct( "Windows.Win32.UI.Shell.FreeSpaceCategorizer", [ 
-    
-]); 
-
-
-Win32.SizeCategorizer = foreign.named_struct( "Windows.Win32.UI.Shell.SizeCategorizer", [ 
-    
-]); 
-
-
-Win32.PropertiesUI = foreign.named_struct( "Windows.Win32.UI.Shell.PropertiesUI", [ 
-    
-]); 
-
-
-Win32.UserNotification = foreign.named_struct( "Windows.Win32.UI.Shell.UserNotification", [ 
-    
-]); 
-
-
-Win32.TaskbarList = foreign.named_struct( "Windows.Win32.UI.Shell.TaskbarList", [ 
-    
-]); 
-
-
-Win32.ShellItem = foreign.named_struct( "Windows.Win32.UI.Shell.ShellItem", [ 
-    
-]); 
-
-
-Win32.NamespaceWalker = foreign.named_struct( "Windows.Win32.UI.Shell.NamespaceWalker", [ 
-    
-]); 
-
-
-Win32.FileOperation = foreign.named_struct( "Windows.Win32.UI.Shell.FileOperation", [ 
-    
-]); 
-
-
-Win32.FileOpenDialog = foreign.named_struct( "Windows.Win32.UI.Shell.FileOpenDialog", [ 
-    
-]); 
-
-
-Win32.FileSaveDialog = foreign.named_struct( "Windows.Win32.UI.Shell.FileSaveDialog", [ 
-    
-]); 
-
-
-Win32.KnownFolderManager = foreign.named_struct( "Windows.Win32.UI.Shell.KnownFolderManager", [ 
-    
-]); 
-
-
-Win32.SharingConfigurationManager = foreign.named_struct( "Windows.Win32.UI.Shell.SharingConfigurationManager", [ 
-    
-]); 
-
-
-Win32.NetworkConnections = foreign.named_struct( "Windows.Win32.UI.Shell.NetworkConnections", [ 
-    
-]); 
-
-
-Win32.ScheduledTasks = foreign.named_struct( "Windows.Win32.UI.Shell.ScheduledTasks", [ 
-    
-]); 
-
-
-Win32.ApplicationAssociationRegistration = foreign.named_struct( "Windows.Win32.UI.Shell.ApplicationAssociationRegistration", [ 
-    
-]); 
-
-
-Win32.SearchFolderItemFactory = foreign.named_struct( "Windows.Win32.UI.Shell.SearchFolderItemFactory", [ 
-    
-]); 
-
-
-Win32.OpenControlPanel = foreign.named_struct( "Windows.Win32.UI.Shell.OpenControlPanel", [ 
-    
-]); 
-
-
-Win32.MailRecipient = foreign.named_struct( "Windows.Win32.UI.Shell.MailRecipient", [ 
-    
-]); 
-
-
-Win32.NetworkExplorerFolder = foreign.named_struct( "Windows.Win32.UI.Shell.NetworkExplorerFolder", [ 
-    
-]); 
-
-
-Win32.DestinationList = foreign.named_struct( "Windows.Win32.UI.Shell.DestinationList", [ 
-    
-]); 
-
-
-Win32.ApplicationDestinations = foreign.named_struct( "Windows.Win32.UI.Shell.ApplicationDestinations", [ 
-    
-]); 
-
-
-Win32.ApplicationDocumentLists = foreign.named_struct( "Windows.Win32.UI.Shell.ApplicationDocumentLists", [ 
-    
-]); 
-
-
-Win32.HomeGroup = foreign.named_struct( "Windows.Win32.UI.Shell.HomeGroup", [ 
-    
-]); 
-
-
-Win32.ShellLibrary = foreign.named_struct( "Windows.Win32.UI.Shell.ShellLibrary", [ 
-    
-]); 
-
-
-Win32.AppStartupLink = foreign.named_struct( "Windows.Win32.UI.Shell.AppStartupLink", [ 
-    
-]); 
-
-
-Win32.EnumerableObjectCollection = foreign.named_struct( "Windows.Win32.UI.Shell.EnumerableObjectCollection", [ 
-    
-]); 
-
-
-Win32.FrameworkInputPane = foreign.named_struct( "Windows.Win32.UI.Shell.FrameworkInputPane", [ 
-    
-]); 
-
-
-Win32.DefFolderMenu = foreign.named_struct( "Windows.Win32.UI.Shell.DefFolderMenu", [ 
-    
-]); 
-
-
-Win32.AppVisibility = foreign.named_struct( "Windows.Win32.UI.Shell.AppVisibility", [ 
-    
-]); 
-
-
-Win32.AppShellVerbHandler = foreign.named_struct( "Windows.Win32.UI.Shell.AppShellVerbHandler", [ 
-    
-]); 
-
-
-Win32.ExecuteUnknown = foreign.named_struct( "Windows.Win32.UI.Shell.ExecuteUnknown", [ 
-    
-]); 
-
-
-Win32.PackageDebugSettings = foreign.named_struct( "Windows.Win32.UI.Shell.PackageDebugSettings", [ 
-    
-]); 
-
-
-Win32.SuspensionDependencyManager = foreign.named_struct( "Windows.Win32.UI.Shell.SuspensionDependencyManager", [ 
-    
-]); 
-
-
-Win32.ApplicationActivationManager = foreign.named_struct( "Windows.Win32.UI.Shell.ApplicationActivationManager", [ 
-    
-]); 
-
-
-Win32.ApplicationDesignModeSettings = foreign.named_struct( "Windows.Win32.UI.Shell.ApplicationDesignModeSettings", [ 
-    
-]); 
-
-
 Win32.CMINVOKECOMMANDINFO = foreign.named_struct( "Windows.Win32.UI.Shell.CMINVOKECOMMANDINFO", [ 
     "cbSize:uint", 
     "fMask:uint", 
@@ -3683,6 +3400,216 @@ Win32.PREVIEWHANDLERFRAMEINFO = foreign.named_struct( "Windows.Win32.UI.Shell.PR
 ]); 
 
 
+Win32.DesktopWallpaper = foreign.named_struct( "Windows.Win32.UI.Shell.DesktopWallpaper", [ 
+    
+]); 
+
+
+Win32.ShellDesktop = foreign.named_struct( "Windows.Win32.UI.Shell.ShellDesktop", [ 
+    
+]); 
+
+
+Win32.ShellFSFolder = foreign.named_struct( "Windows.Win32.UI.Shell.ShellFSFolder", [ 
+    
+]); 
+
+
+Win32.NetworkPlaces = foreign.named_struct( "Windows.Win32.UI.Shell.NetworkPlaces", [ 
+    
+]); 
+
+
+Win32.ShellLink = foreign.named_struct( "Windows.Win32.UI.Shell.ShellLink", [ 
+    
+]); 
+
+
+Win32.DriveSizeCategorizer = foreign.named_struct( "Windows.Win32.UI.Shell.DriveSizeCategorizer", [ 
+    
+]); 
+
+
+Win32.DriveTypeCategorizer = foreign.named_struct( "Windows.Win32.UI.Shell.DriveTypeCategorizer", [ 
+    
+]); 
+
+
+Win32.FreeSpaceCategorizer = foreign.named_struct( "Windows.Win32.UI.Shell.FreeSpaceCategorizer", [ 
+    
+]); 
+
+
+Win32.SizeCategorizer = foreign.named_struct( "Windows.Win32.UI.Shell.SizeCategorizer", [ 
+    
+]); 
+
+
+Win32.PropertiesUI = foreign.named_struct( "Windows.Win32.UI.Shell.PropertiesUI", [ 
+    
+]); 
+
+
+Win32.UserNotification = foreign.named_struct( "Windows.Win32.UI.Shell.UserNotification", [ 
+    
+]); 
+
+
+Win32.TaskbarList = foreign.named_struct( "Windows.Win32.UI.Shell.TaskbarList", [ 
+    
+]); 
+
+
+Win32.ShellItem = foreign.named_struct( "Windows.Win32.UI.Shell.ShellItem", [ 
+    
+]); 
+
+
+Win32.NamespaceWalker = foreign.named_struct( "Windows.Win32.UI.Shell.NamespaceWalker", [ 
+    
+]); 
+
+
+Win32.FileOperation = foreign.named_struct( "Windows.Win32.UI.Shell.FileOperation", [ 
+    
+]); 
+
+
+Win32.FileOpenDialog = foreign.named_struct( "Windows.Win32.UI.Shell.FileOpenDialog", [ 
+    
+]); 
+
+
+Win32.FileSaveDialog = foreign.named_struct( "Windows.Win32.UI.Shell.FileSaveDialog", [ 
+    
+]); 
+
+
+Win32.KnownFolderManager = foreign.named_struct( "Windows.Win32.UI.Shell.KnownFolderManager", [ 
+    
+]); 
+
+
+Win32.SharingConfigurationManager = foreign.named_struct( "Windows.Win32.UI.Shell.SharingConfigurationManager", [ 
+    
+]); 
+
+
+Win32.NetworkConnections = foreign.named_struct( "Windows.Win32.UI.Shell.NetworkConnections", [ 
+    
+]); 
+
+
+Win32.ScheduledTasks = foreign.named_struct( "Windows.Win32.UI.Shell.ScheduledTasks", [ 
+    
+]); 
+
+
+Win32.ApplicationAssociationRegistration = foreign.named_struct( "Windows.Win32.UI.Shell.ApplicationAssociationRegistration", [ 
+    
+]); 
+
+
+Win32.SearchFolderItemFactory = foreign.named_struct( "Windows.Win32.UI.Shell.SearchFolderItemFactory", [ 
+    
+]); 
+
+
+Win32.OpenControlPanel = foreign.named_struct( "Windows.Win32.UI.Shell.OpenControlPanel", [ 
+    
+]); 
+
+
+Win32.MailRecipient = foreign.named_struct( "Windows.Win32.UI.Shell.MailRecipient", [ 
+    
+]); 
+
+
+Win32.NetworkExplorerFolder = foreign.named_struct( "Windows.Win32.UI.Shell.NetworkExplorerFolder", [ 
+    
+]); 
+
+
+Win32.DestinationList = foreign.named_struct( "Windows.Win32.UI.Shell.DestinationList", [ 
+    
+]); 
+
+
+Win32.ApplicationDestinations = foreign.named_struct( "Windows.Win32.UI.Shell.ApplicationDestinations", [ 
+    
+]); 
+
+
+Win32.ApplicationDocumentLists = foreign.named_struct( "Windows.Win32.UI.Shell.ApplicationDocumentLists", [ 
+    
+]); 
+
+
+Win32.HomeGroup = foreign.named_struct( "Windows.Win32.UI.Shell.HomeGroup", [ 
+    
+]); 
+
+
+Win32.ShellLibrary = foreign.named_struct( "Windows.Win32.UI.Shell.ShellLibrary", [ 
+    
+]); 
+
+
+Win32.AppStartupLink = foreign.named_struct( "Windows.Win32.UI.Shell.AppStartupLink", [ 
+    
+]); 
+
+
+Win32.EnumerableObjectCollection = foreign.named_struct( "Windows.Win32.UI.Shell.EnumerableObjectCollection", [ 
+    
+]); 
+
+
+Win32.FrameworkInputPane = foreign.named_struct( "Windows.Win32.UI.Shell.FrameworkInputPane", [ 
+    
+]); 
+
+
+Win32.DefFolderMenu = foreign.named_struct( "Windows.Win32.UI.Shell.DefFolderMenu", [ 
+    
+]); 
+
+
+Win32.AppVisibility = foreign.named_struct( "Windows.Win32.UI.Shell.AppVisibility", [ 
+    
+]); 
+
+
+Win32.AppShellVerbHandler = foreign.named_struct( "Windows.Win32.UI.Shell.AppShellVerbHandler", [ 
+    
+]); 
+
+
+Win32.ExecuteUnknown = foreign.named_struct( "Windows.Win32.UI.Shell.ExecuteUnknown", [ 
+    
+]); 
+
+
+Win32.PackageDebugSettings = foreign.named_struct( "Windows.Win32.UI.Shell.PackageDebugSettings", [ 
+    
+]); 
+
+
+Win32.SuspensionDependencyManager = foreign.named_struct( "Windows.Win32.UI.Shell.SuspensionDependencyManager", [ 
+    
+]); 
+
+
+Win32.ApplicationActivationManager = foreign.named_struct( "Windows.Win32.UI.Shell.ApplicationActivationManager", [ 
+    
+]); 
+
+
+Win32.ApplicationDesignModeSettings = foreign.named_struct( "Windows.Win32.UI.Shell.ApplicationDesignModeSettings", [ 
+    
+]); 
+
+
 Win32.BANNER_NOTIFICATION = foreign.named_struct( "Windows.Win32.UI.Shell.BANNER_NOTIFICATION", [ 
     "event:int", 
     "providerIdentity:wstr", 
@@ -3699,6 +3626,146 @@ Win32.NSTCCUSTOMDRAW = foreign.named_struct( "Windows.Win32.UI.Shell.NSTCCUSTOMD
     "himl:Windows.Win32.UI.Controls.HIMAGELIST", 
     "iLevel:int", 
     "iIndent:int"
+]); 
+
+
+Win32.QueryCancelAutoPlay = foreign.named_struct( "Windows.Win32.UI.Shell.QueryCancelAutoPlay", [ 
+    
+]); 
+
+
+Win32.TimeCategorizer = foreign.named_struct( "Windows.Win32.UI.Shell.TimeCategorizer", [ 
+    
+]); 
+
+
+Win32.AlphabeticalCategorizer = foreign.named_struct( "Windows.Win32.UI.Shell.AlphabeticalCategorizer", [ 
+    
+]); 
+
+
+Win32.MergedCategorizer = foreign.named_struct( "Windows.Win32.UI.Shell.MergedCategorizer", [ 
+    
+]); 
+
+
+Win32.ImageProperties = foreign.named_struct( "Windows.Win32.UI.Shell.ImageProperties", [ 
+    
+]); 
+
+
+Win32.CDBurn = foreign.named_struct( "Windows.Win32.UI.Shell.CDBurn", [ 
+    
+]); 
+
+
+Win32.StartMenuPin = foreign.named_struct( "Windows.Win32.UI.Shell.StartMenuPin", [ 
+    
+]); 
+
+
+Win32.WebWizardHost = foreign.named_struct( "Windows.Win32.UI.Shell.WebWizardHost", [ 
+    
+]); 
+
+
+Win32.PublishDropTarget = foreign.named_struct( "Windows.Win32.UI.Shell.PublishDropTarget", [ 
+    
+]); 
+
+
+Win32.PublishingWizard = foreign.named_struct( "Windows.Win32.UI.Shell.PublishingWizard", [ 
+    
+]); 
+
+
+Win32.InternetPrintOrdering = foreign.named_struct( "Windows.Win32.UI.Shell.InternetPrintOrdering", [ 
+    
+]); 
+
+
+Win32.FolderViewHost = foreign.named_struct( "Windows.Win32.UI.Shell.FolderViewHost", [ 
+    
+]); 
+
+
+Win32.ExplorerBrowser = foreign.named_struct( "Windows.Win32.UI.Shell.ExplorerBrowser", [ 
+    
+]); 
+
+
+Win32.ImageRecompress = foreign.named_struct( "Windows.Win32.UI.Shell.ImageRecompress", [ 
+    
+]); 
+
+
+Win32.TrayBandSiteService = foreign.named_struct( "Windows.Win32.UI.Shell.TrayBandSiteService", [ 
+    
+]); 
+
+
+Win32.TrayDeskBand = foreign.named_struct( "Windows.Win32.UI.Shell.TrayDeskBand", [ 
+    
+]); 
+
+
+Win32.AttachmentServices = foreign.named_struct( "Windows.Win32.UI.Shell.AttachmentServices", [ 
+    
+]); 
+
+
+Win32.DocPropShellExtension = foreign.named_struct( "Windows.Win32.UI.Shell.DocPropShellExtension", [ 
+    
+]); 
+
+
+Win32.FSCopyHandler = foreign.named_struct( "Windows.Win32.UI.Shell.FSCopyHandler", [ 
+    
+]); 
+
+
+Win32.PreviousVersions = foreign.named_struct( "Windows.Win32.UI.Shell.PreviousVersions", [ 
+    
+]); 
+
+
+Win32.NamespaceTreeControl = foreign.named_struct( "Windows.Win32.UI.Shell.NamespaceTreeControl", [ 
+    
+]); 
+
+
+Win32.IENamespaceTreeControl = foreign.named_struct( "Windows.Win32.UI.Shell.IENamespaceTreeControl", [ 
+    
+]); 
+
+
+Win32.ApplicationAssociationRegistrationUI = foreign.named_struct( "Windows.Win32.UI.Shell.ApplicationAssociationRegistrationUI", [ 
+    
+]); 
+
+
+Win32.DesktopGadget = foreign.named_struct( "Windows.Win32.UI.Shell.DesktopGadget", [ 
+    
+]); 
+
+
+Win32.AccessibilityDockingService = foreign.named_struct( "Windows.Win32.UI.Shell.AccessibilityDockingService", [ 
+    
+]); 
+
+
+Win32.ExecuteFolder = foreign.named_struct( "Windows.Win32.UI.Shell.ExecuteFolder", [ 
+    
+]); 
+
+
+Win32.VirtualDesktopManager = foreign.named_struct( "Windows.Win32.UI.Shell.VirtualDesktopManager", [ 
+    
+]); 
+
+
+Win32.StorageProviderBanners = foreign.named_struct( "Windows.Win32.UI.Shell.StorageProviderBanners", [ 
+    
 ]); 
 
 
@@ -4013,7 +4080,7 @@ Win32.SHChangeUpdateImageIDList = foreign.named_struct( "Windows.Win32.UI.Shell.
 
 
 Win32.SHDESCRIPTIONID = foreign.named_struct( "Windows.Win32.UI.Shell.SHDESCRIPTIONID", [ 
-    "dwDescriptionId:int", 
+    "dwDescriptionId:uint", 
     "clsid:ptr"
 ]); 
 
@@ -4038,7 +4105,7 @@ Win32.CABINETSTATE = foreign.named_struct( "Windows.Win32.UI.Shell.CABINETSTATE"
 Win32.OPENASINFO = foreign.named_struct( "Windows.Win32.UI.Shell.OPENASINFO", [ 
     "pcszFile:wstr", 
     "pcszClass:wstr", 
-    "oaifInFlags:uint"
+    "oaifInFlags:int"
 ]); 
 
 
@@ -4333,6 +4400,22 @@ Win32.PUBAPPINFO = foreign.named_struct( "Windows.Win32.UI.Shell.PUBAPPINFO", [
 ]); 
 
 
+Win32.CREDENTIAL_PROVIDER_FIELD_DESCRIPTOR = foreign.named_struct( "Windows.Win32.UI.Shell.CREDENTIAL_PROVIDER_FIELD_DESCRIPTOR", [ 
+    "dwFieldID:uint", 
+    "cpft:int", 
+    "pszLabel:wstr", 
+    "guidFieldType:ptr"
+]); 
+
+
+Win32.CREDENTIAL_PROVIDER_CREDENTIAL_SERIALIZATION = foreign.named_struct( "Windows.Win32.UI.Shell.CREDENTIAL_PROVIDER_CREDENTIAL_SERIALIZATION", [ 
+    "ulAuthenticationPackage:uint", 
+    "clsidCredentialProvider:ptr", 
+    "cbSerialization:uint", 
+    "rgbSerialization:ptr"
+]); 
+
+
 Win32.PasswordCredentialProvider = foreign.named_struct( "Windows.Win32.UI.Shell.PasswordCredentialProvider", [ 
     
 ]); 
@@ -4413,19 +4496,25 @@ Win32.V1WinBioCredentialProvider = foreign.named_struct( "Windows.Win32.UI.Shell
 ]); 
 
 
-Win32.CREDENTIAL_PROVIDER_FIELD_DESCRIPTOR = foreign.named_struct( "Windows.Win32.UI.Shell.CREDENTIAL_PROVIDER_FIELD_DESCRIPTOR", [ 
-    "dwFieldID:uint", 
-    "cpft:int", 
-    "pszLabel:wstr", 
-    "guidFieldType:ptr"
+Win32.SYNCMGR_CONFLICT_ID_INFO = foreign.named_struct( "Windows.Win32.UI.Shell.SYNCMGR_CONFLICT_ID_INFO", [ 
+    "pblobID:ptr", 
+    "pblobExtra:ptr"
 ]); 
 
 
-Win32.CREDENTIAL_PROVIDER_CREDENTIAL_SERIALIZATION = foreign.named_struct( "Windows.Win32.UI.Shell.CREDENTIAL_PROVIDER_CREDENTIAL_SERIALIZATION", [ 
-    "ulAuthenticationPackage:uint", 
-    "clsidCredentialProvider:ptr", 
-    "cbSerialization:uint", 
-    "rgbSerialization:ptr"
+Win32.CONFIRM_CONFLICT_ITEM = foreign.named_struct( "Windows.Win32.UI.Shell.CONFIRM_CONFLICT_ITEM", [ 
+    "pShellItem:ptr", 
+    "pszOriginalName:wstr", 
+    "pszAlternateName:wstr", 
+    "pszLocationShort:wstr", 
+    "pszLocationFull:wstr", 
+    "nType:int"
+]); 
+
+
+Win32.CONFIRM_CONFLICT_RESULT_INFO = foreign.named_struct( "Windows.Win32.UI.Shell.CONFIRM_CONFLICT_RESULT_INFO", [ 
+    "pszNewName:wstr", 
+    "iItemIndex:uint"
 ]); 
 
 
@@ -4469,30 +4558,13 @@ Win32.SimpleConflictPresenter = foreign.named_struct( "Windows.Win32.UI.Shell.Si
 ]); 
 
 
-Win32.SYNCMGR_CONFLICT_ID_INFO = foreign.named_struct( "Windows.Win32.UI.Shell.SYNCMGR_CONFLICT_ID_INFO", [ 
-    "pblobID:ptr", 
-    "pblobExtra:ptr"
-]); 
-
-
-Win32.CONFIRM_CONFLICT_ITEM = foreign.named_struct( "Windows.Win32.UI.Shell.CONFIRM_CONFLICT_ITEM", [ 
-    "pShellItem:ptr", 
-    "pszOriginalName:wstr", 
-    "pszAlternateName:wstr", 
-    "pszLocationShort:wstr", 
-    "pszLocationFull:wstr", 
-    "nType:int"
-]); 
-
-
-Win32.CONFIRM_CONFLICT_RESULT_INFO = foreign.named_struct( "Windows.Win32.UI.Shell.CONFIRM_CONFLICT_RESULT_INFO", [ 
-    "pszNewName:wstr", 
-    "iItemIndex:uint"
-]); 
-
-
 Win32.InputPanelConfiguration = foreign.named_struct( "Windows.Win32.UI.Shell.InputPanelConfiguration", [ 
     
+]); 
+
+
+Win32.WTS_THUMBNAILID = foreign.named_struct( "Windows.Win32.UI.Shell.WTS_THUMBNAILID", [ 
+    "rgbKey[16]:ubyte"
 ]); 
 
 
@@ -4506,17 +4578,7 @@ Win32.SharedBitmap = foreign.named_struct( "Windows.Win32.UI.Shell.SharedBitmap"
 ]); 
 
 
-Win32.WTS_THUMBNAILID = foreign.named_struct( "Windows.Win32.UI.Shell.WTS_THUMBNAILID", [ 
-    "rgbKey[16]:ubyte"
-]); 
-
-
 Win32.ShellImageDataFactory = foreign.named_struct( "Windows.Win32.UI.Shell.ShellImageDataFactory", [ 
-    
-]); 
-
-
-Win32.SyncMgr = foreign.named_struct( "Windows.Win32.UI.Shell.SyncMgr", [ 
     
 ]); 
 
@@ -4559,12 +4621,12 @@ Win32.SYNCMGRHANDLERINFO = foreign.named_struct( "Windows.Win32.UI.Shell.SYNCMGR
 ]); 
 
 
-Win32.ThumbnailStreamCache = foreign.named_struct( "Windows.Win32.UI.Shell.ThumbnailStreamCache", [ 
+Win32.SyncMgr = foreign.named_struct( "Windows.Win32.UI.Shell.SyncMgr", [ 
     
 ]); 
 
 
-Win32.TrackShellMenu = foreign.named_struct( "Windows.Win32.UI.Shell.TrackShellMenu", [ 
+Win32.ThumbnailStreamCache = foreign.named_struct( "Windows.Win32.UI.Shell.ThumbnailStreamCache", [ 
     
 ]); 
 
@@ -4674,6 +4736,11 @@ Win32.TOOLBARITEM = foreign.named_struct( "Windows.Win32.UI.Shell.TOOLBARITEM", 
     "pwszItem:wstr", 
     "fShow:Windows.Win32.Foundation.BOOL", 
     "hMon:Windows.Win32.Graphics.Gdi.HMONITOR"
+]); 
+
+
+Win32.TrackShellMenu = foreign.named_struct( "Windows.Win32.UI.Shell.TrackShellMenu", [ 
+    
 ]); 
 
 
@@ -4962,7 +5029,6 @@ Win32.VID_ThumbStrip = "ptr";
 Win32.SID_SInPlaceBrowser = "ptr";
 Win32.SID_SSearchBoxInfo = "ptr";
 Win32.SID_CommandsPropertyBag = "ptr";
-Win32.CLSID_CUrlHistory = "ptr";
 Win32.CLSID_CURLSearchHook = "ptr";
 Win32.CLSID_AutoComplete = "ptr";
 Win32.CLSID_ACLHistory = "ptr";
@@ -4982,6 +5048,7 @@ Win32.CLSID_MSOButtons = "ptr";
 Win32.CLSID_ToolbarExtButtons = "ptr";
 Win32.CLSID_DarwinAppPublisher = "ptr";
 Win32.CLSID_DocHostUIHandler = "ptr";
+Win32.PSGUID_SHELLDETAILS = "ptr";
 Win32.FMTID_ShellDetails = "ptr";
 Win32.PID_FINDDATA = 0;
 Win32.PID_NETRESOURCE = 1;
@@ -4990,23 +5057,31 @@ Win32.PID_WHICHFOLDER = 3;
 Win32.PID_NETWORKLOCATION = 4;
 Win32.PID_COMPUTERNAME = 5;
 Win32.FMTID_Storage = "ptr";
+Win32.PSGUID_IMAGEPROPERTIES = "ptr";
 Win32.FMTID_ImageProperties = "ptr";
+Win32.PSGUID_CUSTOMIMAGEPROPERTIES = "ptr";
 Win32.FMTID_CustomImageProperties = "ptr";
+Win32.PSGUID_LIBRARYPROPERTIES = "ptr";
 Win32.FMTID_LibraryProperties = "ptr";
+Win32.PSGUID_DISPLACED = "ptr";
 Win32.FMTID_Displaced = "ptr";
 Win32.PID_DISPLACED_FROM = 2;
 Win32.PID_DISPLACED_DATE = 3;
+Win32.PSGUID_BRIEFCASE = "ptr";
 Win32.FMTID_Briefcase = "ptr";
 Win32.PID_SYNC_COPY_IN = 2;
+Win32.PSGUID_MISC = "ptr";
 Win32.FMTID_Misc = "ptr";
 Win32.PID_MISC_STATUS = 2;
 Win32.PID_MISC_ACCESSCOUNT = 3;
 Win32.PID_MISC_OWNER = 4;
 Win32.PID_HTMLINFOTIPFILE = 5;
 Win32.PID_MISC_PICS = 6;
+Win32.PSGUID_WEBVIEW = "ptr";
 Win32.FMTID_WebView = "ptr";
 Win32.PID_DISPLAY_PROPERTIES = 0;
 Win32.PID_INTROTEXT = 1;
+Win32.PSGUID_MUSIC = "ptr";
 Win32.FMTID_MUSIC = "ptr";
 Win32.PIDSI_ARTIST = 2;
 Win32.PIDSI_SONGTITLE = 3;
@@ -5016,12 +5091,14 @@ Win32.PIDSI_COMMENT = 6;
 Win32.PIDSI_TRACK = 7;
 Win32.PIDSI_GENRE = 11;
 Win32.PIDSI_LYRICS = 12;
+Win32.PSGUID_DRM = "ptr";
 Win32.FMTID_DRM = "ptr";
 Win32.PIDDRSI_PROTECTED = 2;
 Win32.PIDDRSI_DESCRIPTION = 3;
 Win32.PIDDRSI_PLAYCOUNT = 4;
 Win32.PIDDRSI_PLAYSTARTS = 5;
 Win32.PIDDRSI_PLAYEXPIRES = 6;
+Win32.PSGUID_VIDEO = "ptr";
 Win32.PIDVSI_STREAM_NAME = 2;
 Win32.PIDVSI_FRAME_WIDTH = 3;
 Win32.PIDVSI_FRAME_HEIGHT = 4;
@@ -5032,6 +5109,7 @@ Win32.PIDVSI_DATA_RATE = 8;
 Win32.PIDVSI_SAMPLE_SIZE = 9;
 Win32.PIDVSI_COMPRESSION = 10;
 Win32.PIDVSI_STREAM_NUMBER = 11;
+Win32.PSGUID_AUDIO = "ptr";
 Win32.PIDASI_FORMAT = 2;
 Win32.PIDASI_TIMELENGTH = 3;
 Win32.PIDASI_AVG_DATA_RATE = 4;
@@ -5041,16 +5119,25 @@ Win32.PIDASI_CHANNEL_COUNT = 7;
 Win32.PIDASI_STREAM_NUMBER = 8;
 Win32.PIDASI_STREAM_NAME = 9;
 Win32.PIDASI_COMPRESSION = 10;
+Win32.PSGUID_CONTROLPANEL = "ptr";
 Win32.PID_CONTROLPANEL_CATEGORY = 2;
+Win32.PSGUID_VOLUME = "ptr";
 Win32.FMTID_Volume = "ptr";
 Win32.PID_VOLUME_FREE = 2;
 Win32.PID_VOLUME_CAPACITY = 3;
 Win32.PID_VOLUME_FILESYSTEM = 4;
+Win32.PSGUID_SHARE = "ptr";
 Win32.PID_SHARE_CSC_STATUS = 2;
+Win32.PSGUID_LINK = "ptr";
 Win32.PID_LINK_TARGET = 2;
 Win32.PID_LINK_TARGET_TYPE = 3;
+Win32.PSGUID_QUERY_D = "ptr";
 Win32.FMTID_Query = "ptr";
 Win32.PID_QUERY_RANK = 2;
+Win32.PSGUID_SUMMARYINFORMATION = "ptr";
+Win32.PSGUID_DOCUMENTSUMMARYINFORMATION = "ptr";
+Win32.PSGUID_MEDIAFILESUMMARYINFORMATION = "ptr";
+Win32.PSGUID_IMAGESUMMARYINFORMATION = "ptr";
 Win32.CLSID_HWShellExecute = "ptr";
 Win32.CLSID_DragDropHelper = "ptr";
 Win32.CLSID_CAnchorBrowsePropertyPage = "ptr";
@@ -5593,6 +5680,7 @@ Win32.ITSAT_MIN_PRIORITY = 0;
 Win32.ITSSFLAG_COMPLETE_ON_DESTROY = 0;
 Win32.ITSSFLAG_KILL_ON_DESTROY = 1;
 Win32.ITSSFLAG_FLAGS_MASK = 3;
+Win32.ITSS_THREAD_TIMEOUT_NO_CHANGE = 4294967294;
 Win32.CSIDL_FLAG_PFTI_TRACKTARGET = 16384;
 Win32.SHCIDS_ALLFIELDS = -2147483648;
 Win32.SHCIDS_CANONICALONLY = 268435456;
@@ -5751,22 +5839,6 @@ Win32.DBIF_VIEWMODE_FLOATING = 2;
 Win32.DBIF_VIEWMODE_TRANSPARENT = 4;
 Win32.DBPC_SELECTFIRST = 4294967295;
 Win32.THBN_CLICKED = 6144;
-Win32.FOFX_NOSKIPJUNCTIONS = 65536;
-Win32.FOFX_PREFERHARDLINK = 131072;
-Win32.FOFX_SHOWELEVATIONPROMPT = 262144;
-Win32.FOFX_RECYCLEONDELETE = 524288;
-Win32.FOFX_EARLYFAILURE = 1048576;
-Win32.FOFX_PRESERVEFILEEXTENSIONS = 2097152;
-Win32.FOFX_KEEPNEWERFILE = 4194304;
-Win32.FOFX_NOCOPYHOOKS = 8388608;
-Win32.FOFX_NOMINIMIZEBOX = 16777216;
-Win32.FOFX_MOVEACLSACROSSVOLUMES = 33554432;
-Win32.FOFX_DONTDISPLAYSOURCEPATH = 67108864;
-Win32.FOFX_DONTDISPLAYDESTPATH = 134217728;
-Win32.FOFX_REQUIREELEVATION = 268435456;
-Win32.FOFX_ADDUNDORECORD = 536870912;
-Win32.FOFX_COPYASDOWNLOAD = 1073741824;
-Win32.FOFX_DONTDISPLAYLOCATIONS = 2147483648;
 Win32.BSIM_STATE = 1;
 Win32.BSIM_STYLE = 2;
 Win32.BSSF_VISIBLE = 1;
@@ -5878,22 +5950,6 @@ Win32.FO_MOVE = 1;
 Win32.FO_COPY = 2;
 Win32.FO_DELETE = 3;
 Win32.FO_RENAME = 4;
-Win32.FOF_MULTIDESTFILES = 1;
-Win32.FOF_CONFIRMMOUSE = 2;
-Win32.FOF_SILENT = 4;
-Win32.FOF_RENAMEONCOLLISION = 8;
-Win32.FOF_NOCONFIRMATION = 16;
-Win32.FOF_WANTMAPPINGHANDLE = 32;
-Win32.FOF_ALLOWUNDO = 64;
-Win32.FOF_FILESONLY = 128;
-Win32.FOF_SIMPLEPROGRESS = 256;
-Win32.FOF_NOCONFIRMMKDIR = 512;
-Win32.FOF_NOERRORUI = 1024;
-Win32.FOF_NOCOPYSECURITYATTRIBS = 2048;
-Win32.FOF_NORECURSION = 4096;
-Win32.FOF_NO_CONNECTED_ELEMENTS = 8192;
-Win32.FOF_WANTNUKEWARNING = 16384;
-Win32.FOF_NORECURSEREPARSE = 32768;
 Win32.PO_DELETE = 19;
 Win32.PO_RENAME = 20;
 Win32.PO_PORTCHANGE = 32;
@@ -5944,7 +6000,6 @@ Win32.NIN_POPUPOPEN = 1030;
 Win32.NIN_POPUPCLOSE = 1031;
 Win32.NOTIFYICON_VERSION = 3;
 Win32.NOTIFYICON_VERSION_4 = 4;
-Win32.SHGSI_ICONLOCATION = 0;
 Win32.SHGNLI_PIDL = 1;
 Win32.SHGNLI_PREFIXNAME = 2;
 Win32.SHGNLI_NOUNIQUE = 4;
@@ -6240,6 +6295,7 @@ Win32.COPYENGINE_S_KEEP_BOTH = 2555916;
 Win32.COPYENGINE_S_CLOSE_PROGRAM = 2555917;
 Win32.COPYENGINE_S_COLLISIONRESOLVED = 2555918;
 Win32.COPYENGINE_S_PROGRESS_PAUSE = 2555919;
+Win32.COPYENGINE_S_PENDING_DELETE = 2555920;
 Win32.COPYENGINE_E_USER_CANCELLED = -2144927744;
 Win32.COPYENGINE_E_CANCELLED = -2144927743;
 Win32.COPYENGINE_E_REQUIRES_ELEVATION = -2144927742;
@@ -6346,6 +6402,8 @@ Win32.SHC_E_SHELL_COMPONENT_STARTUP_FAILURE = -2144927180;
 Win32.E_TILE_NOTIFICATIONS_PLATFORM_FAILURE = -2144927159;
 Win32.E_SHELL_EXTENSION_BLOCKED = -2144926975;
 Win32.E_IMAGEFEED_CHANGEDISABLED = -2144926960;
+Win32.CLSID_CUrlHistory = "ptr";
+Win32.CLSID_CUrlHistoryBoth = "ptr";
 Win32.ISHCUTCMDID_DOWNLOADICON = 0;
 Win32.ISHCUTCMDID_INTSHORTCUTCREATE = 1;
 Win32.ISHCUTCMDID_COMMITHISTORY = 2;
@@ -6359,25 +6417,6 @@ Win32.DBCID_GETBAR = 4;
 Win32.DBCID_UPDATESIZE = 5;
 Win32.BMICON_LARGE = 0;
 Win32.BMICON_SMALL = 1;
-Win32.ASSOCF_NONE = 0;
-Win32.ASSOCF_INIT_NOREMAPCLSID = 1;
-Win32.ASSOCF_INIT_BYEXENAME = 2;
-Win32.ASSOCF_OPEN_BYEXENAME = 2;
-Win32.ASSOCF_INIT_DEFAULTTOSTAR = 4;
-Win32.ASSOCF_INIT_DEFAULTTOFOLDER = 8;
-Win32.ASSOCF_NOUSERSETTINGS = 16;
-Win32.ASSOCF_NOTRUNCATE = 32;
-Win32.ASSOCF_VERIFY = 64;
-Win32.ASSOCF_REMAPRUNDLL = 128;
-Win32.ASSOCF_NOFIXUPS = 256;
-Win32.ASSOCF_IGNOREBASECLASS = 512;
-Win32.ASSOCF_INIT_IGNOREUNKNOWN = 1024;
-Win32.ASSOCF_INIT_FIXED_PROGID = 2048;
-Win32.ASSOCF_IS_PROTOCOL = 4096;
-Win32.ASSOCF_INIT_FOR_FILE = 8192;
-Win32.ASSOCF_IS_FULL_URI = 16384;
-Win32.ASSOCF_PER_MACHINE_ONLY = 32768;
-Win32.ASSOCF_APP_TO_APP = 65536;
 Win32.CTF_INSIST = 1;
 Win32.CTF_THREAD_REF = 2;
 Win32.CTF_PROCESS_REF = 4;
@@ -6393,6 +6432,7 @@ Win32.CTF_KEYBOARD_LOCALE = 1024;
 Win32.CTF_OLEINITIALIZE = 2048;
 Win32.CTF_COINIT_MTA = 4096;
 Win32.CTF_NOADDREFLIB = 8192;
+Win32.FileIconInit = foreign.native( "", "int", "FileIconInit", [ "int" ] ); 
 Win32.LoadUserProfileA = foreign.native( "USERENV.dll", "int", "LoadUserProfileA", [ "ptr", "ptr" ] ); 
 Win32.LoadUserProfileW = foreign.native( "USERENV.dll", "int", "LoadUserProfileW", [ "ptr", "ptr" ] ); 
 Win32.UnloadUserProfile = foreign.native( "USERENV.dll", "int", "UnloadUserProfile", [ "ptr", "ptr" ] ); 
@@ -6408,6 +6448,10 @@ Win32.GetAllUsersProfileDirectoryA = foreign.native( "USERENV.dll", "int", "GetA
 Win32.GetAllUsersProfileDirectoryW = foreign.native( "USERENV.dll", "int", "GetAllUsersProfileDirectoryW", [ "wstr", "ptr" ] ); 
 Win32.GetUserProfileDirectoryA = foreign.native( "USERENV.dll", "int", "GetUserProfileDirectoryA", [ "ptr", "ptr", "ptr" ] ); 
 Win32.GetUserProfileDirectoryW = foreign.native( "USERENV.dll", "int", "GetUserProfileDirectoryW", [ "ptr", "wstr", "ptr" ] ); 
+Win32.InitPropVariantFromStrRet = foreign.native( "PROPSYS.dll", "int", "InitPropVariantFromStrRet", [ "ptr", "ptr", "ptr" ] ); 
+Win32.PropVariantToStrRet = foreign.native( "PROPSYS.dll", "int", "PropVariantToStrRet", [ "ptr", "ptr" ] ); 
+Win32.InitVariantFromStrRet = foreign.native( "PROPSYS.dll", "int", "InitVariantFromStrRet", [ "ptr", "ptr", "ptr" ] ); 
+Win32.VariantToStrRet = foreign.native( "PROPSYS.dll", "int", "VariantToStrRet", [ "ptr", "ptr" ] ); 
 Win32.SetWindowSubclass = foreign.native( "COMCTL32.dll", "int", "SetWindowSubclass", [ "ptr", "ptr", "ptr", "ptr" ] ); 
 Win32.GetWindowSubclass = foreign.native( "COMCTL32.dll", "int", "GetWindowSubclass", [ "ptr", "ptr", "ptr", "ptr" ] ); 
 Win32.RemoveWindowSubclass = foreign.native( "COMCTL32.dll", "int", "RemoveWindowSubclass", [ "ptr", "ptr", "ptr" ] ); 
@@ -6496,14 +6540,14 @@ Win32.SHGetFolderPathAndSubDirA = foreign.native( "SHELL32.dll", "int", "SHGetFo
 Win32.SHGetFolderPathAndSubDirW = foreign.native( "SHELL32.dll", "int", "SHGetFolderPathAndSubDirW", [ "ptr", "int", "ptr", "uint", "wstr", "wstr" ] ); 
 Win32.SHGetKnownFolderIDList = foreign.native( "SHELL32.dll", "int", "SHGetKnownFolderIDList", [ "ptr", "uint", "ptr", "ptr" ] ); 
 Win32.SHSetKnownFolderPath = foreign.native( "SHELL32.dll", "int", "SHSetKnownFolderPath", [ "ptr", "uint", "ptr", "wstr" ] ); 
-Win32.SHGetKnownFolderPath = foreign.native( "SHELL32.dll", "int", "SHGetKnownFolderPath", [ "ptr", "int", "ptr", "ptr" ] ); 
+Win32.SHGetKnownFolderPath = foreign.native( "SHELL32.dll", "int", "SHGetKnownFolderPath", [ "ptr", "uint", "ptr", "ptr" ] ); 
 Win32.SHGetKnownFolderItem = foreign.native( "SHELL32.dll", "int", "SHGetKnownFolderItem", [ "ptr", "int", "ptr", "ptr", "ptr" ] ); 
 Win32.SHGetSetFolderCustomSettings = foreign.native( "SHELL32.dll", "int", "SHGetSetFolderCustomSettings", [ "ptr", "wstr", "uint" ] ); 
 Win32.SHBrowseForFolderA = foreign.native( "SHELL32.dll", "ptr", "SHBrowseForFolderA", [ "ptr" ] ); 
 Win32.SHBrowseForFolderW = foreign.native( "SHELL32.dll", "ptr", "SHBrowseForFolderW", [ "ptr" ] ); 
 Win32.SHLoadInProc = foreign.native( "SHELL32.dll", "int", "SHLoadInProc", [ "ptr" ] ); 
 Win32.SHGetDesktopFolder = foreign.native( "SHELL32.dll", "int", "SHGetDesktopFolder", [ "ptr" ] ); 
-Win32.SHChangeNotify = foreign.native( "SHELL32.dll", "void", "SHChangeNotify", [ "uint", "uint", "ptr", "ptr" ] ); 
+Win32.SHChangeNotify = foreign.native( "SHELL32.dll", "void", "SHChangeNotify", [ "int", "uint", "ptr", "ptr" ] ); 
 Win32.SHAddToRecentDocs = foreign.native( "SHELL32.dll", "void", "SHAddToRecentDocs", [ "uint", "ptr" ] ); 
 Win32.SHHandleUpdateImage = foreign.native( "SHELL32.dll", "int", "SHHandleUpdateImage", [ "ptr" ] ); 
 Win32.SHUpdateImageA = foreign.native( "SHELL32.dll", "void", "SHUpdateImageA", [ "ptr", "int", "uint", "int" ] ); 
@@ -6534,15 +6578,15 @@ Win32.ReadCabinetState = foreign.native( "SHELL32.dll", "int", "ReadCabinetState
 Win32.WriteCabinetState = foreign.native( "SHELL32.dll", "int", "WriteCabinetState", [ "ptr" ] ); 
 Win32.PathMakeUniqueName = foreign.native( "SHELL32.dll", "int", "PathMakeUniqueName", [ "wstr", "uint", "wstr", "wstr", "wstr" ] ); 
 Win32.PathIsExe = foreign.native( "SHELL32.dll", "int", "PathIsExe", [ "wstr" ] ); 
-Win32.PathCleanupSpec = foreign.native( "SHELL32.dll", "uint", "PathCleanupSpec", [ "wstr", "wstr" ] ); 
-Win32.PathResolve = foreign.native( "SHELL32.dll", "int", "PathResolve", [ "wstr", "ptr", "int" ] ); 
+Win32.PathCleanupSpec = foreign.native( "SHELL32.dll", "int", "PathCleanupSpec", [ "wstr", "wstr" ] ); 
+Win32.PathResolve = foreign.native( "SHELL32.dll", "int", "PathResolve", [ "wstr", "ptr", "uint" ] ); 
 Win32.GetFileNameFromBrowse = foreign.native( "SHELL32.dll", "int", "GetFileNameFromBrowse", [ "ptr", "wstr", "uint", "wstr", "wstr", "wstr", "wstr" ] ); 
 Win32.DriveType = foreign.native( "SHELL32.dll", "int", "DriveType", [ "int" ] ); 
 Win32.RealDriveType = foreign.native( "SHELL32.dll", "int", "RealDriveType", [ "int", "int" ] ); 
 Win32.IsNetDrive = foreign.native( "SHELL32.dll", "int", "IsNetDrive", [ "int" ] ); 
 Win32.Shell_MergeMenus = foreign.native( "SHELL32.dll", "uint", "Shell_MergeMenus", [ "ptr", "ptr", "uint", "uint", "uint", "uint" ] ); 
-Win32.SHObjectProperties = foreign.native( "SHELL32.dll", "int", "SHObjectProperties", [ "ptr", "int", "wstr", "wstr" ] ); 
-Win32.SHFormatDrive = foreign.native( "SHELL32.dll", "uint", "SHFormatDrive", [ "ptr", "uint", "uint", "int" ] ); 
+Win32.SHObjectProperties = foreign.native( "SHELL32.dll", "int", "SHObjectProperties", [ "ptr", "uint", "wstr", "wstr" ] ); 
+Win32.SHFormatDrive = foreign.native( "SHELL32.dll", "uint", "SHFormatDrive", [ "ptr", "uint", "uint", "uint" ] ); 
 Win32.SHDestroyPropSheetExtArray = foreign.native( "SHELL32.dll", "void", "SHDestroyPropSheetExtArray", [ "ptr" ] ); 
 Win32.SHAddFromPropSheetExtArray = foreign.native( "SHELL32.dll", "uint", "SHAddFromPropSheetExtArray", [ "ptr", "ptr", "ptr" ] ); 
 Win32.SHReplaceFromPropSheetExtArray = foreign.native( "SHELL32.dll", "uint", "SHReplaceFromPropSheetExtArray", [ "ptr", "uint", "ptr", "ptr" ] ); 
@@ -6562,7 +6606,7 @@ Win32.Shell_GetImageLists = foreign.native( "SHELL32.dll", "int", "Shell_GetImag
 Win32.Shell_GetCachedImageIndex = foreign.native( "SHELL32.dll", "int", "Shell_GetCachedImageIndex", [ "wstr", "int", "uint" ] ); 
 Win32.Shell_GetCachedImageIndexA = foreign.native( "SHELL32.dll", "int", "Shell_GetCachedImageIndexA", [ "ptr", "int", "uint" ] ); 
 Win32.Shell_GetCachedImageIndexW = foreign.native( "SHELL32.dll", "int", "Shell_GetCachedImageIndexW", [ "wstr", "int", "uint" ] ); 
-Win32.SHValidateUNC = foreign.native( "SHELL32.dll", "int", "SHValidateUNC", [ "ptr", "wstr", "int" ] ); 
+Win32.SHValidateUNC = foreign.native( "SHELL32.dll", "int", "SHValidateUNC", [ "ptr", "wstr", "uint" ] ); 
 Win32.SHSetInstanceExplorer = foreign.native( "SHELL32.dll", "void", "SHSetInstanceExplorer", [ "ptr" ] ); 
 Win32.IsUserAnAdmin = foreign.native( "SHELL32.dll", "int", "IsUserAnAdmin", [  ] ); 
 Win32.SHShellFolderView_Message = foreign.native( "SHELL32.dll", "ptr", "SHShellFolderView_Message", [ "ptr", "uint", "ptr" ] ); 
@@ -6610,8 +6654,8 @@ Win32.DragQueryFileW = foreign.native( "SHELL32.dll", "uint", "DragQueryFileW", 
 Win32.DragQueryPoint = foreign.native( "SHELL32.dll", "int", "DragQueryPoint", [ "ptr", "ptr" ] ); 
 Win32.DragFinish = foreign.native( "SHELL32.dll", "void", "DragFinish", [ "ptr" ] ); 
 Win32.DragAcceptFiles = foreign.native( "SHELL32.dll", "void", "DragAcceptFiles", [ "ptr", "int" ] ); 
-Win32.ShellExecuteA = foreign.native( "SHELL32.dll", "ptr", "ShellExecuteA", [ "ptr", "ptr", "ptr", "ptr", "ptr", "uint" ] ); 
-Win32.ShellExecuteW = foreign.native( "SHELL32.dll", "ptr", "ShellExecuteW", [ "ptr", "wstr", "wstr", "wstr", "wstr", "uint" ] ); 
+Win32.ShellExecuteA = foreign.native( "SHELL32.dll", "ptr", "ShellExecuteA", [ "ptr", "ptr", "ptr", "ptr", "ptr", "int" ] ); 
+Win32.ShellExecuteW = foreign.native( "SHELL32.dll", "ptr", "ShellExecuteW", [ "ptr", "wstr", "wstr", "wstr", "wstr", "int" ] ); 
 Win32.FindExecutableA = foreign.native( "SHELL32.dll", "ptr", "FindExecutableA", [ "ptr", "ptr", "ptr" ] ); 
 Win32.FindExecutableW = foreign.native( "SHELL32.dll", "ptr", "FindExecutableW", [ "wstr", "wstr", "wstr" ] ); 
 Win32.ShellAboutA = foreign.native( "SHELL32.dll", "int", "ShellAboutA", [ "ptr", "ptr", "ptr", "ptr" ] ); 
@@ -6644,8 +6688,8 @@ Win32.SHQueryUserNotificationState = foreign.native( "SHELL32.dll", "int", "SHQu
 Win32.Shell_NotifyIconA = foreign.native( "SHELL32.dll", "int", "Shell_NotifyIconA", [ "uint", "ptr" ] ); 
 Win32.Shell_NotifyIconW = foreign.native( "SHELL32.dll", "int", "Shell_NotifyIconW", [ "uint", "ptr" ] ); 
 Win32.Shell_NotifyIconGetRect = foreign.native( "SHELL32.dll", "int", "Shell_NotifyIconGetRect", [ "ptr", "ptr" ] ); 
-Win32.SHGetFileInfoA = foreign.native( "SHELL32.dll", "ptr", "SHGetFileInfoA", [ "ptr", "uint", "ptr", "uint", "int" ] ); 
-Win32.SHGetFileInfoW = foreign.native( "SHELL32.dll", "ptr", "SHGetFileInfoW", [ "wstr", "uint", "ptr", "uint", "int" ] ); 
+Win32.SHGetFileInfoA = foreign.native( "SHELL32.dll", "ptr", "SHGetFileInfoA", [ "ptr", "uint", "ptr", "uint", "uint" ] ); 
+Win32.SHGetFileInfoW = foreign.native( "SHELL32.dll", "ptr", "SHGetFileInfoW", [ "wstr", "uint", "ptr", "uint", "uint" ] ); 
 Win32.SHGetStockIconInfo = foreign.native( "SHELL32.dll", "int", "SHGetStockIconInfo", [ "int", "uint", "ptr" ] ); 
 Win32.SHGetDiskFreeSpaceExA = foreign.native( "SHELL32.dll", "int", "SHGetDiskFreeSpaceExA", [ "ptr", "ptr", "ptr", "ptr" ] ); 
 Win32.SHGetDiskFreeSpaceExW = foreign.native( "SHELL32.dll", "int", "SHGetDiskFreeSpaceExW", [ "wstr", "ptr", "ptr", "ptr" ] ); 
@@ -6744,7 +6788,7 @@ Win32.StrCmpLogicalW = foreign.native( "SHLWAPI.dll", "int", "StrCmpLogicalW", [
 Win32.StrCatChainW = foreign.native( "SHLWAPI.dll", "uint", "StrCatChainW", [ "wstr", "uint", "uint", "wstr" ] ); 
 Win32.StrRetToBSTR = foreign.native( "SHLWAPI.dll", "int", "StrRetToBSTR", [ "ptr", "ptr", "ptr" ] ); 
 Win32.SHLoadIndirectString = foreign.native( "SHLWAPI.dll", "int", "SHLoadIndirectString", [ "wstr", "wstr", "uint", "ptr" ] ); 
-Win32.IsCharSpaceA = foreign.native( "SHLWAPI.dll", "int", "IsCharSpaceA", [ "ubyte" ] ); 
+Win32.IsCharSpaceA = foreign.native( "SHLWAPI.dll", "int", "IsCharSpaceA", [ "byte" ] ); 
 Win32.IsCharSpaceW = foreign.native( "SHLWAPI.dll", "int", "IsCharSpaceW", [ "short" ] ); 
 Win32.StrCmpCA = foreign.native( "SHLWAPI.dll", "int", "StrCmpCA", [ "ptr", "ptr" ] ); 
 Win32.StrCmpCW = foreign.native( "SHLWAPI.dll", "int", "StrCmpCW", [ "wstr", "wstr" ] ); 
@@ -6950,7 +6994,7 @@ Win32.SHRegGetUSValueA = foreign.native( "SHLWAPI.dll", "uint", "SHRegGetUSValue
 Win32.SHRegGetUSValueW = foreign.native( "SHLWAPI.dll", "uint", "SHRegGetUSValueW", [ "wstr", "wstr", "ptr", "ptr", "ptr", "int", "ptr", "uint" ] ); 
 Win32.SHRegSetUSValueA = foreign.native( "SHLWAPI.dll", "uint", "SHRegSetUSValueA", [ "ptr", "ptr", "uint", "ptr", "uint", "uint" ] ); 
 Win32.SHRegSetUSValueW = foreign.native( "SHLWAPI.dll", "uint", "SHRegSetUSValueW", [ "wstr", "wstr", "uint", "ptr", "uint", "uint" ] ); 
-Win32.SHRegGetIntW = foreign.native( "SHLWAPI.dll", "uint", "SHRegGetIntW", [ "ptr", "wstr", "int" ] ); 
+Win32.SHRegGetIntW = foreign.native( "SHLWAPI.dll", "int", "SHRegGetIntW", [ "ptr", "wstr", "int" ] ); 
 Win32.SHRegGetBoolUSValueA = foreign.native( "SHLWAPI.dll", "int", "SHRegGetBoolUSValueA", [ "ptr", "ptr", "int", "int" ] ); 
 Win32.SHRegGetBoolUSValueW = foreign.native( "SHLWAPI.dll", "int", "SHRegGetBoolUSValueW", [ "wstr", "wstr", "int", "int" ] ); 
 Win32.AssocCreate = foreign.native( "SHLWAPI.dll", "int", "AssocCreate", [ "ptr", "ptr", "ptr" ] ); 
@@ -6999,7 +7043,7 @@ Win32.SHMessageBoxCheckA = foreign.native( "SHLWAPI.dll", "int", "SHMessageBoxCh
 Win32.SHMessageBoxCheckW = foreign.native( "SHLWAPI.dll", "int", "SHMessageBoxCheckW", [ "ptr", "wstr", "wstr", "uint", "int", "wstr" ] ); 
 Win32.SHSendMessageBroadcastA = foreign.native( "SHLWAPI.dll", "ptr", "SHSendMessageBroadcastA", [ "uint", "ptr", "ptr" ] ); 
 Win32.SHSendMessageBroadcastW = foreign.native( "SHLWAPI.dll", "ptr", "SHSendMessageBroadcastW", [ "uint", "ptr", "ptr" ] ); 
-Win32.SHStripMneumonicA = foreign.native( "SHLWAPI.dll", "ubyte", "SHStripMneumonicA", [ "ptr" ] ); 
+Win32.SHStripMneumonicA = foreign.native( "SHLWAPI.dll", "byte", "SHStripMneumonicA", [ "ptr" ] ); 
 Win32.SHStripMneumonicW = foreign.native( "SHLWAPI.dll", "short", "SHStripMneumonicW", [ "wstr" ] ); 
 Win32.IsOS = foreign.native( "SHLWAPI.dll", "int", "IsOS", [ "uint" ] ); 
 Win32.SHGlobalCounterGetValue = foreign.native( "SHLWAPI.dll", "int", "SHGlobalCounterGetValue", [ "int" ] ); 

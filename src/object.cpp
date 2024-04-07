@@ -1,3 +1,4 @@
+//#include "pch.h"
 #include "object.h"
 #include "value.h"
 #include "vm.h"
@@ -1988,7 +1989,7 @@ Value ObjDecorator::getProperty(const std::string& pname)
     {
         Value m = obj->getProperty(pname);
         return m;
-        return new ObjDecorator(vm, m.as.obj,proxy.as.obj);
+//        return new ObjDecorator(vm, m.as.obj,proxy.as.obj);
     }
 
     auto p = as<ObjDecorator>(target);

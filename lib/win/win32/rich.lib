@@ -80,14 +80,40 @@ Win32.CFE_EFFECTS = {
 
 
 Win32.PARAFORMAT_MASK = {
-    "PFM_ALIGNMENT" : 8, 
-    "PFM_NUMBERING" : 32, 
-    "PFM_OFFSET" : 4, 
-    "PFM_OFFSETINDENT" : 2147483648, 
-    "PFM_RIGHTINDENT" : 2, 
-    "PFM_RTLPARA" : 65536, 
     "PFM_STARTINDENT" : 1, 
-    "PFM_TABSTOPS" : 16
+    "PFM_RIGHTINDENT" : 2, 
+    "PFM_OFFSET" : 4, 
+    "PFM_ALIGNMENT" : 8, 
+    "PFM_TABSTOPS" : 16, 
+    "PFM_NUMBERING" : 32, 
+    "PFM_OFFSETINDENT" : 2147483648, 
+    "PFM_SPACEBEFORE" : 64, 
+    "PFM_SPACEAFTER" : 128, 
+    "PFM_LINESPACING" : 256, 
+    "PFM_STYLE" : 1024, 
+    "PFM_BORDER" : 2048, 
+    "PFM_SHADING" : 4096, 
+    "PFM_NUMBERINGSTYLE" : 8192, 
+    "PFM_NUMBERINGTAB" : 16384, 
+    "PFM_NUMBERINGSTART" : 32768, 
+    "PFM_RTLPARA" : 65536, 
+    "PFM_KEEP" : 131072, 
+    "PFM_KEEPNEXT" : 262144, 
+    "PFM_PAGEBREAKBEFORE" : 524288, 
+    "PFM_NOLINENUMBER" : 1048576, 
+    "PFM_NOWIDOWCONTROL" : 2097152, 
+    "PFM_DONOTHYPHEN" : 4194304, 
+    "PFM_SIDEBYSIDE" : 8388608, 
+    "PFM_COLLAPSED" : 16777216, 
+    "PFM_OUTLINELEVEL" : 33554432, 
+    "PFM_BOX" : 67108864, 
+    "PFM_RESERVED2" : 134217728, 
+    "PFM_TABLEROWDELIMITER" : 268435456, 
+    "PFM_TEXTWRAPPINGBREAK" : 536870912, 
+    "PFM_TABLE" : 1073741824, 
+    "PFM_ALL" : 2147549247, 
+    "PFM_EFFECTS" : 1358888960, 
+    "PFM_ALL2" : 3506437631
 };
 
 
@@ -202,9 +228,15 @@ Win32.PARAFORMAT_NUMBERING_STYLE = {
 
 
 Win32.PARAFORMAT_ALIGNMENT = {
-    "PFA_CENTER" : 3, 
     "PFA_LEFT" : 1, 
-    "PFA_RIGHT" : 2
+    "PFA_RIGHT" : 2, 
+    "PFA_CENTER" : 3, 
+    "PFA_JUSTIFY" : 4, 
+    "PFA_FULL_INTERWORD" : 4, 
+    "PFA_FULL_NEWSPAPER" : 5, 
+    "PFA_FULL_INTERLETTER" : 6, 
+    "PFA_FULL_SCALED" : 7, 
+    "PFA_FULL_GLYPHS" : 8
 };
 
 
@@ -942,49 +974,11 @@ Win32.MANCODE = {
 };
 
 
-Win32.IMECOMPTEXT = foreign.named_struct( "Windows.Win32.UI.Controls.RichEdit.IMECOMPTEXT", [ 
-    "cb:int", 
-    "flags:uint"
-]); 
-
-
-Win32.TABLEROWPARMS = foreign.named_struct( "Windows.Win32.UI.Controls.RichEdit.TABLEROWPARMS", [ 
-    "cbRow:ubyte", 
-    "cbCell:ubyte", 
-    "cCell:ubyte", 
-    "cRow:ubyte", 
-    "dxCellMargin:int", 
-    "dxIndent:int", 
-    "dyHeight:int", 
-    "_bitfield:uint", 
-    "cpStartRow:int", 
-    "bTableLevel:ubyte", 
-    "iCell:ubyte"
-]); 
-
-
-Win32.TABLECELLPARMS = foreign.named_struct( "Windows.Win32.UI.Controls.RichEdit.TABLECELLPARMS", [ 
-    "dxWidth:int", 
-    "_bitfield:ushort", 
-    "wShading:ushort", 
-    "dxBrdrLeft:short", 
-    "dyBrdrTop:short", 
-    "dxBrdrRight:short", 
-    "dyBrdrBottom:short", 
-    "crBrdrLeft:Windows.Win32.Foundation.COLORREF", 
-    "crBrdrTop:Windows.Win32.Foundation.COLORREF", 
-    "crBrdrRight:Windows.Win32.Foundation.COLORREF", 
-    "crBrdrBottom:Windows.Win32.Foundation.COLORREF", 
-    "crBackPat:Windows.Win32.Foundation.COLORREF", 
-    "crForePat:Windows.Win32.Foundation.COLORREF"
-]); 
-
-
 Win32.RICHEDIT_IMAGE_PARAMETERS = foreign.named_struct( "Windows.Win32.UI.Controls.RichEdit.RICHEDIT_IMAGE_PARAMETERS", [ 
     "xWidth:int", 
     "yHeight:int", 
     "Ascent:int", 
-    "Type:uint", 
+    "Type:int", 
     "pwszAlternateText:wstr", 
     "pIStream:ptr"
 ]); 
@@ -993,70 +987,6 @@ Win32.RICHEDIT_IMAGE_PARAMETERS = foreign.named_struct( "Windows.Win32.UI.Contro
 Win32.ENDCOMPOSITIONNOTIFY = foreign.named_struct( "Windows.Win32.UI.Controls.RichEdit.ENDCOMPOSITIONNOTIFY", [ 
     "nmhdr:Windows.Win32.UI.Controls.NMHDR", 
     "dwCode:uint"
-]); 
-
-
-Win32.CHARFORMATA = foreign.named_struct( "Windows.Win32.UI.Controls.RichEdit.CHARFORMATA", [ 
-    "cbSize:uint", 
-    "dwMask:uint", 
-    "dwEffects:uint", 
-    "yHeight:int", 
-    "yOffset:int", 
-    "crTextColor:Windows.Win32.Foundation.COLORREF", 
-    "bCharSet:uint", 
-    "bPitchAndFamily:ubyte", 
-    "szFaceName[32]:Windows.Win32.Foundation.CHAR"
-]); 
-
-
-Win32.CHARFORMATW = foreign.named_struct( "Windows.Win32.UI.Controls.RichEdit.CHARFORMATW", [ 
-    "cbSize:uint", 
-    "dwMask:uint", 
-    "dwEffects:uint", 
-    "yHeight:int", 
-    "yOffset:int", 
-    "crTextColor:Windows.Win32.Foundation.COLORREF", 
-    "bCharSet:uint", 
-    "bPitchAndFamily:ubyte", 
-    "szFaceName[32]:short"
-]); 
-
-
-Win32.CHARFORMAT2W = foreign.named_struct( "Windows.Win32.UI.Controls.RichEdit.CHARFORMAT2W", [ 
-    "Base:Windows.Win32.UI.Controls.RichEdit.CHARFORMATW", 
-    "wWeight:ushort", 
-    "sSpacing:short", 
-    "crBackColor:Windows.Win32.Foundation.COLORREF", 
-    "lcid:uint", 
-    "Anonymous:._Anonymous_e__Union", 
-    "sStyle:short", 
-    "wKerning:ushort", 
-    "bUnderlineType:ubyte", 
-    "bAnimation:ubyte", 
-    "bRevAuthor:ubyte", 
-    "bUnderlineColor:ubyte"
-]); 
-
-
-Win32.CHARFORMAT2A = foreign.named_struct( "Windows.Win32.UI.Controls.RichEdit.CHARFORMAT2A", [ 
-    "Base:Windows.Win32.UI.Controls.RichEdit.CHARFORMATA", 
-    "wWeight:ushort", 
-    "sSpacing:short", 
-    "crBackColor:Windows.Win32.Foundation.COLORREF", 
-    "lcid:uint", 
-    "Anonymous:._Anonymous_e__Union", 
-    "sStyle:short", 
-    "wKerning:ushort", 
-    "bUnderlineType:ubyte", 
-    "bAnimation:ubyte", 
-    "bRevAuthor:ubyte", 
-    "bUnderlineColor:ubyte"
-]); 
-
-
-Win32.CHARRANGE = foreign.named_struct( "Windows.Win32.UI.Controls.RichEdit.CHARRANGE", [ 
-    "cpMin:int", 
-    "cpMax:int"
 ]); 
 
 
@@ -1114,39 +1044,6 @@ Win32.FORMATRANGE = foreign.named_struct( "Windows.Win32.UI.Controls.RichEdit.FO
 ]); 
 
 
-Win32.PARAFORMAT = foreign.named_struct( "Windows.Win32.UI.Controls.RichEdit.PARAFORMAT", [ 
-    "cbSize:uint", 
-    "dwMask:uint", 
-    "wNumbering:ushort", 
-    "Anonymous:._Anonymous_e__Union", 
-    "dxStartIndent:int", 
-    "dxRightIndent:int", 
-    "dxOffset:int", 
-    "wAlignment:ushort", 
-    "cTabCount:short", 
-    "rgxTabs[32]:uint"
-]); 
-
-
-Win32.PARAFORMAT2 = foreign.named_struct( "Windows.Win32.UI.Controls.RichEdit.PARAFORMAT2", [ 
-    "Base:Windows.Win32.UI.Controls.RichEdit.PARAFORMAT", 
-    "dySpaceBefore:int", 
-    "dySpaceAfter:int", 
-    "dyLineSpacing:int", 
-    "sStyle:short", 
-    "bLineSpacingRule:ubyte", 
-    "bOutlineLevel:ubyte", 
-    "wShadingWeight:ushort", 
-    "wShadingStyle:ushort", 
-    "wNumberingStart:ushort", 
-    "wNumberingStyle:ushort", 
-    "wNumberingTab:ushort", 
-    "wBorderSpace:ushort", 
-    "wBorderWidth:ushort", 
-    "wBorders:ushort"
-]); 
-
-
 Win32.MSGFILTER = foreign.named_struct( "Windows.Win32.UI.Controls.RichEdit.MSGFILTER", [ 
     "nmhdr:Windows.Win32.UI.Controls.NMHDR", 
     "msg:uint", 
@@ -1165,12 +1062,6 @@ Win32.SELCHANGE = foreign.named_struct( "Windows.Win32.UI.Controls.RichEdit.SELC
     "nmhdr:Windows.Win32.UI.Controls.NMHDR", 
     "chrg:Windows.Win32.UI.Controls.RichEdit.CHARRANGE", 
     "seltyp:ushort"
-]); 
-
-
-Win32.GROUPTYPINGCHANGE = foreign.named_struct( "Windows.Win32.UI.Controls.RichEdit.GROUPTYPINGCHANGE", [ 
-    "nmhdr:Windows.Win32.UI.Controls.NMHDR", 
-    "fGroupTyping:Windows.Win32.Foundation.BOOL"
 ]); 
 
 
@@ -1255,22 +1146,9 @@ Win32.PUNCTUATION = foreign.named_struct( "Windows.Win32.UI.Controls.RichEdit.PU
 ]); 
 
 
-Win32.COMPCOLOR = foreign.named_struct( "Windows.Win32.UI.Controls.RichEdit.COMPCOLOR", [ 
-    "crText:Windows.Win32.Foundation.COLORREF", 
-    "crBackground:Windows.Win32.Foundation.COLORREF", 
-    "dwEffects:uint"
-]); 
-
-
 Win32.REPASTESPECIAL = foreign.named_struct( "Windows.Win32.UI.Controls.RichEdit.REPASTESPECIAL", [ 
     "dwAspect:uint", 
     "dwParam:ptr"
-]); 
-
-
-Win32.SETTEXTEX = foreign.named_struct( "Windows.Win32.UI.Controls.RichEdit.SETTEXTEX", [ 
-    "flags:uint", 
-    "codepage:uint"
 ]); 
 
 
@@ -1280,6 +1158,167 @@ Win32.GETTEXTEX = foreign.named_struct( "Windows.Win32.UI.Controls.RichEdit.GETT
     "codepage:uint", 
     "lpDefaultChar:str", 
     "lpUsedDefChar:ptr"
+]); 
+
+
+Win32.HYPHENATEINFO = foreign.named_struct( "Windows.Win32.UI.Controls.RichEdit.HYPHENATEINFO", [ 
+    "cbSize:short", 
+    "dxHyphenateZone:short", 
+    "pfnHyphenate:ptr"
+]); 
+
+
+Win32.IMECOMPTEXT = foreign.named_struct( "Windows.Win32.UI.Controls.RichEdit.IMECOMPTEXT", [ 
+    "cb:int", 
+    "flags:uint"
+]); 
+
+
+Win32.TABLEROWPARMS = foreign.named_struct( "Windows.Win32.UI.Controls.RichEdit.TABLEROWPARMS", [ 
+    "cbRow:ubyte", 
+    "cbCell:ubyte", 
+    "cCell:ubyte", 
+    "cRow:ubyte", 
+    "dxCellMargin:int", 
+    "dxIndent:int", 
+    "dyHeight:int", 
+    "_bitfield:uint", 
+    "cpStartRow:int", 
+    "bTableLevel:ubyte", 
+    "iCell:ubyte"
+]); 
+
+
+Win32.TABLECELLPARMS = foreign.named_struct( "Windows.Win32.UI.Controls.RichEdit.TABLECELLPARMS", [ 
+    "dxWidth:int", 
+    "_bitfield:ushort", 
+    "wShading:ushort", 
+    "dxBrdrLeft:short", 
+    "dyBrdrTop:short", 
+    "dxBrdrRight:short", 
+    "dyBrdrBottom:short", 
+    "crBrdrLeft:Windows.Win32.Foundation.COLORREF", 
+    "crBrdrTop:Windows.Win32.Foundation.COLORREF", 
+    "crBrdrRight:Windows.Win32.Foundation.COLORREF", 
+    "crBrdrBottom:Windows.Win32.Foundation.COLORREF", 
+    "crBackPat:Windows.Win32.Foundation.COLORREF", 
+    "crForePat:Windows.Win32.Foundation.COLORREF"
+]); 
+
+
+Win32.CHARFORMATA = foreign.named_struct( "Windows.Win32.UI.Controls.RichEdit.CHARFORMATA", [ 
+    "cbSize:uint", 
+    "dwMask:uint", 
+    "dwEffects:uint", 
+    "yHeight:int", 
+    "yOffset:int", 
+    "crTextColor:Windows.Win32.Foundation.COLORREF", 
+    "bCharSet:ubyte", 
+    "bPitchAndFamily:ubyte", 
+    "szFaceName[32]:Windows.Win32.Foundation.CHAR"
+]); 
+
+
+Win32.CHARFORMATW = foreign.named_struct( "Windows.Win32.UI.Controls.RichEdit.CHARFORMATW", [ 
+    "cbSize:uint", 
+    "dwMask:uint", 
+    "dwEffects:uint", 
+    "yHeight:int", 
+    "yOffset:int", 
+    "crTextColor:Windows.Win32.Foundation.COLORREF", 
+    "bCharSet:ubyte", 
+    "bPitchAndFamily:ubyte", 
+    "szFaceName[32]:short"
+]); 
+
+
+Win32.CHARFORMAT2W = foreign.named_struct( "Windows.Win32.UI.Controls.RichEdit.CHARFORMAT2W", [ 
+    "Base:Windows.Win32.UI.Controls.RichEdit.CHARFORMATW", 
+    "wWeight:ushort", 
+    "sSpacing:short", 
+    "crBackColor:Windows.Win32.Foundation.COLORREF", 
+    "lcid:uint", 
+    "Anonymous:._Anonymous_e__Union", 
+    "sStyle:short", 
+    "wKerning:ushort", 
+    "bUnderlineType:ubyte", 
+    "bAnimation:ubyte", 
+    "bRevAuthor:ubyte", 
+    "bUnderlineColor:ubyte"
+]); 
+
+
+Win32.CHARFORMAT2A = foreign.named_struct( "Windows.Win32.UI.Controls.RichEdit.CHARFORMAT2A", [ 
+    "Base:Windows.Win32.UI.Controls.RichEdit.CHARFORMATA", 
+    "wWeight:ushort", 
+    "sSpacing:short", 
+    "crBackColor:Windows.Win32.Foundation.COLORREF", 
+    "lcid:uint", 
+    "Anonymous:._Anonymous_e__Union", 
+    "sStyle:short", 
+    "wKerning:ushort", 
+    "bUnderlineType:ubyte", 
+    "bAnimation:ubyte", 
+    "bRevAuthor:ubyte", 
+    "bUnderlineColor:ubyte"
+]); 
+
+
+Win32.CHARRANGE = foreign.named_struct( "Windows.Win32.UI.Controls.RichEdit.CHARRANGE", [ 
+    "cpMin:int", 
+    "cpMax:int"
+]); 
+
+
+Win32.PARAFORMAT = foreign.named_struct( "Windows.Win32.UI.Controls.RichEdit.PARAFORMAT", [ 
+    "cbSize:uint", 
+    "dwMask:uint", 
+    "wNumbering:ushort", 
+    "Anonymous:._Anonymous_e__Union", 
+    "dxStartIndent:int", 
+    "dxRightIndent:int", 
+    "dxOffset:int", 
+    "wAlignment:ushort", 
+    "cTabCount:short", 
+    "rgxTabs[32]:uint"
+]); 
+
+
+Win32.PARAFORMAT2 = foreign.named_struct( "Windows.Win32.UI.Controls.RichEdit.PARAFORMAT2", [ 
+    "Base:Windows.Win32.UI.Controls.RichEdit.PARAFORMAT", 
+    "dySpaceBefore:int", 
+    "dySpaceAfter:int", 
+    "dyLineSpacing:int", 
+    "sStyle:short", 
+    "bLineSpacingRule:ubyte", 
+    "bOutlineLevel:ubyte", 
+    "wShadingWeight:ushort", 
+    "wShadingStyle:ushort", 
+    "wNumberingStart:ushort", 
+    "wNumberingStyle:ushort", 
+    "wNumberingTab:ushort", 
+    "wBorderSpace:ushort", 
+    "wBorderWidth:ushort", 
+    "wBorders:ushort"
+]); 
+
+
+Win32.GROUPTYPINGCHANGE = foreign.named_struct( "Windows.Win32.UI.Controls.RichEdit.GROUPTYPINGCHANGE", [ 
+    "nmhdr:Windows.Win32.UI.Controls.NMHDR", 
+    "fGroupTyping:Windows.Win32.Foundation.BOOL"
+]); 
+
+
+Win32.COMPCOLOR = foreign.named_struct( "Windows.Win32.UI.Controls.RichEdit.COMPCOLOR", [ 
+    "crText:Windows.Win32.Foundation.COLORREF", 
+    "crBackground:Windows.Win32.Foundation.COLORREF", 
+    "dwEffects:uint"
+]); 
+
+
+Win32.SETTEXTEX = foreign.named_struct( "Windows.Win32.UI.Controls.RichEdit.SETTEXTEX", [ 
+    "flags:uint", 
+    "codepage:uint"
 ]); 
 
 
@@ -1303,15 +1342,8 @@ Win32.HYPHRESULT = foreign.named_struct( "Windows.Win32.UI.Controls.RichEdit.HYP
 ]); 
 
 
-Win32.HYPHENATEINFO = foreign.named_struct( "Windows.Win32.UI.Controls.RichEdit.HYPHENATEINFO", [ 
-    "cbSize:short", 
-    "dxHyphenateZone:short", 
-    "pfnHyphenate:ptr"
-]); 
-
-
 Win32.CHANGENOTIFY = foreign.named_struct( "Windows.Win32.UI.Controls.RichEdit.CHANGENOTIFY", [ 
-    "dwChangeType:int", 
+    "dwChangeType:uint", 
     "pvCookieData:ptr"
 ]); 
 
@@ -1499,6 +1531,8 @@ Win32.EM_ISIME = 1267;
 Win32.EM_GETIMEPROPERTY = 1268;
 Win32.EM_GETQUERYRTFOBJ = 1293;
 Win32.EM_SETQUERYRTFOBJ = 1294;
+Win32.EM_SETQUERYCONVERTOLELINKCALLBACK = 1427;
+Win32.EM_SETDISABLEOLELINKCONVERSION = 1428;
 Win32.EPR_0 = 0;
 Win32.EPR_270 = 1;
 Win32.EPR_180 = 2;
@@ -1688,31 +1722,6 @@ Win32.SF_RTFVAL = 1792;
 Win32.MAX_TAB_STOPS = 32;
 Win32.lDefaultTab = 720;
 Win32.MAX_TABLE_CELLS = 63;
-Win32.PFM_SPACEBEFORE = 64;
-Win32.PFM_SPACEAFTER = 128;
-Win32.PFM_LINESPACING = 256;
-Win32.PFM_STYLE = 1024;
-Win32.PFM_BORDER = 2048;
-Win32.PFM_SHADING = 4096;
-Win32.PFM_NUMBERINGSTYLE = 8192;
-Win32.PFM_NUMBERINGTAB = 16384;
-Win32.PFM_NUMBERINGSTART = 32768;
-Win32.PFM_KEEP = 131072;
-Win32.PFM_KEEPNEXT = 262144;
-Win32.PFM_PAGEBREAKBEFORE = 524288;
-Win32.PFM_NOLINENUMBER = 1048576;
-Win32.PFM_NOWIDOWCONTROL = 2097152;
-Win32.PFM_DONOTHYPHEN = 4194304;
-Win32.PFM_SIDEBYSIDE = 8388608;
-Win32.PFM_COLLAPSED = 16777216;
-Win32.PFM_OUTLINELEVEL = 33554432;
-Win32.PFM_BOX = 67108864;
-Win32.PFM_RESERVED2 = 134217728;
-Win32.PFM_TABLEROWDELIMITER = 268435456;
-Win32.PFM_TEXTWRAPPINGBREAK = 536870912;
-Win32.PFM_TABLE = 1073741824;
-Win32.PFA_JUSTIFY = 4;
-Win32.PFA_FULL_INTERWORD = 4;
 Win32.GCMF_GRIPPER = 1;
 Win32.GCMF_SPELLING = 2;
 Win32.GCMF_TOUCHMENU = 16384;
@@ -1741,14 +1750,7 @@ Win32.BOE_CONTEXTALIGNMENT = 16;
 Win32.BOE_FORCERECALC = 32;
 Win32.BOE_LEGACYBIDICLASS = 64;
 Win32.BOE_UNICODEBIDI = 128;
-Win32.FR_MATCHDIAC = 536870912;
-Win32.FR_MATCHKASHIDA = 1073741824;
-Win32.FR_MATCHALEFHAMZA = 2147483648;
 Win32.RICHEDIT60_CLASS = "RICHEDIT60W";
-Win32.PFA_FULL_NEWSPAPER = 5;
-Win32.PFA_FULL_INTERLETTER = 6;
-Win32.PFA_FULL_SCALED = 7;
-Win32.PFA_FULL_GLYPHS = 8;
 Win32.AURL_ENABLEEA = 1;
 Win32.GCM_TOUCHMENU = 16384;
 Win32.GCM_MOUSEMENU = 8192;

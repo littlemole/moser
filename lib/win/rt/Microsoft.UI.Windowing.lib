@@ -57,7 +57,8 @@ Microsoft.UI.Windowing.OverlappedPresenterState = {
 
 Microsoft.UI.Windowing.TitleBarHeightOption = {
     "Standard" : 0, 
-    "Tall" : 1
+    "Tall" : 1, 
+    "Collapsed" : 2
 };
 
 //@Interface("Microsoft.UI.Windowing.IAppWindow")
@@ -478,6 +479,45 @@ Microsoft_UI_Windowing_IAppWindow2.iid = "{6CD41292-794C-5CAC-8961-210D012C6EBC}
 Microsoft.UI.Windowing.IAppWindow2 = Microsoft_UI_Windowing_IAppWindow2;
 
 
+//@Interface("Microsoft.UI.Windowing.IAppWindow3")
+//@IID("{2F260CEA-193D-5DD6-A904-D7649A608D2F}")
+class Microsoft_UI_Windowing_IAppWindow3 : WinRtInterface 
+{
+    Microsoft_UI_Windowing_IAppWindow3( comPtr )
+    {
+        var Microsoft = runtime.global("Microsoft");
+        this.comPtr = comPtr.queryInterface( "{2F260CEA-193D-5DD6-A904-D7649A608D2F}");
+    }
+
+    //@VtableIndex(6)
+    //@Async(0)
+    //@Returns("void")
+    //@Parameters("Microsoft.UI.Dispatching.DispatcherQueue")
+    AssociateWithDispatcherQueue(dispatcherQueue)
+    {
+        var Microsoft = runtime.global("Microsoft");
+        var p1 = Microsoft.UI.Dispatching.DispatcherQueue( dispatcherQueue); 
+        this.comPtr.invoke( 6, "void", ["Microsoft.UI.Dispatching.DispatcherQueue"], [p1] );
+    }
+
+    //@VtableIndex(7)
+    //@Async(0)
+    //@Returns("Microsoft.UI.Dispatching.DispatcherQueue")
+    get_DispatcherQueue()
+    {
+        var Microsoft = runtime.global("Microsoft");
+        var _r = Microsoft.UI.Dispatching.DispatcherQueue(
+            this.comPtr.invoke( 7, "Microsoft.UI.Dispatching.DispatcherQueue", [], [] )
+        );
+        return _r;
+    }
+
+
+}
+Microsoft_UI_Windowing_IAppWindow3.iid = "{2F260CEA-193D-5DD6-A904-D7649A608D2F}";
+Microsoft.UI.Windowing.IAppWindow3 = Microsoft_UI_Windowing_IAppWindow3;
+
+
 //@Interface("Microsoft.UI.Windowing.IAppWindowChangedEventArgs")
 //@IID("{2182BC5D-FDAC-5C3E-BF37-7D8D684E9D1D}")
 class Microsoft_UI_Windowing_IAppWindowChangedEventArgs : WinRtInterface 
@@ -738,6 +778,38 @@ class Microsoft_UI_Windowing_IAppWindowStatics : WinRtInterface
 }
 Microsoft_UI_Windowing_IAppWindowStatics.iid = "{3C315C24-D540-5D72-B518-B226B83627CB}";
 Microsoft.UI.Windowing.IAppWindowStatics = Microsoft_UI_Windowing_IAppWindowStatics;
+
+
+//@Interface("Microsoft.UI.Windowing.IAppWindowStatics2")
+//@IID("{CABC23DB-4606-5D6E-89A5-06DE1D8BD3E2}")
+class Microsoft_UI_Windowing_IAppWindowStatics2 : WinRtInterface 
+{
+    Microsoft_UI_Windowing_IAppWindowStatics2( comPtr )
+    {
+        var Microsoft = runtime.global("Microsoft");
+        this.comPtr = comPtr.queryInterface( "{CABC23DB-4606-5D6E-89A5-06DE1D8BD3E2}");
+    }
+
+    //@VtableIndex(6)
+    //@Async(0)
+    //@Returns("Microsoft.UI.Windowing.AppWindow")
+    //@Parameters("Microsoft.UI.Windowing.AppWindowPresenter","Microsoft.UI.WindowId","Microsoft.UI.Dispatching.DispatcherQueue")
+    CreateWithDispatcherQueue(appWindowPresenter,ownerWindowId,DispatcherQueue)
+    {
+        var Microsoft = runtime.global("Microsoft");
+        var p1 = Microsoft.UI.Windowing.AppWindowPresenter( appWindowPresenter); 
+        var p2 = ownerWindowId;
+        var p3 = Microsoft.UI.Dispatching.DispatcherQueue( DispatcherQueue); 
+        var _r = Microsoft.UI.Windowing.AppWindow(
+            this.comPtr.invoke( 6, "Microsoft.UI.Windowing.AppWindow", ["Microsoft.UI.Windowing.AppWindowPresenter", "Microsoft.UI.WindowId", "Microsoft.UI.Dispatching.DispatcherQueue"], [p1, p2, p3] )
+        );
+        return _r;
+    }
+
+
+}
+Microsoft_UI_Windowing_IAppWindowStatics2.iid = "{CABC23DB-4606-5D6E-89A5-06DE1D8BD3E2}";
+Microsoft.UI.Windowing.IAppWindowStatics2 = Microsoft_UI_Windowing_IAppWindowStatics2;
 
 
 //@Interface("Microsoft.UI.Windowing.IAppWindowTitleBar")
@@ -1971,7 +2043,7 @@ Microsoft.UI.Windowing.IOverlappedPresenterStatics2 = Microsoft_UI_Windowing_IOv
 
 
 //@RuntimeClass("Microsoft.UI.Windowing.AppWindow")
-//@Implements("Microsoft.UI.Windowing.IAppWindow","Microsoft.UI.Windowing.IAppWindow2")
+//@Implements("Microsoft.UI.Windowing.IAppWindow","Microsoft.UI.Windowing.IAppWindow2","Microsoft.UI.Windowing.IAppWindow3")
 //@DefaultInterface("Microsoft.UI.Windowing.IAppWindow")
 @Proxy("WinRtProxy")
 class Microsoft_UI_Windowing_AppWindow : WinRtInterface
@@ -2042,12 +2114,40 @@ class Microsoft_UI_Windowing_AppWindow : WinRtInterface
     }
 
 
+    // s Microsoft.UI.Windowing.IAppWindowStatics2
+    //@Async(0)
+    //@Returns("Microsoft.UI.Windowing.AppWindow")
+    //@Parameters("Microsoft.UI.Windowing.AppWindowPresenter","Microsoft.UI.WindowId","Microsoft.UI.Dispatching.DispatcherQueue")
+    static CreateWithDispatcherQueue( appWindowPresenter, ownerWindowId, DispatcherQueue)
+    {
+        var Microsoft = runtime.global("Microsoft");
+        var factory = winrt.activationFactory( "Microsoft.UI.Windowing.AppWindow" );
+        var iface = Microsoft.UI.Windowing.IAppWindowStatics2( factory );
+        var _r = iface.CreateWithDispatcherQueue( appWindowPresenter, ownerWindowId, DispatcherQueue);
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
     static Create()
     {
         return Microsoft.UI.Windowing.AppWindow(
             winrt.activate("Microsoft.UI.Windowing.AppWindow")
         );
     }
+    //@Parameters("Windows.Foundation.TypedEventHandler`2<Microsoft.UI.Windowing.AppWindow,Microsoft.UI.Windowing.AppWindowClosingEventArgs>")
+    //@Returns("Windows.Foundation.EventRegistrationToken")
+    //@Parameters("Windows.Foundation.TypedEventHandler`2<Microsoft.UI.Windowing.AppWindow,Microsoft.UI.Windowing.AppWindowClosingEventArgs>")
+    add_Closing(handler)
+    {
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Windowing.IAppWindow( this.comPtr );
+        var _r = iface.add_Closing( handler );
+        iface.release();
+        return _r;
+    }
+
     //@Returns("Boolean")
     get_IsShownInSwitchers()
     {
@@ -2129,22 +2229,23 @@ class Microsoft_UI_Windowing_AppWindow : WinRtInterface
         return _r;
     }
 
+    //@Parameters("String")
+    //@Returns("void")
+    //@Parameters("String")
+    put_Title(value)
+    {
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Windowing.IAppWindow( this.comPtr );
+        iface.put_Title( value );
+        iface.release();
+    }
+
     //@Returns("Microsoft.UI.WindowId")
     get_Id()
     {
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.Windowing.IAppWindow( this.comPtr );
         var _r = iface.get_Id(  );
-        iface.release();
-        return _r;
-    }
-
-    //@Returns("Microsoft.UI.Windowing.AppWindowTitleBar")
-    get_TitleBar()
-    {
-        var Microsoft = runtime.global("Microsoft");
-        var iface = Microsoft.UI.Windowing.IAppWindow( this.comPtr );
-        var _r = iface.get_TitleBar(  );
         iface.release();
         return _r;
     }
@@ -2175,17 +2276,6 @@ class Microsoft_UI_Windowing_AppWindow : WinRtInterface
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.Windowing.IAppWindow( this.comPtr );
         iface.Move( position );
-        iface.release();
-    }
-
-    //@Parameters("String")
-    //@Returns("void")
-    //@Parameters("String")
-    put_Title(value)
-    {
-        var Microsoft = runtime.global("Microsoft");
-        var iface = Microsoft.UI.Windowing.IAppWindow( this.comPtr );
-        iface.put_Title( value );
         iface.release();
     }
 
@@ -2223,14 +2313,12 @@ class Microsoft_UI_Windowing_AppWindow : WinRtInterface
         iface.release();
     }
 
-    //@Parameters("Windows.Foundation.TypedEventHandler`2<Microsoft.UI.Windowing.AppWindow,Microsoft.UI.Windowing.AppWindowClosingEventArgs>")
-    //@Returns("Windows.Foundation.EventRegistrationToken")
-    //@Parameters("Windows.Foundation.TypedEventHandler`2<Microsoft.UI.Windowing.AppWindow,Microsoft.UI.Windowing.AppWindowClosingEventArgs>")
-    add_Closing(handler)
+    //@Returns("Microsoft.UI.Windowing.AppWindowTitleBar")
+    get_TitleBar()
     {
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.Windowing.IAppWindow( this.comPtr );
-        var _r = iface.add_Closing( handler );
+        var _r = iface.get_TitleBar(  );
         iface.release();
         return _r;
     }
@@ -2328,6 +2416,27 @@ class Microsoft_UI_Windowing_AppWindow : WinRtInterface
         iface.release();
     }
 
+    //@Parameters("Microsoft.UI.Dispatching.DispatcherQueue")
+    //@Returns("void")
+    //@Parameters("Microsoft.UI.Dispatching.DispatcherQueue")
+    AssociateWithDispatcherQueue(dispatcherQueue)
+    {
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Windowing.IAppWindow3( this.comPtr );
+        iface.AssociateWithDispatcherQueue( dispatcherQueue );
+        iface.release();
+    }
+
+    //@Returns("Microsoft.UI.Dispatching.DispatcherQueue")
+    get_DispatcherQueue()
+    {
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Windowing.IAppWindow3( this.comPtr );
+        var _r = iface.get_DispatcherQueue(  );
+        iface.release();
+        return _r;
+    }
+
 
 }
 Microsoft.UI.Windowing.AppWindow = Microsoft_UI_Windowing_AppWindow;
@@ -2351,11 +2460,11 @@ class Microsoft_UI_Windowing_AppWindowChangedEventArgs : WinRtInterface
         );
     }
     //@Returns("Boolean")
-    get_DidSizeChange()
+    get_DidPositionChange()
     {
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.Windowing.IAppWindowChangedEventArgs( this.comPtr );
-        var _r = iface.get_DidSizeChange(  );
+        var _r = iface.get_DidPositionChange(  );
         iface.release();
         return _r;
     }
@@ -2371,11 +2480,11 @@ class Microsoft_UI_Windowing_AppWindowChangedEventArgs : WinRtInterface
     }
 
     //@Returns("Boolean")
-    get_DidPositionChange()
+    get_DidSizeChange()
     {
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.Windowing.IAppWindowChangedEventArgs( this.comPtr );
-        var _r = iface.get_DidPositionChange(  );
+        var _r = iface.get_DidSizeChange(  );
         iface.release();
         return _r;
     }
@@ -2542,13 +2651,14 @@ class Microsoft_UI_Windowing_AppWindowTitleBar : WinRtInterface
             winrt.activate("Microsoft.UI.Windowing.AppWindowTitleBar")
         );
     }
-    //@Returns("void")
-    ResetToDefault()
+    //@Returns("Windows.Foundation.IReference`1<Windows.UI.Color>")
+    get_ButtonInactiveForegroundColor()
     {
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.Windowing.IAppWindowTitleBar( this.comPtr );
-        iface.ResetToDefault(  );
+        var _r = iface.get_ButtonInactiveForegroundColor(  );
         iface.release();
+        return _r;
     }
 
     //@Parameters("Windows.Foundation.IReference`1<Windows.UI.Color>")
@@ -2668,11 +2778,11 @@ class Microsoft_UI_Windowing_AppWindowTitleBar : WinRtInterface
     }
 
     //@Returns("Windows.Foundation.IReference`1<Windows.UI.Color>")
-    get_ButtonInactiveForegroundColor()
+    get_ButtonPressedBackgroundColor()
     {
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.Windowing.IAppWindowTitleBar( this.comPtr );
-        var _r = iface.get_ButtonInactiveForegroundColor(  );
+        var _r = iface.get_ButtonPressedBackgroundColor(  );
         iface.release();
         return _r;
     }
@@ -2865,14 +2975,13 @@ class Microsoft_UI_Windowing_AppWindowTitleBar : WinRtInterface
         return _r;
     }
 
-    //@Returns("Windows.Foundation.IReference`1<Windows.UI.Color>")
-    get_ButtonPressedBackgroundColor()
+    //@Returns("void")
+    ResetToDefault()
     {
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.Windowing.IAppWindowTitleBar( this.comPtr );
-        var _r = iface.get_ButtonPressedBackgroundColor(  );
+        iface.ResetToDefault(  );
         iface.release();
-        return _r;
     }
 
     //@Returns("Microsoft.UI.Windowing.TitleBarHeightOption")
@@ -2971,22 +3080,6 @@ class Microsoft_UI_Windowing_DisplayArea : WinRtInterface
         this.comPtr = comPtr.queryInterface( Microsoft.UI.Windowing.IDisplayArea.iid );
     }
 
-    // s Microsoft.UI.Windowing.IDisplayAreaStatics2
-    //@Async(0)
-    //@Returns("Microsoft.UI.Windowing.DisplayArea")
-    //@Parameters("Microsoft.UI.DisplayId")
-    static GetFromDisplayId( displayId)
-    {
-        var Microsoft = runtime.global("Microsoft");
-        var factory = winrt.activationFactory( "Microsoft.UI.Windowing.DisplayArea" );
-        var iface = Microsoft.UI.Windowing.IDisplayAreaStatics2( factory );
-        var _r = iface.GetFromDisplayId( displayId);
-        iface.release();
-        factory.release();
-        return _r;
-    }
-
-
     // s Microsoft.UI.Windowing.IDisplayAreaStatics
     //@Async(0)
     //@Returns("Microsoft.UI.Windowing.DisplayArea")
@@ -3069,6 +3162,22 @@ class Microsoft_UI_Windowing_DisplayArea : WinRtInterface
         var factory = winrt.activationFactory( "Microsoft.UI.Windowing.DisplayArea" );
         var iface = Microsoft.UI.Windowing.IDisplayAreaStatics( factory );
         var _r = iface.GetFromRect( rect, displayAreaFallback);
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    // s Microsoft.UI.Windowing.IDisplayAreaStatics2
+    //@Async(0)
+    //@Returns("Microsoft.UI.Windowing.DisplayArea")
+    //@Parameters("Microsoft.UI.DisplayId")
+    static GetFromDisplayId( displayId)
+    {
+        var Microsoft = runtime.global("Microsoft");
+        var factory = winrt.activationFactory( "Microsoft.UI.Windowing.DisplayArea" );
+        var iface = Microsoft.UI.Windowing.IDisplayAreaStatics2( factory );
+        var _r = iface.GetFromDisplayId( displayId);
         iface.release();
         factory.release();
         return _r;

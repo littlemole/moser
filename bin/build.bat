@@ -1,9 +1,10 @@
-cd out\build\x64-Release
-cmake -G Ninja -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_TOOLCHAIN_FILE=%~dp0\..\vcpkg\scripts\buildsystems\vcpkg.cmake ../../.. || goto :error
-cmake --build . || goto :error
+cd win32
+
+msbuild  xmoser.vcproj -t:build -p:Configuration=Debug || goto :error
+msbuild  xmoser.vcproj -t:build -p:Configuration=Release || goto :error
+
 cd ..
-cd ..
-cd ..
+
 bin\precompile.bat || goto :error
 
 exit 

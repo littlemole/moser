@@ -52,15 +52,15 @@ Microsoft.UI.Xaml.XamlTypeInfo.IXamlControlsXamlMetaDataProviderStatics = Micros
 
 
 //@RuntimeClass("Microsoft.UI.Xaml.XamlTypeInfo.XamlControlsXamlMetaDataProvider")
-//@Implements("Microsoft.UI.Xaml.XamlTypeInfo.IXamlControlsXamlMetaDataProvider","Windows.UI.Xaml.Markup.IXamlMetadataProvider")
-//@DefaultInterface("Windows.UI.Xaml.Markup.IXamlMetadataProvider")
+//@Implements("Microsoft.UI.Xaml.XamlTypeInfo.IXamlControlsXamlMetaDataProvider","Microsoft.UI.Xaml.Markup.IXamlMetadataProvider")
+//@DefaultInterface("Microsoft.UI.Xaml.Markup.IXamlMetadataProvider")
 @Proxy("WinRtProxy")
 class Microsoft_UI_Xaml_XamlTypeInfo_XamlControlsXamlMetaDataProvider : WinRtInterface
 {
     Microsoft_UI_Xaml_XamlTypeInfo_XamlControlsXamlMetaDataProvider( comPtr )
     {
         var Microsoft = runtime.global("Microsoft");
-        this.comPtr = comPtr.queryInterface( Windows.UI.Xaml.Markup.IXamlMetadataProvider.iid );
+        this.comPtr = comPtr.queryInterface( Microsoft.UI.Xaml.Markup.IXamlMetadataProvider.iid );
     }
 
     // s Microsoft.UI.Xaml.XamlTypeInfo.IXamlControlsXamlMetaDataProviderStatics

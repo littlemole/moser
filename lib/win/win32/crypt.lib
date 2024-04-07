@@ -188,11 +188,16 @@ Win32.BCRYPT_INTERFACE = {
 };
 
 
-Win32.NCRYPT_FLAGS = {
+Win32.BCRYPT_FLAGS = {
+    "BCRYPT_BLOCK_PADDING" : 1, 
     "BCRYPT_PAD_NONE" : 1, 
     "BCRYPT_PAD_OAEP" : 4, 
     "BCRYPT_PAD_PKCS1" : 2, 
-    "BCRYPT_PAD_PSS" : 8, 
+    "BCRYPT_PAD_PSS" : 8
+};
+
+
+Win32.NCRYPT_FLAGS = {
     "NCRYPT_SILENT_FLAG" : 64, 
     "NCRYPT_NO_PADDING_FLAG" : 1, 
     "NCRYPT_PAD_OAEP_FLAG" : 4, 
@@ -260,10 +265,15 @@ Win32.CRYPT_OBJECT_LOCATOR_RELEASE_REASON = {
 
 Win32.CRYPT_ACQUIRE_FLAGS = {
     "CRYPT_ACQUIRE_CACHE_FLAG" : 1, 
+    "CRYPT_ACQUIRE_USE_PROV_INFO_FLAG" : 2, 
     "CRYPT_ACQUIRE_COMPARE_KEY_FLAG" : 4, 
     "CRYPT_ACQUIRE_NO_HEALING" : 8, 
     "CRYPT_ACQUIRE_SILENT_FLAG" : 64, 
-    "CRYPT_ACQUIRE_USE_PROV_INFO_FLAG" : 2
+    "CRYPT_ACQUIRE_WINDOW_HANDLE_FLAG" : 128, 
+    "CRYPT_ACQUIRE_NCRYPT_KEY_FLAGS_MASK" : 458752, 
+    "CRYPT_ACQUIRE_ALLOW_NCRYPT_KEY_FLAG" : 65536, 
+    "CRYPT_ACQUIRE_PREFER_NCRYPT_KEY_FLAG" : 131072, 
+    "CRYPT_ACQUIRE_ONLY_NCRYPT_KEY_FLAG" : 262144
 };
 
 
@@ -710,6 +720,121 @@ Win32.NCRYPT_ALGORITHM_NAME_CLASS = {
 };
 
 
+Win32.BCRYPTGENRANDOM_FLAGS = {
+    "BCRYPT_RNG_USE_ENTROPY_IN_BUFFER" : 1, 
+    "BCRYPT_USE_SYSTEM_PREFERRED_RNG" : 2
+};
+
+
+Win32.SIGNER_SIGN_FLAGS = {
+    "SIG_APPEND" : 4096, 
+    "SPC_INC_PE_RESOURCES_FLAG" : 128, 
+    "SPC_INC_PE_DEBUG_INFO_FLAG" : 64, 
+    "SPC_INC_PE_IMPORT_ADDR_TABLE_FLAG" : 32, 
+    "SPC_EXC_PE_PAGE_HASHES_FLAG" : 16, 
+    "SPC_INC_PE_PAGE_HASHES_FLAG" : 256, 
+    "SPC_DIGEST_GENERATE_FLAG" : 512, 
+    "SPC_DIGEST_SIGN_FLAG" : 1024, 
+    "SPC_DIGEST_SIGN_EX_FLAG" : 16384
+};
+
+
+Win32.SIGNER_TIMESTAMP_FLAGS = {
+    "SIGNER_TIMESTAMP_AUTHENTICODE" : 1, 
+    "SIGNER_TIMESTAMP_RFC3161" : 2
+};
+
+
+Win32.SIGNER_SUBJECT_CHOICE = {
+    "SIGNER_SUBJECT_FILE" : 1, 
+    "SIGNER_SUBJECT_BLOB" : 2
+};
+
+
+Win32.SIGNER_SIGNATURE_ATTRIBUTE_CHOICE = {
+    "SIGNER_NO_ATTR" : 0, 
+    "SIGNER_AUTHCODE_ATTR" : 1
+};
+
+
+Win32.SIGNER_PRIVATE_KEY_CHOICE = {
+    "PVK_TYPE_FILE_NAME" : 1, 
+    "PVK_TYPE_KEYCONTAINER" : 2
+};
+
+
+Win32.SIGNER_CERT_POLICY = {
+    "SIGNER_CERT_POLICY_STORE" : 1, 
+    "SIGNER_CERT_POLICY_CHAIN" : 2, 
+    "SIGNER_CERT_POLICY_SPC" : 4, 
+    "SIGNER_CERT_POLICY_CHAIN_NO_ROOT" : 8
+};
+
+
+Win32.SIGNER_CERT_CHOICE = {
+    "SIGNER_CERT_SPC_FILE" : 1, 
+    "SIGNER_CERT_STORE" : 2, 
+    "SIGNER_CERT_SPC_CHAIN" : 3
+};
+
+
+Win32.ALG_ID = {
+    "CALG_MD2" : 32769, 
+    "CALG_MD4" : 32770, 
+    "CALG_MD5" : 32771, 
+    "CALG_SHA" : 32772, 
+    "CALG_SHA1" : 32772, 
+    "CALG_MAC" : 32773, 
+    "CALG_RSA_SIGN" : 9216, 
+    "CALG_DSS_SIGN" : 8704, 
+    "CALG_NO_SIGN" : 8192, 
+    "CALG_RSA_KEYX" : 41984, 
+    "CALG_DES" : 26113, 
+    "CALG_3DES_112" : 26121, 
+    "CALG_3DES" : 26115, 
+    "CALG_DESX" : 26116, 
+    "CALG_RC2" : 26114, 
+    "CALG_RC4" : 26625, 
+    "CALG_SEAL" : 26626, 
+    "CALG_DH_SF" : 43521, 
+    "CALG_DH_EPHEM" : 43522, 
+    "CALG_AGREEDKEY_ANY" : 43523, 
+    "CALG_KEA_KEYX" : 43524, 
+    "CALG_HUGHES_MD5" : 40963, 
+    "CALG_SKIPJACK" : 26122, 
+    "CALG_TEK" : 26123, 
+    "CALG_CYLINK_MEK" : 26124, 
+    "CALG_SSL3_SHAMD5" : 32776, 
+    "CALG_SSL3_MASTER" : 19457, 
+    "CALG_SCHANNEL_MASTER_HASH" : 19458, 
+    "CALG_SCHANNEL_MAC_KEY" : 19459, 
+    "CALG_SCHANNEL_ENC_KEY" : 19463, 
+    "CALG_PCT1_MASTER" : 19460, 
+    "CALG_SSL2_MASTER" : 19461, 
+    "CALG_TLS1_MASTER" : 19462, 
+    "CALG_RC5" : 26125, 
+    "CALG_HMAC" : 32777, 
+    "CALG_TLS1PRF" : 32778, 
+    "CALG_HASH_REPLACE_OWF" : 32779, 
+    "CALG_AES_128" : 26126, 
+    "CALG_AES_192" : 26127, 
+    "CALG_AES_256" : 26128, 
+    "CALG_AES" : 26129, 
+    "CALG_SHA_256" : 32780, 
+    "CALG_SHA_384" : 32781, 
+    "CALG_SHA_512" : 32782, 
+    "CALG_ECDH" : 43525, 
+    "CALG_ECDH_EPHEM" : 44550, 
+    "CALG_ECMQV" : 40961, 
+    "CALG_ECDSA" : 8707, 
+    "CALG_NULLCIPHER" : 24576, 
+    "CALG_THIRDPARTY_KEY_EXCHANGE" : 45056, 
+    "CALG_THIRDPARTY_SIGNATURE" : 12288, 
+    "CALG_THIRDPARTY_CIPHER" : 28672, 
+    "CALG_THIRDPARTY_HASH" : 36864
+};
+
+
 Win32.ECC_CURVE_TYPE_ENUM = {
     "BCRYPT_ECC_PRIME_SHORT_WEIERSTRASS_CURVE" : 1, 
     "BCRYPT_ECC_PRIME_TWISTED_EDWARDS_CURVE" : 2, 
@@ -895,22 +1020,22 @@ Win32.BCRYPT_SECRET_HANDLE = foreign.named_struct( "Windows.Win32.Security.Crypt
 ]); 
 
 
-Win32.BCRYPT_HANDLE = foreign.named_struct( "Windows.Win32.Security.Cryptography.BCRYPT_HANDLE", [ 
-    "Value:ptr"
-]); 
-
-
-Win32.NCRYPT_HANDLE = foreign.named_struct( "Windows.Win32.Security.Cryptography.NCRYPT_HANDLE", [ 
-    "Value:ptr"
-]); 
-
-
 Win32.NCRYPT_PROV_HANDLE = foreign.named_struct( "Windows.Win32.Security.Cryptography.NCRYPT_PROV_HANDLE", [ 
     "Value:ptr"
 ]); 
 
 
 Win32.NCRYPT_KEY_HANDLE = foreign.named_struct( "Windows.Win32.Security.Cryptography.NCRYPT_KEY_HANDLE", [ 
+    "Value:ptr"
+]); 
+
+
+Win32.BCRYPT_HANDLE = foreign.named_struct( "Windows.Win32.Security.Cryptography.BCRYPT_HANDLE", [ 
+    "Value:ptr"
+]); 
+
+
+Win32.NCRYPT_HANDLE = foreign.named_struct( "Windows.Win32.Security.Cryptography.NCRYPT_HANDLE", [ 
     "Value:ptr"
 ]); 
 
@@ -1092,7 +1217,7 @@ Win32.CRYPT_AES_256_KEY_STATE = foreign.named_struct( "Windows.Win32.Security.Cr
 ]); 
 
 
-Win32.CRYPTOAPI_BLOB = foreign.named_struct( "Windows.Win32.Security.Cryptography.CRYPTOAPI_BLOB", [ 
+Win32.CRYPT_INTEGER_BLOB = foreign.named_struct( "Windows.Win32.Security.Cryptography.CRYPT_INTEGER_BLOB", [ 
     "cbData:uint", 
     "pbData:ptr"
 ]); 
@@ -1102,7 +1227,7 @@ Win32.CMS_DH_KEY_INFO = foreign.named_struct( "Windows.Win32.Security.Cryptograp
     "dwVersion:uint", 
     "Algid:uint", 
     "pszContentEncObjId:str", 
-    "PubInfo:Windows.Win32.Security.Cryptography.CRYPTOAPI_BLOB", 
+    "PubInfo:Windows.Win32.Security.Cryptography.CRYPT_INTEGER_BLOB", 
     "pReserved:ptr"
 ]); 
 
@@ -1594,7 +1719,7 @@ Win32.CRYPT_BIT_BLOB = foreign.named_struct( "Windows.Win32.Security.Cryptograph
 
 Win32.CRYPT_ALGORITHM_IDENTIFIER = foreign.named_struct( "Windows.Win32.Security.Cryptography.CRYPT_ALGORITHM_IDENTIFIER", [ 
     "pszObjId:str", 
-    "Parameters:Windows.Win32.Security.Cryptography.CRYPTOAPI_BLOB"
+    "Parameters:Windows.Win32.Security.Cryptography.CRYPT_INTEGER_BLOB"
 ]); 
 
 
@@ -1606,20 +1731,20 @@ Win32.CRYPT_OBJID_TABLE = foreign.named_struct( "Windows.Win32.Security.Cryptogr
 
 Win32.CRYPT_HASH_INFO = foreign.named_struct( "Windows.Win32.Security.Cryptography.CRYPT_HASH_INFO", [ 
     "HashAlgorithm:Windows.Win32.Security.Cryptography.CRYPT_ALGORITHM_IDENTIFIER", 
-    "Hash:Windows.Win32.Security.Cryptography.CRYPTOAPI_BLOB"
+    "Hash:Windows.Win32.Security.Cryptography.CRYPT_INTEGER_BLOB"
 ]); 
 
 
 Win32.CERT_EXTENSION = foreign.named_struct( "Windows.Win32.Security.Cryptography.CERT_EXTENSION", [ 
     "pszObjId:str", 
     "fCritical:Windows.Win32.Foundation.BOOL", 
-    "Value:Windows.Win32.Security.Cryptography.CRYPTOAPI_BLOB"
+    "Value:Windows.Win32.Security.Cryptography.CRYPT_INTEGER_BLOB"
 ]); 
 
 
 Win32.CRYPT_ATTRIBUTE_TYPE_VALUE = foreign.named_struct( "Windows.Win32.Security.Cryptography.CRYPT_ATTRIBUTE_TYPE_VALUE", [ 
     "pszObjId:str", 
-    "Value:Windows.Win32.Security.Cryptography.CRYPTOAPI_BLOB"
+    "Value:Windows.Win32.Security.Cryptography.CRYPT_INTEGER_BLOB"
 ]); 
 
 
@@ -1639,7 +1764,7 @@ Win32.CRYPT_ATTRIBUTES = foreign.named_struct( "Windows.Win32.Security.Cryptogra
 Win32.CERT_RDN_ATTR = foreign.named_struct( "Windows.Win32.Security.Cryptography.CERT_RDN_ATTR", [ 
     "pszObjId:str", 
     "dwValueType:uint", 
-    "Value:Windows.Win32.Security.Cryptography.CRYPTOAPI_BLOB"
+    "Value:Windows.Win32.Security.Cryptography.CRYPT_INTEGER_BLOB"
 ]); 
 
 
@@ -1657,7 +1782,7 @@ Win32.CERT_NAME_INFO = foreign.named_struct( "Windows.Win32.Security.Cryptograph
 
 Win32.CERT_NAME_VALUE = foreign.named_struct( "Windows.Win32.Security.Cryptography.CERT_NAME_VALUE", [ 
     "dwValueType:uint", 
-    "Value:Windows.Win32.Security.Cryptography.CRYPTOAPI_BLOB"
+    "Value:Windows.Win32.Security.Cryptography.CRYPT_INTEGER_BLOB"
 ]); 
 
 
@@ -1669,7 +1794,7 @@ Win32.CERT_PUBLIC_KEY_INFO = foreign.named_struct( "Windows.Win32.Security.Crypt
 
 Win32.CRYPT_ECC_PRIVATE_KEY_INFO = foreign.named_struct( "Windows.Win32.Security.Cryptography.CRYPT_ECC_PRIVATE_KEY_INFO", [ 
     "dwVersion:uint", 
-    "PrivateKey:Windows.Win32.Security.Cryptography.CRYPTOAPI_BLOB", 
+    "PrivateKey:Windows.Win32.Security.Cryptography.CRYPT_INTEGER_BLOB", 
     "szCurveOid:str", 
     "PublicKey:Windows.Win32.Security.Cryptography.CRYPT_BIT_BLOB"
 ]); 
@@ -1678,19 +1803,19 @@ Win32.CRYPT_ECC_PRIVATE_KEY_INFO = foreign.named_struct( "Windows.Win32.Security
 Win32.CRYPT_PRIVATE_KEY_INFO = foreign.named_struct( "Windows.Win32.Security.Cryptography.CRYPT_PRIVATE_KEY_INFO", [ 
     "Version:uint", 
     "Algorithm:Windows.Win32.Security.Cryptography.CRYPT_ALGORITHM_IDENTIFIER", 
-    "PrivateKey:Windows.Win32.Security.Cryptography.CRYPTOAPI_BLOB", 
+    "PrivateKey:Windows.Win32.Security.Cryptography.CRYPT_INTEGER_BLOB", 
     "pAttributes:ptr"
 ]); 
 
 
 Win32.CRYPT_ENCRYPTED_PRIVATE_KEY_INFO = foreign.named_struct( "Windows.Win32.Security.Cryptography.CRYPT_ENCRYPTED_PRIVATE_KEY_INFO", [ 
     "EncryptionAlgorithm:Windows.Win32.Security.Cryptography.CRYPT_ALGORITHM_IDENTIFIER", 
-    "EncryptedPrivateKey:Windows.Win32.Security.Cryptography.CRYPTOAPI_BLOB"
+    "EncryptedPrivateKey:Windows.Win32.Security.Cryptography.CRYPT_INTEGER_BLOB"
 ]); 
 
 
 Win32.CRYPT_PKCS8_IMPORT_PARAMS = foreign.named_struct( "Windows.Win32.Security.Cryptography.CRYPT_PKCS8_IMPORT_PARAMS", [ 
-    "PrivateKey:Windows.Win32.Security.Cryptography.CRYPTOAPI_BLOB", 
+    "PrivateKey:Windows.Win32.Security.Cryptography.CRYPT_INTEGER_BLOB", 
     "pResolvehCryptProvFunc:ptr", 
     "pVoidResolveFunc:ptr", 
     "pDecryptPrivateKeyFunc:ptr", 
@@ -1709,12 +1834,12 @@ Win32.CRYPT_PKCS8_EXPORT_PARAMS = foreign.named_struct( "Windows.Win32.Security.
 
 Win32.CERT_INFO = foreign.named_struct( "Windows.Win32.Security.Cryptography.CERT_INFO", [ 
     "dwVersion:uint", 
-    "SerialNumber:Windows.Win32.Security.Cryptography.CRYPTOAPI_BLOB", 
+    "SerialNumber:Windows.Win32.Security.Cryptography.CRYPT_INTEGER_BLOB", 
     "SignatureAlgorithm:Windows.Win32.Security.Cryptography.CRYPT_ALGORITHM_IDENTIFIER", 
-    "Issuer:Windows.Win32.Security.Cryptography.CRYPTOAPI_BLOB", 
+    "Issuer:Windows.Win32.Security.Cryptography.CRYPT_INTEGER_BLOB", 
     "NotBefore:Windows.Win32.Foundation.FILETIME", 
     "NotAfter:Windows.Win32.Foundation.FILETIME", 
-    "Subject:Windows.Win32.Security.Cryptography.CRYPTOAPI_BLOB", 
+    "Subject:Windows.Win32.Security.Cryptography.CRYPT_INTEGER_BLOB", 
     "SubjectPublicKeyInfo:Windows.Win32.Security.Cryptography.CERT_PUBLIC_KEY_INFO", 
     "IssuerUniqueId:Windows.Win32.Security.Cryptography.CRYPT_BIT_BLOB", 
     "SubjectUniqueId:Windows.Win32.Security.Cryptography.CRYPT_BIT_BLOB", 
@@ -1724,7 +1849,7 @@ Win32.CERT_INFO = foreign.named_struct( "Windows.Win32.Security.Cryptography.CER
 
 
 Win32.CRL_ENTRY = foreign.named_struct( "Windows.Win32.Security.Cryptography.CRL_ENTRY", [ 
-    "SerialNumber:Windows.Win32.Security.Cryptography.CRYPTOAPI_BLOB", 
+    "SerialNumber:Windows.Win32.Security.Cryptography.CRYPT_INTEGER_BLOB", 
     "RevocationDate:Windows.Win32.Foundation.FILETIME", 
     "cExtension:uint", 
     "rgExtension:ptr"
@@ -1734,7 +1859,7 @@ Win32.CRL_ENTRY = foreign.named_struct( "Windows.Win32.Security.Cryptography.CRL
 Win32.CRL_INFO = foreign.named_struct( "Windows.Win32.Security.Cryptography.CRL_INFO", [ 
     "dwVersion:uint", 
     "SignatureAlgorithm:Windows.Win32.Security.Cryptography.CRYPT_ALGORITHM_IDENTIFIER", 
-    "Issuer:Windows.Win32.Security.Cryptography.CRYPTOAPI_BLOB", 
+    "Issuer:Windows.Win32.Security.Cryptography.CRYPT_INTEGER_BLOB", 
     "ThisUpdate:Windows.Win32.Foundation.FILETIME", 
     "NextUpdate:Windows.Win32.Foundation.FILETIME", 
     "cCRLEntry:uint", 
@@ -1759,7 +1884,7 @@ Win32.CERT_OR_CRL_BUNDLE = foreign.named_struct( "Windows.Win32.Security.Cryptog
 
 Win32.CERT_REQUEST_INFO = foreign.named_struct( "Windows.Win32.Security.Cryptography.CERT_REQUEST_INFO", [ 
     "dwVersion:uint", 
-    "Subject:Windows.Win32.Security.Cryptography.CRYPTOAPI_BLOB", 
+    "Subject:Windows.Win32.Security.Cryptography.CRYPT_INTEGER_BLOB", 
     "SubjectPublicKeyInfo:Windows.Win32.Security.Cryptography.CERT_PUBLIC_KEY_INFO", 
     "cAttribute:uint", 
     "rgAttribute:ptr"
@@ -1774,7 +1899,7 @@ Win32.CERT_KEYGEN_REQUEST_INFO = foreign.named_struct( "Windows.Win32.Security.C
 
 
 Win32.CERT_SIGNED_CONTENT_INFO = foreign.named_struct( "Windows.Win32.Security.Cryptography.CERT_SIGNED_CONTENT_INFO", [ 
-    "ToBeSigned:Windows.Win32.Security.Cryptography.CRYPTOAPI_BLOB", 
+    "ToBeSigned:Windows.Win32.Security.Cryptography.CRYPT_INTEGER_BLOB", 
     "SignatureAlgorithm:Windows.Win32.Security.Cryptography.CRYPT_ALGORITHM_IDENTIFIER", 
     "Signature:Windows.Win32.Security.Cryptography.CRYPT_BIT_BLOB"
 ]); 
@@ -1787,7 +1912,7 @@ Win32.CTL_USAGE = foreign.named_struct( "Windows.Win32.Security.Cryptography.CTL
 
 
 Win32.CTL_ENTRY = foreign.named_struct( "Windows.Win32.Security.Cryptography.CTL_ENTRY", [ 
-    "SubjectIdentifier:Windows.Win32.Security.Cryptography.CRYPTOAPI_BLOB", 
+    "SubjectIdentifier:Windows.Win32.Security.Cryptography.CRYPT_INTEGER_BLOB", 
     "cAttribute:uint", 
     "rgAttribute:ptr"
 ]); 
@@ -1796,8 +1921,8 @@ Win32.CTL_ENTRY = foreign.named_struct( "Windows.Win32.Security.Cryptography.CTL
 Win32.CTL_INFO = foreign.named_struct( "Windows.Win32.Security.Cryptography.CTL_INFO", [ 
     "dwVersion:uint", 
     "SubjectUsage:Windows.Win32.Security.Cryptography.CTL_USAGE", 
-    "ListIdentifier:Windows.Win32.Security.Cryptography.CRYPTOAPI_BLOB", 
-    "SequenceNumber:Windows.Win32.Security.Cryptography.CRYPTOAPI_BLOB", 
+    "ListIdentifier:Windows.Win32.Security.Cryptography.CRYPT_INTEGER_BLOB", 
+    "SequenceNumber:Windows.Win32.Security.Cryptography.CRYPT_INTEGER_BLOB", 
     "ThisUpdate:Windows.Win32.Foundation.FILETIME", 
     "NextUpdate:Windows.Win32.Foundation.FILETIME", 
     "SubjectAlgorithm:Windows.Win32.Security.Cryptography.CRYPT_ALGORITHM_IDENTIFIER", 
@@ -1811,7 +1936,7 @@ Win32.CTL_INFO = foreign.named_struct( "Windows.Win32.Security.Cryptography.CTL_
 Win32.CRYPT_TIME_STAMP_REQUEST_INFO = foreign.named_struct( "Windows.Win32.Security.Cryptography.CRYPT_TIME_STAMP_REQUEST_INFO", [ 
     "pszTimeStampAlgorithm:str", 
     "pszContentType:str", 
-    "Content:Windows.Win32.Security.Cryptography.CRYPTOAPI_BLOB", 
+    "Content:Windows.Win32.Security.Cryptography.CRYPT_INTEGER_BLOB", 
     "cAttribute:uint", 
     "rgAttribute:ptr"
 ]); 
@@ -1851,9 +1976,9 @@ Win32.CERT_EXTENSIONS = foreign.named_struct( "Windows.Win32.Security.Cryptograp
 
 
 Win32.CERT_AUTHORITY_KEY_ID_INFO = foreign.named_struct( "Windows.Win32.Security.Cryptography.CERT_AUTHORITY_KEY_ID_INFO", [ 
-    "KeyId:Windows.Win32.Security.Cryptography.CRYPTOAPI_BLOB", 
-    "CertIssuer:Windows.Win32.Security.Cryptography.CRYPTOAPI_BLOB", 
-    "CertSerialNumber:Windows.Win32.Security.Cryptography.CRYPTOAPI_BLOB"
+    "KeyId:Windows.Win32.Security.Cryptography.CRYPT_INTEGER_BLOB", 
+    "CertIssuer:Windows.Win32.Security.Cryptography.CRYPT_INTEGER_BLOB", 
+    "CertSerialNumber:Windows.Win32.Security.Cryptography.CRYPT_INTEGER_BLOB"
 ]); 
 
 
@@ -1864,7 +1989,7 @@ Win32.CERT_PRIVATE_KEY_VALIDITY = foreign.named_struct( "Windows.Win32.Security.
 
 
 Win32.CERT_KEY_ATTRIBUTES_INFO = foreign.named_struct( "Windows.Win32.Security.Cryptography.CERT_KEY_ATTRIBUTES_INFO", [ 
-    "KeyId:Windows.Win32.Security.Cryptography.CRYPTOAPI_BLOB", 
+    "KeyId:Windows.Win32.Security.Cryptography.CRYPT_INTEGER_BLOB", 
     "IntendedKeyUsage:Windows.Win32.Security.Cryptography.CRYPT_BIT_BLOB", 
     "pPrivateKeyUsagePeriod:ptr"
 ]); 
@@ -1885,7 +2010,7 @@ Win32.CERT_KEY_USAGE_RESTRICTION_INFO = foreign.named_struct( "Windows.Win32.Sec
 
 Win32.CERT_OTHER_NAME = foreign.named_struct( "Windows.Win32.Security.Cryptography.CERT_OTHER_NAME", [ 
     "pszObjId:str", 
-    "Value:Windows.Win32.Security.Cryptography.CRYPTOAPI_BLOB"
+    "Value:Windows.Win32.Security.Cryptography.CRYPT_INTEGER_BLOB"
 ]); 
 
 
@@ -1919,7 +2044,7 @@ Win32.CERT_BASIC_CONSTRAINTS2_INFO = foreign.named_struct( "Windows.Win32.Securi
 
 Win32.CERT_POLICY_QUALIFIER_INFO = foreign.named_struct( "Windows.Win32.Security.Cryptography.CERT_POLICY_QUALIFIER_INFO", [ 
     "pszPolicyQualifierId:str", 
-    "Qualifier:Windows.Win32.Security.Cryptography.CRYPTOAPI_BLOB"
+    "Qualifier:Windows.Win32.Security.Cryptography.CRYPT_INTEGER_BLOB"
 ]); 
 
 
@@ -1994,7 +2119,7 @@ Win32.CRYPT_CONTENT_INFO_SEQUENCE_OF_ANY = foreign.named_struct( "Windows.Win32.
 
 Win32.CRYPT_CONTENT_INFO = foreign.named_struct( "Windows.Win32.Security.Cryptography.CRYPT_CONTENT_INFO", [ 
     "pszObjId:str", 
-    "Content:Windows.Win32.Security.Cryptography.CRYPTOAPI_BLOB"
+    "Content:Windows.Win32.Security.Cryptography.CRYPT_INTEGER_BLOB"
 ]); 
 
 
@@ -2005,9 +2130,9 @@ Win32.CRYPT_SEQUENCE_OF_ANY = foreign.named_struct( "Windows.Win32.Security.Cryp
 
 
 Win32.CERT_AUTHORITY_KEY_ID2_INFO = foreign.named_struct( "Windows.Win32.Security.Cryptography.CERT_AUTHORITY_KEY_ID2_INFO", [ 
-    "KeyId:Windows.Win32.Security.Cryptography.CRYPTOAPI_BLOB", 
+    "KeyId:Windows.Win32.Security.Cryptography.CRYPT_INTEGER_BLOB", 
     "AuthorityCertIssuer:Windows.Win32.Security.Cryptography.CERT_ALT_NAME_INFO", 
-    "AuthorityCertSerialNumber:Windows.Win32.Security.Cryptography.CRYPTOAPI_BLOB"
+    "AuthorityCertSerialNumber:Windows.Win32.Security.Cryptography.CRYPT_INTEGER_BLOB"
 ]); 
 
 
@@ -2050,8 +2175,8 @@ Win32.CROSS_CERT_DIST_POINTS_INFO = foreign.named_struct( "Windows.Win32.Securit
 
 
 Win32.CERT_PAIR = foreign.named_struct( "Windows.Win32.Security.Cryptography.CERT_PAIR", [ 
-    "Forward:Windows.Win32.Security.Cryptography.CRYPTOAPI_BLOB", 
-    "Reverse:Windows.Win32.Security.Cryptography.CRYPTOAPI_BLOB"
+    "Forward:Windows.Win32.Security.Cryptography.CRYPT_INTEGER_BLOB", 
+    "Reverse:Windows.Win32.Security.Cryptography.CRYPT_INTEGER_BLOB"
 ]); 
 
 
@@ -2081,21 +2206,21 @@ Win32.CERT_NAME_CONSTRAINTS_INFO = foreign.named_struct( "Windows.Win32.Security
 
 
 Win32.CERT_DSS_PARAMETERS = foreign.named_struct( "Windows.Win32.Security.Cryptography.CERT_DSS_PARAMETERS", [ 
-    "p:Windows.Win32.Security.Cryptography.CRYPTOAPI_BLOB", 
-    "q:Windows.Win32.Security.Cryptography.CRYPTOAPI_BLOB", 
-    "g:Windows.Win32.Security.Cryptography.CRYPTOAPI_BLOB"
+    "p:Windows.Win32.Security.Cryptography.CRYPT_INTEGER_BLOB", 
+    "q:Windows.Win32.Security.Cryptography.CRYPT_INTEGER_BLOB", 
+    "g:Windows.Win32.Security.Cryptography.CRYPT_INTEGER_BLOB"
 ]); 
 
 
 Win32.CERT_DH_PARAMETERS = foreign.named_struct( "Windows.Win32.Security.Cryptography.CERT_DH_PARAMETERS", [ 
-    "p:Windows.Win32.Security.Cryptography.CRYPTOAPI_BLOB", 
-    "g:Windows.Win32.Security.Cryptography.CRYPTOAPI_BLOB"
+    "p:Windows.Win32.Security.Cryptography.CRYPT_INTEGER_BLOB", 
+    "g:Windows.Win32.Security.Cryptography.CRYPT_INTEGER_BLOB"
 ]); 
 
 
 Win32.CERT_ECC_SIGNATURE = foreign.named_struct( "Windows.Win32.Security.Cryptography.CERT_ECC_SIGNATURE", [ 
-    "r:Windows.Win32.Security.Cryptography.CRYPTOAPI_BLOB", 
-    "s:Windows.Win32.Security.Cryptography.CRYPTOAPI_BLOB"
+    "r:Windows.Win32.Security.Cryptography.CRYPT_INTEGER_BLOB", 
+    "s:Windows.Win32.Security.Cryptography.CRYPT_INTEGER_BLOB"
 ]); 
 
 
@@ -2106,10 +2231,10 @@ Win32.CERT_X942_DH_VALIDATION_PARAMS = foreign.named_struct( "Windows.Win32.Secu
 
 
 Win32.CERT_X942_DH_PARAMETERS = foreign.named_struct( "Windows.Win32.Security.Cryptography.CERT_X942_DH_PARAMETERS", [ 
-    "p:Windows.Win32.Security.Cryptography.CRYPTOAPI_BLOB", 
-    "g:Windows.Win32.Security.Cryptography.CRYPTOAPI_BLOB", 
-    "q:Windows.Win32.Security.Cryptography.CRYPTOAPI_BLOB", 
-    "j:Windows.Win32.Security.Cryptography.CRYPTOAPI_BLOB", 
+    "p:Windows.Win32.Security.Cryptography.CRYPT_INTEGER_BLOB", 
+    "g:Windows.Win32.Security.Cryptography.CRYPT_INTEGER_BLOB", 
+    "q:Windows.Win32.Security.Cryptography.CRYPT_INTEGER_BLOB", 
+    "j:Windows.Win32.Security.Cryptography.CRYPT_INTEGER_BLOB", 
     "pValidationParams:ptr"
 ]); 
 
@@ -2118,13 +2243,13 @@ Win32.CRYPT_X942_OTHER_INFO = foreign.named_struct( "Windows.Win32.Security.Cryp
     "pszContentEncryptionObjId:str", 
     "rgbCounter[4]:ubyte", 
     "rgbKeyLength[4]:ubyte", 
-    "PubInfo:Windows.Win32.Security.Cryptography.CRYPTOAPI_BLOB"
+    "PubInfo:Windows.Win32.Security.Cryptography.CRYPT_INTEGER_BLOB"
 ]); 
 
 
 Win32.CRYPT_ECC_CMS_SHARED_INFO = foreign.named_struct( "Windows.Win32.Security.Cryptography.CRYPT_ECC_CMS_SHARED_INFO", [ 
     "Algorithm:Windows.Win32.Security.Cryptography.CRYPT_ALGORITHM_IDENTIFIER", 
-    "EntityUInfo:Windows.Win32.Security.Cryptography.CRYPTOAPI_BLOB", 
+    "EntityUInfo:Windows.Win32.Security.Cryptography.CRYPT_INTEGER_BLOB", 
     "rgbSuppPubInfo[4]:ubyte"
 ]); 
 
@@ -2138,7 +2263,7 @@ Win32.CRYPT_RC2_CBC_PARAMETERS = foreign.named_struct( "Windows.Win32.Security.C
 
 Win32.CRYPT_SMIME_CAPABILITY = foreign.named_struct( "Windows.Win32.Security.Cryptography.CRYPT_SMIME_CAPABILITY", [ 
     "pszObjId:str", 
-    "Parameters:Windows.Win32.Security.Cryptography.CRYPTOAPI_BLOB"
+    "Parameters:Windows.Win32.Security.Cryptography.CRYPT_INTEGER_BLOB"
 ]); 
 
 
@@ -2150,7 +2275,7 @@ Win32.CRYPT_SMIME_CAPABILITIES = foreign.named_struct( "Windows.Win32.Security.C
 
 Win32.CERT_QC_STATEMENT = foreign.named_struct( "Windows.Win32.Security.Cryptography.CERT_QC_STATEMENT", [ 
     "pszStatementId:str", 
-    "StatementInfo:Windows.Win32.Security.Cryptography.CRYPTOAPI_BLOB"
+    "StatementInfo:Windows.Win32.Security.Cryptography.CRYPT_INTEGER_BLOB"
 ]); 
 
 
@@ -2176,7 +2301,7 @@ Win32.CRYPT_RSA_SSA_PSS_PARAMETERS = foreign.named_struct( "Windows.Win32.Securi
 
 Win32.CRYPT_PSOURCE_ALGORITHM = foreign.named_struct( "Windows.Win32.Security.Cryptography.CRYPT_PSOURCE_ALGORITHM", [ 
     "pszObjId:str", 
-    "EncodingParameters:Windows.Win32.Security.Cryptography.CRYPTOAPI_BLOB"
+    "EncodingParameters:Windows.Win32.Security.Cryptography.CRYPT_INTEGER_BLOB"
 ]); 
 
 
@@ -2195,7 +2320,7 @@ Win32.CMC_TAGGED_ATTRIBUTE = foreign.named_struct( "Windows.Win32.Security.Crypt
 
 Win32.CMC_TAGGED_CERT_REQUEST = foreign.named_struct( "Windows.Win32.Security.Cryptography.CMC_TAGGED_CERT_REQUEST", [ 
     "dwBodyPartID:uint", 
-    "SignedCertRequest:Windows.Win32.Security.Cryptography.CRYPTOAPI_BLOB"
+    "SignedCertRequest:Windows.Win32.Security.Cryptography.CRYPT_INTEGER_BLOB"
 ]); 
 
 
@@ -2207,14 +2332,14 @@ Win32.CMC_TAGGED_REQUEST = foreign.named_struct( "Windows.Win32.Security.Cryptog
 
 Win32.CMC_TAGGED_CONTENT_INFO = foreign.named_struct( "Windows.Win32.Security.Cryptography.CMC_TAGGED_CONTENT_INFO", [ 
     "dwBodyPartID:uint", 
-    "EncodedContentInfo:Windows.Win32.Security.Cryptography.CRYPTOAPI_BLOB"
+    "EncodedContentInfo:Windows.Win32.Security.Cryptography.CRYPT_INTEGER_BLOB"
 ]); 
 
 
 Win32.CMC_TAGGED_OTHER_MSG = foreign.named_struct( "Windows.Win32.Security.Cryptography.CMC_TAGGED_OTHER_MSG", [ 
     "dwBodyPartID:uint", 
     "pszObjId:str", 
-    "Value:Windows.Win32.Security.Cryptography.CRYPTOAPI_BLOB"
+    "Value:Windows.Win32.Security.Cryptography.CRYPT_INTEGER_BLOB"
 ]); 
 
 
@@ -2241,7 +2366,7 @@ Win32.CMC_RESPONSE_INFO = foreign.named_struct( "Windows.Win32.Security.Cryptogr
 
 
 Win32.CMC_PEND_INFO = foreign.named_struct( "Windows.Win32.Security.Cryptography.CMC_PEND_INFO", [ 
-    "PendToken:Windows.Win32.Security.Cryptography.CRYPTOAPI_BLOB", 
+    "PendToken:Windows.Win32.Security.Cryptography.CRYPT_INTEGER_BLOB", 
     "PendTime:Windows.Win32.Foundation.FILETIME"
 ]); 
 
@@ -2284,7 +2409,7 @@ Win32.CERT_TEMPLATE_EXT = foreign.named_struct( "Windows.Win32.Security.Cryptogr
 
 Win32.CERT_HASHED_URL = foreign.named_struct( "Windows.Win32.Security.Cryptography.CERT_HASHED_URL", [ 
     "HashAlgorithm:Windows.Win32.Security.Cryptography.CRYPT_ALGORITHM_IDENTIFIER", 
-    "Hash:Windows.Win32.Security.Cryptography.CRYPTOAPI_BLOB", 
+    "Hash:Windows.Win32.Security.Cryptography.CRYPT_INTEGER_BLOB", 
     "pwszUrl:wstr"
 ]); 
 
@@ -2386,16 +2511,16 @@ Win32.OCSP_SIGNATURE_INFO = foreign.named_struct( "Windows.Win32.Security.Crypto
 
 
 Win32.OCSP_SIGNED_REQUEST_INFO = foreign.named_struct( "Windows.Win32.Security.Cryptography.OCSP_SIGNED_REQUEST_INFO", [ 
-    "ToBeSigned:Windows.Win32.Security.Cryptography.CRYPTOAPI_BLOB", 
+    "ToBeSigned:Windows.Win32.Security.Cryptography.CRYPT_INTEGER_BLOB", 
     "pOptionalSignatureInfo:ptr"
 ]); 
 
 
 Win32.OCSP_CERT_ID = foreign.named_struct( "Windows.Win32.Security.Cryptography.OCSP_CERT_ID", [ 
     "HashAlgorithm:Windows.Win32.Security.Cryptography.CRYPT_ALGORITHM_IDENTIFIER", 
-    "IssuerNameHash:Windows.Win32.Security.Cryptography.CRYPTOAPI_BLOB", 
-    "IssuerKeyHash:Windows.Win32.Security.Cryptography.CRYPTOAPI_BLOB", 
-    "SerialNumber:Windows.Win32.Security.Cryptography.CRYPTOAPI_BLOB"
+    "IssuerNameHash:Windows.Win32.Security.Cryptography.CRYPT_INTEGER_BLOB", 
+    "IssuerKeyHash:Windows.Win32.Security.Cryptography.CRYPT_INTEGER_BLOB", 
+    "SerialNumber:Windows.Win32.Security.Cryptography.CRYPT_INTEGER_BLOB"
 ]); 
 
 
@@ -2419,12 +2544,12 @@ Win32.OCSP_REQUEST_INFO = foreign.named_struct( "Windows.Win32.Security.Cryptogr
 Win32.OCSP_RESPONSE_INFO = foreign.named_struct( "Windows.Win32.Security.Cryptography.OCSP_RESPONSE_INFO", [ 
     "dwStatus:uint", 
     "pszObjId:str", 
-    "Value:Windows.Win32.Security.Cryptography.CRYPTOAPI_BLOB"
+    "Value:Windows.Win32.Security.Cryptography.CRYPT_INTEGER_BLOB"
 ]); 
 
 
 Win32.OCSP_BASIC_SIGNED_RESPONSE_INFO = foreign.named_struct( "Windows.Win32.Security.Cryptography.OCSP_BASIC_SIGNED_RESPONSE_INFO", [ 
-    "ToBeSigned:Windows.Win32.Security.Cryptography.CRYPTOAPI_BLOB", 
+    "ToBeSigned:Windows.Win32.Security.Cryptography.CRYPT_INTEGER_BLOB", 
     "SignatureInfo:Windows.Win32.Security.Cryptography.OCSP_SIGNATURE_INFO"
 ]); 
 
@@ -2484,7 +2609,7 @@ Win32.CRYPT_OID_INFO = foreign.named_struct( "Windows.Win32.Security.Cryptograph
     "pwszName:wstr", 
     "dwGroupId:uint", 
     "Anonymous:._Anonymous_e__Union", 
-    "ExtraInfo:Windows.Win32.Security.Cryptography.CRYPTOAPI_BLOB"
+    "ExtraInfo:Windows.Win32.Security.Cryptography.CRYPT_INTEGER_BLOB"
 ]); 
 
 
@@ -2503,8 +2628,8 @@ Win32.CERT_STRONG_SIGN_PARA = foreign.named_struct( "Windows.Win32.Security.Cryp
 
 
 Win32.CERT_ISSUER_SERIAL_NUMBER = foreign.named_struct( "Windows.Win32.Security.Cryptography.CERT_ISSUER_SERIAL_NUMBER", [ 
-    "Issuer:Windows.Win32.Security.Cryptography.CRYPTOAPI_BLOB", 
-    "SerialNumber:Windows.Win32.Security.Cryptography.CRYPTOAPI_BLOB"
+    "Issuer:Windows.Win32.Security.Cryptography.CRYPT_INTEGER_BLOB", 
+    "SerialNumber:Windows.Win32.Security.Cryptography.CRYPT_INTEGER_BLOB"
 ]); 
 
 
@@ -2578,7 +2703,7 @@ Win32.CMSG_KEY_AGREE_RECIPIENT_ENCODE_INFO = foreign.named_struct( "Windows.Win3
     "dwKeySpec:uint", 
     "dwKeyChoice:uint", 
     "Anonymous:._Anonymous_e__Union", 
-    "UserKeyingMaterial:Windows.Win32.Security.Cryptography.CRYPTOAPI_BLOB", 
+    "UserKeyingMaterial:Windows.Win32.Security.Cryptography.CRYPT_INTEGER_BLOB", 
     "cRecipientEncryptedKeys:uint", 
     "rgpRecipientEncryptedKeys:ptr"
 ]); 
@@ -2591,7 +2716,7 @@ Win32.CMSG_MAIL_LIST_RECIPIENT_ENCODE_INFO = foreign.named_struct( "Windows.Win3
     "hCryptProv:ptr", 
     "dwKeyChoice:uint", 
     "Anonymous:._Anonymous_e__Union", 
-    "KeyId:Windows.Win32.Security.Cryptography.CRYPTOAPI_BLOB", 
+    "KeyId:Windows.Win32.Security.Cryptography.CRYPT_INTEGER_BLOB", 
     "Date:Windows.Win32.Foundation.FILETIME", 
     "pOtherAttr:ptr"
 ]); 
@@ -2652,11 +2777,11 @@ Win32.CMSG_STREAM_INFO = foreign.named_struct( "Windows.Win32.Security.Cryptogra
 
 Win32.CMSG_SIGNER_INFO = foreign.named_struct( "Windows.Win32.Security.Cryptography.CMSG_SIGNER_INFO", [ 
     "dwVersion:uint", 
-    "Issuer:Windows.Win32.Security.Cryptography.CRYPTOAPI_BLOB", 
-    "SerialNumber:Windows.Win32.Security.Cryptography.CRYPTOAPI_BLOB", 
+    "Issuer:Windows.Win32.Security.Cryptography.CRYPT_INTEGER_BLOB", 
+    "SerialNumber:Windows.Win32.Security.Cryptography.CRYPT_INTEGER_BLOB", 
     "HashAlgorithm:Windows.Win32.Security.Cryptography.CRYPT_ALGORITHM_IDENTIFIER", 
     "HashEncryptionAlgorithm:Windows.Win32.Security.Cryptography.CRYPT_ALGORITHM_IDENTIFIER", 
-    "EncryptedHash:Windows.Win32.Security.Cryptography.CRYPTOAPI_BLOB", 
+    "EncryptedHash:Windows.Win32.Security.Cryptography.CRYPT_INTEGER_BLOB", 
     "AuthAttrs:Windows.Win32.Security.Cryptography.CRYPT_ATTRIBUTES", 
     "UnauthAttrs:Windows.Win32.Security.Cryptography.CRYPT_ATTRIBUTES"
 ]); 
@@ -2667,7 +2792,7 @@ Win32.CMSG_CMS_SIGNER_INFO = foreign.named_struct( "Windows.Win32.Security.Crypt
     "SignerId:Windows.Win32.Security.Cryptography.CERT_ID", 
     "HashAlgorithm:Windows.Win32.Security.Cryptography.CRYPT_ALGORITHM_IDENTIFIER", 
     "HashEncryptionAlgorithm:Windows.Win32.Security.Cryptography.CRYPT_ALGORITHM_IDENTIFIER", 
-    "EncryptedHash:Windows.Win32.Security.Cryptography.CRYPTOAPI_BLOB", 
+    "EncryptedHash:Windows.Win32.Security.Cryptography.CRYPT_INTEGER_BLOB", 
     "AuthAttrs:Windows.Win32.Security.Cryptography.CRYPT_ATTRIBUTES", 
     "UnauthAttrs:Windows.Win32.Security.Cryptography.CRYPT_ATTRIBUTES"
 ]); 
@@ -2677,13 +2802,13 @@ Win32.CMSG_KEY_TRANS_RECIPIENT_INFO = foreign.named_struct( "Windows.Win32.Secur
     "dwVersion:uint", 
     "RecipientId:Windows.Win32.Security.Cryptography.CERT_ID", 
     "KeyEncryptionAlgorithm:Windows.Win32.Security.Cryptography.CRYPT_ALGORITHM_IDENTIFIER", 
-    "EncryptedKey:Windows.Win32.Security.Cryptography.CRYPTOAPI_BLOB"
+    "EncryptedKey:Windows.Win32.Security.Cryptography.CRYPT_INTEGER_BLOB"
 ]); 
 
 
 Win32.CMSG_RECIPIENT_ENCRYPTED_KEY_INFO = foreign.named_struct( "Windows.Win32.Security.Cryptography.CMSG_RECIPIENT_ENCRYPTED_KEY_INFO", [ 
     "RecipientId:Windows.Win32.Security.Cryptography.CERT_ID", 
-    "EncryptedKey:Windows.Win32.Security.Cryptography.CRYPTOAPI_BLOB", 
+    "EncryptedKey:Windows.Win32.Security.Cryptography.CRYPT_INTEGER_BLOB", 
     "Date:Windows.Win32.Foundation.FILETIME", 
     "pOtherAttr:ptr"
 ]); 
@@ -2693,7 +2818,7 @@ Win32.CMSG_KEY_AGREE_RECIPIENT_INFO = foreign.named_struct( "Windows.Win32.Secur
     "dwVersion:uint", 
     "dwOriginatorChoice:uint", 
     "Anonymous:._Anonymous_e__Union", 
-    "UserKeyingMaterial:Windows.Win32.Security.Cryptography.CRYPTOAPI_BLOB", 
+    "UserKeyingMaterial:Windows.Win32.Security.Cryptography.CRYPT_INTEGER_BLOB", 
     "KeyEncryptionAlgorithm:Windows.Win32.Security.Cryptography.CRYPT_ALGORITHM_IDENTIFIER", 
     "cRecipientEncryptedKeys:uint", 
     "rgpRecipientEncryptedKeys:ptr"
@@ -2702,9 +2827,9 @@ Win32.CMSG_KEY_AGREE_RECIPIENT_INFO = foreign.named_struct( "Windows.Win32.Secur
 
 Win32.CMSG_MAIL_LIST_RECIPIENT_INFO = foreign.named_struct( "Windows.Win32.Security.Cryptography.CMSG_MAIL_LIST_RECIPIENT_INFO", [ 
     "dwVersion:uint", 
-    "KeyId:Windows.Win32.Security.Cryptography.CRYPTOAPI_BLOB", 
+    "KeyId:Windows.Win32.Security.Cryptography.CRYPT_INTEGER_BLOB", 
     "KeyEncryptionAlgorithm:Windows.Win32.Security.Cryptography.CRYPT_ALGORITHM_IDENTIFIER", 
-    "EncryptedKey:Windows.Win32.Security.Cryptography.CRYPTOAPI_BLOB", 
+    "EncryptedKey:Windows.Win32.Security.Cryptography.CRYPT_INTEGER_BLOB", 
     "Date:Windows.Win32.Foundation.FILETIME", 
     "pOtherAttr:ptr"
 ]); 
@@ -2766,7 +2891,7 @@ Win32.CMSG_CTRL_MAIL_LIST_DECRYPT_PARA = foreign.named_struct( "Windows.Win32.Se
 Win32.CMSG_CTRL_ADD_SIGNER_UNAUTH_ATTR_PARA = foreign.named_struct( "Windows.Win32.Security.Cryptography.CMSG_CTRL_ADD_SIGNER_UNAUTH_ATTR_PARA", [ 
     "cbSize:uint", 
     "dwSignerIndex:uint", 
-    "blob:Windows.Win32.Security.Cryptography.CRYPTOAPI_BLOB"
+    "blob:Windows.Win32.Security.Cryptography.CRYPT_INTEGER_BLOB"
 ]); 
 
 
@@ -2800,14 +2925,14 @@ Win32.CMSG_KEY_TRANS_ENCRYPT_INFO = foreign.named_struct( "Windows.Win32.Securit
     "cbSize:uint", 
     "dwRecipientIndex:uint", 
     "KeyEncryptionAlgorithm:Windows.Win32.Security.Cryptography.CRYPT_ALGORITHM_IDENTIFIER", 
-    "EncryptedKey:Windows.Win32.Security.Cryptography.CRYPTOAPI_BLOB", 
+    "EncryptedKey:Windows.Win32.Security.Cryptography.CRYPT_INTEGER_BLOB", 
     "dwFlags:uint"
 ]); 
 
 
 Win32.CMSG_KEY_AGREE_KEY_ENCRYPT_INFO = foreign.named_struct( "Windows.Win32.Security.Cryptography.CMSG_KEY_AGREE_KEY_ENCRYPT_INFO", [ 
     "cbSize:uint", 
-    "EncryptedKey:Windows.Win32.Security.Cryptography.CRYPTOAPI_BLOB"
+    "EncryptedKey:Windows.Win32.Security.Cryptography.CRYPT_INTEGER_BLOB"
 ]); 
 
 
@@ -2815,7 +2940,7 @@ Win32.CMSG_KEY_AGREE_ENCRYPT_INFO = foreign.named_struct( "Windows.Win32.Securit
     "cbSize:uint", 
     "dwRecipientIndex:uint", 
     "KeyEncryptionAlgorithm:Windows.Win32.Security.Cryptography.CRYPT_ALGORITHM_IDENTIFIER", 
-    "UserKeyingMaterial:Windows.Win32.Security.Cryptography.CRYPTOAPI_BLOB", 
+    "UserKeyingMaterial:Windows.Win32.Security.Cryptography.CRYPT_INTEGER_BLOB", 
     "dwOriginatorChoice:uint", 
     "Anonymous:._Anonymous_e__Union", 
     "cKeyAgreeKeyEncryptInfo:uint", 
@@ -2828,7 +2953,7 @@ Win32.CMSG_MAIL_LIST_ENCRYPT_INFO = foreign.named_struct( "Windows.Win32.Securit
     "cbSize:uint", 
     "dwRecipientIndex:uint", 
     "KeyEncryptionAlgorithm:Windows.Win32.Security.Cryptography.CRYPT_ALGORITHM_IDENTIFIER", 
-    "EncryptedKey:Windows.Win32.Security.Cryptography.CRYPTOAPI_BLOB", 
+    "EncryptedKey:Windows.Win32.Security.Cryptography.CRYPT_INTEGER_BLOB", 
     "dwFlags:uint"
 ]); 
 
@@ -2965,14 +3090,14 @@ Win32.CRL_FIND_ISSUED_FOR_PARA = foreign.named_struct( "Windows.Win32.Security.C
 
 Win32.CTL_ANY_SUBJECT_INFO = foreign.named_struct( "Windows.Win32.Security.Cryptography.CTL_ANY_SUBJECT_INFO", [ 
     "SubjectAlgorithm:Windows.Win32.Security.Cryptography.CRYPT_ALGORITHM_IDENTIFIER", 
-    "SubjectIdentifier:Windows.Win32.Security.Cryptography.CRYPTOAPI_BLOB"
+    "SubjectIdentifier:Windows.Win32.Security.Cryptography.CRYPT_INTEGER_BLOB"
 ]); 
 
 
 Win32.CTL_FIND_USAGE_PARA = foreign.named_struct( "Windows.Win32.Security.Cryptography.CTL_FIND_USAGE_PARA", [ 
     "cbSize:uint", 
     "SubjectUsage:Windows.Win32.Security.Cryptography.CTL_USAGE", 
-    "ListIdentifier:Windows.Win32.Security.Cryptography.CRYPTOAPI_BLOB", 
+    "ListIdentifier:Windows.Win32.Security.Cryptography.CRYPT_INTEGER_BLOB", 
     "pSigner:ptr"
 ]); 
 
@@ -3004,7 +3129,7 @@ Win32.CERT_PHYSICAL_STORE_INFO = foreign.named_struct( "Windows.Win32.Security.C
     "pszOpenStoreProvider:str", 
     "dwOpenEncodingType:uint", 
     "dwOpenFlags:uint", 
-    "OpenParameters:Windows.Win32.Security.Cryptography.CRYPTOAPI_BLOB", 
+    "OpenParameters:Windows.Win32.Security.Cryptography.CRYPT_INTEGER_BLOB", 
     "dwFlags:uint", 
     "dwPriority:uint"
 ]); 
@@ -3012,7 +3137,7 @@ Win32.CERT_PHYSICAL_STORE_INFO = foreign.named_struct( "Windows.Win32.Security.C
 
 Win32.CTL_VERIFY_USAGE_PARA = foreign.named_struct( "Windows.Win32.Security.Cryptography.CTL_VERIFY_USAGE_PARA", [ 
     "cbSize:uint", 
-    "ListIdentifier:Windows.Win32.Security.Cryptography.CRYPTOAPI_BLOB", 
+    "ListIdentifier:Windows.Win32.Security.Cryptography.CRYPT_INTEGER_BLOB", 
     "cCtlStore:uint", 
     "rghCtlStore:ptr", 
     "cSignerStore:uint", 
@@ -3061,8 +3186,8 @@ Win32.CERT_REVOCATION_STATUS = foreign.named_struct( "Windows.Win32.Security.Cry
 
 
 Win32.CRYPT_VERIFY_CERT_SIGN_STRONG_PROPERTIES_INFO = foreign.named_struct( "Windows.Win32.Security.Cryptography.CRYPT_VERIFY_CERT_SIGN_STRONG_PROPERTIES_INFO", [ 
-    "CertSignHashCNGAlgPropData:Windows.Win32.Security.Cryptography.CRYPTOAPI_BLOB", 
-    "CertIssuerPubKeyBitLengthPropData:Windows.Win32.Security.Cryptography.CRYPTOAPI_BLOB"
+    "CertSignHashCNGAlgPropData:Windows.Win32.Security.Cryptography.CRYPT_INTEGER_BLOB", 
+    "CertIssuerPubKeyBitLengthPropData:Windows.Win32.Security.Cryptography.CRYPT_INTEGER_BLOB"
 ]); 
 
 
@@ -3532,9 +3657,9 @@ Win32.CERT_SELECT_CRITERIA = foreign.named_struct( "Windows.Win32.Security.Crypt
 Win32.CRYPT_TIMESTAMP_REQUEST = foreign.named_struct( "Windows.Win32.Security.Cryptography.CRYPT_TIMESTAMP_REQUEST", [ 
     "dwVersion:uint", 
     "HashAlgorithm:Windows.Win32.Security.Cryptography.CRYPT_ALGORITHM_IDENTIFIER", 
-    "HashedMessage:Windows.Win32.Security.Cryptography.CRYPTOAPI_BLOB", 
+    "HashedMessage:Windows.Win32.Security.Cryptography.CRYPT_INTEGER_BLOB", 
     "pszTSAPolicyId:str", 
-    "Nonce:Windows.Win32.Security.Cryptography.CRYPTOAPI_BLOB", 
+    "Nonce:Windows.Win32.Security.Cryptography.CRYPT_INTEGER_BLOB", 
     "fCertReq:Windows.Win32.Foundation.BOOL", 
     "cExtension:uint", 
     "rgExtension:ptr"
@@ -3546,7 +3671,7 @@ Win32.CRYPT_TIMESTAMP_RESPONSE = foreign.named_struct( "Windows.Win32.Security.C
     "cFreeText:uint", 
     "rgFreeText:ptr", 
     "FailureInfo:Windows.Win32.Security.Cryptography.CRYPT_BIT_BLOB", 
-    "ContentInfo:Windows.Win32.Security.Cryptography.CRYPTOAPI_BLOB"
+    "ContentInfo:Windows.Win32.Security.Cryptography.CRYPT_INTEGER_BLOB"
 ]); 
 
 
@@ -3561,13 +3686,13 @@ Win32.CRYPT_TIMESTAMP_INFO = foreign.named_struct( "Windows.Win32.Security.Crypt
     "dwVersion:uint", 
     "pszTSAPolicyId:str", 
     "HashAlgorithm:Windows.Win32.Security.Cryptography.CRYPT_ALGORITHM_IDENTIFIER", 
-    "HashedMessage:Windows.Win32.Security.Cryptography.CRYPTOAPI_BLOB", 
-    "SerialNumber:Windows.Win32.Security.Cryptography.CRYPTOAPI_BLOB", 
+    "HashedMessage:Windows.Win32.Security.Cryptography.CRYPT_INTEGER_BLOB", 
+    "SerialNumber:Windows.Win32.Security.Cryptography.CRYPT_INTEGER_BLOB", 
     "ftTime:Windows.Win32.Foundation.FILETIME", 
     "pvAccuracy:ptr", 
     "fOrdering:Windows.Win32.Foundation.BOOL", 
-    "Nonce:Windows.Win32.Security.Cryptography.CRYPTOAPI_BLOB", 
-    "Tsa:Windows.Win32.Security.Cryptography.CRYPTOAPI_BLOB", 
+    "Nonce:Windows.Win32.Security.Cryptography.CRYPT_INTEGER_BLOB", 
+    "Tsa:Windows.Win32.Security.Cryptography.CRYPT_INTEGER_BLOB", 
     "cExtension:uint", 
     "rgExtension:ptr"
 ]); 
@@ -3583,7 +3708,7 @@ Win32.CRYPT_TIMESTAMP_CONTEXT = foreign.named_struct( "Windows.Win32.Security.Cr
 Win32.CRYPT_TIMESTAMP_PARA = foreign.named_struct( "Windows.Win32.Security.Cryptography.CRYPT_TIMESTAMP_PARA", [ 
     "pszTSAPolicyId:str", 
     "fRequestCerts:Windows.Win32.Foundation.BOOL", 
-    "Nonce:Windows.Win32.Security.Cryptography.CRYPTOAPI_BLOB", 
+    "Nonce:Windows.Win32.Security.Cryptography.CRYPT_INTEGER_BLOB", 
     "cExtension:uint", 
     "rgExtension:ptr"
 ]); 
@@ -3616,6 +3741,116 @@ Win32.NCRYPT_PROTECT_STREAM_INFO = foreign.named_struct( "Windows.Win32.Security
 Win32.NCRYPT_PROTECT_STREAM_INFO_EX = foreign.named_struct( "Windows.Win32.Security.Cryptography.NCRYPT_PROTECT_STREAM_INFO_EX", [ 
     "pfnStreamOutput:ptr", 
     "pvCallbackCtxt:ptr"
+]); 
+
+
+Win32.SIGNER_ATTR_AUTHCODE = foreign.named_struct( "Windows.Win32.Security.Cryptography.SIGNER_ATTR_AUTHCODE", [ 
+    "cbSize:uint", 
+    "fCommercial:Windows.Win32.Foundation.BOOL", 
+    "fIndividual:Windows.Win32.Foundation.BOOL", 
+    "pwszName:wstr", 
+    "pwszInfo:wstr"
+]); 
+
+
+Win32.SIGNER_BLOB_INFO = foreign.named_struct( "Windows.Win32.Security.Cryptography.SIGNER_BLOB_INFO", [ 
+    "cbSize:uint", 
+    "pGuidSubject:ptr", 
+    "cbBlob:uint", 
+    "pbBlob:ptr", 
+    "pwszDisplayName:wstr"
+]); 
+
+
+Win32.SIGNER_CERT_STORE_INFO = foreign.named_struct( "Windows.Win32.Security.Cryptography.SIGNER_CERT_STORE_INFO", [ 
+    "cbSize:uint", 
+    "pSigningCert:ptr", 
+    "dwCertPolicy:uint", 
+    "hCertStore:Windows.Win32.Security.Cryptography.HCERTSTORE"
+]); 
+
+
+Win32.SIGNER_SPC_CHAIN_INFO = foreign.named_struct( "Windows.Win32.Security.Cryptography.SIGNER_SPC_CHAIN_INFO", [ 
+    "cbSize:uint", 
+    "pwszSpcFile:wstr", 
+    "dwCertPolicy:uint", 
+    "hCertStore:Windows.Win32.Security.Cryptography.HCERTSTORE"
+]); 
+
+
+Win32.SIGNER_CERT = foreign.named_struct( "Windows.Win32.Security.Cryptography.SIGNER_CERT", [ 
+    "cbSize:uint", 
+    "dwCertChoice:uint", 
+    "Anonymous:._Anonymous_e__Union", 
+    "hwnd:Windows.Win32.Foundation.HWND"
+]); 
+
+
+Win32.SIGNER_CONTEXT = foreign.named_struct( "Windows.Win32.Security.Cryptography.SIGNER_CONTEXT", [ 
+    "cbSize:uint", 
+    "cbBlob:uint", 
+    "pbBlob:ptr"
+]); 
+
+
+Win32.SIGNER_DIGEST_SIGN_INFO = foreign.named_struct( "Windows.Win32.Security.Cryptography.SIGNER_DIGEST_SIGN_INFO", [ 
+    "cbSize:uint", 
+    "dwDigestSignChoice:uint", 
+    "Anonymous:._Anonymous_e__Union", 
+    "pMetadataBlob:ptr", 
+    "dwReserved:uint", 
+    "dwReserved2:uint", 
+    "dwReserved3:uint"
+]); 
+
+
+Win32.SIGNER_DIGEST_SIGN_INFO_V1 = foreign.named_struct( "Windows.Win32.Security.Cryptography.SIGNER_DIGEST_SIGN_INFO_V1", [ 
+    "cbSize:uint", 
+    "pfnAuthenticodeDigestSign:ptr", 
+    "pMetadataBlob:ptr"
+]); 
+
+
+Win32.SIGNER_DIGEST_SIGN_INFO_V2 = foreign.named_struct( "Windows.Win32.Security.Cryptography.SIGNER_DIGEST_SIGN_INFO_V2", [ 
+    "cbSize:uint", 
+    "pfnAuthenticodeDigestSign:ptr", 
+    "pfnAuthenticodeDigestSignEx:ptr", 
+    "pMetadataBlob:ptr"
+]); 
+
+
+Win32.SIGNER_FILE_INFO = foreign.named_struct( "Windows.Win32.Security.Cryptography.SIGNER_FILE_INFO", [ 
+    "cbSize:uint", 
+    "pwszFileName:wstr", 
+    "hFile:Windows.Win32.Foundation.HANDLE"
+]); 
+
+
+Win32.SIGNER_PROVIDER_INFO = foreign.named_struct( "Windows.Win32.Security.Cryptography.SIGNER_PROVIDER_INFO", [ 
+    "cbSize:uint", 
+    "pwszProviderName:wstr", 
+    "dwProviderType:uint", 
+    "dwKeySpec:uint", 
+    "dwPvkChoice:uint", 
+    "Anonymous:._Anonymous_e__Union"
+]); 
+
+
+Win32.SIGNER_SIGNATURE_INFO = foreign.named_struct( "Windows.Win32.Security.Cryptography.SIGNER_SIGNATURE_INFO", [ 
+    "cbSize:uint", 
+    "algidHash:uint", 
+    "dwAttrChoice:uint", 
+    "Anonymous:._Anonymous_e__Union", 
+    "psAuthenticated:ptr", 
+    "psUnauthenticated:ptr"
+]); 
+
+
+Win32.SIGNER_SUBJECT_INFO = foreign.named_struct( "Windows.Win32.Security.Cryptography.SIGNER_SUBJECT_INFO", [ 
+    "cbSize:uint", 
+    "pdwIndex:ptr", 
+    "dwSubjectChoice:uint", 
+    "Anonymous:._Anonymous_e__Union"
 ]); 
 
 
@@ -3748,7 +3983,7 @@ Win32.CRYPT_XML_REFERENCE = foreign.named_struct( "Windows.Win32.Security.Crypto
     "wszUri:wstr", 
     "wszType:wstr", 
     "DigestMethod:Windows.Win32.Security.Cryptography.CRYPT_XML_ALGORITHM", 
-    "DigestValue:Windows.Win32.Security.Cryptography.CRYPTOAPI_BLOB", 
+    "DigestValue:Windows.Win32.Security.Cryptography.CRYPT_INTEGER_BLOB", 
     "cTransform:uint", 
     "rgTransform:ptr"
 ]); 
@@ -3787,7 +4022,7 @@ Win32.CRYPT_XML_SIGNATURE = foreign.named_struct( "Windows.Win32.Security.Crypto
     "hSignature:ptr", 
     "wszId:wstr", 
     "SignedInfo:Windows.Win32.Security.Cryptography.CRYPT_XML_SIGNED_INFO", 
-    "SignatureValue:Windows.Win32.Security.Cryptography.CRYPTOAPI_BLOB", 
+    "SignatureValue:Windows.Win32.Security.Cryptography.CRYPT_INTEGER_BLOB", 
     "pKeyInfo:ptr", 
     "cObject:uint", 
     "rgpObject:ptr"
@@ -3806,7 +4041,7 @@ Win32.CRYPT_XML_DOC_CTXT = foreign.named_struct( "Windows.Win32.Security.Cryptog
 Win32.CRYPT_XML_KEYINFO_PARAM = foreign.named_struct( "Windows.Win32.Security.Cryptography.CRYPT_XML_KEYINFO_PARAM", [ 
     "wszId:wstr", 
     "wszKeyName:wstr", 
-    "SKI:Windows.Win32.Security.Cryptography.CRYPTOAPI_BLOB", 
+    "SKI:Windows.Win32.Security.Cryptography.CRYPT_INTEGER_BLOB", 
     "wszSubjectName:wstr", 
     "cCertificate:uint", 
     "rgCertificate:ptr", 
@@ -3899,7 +4134,7 @@ Win32.POLICY_ELEMENT = foreign.named_struct( "Windows.Win32.Security.Cryptograph
 Win32.ENDPOINTADDRESS = foreign.named_struct( "Windows.Win32.Security.Cryptography.ENDPOINTADDRESS", [ 
     "serviceUrl:wstr", 
     "policyUrl:wstr", 
-    "rawCertificate:Windows.Win32.Security.Cryptography.CRYPTOAPI_BLOB"
+    "rawCertificate:Windows.Win32.Security.Cryptography.CRYPT_INTEGER_BLOB"
 ]); 
 
 
@@ -3969,6 +4204,8 @@ Win32.CCertificateEnrollmentPolicyServerSetup = foreign.named_struct( "Windows.W
     
 ]); 
 
+Win32.CERT_SYSTEM_STORE_CURRENT_USER = 65536;
+Win32.CERT_SYSTEM_STORE_LOCAL_MACHINE = 131072;
 Win32.CERT_COMPARE_SHIFT = 16;
 Win32.BCRYPT_OBJECT_ALIGNMENT = 16;
 Win32.BCRYPT_KDF_HASH = "HASH";
@@ -4046,7 +4283,6 @@ Win32.BCRYPT_SUPPORTED_PAD_PKCS1_ENC = 2;
 Win32.BCRYPT_SUPPORTED_PAD_PKCS1_SIG = 4;
 Win32.BCRYPT_SUPPORTED_PAD_OAEP = 8;
 Win32.BCRYPT_SUPPORTED_PAD_PSS = 16;
-Win32.BCRYPT_BLOCK_PADDING = 1;
 Win32.BCRYPT_GENERATE_IV = 32;
 Win32.BCRYPT_PAD_PKCS1_OPTIONAL_HASH_OID = 16;
 Win32.BCRYPTBUFFER_VERSION = 0;
@@ -4264,8 +4500,6 @@ Win32.BCRYPT_NO_KEY_VALIDATION = 8;
 Win32.BCRYPT_KEY_VALIDATION_RANGE = 16;
 Win32.BCRYPT_KEY_VALIDATION_RANGE_AND_ORDER = 24;
 Win32.BCRYPT_KEY_VALIDATION_REGENERATE = 32;
-Win32.BCRYPT_RNG_USE_ENTROPY_IN_BUFFER = 1;
-Win32.BCRYPT_USE_SYSTEM_PREFERRED_RNG = 2;
 Win32.BCRYPT_HASH_INTERFACE_MAJORVERSION_2 = 2;
 Win32.CRYPT_OVERWRITE = 1;
 Win32.CRYPT_PRIORITY_TOP = 0;
@@ -4343,6 +4577,7 @@ Win32.szFORCE_KEY_PROTECTION = "ForceKeyProtection";
 Win32.dwFORCE_KEY_PROTECTION_DISABLED = 0;
 Win32.dwFORCE_KEY_PROTECTION_USER_SELECT = 1;
 Win32.dwFORCE_KEY_PROTECTION_HIGH = 2;
+Win32.CRYPTPROTECT_DEFAULT_PROVIDER = "ptr";
 Win32.CRYPTPROTECT_PROMPT_ON_UNPROTECT = 1;
 Win32.CRYPTPROTECT_PROMPT_ON_PROTECT = 2;
 Win32.CRYPTPROTECT_PROMPT_RESERVED = 4;
@@ -4478,11 +4713,13 @@ Win32.NCRYPT_IGNORE_DEVICE_STATE_FLAG = 4096;
 Win32.NCRYPT_TREAT_NIST_AS_GENERIC_ECC_FLAG = 8192;
 Win32.NCRYPT_NO_CACHED_PASSWORD = 16384;
 Win32.NCRYPT_PROTECT_TO_LOCAL_SYSTEM = 32768;
+Win32.NCRYPT_REQUIRE_KDS_LRPC_BIND_FLAG = 536870912;
 Win32.NCRYPT_PREFER_VIRTUAL_ISOLATION_FLAG = 65536;
 Win32.NCRYPT_USE_VIRTUAL_ISOLATION_FLAG = 131072;
 Win32.NCRYPT_USE_PER_BOOT_KEY_FLAG = 262144;
 Win32.NCRYPT_KEY_DERIVATION_OPERATION = 64;
 Win32.NCRYPT_AUTHORITY_KEY_FLAG = 256;
+Win32.NCRYPT_EXTENDED_ERRORS_FLAG = 268435456;
 Win32.NCRYPT_NAME_PROPERTY = "Name";
 Win32.NCRYPT_UNIQUE_NAME_PROPERTY = "Unique Name";
 Win32.NCRYPT_ALGORITHM_PROPERTY = "Algorithm Name";
@@ -4882,6 +5119,7 @@ Win32.CRYPT_SGC = 1;
 Win32.CRYPT_FASTSGC = 2;
 Win32.PP_CONTEXT_INFO = 11;
 Win32.PP_DISMISS_PIN_UI_SEC = 49;
+Win32.PP_IS_PFX_EPHEMERAL = 50;
 Win32.PROV_RSA_FULL = 1;
 Win32.PROV_RSA_SIG = 2;
 Win32.PROV_DSS = 3;
@@ -5005,6 +5243,8 @@ Win32.szOID_RSA_SMIMECapabilities = "1.2.840.113549.1.9.15";
 Win32.szOID_RSA_preferSignedData = "1.2.840.113549.1.9.15.1";
 Win32.szOID_TIMESTAMP_TOKEN = "1.2.840.113549.1.9.16.1.4";
 Win32.szOID_RFC3161_counterSign = "1.3.6.1.4.1.311.3.3.1";
+Win32.szOID_RFC3161v21_counterSign = "1.3.6.1.4.1.311.3.3.2";
+Win32.szOID_RFC3161v21_thumbprints = "1.3.6.1.4.1.311.3.3.3";
 Win32.szOID_RSA_SMIMEalg = "1.2.840.113549.1.9.16.3";
 Win32.szOID_RSA_SMIMEalgESDH = "1.2.840.113549.1.9.16.3.5";
 Win32.szOID_RSA_SMIMEalgCMS3DESwrap = "1.2.840.113549.1.9.16.3.6";
@@ -5438,6 +5678,9 @@ Win32.szOID_REQUEST_CLIENT_INFO = "1.3.6.1.4.1.311.21.20";
 Win32.szOID_ENCRYPTED_KEY_HASH = "1.3.6.1.4.1.311.21.21";
 Win32.szOID_CERTSRV_CROSSCA_VERSION = "1.3.6.1.4.1.311.21.22";
 Win32.szOID_NTDS_REPLICATION = "1.3.6.1.4.1.311.25.1";
+Win32.szOID_NTDS_CA_SECURITY_EXT = "1.3.6.1.4.1.311.25.2";
+Win32.szOID_NTDS_OBJECTSID = "1.3.6.1.4.1.311.25.2.1";
+Win32.wszURI_NTDS_OBJECTSID_PREFIX = "tag:microsoft.com,2022-09-14:sid:";
 Win32.szOID_SUBJECT_DIR_ATTRS = "2.5.29.9";
 Win32.szOID_PKIX_KP = "1.3.6.1.5.5.7.3";
 Win32.szOID_PKIX_KP_SERVER_AUTH = "1.3.6.1.5.5.7.3.1";
@@ -6021,7 +6264,8 @@ Win32.CERT_PIN_SHA256_HASH_PROP_ID = 124;
 Win32.CERT_CLR_DELETE_KEY_PROP_ID = 125;
 Win32.CERT_NOT_BEFORE_FILETIME_PROP_ID = 126;
 Win32.CERT_NOT_BEFORE_ENHKEY_USAGE_PROP_ID = 127;
-Win32.CERT_FIRST_RESERVED_PROP_ID = 128;
+Win32.CERT_DISALLOWED_CA_FILETIME_PROP_ID = 128;
+Win32.CERT_FIRST_RESERVED_PROP_ID = 129;
 Win32.CERT_LAST_RESERVED_PROP_ID = 32767;
 Win32.CERT_FIRST_USER_PROP_ID = 32768;
 Win32.CERT_LAST_USER_PROP_ID = 65535;
@@ -6033,6 +6277,7 @@ Win32.szOID_CERT_MD5_HASH_PROP_ID = "1.3.6.1.4.1.311.10.11.4";
 Win32.szOID_CERT_SIGNATURE_HASH_PROP_ID = "1.3.6.1.4.1.311.10.11.15";
 Win32.szOID_DISALLOWED_HASH = "1.3.6.1.4.1.311.10.11.15";
 Win32.szOID_CERT_DISALLOWED_FILETIME_PROP_ID = "1.3.6.1.4.1.311.10.11.104";
+Win32.szOID_CERT_DISALLOWED_CA_FILETIME_PROP_ID = "1.3.6.1.4.1.311.10.11.128";
 Win32.CERT_ACCESS_STATE_WRITE_PERSIST_FLAG = 1;
 Win32.CERT_ACCESS_STATE_SYSTEM_STORE_FLAG = 2;
 Win32.CERT_ACCESS_STATE_LM_SYSTEM_STORE_FLAG = 4;
@@ -6320,11 +6565,6 @@ Win32.CRYPT_OID_EXPORT_PUBLIC_KEY_INFO_EX2_FUNC = "CryptDllExportPublicKeyInfoEx
 Win32.CRYPT_OID_EXPORT_PUBLIC_KEY_INFO_FROM_BCRYPT_HANDLE_FUNC = "CryptDllExportPublicKeyInfoFromBCryptKeyHandle";
 Win32.CRYPT_OID_IMPORT_PUBLIC_KEY_INFO_FUNC = "CryptDllImportPublicKeyInfoEx";
 Win32.CRYPT_OID_IMPORT_PUBLIC_KEY_INFO_EX2_FUNC = "CryptDllImportPublicKeyInfoEx2";
-Win32.CRYPT_ACQUIRE_WINDOW_HANDLE_FLAG = 128;
-Win32.CRYPT_ACQUIRE_NCRYPT_KEY_FLAGS_MASK = 458752;
-Win32.CRYPT_ACQUIRE_ALLOW_NCRYPT_KEY_FLAG = 65536;
-Win32.CRYPT_ACQUIRE_PREFER_NCRYPT_KEY_FLAG = 131072;
-Win32.CRYPT_ACQUIRE_ONLY_NCRYPT_KEY_FLAG = 262144;
 Win32.CRYPT_OID_IMPORT_PRIVATE_KEY_INFO_FUNC = "CryptDllImportPrivateKeyInfoEx";
 Win32.CRYPT_OID_EXPORT_PRIVATE_KEY_INFO_FUNC = "CryptDllExportPrivateKeyInfoEx";
 Win32.CRYPT_DELETE_KEYSET = 16;
@@ -6636,6 +6876,7 @@ Win32.CERT_TRUST_IS_FROM_EXCLUSIVE_TRUST_STORE = 8192;
 Win32.CERT_TRUST_IS_CA_TRUSTED = 16384;
 Win32.CERT_TRUST_HAS_AUTO_UPDATE_WEAK_SIGNATURE = 32768;
 Win32.CERT_TRUST_HAS_ALLOW_WEAK_SIGNATURE = 131072;
+Win32.CERT_TRUST_BEFORE_DISALLOWED_CA_FILETIME = 2097152;
 Win32.CERT_TRUST_IS_COMPLEX_CHAIN = 65536;
 Win32.CERT_TRUST_SSL_TIME_VALID = 16777216;
 Win32.CERT_TRUST_NO_TIME_CHECK = 33554432;
@@ -6659,6 +6900,7 @@ Win32.CERT_CHAIN_DISABLE_AIA = 8192;
 Win32.CERT_CHAIN_HAS_MOTW = 16384;
 Win32.CERT_CHAIN_ONLY_ADDITIONAL_AND_AUTH_ROOT = 32768;
 Win32.CERT_CHAIN_OPT_IN_WEAK_SIGNATURE = 65536;
+Win32.CERT_CHAIN_ENABLE_DISALLOWED_CA = 131072;
 Win32.REVOCATION_OID_CRL_REVOCATION = 1;
 Win32.CERT_CHAIN_FIND_BY_ISSUER = 1;
 Win32.CERT_CHAIN_POLICY_IGNORE_WEAK_SIGNATURE_FLAG = 134217728;
@@ -6816,6 +7058,8 @@ Win32.AUDIT_STORE_IMPORT = 1074070019;
 Win32.AUDIT_STORE_EXPORT = 1074070020;
 Win32.AUDIT_STORE_DELETE = 1074070021;
 Win32.AUDIT_SERVICE_IDLE_STOP = 1074070022;
+Win32.SystemPrng = foreign.native( "BCryptPrimitives.dll", "int", "SystemPrng", [ "ptr", "ptr" ] ); 
+Win32.ProcessPrng = foreign.native( "BCryptPrimitives.dll", "int", "ProcessPrng", [ "ptr", "ptr" ] ); 
 Win32.CryptAcquireContextA = foreign.native( "ADVAPI32.dll", "int", "CryptAcquireContextA", [ "ptr", "ptr", "ptr", "uint", "uint" ] ); 
 Win32.CryptAcquireContextW = foreign.native( "ADVAPI32.dll", "int", "CryptAcquireContextW", [ "ptr", "wstr", "wstr", "uint", "uint" ] ); 
 Win32.CryptReleaseContext = foreign.native( "ADVAPI32.dll", "int", "CryptReleaseContext", [ "ptr", "uint" ] ); 
@@ -7177,6 +7421,16 @@ Win32.NCryptStreamOpenToUnprotect = foreign.native( "ncrypt.dll", "int", "NCrypt
 Win32.NCryptStreamOpenToUnprotectEx = foreign.native( "ncrypt.dll", "int", "NCryptStreamOpenToUnprotectEx", [ "ptr", "uint", "ptr", "ptr" ] ); 
 Win32.NCryptStreamUpdate = foreign.native( "ncrypt.dll", "int", "NCryptStreamUpdate", [ "ptr", "ptr", "ptr", "int" ] ); 
 Win32.NCryptStreamClose = foreign.native( "ncrypt.dll", "int", "NCryptStreamClose", [ "ptr" ] ); 
+Win32.SignError = foreign.native( "Mssign32.dll", "int", "SignError", [  ] ); 
+Win32.SignerFreeSignerContext = foreign.native( "Mssign32.dll", "int", "SignerFreeSignerContext", [ "ptr" ] ); 
+Win32.SignerSign = foreign.native( "Mssign32.dll", "int", "SignerSign", [ "ptr", "ptr", "ptr", "ptr", "wstr", "ptr", "ptr" ] ); 
+Win32.SignerSignEx = foreign.native( "Mssign32.dll", "int", "SignerSignEx", [ "uint", "ptr", "ptr", "ptr", "ptr", "wstr", "ptr", "ptr", "ptr" ] ); 
+Win32.SignerSignEx2 = foreign.native( "Mssign32.dll", "int", "SignerSignEx2", [ "uint", "ptr", "ptr", "ptr", "ptr", "uint", "ptr", "wstr", "ptr", "ptr", "ptr", "ptr", "ptr" ] ); 
+Win32.SignerSignEx3 = foreign.native( "Mssign32.dll", "int", "SignerSignEx3", [ "uint", "ptr", "ptr", "ptr", "ptr", "uint", "ptr", "wstr", "ptr", "ptr", "ptr", "ptr", "ptr", "ptr" ] ); 
+Win32.SignerTimeStamp = foreign.native( "Mssign32.dll", "int", "SignerTimeStamp", [ "ptr", "wstr", "ptr", "ptr" ] ); 
+Win32.SignerTimeStampEx = foreign.native( "Mssign32.dll", "int", "SignerTimeStampEx", [ "uint", "ptr", "wstr", "ptr", "ptr", "ptr" ] ); 
+Win32.SignerTimeStampEx2 = foreign.native( "Mssign32.dll", "int", "SignerTimeStampEx2", [ "uint", "ptr", "wstr", "uint", "ptr", "ptr", "ptr" ] ); 
+Win32.SignerTimeStampEx3 = foreign.native( "Mssign32.dll", "int", "SignerTimeStampEx3", [ "uint", "uint", "ptr", "wstr", "wstr", "ptr", "ptr", "ptr", "ptr", "ptr" ] ); 
 Win32.CryptXmlClose = foreign.native( "CRYPTXML.dll", "int", "CryptXmlClose", [ "ptr" ] ); 
 Win32.CryptXmlGetTransforms = foreign.native( "CRYPTXML.dll", "int", "CryptXmlGetTransforms", [ "ptr" ] ); 
 Win32.CryptXmlOpenToEncode = foreign.native( "CRYPTXML.dll", "int", "CryptXmlOpenToEncode", [ "ptr", "uint", "wstr", "ptr", "uint", "ptr", "ptr" ] ); 
@@ -7293,6 +7547,10 @@ Win32.PFN_CRYPT_OBJECT_LOCATOR_PROVIDER_INITIALIZE = foreign.callback( "int", [ 
 Win32.PFN_CERT_IS_WEAK_HASH = foreign.callback( "int", [ "uint", "wstr", "uint", "ptr", "ptr", "wstr"] );
 Win32.PFNCryptStreamOutputCallback = foreign.callback( "int", [ "ptr", "ptr", "ptr", "int"] );
 Win32.PFNCryptStreamOutputCallbackEx = foreign.callback( "int", [ "ptr", "ptr", "ptr", "ptr", "int"] );
+Win32.PFN_AUTHENTICODE_DIGEST_SIGN = foreign.callback( "int", [ "ptr", "ptr", "uint", "ptr", "uint", "ptr"] );
+Win32.PFN_AUTHENTICODE_DIGEST_SIGN_EX = foreign.callback( "int", [ "ptr", "uint", "ptr", "uint", "ptr", "ptr", "ptr"] );
+Win32.PFN_AUTHENTICODE_DIGEST_SIGN_EX_WITHFILEHANDLE = foreign.callback( "int", [ "ptr", "uint", "ptr", "uint", "ptr", "ptr", "ptr", "ptr"] );
+Win32.PFN_AUTHENTICODE_DIGEST_SIGN_WITHFILEHANDLE = foreign.callback( "int", [ "ptr", "ptr", "uint", "ptr", "uint", "ptr", "ptr"] );
 Win32.PFN_CRYPT_XML_WRITE_CALLBACK = foreign.callback( "int", [ "ptr", "ptr", "uint"] );
 Win32.PFN_CRYPT_XML_DATA_PROVIDER_READ = foreign.callback( "int", [ "ptr", "ptr", "uint", "ptr"] );
 Win32.PFN_CRYPT_XML_DATA_PROVIDER_CLOSE = foreign.callback( "int", [ "ptr"] );

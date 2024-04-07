@@ -970,6 +970,21 @@ Win32.DEVMODE_COLLATE = {
 };
 
 
+Win32.DEVMODE_DISPLAY_ORIENTATION = {
+    "DMDO_DEFAULT" : 0, 
+    "DMDO_90" : 1, 
+    "DMDO_180" : 2, 
+    "DMDO_270" : 3
+};
+
+
+Win32.DEVMODE_DISPLAY_FIXED_OUTPUT = {
+    "DMDFO_DEFAULT" : 0, 
+    "DMDFO_STRETCH" : 1, 
+    "DMDFO_CENTER" : 2
+};
+
+
 Win32.DEVMODE_TRUETYPE_OPTION = {
     "DMTT_BITMAP" : 1, 
     "DMTT_DOWNLOAD" : 2, 
@@ -1135,13 +1150,18 @@ Win32.PAN_XHEIGHT = {
 };
 
 
+Win32.ENUM_DISPLAY_SETTINGS_FLAGS = {
+    "EDS_RAWMODE" : 2, 
+    "EDS_ROTATEDMODE" : 4
+};
+
+
 Win32.DISPLAYCONFIG_COLOR_ENCODING = {
     "DISPLAYCONFIG_COLOR_ENCODING_RGB" : 0, 
     "DISPLAYCONFIG_COLOR_ENCODING_YCBCR444" : 1, 
     "DISPLAYCONFIG_COLOR_ENCODING_YCBCR422" : 2, 
     "DISPLAYCONFIG_COLOR_ENCODING_YCBCR420" : 3, 
-    "DISPLAYCONFIG_COLOR_ENCODING_INTENSITY" : 4, 
-    "DISPLAYCONFIG_COLOR_ENCODING_FORCE_UINT32" : -1
+    "DISPLAYCONFIG_COLOR_ENCODING_INTENSITY" : 4
 };
 
 
@@ -1154,16 +1174,6 @@ Win32.MONITORINFOEXA = foreign.named_struct( "Windows.Win32.Graphics.Gdi.MONITOR
 Win32.MONITORINFOEXW = foreign.named_struct( "Windows.Win32.Graphics.Gdi.MONITORINFOEXW", [ 
     "monitorInfo:Windows.Win32.Graphics.Gdi.MONITORINFO", 
     "szDevice[32]:short"
-]); 
-
-
-Win32.HDC = foreign.named_struct( "Windows.Win32.Graphics.Gdi.HDC", [ 
-    "Value:ptr"
-]); 
-
-
-Win32.CreatedHDC = foreign.named_struct( "Windows.Win32.Graphics.Gdi.CreatedHDC", [ 
-    "Value:ptr"
 ]); 
 
 
@@ -1207,12 +1217,7 @@ Win32.HPALETTE = foreign.named_struct( "Windows.Win32.Graphics.Gdi.HPALETTE", [
 ]); 
 
 
-Win32.HdcMetdataFileHandle = foreign.named_struct( "Windows.Win32.Graphics.Gdi.HdcMetdataFileHandle", [ 
-    "Value:ptr"
-]); 
-
-
-Win32.HdcMetdataEnhFileHandle = foreign.named_struct( "Windows.Win32.Graphics.Gdi.HdcMetdataEnhFileHandle", [ 
+Win32.HDC = foreign.named_struct( "Windows.Win32.Graphics.Gdi.HDC", [ 
     "Value:ptr"
 ]); 
 
@@ -1292,7 +1297,7 @@ Win32.BITMAPINFOHEADER = foreign.named_struct( "Windows.Win32.Graphics.Gdi.BITMA
     "biHeight:int", 
     "biPlanes:ushort", 
     "biBitCount:ushort", 
-    "biCompression:int", 
+    "biCompression:uint", 
     "biSizeImage:uint", 
     "biXPelsPerMeter:int", 
     "biYPelsPerMeter:int", 
@@ -1307,7 +1312,7 @@ Win32.BITMAPV4HEADER = foreign.named_struct( "Windows.Win32.Graphics.Gdi.BITMAPV
     "bV4Height:int", 
     "bV4Planes:ushort", 
     "bV4BitCount:ushort", 
-    "bV4V4Compression:int", 
+    "bV4V4Compression:uint", 
     "bV4SizeImage:uint", 
     "bV4XPelsPerMeter:int", 
     "bV4YPelsPerMeter:int", 
@@ -1331,7 +1336,7 @@ Win32.BITMAPV5HEADER = foreign.named_struct( "Windows.Win32.Graphics.Gdi.BITMAPV
     "bV5Height:int", 
     "bV5Planes:ushort", 
     "bV5BitCount:ushort", 
-    "bV5Compression:int", 
+    "bV5Compression:uint", 
     "bV5SizeImage:uint", 
     "bV5XPelsPerMeter:int", 
     "bV5YPelsPerMeter:int", 
@@ -1665,16 +1670,16 @@ Win32.ENUMLOGFONTEXW = foreign.named_struct( "Windows.Win32.Graphics.Gdi.ENUMLOG
 
 
 Win32.PANOSE = foreign.named_struct( "Windows.Win32.Graphics.Gdi.PANOSE", [ 
-    "bFamilyType:uint", 
-    "bSerifStyle:uint", 
-    "bWeight:uint", 
-    "bProportion:uint", 
-    "bContrast:uint", 
-    "bStrokeVariation:uint", 
-    "bArmStyle:uint", 
-    "bLetterform:uint", 
-    "bMidline:uint", 
-    "bXHeight:uint"
+    "bFamilyType:ubyte", 
+    "bSerifStyle:ubyte", 
+    "bWeight:ubyte", 
+    "bProportion:ubyte", 
+    "bContrast:ubyte", 
+    "bStrokeVariation:ubyte", 
+    "bArmStyle:ubyte", 
+    "bLetterform:ubyte", 
+    "bMidline:ubyte", 
+    "bXHeight:ubyte"
 ]); 
 
 
@@ -1714,11 +1719,11 @@ Win32.DEVMODEA = foreign.named_struct( "Windows.Win32.Graphics.Gdi.DEVMODEA", [
     "dmDriverExtra:ushort", 
     "dmFields:uint", 
     "Anonymous1:._Anonymous1_e__Union", 
-    "dmColor:uint", 
+    "dmColor:short", 
     "dmDuplex:short", 
     "dmYResolution:short", 
-    "dmTTOption:uint", 
-    "dmCollate:uint", 
+    "dmTTOption:short", 
+    "dmCollate:short", 
     "dmFormName[32]:ubyte", 
     "dmLogPixels:ushort", 
     "dmBitsPerPel:uint", 
@@ -1745,11 +1750,11 @@ Win32.DEVMODEW = foreign.named_struct( "Windows.Win32.Graphics.Gdi.DEVMODEW", [
     "dmDriverExtra:ushort", 
     "dmFields:uint", 
     "Anonymous1:._Anonymous1_e__Union", 
-    "dmColor:uint", 
+    "dmColor:short", 
     "dmDuplex:short", 
     "dmYResolution:short", 
-    "dmTTOption:uint", 
-    "dmCollate:uint", 
+    "dmTTOption:short", 
+    "dmCollate:short", 
     "dmFormName[32]:short", 
     "dmLogPixels:ushort", 
     "dmBitsPerPel:uint", 
@@ -2405,7 +2410,7 @@ Win32.EMRFRAMERGN = foreign.named_struct( "Windows.Win32.Graphics.Gdi.EMRFRAMERG
 Win32.EMREXTSELECTCLIPRGN = foreign.named_struct( "Windows.Win32.Graphics.Gdi.EMREXTSELECTCLIPRGN", [ 
     "emr:Windows.Win32.Graphics.Gdi.EMR", 
     "cbRgnData:uint", 
-    "iMode:int", 
+    "iMode:uint", 
     "RgnData[1]:ubyte"
 ]); 
 
@@ -3011,7 +3016,6 @@ Win32.SP_USERABORT = -3;
 Win32.SP_OUTOFDISK = -4;
 Win32.SP_OUTOFMEMORY = -5;
 Win32.PR_JOBSTATUS = 0;
-Win32.LCS_CALIBRATED_RGB = 0;
 Win32.LCS_GM_BUSINESS = 1;
 Win32.LCS_GM_GRAPHICS = 2;
 Win32.LCS_GM_IMAGES = 4;
@@ -3305,13 +3309,6 @@ Win32.DMRES_DRAFT = -1;
 Win32.DMRES_LOW = -2;
 Win32.DMRES_MEDIUM = -3;
 Win32.DMRES_HIGH = -4;
-Win32.DMDO_DEFAULT = 0;
-Win32.DMDO_90 = 1;
-Win32.DMDO_180 = 2;
-Win32.DMDO_270 = 3;
-Win32.DMDFO_DEFAULT = 0;
-Win32.DMDFO_STRETCH = 1;
-Win32.DMDFO_CENTER = 2;
 Win32.DMDISPLAYFLAGS_TEXTMODE = 4;
 Win32.DMNUP_SYSTEM = 1;
 Win32.DMNUP_ONEUP = 2;
@@ -3372,28 +3369,6 @@ Win32.DISPLAYCONFIG_PATH_ACTIVE = 1;
 Win32.DISPLAYCONFIG_PATH_PREFERRED_UNSCALED = 4;
 Win32.DISPLAYCONFIG_PATH_SUPPORT_VIRTUAL_MODE = 8;
 Win32.DISPLAYCONFIG_PATH_VALID_FLAGS = 29;
-Win32.QDC_ALL_PATHS = 1;
-Win32.QDC_ONLY_ACTIVE_PATHS = 2;
-Win32.QDC_DATABASE_CURRENT = 4;
-Win32.QDC_VIRTUAL_MODE_AWARE = 16;
-Win32.QDC_INCLUDE_HMD = 32;
-Win32.QDC_VIRTUAL_REFRESH_RATE_AWARE = 64;
-Win32.SDC_TOPOLOGY_INTERNAL = 1;
-Win32.SDC_TOPOLOGY_CLONE = 2;
-Win32.SDC_TOPOLOGY_EXTEND = 4;
-Win32.SDC_TOPOLOGY_EXTERNAL = 8;
-Win32.SDC_TOPOLOGY_SUPPLIED = 16;
-Win32.SDC_USE_SUPPLIED_DISPLAY_CONFIG = 32;
-Win32.SDC_VALIDATE = 64;
-Win32.SDC_APPLY = 128;
-Win32.SDC_NO_OPTIMIZATION = 256;
-Win32.SDC_SAVE_TO_DATABASE = 512;
-Win32.SDC_ALLOW_CHANGES = 1024;
-Win32.SDC_PATH_PERSIST_IF_REQUIRED = 2048;
-Win32.SDC_FORCE_MODE_ENUMERATION = 4096;
-Win32.SDC_ALLOW_PATH_ORDER_CHANGES = 8192;
-Win32.SDC_VIRTUAL_MODE_AWARE = 32768;
-Win32.SDC_VIRTUAL_REFRESH_RATE_AWARE = 131072;
 Win32.RDH_RECTANGLES = 1;
 Win32.SYSRGN = 4;
 Win32.TT_POLYGON_TYPE = 24;
@@ -3717,15 +3692,15 @@ Win32.CreateFontIndirectA = foreign.native( "GDI32.dll", "ptr", "CreateFontIndir
 Win32.CreateFontIndirectW = foreign.native( "GDI32.dll", "ptr", "CreateFontIndirectW", [ "ptr" ] ); 
 Win32.CreateFontA = foreign.native( "GDI32.dll", "ptr", "CreateFontA", [ "int", "int", "int", "int", "int", "uint", "uint", "uint", "uint", "uint", "uint", "uint", "uint", "ptr" ] ); 
 Win32.CreateFontW = foreign.native( "GDI32.dll", "ptr", "CreateFontW", [ "int", "int", "int", "int", "int", "uint", "uint", "uint", "uint", "uint", "uint", "uint", "uint", "wstr" ] ); 
-Win32.CreateHatchBrush = foreign.native( "GDI32.dll", "ptr", "CreateHatchBrush", [ "uint", "uint" ] ); 
+Win32.CreateHatchBrush = foreign.native( "GDI32.dll", "ptr", "CreateHatchBrush", [ "int", "uint" ] ); 
 Win32.CreateICA = foreign.native( "GDI32.dll", "ptr", "CreateICA", [ "ptr", "ptr", "ptr", "ptr" ] ); 
 Win32.CreateICW = foreign.native( "GDI32.dll", "ptr", "CreateICW", [ "wstr", "wstr", "wstr", "ptr" ] ); 
 Win32.CreateMetaFileA = foreign.native( "GDI32.dll", "ptr", "CreateMetaFileA", [ "ptr" ] ); 
 Win32.CreateMetaFileW = foreign.native( "GDI32.dll", "ptr", "CreateMetaFileW", [ "wstr" ] ); 
 Win32.CreatePalette = foreign.native( "GDI32.dll", "ptr", "CreatePalette", [ "ptr" ] ); 
-Win32.CreatePen = foreign.native( "GDI32.dll", "ptr", "CreatePen", [ "uint", "int", "uint" ] ); 
+Win32.CreatePen = foreign.native( "GDI32.dll", "ptr", "CreatePen", [ "int", "int", "uint" ] ); 
 Win32.CreatePenIndirect = foreign.native( "GDI32.dll", "ptr", "CreatePenIndirect", [ "ptr" ] ); 
-Win32.CreatePolyPolygonRgn = foreign.native( "GDI32.dll", "ptr", "CreatePolyPolygonRgn", [ "ptr", "ptr", "int", "uint" ] ); 
+Win32.CreatePolyPolygonRgn = foreign.native( "GDI32.dll", "ptr", "CreatePolyPolygonRgn", [ "ptr", "ptr", "int", "int" ] ); 
 Win32.CreatePatternBrush = foreign.native( "GDI32.dll", "ptr", "CreatePatternBrush", [ "ptr" ] ); 
 Win32.CreateRectRgn = foreign.native( "GDI32.dll", "ptr", "CreateRectRgn", [ "int", "int", "int", "int" ] ); 
 Win32.CreateRectRgnIndirect = foreign.native( "GDI32.dll", "ptr", "CreateRectRgnIndirect", [ "ptr" ] ); 
@@ -3757,7 +3732,7 @@ Win32.GetAspectRatioFilterEx = foreign.native( "GDI32.dll", "int", "GetAspectRat
 Win32.GetBkColor = foreign.native( "GDI32.dll", "uint", "GetBkColor", [ "ptr" ] ); 
 Win32.GetDCBrushColor = foreign.native( "GDI32.dll", "uint", "GetDCBrushColor", [ "ptr" ] ); 
 Win32.GetDCPenColor = foreign.native( "GDI32.dll", "uint", "GetDCPenColor", [ "ptr" ] ); 
-Win32.GetBkMode = foreign.native( "GDI32.dll", "uint", "GetBkMode", [ "ptr" ] ); 
+Win32.GetBkMode = foreign.native( "GDI32.dll", "int", "GetBkMode", [ "ptr" ] ); 
 Win32.GetBitmapBits = foreign.native( "GDI32.dll", "int", "GetBitmapBits", [ "ptr", "int", "ptr" ] ); 
 Win32.GetBitmapDimensionEx = foreign.native( "GDI32.dll", "int", "GetBitmapDimensionEx", [ "ptr", "ptr" ] ); 
 Win32.GetBoundsRect = foreign.native( "GDI32.dll", "uint", "GetBoundsRect", [ "ptr", "ptr", "uint" ] ); 
@@ -3775,15 +3750,15 @@ Win32.GetCharABCWidthsFloatW = foreign.native( "GDI32.dll", "int", "GetCharABCWi
 Win32.GetClipBox = foreign.native( "GDI32.dll", "int", "GetClipBox", [ "ptr", "ptr" ] ); 
 Win32.GetClipRgn = foreign.native( "GDI32.dll", "int", "GetClipRgn", [ "ptr", "ptr" ] ); 
 Win32.GetMetaRgn = foreign.native( "GDI32.dll", "int", "GetMetaRgn", [ "ptr", "ptr" ] ); 
-Win32.GetCurrentObject = foreign.native( "GDI32.dll", "ptr", "GetCurrentObject", [ "ptr", "int" ] ); 
+Win32.GetCurrentObject = foreign.native( "GDI32.dll", "ptr", "GetCurrentObject", [ "ptr", "uint" ] ); 
 Win32.GetCurrentPositionEx = foreign.native( "GDI32.dll", "int", "GetCurrentPositionEx", [ "ptr", "ptr" ] ); 
-Win32.GetDeviceCaps = foreign.native( "GDI32.dll", "int", "GetDeviceCaps", [ "ptr", "uint" ] ); 
+Win32.GetDeviceCaps = foreign.native( "GDI32.dll", "int", "GetDeviceCaps", [ "ptr", "int" ] ); 
 Win32.GetDIBits = foreign.native( "GDI32.dll", "int", "GetDIBits", [ "ptr", "ptr", "uint", "uint", "ptr", "ptr", "uint" ] ); 
 Win32.GetFontData = foreign.native( "GDI32.dll", "uint", "GetFontData", [ "ptr", "uint", "uint", "ptr", "uint" ] ); 
 Win32.GetGlyphOutlineA = foreign.native( "GDI32.dll", "uint", "GetGlyphOutlineA", [ "ptr", "uint", "uint", "ptr", "uint", "ptr", "ptr" ] ); 
 Win32.GetGlyphOutlineW = foreign.native( "GDI32.dll", "uint", "GetGlyphOutlineW", [ "ptr", "uint", "uint", "ptr", "uint", "ptr", "ptr" ] ); 
 Win32.GetGraphicsMode = foreign.native( "GDI32.dll", "int", "GetGraphicsMode", [ "ptr" ] ); 
-Win32.GetMapMode = foreign.native( "GDI32.dll", "uint", "GetMapMode", [ "ptr" ] ); 
+Win32.GetMapMode = foreign.native( "GDI32.dll", "int", "GetMapMode", [ "ptr" ] ); 
 Win32.GetMetaFileBitsEx = foreign.native( "GDI32.dll", "uint", "GetMetaFileBitsEx", [ "ptr", "uint", "ptr" ] ); 
 Win32.GetMetaFileA = foreign.native( "GDI32.dll", "ptr", "GetMetaFileA", [ "ptr" ] ); 
 Win32.GetMetaFileW = foreign.native( "GDI32.dll", "ptr", "GetMetaFileW", [ "wstr" ] ); 
@@ -3799,7 +3774,7 @@ Win32.GetRasterizerCaps = foreign.native( "GDI32.dll", "int", "GetRasterizerCaps
 Win32.GetRandomRgn = foreign.native( "GDI32.dll", "int", "GetRandomRgn", [ "ptr", "ptr", "int" ] ); 
 Win32.GetRegionData = foreign.native( "GDI32.dll", "uint", "GetRegionData", [ "ptr", "uint", "ptr" ] ); 
 Win32.GetRgnBox = foreign.native( "GDI32.dll", "int", "GetRgnBox", [ "ptr", "ptr" ] ); 
-Win32.GetStockObject = foreign.native( "GDI32.dll", "ptr", "GetStockObject", [ "uint" ] ); 
+Win32.GetStockObject = foreign.native( "GDI32.dll", "ptr", "GetStockObject", [ "int" ] ); 
 Win32.GetStretchBltMode = foreign.native( "GDI32.dll", "int", "GetStretchBltMode", [ "ptr" ] ); 
 Win32.GetSystemPaletteEntries = foreign.native( "GDI32.dll", "uint", "GetSystemPaletteEntries", [ "ptr", "uint", "uint", "ptr" ] ); 
 Win32.GetSystemPaletteUse = foreign.native( "GDI32.dll", "uint", "GetSystemPaletteUse", [ "ptr" ] ); 
@@ -3869,26 +3844,26 @@ Win32.SelectPalette = foreign.native( "GDI32.dll", "ptr", "SelectPalette", [ "pt
 Win32.SetBkColor = foreign.native( "GDI32.dll", "uint", "SetBkColor", [ "ptr", "uint" ] ); 
 Win32.SetDCBrushColor = foreign.native( "GDI32.dll", "uint", "SetDCBrushColor", [ "ptr", "uint" ] ); 
 Win32.SetDCPenColor = foreign.native( "GDI32.dll", "uint", "SetDCPenColor", [ "ptr", "uint" ] ); 
-Win32.SetBkMode = foreign.native( "GDI32.dll", "int", "SetBkMode", [ "ptr", "uint" ] ); 
+Win32.SetBkMode = foreign.native( "GDI32.dll", "int", "SetBkMode", [ "ptr", "int" ] ); 
 Win32.SetBitmapBits = foreign.native( "GDI32.dll", "int", "SetBitmapBits", [ "ptr", "uint", "ptr" ] ); 
 Win32.SetBoundsRect = foreign.native( "GDI32.dll", "uint", "SetBoundsRect", [ "ptr", "ptr", "uint" ] ); 
 Win32.SetDIBits = foreign.native( "GDI32.dll", "int", "SetDIBits", [ "ptr", "ptr", "uint", "uint", "ptr", "ptr", "uint" ] ); 
 Win32.SetDIBitsToDevice = foreign.native( "GDI32.dll", "int", "SetDIBitsToDevice", [ "ptr", "int", "int", "uint", "uint", "int", "int", "uint", "uint", "ptr", "ptr", "uint" ] ); 
 Win32.SetMapperFlags = foreign.native( "GDI32.dll", "uint", "SetMapperFlags", [ "ptr", "uint" ] ); 
-Win32.SetGraphicsMode = foreign.native( "GDI32.dll", "int", "SetGraphicsMode", [ "ptr", "uint" ] ); 
-Win32.SetMapMode = foreign.native( "GDI32.dll", "int", "SetMapMode", [ "ptr", "uint" ] ); 
+Win32.SetGraphicsMode = foreign.native( "GDI32.dll", "int", "SetGraphicsMode", [ "ptr", "int" ] ); 
+Win32.SetMapMode = foreign.native( "GDI32.dll", "int", "SetMapMode", [ "ptr", "int" ] ); 
 Win32.SetLayout = foreign.native( "GDI32.dll", "uint", "SetLayout", [ "ptr", "uint" ] ); 
 Win32.GetLayout = foreign.native( "GDI32.dll", "uint", "GetLayout", [ "ptr" ] ); 
 Win32.SetMetaFileBitsEx = foreign.native( "GDI32.dll", "ptr", "SetMetaFileBitsEx", [ "uint", "ptr" ] ); 
 Win32.SetPaletteEntries = foreign.native( "GDI32.dll", "uint", "SetPaletteEntries", [ "ptr", "uint", "uint", "ptr" ] ); 
 Win32.SetPixel = foreign.native( "GDI32.dll", "uint", "SetPixel", [ "ptr", "int", "int", "uint" ] ); 
 Win32.SetPixelV = foreign.native( "GDI32.dll", "int", "SetPixelV", [ "ptr", "int", "int", "uint" ] ); 
-Win32.SetPolyFillMode = foreign.native( "GDI32.dll", "int", "SetPolyFillMode", [ "ptr", "uint" ] ); 
+Win32.SetPolyFillMode = foreign.native( "GDI32.dll", "int", "SetPolyFillMode", [ "ptr", "int" ] ); 
 Win32.StretchBlt = foreign.native( "GDI32.dll", "int", "StretchBlt", [ "ptr", "int", "int", "int", "int", "ptr", "int", "int", "int", "int", "uint" ] ); 
 Win32.SetRectRgn = foreign.native( "GDI32.dll", "int", "SetRectRgn", [ "ptr", "int", "int", "int", "int" ] ); 
 Win32.StretchDIBits = foreign.native( "GDI32.dll", "int", "StretchDIBits", [ "ptr", "int", "int", "int", "int", "int", "int", "int", "int", "ptr", "ptr", "uint", "uint" ] ); 
 Win32.SetROP2 = foreign.native( "GDI32.dll", "int", "SetROP2", [ "ptr", "int" ] ); 
-Win32.SetStretchBltMode = foreign.native( "GDI32.dll", "int", "SetStretchBltMode", [ "ptr", "uint" ] ); 
+Win32.SetStretchBltMode = foreign.native( "GDI32.dll", "int", "SetStretchBltMode", [ "ptr", "int" ] ); 
 Win32.SetSystemPaletteUse = foreign.native( "GDI32.dll", "uint", "SetSystemPaletteUse", [ "ptr", "uint" ] ); 
 Win32.SetTextCharacterExtra = foreign.native( "GDI32.dll", "int", "SetTextCharacterExtra", [ "ptr", "int" ] ); 
 Win32.SetTextColor = foreign.native( "GDI32.dll", "uint", "SetTextColor", [ "ptr", "uint" ] ); 
@@ -3947,7 +3922,7 @@ Win32.GetPath = foreign.native( "GDI32.dll", "int", "GetPath", [ "ptr", "ptr", "
 Win32.PathToRegion = foreign.native( "GDI32.dll", "ptr", "PathToRegion", [ "ptr" ] ); 
 Win32.PolyDraw = foreign.native( "GDI32.dll", "int", "PolyDraw", [ "ptr", "ptr", "ptr", "int" ] ); 
 Win32.SelectClipPath = foreign.native( "GDI32.dll", "int", "SelectClipPath", [ "ptr", "int" ] ); 
-Win32.SetArcDirection = foreign.native( "GDI32.dll", "int", "SetArcDirection", [ "ptr", "uint" ] ); 
+Win32.SetArcDirection = foreign.native( "GDI32.dll", "int", "SetArcDirection", [ "ptr", "int" ] ); 
 Win32.SetMiterLimit = foreign.native( "GDI32.dll", "int", "SetMiterLimit", [ "ptr", "float", "ptr" ] ); 
 Win32.StrokeAndFillPath = foreign.native( "GDI32.dll", "int", "StrokeAndFillPath", [ "ptr" ] ); 
 Win32.StrokePath = foreign.native( "GDI32.dll", "int", "StrokePath", [ "ptr" ] ); 
@@ -3963,7 +3938,7 @@ Win32.ExtTextOutA = foreign.native( "GDI32.dll", "int", "ExtTextOutA", [ "ptr", 
 Win32.ExtTextOutW = foreign.native( "GDI32.dll", "int", "ExtTextOutW", [ "ptr", "int", "int", "uint", "ptr", "wstr", "uint", "ptr" ] ); 
 Win32.PolyTextOutA = foreign.native( "GDI32.dll", "int", "PolyTextOutA", [ "ptr", "ptr", "int" ] ); 
 Win32.PolyTextOutW = foreign.native( "GDI32.dll", "int", "PolyTextOutW", [ "ptr", "ptr", "int" ] ); 
-Win32.CreatePolygonRgn = foreign.native( "GDI32.dll", "ptr", "CreatePolygonRgn", [ "ptr", "int", "uint" ] ); 
+Win32.CreatePolygonRgn = foreign.native( "GDI32.dll", "ptr", "CreatePolygonRgn", [ "ptr", "int", "int" ] ); 
 Win32.DPtoLP = foreign.native( "GDI32.dll", "int", "DPtoLP", [ "ptr", "ptr", "int" ] ); 
 Win32.LPtoDP = foreign.native( "GDI32.dll", "int", "LPtoDP", [ "ptr", "ptr", "int" ] ); 
 Win32.Polygon = foreign.native( "GDI32.dll", "int", "Polygon", [ "ptr", "ptr", "int" ] ); 
@@ -3992,7 +3967,7 @@ Win32.GdiFlush = foreign.native( "GDI32.dll", "int", "GdiFlush", [  ] );
 Win32.GdiSetBatchLimit = foreign.native( "GDI32.dll", "uint", "GdiSetBatchLimit", [ "uint" ] ); 
 Win32.GdiGetBatchLimit = foreign.native( "GDI32.dll", "uint", "GdiGetBatchLimit", [  ] ); 
 Win32.wglSwapMultipleBuffers = foreign.native( "OPENGL32.dll", "uint", "wglSwapMultipleBuffers", [ "uint", "ptr" ] ); 
-Win32.CreateFontPackage = foreign.native( "FONTSUB.dll", "uint", "CreateFontPackage", [ "ptr", "uint", "ptr", "ptr", "ptr", "ushort", "ushort", "ushort", "ushort", "ushort", "ushort", "ptr", "ushort", "ptr", "ptr", "ptr", "ptr" ] ); 
+Win32.CreateFontPackage = foreign.native( "FONTSUB.dll", "uint", "CreateFontPackage", [ "ptr", "uint", "ptr", "ptr", "ptr", "ushort", "ushort", "ushort", "ushort", "short", "short", "ptr", "ushort", "ptr", "ptr", "ptr", "ptr" ] ); 
 Win32.MergeFontPackage = foreign.native( "FONTSUB.dll", "uint", "MergeFontPackage", [ "ptr", "uint", "ptr", "uint", "ptr", "ptr", "ptr", "ushort", "ptr", "ptr", "ptr", "ptr" ] ); 
 Win32.TTEmbedFont = foreign.native( "t2embed.dll", "int", "TTEmbedFont", [ "ptr", "uint", "uint", "ptr", "ptr", "ptr", "ptr", "ptr", "ushort", "ushort", "ptr" ] ); 
 Win32.TTEmbedFontFromFileA = foreign.native( "t2embed.dll", "int", "TTEmbedFontFromFileA", [ "ptr", "ptr", "ushort", "uint", "uint", "ptr", "ptr", "ptr", "ptr", "ptr", "ushort", "ushort", "ptr" ] ); 

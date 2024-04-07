@@ -109,6 +109,23 @@ Win32.VIRTUAL_KEY = {
     "VK_X" : 88, 
     "VK_Y" : 89, 
     "VK_Z" : 90, 
+    "VK_ABNT_C1" : 193, 
+    "VK_ABNT_C2" : 194, 
+    "VK_DBE_ALPHANUMERIC" : 240, 
+    "VK_DBE_CODEINPUT" : 250, 
+    "VK_DBE_DBCSCHAR" : 244, 
+    "VK_DBE_DETERMINESTRING" : 252, 
+    "VK_DBE_ENTERDLGCONVERSIONMODE" : 253, 
+    "VK_DBE_ENTERIMECONFIGMODE" : 248, 
+    "VK_DBE_ENTERWORDREGISTERMODE" : 247, 
+    "VK_DBE_FLUSHSTRING" : 249, 
+    "VK_DBE_HIRAGANA" : 242, 
+    "VK_DBE_KATAKANA" : 241, 
+    "VK_DBE_NOCODEINPUT" : 251, 
+    "VK_DBE_NOROMAN" : 246, 
+    "VK_DBE_ROMAN" : 245, 
+    "VK_DBE_SBCSCHAR" : 243, 
+    "VK__none_" : 255, 
     "VK_LBUTTON" : 1, 
     "VK_RBUTTON" : 2, 
     "VK_CANCEL" : 3, 
@@ -303,6 +320,15 @@ Win32.VIRTUAL_KEY = {
     "VK_NONAME" : 252, 
     "VK_PA1" : 253, 
     "VK_OEM_CLEAR" : 254
+};
+
+
+Win32.MAP_VIRTUAL_KEY_TYPE = {
+    "MAPVK_VK_TO_VSC" : 0, 
+    "MAPVK_VSC_TO_VK" : 1, 
+    "MAPVK_VK_TO_CHAR" : 2, 
+    "MAPVK_VSC_TO_VK_EX" : 3, 
+    "MAPVK_VK_TO_VSC_EX" : 4
 };
 
 
@@ -541,7 +567,7 @@ Win32.TRACKMOUSEEVENT = foreign.named_struct( "Windows.Win32.UI.Input.KeyboardAn
 Win32.MOUSEINPUT = foreign.named_struct( "Windows.Win32.UI.Input.KeyboardAndMouse.MOUSEINPUT", [ 
     "dx:int", 
     "dy:int", 
-    "mouseData:int", 
+    "mouseData:uint", 
     "dwFlags:uint", 
     "time:uint", 
     "dwExtraInfo:ptr"
@@ -699,9 +725,6 @@ Win32.KBDNLS_NUMPAD = 13;
 Win32.KBDNLS_KANAEVENT = 14;
 Win32.KBDNLS_CONV_OR_NONCONV = 15;
 Win32.KBD_TYPE = 4;
-Win32.VK__none_ = 255;
-Win32.VK_ABNT_C1 = 193;
-Win32.VK_ABNT_C2 = 194;
 Win32.SCANCODE_LSHIFT = 42;
 Win32.SCANCODE_RSHIFT = 54;
 Win32.SCANCODE_CTRL = 29;
@@ -711,20 +734,6 @@ Win32.SCANCODE_NUMPAD_LAST = 82;
 Win32.SCANCODE_LWIN = 91;
 Win32.SCANCODE_RWIN = 92;
 Win32.SCANCODE_THAI_LAYOUT_TOGGLE = 41;
-Win32.VK_DBE_ALPHANUMERIC = 240;
-Win32.VK_DBE_KATAKANA = 241;
-Win32.VK_DBE_HIRAGANA = 242;
-Win32.VK_DBE_SBCSCHAR = 243;
-Win32.VK_DBE_DBCSCHAR = 244;
-Win32.VK_DBE_ROMAN = 245;
-Win32.VK_DBE_NOROMAN = 246;
-Win32.VK_DBE_ENTERWORDREGISTERMODE = 247;
-Win32.VK_DBE_ENTERIMECONFIGMODE = 248;
-Win32.VK_DBE_FLUSHSTRING = 249;
-Win32.VK_DBE_CODEINPUT = 250;
-Win32.VK_DBE_NOCODEINPUT = 251;
-Win32.VK_DBE_DETERMINESTRING = 252;
-Win32.VK_DBE_ENTERDLGCONVERSIONMODE = 253;
 Win32.TrackMouseEvent = foreign.native( "COMCTL32.dll", "int", "_TrackMouseEvent", [ "ptr" ] ); 
 Win32.LoadKeyboardLayoutA = foreign.native( "USER32.dll", "ptr", "LoadKeyboardLayoutA", [ "ptr", "uint" ] ); 
 Win32.LoadKeyboardLayoutW = foreign.native( "USER32.dll", "ptr", "LoadKeyboardLayoutW", [ "wstr", "uint" ] ); 
@@ -757,12 +766,12 @@ Win32.ToAscii = foreign.native( "USER32.dll", "int", "ToAscii", [ "uint", "uint"
 Win32.ToAsciiEx = foreign.native( "USER32.dll", "int", "ToAsciiEx", [ "uint", "uint", "ptr", "ptr", "uint", "ptr" ] ); 
 Win32.ToUnicode = foreign.native( "USER32.dll", "int", "ToUnicode", [ "uint", "uint", "ptr", "wstr", "int", "uint" ] ); 
 Win32.OemKeyScan = foreign.native( "USER32.dll", "uint", "OemKeyScan", [ "ushort" ] ); 
-Win32.VkKeyScanA = foreign.native( "USER32.dll", "short", "VkKeyScanA", [ "ubyte" ] ); 
+Win32.VkKeyScanA = foreign.native( "USER32.dll", "short", "VkKeyScanA", [ "byte" ] ); 
 Win32.VkKeyScanW = foreign.native( "USER32.dll", "short", "VkKeyScanW", [ "short" ] ); 
-Win32.VkKeyScanExA = foreign.native( "USER32.dll", "short", "VkKeyScanExA", [ "ubyte", "ptr" ] ); 
+Win32.VkKeyScanExA = foreign.native( "USER32.dll", "short", "VkKeyScanExA", [ "byte", "ptr" ] ); 
 Win32.VkKeyScanExW = foreign.native( "USER32.dll", "short", "VkKeyScanExW", [ "short", "ptr" ] ); 
 Win32.keybd_event = foreign.native( "USER32.dll", "void", "keybd_event", [ "ubyte", "ubyte", "uint", "ptr" ] ); 
-Win32.mouse_event = foreign.native( "USER32.dll", "void", "mouse_event", [ "uint", "int", "int", "uint", "ptr" ] ); 
+Win32.mouse_event = foreign.native( "USER32.dll", "void", "mouse_event", [ "uint", "int", "int", "int", "ptr" ] ); 
 Win32.SendInput = foreign.native( "USER32.dll", "uint", "SendInput", [ "uint", "ptr", "int" ] ); 
 Win32.GetLastInputInfo = foreign.native( "USER32.dll", "int", "GetLastInputInfo", [ "ptr" ] ); 
 Win32.MapVirtualKeyA = foreign.native( "USER32.dll", "uint", "MapVirtualKeyA", [ "uint", "uint" ] ); 

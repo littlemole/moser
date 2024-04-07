@@ -102,25 +102,33 @@ Win32.MENU_ITEM_FLAGS = {
 
 
 Win32.SHOW_WINDOW_CMD = {
-    "SW_FORCEMINIMIZE" : 11, 
     "SW_HIDE" : 0, 
-    "SW_MAXIMIZE" : 3, 
-    "SW_MINIMIZE" : 6, 
-    "SW_RESTORE" : 9, 
-    "SW_SHOW" : 5, 
-    "SW_SHOWDEFAULT" : 10, 
-    "SW_SHOWMAXIMIZED" : 3, 
-    "SW_SHOWMINIMIZED" : 2, 
-    "SW_SHOWMINNOACTIVE" : 7, 
-    "SW_SHOWNA" : 8, 
-    "SW_SHOWNOACTIVATE" : 4, 
     "SW_SHOWNORMAL" : 1, 
     "SW_NORMAL" : 1, 
-    "SW_MAX" : 11, 
+    "SW_SHOWMINIMIZED" : 2, 
+    "SW_SHOWMAXIMIZED" : 3, 
+    "SW_MAXIMIZE" : 3, 
+    "SW_SHOWNOACTIVATE" : 4, 
+    "SW_SHOW" : 5, 
+    "SW_MINIMIZE" : 6, 
+    "SW_SHOWMINNOACTIVE" : 7, 
+    "SW_SHOWNA" : 8, 
+    "SW_RESTORE" : 9, 
+    "SW_SHOWDEFAULT" : 10, 
+    "SW_FORCEMINIMIZE" : 11, 
+    "SW_MAX" : 11
+};
+
+
+Win32.SHOW_WINDOW_STATUS = {
     "SW_PARENTCLOSING" : 1, 
     "SW_OTHERZOOM" : 2, 
     "SW_PARENTOPENING" : 3, 
-    "SW_OTHERUNZOOM" : 4, 
+    "SW_OTHERUNZOOM" : 4
+};
+
+
+Win32.SCROLL_WINDOW_FLAGS = {
     "SW_SCROLLCHILDREN" : 1, 
     "SW_INVALIDATE" : 2, 
     "SW_ERASE" : 4, 
@@ -687,6 +695,14 @@ Win32.QUEUE_STATUS_FLAGS = {
 };
 
 
+Win32.REGISTER_NOTIFICATION_FLAGS = {
+    "DEVICE_NOTIFY_SERVICE_HANDLE" : 1, 
+    "DEVICE_NOTIFY_CALLBACK" : 2, 
+    "DEVICE_NOTIFY_WINDOW_HANDLE" : 0, 
+    "DEVICE_NOTIFY_ALL_INTERFACE_CLASSES" : 4
+};
+
+
 Win32.SYSTEM_CURSOR_ID = {
     "OCR_APPSTARTING" : 32650, 
     "OCR_NORMAL" : 32512, 
@@ -894,12 +910,6 @@ Win32.MSGFLTINFO_STATUS = {
 };
 
 
-Win32.MOUSEHOOKSTRUCTEX_MOUSE_DATA = {
-    "XBUTTON1" : 1, 
-    "XBUTTON2" : 2
-};
-
-
 Win32.MENU_ITEM_MASK = {
     "MIIM_BITMAP" : 128, 
     "MIIM_CHECKMARKS" : 8, 
@@ -956,11 +966,26 @@ Win32.MENUINFO_MASK = {
 };
 
 
+Win32.DEV_BROADCAST_HDR_DEVICE_TYPE = {
+    "DBT_DEVTYP_DEVICEINTERFACE" : 5, 
+    "DBT_DEVTYP_HANDLE" : 6, 
+    "DBT_DEVTYP_OEM" : 0, 
+    "DBT_DEVTYP_PORT" : 3, 
+    "DBT_DEVTYP_VOLUME" : 2
+};
+
+
 Win32.MINIMIZEDMETRICS_ARRANGE = {
     "ARW_BOTTOMLEFT" : 0, 
     "ARW_BOTTOMRIGHT" : 1, 
     "ARW_TOPLEFT" : 2, 
     "ARW_TOPRIGHT" : 3
+};
+
+
+Win32.DEV_BROADCAST_VOLUME_FLAGS = {
+    "DBTF_MEDIA" : 1, 
+    "DBTF_NET" : 2
 };
 
 
@@ -1057,6 +1082,12 @@ Win32.HANDEDNESS = {
 };
 
 
+Win32.TOOLTIP_DISMISS_FLAGS = {
+    "TDF_REGISTER" : 1, 
+    "TDF_UNREGISTER" : 2
+};
+
+
 Win32.MrmPlatformVersion = {
     "MrmPlatformVersion_Default" : 0, 
     "MrmPlatformVersion_Windows10_0_0_0" : 17432576, 
@@ -1121,6 +1152,16 @@ Win32.HCURSOR = foreign.named_struct( "Windows.Win32.UI.WindowsAndMessaging.HCUR
 
 
 Win32.HACCEL = foreign.named_struct( "Windows.Win32.UI.WindowsAndMessaging.HACCEL", [ 
+    "Value:ptr"
+]); 
+
+
+Win32.HDEVNOTIFY = foreign.named_struct( "Windows.Win32.UI.WindowsAndMessaging.HDEVNOTIFY", [ 
+    "Value:ptr"
+]); 
+
+
+Win32.HDWP = foreign.named_struct( "Windows.Win32.UI.WindowsAndMessaging.HDWP", [ 
     "Value:ptr"
 ]); 
 
@@ -1444,6 +1485,13 @@ Win32.DLGITEMTEMPLATE = foreign.named_struct( "Windows.Win32.UI.WindowsAndMessag
     "cx:short", 
     "cy:short", 
     "id:ushort"
+]); 
+
+
+Win32.GETCLIPBMETADATA = foreign.named_struct( "Windows.Win32.UI.WindowsAndMessaging.GETCLIPBMETADATA", [ 
+    "Version:uint", 
+    "IsDelayRendered:Windows.Win32.Foundation.BOOL", 
+    "IsSynthetic:Windows.Win32.Foundation.BOOL"
 ]); 
 
 
@@ -1822,6 +1870,27 @@ Win32.CHANGEFILTERSTRUCT = foreign.named_struct( "Windows.Win32.UI.WindowsAndMes
 ]); 
 
 
+Win32.MENUEX_TEMPLATE_HEADER = foreign.named_struct( "Windows.Win32.UI.WindowsAndMessaging.MENUEX_TEMPLATE_HEADER", [ 
+    "wVersion:ushort", 
+    "wOffset:ushort", 
+    "dwHelpId:uint"
+]); 
+
+
+Win32.MENUEX_TEMPLATE_ITEM = foreign.named_struct( "Windows.Win32.UI.WindowsAndMessaging.MENUEX_TEMPLATE_ITEM", [ 
+    "dwType:uint", 
+    "dwState:uint", 
+    "uId:uint", 
+    "wFlags:ushort", 
+    "szText[1]:short"
+]); 
+
+
+Win32.MENUTEMPLATEEX = foreign.named_struct( "Windows.Win32.UI.WindowsAndMessaging.MENUTEMPLATEEX", [ 
+    "Anonymous:._Anonymous_e__Union"
+]); 
+
+
 Win32.IndexedResourceQualifier = foreign.named_struct( "Windows.Win32.UI.WindowsAndMessaging.IndexedResourceQualifier", [ 
     "name:wstr", 
     "value:wstr"
@@ -1839,14 +1908,285 @@ Win32.MrmResourceIndexerMessage = foreign.named_struct( "Windows.Win32.UI.Window
     "text:wstr"
 ]); 
 
-Win32.WM_DEVICECHANGE = 537;
-Win32.BSM_VXDS = 1;
-Win32.BSM_NETDRIVER = 2;
-Win32.BSM_INSTALLABLEDRIVERS = 4;
+
+Win32.DEV_BROADCAST_HDR = foreign.named_struct( "Windows.Win32.UI.WindowsAndMessaging.DEV_BROADCAST_HDR", [ 
+    "dbch_size:uint", 
+    "dbch_devicetype:uint", 
+    "dbch_reserved:uint"
+]); 
+
+
+Win32.VolLockBroadcast = foreign.named_struct( "Windows.Win32.UI.WindowsAndMessaging.VolLockBroadcast", [ 
+    "vlb_dbh:Windows.Win32.UI.WindowsAndMessaging.DEV_BROADCAST_HDR", 
+    "vlb_owner:uint", 
+    "vlb_perms:ubyte", 
+    "vlb_lockType:ubyte", 
+    "vlb_drive:ubyte", 
+    "vlb_flags:ubyte"
+]); 
+
+
+Win32.DEV_BROADCAST_HEADER = foreign.named_struct( "Windows.Win32.UI.WindowsAndMessaging._DEV_BROADCAST_HEADER", [ 
+    "dbcd_size:uint", 
+    "dbcd_devicetype:uint", 
+    "dbcd_reserved:uint"
+]); 
+
+
+Win32.DEV_BROADCAST_OEM = foreign.named_struct( "Windows.Win32.UI.WindowsAndMessaging.DEV_BROADCAST_OEM", [ 
+    "dbco_size:uint", 
+    "dbco_devicetype:uint", 
+    "dbco_reserved:uint", 
+    "dbco_identifier:uint", 
+    "dbco_suppfunc:uint"
+]); 
+
+
+Win32.DEV_BROADCAST_DEVNODE = foreign.named_struct( "Windows.Win32.UI.WindowsAndMessaging.DEV_BROADCAST_DEVNODE", [ 
+    "dbcd_size:uint", 
+    "dbcd_devicetype:uint", 
+    "dbcd_reserved:uint", 
+    "dbcd_devnode:uint"
+]); 
+
+
+Win32.DEV_BROADCAST_VOLUME = foreign.named_struct( "Windows.Win32.UI.WindowsAndMessaging.DEV_BROADCAST_VOLUME", [ 
+    "dbcv_size:uint", 
+    "dbcv_devicetype:uint", 
+    "dbcv_reserved:uint", 
+    "dbcv_unitmask:uint", 
+    "dbcv_flags:ushort"
+]); 
+
+
+Win32.DEV_BROADCAST_PORT_A = foreign.named_struct( "Windows.Win32.UI.WindowsAndMessaging.DEV_BROADCAST_PORT_A", [ 
+    "dbcp_size:uint", 
+    "dbcp_devicetype:uint", 
+    "dbcp_reserved:uint", 
+    "dbcp_name[1]:Windows.Win32.Foundation.CHAR"
+]); 
+
+
+Win32.DEV_BROADCAST_PORT_W = foreign.named_struct( "Windows.Win32.UI.WindowsAndMessaging.DEV_BROADCAST_PORT_W", [ 
+    "dbcp_size:uint", 
+    "dbcp_devicetype:uint", 
+    "dbcp_reserved:uint", 
+    "dbcp_name[1]:short"
+]); 
+
+
+Win32.DEV_BROADCAST_NET = foreign.named_struct( "Windows.Win32.UI.WindowsAndMessaging.DEV_BROADCAST_NET", [ 
+    "dbcn_size:uint", 
+    "dbcn_devicetype:uint", 
+    "dbcn_reserved:uint", 
+    "dbcn_resource:uint", 
+    "dbcn_flags:uint"
+]); 
+
+
+Win32.DEV_BROADCAST_DEVICEINTERFACE_A = foreign.named_struct( "Windows.Win32.UI.WindowsAndMessaging.DEV_BROADCAST_DEVICEINTERFACE_A", [ 
+    "dbcc_size:uint", 
+    "dbcc_devicetype:uint", 
+    "dbcc_reserved:uint", 
+    "dbcc_classguid:ptr", 
+    "dbcc_name[1]:Windows.Win32.Foundation.CHAR"
+]); 
+
+
+Win32.DEV_BROADCAST_DEVICEINTERFACE_W = foreign.named_struct( "Windows.Win32.UI.WindowsAndMessaging.DEV_BROADCAST_DEVICEINTERFACE_W", [ 
+    "dbcc_size:uint", 
+    "dbcc_devicetype:uint", 
+    "dbcc_reserved:uint", 
+    "dbcc_classguid:ptr", 
+    "dbcc_name[1]:short"
+]); 
+
+
+Win32.DEV_BROADCAST_HANDLE = foreign.named_struct( "Windows.Win32.UI.WindowsAndMessaging.DEV_BROADCAST_HANDLE", [ 
+    "dbch_size:uint", 
+    "dbch_devicetype:uint", 
+    "dbch_reserved:uint", 
+    "dbch_handle:Windows.Win32.Foundation.HANDLE", 
+    "dbch_hdevnotify:Windows.Win32.UI.WindowsAndMessaging.HDEVNOTIFY", 
+    "dbch_eventguid:ptr", 
+    "dbch_nameoffset:int", 
+    "dbch_data[1]:ubyte"
+]); 
+
+
+Win32.DEV_BROADCAST_HANDLE32 = foreign.named_struct( "Windows.Win32.UI.WindowsAndMessaging.DEV_BROADCAST_HANDLE32", [ 
+    "dbch_size:uint", 
+    "dbch_devicetype:uint", 
+    "dbch_reserved:uint", 
+    "dbch_handle:uint", 
+    "dbch_hdevnotify:uint", 
+    "dbch_eventguid:ptr", 
+    "dbch_nameoffset:int", 
+    "dbch_data[1]:ubyte"
+]); 
+
+
+Win32.DEV_BROADCAST_HANDLE64 = foreign.named_struct( "Windows.Win32.UI.WindowsAndMessaging.DEV_BROADCAST_HANDLE64", [ 
+    "dbch_size:uint", 
+    "dbch_devicetype:uint", 
+    "dbch_reserved:uint", 
+    "dbch_handle:ulong", 
+    "dbch_hdevnotify:ulong", 
+    "dbch_eventguid:ptr", 
+    "dbch_nameoffset:int", 
+    "dbch_data[1]:ubyte"
+]); 
+
+
+Win32.DEV_BROADCAST_USERDEFINED = foreign.named_struct( "Windows.Win32.UI.WindowsAndMessaging._DEV_BROADCAST_USERDEFINED", [ 
+    "dbud_dbh:Windows.Win32.UI.WindowsAndMessaging.DEV_BROADCAST_HDR", 
+    "dbud_szName[1]:Windows.Win32.Foundation.CHAR"
+]); 
+
+
+Win32.DEVICE_EVENT_MOUNT = foreign.named_struct( "Windows.Win32.UI.WindowsAndMessaging.DEVICE_EVENT_MOUNT", [ 
+    "Version:uint", 
+    "Flags:uint", 
+    "FileSystemNameLength:uint", 
+    "FileSystemNameOffset:uint"
+]); 
+
+
+Win32.DEVICE_EVENT_BECOMING_READY = foreign.named_struct( "Windows.Win32.UI.WindowsAndMessaging.DEVICE_EVENT_BECOMING_READY", [ 
+    "Version:uint", 
+    "Reason:uint", 
+    "Estimated100msToReady:uint"
+]); 
+
+
+Win32.DEVICE_EVENT_EXTERNAL_REQUEST = foreign.named_struct( "Windows.Win32.UI.WindowsAndMessaging.DEVICE_EVENT_EXTERNAL_REQUEST", [ 
+    "Version:uint", 
+    "DeviceClass:uint", 
+    "ButtonStatus:ushort", 
+    "Request:ushort", 
+    "SystemTime:long"
+]); 
+
+
+Win32.DEVICE_EVENT_GENERIC_DATA = foreign.named_struct( "Windows.Win32.UI.WindowsAndMessaging.DEVICE_EVENT_GENERIC_DATA", [ 
+    "EventNumber:uint"
+]); 
+
+
+Win32.DEVICE_EVENT_RBC_DATA = foreign.named_struct( "Windows.Win32.UI.WindowsAndMessaging.DEVICE_EVENT_RBC_DATA", [ 
+    "EventNumber:uint", 
+    "SenseQualifier:ubyte", 
+    "SenseCode:ubyte", 
+    "SenseKey:ubyte", 
+    "Reserved:ubyte", 
+    "Information:uint"
+]); 
+
+
+Win32.GUID_IO_DISK_CLONE_ARRIVAL_INFORMATION = foreign.named_struct( "Windows.Win32.UI.WindowsAndMessaging.GUID_IO_DISK_CLONE_ARRIVAL_INFORMATION", [ 
+    "DiskNumber:uint"
+]); 
+
+
+Win32.DISK_HEALTH_NOTIFICATION_DATA = foreign.named_struct( "Windows.Win32.UI.WindowsAndMessaging.DISK_HEALTH_NOTIFICATION_DATA", [ 
+    "DeviceGuid:ptr"
+]); 
+
 Win32.WM_CONTEXTMENU = 123;
 Win32.WM_UNICHAR = 265;
 Win32.WM_PRINTCLIENT = 792;
 Win32.WM_NOTIFY = 78;
+Win32.GUID_IO_VOLUME_CHANGE = "ptr";
+Win32.GUID_IO_VOLUME_DISMOUNT = "ptr";
+Win32.GUID_IO_VOLUME_DISMOUNT_FAILED = "ptr";
+Win32.GUID_IO_VOLUME_MOUNT = "ptr";
+Win32.GUID_IO_VOLUME_LOCK = "ptr";
+Win32.GUID_IO_VOLUME_LOCK_FAILED = "ptr";
+Win32.GUID_IO_VOLUME_UNLOCK = "ptr";
+Win32.GUID_IO_VOLUME_NAME_CHANGE = "ptr";
+Win32.GUID_IO_VOLUME_NEED_CHKDSK = "ptr";
+Win32.GUID_IO_VOLUME_WORM_NEAR_FULL = "ptr";
+Win32.GUID_IO_VOLUME_WEARING_OUT = "ptr";
+Win32.GUID_IO_VOLUME_FORCE_CLOSED = "ptr";
+Win32.GUID_IO_VOLUME_INFO_MAKE_COMPAT = "ptr";
+Win32.GUID_IO_VOLUME_PREPARING_EJECT = "ptr";
+Win32.GUID_IO_VOLUME_BACKGROUND_FORMAT = "ptr";
+Win32.GUID_IO_VOLUME_PHYSICAL_CONFIGURATION_CHANGE = "ptr";
+Win32.GUID_IO_VOLUME_UNIQUE_ID_CHANGE = "ptr";
+Win32.GUID_IO_VOLUME_FVE_STATUS_CHANGE = "ptr";
+Win32.GUID_IO_VOLUME_DEVICE_INTERFACE = "ptr";
+Win32.GUID_IO_VOLUME_CHANGE_SIZE = "ptr";
+Win32.GUID_IO_MEDIA_ARRIVAL = "ptr";
+Win32.GUID_IO_MEDIA_REMOVAL = "ptr";
+Win32.GUID_IO_CDROM_EXCLUSIVE_LOCK = "ptr";
+Win32.GUID_IO_CDROM_EXCLUSIVE_UNLOCK = "ptr";
+Win32.GUID_IO_DEVICE_BECOMING_READY = "ptr";
+Win32.GUID_IO_DEVICE_EXTERNAL_REQUEST = "ptr";
+Win32.GUID_IO_MEDIA_EJECT_REQUEST = "ptr";
+Win32.GUID_IO_DRIVE_REQUIRES_CLEANING = "ptr";
+Win32.GUID_IO_TAPE_ERASE = "ptr";
+Win32.GUID_DEVICE_EVENT_RBC = "ptr";
+Win32.GUID_IO_DISK_CLONE_ARRIVAL = "ptr";
+Win32.GUID_IO_DISK_LAYOUT_CHANGE = "ptr";
+Win32.GUID_IO_DISK_HEALTH_NOTIFICATION = "ptr";
+Win32.STRSAFE_USE_SECURE_CRT = 0;
+Win32.STRSAFE_MAX_CCH = 2147483647;
+Win32.STRSAFE_MAX_LENGTH = 2147483646;
+Win32.STRSAFE_IGNORE_NULLS = 256;
+Win32.STRSAFE_FILL_BEHIND_NULL = 512;
+Win32.STRSAFE_FILL_ON_FAILURE = 1024;
+Win32.STRSAFE_NULL_ON_FAILURE = 2048;
+Win32.STRSAFE_NO_TRUNCATION = 4096;
+Win32.STRSAFE_E_INSUFFICIENT_BUFFER = -2147024774;
+Win32.STRSAFE_E_INVALID_PARAMETER = -2147024809;
+Win32.STRSAFE_E_END_OF_FILE = -2147024858;
+Win32.WM_DEVICECHANGE = 537;
+Win32.BSF_MSGSRV32ISOK = 2147483648;
+Win32.BSF_MSGSRV32ISOK_BIT = 31;
+Win32.BSM_VXDS = 1;
+Win32.BSM_NETDRIVER = 2;
+Win32.BSM_INSTALLABLEDRIVERS = 4;
+Win32.DBT_APPYBEGIN = 0;
+Win32.DBT_APPYEND = 1;
+Win32.DBT_DEVNODES_CHANGED = 7;
+Win32.DBT_QUERYCHANGECONFIG = 23;
+Win32.DBT_CONFIGCHANGED = 24;
+Win32.DBT_CONFIGCHANGECANCELED = 25;
+Win32.DBT_MONITORCHANGE = 27;
+Win32.DBT_SHELLLOGGEDON = 32;
+Win32.DBT_CONFIGMGAPI32 = 34;
+Win32.DBT_VXDINITCOMPLETE = 35;
+Win32.DBT_VOLLOCKQUERYLOCK = 32833;
+Win32.DBT_VOLLOCKLOCKTAKEN = 32834;
+Win32.DBT_VOLLOCKLOCKFAILED = 32835;
+Win32.DBT_VOLLOCKQUERYUNLOCK = 32836;
+Win32.DBT_VOLLOCKLOCKRELEASED = 32837;
+Win32.DBT_VOLLOCKUNLOCKFAILED = 32838;
+Win32.LOCKP_ALLOW_WRITES = 1;
+Win32.LOCKP_FAIL_WRITES = 0;
+Win32.LOCKP_FAIL_MEM_MAPPING = 2;
+Win32.LOCKP_ALLOW_MEM_MAPPING = 0;
+Win32.LOCKP_USER_MASK = 3;
+Win32.LOCKP_LOCK_FOR_FORMAT = 4;
+Win32.LOCKF_LOGICAL_LOCK = 0;
+Win32.LOCKF_PHYSICAL_LOCK = 1;
+Win32.DBT_NO_DISK_SPACE = 71;
+Win32.DBT_LOW_DISK_SPACE = 72;
+Win32.DBT_CONFIGMGPRIVATE = 32767;
+Win32.DBT_DEVICEARRIVAL = 32768;
+Win32.DBT_DEVICEQUERYREMOVE = 32769;
+Win32.DBT_DEVICEQUERYREMOVEFAILED = 32770;
+Win32.DBT_DEVICEREMOVEPENDING = 32771;
+Win32.DBT_DEVICEREMOVECOMPLETE = 32772;
+Win32.DBT_DEVICETYPESPECIFIC = 32773;
+Win32.DBT_CUSTOMEVENT = 32774;
+Win32.DBT_DEVTYP_DEVNODE = 1;
+Win32.DBT_DEVTYP_NET = 4;
+Win32.DBTF_RESOURCE = 1;
+Win32.DBTF_XPORT = 2;
+Win32.DBTF_SLOWNET = 4;
+Win32.DBT_VPOWERDAPI = 33024;
+Win32.DBT_USERDEFINED = 65535;
 Win32.RT_CURSOR = 1;
 Win32.RT_BITMAP = 2;
 Win32.RT_ICON = 3;
@@ -2134,6 +2474,8 @@ Win32.WM_XBUTTONDBLCLK = 525;
 Win32.WM_MOUSEHWHEEL = 526;
 Win32.WM_MOUSELAST = 526;
 Win32.WHEEL_DELTA = 120;
+Win32.XBUTTON1 = 1;
+Win32.XBUTTON2 = 2;
 Win32.WM_PARENTNOTIFY = 528;
 Win32.WM_ENTERMENULOOP = 529;
 Win32.WM_EXITMENULOOP = 530;
@@ -2323,15 +2665,8 @@ Win32.IDHOT_SNAPDESKTOP = -2;
 Win32.ENDSESSION_CLOSEAPP = 1;
 Win32.ENDSESSION_CRITICAL = 1073741824;
 Win32.ENDSESSION_LOGOFF = 2147483648;
-Win32.EWX_FORCE = 4;
-Win32.EWX_FORCEIFHUNG = 16;
-Win32.EWX_QUICKRESOLVE = 32;
-Win32.EWX_BOOTOPTIONS = 16777216;
-Win32.EWX_ARSO = 67108864;
-Win32.EWX_CHECK_SAFE_FOR_SERVER = 134217728;
-Win32.EWX_SYSTEM_INITIATED = 268435456;
 Win32.BROADCAST_QUERY_DENY = 1112363332;
-Win32.DEVICE_NOTIFY_ALL_INTERFACE_CLASSES = 4;
+Win32.HWND_BROADCAST = 65535;
 Win32.HWND_MESSAGE = -3;
 Win32.ISMEX_NOSEND = 0;
 Win32.ISMEX_SEND = 1;
@@ -2381,11 +2716,6 @@ Win32.TOUCH_HIT_TESTING_NONE = 2;
 Win32.TOUCH_HIT_TESTING_PROXIMITY_CLOSEST = 0;
 Win32.TOUCH_HIT_TESTING_PROXIMITY_FARTHEST = 4095;
 Win32.GWFS_INCLUDE_ANCESTORS = 1;
-Win32.MAPVK_VK_TO_VSC = 0;
-Win32.MAPVK_VSC_TO_VK = 1;
-Win32.MAPVK_VK_TO_CHAR = 2;
-Win32.MAPVK_VSC_TO_VK_EX = 3;
-Win32.MAPVK_VK_TO_VSC_EX = 4;
 Win32.QS_TOUCH = 2048;
 Win32.QS_POINTER = 4096;
 Win32.USER_TIMER_MAXIMUM = 2147483647;
@@ -2887,8 +3217,6 @@ Win32.ARW_DOWN = 4;
 Win32.ARW_HIDE = 8;
 Win32.HCF_LOGONDESKTOP = 256;
 Win32.HCF_DEFAULTDESKTOP = 512;
-Win32.EDS_RAWMODE = 2;
-Win32.EDS_ROTATEDMODE = 4;
 Win32.EDD_GET_DEVICE_INTERFACE_NAME = 1;
 Win32.FKF_FILTERKEYSON = 1;
 Win32.FKF_AVAILABLE = 2;
@@ -3117,16 +3445,7 @@ Win32.NID_EXTERNAL_PEN = 8;
 Win32.NID_MULTI_INPUT = 64;
 Win32.NID_READY = 128;
 Win32.MAX_STR_BLOCKREASON = 256;
-Win32.STRSAFE_USE_SECURE_CRT = 0;
-Win32.STRSAFE_MAX_CCH = 2147483647;
-Win32.STRSAFE_IGNORE_NULLS = 256;
-Win32.STRSAFE_FILL_BEHIND_NULL = 512;
-Win32.STRSAFE_FILL_ON_FAILURE = 1024;
-Win32.STRSAFE_NULL_ON_FAILURE = 2048;
-Win32.STRSAFE_NO_TRUNCATION = 4096;
-Win32.STRSAFE_E_INSUFFICIENT_BUFFER = -2147024774;
-Win32.STRSAFE_E_INVALID_PARAMETER = -2147024809;
-Win32.STRSAFE_E_END_OF_FILE = -2147024858;
+Win32.WM_TOOLTIPDISMISS = 837;
 Win32.HBMMENU_CALLBACK = -1;
 Win32.HBMMENU_SYSTEM = 1;
 Win32.HBMMENU_MBAR_RESTORE = 2;
@@ -3140,6 +3459,8 @@ Win32.HBMMENU_POPUP_MAXIMIZE = 10;
 Win32.HBMMENU_POPUP_MINIMIZE = 11;
 Win32.CW_USEDEFAULT = -2147483648;
 Win32.LBS_STANDARD = 10485763;
+Win32.WINSTA_ALL_ACCESS = 895;
+Win32.WVR_REDRAW = 768;
 Win32.LoadStringA = foreign.native( "USER32.dll", "int", "LoadStringA", [ "ptr", "uint", "ptr", "int" ] ); 
 Win32.LoadStringW = foreign.native( "USER32.dll", "int", "LoadStringW", [ "ptr", "uint", "wstr", "int" ] ); 
 Win32.GetWindowLongPtrA = foreign.native( "USER32.dll", "ptr", "GetWindowLongPtrA", [ "ptr", "int" ] ); 
@@ -3181,6 +3502,7 @@ Win32.SendMessageCallbackA = foreign.native( "USER32.dll", "int", "SendMessageCa
 Win32.SendMessageCallbackW = foreign.native( "USER32.dll", "int", "SendMessageCallbackW", [ "ptr", "uint", "ptr", "ptr", "ptr", "ptr" ] ); 
 Win32.RegisterDeviceNotificationA = foreign.native( "USER32.dll", "ptr", "RegisterDeviceNotificationA", [ "ptr", "ptr", "uint" ] ); 
 Win32.RegisterDeviceNotificationW = foreign.native( "USER32.dll", "ptr", "RegisterDeviceNotificationW", [ "ptr", "ptr", "uint" ] ); 
+Win32.UnregisterDeviceNotification = foreign.native( "USER32.dll", "int", "UnregisterDeviceNotification", [ "ptr" ] ); 
 Win32.PostMessageA = foreign.native( "USER32.dll", "int", "PostMessageA", [ "ptr", "uint", "ptr", "ptr" ] ); 
 Win32.PostMessageW = foreign.native( "USER32.dll", "int", "PostMessageW", [ "ptr", "uint", "ptr", "ptr" ] ); 
 Win32.PostThreadMessageA = foreign.native( "USER32.dll", "int", "PostThreadMessageA", [ "uint", "uint", "ptr", "ptr" ] ); 
@@ -3210,13 +3532,13 @@ Win32.IsWindow = foreign.native( "USER32.dll", "int", "IsWindow", [ "ptr" ] );
 Win32.IsMenu = foreign.native( "USER32.dll", "int", "IsMenu", [ "ptr" ] ); 
 Win32.IsChild = foreign.native( "USER32.dll", "int", "IsChild", [ "ptr", "ptr" ] ); 
 Win32.DestroyWindow = foreign.native( "USER32.dll", "int", "DestroyWindow", [ "ptr" ] ); 
-Win32.ShowWindow = foreign.native( "USER32.dll", "int", "ShowWindow", [ "ptr", "uint" ] ); 
+Win32.ShowWindow = foreign.native( "USER32.dll", "int", "ShowWindow", [ "ptr", "int" ] ); 
 Win32.AnimateWindow = foreign.native( "USER32.dll", "int", "AnimateWindow", [ "ptr", "uint", "uint" ] ); 
 Win32.UpdateLayeredWindow = foreign.native( "USER32.dll", "int", "UpdateLayeredWindow", [ "ptr", "ptr", "ptr", "ptr", "ptr", "ptr", "uint", "ptr", "uint" ] ); 
 Win32.UpdateLayeredWindowIndirect = foreign.native( "USER32.dll", "int", "UpdateLayeredWindowIndirect", [ "ptr", "ptr" ] ); 
 Win32.GetLayeredWindowAttributes = foreign.native( "USER32.dll", "int", "GetLayeredWindowAttributes", [ "ptr", "ptr", "ptr", "ptr" ] ); 
 Win32.SetLayeredWindowAttributes = foreign.native( "USER32.dll", "int", "SetLayeredWindowAttributes", [ "ptr", "uint", "ubyte", "uint" ] ); 
-Win32.ShowWindowAsync = foreign.native( "USER32.dll", "int", "ShowWindowAsync", [ "ptr", "uint" ] ); 
+Win32.ShowWindowAsync = foreign.native( "USER32.dll", "int", "ShowWindowAsync", [ "ptr", "int" ] ); 
 Win32.FlashWindow = foreign.native( "USER32.dll", "int", "FlashWindow", [ "ptr", "int" ] ); 
 Win32.FlashWindowEx = foreign.native( "USER32.dll", "int", "FlashWindowEx", [ "ptr" ] ); 
 Win32.ShowOwnedPopups = foreign.native( "USER32.dll", "int", "ShowOwnedPopups", [ "ptr", "int" ] ); 
@@ -3284,13 +3606,13 @@ Win32.CharPrevA = foreign.native( "USER32.dll", "ptr", "CharPrevA", [ "ptr", "pt
 Win32.CharPrevW = foreign.native( "USER32.dll", "wstr", "CharPrevW", [ "wstr", "wstr" ] ); 
 Win32.CharNextExA = foreign.native( "USER32.dll", "ptr", "CharNextExA", [ "ushort", "ptr", "uint" ] ); 
 Win32.CharPrevExA = foreign.native( "USER32.dll", "ptr", "CharPrevExA", [ "ushort", "ptr", "ptr", "uint" ] ); 
-Win32.IsCharAlphaA = foreign.native( "USER32.dll", "int", "IsCharAlphaA", [ "ubyte" ] ); 
+Win32.IsCharAlphaA = foreign.native( "USER32.dll", "int", "IsCharAlphaA", [ "byte" ] ); 
 Win32.IsCharAlphaW = foreign.native( "USER32.dll", "int", "IsCharAlphaW", [ "short" ] ); 
-Win32.IsCharAlphaNumericA = foreign.native( "USER32.dll", "int", "IsCharAlphaNumericA", [ "ubyte" ] ); 
+Win32.IsCharAlphaNumericA = foreign.native( "USER32.dll", "int", "IsCharAlphaNumericA", [ "byte" ] ); 
 Win32.IsCharAlphaNumericW = foreign.native( "USER32.dll", "int", "IsCharAlphaNumericW", [ "short" ] ); 
-Win32.IsCharUpperA = foreign.native( "USER32.dll", "int", "IsCharUpperA", [ "ubyte" ] ); 
+Win32.IsCharUpperA = foreign.native( "USER32.dll", "int", "IsCharUpperA", [ "byte" ] ); 
 Win32.IsCharUpperW = foreign.native( "USER32.dll", "int", "IsCharUpperW", [ "short" ] ); 
-Win32.IsCharLowerA = foreign.native( "USER32.dll", "int", "IsCharLowerA", [ "ubyte" ] ); 
+Win32.IsCharLowerA = foreign.native( "USER32.dll", "int", "IsCharLowerA", [ "byte" ] ); 
 Win32.GetInputState = foreign.native( "USER32.dll", "int", "GetInputState", [  ] ); 
 Win32.GetQueueStatus = foreign.native( "USER32.dll", "uint", "GetQueueStatus", [ "uint" ] ); 
 Win32.MsgWaitForMultipleObjects = foreign.native( "USER32.dll", "uint", "MsgWaitForMultipleObjects", [ "uint", "ptr", "int", "uint", "uint" ] ); 
@@ -3308,7 +3630,7 @@ Win32.CopyAcceleratorTableA = foreign.native( "USER32.dll", "int", "CopyAccelera
 Win32.CopyAcceleratorTableW = foreign.native( "USER32.dll", "int", "CopyAcceleratorTableW", [ "ptr", "ptr", "int" ] ); 
 Win32.TranslateAcceleratorA = foreign.native( "USER32.dll", "int", "TranslateAcceleratorA", [ "ptr", "ptr", "ptr" ] ); 
 Win32.TranslateAcceleratorW = foreign.native( "USER32.dll", "int", "TranslateAcceleratorW", [ "ptr", "ptr", "ptr" ] ); 
-Win32.GetSystemMetrics = foreign.native( "USER32.dll", "int", "GetSystemMetrics", [ "uint" ] ); 
+Win32.GetSystemMetrics = foreign.native( "USER32.dll", "int", "GetSystemMetrics", [ "int" ] ); 
 Win32.LoadMenuA = foreign.native( "USER32.dll", "ptr", "LoadMenuA", [ "ptr", "ptr" ] ); 
 Win32.LoadMenuW = foreign.native( "USER32.dll", "ptr", "LoadMenuW", [ "ptr", "wstr" ] ); 
 Win32.LoadMenuIndirectA = foreign.native( "USER32.dll", "ptr", "LoadMenuIndirectA", [ "ptr" ] ); 
@@ -3367,8 +3689,8 @@ Win32.LockSetForegroundWindow = foreign.native( "USER32.dll", "int", "LockSetFor
 Win32.ScrollWindow = foreign.native( "USER32.dll", "int", "ScrollWindow", [ "ptr", "int", "int", "ptr", "ptr" ] ); 
 Win32.ScrollDC = foreign.native( "USER32.dll", "int", "ScrollDC", [ "ptr", "int", "int", "ptr", "ptr", "ptr", "ptr" ] ); 
 Win32.ScrollWindowEx = foreign.native( "USER32.dll", "int", "ScrollWindowEx", [ "ptr", "int", "int", "ptr", "ptr", "ptr", "ptr", "uint" ] ); 
-Win32.GetScrollPos = foreign.native( "USER32.dll", "int", "GetScrollPos", [ "ptr", "uint" ] ); 
-Win32.GetScrollRange = foreign.native( "USER32.dll", "int", "GetScrollRange", [ "ptr", "uint", "ptr", "ptr" ] ); 
+Win32.GetScrollPos = foreign.native( "USER32.dll", "int", "GetScrollPos", [ "ptr", "int" ] ); 
+Win32.GetScrollRange = foreign.native( "USER32.dll", "int", "GetScrollRange", [ "ptr", "int", "ptr", "ptr" ] ); 
 Win32.SetPropA = foreign.native( "USER32.dll", "int", "SetPropA", [ "ptr", "ptr", "ptr" ] ); 
 Win32.SetPropW = foreign.native( "USER32.dll", "int", "SetPropW", [ "ptr", "wstr", "ptr" ] ); 
 Win32.GetPropA = foreign.native( "USER32.dll", "ptr", "GetPropA", [ "ptr", "ptr" ] ); 
@@ -3489,7 +3811,7 @@ Win32.GetIconInfoExW = foreign.native( "USER32.dll", "int", "GetIconInfoExW", [ 
 Win32.IsDialogMessageA = foreign.native( "USER32.dll", "int", "IsDialogMessageA", [ "ptr", "ptr" ] ); 
 Win32.IsDialogMessageW = foreign.native( "USER32.dll", "int", "IsDialogMessageW", [ "ptr", "ptr" ] ); 
 Win32.MapDialogRect = foreign.native( "USER32.dll", "int", "MapDialogRect", [ "ptr", "ptr" ] ); 
-Win32.GetScrollInfo = foreign.native( "USER32.dll", "int", "GetScrollInfo", [ "ptr", "uint", "ptr" ] ); 
+Win32.GetScrollInfo = foreign.native( "USER32.dll", "int", "GetScrollInfo", [ "ptr", "int", "ptr" ] ); 
 Win32.DefFrameProcA = foreign.native( "USER32.dll", "ptr", "DefFrameProcA", [ "ptr", "ptr", "uint", "ptr", "ptr" ] ); 
 Win32.DefFrameProcW = foreign.native( "USER32.dll", "ptr", "DefFrameProcW", [ "ptr", "ptr", "uint", "ptr", "ptr" ] ); 
 Win32.DefMDIChildProcA = foreign.native( "USER32.dll", "ptr", "DefMDIChildProcA", [ "ptr", "uint", "ptr", "ptr" ] ); 
@@ -3525,6 +3847,8 @@ Win32.GetAltTabInfoA = foreign.native( "USER32.dll", "int", "GetAltTabInfoA", [ 
 Win32.GetAltTabInfoW = foreign.native( "USER32.dll", "int", "GetAltTabInfoW", [ "ptr", "int", "ptr", "wstr", "uint" ] ); 
 Win32.ChangeWindowMessageFilter = foreign.native( "USER32.dll", "int", "ChangeWindowMessageFilter", [ "uint", "uint" ] ); 
 Win32.ChangeWindowMessageFilterEx = foreign.native( "USER32.dll", "int", "ChangeWindowMessageFilterEx", [ "ptr", "uint", "uint", "ptr" ] ); 
+Win32.SetAdditionalForegroundBoostProcesses = foreign.native( "USER32.dll", "int", "SetAdditionalForegroundBoostProcesses", [ "ptr", "uint", "ptr" ] ); 
+Win32.RegisterForTooltipDismissNotification = foreign.native( "USER32.dll", "int", "RegisterForTooltipDismissNotification", [ "ptr", "int" ] ); 
 Win32.CreateResourceIndexer = foreign.native( "MrmSupport.dll", "int", "CreateResourceIndexer", [ "wstr", "wstr", "ptr" ] ); 
 Win32.DestroyResourceIndexer = foreign.native( "MrmSupport.dll", "void", "DestroyResourceIndexer", [ "ptr" ] ); 
 Win32.IndexFilePath = foreign.native( "MrmSupport.dll", "int", "IndexFilePath", [ "ptr", "wstr", "ptr", "ptr", "ptr" ] ); 
@@ -3552,6 +3876,7 @@ Win32.MrmDumpPriDataInMemory = foreign.native( "MrmSupport.dll", "int", "MrmDump
 Win32.MrmCreateConfig = foreign.native( "MrmSupport.dll", "int", "MrmCreateConfig", [ "int", "wstr", "wstr" ] ); 
 Win32.MrmCreateConfigInMemory = foreign.native( "MrmSupport.dll", "int", "MrmCreateConfigInMemory", [ "int", "wstr", "ptr", "ptr" ] ); 
 Win32.MrmGetPriFileContentChecksum = foreign.native( "MrmSupport.dll", "int", "MrmGetPriFileContentChecksum", [ "wstr", "ptr" ] ); 
+Win32.IsWindowArranged = foreign.native( "USER32.dll", "int", "IsWindowArranged", [ "ptr" ] ); 
 Win32.WNDPROC = foreign.callback( "ptr", [ "ptr", "uint", "ptr", "ptr"] );
 Win32.DLGPROC = foreign.callback( "ptr", [ "ptr", "uint", "ptr", "ptr"] );
 Win32.TIMERPROC = foreign.callback( "void", [ "ptr", "uint", "ptr", "uint"] );

@@ -1,0 +1,219 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Manifest Include="../src/win32/xmoser.manifest" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="../src/win32/App.xaml.cpp">
+      <Filter>src\win32</Filter>
+    </ClCompile>
+    <ClCompile Include="../src/chunk.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="../src/common.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="../src/win32/comobj.cpp">
+      <Filter>src\win32</Filter>
+    </ClCompile>
+    <ClCompile Include="../src/compiler.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="../src/debug.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="../src/win32/disp.cpp">
+      <Filter>src\win32</Filter>
+    </ClCompile>
+    <ClCompile Include="../src/win32/dlopen.cpp">
+      <Filter>src\win32</Filter>
+    </ClCompile>
+    <ClCompile Include="../src/foreign.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="../src/gc.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="../src/lib.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="../src/main.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="$(GeneratedFilesDir)module.g.cpp">
+      <Filter>src\win32</Filter>
+    </ClCompile>
+    <ClCompile Include="../src/win32/MoserX.cpp">
+      <Filter>src\win32</Filter>
+    </ClCompile>
+    <ClCompile Include="../src/must.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="../src/native.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="../src/object.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="../src/parser.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="../src/win32/pch.cpp">
+      <Filter>src\win32</Filter>
+    </ClCompile>
+    <ClCompile Include="../src/scanner.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="../src/serialize.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="../src/win32/tinfo.cpp">
+      <Filter>src\win32</Filter>
+    </ClCompile>
+    <ClCompile Include="../src/win32/uni.cpp">
+      <Filter>src\win32</Filter>
+    </ClCompile>
+    <ClCompile Include="../src/value.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="../src/vm.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="../src/win32/xmoser.cpp">
+      <Filter>src\win32</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="../include/win32/xaml/App.xaml.h">
+      <Filter>includes\win32\xaml</Filter>
+    </ClInclude>
+    <ClInclude Include="../include/win32/xaml/MoserX.h">
+      <Filter>includes\win32\xaml</Filter>
+    </ClInclude>
+    <ClInclude Include="../include/win32/xaml/pch.h">
+      <Filter>includes\win32\xaml</Filter>
+    </ClInclude>
+    <ClInclude Include="../include/win32/xaml/resource.h">
+      <Filter>includes\win32\xaml</Filter>
+    </ClInclude>
+    <ClInclude Include="../include/win32/xaml/targetver.h">
+      <Filter>includes\win32\xaml</Filter>
+    </ClInclude>
+    <ClInclude Include="../include/win32/xaml/xmoser.h">
+      <Filter>includes\win32\xaml</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\chunk.h">
+      <Filter>includes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\common.h">
+      <Filter>includes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\compiler.h">
+      <Filter>includes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\debug.h">
+      <Filter>includes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\ex.h">
+      <Filter>includes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\foreign.h">
+      <Filter>includes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\gc.h">
+      <Filter>includes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\lib.h">
+      <Filter>includes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\must.h">
+      <Filter>includes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\native.h">
+      <Filter>includes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\object.h">
+      <Filter>includes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\op.h">
+      <Filter>includes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\parser.h">
+      <Filter>includes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\scanner.h">
+      <Filter>includes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\serialize.h">
+      <Filter>includes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\value.h">
+      <Filter>includes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\vm.h">
+      <Filter>includes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\win32\async.h">
+      <Filter>includes\win32</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\win32\comobj.h">
+      <Filter>includes\win32</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\win32\disp.h">
+      <Filter>includes\win32</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\win32\dlopen.h">
+      <Filter>includes\win32</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\win32\tinfo.h">
+      <Filter>includes\win32</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\win32\uni.h">
+      <Filter>includes\win32</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\win32\winrtdelegate.h">
+      <Filter>includes\win32</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\win32\winrtmarshal.h">
+      <Filter>includes\win32</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\win32\xaml.h">
+      <Filter>includes\win32</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="../src/win32/xmoser.ico" />
+    <Image Include="../src/win32/small.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="HybridCRT.props" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="includes">
+      <UniqueIdentifier>{9e3d3ae1-9553-4a77-979e-ad8c965c1d7a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="includes\win32">
+      <UniqueIdentifier>{b4ff3244-3667-4198-a76d-9a13650784df}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="includes\win32\xaml">
+      <UniqueIdentifier>{9927001d-07ea-49aa-9506-7abe2f5b0c7d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src">
+      <UniqueIdentifier>{0f3b815c-169f-4239-b514-ffc1eb342de2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\win32">
+      <UniqueIdentifier>{27c1e831-07c3-4f89-ac8b-d2a81660ea24}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="../include/win32/xaml/App.xaml">
+      <Filter>includes\win32\xaml</Filter>
+    </ApplicationDefinition>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="../src/win32/xmoser.rc">
+      <Filter>src\win32</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+</Project>

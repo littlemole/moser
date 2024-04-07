@@ -150,23 +150,30 @@ Win32.CHOOSEFONT_FLAGS = {
 
 
 Win32.FINDREPLACE_FLAGS = {
-    "FR_DIALOGTERM" : 64, 
     "FR_DOWN" : 1, 
+    "FR_WHOLEWORD" : 2, 
+    "FR_MATCHCASE" : 4, 
+    "FR_FINDNEXT" : 8, 
+    "FR_REPLACE" : 16, 
+    "FR_REPLACEALL" : 32, 
+    "FR_DIALOGTERM" : 64, 
+    "FR_SHOWHELP" : 128, 
     "FR_ENABLEHOOK" : 256, 
     "FR_ENABLETEMPLATE" : 512, 
+    "FR_NOUPDOWN" : 1024, 
+    "FR_NOMATCHCASE" : 2048, 
+    "FR_NOWHOLEWORD" : 4096, 
     "FR_ENABLETEMPLATEHANDLE" : 8192, 
-    "FR_FINDNEXT" : 8, 
     "FR_HIDEUPDOWN" : 16384, 
     "FR_HIDEMATCHCASE" : 32768, 
     "FR_HIDEWHOLEWORD" : 65536, 
-    "FR_MATCHCASE" : 4, 
-    "FR_NOMATCHCASE" : 2048, 
-    "FR_NOUPDOWN" : 1024, 
-    "FR_NOWHOLEWORD" : 4096, 
-    "FR_REPLACE" : 16, 
-    "FR_REPLACEALL" : 32, 
-    "FR_SHOWHELP" : 128, 
-    "FR_WHOLEWORD" : 2
+    "FR_RAW" : 131072, 
+    "FR_SHOWWRAPAROUND" : 262144, 
+    "FR_NOWRAPAROUND" : 524288, 
+    "FR_WRAPAROUND" : 1048576, 
+    "FR_MATCHDIAC" : 536870912, 
+    "FR_MATCHKASHIDA" : 1073741824, 
+    "FR_MATCHALEFHAMZA" : 2147483648
 };
 
 
@@ -443,8 +450,8 @@ Win32.CHOOSEFONTW = foreign.named_struct( "Windows.Win32.UI.Controls.Dialogs.CHO
 Win32.PRINTDLGA = foreign.named_struct( "Windows.Win32.UI.Controls.Dialogs.PRINTDLGA", [ 
     "lStructSize:uint", 
     "hwndOwner:Windows.Win32.Foundation.HWND", 
-    "hDevMode:ptr", 
-    "hDevNames:ptr", 
+    "hDevMode:Windows.Win32.Foundation.HGLOBAL", 
+    "hDevNames:Windows.Win32.Foundation.HGLOBAL", 
     "hDC:Windows.Win32.Graphics.Gdi.HDC", 
     "Flags:uint", 
     "nFromPage:ushort", 
@@ -458,16 +465,16 @@ Win32.PRINTDLGA = foreign.named_struct( "Windows.Win32.UI.Controls.Dialogs.PRINT
     "lpfnSetupHook:ptr", 
     "lpPrintTemplateName:str", 
     "lpSetupTemplateName:str", 
-    "hPrintTemplate:ptr", 
-    "hSetupTemplate:ptr"
+    "hPrintTemplate:Windows.Win32.Foundation.HGLOBAL", 
+    "hSetupTemplate:Windows.Win32.Foundation.HGLOBAL"
 ]); 
 
 
 Win32.PRINTDLGW = foreign.named_struct( "Windows.Win32.UI.Controls.Dialogs.PRINTDLGW", [ 
     "lStructSize:uint", 
     "hwndOwner:Windows.Win32.Foundation.HWND", 
-    "hDevMode:ptr", 
-    "hDevNames:ptr", 
+    "hDevMode:Windows.Win32.Foundation.HGLOBAL", 
+    "hDevNames:Windows.Win32.Foundation.HGLOBAL", 
     "hDC:Windows.Win32.Graphics.Gdi.HDC", 
     "Flags:uint", 
     "nFromPage:ushort", 
@@ -481,8 +488,8 @@ Win32.PRINTDLGW = foreign.named_struct( "Windows.Win32.UI.Controls.Dialogs.PRINT
     "lpfnSetupHook:ptr", 
     "lpPrintTemplateName:wstr", 
     "lpSetupTemplateName:wstr", 
-    "hPrintTemplate:ptr", 
-    "hSetupTemplate:ptr"
+    "hPrintTemplate:Windows.Win32.Foundation.HGLOBAL", 
+    "hSetupTemplate:Windows.Win32.Foundation.HGLOBAL"
 ]); 
 
 
@@ -495,8 +502,8 @@ Win32.PRINTPAGERANGE = foreign.named_struct( "Windows.Win32.UI.Controls.Dialogs.
 Win32.PRINTDLGEXA = foreign.named_struct( "Windows.Win32.UI.Controls.Dialogs.PRINTDLGEXA", [ 
     "lStructSize:uint", 
     "hwndOwner:Windows.Win32.Foundation.HWND", 
-    "hDevMode:ptr", 
-    "hDevNames:ptr", 
+    "hDevMode:Windows.Win32.Foundation.HGLOBAL", 
+    "hDevNames:Windows.Win32.Foundation.HGLOBAL", 
     "hDC:Windows.Win32.Graphics.Gdi.HDC", 
     "Flags:uint", 
     "Flags2:uint", 
@@ -520,8 +527,8 @@ Win32.PRINTDLGEXA = foreign.named_struct( "Windows.Win32.UI.Controls.Dialogs.PRI
 Win32.PRINTDLGEXW = foreign.named_struct( "Windows.Win32.UI.Controls.Dialogs.PRINTDLGEXW", [ 
     "lStructSize:uint", 
     "hwndOwner:Windows.Win32.Foundation.HWND", 
-    "hDevMode:ptr", 
-    "hDevNames:ptr", 
+    "hDevMode:Windows.Win32.Foundation.HGLOBAL", 
+    "hDevNames:Windows.Win32.Foundation.HGLOBAL", 
     "hDC:Windows.Win32.Graphics.Gdi.HDC", 
     "Flags:uint", 
     "Flags2:uint", 
@@ -553,8 +560,8 @@ Win32.DEVNAMES = foreign.named_struct( "Windows.Win32.UI.Controls.Dialogs.DEVNAM
 Win32.PAGESETUPDLGA = foreign.named_struct( "Windows.Win32.UI.Controls.Dialogs.PAGESETUPDLGA", [ 
     "lStructSize:uint", 
     "hwndOwner:Windows.Win32.Foundation.HWND", 
-    "hDevMode:ptr", 
-    "hDevNames:ptr", 
+    "hDevMode:Windows.Win32.Foundation.HGLOBAL", 
+    "hDevNames:Windows.Win32.Foundation.HGLOBAL", 
     "Flags:uint", 
     "ptPaperSize:Windows.Win32.Foundation.POINT", 
     "rtMinMargin:Windows.Win32.Foundation.RECT", 
@@ -564,15 +571,15 @@ Win32.PAGESETUPDLGA = foreign.named_struct( "Windows.Win32.UI.Controls.Dialogs.P
     "lpfnPageSetupHook:ptr", 
     "lpfnPagePaintHook:ptr", 
     "lpPageSetupTemplateName:str", 
-    "hPageSetupTemplate:ptr"
+    "hPageSetupTemplate:Windows.Win32.Foundation.HGLOBAL"
 ]); 
 
 
 Win32.PAGESETUPDLGW = foreign.named_struct( "Windows.Win32.UI.Controls.Dialogs.PAGESETUPDLGW", [ 
     "lStructSize:uint", 
     "hwndOwner:Windows.Win32.Foundation.HWND", 
-    "hDevMode:ptr", 
-    "hDevNames:ptr", 
+    "hDevMode:Windows.Win32.Foundation.HGLOBAL", 
+    "hDevNames:Windows.Win32.Foundation.HGLOBAL", 
     "Flags:uint", 
     "ptPaperSize:Windows.Win32.Foundation.POINT", 
     "rtMinMargin:Windows.Win32.Foundation.RECT", 
@@ -582,12 +589,20 @@ Win32.PAGESETUPDLGW = foreign.named_struct( "Windows.Win32.UI.Controls.Dialogs.P
     "lpfnPageSetupHook:ptr", 
     "lpfnPagePaintHook:ptr", 
     "lpPageSetupTemplateName:wstr", 
-    "hPageSetupTemplate:ptr"
+    "hPageSetupTemplate:Windows.Win32.Foundation.HGLOBAL"
 ]); 
 
 Win32.OFN_SHAREFALLTHROUGH = 2;
 Win32.OFN_SHARENOWARN = 1;
 Win32.OFN_SHAREWARN = 0;
+Win32.CDN_INITDONE = 4294966695;
+Win32.CDN_SELCHANGE = 4294966694;
+Win32.CDN_FOLDERCHANGE = 4294966693;
+Win32.CDN_SHAREVIOLATION = 4294966692;
+Win32.CDN_HELP = 4294966691;
+Win32.CDN_FILEOK = 4294966690;
+Win32.CDN_TYPECHANGE = 4294966689;
+Win32.CDN_INCLUDEITEM = 4294966688;
 Win32.CDM_FIRST = 1124;
 Win32.CDM_LAST = 1224;
 Win32.CDM_GETSPEC = 1124;
@@ -597,10 +612,6 @@ Win32.CDM_GETFOLDERIDLIST = 1127;
 Win32.CDM_SETCONTROLTEXT = 1128;
 Win32.CDM_HIDECONTROL = 1129;
 Win32.CDM_SETDEFEXT = 1130;
-Win32.FR_RAW = 131072;
-Win32.FR_SHOWWRAPAROUND = 262144;
-Win32.FR_NOWRAPAROUND = 524288;
-Win32.FR_WRAPAROUND = 1048576;
 Win32.FRM_FIRST = 1124;
 Win32.FRM_LAST = 1224;
 Win32.FRM_SETOPERATIONRESULT = 1124;

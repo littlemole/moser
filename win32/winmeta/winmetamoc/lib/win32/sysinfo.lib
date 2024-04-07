@@ -51,6 +51,26 @@ Win32.IMAGE_FILE_MACHINE = {
 };
 
 
+Win32.PROCESSOR_ARCHITECTURE = {
+    "PROCESSOR_ARCHITECTURE_INTEL" : 0, 
+    "PROCESSOR_ARCHITECTURE_MIPS" : 1, 
+    "PROCESSOR_ARCHITECTURE_ALPHA" : 2, 
+    "PROCESSOR_ARCHITECTURE_PPC" : 3, 
+    "PROCESSOR_ARCHITECTURE_SHX" : 4, 
+    "PROCESSOR_ARCHITECTURE_ARM" : 5, 
+    "PROCESSOR_ARCHITECTURE_IA64" : 6, 
+    "PROCESSOR_ARCHITECTURE_ALPHA64" : 7, 
+    "PROCESSOR_ARCHITECTURE_MSIL" : 8, 
+    "PROCESSOR_ARCHITECTURE_AMD64" : 9, 
+    "PROCESSOR_ARCHITECTURE_IA32_ON_WIN64" : 10, 
+    "PROCESSOR_ARCHITECTURE_NEUTRAL" : 11, 
+    "PROCESSOR_ARCHITECTURE_ARM64" : 12, 
+    "PROCESSOR_ARCHITECTURE_ARM32_ON_WIN64" : 13, 
+    "PROCESSOR_ARCHITECTURE_IA32_ON_ARM64" : 14, 
+    "PROCESSOR_ARCHITECTURE_UNKNOWN" : 65535
+};
+
+
 Win32.FIRMWARE_TABLE_PROVIDER = {
     "ACPI" : 1094930505, 
     "FIRM" : 1179210317, 
@@ -226,7 +246,7 @@ Win32.DEVICEFAMILYDEVICEFORM = {
     "DEVICEFAMILYDEVICEFORM_XBOX_ONE_X_DEVKIT" : 33, 
     "DEVICEFAMILYDEVICEFORM_XBOX_SERIES_X" : 34, 
     "DEVICEFAMILYDEVICEFORM_XBOX_SERIES_X_DEVKIT" : 35, 
-    "DEVICEFAMILYDEVICEFORM_XBOX_RESERVED_00" : 36, 
+    "DEVICEFAMILYDEVICEFORM_XBOX_SERIES_S" : 36, 
     "DEVICEFAMILYDEVICEFORM_XBOX_RESERVED_01" : 37, 
     "DEVICEFAMILYDEVICEFORM_XBOX_RESERVED_02" : 38, 
     "DEVICEFAMILYDEVICEFORM_XBOX_RESERVED_03" : 39, 
@@ -250,6 +270,14 @@ Win32.COMPUTER_NAME_FORMAT = {
     "ComputerNamePhysicalDnsDomain" : 6, 
     "ComputerNamePhysicalDnsFullyQualified" : 7, 
     "ComputerNameMax" : 8
+};
+
+
+Win32.DEVELOPER_DRIVE_ENABLEMENT_STATE = {
+    "DeveloperDriveEnablementStateError" : 0, 
+    "DeveloperDriveEnabled" : 1, 
+    "DeveloperDriveDisabledBySystemPolicy" : 2, 
+    "DeveloperDriveDisabledByGroupPolicy" : 3
 };
 
 
@@ -307,7 +335,13 @@ Win32.RTL_SYSTEM_GLOBAL_DATA_ID = {
     "GlobalDataIdKdDebuggerEnabled" : 10, 
     "GlobalDataIdCyclesPerYield" : 11, 
     "GlobalDataIdSafeBootMode" : 12, 
-    "GlobalDataIdLastSystemRITEventTickCount" : 13
+    "GlobalDataIdLastSystemRITEventTickCount" : 13, 
+    "GlobalDataIdConsoleSharedDataFlags" : 14, 
+    "GlobalDataIdNtSystemRootDrive" : 15, 
+    "GlobalDataIdQpcShift" : 16, 
+    "GlobalDataIdQpcBypassEnabled" : 17, 
+    "GlobalDataIdQpcData" : 18, 
+    "GlobalDataIdQpcBias" : 19
 };
 
 
@@ -318,11 +352,6 @@ Win32.DEP_SYSTEM_POLICY_TYPE = {
     "DEPPolicyOptOut" : 3, 
     "DEPTotalPolicyCount" : 4
 };
-
-
-Win32.FIRMWARE_TABLE_ID = foreign.named_struct( "Windows.Win32.System.SystemInformation.FIRMWARE_TABLE_ID", [ 
-    "Value:uint"
-]); 
 
 
 Win32.GROUP_AFFINITY = foreign.named_struct( "Windows.Win32.System.SystemInformation.GROUP_AFFINITY", [ 
@@ -561,11 +590,12 @@ Win32.NTDDI_WIN10_VB = 167772168;
 Win32.NTDDI_WIN10_MN = 167772169;
 Win32.NTDDI_WIN10_FE = 167772170;
 Win32.NTDDI_WIN10_CO = 167772171;
-Win32.WDK_NTDDI_VERSION = 167772171;
+Win32.NTDDI_WIN10_NI = 167772172;
+Win32.WDK_NTDDI_VERSION = 167772172;
 Win32.OSVERSION_MASK = 4294901760;
 Win32.SPVERSION_MASK = 65280;
 Win32.SUBVERSION_MASK = 255;
-Win32.NTDDI_VERSION = 167772171;
+Win32.NTDDI_VERSION = 167772172;
 Win32.SCEX2_ALT_NETBIOS_NAME = 1;
 Win32.GlobalMemoryStatusEx = foreign.native( "KERNEL32.dll", "int", "GlobalMemoryStatusEx", [ "ptr" ] ); 
 Win32.GetSystemInfo = foreign.native( "KERNEL32.dll", "void", "GetSystemInfo", [ "ptr" ] ); 
@@ -612,6 +642,7 @@ Win32.GetIntegratedDisplaySize = foreign.native( "api-ms-win-core-sysinfo-l1-2-3
 Win32.SetComputerNameA = foreign.native( "KERNEL32.dll", "int", "SetComputerNameA", [ "ptr" ] ); 
 Win32.SetComputerNameW = foreign.native( "KERNEL32.dll", "int", "SetComputerNameW", [ "wstr" ] ); 
 Win32.SetComputerNameExA = foreign.native( "KERNEL32.dll", "int", "SetComputerNameExA", [ "int", "ptr" ] ); 
+Win32.GetDeveloperDriveEnablementState = foreign.native( "api-ms-win-core-sysinfo-l1-2-6.dll", "int", "GetDeveloperDriveEnablementState", [  ] ); 
 Win32.GetSystemCpuSetInformation = foreign.native( "KERNEL32.dll", "int", "GetSystemCpuSetInformation", [ "ptr", "uint", "ptr", "ptr", "uint" ] ); 
 Win32.GetSystemWow64DirectoryA = foreign.native( "KERNEL32.dll", "uint", "GetSystemWow64DirectoryA", [ "ptr", "uint" ] ); 
 Win32.GetSystemWow64DirectoryW = foreign.native( "KERNEL32.dll", "uint", "GetSystemWow64DirectoryW", [ "wstr", "uint" ] ); 

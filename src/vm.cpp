@@ -1,3 +1,4 @@
+//#include "pch.h"
 #include "vm.h"
 #include "debug.h"
 #include "object.h"
@@ -313,10 +314,10 @@ void VM::step()
                 if(breakpoints.count(v[0]))
                 {
                     auto& lines = breakpoints[v[0]];
-                    auto line = atoi(v[1].c_str());
-                    if(lines.contains(line))
+                    auto myline = atoi(v[1].c_str());
+                    if(lines.contains(myline))
                     {
-                        lines.erase(line);
+                        lines.erase(myline);
                         if(lines.empty())
                         {
                             breakpoints.erase(v[0]);
@@ -339,9 +340,9 @@ Value VM::eval(const std::string& src)
 
 	{
 		GC::Lock lock(*this);
-		Compiler compiler(*this, this->compiler,FunctionType::TYPE_FUNCTION);
+		Compiler mycompiler(*this, this->compiler,FunctionType::TYPE_FUNCTION);
 
-		function = compiler.compile(compiler.filename.c_str(),src.c_str());
+		function = mycompiler.compile(mycompiler.filename.c_str(),src.c_str());
 		push(function);
     }
     {

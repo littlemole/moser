@@ -1,3 +1,4 @@
+//#include "pch.h"
 #include "common.h"
 #include "scanner.h"
 
@@ -230,7 +231,7 @@ TokenType Scanner::identifierType()
                 }
             }        
             break;
-        return checkKeyword(1, 3, "lse", TokenType::ELSE);
+	        //return checkKeyword(1, 3, "lse", TokenType::ELSE);
         case 'f':
             if (current - start > 1) 
             {
