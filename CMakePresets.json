@@ -21,6 +21,7 @@
       {
         "name": "win-x64-debug",
         "displayName": "x64 Debug",
+        "binaryDir": "${sourceDir}/out/build/x64-Debug/",
         "description": "Sets debug build type and x64 arch",
         "inherits": "win32",
         "generator": "Ninja",
@@ -38,6 +39,7 @@
         "name": "win-x64-release",
         "displayName": "x64 Release",
         "description": "Sets release build type",
+        "binaryDir": "${sourceDir}/out/build/x64-Release/",
         "inherits": "win-x64-debug",
         "cacheVariables": {
           "CMAKE_BUILD_TYPE": "Release"

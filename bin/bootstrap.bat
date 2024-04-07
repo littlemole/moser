@@ -25,15 +25,50 @@ if not exist "x64-Release" mkdir "x64-Release"
 cd ..
 cd ..
 
+cd lib
+cd win
+if not exist "rt" mkdir rt
+if not exist "win32" mkdir win32
+cd ..
+cd ..
+
 cd win32
 
 if not exist "winmd" mkdir winmd
 if not exist "idl" mkdir idl
 
+cd winmeta
+if not exist "lib" mkdir lib
+cd lib
+if not exist "rt" mkdir rt
+cd ..
+
+cd winmetamoc
+if not exist "lib" mkdir lib
+cd lib
+if not exist "win32" mkdir win32
+cd ..
+cd ..
+
+cd ..
+cd ..
+
+rem *************
+rem cmake build
+rem *************
+
+cmake --preset win-x64-debug  || goto :error
+cmake --build --preset win-x64-debug || goto :error
+
+cmake --preset win-x64-release  || goto :error
+cmake --build --preset win-x64-release || goto :error
+
+
 rem *************
 rem restore nuget
 rem *************
 
+cd win32
 
 msbuild xmoser.vcxproj -t:restore -p:RestorePackagesConfig=true || goto :error
 
