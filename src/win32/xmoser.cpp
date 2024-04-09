@@ -15,14 +15,14 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     UNREFERENCED_PARAMETER(hInstance);
     UNREFERENCED_PARAMETER(nCmdShow);
 
-    BOOL b = FALSE;
+    BOOL b = ::AttachConsole(ATTACH_PARENT_PROCESS); 
 
-    if (__argc != 1)
+    if (!b)
     {
         b = ::AttachConsole(ATTACH_PARENT_PROCESS);
     }
-    if (!b)
-    {
+    if (!b && (__argc == 1) )
+    { 
         ::AllocConsole();
     }
 

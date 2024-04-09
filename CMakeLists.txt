@@ -58,9 +58,10 @@ set(SOURCES
   src/win32/disp.cpp
 )
 
-IF (WIN32)
-	set(SOURCES ${SOURCES} moser.manifest)
-endif()
+# use xmoser.exe instead for XAML fun!
+#IF (WIN32)
+#	set(SOURCES ${SOURCES} moser.manifest)
+#endif()
 
 add_executable(moser 
   ${SOURCES}

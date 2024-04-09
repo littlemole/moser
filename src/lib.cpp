@@ -1902,6 +1902,24 @@ Value xamlLoadNative(VM& /*vm*/, int argCount, Value* args)
     return NIL_VAL;
 }
 
+Value xamlExpandNative(VM& /*vm*/, int argCount, Value* args)
+{
+    if (argCount < 2) return NIL_VAL;
+
+    Value wnd = args[0];
+
+    auto hwnd = as<ObjPointer>(wnd);
+    if (!hwnd) return NIL_VAL;
+
+    Value r = args[1];
+    auto rect = as<ObjPointer>(r);
+    if (!rect) return NIL_VAL;
+
+    xmos.expand((HWND)hwnd->pointer(), *(RECT*)(rect->pointer()));
+
+    return NIL_VAL;
+}
+
 Value xamlActivateNative(VM& /*vm*/, int argCount, Value* args)
 {
     if (argCount < 2) return NIL_VAL;
@@ -1929,8 +1947,6 @@ Value xamlSizeNative(VM& /*vm*/, int argCount, Value* args)
 
     RECT rect;
     ::GetClientRect((HWND)hwnd->pointer(), &rect);
-    rect.right = rect.right - 80;
-    rect.bottom = 64;
 
     if (argCount > 1)
     {
@@ -1966,8 +1982,9 @@ Value xamlTranslateNative(VM& /*vm*/, int argCount, Value* args)
     auto msg = as<ObjPointer>(v);
     if (!msg) return NIL_VAL;
 
-    xmos.translate(*(MSG*)msg->pointer());
-    return NIL_VAL;
+    bool b = xmos.translate(*(MSG*)(msg->pointer()));
+    Value r(b);
+    return r;
 }
 
 Value xamlDestroyNative(VM& /*vm*/, int argCount, Value* args)
@@ -2134,8 +2151,10 @@ void init_stdlib(VM& vm)
     xaml->item("init", new ObjNativeFun(vm, xamlInitNative));
     xaml->item("create", new ObjNativeFun(vm, xamlCreateNative));
     xaml->item("load", new ObjNativeFun(vm, xamlLoadNative));
+    xaml->item("expand", new ObjNativeFun(vm, xamlExpandNative));
     xaml->item("activate", new ObjNativeFun(vm, xamlActivateNative));
     xaml->item("size", new ObjNativeFun(vm, xamlSizeNative));
+    xaml->item("translate", new ObjNativeFun(vm, xamlTranslateNative));
     xaml->item("destroy", new ObjNativeFun(vm, xamlDestroyNative));
     xaml->item("shutdown", new ObjNativeFun(vm, xamlShutdownNative));
 
