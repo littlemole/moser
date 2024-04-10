@@ -1244,7 +1244,7 @@ Value ObjRecord::getProperty(const std::string& pname)
         native::StructMemberDesc& desc = struct_->desc(pname);
         if (native::theStructCache().count(desc.typeName))
         {
-            auto r = native::theStructCache()[pname]->attach(p);
+            auto r = native::theStructCache()[desc.typeName]->attach(p);
             return new ObjRecord(vm, r);
         }
 
