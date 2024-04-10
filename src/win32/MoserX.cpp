@@ -76,7 +76,11 @@ void MoserX::load(HWND hwnd, const std::wstring& xaml)
 
     windowInfo->DesktopWindowXamlSource.Content(uiel);
 
-//    auto id = windowInfo->DesktopWindowXamlSource.SiteBridge().WindowId();
+}
+
+void MoserX::expand(HWND hwnd, const RECT& r)
+{
+    //    auto id = windowInfo->DesktopWindowXamlSource.SiteBridge().WindowId();
 
     auto id = winrt::GetWindowIdFromWindow(hwnd);
 
@@ -85,10 +89,8 @@ void MoserX::load(HWND hwnd, const std::wstring& xaml)
     auto titleBar = appWnd.TitleBar();
     titleBar.ExtendsContentIntoTitleBar(true);
 
-    RECT r;
-    ::GetClientRect(hwnd, &r);
-    winrt::Windows::Graphics::RectInt32 rect{r.left,r.top,r.right -80,64};
-    winrt::array_view<winrt::Windows::Graphics::RectInt32> v(&rect,1);
+    winrt::Windows::Graphics::RectInt32 rect{ r.left,r.top,r.right, r.bottom };
+    winrt::array_view<winrt::Windows::Graphics::RectInt32> v(&rect, 1);
     titleBar.SetDragRectangles(v);
 }
 
