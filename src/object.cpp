@@ -1982,7 +1982,7 @@ bool ObjDecorator::invokeMethod(const std::string& /*mname*/, int /*argCount*/)
 Value ObjDecorator::getProperty(const std::string& pname)
 {
     Value target = fields["target"];
-    Value proxy  = fields["proxy"];
+//    Value proxy  = fields["proxy"];
 
     auto obj = as<ObjInstance>(target);
     if(obj)

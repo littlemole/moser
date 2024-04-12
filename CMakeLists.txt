@@ -23,7 +23,7 @@ IF (WIN32)
 
 else()
 
-  include_directories(include)
+  include_directories(include include/win32/xaml)
   add_compile_options(-Wall -Wextra -Wpedantic -Werror)
 
   find_package(nlohmann_json CONFIG REQUIRED)
