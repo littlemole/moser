@@ -10,8 +10,10 @@ namespace winrt::xmoser::implementation
     struct App : AppT<App>
     {
         App()
-            : m_windowsXamlManager(winrt::Microsoft::UI::Xaml::Hosting::WindowsXamlManager::InitializeForCurrentThread())
-        { }
+        {
+            m_windowsXamlManager = winrt::Microsoft::UI::Xaml::Hosting::WindowsXamlManager::InitializeForCurrentThread();
+            InitializeComponent();
+        }
 
         void OnLaunched(winrt::Microsoft::UI::Xaml::LaunchActivatedEventArgs const&);
 

@@ -184,6 +184,7 @@ var windowProc = WINDOWPROC( fun( hWnd, msg, wParam, lParam)
 	if( msg == WM_PAINT ) {
 
 		var hdc = BeginPaint(hWnd, ps);
+		print ps.fErase;
 		var txt = "HELLO WINDOWS";
         	TextOut( hdc, 50,50, txt, txt.length);
 		EndPaint(hWnd, ps);
@@ -216,6 +217,8 @@ wc.lpfnWndProc = windowProc;
 wc.hInstance = hinstance;
 wc.lpszClassName = classname;
 wc.hbrBackground = COLOR_WINDOW+1;
+
+print "WC: " +  wc.hbrBackground;
 
 print RegisterClass(wc);
 

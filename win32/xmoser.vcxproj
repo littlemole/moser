@@ -181,7 +181,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <WarningLevel>Level4</WarningLevel>
-      <TreatWarningAsError>true</TreatWarningAsError>
+      <TreatWarningAsError>false</TreatWarningAsError>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
@@ -351,6 +351,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <PRIResource Include="Resources.resw" />
+  </ItemGroup>
+  <ItemGroup>
     <!-- Island-support: Needed to run Markup Compiler on App.xaml and make the generated files -->
     <ApplicationDefinition Include="../include/win32/xaml/App.xaml" />
   </ItemGroup>
@@ -388,5 +391,13 @@
     <Error Condition="!Exists('$(MSBuildThisFileDirectory)packages\Microsoft.Windows.CppWinRT.2.0.240111.5\build\native\Microsoft.Windows.CppWinRT.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(MSBuildThisFileDirectory)packages\Microsoft.Windows.CppWinRT.2.0.240111.5\build\native\Microsoft.Windows.CppWinRT.targets'))" />
     <Error Condition="!Exists('$(MSBuildThisFileDirectory)packages\Microsoft.WindowsAppSDK.1.5.240311000\build\native\Microsoft.WindowsAppSDK.props')" Text="$([System.String]::Format('$(ErrorText)', '$(MSBuildThisFileDirectory)packages\Microsoft.WindowsAppSDK.1.5.240311000\build\native\Microsoft.WindowsAppSDK.props'))" />
     <Error Condition="!Exists('$(MSBuildThisFileDirectory)packages\Microsoft.WindowsAppSDK.1.5.240311000\build\native\Microsoft.WindowsAppSDK.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(MSBuildThisFileDirectory)packages\Microsoft.WindowsAppSDK.1.5.240311000\build\native\Microsoft.WindowsAppSDK.targets'))" />
+  </Target>
+  <Target Name="GetPriIndexName">
+    <PropertyGroup>
+      <!-- Winmd library targets use the default root namespace of the project for the App package name -->
+      <PriIndexName Condition="'$(RootNamespace)' != ''">$(RootNamespace)</PriIndexName>
+      <!-- If RootNamespace is empty fall back to TargetName -->
+      <PriIndexName Condition="$(PriIndexName) == ''">$(TargetName)</PriIndexName>
+    </PropertyGroup>
   </Target>
 </Project>

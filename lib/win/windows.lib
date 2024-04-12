@@ -128,6 +128,11 @@ class Window : Wnd {
         wc.lpfnWndProc = this.wndProc;
         wc.hInstance = Win32.GetModuleHandleW(0);
         wc.lpszClassName = this.windowClass;
+/*
+	var brush = Win32.HBRUSH();
+	brush.Value = Win32.SYS_COLOR_INDEX.COLOR_WINDOW+1;
+        wc.hbrBackground = brush;
+*/
         wc.hbrBackground = Win32.SYS_COLOR_INDEX.COLOR_WINDOW+1;
 
         Win32.RegisterClassW(wc);

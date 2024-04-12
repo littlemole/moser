@@ -1,0 +1,397 @@
+import("win32/base");
+import("win32/crypt");
+import("win32/lib");
+import("win32/gdi");
+import("win32/user");
+import("win32/ctrl");
+import("win32/dlg");
+import("wincrypt");
+//import("windows");
+
+import("rt/Windows.Foundation");
+import("rt/Windows.Foundation.Collections");
+import("rt/Microsoft.UI");
+import("rt/Microsoft.UI.Xaml");
+import("rt/Microsoft.UI.Xaml.Hosting");
+import("rt/Microsoft.UI.Xaml.Markup");
+import("rt/Microsoft.UI.Xaml.Interop");
+import("rt/Microsoft.UI.Xaml.Data");
+import("rt/Microsoft.UI.Xaml.Input");
+import("rt/Microsoft.UI.Xaml.Controls");
+import("rt/Microsoft.UI.Xaml.Controls.Primitives");
+import("rt/moxaml");
+
+import("winrt");
+import("windows");
+//import("xaml");
+
+winrt.init();
+
+Win32.MessageBoxA(0,"hu","ha",0);
+
+winrt.xaml.init();
+
+var ID_FILE_EXIT  = 1001;
+var ID_FILE_OPEN  = 1002;
+var ID_EDIT       = 5001;
+
+fun getXamlClassByName(name)
+{
+    var a = name.split(".");
+    var c = runtime.global(a[0]);
+    if (c == nil) return nil;
+    for (var i = 1; i < a.length; i++)
+    {
+        var it = a[i];
+        if (c{ it } == nil) return nil;
+        c = c{ it };
+    }
+    return c;
+}   
+
+fun getTypeNameFromComPtr(ptr)
+{
+    if( !ptr || !int(ptr) ) return;
+
+    var typeName = ptr.invoke( 4, "String", [], [] );
+    return typeName;
+}   
+
+fun getXamlClassFromComPtr(ptr)
+{
+    var typeName = getTypeNameFromComPtr(ptr);
+    if(!typeName) return;
+
+    return getXamlClassByName(typeName);
+}   
+
+
+
+var my_xaml = "
+
+<Page Name='thePage' xmlns='http://schemas.microsoft.com/winfx/2006/xaml/presentation' 
+    xmlns:x='http://schemas.microsoft.com/winfx/2006/xaml'  xmlns:m='using:moxaml'
+ Background='{ThemeResource MoserBackground}'>
+
+
+    <Grid Name='theGrid' >
+
+<StackPanel>
+  <TextBlock  Text='What is your name?'/>
+<Button>Kick the Butt!</Button>
+<TextBlock Text='This text demonstrates some TextBlock properties.' 
+           IsTextSelectionEnabled='True' 
+           SelectionHighlightColor='Green' 
+           Foreground='Blue' 
+           FontWeight='Light' 
+           FontFamily='Arial' 
+           FontStyle='Italic'/>
+
+     <Image m:mox.Event='Click' Name='theImage' Source='https://littlemole.neocities.org/uioo.jpg' />
+</StackPanel>
+    </Grid>
+</Page>
+";
+
+my_xaml = io.slurp("test2.xaml");
+
+print my_xaml;
+
+class MyWindow : Window 
+{
+    MyWindow()
+    {
+        super.Window();
+        this.menu = [
+            [ "File",  
+                [ "Open", ID_FILE_OPEN ],
+                [ "Exit", ID_FILE_EXIT ]
+            ]
+        ];
+    }
+
+    static enumerateChildren(element, cb)
+    {
+	print "ELEMENT: " + element.className;
+
+	var c = getXamlClassFromComPtr(element.comPtr);
+	print "---->" + c;
+	var el = c(element);
+
+	if(el.Content)
+	{
+	    var page = Microsoft.UI.Xaml.Controls.Page(element);
+	    if ( page && page.comPtr && int(page.comPtr) )
+	    {
+                var c = page.Content;
+                var r = cb(c);
+	        if(r) return r;
+                r = MyWindow.enumerateChildren(c,cb);
+        	if(r) return r;
+                return;		
+   	    }
+	}
+
+	var vec = nil;
+
+	if(el.Children) {
+	    vec = el.Children;
+	}
+	else if(el.Items) {
+	    vec = el.Items;
+	}
+
+print vec;
+	if(vec == nil) return;
+
+        var size = vec.Size;
+	if(!size) size = vec.get_Size();
+print size;
+        for( var i = 0; i < size; i++)
+        {
+            var c = vec.GetAt(i);
+            var r = cb(c);
+            if(r) return r;
+            r = MyWindow.enumerateChildren(c,cb);
+	    if(r) return r;
+        }
+        return;
+/*
+
+	print element.comPtr;
+	print int(element.comPtr);
+        var page = Microsoft.UI.Xaml.Controls.Page(element);
+        if ( page && page.comPtr && int(page.comPtr) )
+        {
+            var c = page.Content;
+            var r = cb(c);
+	    if(r) return r;
+            r = MyWindow.enumerateChildren(c,cb);
+	    if(r) return r;
+            return;
+        }
+
+
+        var panel = Microsoft.UI.Xaml.Controls.Panel(element);
+        if ( panel && panel.comPtr && int(panel.comPtr) )
+        {
+            var children = panel.Children;
+            var size = children.Size;
+
+            for( var i = 0; i < size; i++)
+            {
+                var c = children.GetAt(i);
+                var r = cb(c);
+		if(r) return r;
+                r = MyWindow.enumerateChildren(c,cb);
+	        if(r) return r;
+            }
+            return;
+        }
+	var c = getXamlClassFromComPtr(element.comPtr);
+	var el = c(element);
+	if(el.get_Items) {
+
+            var children = el.Items;
+	    print children;
+	    print children.comPtr;
+	    print int(children.comPtr);
+	
+            var size = children.get_Size();
+ 	    print size;
+            for( var i = 0; i < size; i++)
+            {
+                var c = children.GetAt(i);
+                var r = cb(c);
+		if(r) return r;
+                r = MyWindow.enumerateChildren(c,cb);
+	        if(r) return r;
+            }
+            return;
+
+	}
+
+        var menuBar = Microsoft.UI.Xaml.Controls.MenuBar(element);
+        if ( menuBar && menuBar.comPtr && int(menuBar.comPtr) )
+        {
+            var children = menuBar.Items;
+	   print children;
+	   print children.comPtr;
+	   print int(children.comPtr);
+	
+            var size = children.get_Size();
+	print size;
+            for( var i = 0; i < size; i++)
+            {
+                var c = children.GetAt(i);
+                var r = cb(c);
+		if(r) return r;
+                r = MyWindow.enumerateChildren(c,cb);
+	        if(r) return r;
+            }
+            return;
+        }
+        var MenuBarItem = Microsoft.UI.Xaml.Controls.MenuBarItem (element);
+        if ( MenuBarItem && MenuBarItem.comPtr && int(MenuBarItem.comPtr) )
+        {
+            var children = MenuBarItem.Items;
+	   print children;
+	   print children.comPtr;
+	   print int(children.comPtr);
+	
+            var size = children.get_Size();
+	print size;
+            for( var i = 0; i < size; i++)
+            {
+                var c = children.GetAt(i);
+                var r = cb(c);
+		if(r) return r;
+                r = MyWindow.enumerateChildren(c,cb);
+	        if(r) return r;
+            }
+            return;
+        }
+*/
+    }
+
+    static find(root,name) {
+	var found = nil;
+	MyWindow.enumerateChildren(root, fun(el) {
+		var xel = Microsoft.UI.Xaml.FrameworkElement(el);
+		var c = getXamlClassFromComPtr(el.comPtr)(el);
+		print c;
+		var n = c.Name;
+		print n + " == " + name;
+		if(n == name) found = xel;
+		if(found != nil) return true;
+	});
+	return found;	
+    }
+
+        
+    @msg(WM_CREATE)
+    onCreate(wParam,lParam)
+    {
+	winrt.xaml.create(this.hwnd);
+	var uiptr = winrt.xaml.load(this.hwnd,my_xaml);	
+	var uiroot = Microsoft.UI.Xaml.FrameworkElement(uiptr);
+
+//print Microsoft.UI.Xaml.Hosting.DesktopWindowXamlSource;
+var s =  winrt.xaml.source(this.hwnd);
+print s;
+	var source = Microsoft.UI.Xaml.Hosting.DesktopWindowXamlSource(s );
+
+	var root = Microsoft.UI.Xaml.FrameworkElement( source.Content );
+
+	var el2 = MyWindow.find(uiroot,"nameInput");
+	this.dataContext = Windows.Foundation.Collections.PropertySet.Create();
+	
+        this.dataContext.Insert( "name", Windows.Foundation.PropertyValue.CreateString("mole") );
+
+	el2.DataContext = this.dataContext;
+
+
+	var el = MyWindow.find(uiroot,"theButt");
+
+	print el;
+	print el.comPtr;
+	print int(el.comPtr);
+
+	print el.className;
+	print getTypeNameFromComPtr(el.comPtr);
+
+	var img = getXamlClassFromComPtr(el.comPtr);
+	var butt = Microsoft.UI.Xaml.Controls.Button(el); 
+	butt.add_Click( fun(src,args) {
+	    print "pointer pressed!";
+    	    print el;
+ 	    print el.comPtr;
+	    print int(el.comPtr);
+
+	    print el.className;
+	    print getTypeNameFromComPtr(el.comPtr);
+
+	    print this.dataContext;
+	    print this.dataContext.Lookup("name");
+	    var value = Windows.Foundation.IPropertyValue(this.dataContext.Lookup("name")).GetString();
+	    print value;
+
+	    this.dataContext.Remove("name");
+	    this.dataContext.Insert( "name", Windows.Foundation.PropertyValue.CreateString("little") );
+
+	});
+
+	var e = moxaml.mox.GetEvent(butt);
+	print "EVENT: " + e;
+
+	var m = MyWindow.find(uiroot,"MenuGo");
+	print "---->" + m;
+	var el3 = Microsoft.UI.Xaml.Controls.MenuFlyoutItem( m );
+	print el3;
+	print getTypeNameFromComPtr(el3.comPtr);
+	el3.add_Click( fun(src,args) {
+		print "GO";
+	});
+
+        return 0;
+    }
+
+
+    @cmd(ID_FILE_OPEN)
+    onOpen(wParam,lParam)
+    {
+        var dlg = FileDialog(this.hwnd);
+        var fn = dlg.open();
+
+        if(!fn) return;
+
+        var content = io.slurp(fn);
+
+	winrt.xaml.load(this.hwnd,content);
+
+    }
+
+    @cmd(ID_FILE_EXIT)
+    onExit(wParam,lParam)
+    {
+        Win32.DestroyWindow(this.hwnd);
+        return 0;
+    }
+
+    @msg(WM_DESTROY)
+    onDestroy(wParam,lParam)
+    {
+	winrt.xaml.destroy(this.hwnd);
+        Win32.PostQuitMessage(0);
+        return 0;
+    }
+
+    @msg(WM_SIZE)
+    onSize()
+    {
+   	winrt.xaml.size(this.hwnd);
+	return 0;
+    }
+
+}
+
+
+var wnd = MyWindow();
+wnd.create( "hex it while you can!");
+wnd.show(Win32.SHOW_WINDOW_CMD.SW_SHOW);
+
+//run(wnd);
+
+var msg = Win32.MSG();
+while (Win32.GetMessageW(msg, 0, 0, 0))
+{
+	if(winrt.xaml.translate(msg)) {
+		 continue;
+	}
+	Win32.TranslateMessage(msg);
+	Win32.DispatchMessageW(msg);
+}
+
+winrt.xaml.shutdown();
+
+print "OK";

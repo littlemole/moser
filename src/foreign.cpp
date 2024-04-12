@@ -1245,7 +1245,7 @@ Value ObjRecord::getProperty(const std::string& pname)
         native::StructMemberDesc& desc = struct_->desc(pname);
         if (native::theStructCache().count(desc.typeName))
         {
-            auto r = native::theStructCache()[pname]->attach(p);
+            auto r = native::theStructCache()[desc.typeName]->attach(p);
             return new ObjRecord(vm, r);
         }
 
@@ -1282,13 +1282,22 @@ void ObjRecord::setProperty(const std::string& key, Value val)
                 if(rec)
                 {
                     auto keys = rec->struct_->keys();
-                    //for( auto& key : keys)
-                    {
-                       // auto desc = rec->struct_->desc(key);                        
-                        size_t s = rec->size();
-                        std::cout << "copy struct: " << key << " " << s << std::endl;
-                        memcpy(p,rec->pointer(),s);
-                    }
+                    size_t s = rec->size();
+                    memcpy(p,rec->pointer(),s);
+                    return;
+                }
+            }
+            if (IS_INT(val) || IS_BOOL(val))
+            {
+                // check if this is a simple wrapper struct
+                // with only 1 member named "Value"
+                auto d = native::theStructCache()[desc.typeName];
+                auto s = d->create();
+                auto keys = s->keys();
+                if (keys.size() == 1 && keys[0] == "Value")
+                {
+                    s->set("Value", val.as.integer);
+                    memcpy(p, s->ptr, s->size);
                     return;
                 }
             }

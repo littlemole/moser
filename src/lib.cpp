@@ -1883,7 +1883,43 @@ Value xamlCreateNative(VM& /*vm*/, int argCount , Value* args )
     return NIL_VAL;
 }
 
-Value xamlLoadNative(VM& /*vm*/, int argCount, Value* args)
+Value xamlSourceNative(VM& vm, int argCount, Value* args)
+{
+    if (argCount < 1) return NIL_VAL;
+
+    Value wnd = args[0];
+
+    auto hwnd = as<ObjPointer>(wnd);
+    if (!hwnd) return NIL_VAL;
+
+    void* v = xmos.source( (HWND)hwnd->pointer());
+
+    IUnknown* punk = (IUnknown*)v;
+    Value r = new ComObject(vm, punk);
+    punk->Release();
+    return r;
+
+}
+
+Value xamlBridgeNative(VM& vm, int argCount, Value* args)
+{
+    if (argCount < 1) return NIL_VAL;
+
+    Value wnd = args[0];
+
+    auto hwnd = as<ObjPointer>(wnd);
+    if (!hwnd) return NIL_VAL;
+
+    void* v = xmos.bridge( (HWND)hwnd->pointer());
+
+    IUnknown* punk = (IUnknown*)v;
+    Value r = new ComObject(vm, punk);
+    punk->Release();
+    return r;
+
+}
+
+Value xamlLoadNative(VM& vm, int argCount, Value* args)
 {
     if (argCount < 2) return NIL_VAL;
 
@@ -1898,8 +1934,11 @@ Value xamlLoadNative(VM& /*vm*/, int argCount, Value* args)
 
     std::wstring xaml_wstr = to_wstring(xaml_str->toString(), CP_UTF8);
 
-    xmos.load((HWND)hwnd->pointer(),xaml_wstr);
-    return NIL_VAL;
+    void* v = xmos.load((HWND)hwnd->pointer(),xaml_wstr);
+    IUnknown* punk = (IUnknown*)v;
+    Value r = new ComObject(vm, punk);
+    punk->Release();
+    return r;
 }
 
 Value xamlExpandNative(VM& /*vm*/, int argCount, Value* args)
@@ -2150,6 +2189,8 @@ void init_stdlib(VM& vm)
     auto xaml = new ObjMap(vm);
     xaml->item("init", new ObjNativeFun(vm, xamlInitNative));
     xaml->item("create", new ObjNativeFun(vm, xamlCreateNative));
+    xaml->item("source", new ObjNativeFun(vm, xamlSourceNative));
+    xaml->item("bridge", new ObjNativeFun(vm, xamlBridgeNative));
     xaml->item("load", new ObjNativeFun(vm, xamlLoadNative));
     xaml->item("expand", new ObjNativeFun(vm, xamlExpandNative));
     xaml->item("activate", new ObjNativeFun(vm, xamlActivateNative));

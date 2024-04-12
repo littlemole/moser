@@ -6,6 +6,9 @@
 #include <winrt/Microsoft.UI.Windowing.h>
 #include <Microsoft.UI.Dispatching.Interop.h> // For ContentPreTranslateMessage
 #include <winrt/moxaml.h>
+#include <roapi.h>
+
+#include <win32/comobj.h>
 
 namespace winrt
 {
@@ -48,7 +51,7 @@ void MoserX::create(HWND hwnd)
 
 }
 
-void MoserX::load(HWND hwnd, const std::wstring& xaml)
+void* MoserX::load(HWND hwnd, const std::wstring& xaml)
 {
     WindowInfo* windowInfo = reinterpret_cast<WindowInfo*>(::GetWindowLongPtr(hwnd, GWLP_USERDATA));
 
@@ -76,6 +79,32 @@ void MoserX::load(HWND hwnd, const std::wstring& xaml)
 
     windowInfo->DesktopWindowXamlSource.Content(uiel);
 
+    void* v = nullptr;
+    winrt::Windows::Foundation::IUnknown punk(uiel);
+    winrt::copy_to_abi(punk, v);
+
+    return v;
+}
+
+void* MoserX::source(HWND hwnd)
+{
+    WindowInfo* windowInfo = reinterpret_cast<WindowInfo*>(::GetWindowLongPtr(hwnd, GWLP_USERDATA));
+
+    void* v = nullptr;
+    winrt::Windows::Foundation::IUnknown punk(windowInfo->DesktopWindowXamlSource);
+    winrt::copy_to_abi(punk, v);
+
+    return v;
+}
+
+void* MoserX::bridge(HWND hwnd)
+{
+    WindowInfo* windowInfo = reinterpret_cast<WindowInfo*>(::GetWindowLongPtr(hwnd, GWLP_USERDATA));
+
+    void* v = nullptr;
+    winrt::copy_to_abi(windowInfo->DesktopWindowXamlSource.SiteBridge(), v);
+
+    return v;
 }
 
 void MoserX::expand(HWND hwnd, const RECT& r)
