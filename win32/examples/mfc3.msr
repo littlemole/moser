@@ -1,0 +1,294 @@
+import("win32/base");
+import("win32/lib");
+import("win32/gdi");
+import("win32/user");
+import("win32/ctrl");
+import("win32/dlg");
+
+import("win32/sysinfo");
+
+import("promise");
+
+import("rt/Windows.Foundation");
+import("rt/Windows.Foundation.Collections");
+import("rt/Windows.Graphics");
+import("rt/Windows.Storage");
+import("rt/Windows.Storage.Streams");
+import("rt/Windows.Storage.Pickers");
+
+import("rt/Microsoft.UI");
+import("rt/Microsoft.UI.Content");
+import("rt/Microsoft.UI.Dispatching");
+import("rt/Microsoft.UI.Windowing");
+import("rt/Microsoft.UI.Xaml");
+import("rt/Microsoft.UI.Xaml.Hosting");
+import("rt/Microsoft.UI.Xaml.Markup");
+import("rt/Microsoft.UI.Xaml.Interop");
+import("rt/Microsoft.UI.Xaml.Data");
+import("rt/Microsoft.UI.Xaml.Input");
+import("rt/Microsoft.UI.Xaml.Controls");
+import("rt/Microsoft.UI.Xaml.Controls.Primitives");
+import("rt/moxaml");
+
+import("winrt");
+import("windows");
+import("xaml2");
+
+winrt.init();
+
+Win32.MessageBoxA(0,"hu","ha",0);
+
+//winrt.xaml.init();
+
+var ID_FILE_EXIT  = 1001;
+var ID_FILE_OPEN  = 1002;
+var ID_EDIT       = 5001;
+
+var content_xaml = "
+
+<Page Name='thePage' xmlns='http://schemas.microsoft.com/winfx/2006/xaml/presentation' 
+    xmlns:x='http://schemas.microsoft.com/winfx/2006/xaml'>
+    <Grid Name='theGrid'>
+     <Image Name='theImage' Source='https://littlemole.neocities.org/uioo.jpg' />
+    </Grid>
+</Page>
+";
+
+
+var my_xaml = "
+
+<Page Name='thePage' xmlns='http://schemas.microsoft.com/winfx/2006/xaml/presentation' 
+    xmlns:x='http://schemas.microsoft.com/winfx/2006/xaml'  xmlns:m='using:moxaml'
+ Background='{ThemeResource MoserBackground}'>
+
+
+    <Grid Name='theGrid' >
+
+<StackPanel>
+  <TextBlock  Text='What is your name?'/>
+<Button>Kick the Butt!</Button>
+<TextBlock Text='This text demonstrates some TextBlock properties.' 
+           IsTextSelectionEnabled='True' 
+           SelectionHighlightColor='Green' 
+           Foreground='Blue' 
+           FontWeight='Light' 
+           FontFamily='Arial' 
+           FontStyle='Italic'/>
+
+     <Image m:mox.Event='Click' Name='theImage' Source='https://littlemole.neocities.org/uioo.jpg' />
+</StackPanel>
+    </Grid>
+</Page>
+";
+
+my_xaml = io.slurp("test3.xaml");
+
+print my_xaml;
+
+class MyWindow : Window 
+{
+    MyWindow()
+    {
+        super.Window();
+        this.menu = [
+            [ "File",  
+                [ "Open", ID_FILE_OPEN ],
+                [ "Exit", ID_FILE_EXIT ]
+            ]
+        ];
+
+        this.dataContext = DataContext( 
+        {
+            "name"      : "THE STRING"
+        });
+    }
+
+    theButt_Click( sender, args )
+    {
+    	print "CLICK THE BUTT!";
+	var value = this.dataContext.fetch("name");
+	print value;
+	this.dataContext.put( "name", "little" );	
+    }
+
+    @Xaml(Element=MenuGo)//,Event=Click)
+    menuGo() {
+	print "GO";
+    }
+        
+    @msg(WM_CREATE)
+    onCreate(wParam,lParam)
+    {
+
+	this.xamlWnd = XamlWindow( this, my_xaml );
+	Xaml.expand(this.hwnd,100);
+
+//	this.uiroot = Xaml.root( this.xamlWnd.xamlSource );
+//	var uiroot = this.uiroot;
+
+/*
+	var butt = Microsoft.UI.Xaml.Controls.Button( this.xamlWnd.find("theButt") );
+	butt.add_Click( fun(src,args) {
+	    print "pointer pressed!";
+	    var value = this.dataContext.fetch("name");
+	    print value;
+	    this.dataContext.put( "name", "little" );
+	});
+	var e = moxaml.mox.GetEvent(butt);
+	print "EVENT: " + e;
+
+
+	var menuGo = Microsoft.UI.Xaml.Controls.MenuFlyoutItem( this.xamlWnd.find("MenuGo") );
+	menuGo.add_Click( fun(src,args) {
+		print "GO";
+	});
+*/
+	var menuOpen = Microsoft.UI.Xaml.Controls.MenuFlyoutItem(this.xamlWnd.find("OpenGo"));
+	menuOpen.add_Click( fun(src,args) {
+		print "OPEN";
+
+		this.xamlWnd.FileOpenPicker(
+            	    { 
+                        "FileTypeFilter" : [ "*" ],
+            	    }
+        	)
+        	.then( fun(file) 
+            	{
+                    if( file.valid()  )
+                    {
+			print file.Path;
+			print file.FileType;
+		    }
+                });
+	});
+
+	var menuSave = Microsoft.UI.Xaml.Controls.MenuFlyoutItem(this.xamlWnd.find("SaveGo"));
+	menuSave.add_Click( fun(src,args) {
+		print "Save";
+
+		this.xamlWnd.FileSavePicker(
+            	    { 
+//	                "FileName" : "C:\\Users\\mike\\Documents\\newDoc.txt",
+        	        "FileTypeChoices" : { "file" : [ ".txt" ] }
+            	    }
+        	)
+        	.then( fun(file) 
+            	{
+                    if( file.valid()  )
+                    {
+			print file.Path;
+			print file.FileType;
+		    }
+                });
+	});
+
+	var menuFolder = Microsoft.UI.Xaml.Controls.MenuFlyoutItem( this.xamlWnd.find("FolderGo") );
+	menuFolder.add_Click( fun(src,args) {
+		print "Folder";
+
+		this.xamlWnd.FolderPicker()
+        	.then( fun(folder) 
+            	{
+		    print folder.Path;
+                });
+	});
+
+	var menuDlg = Microsoft.UI.Xaml.Controls.MenuFlyoutItem( this.xamlWnd.find("DialogGo") );
+	menuDlg.add_Click( fun(src,args) {
+		print "Dialog";
+
+		this.xamlWnd.contentDialog(
+		    {
+	                "Title" : "Dialog",
+            		"CloseButtonText" : "Cancel",
+            		"PrimaryButtonText" : "OK",
+            		//"Content" : "Hello There!",
+			"Xaml" : content_xaml
+
+		    }
+        	)
+        	.then( fun(result) 
+            	{
+		    print result;
+                });
+	});
+
+        return 0;
+    }
+
+
+    @cmd(ID_FILE_OPEN)
+    onOpen(wParam,lParam)
+    {
+        var dlg = FileDialog(this.hwnd);
+        var fn = dlg.open();
+
+        if(!fn) return;
+
+        var content = io.slurp(fn);
+
+	//winrt.xaml.load(this.hwnd,content);
+
+    }
+
+    @cmd(ID_FILE_EXIT)
+    onExit(wParam,lParam)
+    {
+        Win32.DestroyWindow(this.hwnd);
+        return 0;
+    }
+
+    @msg(WM_DESTROY)
+    onDestroy(wParam,lParam)
+    {
+	//winrt.xaml.destroy(this.hwnd);
+        Win32.PostQuitMessage(0);
+        return 0;
+    }
+
+    @msg(WM_SIZE)
+    onSize(wParam,lParam)
+    {
+	var width = LOWORD(int(lParam));
+        var height = HIWORD(int(lParam));
+
+        var r = Windows.Graphics.RectInt32();
+	r.X = 0;
+	r.Y = 0;
+	r.Width = width;
+	r.Height = height;
+
+	if(this.xamlWnd && this.xamlWnd.xamlSource)
+	{
+	    var bridge = this.xamlWnd.xamlSource.get_SiteBridge();
+	    bridge.MoveAndResize(r);
+	}
+
+//   	winrt.xaml.size(this.hwnd);
+	return 0;
+    }
+
+}
+
+
+var wnd = MyWindow();
+wnd.create( "hex it while you can!");
+wnd.show(Win32.SHOW_WINDOW_CMD.SW_SHOW);
+
+//run(wnd);
+
+var msg = Win32.MSG();
+while (Win32.GetMessageW(msg, 0, 0, 0))
+{
+//	if(winrt.xaml.translate(msg)) {
+//		 continue;
+//	}
+	if(ContentPreTranslateMessage(msg)) continue;
+	Win32.TranslateMessage(msg);
+	Win32.DispatchMessageW(msg);
+}
+
+//winrt.xaml.shutdown();
+Xaml.shutdown();
+
+print "OK";

@@ -216,7 +216,7 @@ inline std::string print_param_type(TypeSig& typeSig, std::pair<ParamAttributes,
     //    if (param.first.In()) std::cout << "[in] ";
     if (param.first.Out()) oss << "[out] ";
 
-    if (typeSig.is_szarray()) std::cout << "array(";
+//    if (typeSig.is_szarray()) std::cout << "array(";
     std::visit([&param, &oss](auto&& arg)
         {
             using typ = std::decay_t<decltype(arg)>;
@@ -306,7 +306,7 @@ inline std::string print_param_type(TypeSig& typeSig, std::pair<ParamAttributes,
         },
         ts);
 
-    if (typeSig.is_szarray()) std::cout << ")";
+//    if (typeSig.is_szarray()) std::cout << ")";
     if (typeSig.is_array())
     {
         oss << "[";

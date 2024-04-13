@@ -82,6 +82,9 @@
     <ClCompile Include="../src/win32/xmoser.cpp">
       <Filter>src\win32</Filter>
     </ClCompile>
+    <ClCompile Include="../src/win32/App.xaml.cpp">
+      <Filter>src\win32</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="../include/win32/xaml/App.xaml.h">
@@ -180,6 +183,9 @@
     <ClInclude Include="..\include\win32\xaml.h">
       <Filter>includes\win32</Filter>
     </ClInclude>
+    <ClInclude Include="../include/win32/xaml/App.xaml.h">
+      <Filter>includes\win32\xaml</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="../src/win32/xmoser.ico" />
@@ -207,13 +213,16 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ApplicationDefinition Include="../include/win32/xaml/App.xaml">
-      <Filter>includes\win32\xaml</Filter>
-    </ApplicationDefinition>
-  </ItemGroup>
-  <ItemGroup>
     <ResourceCompile Include="../src/win32/xmoser.rc">
       <Filter>src\win32</Filter>
     </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <PRIResource Include="Resources.resw" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="../include/win32/xaml/App.xaml">
+      <Filter>src\win32</Filter>
+    </ApplicationDefinition>
   </ItemGroup>
 </Project>

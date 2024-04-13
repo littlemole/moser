@@ -37,11 +37,11 @@ void MoserX::init()
 {
     //winrt::init_apartment(winrt::apartment_type::single_threaded);
 
-    dispatcherQueueController = winrt::DispatcherQueueController::CreateOnCurrentThread();
+   // dispatcherQueueController = winrt::DispatcherQueueController::CreateOnCurrentThread();
     xamlapp = winrt::make<winrt::xmoser::implementation::App>();
 }
 
-void MoserX::create(HWND hwnd)
+void* MoserX::create(HWND hwnd)
 {
     WindowInfo* windowInfo = new WindowInfo();
     ::SetWindowLongPtr(hwnd, GWLP_USERDATA, reinterpret_cast<LONG_PTR>(windowInfo));
@@ -49,6 +49,7 @@ void MoserX::create(HWND hwnd)
     windowInfo->DesktopWindowXamlSource = winrt::DesktopWindowXamlSource{};
     windowInfo->DesktopWindowXamlSource.Initialize(winrt::GetWindowIdFromWindow(hwnd));
 
+    return source(hwnd);
 }
 
 void* MoserX::load(HWND hwnd, const std::wstring& xaml)
@@ -174,5 +175,5 @@ void MoserX::destroy(HWND hwnd)
 
 void MoserX::shutdown()
 {
-    dispatcherQueueController.ShutdownQueue();
+    //dispatcherQueueController.ShutdownQueue();
 }

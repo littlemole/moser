@@ -7,7 +7,7 @@ class MoserX
 public:
 	void init();
 
-	void create(HWND hwnd);
+	void* create(HWND hwnd);
 	void expand(HWND hwnd, const RECT& r);
 
 	void* load(HWND hwnd, const std::wstring& xaml);

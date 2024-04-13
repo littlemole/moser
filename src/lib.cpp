@@ -1870,7 +1870,7 @@ Value xamlInitNative(VM& /*vm*/, int /* argCount */, Value* /* args */)
     return NIL_VAL;
 }
 
-Value xamlCreateNative(VM& /*vm*/, int argCount , Value* args )
+Value xamlCreateNative(VM& vm, int argCount , Value* args )
 {
     if (argCount < 1) return NIL_VAL;
 
@@ -1879,8 +1879,11 @@ Value xamlCreateNative(VM& /*vm*/, int argCount , Value* args )
     auto hwnd = as<ObjPointer>(wnd);
     if (!hwnd) return NIL_VAL;
 
-    xmos.create((HWND)hwnd->pointer());
-    return NIL_VAL;
+    void* v = xmos.create((HWND)hwnd->pointer());
+    IUnknown* punk = (IUnknown*)v;
+    Value r = new ComObject(vm, punk);
+    punk->Release();
+    return r;
 }
 
 Value xamlSourceNative(VM& vm, int argCount, Value* args)

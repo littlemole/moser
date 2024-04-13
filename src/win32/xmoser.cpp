@@ -15,17 +15,14 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     UNREFERENCED_PARAMETER(hInstance);
     UNREFERENCED_PARAMETER(nCmdShow);
 
-    BOOL b = ::AttachConsole(ATTACH_PARENT_PROCESS); 
-
-    if (!b)
+    if (__argc == 1) // REPL mode
     {
-        b = ::AttachConsole(ATTACH_PARENT_PROCESS);
-    }
-    if (!b && (__argc == 1) )
-    { 
         ::AllocConsole();
     }
-
+    else 
+    { 
+        AttachConsole(ATTACH_PARENT_PROCESS);
+    }
 
     FILE* fpstdin = stdin, * fpstdout = stdout, * fpstderr = stderr;
     freopen_s(&fpstdin, "CONIN$", "r", stdin);
@@ -46,6 +43,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     }
     int r = main(__argc, &cargv[0]);
 
+    ::FreeConsole();
     return r;
 }
 

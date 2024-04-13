@@ -162,9 +162,15 @@ inline void visit_elemSig(ElemSig& elemSig, std::string& result)
                         result = oss.str();
                     }, av.value);
             }
+            /*
+            else if constexpr (std::is_same_v< std::decay_t<decltype(av)>, unsigned int>)
+            {
+                result = "long";
+            }
+            */
             else
             {
-                result = av;
+                result = "";
             }
         }, elemSig.value);
 }
@@ -544,7 +550,7 @@ inline std::vector<std::string> get_statics(TypeDef& typeDef)
 
 inline std::vector<std::string> get_factories(TypeDef& typeDef)
 {
-    if (fullName(typeDef.TypeNamespace(), typeDef.TypeName()) == "Microsoft.Web.WebView2.Core.CoreWebView2EnvironmentOptions")
+    if (fullName(typeDef.TypeNamespace(), typeDef.TypeName()) == "Windows.Storage.Pickers.FileOpenPicker")// "Microsoft.UI.Dispatching.DispatcherExitDeferral")
     {
         int x = 1;
     }

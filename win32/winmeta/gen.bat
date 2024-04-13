@@ -43,5 +43,7 @@ x64\Release\metamoc.exe Microsoft.UI.Xaml.Automation.Peers > lib\rt\Microsoft.UI
 
 x64\Release\metamoc.exe Microsoft.Foundation > lib\rt\Microsoft.Foundation.lib     
 x64\Release\metamoc.exe Microsoft.UI.Windowing > lib\rt\Microsoft.UI.Windowing.lib     
+x64\Release\metamoc.exe Microsoft.UI.Content > lib\rt\Microsoft.UI.Content.lib     
+x64\Release\metamoc.exe Microsoft.UI.Dispatching > lib\rt\Microsoft.UI.Dispatching.lib     
 
 x64\Release\metamoc.exe moxaml > lib\rt\moxaml.lib     
