@@ -8,8 +8,6 @@ extern from "Microsoft.UI.Windowing.Core.dll" {
     int ContentPreTranslateMessage( ptr );
 }
 
-print ContentPreTranslateMessage;
-
 extern from "Ntdll.dll" {
   int RtlGetVersion( ptr );
 }
@@ -400,7 +398,6 @@ class Xaml
         {
 	    Xaml.dispatcher = Microsoft.UI.Dispatching.DispatcherQueueController.CreateOnCurrentThread();
 	    winrt.xaml.init();
-            Xaml.sources = [];
 	    Xaml.isInitialized = true;
         }
     }
@@ -423,10 +420,6 @@ class Xaml
 	var xamlroot = Microsoft.UI.Xaml.UIElement( Xaml.load(xaml) );
 	source.Content = xamlroot;
 
-//	var xamlroot = Microsoft.UI.Xaml.UIElement( winrt.xaml.load(parentWnd.hwnd, xaml) );
-
-	Xaml.bindEvents( xamlroot, parentWnd );
-
 	return source;
     }
 
@@ -438,9 +431,6 @@ class Xaml
         Windowing_GetWindowIdFromWindow( parentWnd.hwnd, &id );
 	var source = Microsoft.UI.Xaml.Hosting.DesktopWindowXamlSource.Create();
 	source.Initialize(id);
-
-//	var source = Microsoft.UI.Xaml.Hosting.DesktopWindowXamlSource( winrt.xaml.source(parentWnd.hwnd) );
-//        Xaml.sources.push(source);
 
 	return source;
     }
@@ -476,7 +466,6 @@ class Xaml
 	var clazz = getXamlClassFromComPtr(element.comPtr);
 	var el = clazz(element);
 
-//print "ENUM: " + clazz;
 	if(el.Content)
 	{
 	    var page = Microsoft.UI.Xaml.Controls.Page(element);
@@ -522,8 +511,7 @@ class Xaml
 		var xel = Microsoft.UI.Xaml.FrameworkElement(el);
 		var c = getXamlClassFromComPtr(el.comPtr)(el);
 		var n = c.Name;
-print n + " == " + name;
-		if(n == name) found = xel;
+		if(n == name) found = c;
 		if(found != nil) return true;
 	});
 	return found;	
@@ -550,19 +538,12 @@ print n + " == " + name;
                     var src = $m.Xaml.Element;
                     var ev  = $m.Xaml.Event || "Click";
 
-		   print "@Xaml " + src + ":" +ev;
-
 		    var el = Xaml.find(element,src);
                     if(el == nil || int(el) == 0) return nil;
 
-print "FOUND " + el;
-print el.className;
-print int(el.comPtr);
-
                     var elementType = getXamlClassFromComPtr(el.comPtr);
-print elementType;
                     if(elementType == nil) return nil;
-print elementType;
+
                     var element = elementType(el);
                     if(element == nil || element.comPtr == nil || int(element.comPtr) == 0) return nil;
 
@@ -584,6 +565,7 @@ print elementType;
             var element = elementType(el);
             var name = element.get_Name();
             if(!name) return;
+
             var e = moxaml.mox.GetEvent(element);
             if(!e) return;
 
@@ -639,53 +621,34 @@ print elementType;
 
         titleBar.ExtendsContentIntoTitleBar = true;
 
-        print x + ", " + y + ", " +w + "," + h;
 
         var nRects = 1;
         titleBar.comPtr.invoke( 38, "void", [ "Uint32", "Windows.Graphics.RectInt32"], [nRects, rect] );
-
-/*
-        var args = arguments();
-
-        if(windowsVersion < 11) return;
-
-        if(!Windowing_GetWindowIdFromWindow) return;
-        if(!Microsoft.UI.Windowing.AppWindowTitleBar.IsCustomizationSupported()) return;
-
-        var clientRect = Win32.RECT();
-        Win32.GetClientRect( hwnd, clientRect );
-
-        var x = 0;
-        if(args.length > 1) x = args[1];
-        var y = 0;
-        if(args.length > 2) y = args[2];
-        var w = clientRect.right - x - 80;
-        if(args.length > 3) w = args[3];
-        var h = 64;
-        if(args.length > 4) h = args[4];
-
-	var r = Win32.RECT();
-	r.left = x;
-	r.right = w;
-	r.top = y;
-	r.bottom = h;
-
-	winrt.xaml.expand( hwnd, r );
-*/
     }
 
     static initWnd(picker, hwnd)
     {
-        //print "init";
         if(!picker.comPtr || !int(picker.comPtr)) return;
 
         // IInitializeWithWindow native
         var initializeWithWindows = picker.comPtr.queryInterface("{3E68D4BD-7135-4D10-8018-9FB6D9F33FA1}");
-        //print initializeWithWindows + " : " + int(initializeWithWindows);
         if(!initializeWithWindows || !int(initializeWithWindows) ) return;
 
         initializeWithWindows.invoke( 3, "void", ["HWND"], [hwnd] );
         initializeWithWindows.release();
+    }
+
+    static run()
+    {
+	var msg = Win32.MSG();
+	while (Win32.GetMessageW(msg, 0, 0, 0))
+	{
+	    if(ContentPreTranslateMessage(msg)) continue;
+	    Win32.TranslateMessage(msg);
+	    Win32.DispatchMessageW(msg);
+	}
+
+	Xaml.shutdown();	
     }
 }
 
@@ -705,7 +668,7 @@ class XamlWindow
 
     root()
     {
-	return Xaml.root( this.xamlSource );	
+	return Microsoft.UI.Xaml.UIElement( Xaml.root( this.xamlSource ) );	
     }
 
     load(xml)
@@ -714,12 +677,18 @@ class XamlWindow
         {
             this.xamlSource = Xaml.window( this.parentWnd, xml );
             this.hwnd = Xaml.hwnd(this.xamlSource);
+
+	    Xaml.bindEvents( this.root(), this.parentWnd );
+
             return this.xamlSource;
         }
         else
         {
             var xaml = Xaml.load(xml);
             this.xamlSource.put_Content(xaml);
+
+	    Xaml.bindEvents( this.root(), this.parentWnd );
+
             return this.xamlSource;
         }       
     }
@@ -728,6 +697,21 @@ class XamlWindow
     {
         var root = Xaml.root(this.xamlSource);
         return Xaml.find( root, name );
+    }
+
+    size( left, top, width, height)
+    {
+        var r = Windows.Graphics.RectInt32();
+	r.X = left;
+	r.Y = top;
+	r.Width = width;
+	r.Height = height;
+
+	if( this.xamlSource)
+	{
+	    var bridge = this.xamlSource.get_SiteBridge();
+	    bridge.MoveAndResize(r);
+	}
     }
 
     FileOpenPicker()
@@ -893,7 +877,7 @@ class XamlWindow
         return this.picker.PickSingleFolderAsync();
     }
 
-    contentDialog(opts)
+    ContentDialog(opts)
     {
         var args = arguments();
         var options = {

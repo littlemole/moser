@@ -4,7 +4,6 @@ import("win32/gdi");
 import("win32/user");
 import("win32/ctrl");
 import("win32/dlg");
-
 import("win32/sysinfo");
 
 import("promise");
@@ -28,17 +27,16 @@ import("rt/Microsoft.UI.Xaml.Data");
 import("rt/Microsoft.UI.Xaml.Input");
 import("rt/Microsoft.UI.Xaml.Controls");
 import("rt/Microsoft.UI.Xaml.Controls.Primitives");
+
 import("rt/moxaml");
 
 import("winrt");
 import("windows");
 import("xaml2");
 
-winrt.init();
 
 Win32.MessageBoxA(0,"hu","ha",0);
 
-//winrt.xaml.init();
 
 var ID_FILE_EXIT  = 1001;
 var ID_FILE_OPEN  = 1002;
@@ -83,7 +81,6 @@ var my_xaml = "
 
 my_xaml = io.slurp("test3.xaml");
 
-print my_xaml;
 
 class MyWindow : Window 
 {
@@ -120,34 +117,15 @@ class MyWindow : Window
     onCreate(wParam,lParam)
     {
 
-	this.xamlWnd = XamlWindow( this, my_xaml );
+	this.xaml = XamlWindow( this, my_xaml );
 	Xaml.expand(this.hwnd,100);
 
-//	this.uiroot = Xaml.root( this.xamlWnd.xamlSource );
-//	var uiroot = this.uiroot;
+	var menuOpen = this.xaml.find("OpenGo");
 
-/*
-	var butt = Microsoft.UI.Xaml.Controls.Button( this.xamlWnd.find("theButt") );
-	butt.add_Click( fun(src,args) {
-	    print "pointer pressed!";
-	    var value = this.dataContext.fetch("name");
-	    print value;
-	    this.dataContext.put( "name", "little" );
-	});
-	var e = moxaml.mox.GetEvent(butt);
-	print "EVENT: " + e;
-
-
-	var menuGo = Microsoft.UI.Xaml.Controls.MenuFlyoutItem( this.xamlWnd.find("MenuGo") );
-	menuGo.add_Click( fun(src,args) {
-		print "GO";
-	});
-*/
-	var menuOpen = Microsoft.UI.Xaml.Controls.MenuFlyoutItem(this.xamlWnd.find("OpenGo"));
 	menuOpen.add_Click( fun(src,args) {
 		print "OPEN";
 
-		this.xamlWnd.FileOpenPicker(
+		this.xaml.FileOpenPicker(
             	    { 
                         "FileTypeFilter" : [ "*" ],
             	    }
@@ -158,15 +136,20 @@ class MyWindow : Window
                     {
 			print file.Path;
 			print file.FileType;
+
+		        var content = io.slurp(file.Path);
+
+			this.xaml.load(content);
+
 		    }
                 });
 	});
 
-	var menuSave = Microsoft.UI.Xaml.Controls.MenuFlyoutItem(this.xamlWnd.find("SaveGo"));
+	var menuSave = this.xaml.find("SaveGo");
 	menuSave.add_Click( fun(src,args) {
 		print "Save";
 
-		this.xamlWnd.FileSavePicker(
+		this.xaml.FileSavePicker(
             	    { 
 //	                "FileName" : "C:\\Users\\mike\\Documents\\newDoc.txt",
         	        "FileTypeChoices" : { "file" : [ ".txt" ] }
@@ -182,22 +165,22 @@ class MyWindow : Window
                 });
 	});
 
-	var menuFolder = Microsoft.UI.Xaml.Controls.MenuFlyoutItem( this.xamlWnd.find("FolderGo") );
+	var menuFolder = this.xaml.find("FolderGo");
 	menuFolder.add_Click( fun(src,args) {
 		print "Folder";
 
-		this.xamlWnd.FolderPicker()
+		this.xaml.FolderPicker()
         	.then( fun(folder) 
             	{
 		    print folder.Path;
                 });
 	});
 
-	var menuDlg = Microsoft.UI.Xaml.Controls.MenuFlyoutItem( this.xamlWnd.find("DialogGo") );
+	var menuDlg = this.xaml.find("DialogGo");
 	menuDlg.add_Click( fun(src,args) {
 		print "Dialog";
 
-		this.xamlWnd.contentDialog(
+		this.xaml.ContentDialog(
 		    {
 	                "Title" : "Dialog",
             		"CloseButtonText" : "Cancel",
@@ -227,7 +210,7 @@ class MyWindow : Window
 
         var content = io.slurp(fn);
 
-	//winrt.xaml.load(this.hwnd,content);
+	this.xaml.load(this.hwnd,content);
 
     }
 
@@ -241,7 +224,6 @@ class MyWindow : Window
     @msg(WM_DESTROY)
     onDestroy(wParam,lParam)
     {
-	//winrt.xaml.destroy(this.hwnd);
         Win32.PostQuitMessage(0);
         return 0;
     }
@@ -252,19 +234,9 @@ class MyWindow : Window
 	var width = LOWORD(int(lParam));
         var height = HIWORD(int(lParam));
 
-        var r = Windows.Graphics.RectInt32();
-	r.X = 0;
-	r.Y = 0;
-	r.Width = width;
-	r.Height = height;
+	if(this.xaml)
+	    this.xaml.size(0,0,width,height);
 
-	if(this.xamlWnd && this.xamlWnd.xamlSource)
-	{
-	    var bridge = this.xamlWnd.xamlSource.get_SiteBridge();
-	    bridge.MoveAndResize(r);
-	}
-
-//   	winrt.xaml.size(this.hwnd);
 	return 0;
     }
 
@@ -272,23 +244,9 @@ class MyWindow : Window
 
 
 var wnd = MyWindow();
-wnd.create( "hex it while you can!");
+wnd.create( "xaml it while you can!");
 wnd.show(Win32.SHOW_WINDOW_CMD.SW_SHOW);
 
-//run(wnd);
-
-var msg = Win32.MSG();
-while (Win32.GetMessageW(msg, 0, 0, 0))
-{
-//	if(winrt.xaml.translate(msg)) {
-//		 continue;
-//	}
-	if(ContentPreTranslateMessage(msg)) continue;
-	Win32.TranslateMessage(msg);
-	Win32.DispatchMessageW(msg);
-}
-
-//winrt.xaml.shutdown();
-Xaml.shutdown();
+Xaml.run();
 
 print "OK";

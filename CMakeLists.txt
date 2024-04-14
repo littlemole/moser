@@ -13,7 +13,7 @@ IF (WIN32)
   include_directories(include include/win32/xaml  ${_VCPKG_INSTALLED_DIR}/${_MSVC_CXX_ARCHITECTURE_FAMILY}-${Z_VCPKG_TARGET_TRIPLET_PLAT}/include)
 
   add_compile_definitions(_CRT_SECURE_NO_WARNINGS)
-  add_compile_options(/W4)
+  add_compile_options(/W4 /wd4505)
   set(VCPKG_CRT_LINKAGE dynamic) 
 
   find_package(nlohmann_json CONFIG REQUIRED)
