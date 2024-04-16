@@ -5141,6 +5141,7 @@ class Microsoft_UI_Xaml_Input_InputScope : WinRtInterface
 Microsoft.UI.Xaml.Input.InputScope = Microsoft_UI_Xaml_Input_InputScope;
 
 //@RuntimeClass("Microsoft.UI.Xaml.Input.InputScopeName")
+@ContentProperty("NameValue")
 //@Implements("Microsoft.UI.Xaml.Input.IInputScopeName")
 //@DefaultInterface("Microsoft.UI.Xaml.Input.IInputScopeName")
 @Proxy("WinRtProxy")

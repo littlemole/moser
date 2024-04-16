@@ -6,16 +6,20 @@ import("win32/user");
 import("win32/sysinfo");
 
 import("rt\Windows.Foundation");
+import("rt\Windows.Graphics");
 import("rt\Windows.Foundation.Collections");
-import("rt\Windows.UI");
-import("rt\Windows.UI.Xaml");
-import("rt/Windows.UI.Xaml.Hosting");
-import("rt/Windows.UI.Xaml.Markup");
-import("rt\Windows.UI.Xaml.Interop");
-import("rt\Windows.UI.Xaml.Data");
-import("rt\Windows.UI.Xaml.Input");
-import("rt\Windows.UI.Xaml.Controls");
-import("rt\Windows.UI.Xaml.Controls.Primitives");
+import("rt\Microsoft.UI");
+import("rt/Microsoft.UI.Content");
+import("rt/Microsoft.UI.Dispatching");
+import("rt/Microsoft.UI.Windowing");
+import("rt\Microsoft.UI.Xaml");
+import("rt\Microsoft.UI.Xaml.Hosting");
+import("rt\Microsoft.UI.Xaml.Markup");
+import("rt\Microsoft.UI.Xaml.Interop");
+import("rt\Microsoft.UI.Xaml.Data");
+import("rt\Microsoft.UI.Xaml.Input");
+import("rt\Microsoft.UI.Xaml.Controls");
+import("rt\Microsoft.UI.Xaml.Controls.Primitives");
 import("rt\moxaml");
 
 import("winrt");
@@ -68,7 +72,11 @@ class MyWindow : Window
     @msg(WM_SIZE)
     onSize(wParam,lParam)
     {
-        this.resizeChild( this.xamlWnd);
+	var width = LOWORD(int(lParam));
+        var height = HIWORD(int(lParam));
+
+	if(this.xamlWnd)
+	    this.xamlWnd.size(0,0,width,height);
         return 0;
     }
     
@@ -89,7 +97,7 @@ class MyWindow : Window
     @cmd(ID_STUFF_GO)
     onGo(wParam,lParam)
     {
-        this.xamlWnd.contentDialog({ 
+        this.xamlWnd.ContentDialog({ 
             "Title" : "hohoho",
             "Xaml" : "<Button Name='theButt' Content='butt' xmlns='http://schemas.microsoft.com/winfx/2006/xaml/presentation' />"
         }, 
@@ -107,6 +115,6 @@ var wnd = MyWindow();
 wnd.create( "my xaml window");
 wnd.show(Win32.SHOW_WINDOW_CMD.SW_SHOW);
 
-run(wnd);
+Xaml.run();
 
 print "OK";

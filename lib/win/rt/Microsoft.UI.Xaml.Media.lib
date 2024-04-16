@@ -8399,6 +8399,7 @@ class Microsoft_UI_Xaml_Media_GeometryCollection : WinRtInterface
 Microsoft.UI.Xaml.Media.GeometryCollection = Microsoft_UI_Xaml_Media_GeometryCollection;
 
 //@RuntimeClass("Microsoft.UI.Xaml.Media.GeometryGroup")
+@ContentProperty("Children")
 //@Implements("Microsoft.UI.Xaml.Media.IGeometryGroup")
 //@DefaultInterface("Microsoft.UI.Xaml.Media.IGeometryGroup")
 @Proxy("WinRtProxy")
@@ -8493,6 +8494,7 @@ class Microsoft_UI_Xaml_Media_GeometryGroup : WinRtInterface
 Microsoft.UI.Xaml.Media.GeometryGroup = Microsoft_UI_Xaml_Media_GeometryGroup;
 
 //@RuntimeClass("Microsoft.UI.Xaml.Media.GradientBrush")
+@ContentProperty("GradientStops")
 //@Implements("Microsoft.UI.Xaml.Media.IGradientBrush")
 //@DefaultInterface("Microsoft.UI.Xaml.Media.IGradientBrush")
 @Proxy("WinRtProxy")
@@ -8657,6 +8659,7 @@ class Microsoft_UI_Xaml_Media_GradientBrush : WinRtInterface
 Microsoft.UI.Xaml.Media.GradientBrush = Microsoft_UI_Xaml_Media_GradientBrush;
 
 //@RuntimeClass("Microsoft.UI.Xaml.Media.GradientStop")
+@ContentProperty("Color")
 //@Implements("Microsoft.UI.Xaml.Media.IGradientStop")
 //@DefaultInterface("Microsoft.UI.Xaml.Media.IGradientStop")
 @Proxy("WinRtProxy")
@@ -9593,6 +9596,7 @@ class Microsoft_UI_Xaml_Media_Projection : WinRtInterface
 Microsoft.UI.Xaml.Media.Projection = Microsoft_UI_Xaml_Media_Projection;
 
 //@RuntimeClass("Microsoft.UI.Xaml.Media.Matrix3DProjection")
+@ContentProperty("ProjectionMatrix")
 //@Implements("Microsoft.UI.Xaml.Media.IMatrix3DProjection")
 //@DefaultInterface("Microsoft.UI.Xaml.Media.IMatrix3DProjection")
 @Proxy("WinRtProxy")
@@ -9895,6 +9899,7 @@ class Microsoft_UI_Xaml_Media_MicaBackdrop : WinRtInterface
 Microsoft.UI.Xaml.Media.MicaBackdrop = Microsoft_UI_Xaml_Media_MicaBackdrop;
 
 //@RuntimeClass("Microsoft.UI.Xaml.Media.PathFigure")
+@ContentProperty("Segments")
 //@Implements("Microsoft.UI.Xaml.Media.IPathFigure")
 //@DefaultInterface("Microsoft.UI.Xaml.Media.IPathFigure")
 @Proxy("WinRtProxy")
@@ -10184,6 +10189,7 @@ class Microsoft_UI_Xaml_Media_PathFigureCollection : WinRtInterface
 Microsoft.UI.Xaml.Media.PathFigureCollection = Microsoft_UI_Xaml_Media_PathFigureCollection;
 
 //@RuntimeClass("Microsoft.UI.Xaml.Media.PathGeometry")
+@ContentProperty("Figures")
 //@Implements("Microsoft.UI.Xaml.Media.IPathGeometry")
 //@DefaultInterface("Microsoft.UI.Xaml.Media.IPathGeometry")
 @Proxy("WinRtProxy")
@@ -10996,6 +11002,7 @@ class Microsoft_UI_Xaml_Media_PointCollection : WinRtInterface
 Microsoft.UI.Xaml.Media.PointCollection = Microsoft_UI_Xaml_Media_PointCollection;
 
 //@RuntimeClass("Microsoft.UI.Xaml.Media.PolyBezierSegment")
+@ContentProperty("Points")
 //@Implements("Microsoft.UI.Xaml.Media.IPolyBezierSegment")
 //@DefaultInterface("Microsoft.UI.Xaml.Media.IPolyBezierSegment")
 @Proxy("WinRtProxy")
@@ -11055,6 +11062,7 @@ class Microsoft_UI_Xaml_Media_PolyBezierSegment : WinRtInterface
 Microsoft.UI.Xaml.Media.PolyBezierSegment = Microsoft_UI_Xaml_Media_PolyBezierSegment;
 
 //@RuntimeClass("Microsoft.UI.Xaml.Media.PolyLineSegment")
+@ContentProperty("Points")
 //@Implements("Microsoft.UI.Xaml.Media.IPolyLineSegment")
 //@DefaultInterface("Microsoft.UI.Xaml.Media.IPolyLineSegment")
 @Proxy("WinRtProxy")
@@ -11114,6 +11122,7 @@ class Microsoft_UI_Xaml_Media_PolyLineSegment : WinRtInterface
 Microsoft.UI.Xaml.Media.PolyLineSegment = Microsoft_UI_Xaml_Media_PolyLineSegment;
 
 //@RuntimeClass("Microsoft.UI.Xaml.Media.PolyQuadraticBezierSegment")
+@ContentProperty("Points")
 //@Implements("Microsoft.UI.Xaml.Media.IPolyQuadraticBezierSegment")
 //@DefaultInterface("Microsoft.UI.Xaml.Media.IPolyQuadraticBezierSegment")
 @Proxy("WinRtProxy")
@@ -11267,6 +11276,7 @@ class Microsoft_UI_Xaml_Media_QuadraticBezierSegment : WinRtInterface
 Microsoft.UI.Xaml.Media.QuadraticBezierSegment = Microsoft_UI_Xaml_Media_QuadraticBezierSegment;
 
 //@RuntimeClass("Microsoft.UI.Xaml.Media.RadialGradientBrush")
+@ContentProperty("GradientStops")
 //@Implements("Microsoft.UI.Xaml.Media.IRadialGradientBrush")
 //@DefaultInterface("Microsoft.UI.Xaml.Media.IRadialGradientBrush")
 @Proxy("WinRtProxy")
@@ -12149,6 +12159,7 @@ class Microsoft_UI_Xaml_Media_SkewTransform : WinRtInterface
 Microsoft.UI.Xaml.Media.SkewTransform = Microsoft_UI_Xaml_Media_SkewTransform;
 
 //@RuntimeClass("Microsoft.UI.Xaml.Media.SolidColorBrush")
+@ContentProperty("Color")
 //@Implements("Microsoft.UI.Xaml.Media.ISolidColorBrush")
 //@DefaultInterface("Microsoft.UI.Xaml.Media.ISolidColorBrush")
 @Proxy("WinRtProxy")
@@ -12379,6 +12390,7 @@ class Microsoft_UI_Xaml_Media_TransformCollection : WinRtInterface
 Microsoft.UI.Xaml.Media.TransformCollection = Microsoft_UI_Xaml_Media_TransformCollection;
 
 //@RuntimeClass("Microsoft.UI.Xaml.Media.TransformGroup")
+@ContentProperty("Children")
 //@Implements("Microsoft.UI.Xaml.Media.ITransformGroup")
 //@DefaultInterface("Microsoft.UI.Xaml.Media.ITransformGroup")
 @Proxy("WinRtProxy")

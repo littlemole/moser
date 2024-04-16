@@ -1,0 +1,979 @@
+
+
+extern from "Microsoft.Internal.FrameworkUdk.dll" {
+    int Windowing_GetWindowIdFromWindow( ptr, ptr );
+}
+
+extern from "Microsoft.UI.Windowing.Core.dll" {
+    int ContentPreTranslateMessage( ptr );
+}
+
+extern from "Ntdll.dll" {
+  int RtlGetVersion( ptr );
+}
+
+fun WinVersion()
+{
+    var osver = Win32.OSVERSIONINFOEXW();
+    osver.dwOSVersionInfoSize = Win32.OSVERSIONINFOEXW.size;
+    RtlGetVersion(osver);
+
+    if( osver.dwMajorVersion >= 10 && osver.dwBuildNumber >= 22000 ) return 11;
+    return 10;
+}
+
+var windowsVersion = WinVersion();
+
+fun getXamlClassByName(name)
+{
+    var a = name.split(".");
+    var c = runtime.global(a[0]);
+    if (c == nil) return nil;
+    for (var i = 1; i < a.length; i++)
+    {
+        var it = a[i];
+        if (c{ it } == nil) return nil;
+        c = c{ it };
+    }
+    return c;
+}   
+
+fun getTypeNameFromComPtr(ptr)
+{
+    if( !ptr || !int(ptr) ) return;
+
+    var typeName = ptr.invoke( 4, "String", [], [] );
+    return typeName;
+}   
+
+fun getXamlClassFromComPtr(ptr)
+{
+    var typeName = getTypeNameFromComPtr(ptr);
+    if(!typeName) return;
+
+    return getXamlClassByName(typeName);
+}   
+
+fun bindXaml( element, source )
+{
+    var args = arguments();
+    var path = nil;
+    var mode = Microsoft.UI.Xaml.Data.BindingMode.OneWay;
+    var property = Microsoft.UI.Xaml.Controls.ContentControl.get_ContentProperty();
+
+    if(args.length > 2)
+    {
+        path = args[2];
+    }
+    if(args.length > 3)
+    {
+        mode = args[3];
+    }
+    if(args.length > 4)
+    {
+        property = args[4];
+    }
+
+    var b = winrt.activate("Microsoft.UI.Xaml.Data.Binding");
+    var binding = Microsoft.UI.Xaml.Data.Binding(b);
+    binding.put_Mode( mode ); 
+    binding.put_Source(source);
+
+    if(path != nil)
+    {
+        var bindpath = Microsoft.UI.Xaml.PropertyPath.CreateInstance(path);
+        binding.put_Path(bindpath);
+    }
+
+    var fe = Microsoft.UI.Xaml.FrameworkElement(element);
+    fe.SetBinding( property, binding);
+}
+
+fun box(value)
+{
+    if(typeof(value) == "<Proxy>") value = value{"target"};
+    if(value{"comPtr"})
+    {
+        return Windows.Foundation.PropertyValue.CreateInspectable(value);
+    }
+    switch( typeof(value) )
+    {
+        case "nil" : 
+        {
+            return Windows.Foundation.PropertyValue.CreateEmpty();
+        }
+        case "str" : 
+        {
+            return Windows.Foundation.PropertyValue.CreateString(value);
+        }
+        case "boolean" : 
+        {
+            return Windows.Foundation.PropertyValue.CreateBoolean(value);
+        }
+        case "int" : 
+        {
+            return Windows.Foundation.PropertyValue.CreateInt64(value);
+        }
+        case "double" : 
+        {
+            return Windows.Foundation.PropertyValue.CreateDouble(value);
+        }
+        case "comptr" : 
+        {
+            return Windows.Foundation.PropertyValue.CreateInspectable(value);
+        }
+        
+    }
+    return nil;
+}
+
+fun unbox(p)
+{
+    var prop = Windows.Foundation.IPropertyValue(p);
+
+    if( int(prop.comPtr) == 0) return p;
+
+    var type = prop.get_Type();
+    switch(type)
+    {
+        case 0 : return nil;                // Windows.Foundation.PropertyType.Empty
+        case 1 : return prop.GetUInt8();    // Windows.Foundation.PropertyType.UInt8
+        case 2 : return prop.GetInt16();    // Windows.Foundation.PropertyType.Int16
+        case 3 : return prop.GetUInt16();   // Windows.Foundation.PropertyType.UInt16
+        case 4 : return prop.GetInt32();    // Windows.Foundation.PropertyType.Int32
+        case 5 : return prop.GetUInt32();   // Windows.Foundation.PropertyType.UInt32
+        case 6 : return prop.GetInt64();    // Windows.Foundation.PropertyType.Int64
+        case 7 : return prop.GetUInt64();   // Windows.Foundation.PropertyType.UInt64
+        case 8 : return prop.GetSingle();   // Windows.Foundation.PropertyType.Single
+        case 9 : return prop.GetDouble();   // Windows.Foundation.PropertyType.Double
+        case 10 : return prop.GetChar16();  // Windows.Foundation.PropertyType.Char16
+        case 11 : return prop.GetBoolean(); // Windows.Foundation.PropertyType.Boolean
+        case 12 : return prop.GetString();  // Windows.Foundation.PropertyType.String
+    }
+    return prop.GetInspectable();
+}
+
+class DataContextProxy
+{
+    getter(target,name)
+    {
+        var r = target.fetch(name);
+        return r;
+    }
+
+    setter(target,name,value)
+    {
+        target.put(name,value);
+    }
+
+    invoke(target, name)
+    {
+        var args = arguments();
+        return runtime.invoke(target,name,args[2:]);
+    }
+}
+
+@Proxy("DataContextProxy")
+class DataContext
+{
+    DataContext()
+    {
+        var args = arguments();
+
+        if(args.length > 0)
+        {
+            if(typeof(args[0]) == "comptr")
+            {
+                var typName = getTypeNameFromComPtr(args[0]);
+                if(typName == "Windows.Foundation.Collections.PropertySet")
+                {
+                    this.set = Windows.Foundation.Collections.PropertySet(args[0]);
+                    this.comPtr = this.set.comPtr;
+                    return;
+                }
+            }
+        }
+
+        this.set = Windows.Foundation.Collections.PropertySet.Create();       
+        this.comPtr = this.set.comPtr;
+        if(args.length > 0)
+        {
+            var map = args[0];
+            if(typeof(map) == "map")
+            {
+                map.forEach( fun(k,v) { this.put(k,v);  } );
+            }
+        }
+    }
+
+    put(key,value)
+    {
+        if(typeof(value) == "map")
+        {
+            value = DataContext(value);
+        }
+        if(typeof(value) == "array")
+        {
+            value = Vector(value);
+        }        
+        var p = box(value);
+        this.set.Insert( key, p );
+    }
+
+    fetch(key)
+    {
+        var b = this.set.HasKey(key);
+        if( b == false ) return nil;
+        var value = this.set.Lookup(key);
+        var result = unbox(value);
+
+        if(typeof(result) == "comptr")
+        {
+            var typName = getTypeNameFromComPtr(result);
+            if(typName == "moxaml.Vector")
+            {
+                result = Vector(result);
+            }
+            else if(typName == "Windows.Foundation.Collections.PropertySet")
+            {
+                result = DataContext(result);
+            }
+            else if( typName != nil)
+            {
+                var clazz = getXamlClassByName(typName);
+                if(clazz != nil)
+                {
+                    result = clazz(result);
+                }
+            }
+        }
+        return result;
+    }
+
+    exists(key)
+    {
+        var b = this.set.HasKey(key);
+        return b;
+    }
+
+    remove(key)
+    {
+        this.set.Remove(key);
+    }
+
+    update(key, value)
+    {
+        this.remove(key);
+        this.put(key,value);
+    }
+
+    attach(root)
+    {
+        root.put_DataContext(this.set);
+    }
+
+    onChange( cb )
+    {
+        this.set.add_MapChanged( cb );
+    }
+}
+
+class Vector 
+{
+    Vector()
+    {
+        var args = arguments();
+
+        if(args.length > 0)
+        {
+            if( typeof(args[0]) == "comptr")
+            {
+                var typName = getTypeNameFromComPtr(args[0]);
+
+                if( typName == "moxaml.Vector")
+                {
+                    this.vec = Windows.Foundation.Collections.IVector_1_Object_(args[0]);
+                    this.comPtr = this.vec.comPtr;
+                    return;
+                }
+            }
+        }
+
+        this.vec =  moxaml.Vector.Create() ;
+        this.comPtr = this.vec.comPtr;
+
+        if(args.length > 0)
+        {
+            var arg1 = args[0];
+            if( typeof(arg1) == "array")
+            {
+                arg1.forEach( fun(it) { this.add(it); });
+            }
+        }
+    }
+
+    add(value)
+    {
+        if(typeof(value) == "map")
+        {
+            value = DataContext(value);
+        }
+        if(typeof(value) == "array")
+        {
+            value = Vector(value);
+        }            
+        this.vec.Append( box(value) );
+    }
+
+    at(index)
+    {
+        if(index >= this.length ) return nil;
+        var value = unbox( this.vec.GetAt(index) );
+        if(typeof(value) == "comptr")
+        {
+            var typName = getTypeNameFromComPtr(value);
+            if(typName == "moxaml.Vector")
+            {
+                value = Vector(value);
+            }         
+            else if(typName == "Windows.Foundation.Collections.PropertySet")
+            {
+                value = DataContext(value);
+            }            
+            else if ( typName != nil)
+            {
+                var clazz = getXamlClassByName(typName);
+                if(clazz != nil)
+                {
+                    value = clazz(value);
+                }
+            }
+        }
+        return value;
+    }
+
+    get length() 
+    {
+        return this.vec.get_Size();
+    }
+
+    remove(index) 
+    {
+        if(index >= this.length ) return nil;
+        this.vec.RemoveAt(index);
+    }
+
+    update(index,value) 
+    {
+        if(index >= this.length ) return nil;
+        if(typeof(value) == "map")
+        {
+            value = DataContext(value);
+        }
+        if(typeof(value) == "array")
+        {
+            value = Vector(value);
+        }            
+        this.vec.SetAt(index,box(value));
+    }
+
+    clear()
+    {
+        this.vec.Clear();
+    }
+
+    onChange( cb )
+    {
+        var ov = Windows.Foundation.Collections.IObservableVector_1_Object_(this.vec.comPtr);
+        ov.add_VectorChanged( cb );
+    }
+}
+
+
+class Xaml
+{
+    static ensureInitialized()
+    {
+        if(!Xaml.isInitialized)
+        {
+	    Xaml.dispatcher = Microsoft.UI.Dispatching.DispatcherQueueController.CreateOnCurrentThread();
+	    winrt.xaml.init();
+	    Xaml.isInitialized = true;
+        }
+    }
+
+    static shutdown()
+    {
+	if(Xaml.dispatcher)
+	{
+	    Xaml.dispatcher.ShutdownQueue();
+	    Xaml.dispatcher = nil;
+	}
+    }
+
+    static window( parentWnd, xaml)
+    {
+        Xaml.ensureInitialized();
+
+	var source = Xaml.source(parentWnd);
+
+	var xamlroot = Microsoft.UI.Xaml.UIElement( Xaml.load(xaml) );
+	source.Content = xamlroot;
+
+	return source;
+    }
+
+    static source( parentWnd )
+    {
+        Xaml.ensureInitialized();
+
+        var id = 0;
+        Windowing_GetWindowIdFromWindow( parentWnd.hwnd, &id );
+	var source = Microsoft.UI.Xaml.Hosting.DesktopWindowXamlSource.Create();
+	source.Initialize(id);
+
+	return source;
+    }
+
+    static hwnd(xamlSource)
+    {
+        // IDesktopWindowXamlSourceNative
+        var native = xamlSource.queryInterface("{3cbcf1bf-2f76-4e9c-96ab-e84b37972554}");
+        if(!native) return;
+        var hwnd = native.invoke( 4, "ptr", [], [] );
+        native.release();
+        return hwnd;
+    }
+
+    static root(xamlSource)
+    {
+        return Microsoft.UI.Xaml.FrameworkElement( xamlSource.get_Content() );
+    }
+
+    static load( xaml )
+    {
+        var args = arguments();
+
+        Xaml.ensureInitialized();
+
+        var result = Microsoft.UI.Xaml.UIElement( Microsoft.UI.Xaml.Markup.XamlReader.Load( xaml ) );
+
+        return result;
+    }
+
+
+    static contentProperty(el)
+    {
+        var clazz = el.target;
+	if(!clazz) clazz = el;
+
+	var m = $clazz;
+
+        var p = m{"ContentProperty"};
+        if(p) 
+        {
+            return p;
+        }
+
+        var base = m{"Extends"};
+        if(base)
+        {
+            return Xaml.contentProperty(getXamlClassByName(base));
+        }
+ 
+        return nil;    
+    }
+
+
+    static enumerateChildren(element, cb)
+    {
+
+        if(!element || !element.comPtr || !int(element.comPtr) ) return nil;
+
+	var clazz = getXamlClassFromComPtr(element.comPtr);
+	var el = clazz(element);
+
+        var r = cb(el);
+        if(r) return r;
+
+	if(el.Flyout)
+	{    
+            var c = el.Flyout;
+	    if (c && c.comPtr && int(c.comPtr) )
+	    {
+	        var r = cb(c);
+	    	if(r) return r;
+            	r = Xaml.enumerateChildren(c,cb);
+            	if(r) return r;
+	    }
+	}
+
+
+	var prop = Xaml.contentProperty(el);
+	if(!prop)
+	{
+	   return nil;
+	}
+
+	if(prop == "Inlines") return nil;
+
+        var p = el{prop};
+	if(!p) return nil;
+	if(typeof(p) == "str") return nil;
+
+	if(typeof(p) == "comptr" )
+	{
+	    p = getXamlClassFromComPtr(p);
+	}
+	if(!p) return nil;
+
+        if(p.get_Size && p.GetAt)
+        {
+            var size = p.get_Size();
+            for( var i = 0; i < size; i++)
+	    {
+		var child = p.GetAt(i);
+		r = Xaml.enumerateChildren(child,cb);
+	        if(r) return r;
+ 	    }
+        }
+	else 
+	{
+	    r = Xaml.enumerateChildren(p,cb);
+	    if(r) return r;
+
+	    if(p.get_Pane)
+	    {
+		var c = p.Pane;
+		r = Xaml.enumerateChildren(c,cb);
+	        if(r) return r;
+	    }
+	}
+    }
+
+
+    static find(root,name) {
+
+	var fe = Microsoft.UI.Xaml.FrameworkElement(root);
+	if(!fe || !fe.comPtr || !int(fe.comPtr) ) return nil;
+
+	var r = fe.FindName(name);
+	if(!r || !int(r)) return nil;
+	var clazz = getXamlClassFromComPtr(r);
+	if(!clazz) return nil;
+	return clazz(r);
+    }
+
+
+    static bindEvents( element, targetWnd )
+    {
+        var args = arguments();
+        var dataContext = nil;
+        if(args.length > 2)
+        {
+            dataContext = args[2];
+        }
+
+        var root = Microsoft.UI.Xaml.FrameworkElement( element );
+        var methods = targetWnd.methods();
+        methods.forEach( fun(k,m) 
+        {
+            if($m)
+            {
+                if($m.exists("Xaml"))
+                {
+                    var src = $m.Xaml.Element;
+                    var ev  = $m.Xaml.Event || "Click";
+
+		    var el = Xaml.find(element,src);
+                    if(el == nil || int(el) == 0) return nil;
+
+                    var elementType = getXamlClassFromComPtr(el.comPtr);
+                    if(elementType == nil) return nil;
+
+                    var element = elementType(el);
+                    if(element == nil || element.comPtr == nil || int(element.comPtr) == 0) return nil;
+
+                    if(element)
+                    {
+                        var n ="add_" + ev;
+                        runtime.invoke(element,n,[m]);
+                    }
+                }
+            }
+        });    
+
+        Xaml.enumerateChildren(element, fun(el) 
+        { 
+            if( runtime.global("moxaml") == nil ) return;
+
+	    if(!int(el.comPtr)) return;
+
+            var elementType = getXamlClassFromComPtr(el.comPtr);
+            var element = elementType(el);
+            var name = element.get_Name();
+            if(!name) return;
+
+            var e = moxaml.mox.GetEvent(element);
+            if(!e || e == "") return;
+
+            var handler = name + "_" + e;
+
+            if(methods.exists(handler))
+            {
+                var n ="add_" + e;
+                var m = methods{handler};
+                runtime.invoke(element,n,[m]);
+            }
+        });
+
+        if(targetWnd{"dataContext"} )
+        {
+             Microsoft.UI.Xaml.FrameworkElement(element).DataContext = targetWnd.dataContext;
+        }
+    }
+
+    static expand( hwnd )
+    {
+        var args = arguments();
+
+        if(windowsVersion < 11) return;
+
+        if(!Windowing_GetWindowIdFromWindow) return;
+        if(!Microsoft.UI.Windowing.AppWindowTitleBar.IsCustomizationSupported()) return;
+    
+        var clientRect = Win32.RECT();
+        Win32.GetClientRect( hwnd, clientRect );
+
+        var x = 0;
+        if(args.length > 1) x = args[1];
+        var y = 0;
+        if(args.length > 2) y = args[2];
+        var w = clientRect.right - x - 80;
+        if(args.length > 3) w = args[3];
+        var h = 64;
+        if(args.length > 4) h = args[4];
+
+        var rect = Windows.Graphics.RectInt32();
+        rect.X = x;
+        rect.Y = y;
+        rect.Width = w;
+        rect.Height = h;
+
+        var id = 0;
+        Windowing_GetWindowIdFromWindow( hwnd, &id );
+
+        var wnd = Microsoft.UI.Windowing.AppWindow.GetFromWindowId(id);
+ 
+        var titleBar = wnd.TitleBar;
+
+        titleBar.ExtendsContentIntoTitleBar = true;
+
+
+        var nRects = 1;
+        titleBar.comPtr.invoke( 38, "void", [ "Uint32", "Windows.Graphics.RectInt32"], [nRects, rect] );
+    }
+
+    static initWnd(picker, hwnd)
+    {
+        if(!picker.comPtr || !int(picker.comPtr)) return;
+
+        // IInitializeWithWindow native
+        var initializeWithWindows = picker.comPtr.queryInterface("{3E68D4BD-7135-4D10-8018-9FB6D9F33FA1}");
+        if(!initializeWithWindows || !int(initializeWithWindows) ) return;
+
+        initializeWithWindows.invoke( 3, "void", ["HWND"], [hwnd] );
+        initializeWithWindows.release();
+    }
+
+    static run()
+    {
+	var msg = Win32.MSG();
+	while (Win32.GetMessageW(msg, 0, 0, 0))
+	{
+	    if(ContentPreTranslateMessage(msg)) continue;
+	    Win32.TranslateMessage(msg);
+	    Win32.DispatchMessageW(msg);
+	}
+
+	Xaml.shutdown();	
+    }
+}
+
+class XamlWindow
+{
+    XamlWindow( parentWnd )
+    {
+        var args = arguments();    
+
+        this.parentWnd = parentWnd;
+
+        if(args.length > 1)
+        {
+            this.load(args[1]);
+        }
+    }    
+
+    root()
+    {
+	return Microsoft.UI.Xaml.UIElement( Xaml.root( this.xamlSource ) );	
+    }
+
+    load(xml)
+    {
+        if(!this.xamlSource)
+        {
+            this.xamlSource = Xaml.window( this.parentWnd, xml );
+            this.hwnd = Xaml.hwnd(this.xamlSource);
+
+	    Xaml.bindEvents( this.root(), this.parentWnd );
+
+            return this.xamlSource;
+        }
+        else
+        {
+            var xaml = Xaml.load(xml);
+            this.xamlSource.put_Content(xaml);
+
+	    Xaml.bindEvents( this.root(), this.parentWnd );
+
+            return this.xamlSource;
+        }       
+    }
+
+    find(name)
+    {
+        var root = Xaml.root(this.xamlSource);
+        return Xaml.find( root, name );
+    }
+
+    size( left, top, width, height)
+    {
+        var r = Windows.Graphics.RectInt32();
+	r.X = left;
+	r.Y = top;
+	r.Width = width;
+	r.Height = height;
+
+	if( this.xamlSource)
+	{
+	    var bridge = this.xamlSource.get_SiteBridge();
+	    bridge.MoveAndResize(r);
+	}
+    }
+
+    FileOpenPicker()
+    {
+        var args = arguments();
+        var opts = {
+          "ViewMode" : Windows.Storage.Pickers.PickerViewMode.List,
+          "FileTypeFilter" : [ "*" ],
+          "SuggestedStartLocation" : nil
+        };
+        if(args.length > 0)
+        {
+            var o = args[0];
+            if(typeof(o) == "map")
+            {
+                o.forEach( fun(k,v) { opts{k} = v;} );
+            }
+        }
+
+        this.picker = Windows.Storage.Pickers.FileOpenPicker.Create();
+        Xaml.initWnd( this.picker,  this.parentWnd.hwnd );
+
+        this.picker.ViewMode = opts.ViewMode; 
+        if( opts.SuggestedStartLocation != nil )
+        {
+            this.picker.SuggestedStartLocation = opts.SuggestedStartLocation;
+        }
+        opts.FileTypeFilter.forEach( fun(val) { this.picker.FileTypeFilter.Append(val); });
+
+        return this.picker.PickSingleFileAsync( "pickrid");
+    }
+
+    FileSavePicker()
+    {
+        var args = arguments();
+
+        var opts = {
+          "ViewMode" : Windows.Storage.Pickers.PickerViewMode.List,
+          "SuggestedStartLocation" : Windows.Storage.Pickers.PickerLocationId.DocumentsLibrary
+          //"FileName" : "new document"
+          //"SuggestedFileName" : "test.txt"
+          //"FileTypeChoices" : { "all" : ["*"] },
+        };
+
+        if(args.length > 0)
+        {
+            var o = args[0];
+            if(typeof(o) == "map")
+            {
+                o.forEach( fun(k,v) { opts{k} = v; } );
+            }
+        }
+
+        this.picker = Windows.Storage.Pickers.FileSavePicker.Create();
+        Xaml.initWnd( this.picker,  this.parentWnd.hwnd );
+
+        opts.FileTypeChoices.forEach( fun(k,v) 
+        { 
+            this.vec = moxaml.StringVector.Create();
+            v.forEach( fun(it) { this.vec.Append(it); });            
+            this.picker.FileTypeChoices.Insert(k,this.vec); 
+        });
+
+        if( opts.FileName )
+        {
+            var dir = io.dirname(opts.FileName);
+            var file = io.basename(opts.FileName);
+            var ext = io.ext(opts.FileName);
+
+            if(!opts.FileTypeChoices )
+            {
+                opts.FileTypeChoices = { file : [ ext ] };
+            }
+        }
+        else
+        {
+            if(opts.SuggestedFileName)
+            {
+                this.picker.SuggestedFileName = opts.SuggestedFileName;
+                var file = io.basename(opts.SuggestedFileName);
+                var ext = io.ext(opts.SuggestedFileName);
+                if(!opts.FileTypeChoices )
+                {
+                    opts.FileTypeChoices = { file : [ ext ] };
+                }
+            }
+            else
+            {
+                this.picker.SuggestedFileName = "new document";
+                if(!opts.FileTypeChoices )
+                {
+                    opts.FileTypeChoices = { "file" : [ ".txt" ] };
+                }
+            }
+        }
+
+        this.picker.SuggestedStartLocation = opts.SuggestedStartLocation;
+
+        if( opts.FileName )
+        {
+            var promise = Future();
+            Windows.Storage.StorageFile.GetFileFromPathAsync(opts.FileName)
+            .then( fun(file)
+            {
+                if( file.valid() )
+                {
+                    this.picker.SuggestedSaveFile = file;
+                    this.picker.PickSaveFileAsync()
+                    .then( fun(file) 
+                    {
+                        promise.resolve(file);
+                    })
+                    .otherwise( fun(status)
+                    {
+                        promise.reject(status);
+                    });
+                }
+                else
+                {
+                   promise.reject(-1,nil);
+                }
+            })
+            .otherwise( fun(status)
+            {
+                promise.reject(status);
+            });
+            return promise;
+        }
+        else
+        {
+            return this.picker.PickSaveFileAsync();
+        }
+    }
+
+    FolderPicker()
+    {
+        var args = arguments();
+        var opts = {
+          "ViewMode" : Windows.Storage.Pickers.PickerViewMode.List,
+          "FileTypeFilter" : [ "*" ],
+          "SuggestedStartLocation" : Windows.Storage.Pickers.PickerLocationId.Desktop
+        };
+        if(args.length > 0)
+        {
+            var o = args[0];
+            if(typeof(o) == "map")
+            {
+                o.forEach( fun(k,v) { opts{k} = v; } );
+            }
+        }
+
+        this.picker = Windows.Storage.Pickers.FolderPicker.Create();
+        Xaml.initWnd( this.picker,  this.parentWnd.hwnd );
+        
+        this.picker.ViewMode = opts.ViewMode; 
+        if( opts.SuggestedStartLocation != nil )
+        {
+            this.picker.SuggestedStartLocation = opts.SuggestedStartLocation;
+        }
+
+        opts.FileTypeFilter.forEach( fun(val) { this.picker.FileTypeFilter.Append(val); });
+
+        return this.picker.PickSingleFolderAsync();
+    }
+
+    ContentDialog(opts)
+    {
+        var args = arguments();
+        var options = {
+            "Title" : "Dialog",
+            "CloseButtonText" : "Cancel",
+            "PrimaryButtonText" : "OK",
+            "Content" : nil,
+            "Xaml" : nil
+        };
+
+        opts.forEach( fun(k,v) { options{k} = v; } );
+
+        var dlg = winrt.activate("Microsoft.UI.Xaml.Controls.ContentDialog");
+
+        var xamlContentDlg = Microsoft.UI.Xaml.Controls.ContentDialog( dlg );
+        Xaml.initWnd( dlg,  this.parentWnd.hwnd );
+
+        var root = Xaml.root( this.xamlSource).XamlRoot;
+        xamlContentDlg.XamlRoot = root;
+        
+        xamlContentDlg.Title = box(options.Title);
+        xamlContentDlg.CloseButtonText = options.CloseButtonText;
+        xamlContentDlg.PrimaryButtonText = options.PrimaryButtonText;
+        if( options{"Content"} != nil)
+        {
+            xamlContentDlg.Content = box(options.Content);
+        }
+        else if( options{"Xaml"} != nil)
+        {
+            var content = Xaml.load(options.Xaml,this.parentWnd);
+            xamlContentDlg.Content = content;
+        }
+        
+        var iface = Microsoft.UI.Xaml.Controls.IContentDialog(xamlContentDlg);
+        var promise = Future();
+        var cb = fun(status,result)
+        {
+            if(status == Windows.Foundation.AsyncStatus.Completed )
+            {
+                promise.resolve(result);
+            }
+            else
+            {
+                promise.reject(status);
+            }            
+        };
+        iface.ShowAsync( cb );
+        return promise;
+    }
+}
+

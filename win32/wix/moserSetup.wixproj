@@ -1,0 +1,30 @@
+﻿<Project Sdk="WixToolset.Sdk/5.0.0">
+
+  <PropertyGroup>
+    <EnableProjectHarvesting>true</EnableProjectHarvesting>
+    <HarvestProjectsSuppressUniqueIds>true</HarvestProjectsSuppressUniqueIds>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Cultures>en-US</Cultures>
+    <VerboseOutput>true</VerboseOutput>
+    <SuppressCom>true</SuppressCom>
+    <SuppressIces>ICE03;</SuppressIces>
+    <SuppressValidation>true</SuppressValidation>
+  </PropertyGroup>
+  <ItemGroup>
+    <HarvestDirectory Include="./moser/">
+      <ComponentGroupName>HarvestedComponents</ComponentGroupName>
+      <DirectoryRefId>INSTALLFOLDER</DirectoryRefId>
+      <SuppressRootDirectory>true</SuppressRootDirectory>
+    </HarvestDirectory>
+    <BindPath Include="./moser/" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="WixToolset.Heat" Version="5.0.0" />
+    <PackageReference Include="WixToolset.UI.wixext" Version="5.0.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="res\" />
+  </ItemGroup>
+</Project>

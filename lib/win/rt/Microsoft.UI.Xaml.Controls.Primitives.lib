@@ -22059,6 +22059,7 @@ class Microsoft_UI_Xaml_Controls_Primitives_PivotPanel : WinRtInterface
 Microsoft.UI.Xaml.Controls.Primitives.PivotPanel = Microsoft_UI_Xaml_Controls_Primitives_PivotPanel;
 
 //@RuntimeClass("Microsoft.UI.Xaml.Controls.Primitives.Popup")
+@ContentProperty("Child")
 //@Implements("Microsoft.UI.Xaml.Controls.Primitives.IPopup","Microsoft.UI.Xaml.Controls.Primitives.IPopup2","Microsoft.UI.Xaml.Controls.Primitives.IPopup3")
 //@DefaultInterface("Microsoft.UI.Xaml.Controls.Primitives.IPopup")
 @Proxy("WinRtProxy")
@@ -23389,6 +23390,7 @@ class Microsoft_UI_Xaml_Controls_Primitives_ScrollEventArgs : WinRtInterface
 Microsoft.UI.Xaml.Controls.Primitives.ScrollEventArgs = Microsoft_UI_Xaml_Controls_Primitives_ScrollEventArgs;
 
 //@RuntimeClass("Microsoft.UI.Xaml.Controls.Primitives.ScrollPresenter")
+@ContentProperty("Content")
 //@Implements("Microsoft.UI.Xaml.Controls.Primitives.IScrollPresenter","Microsoft.UI.Xaml.Controls.IScrollAnchorProvider")
 //@DefaultInterface("Microsoft.UI.Xaml.Controls.Primitives.IScrollPresenter")
 @Proxy("WinRtProxy")

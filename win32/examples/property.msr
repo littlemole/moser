@@ -1,0 +1,76 @@
+import("promise");
+
+import("rt/Windows.Foundation");
+import("rt/Windows.Foundation.Collections");
+
+import("rt/Microsoft.UI");
+import("rt/Microsoft.UI.Content");
+import("rt/Microsoft.UI.Dispatching");
+import("rt/Microsoft.UI.Windowing");
+import("rt/Microsoft.UI.Xaml");
+import("rt/Microsoft.UI.Xaml.Hosting");
+import("rt/Microsoft.UI.Xaml.Markup");
+import("rt/Microsoft.UI.Xaml.Interop");
+import("rt/Microsoft.UI.Xaml.Data");
+import("rt/Microsoft.UI.Xaml.Input");
+import("rt/Microsoft.UI.Xaml.Controls");
+import("rt/Microsoft.UI.Xaml.Controls.Primitives");
+
+var testClasses = [
+ Microsoft.UI.Xaml.Controls.Panel,
+ Microsoft.UI.Xaml.Controls.Grid,
+ Microsoft.UI.Xaml.Controls.SplitView,
+ Microsoft.UI.Xaml.Controls.MenuBar,
+ Microsoft.UI.Xaml.Controls.MenuBarItem,
+ Microsoft.UI.Xaml.Controls.MenuBarItemFlyout,
+
+
+];
+
+    fun getClass(name)
+    {
+        var a = name.split(".");
+        var c = runtime.global(a[0]);
+        if (c == nil) return nil;
+        for (var i = 1; i < a.length; i++)
+        {
+            var it = a[i];
+            if (c{ it } == nil) return nil;
+            c = c{ it };
+        }
+        return c;
+    }
+
+fun contentProperty(clazz)
+{
+    var m = $clazz;
+//    print m;
+
+    var p = m{"ContentProperty"};
+    if(p) 
+    {
+        return p;
+    }
+
+    var base = m{"Extends"};
+    if(base)
+    {
+        return contentProperty(getClass(base));
+    }
+ 
+    return nil;    
+}
+
+fun isVector(i)
+{
+print i.get_Size;
+print i.GetAt;
+    if(i.get_Size && i.GetAt )
+    	return "vector";
+    return "single";
+}
+
+for( var i of testClasses)
+{
+    print i + " : " + contentProperty(i) + " - " + isVector(i);
+}

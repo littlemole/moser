@@ -1467,9 +1467,25 @@ inline void write_class(TypeDef& typeDef)
     if (typesSeen.count(fullname)) return;
     typesSeen.insert(fullname);
 
+    std::cout << "//@RuntimeClass(\"" << fullname << "\")" << std::endl;
+
+    auto attr = get_attrs(typeDef);
+
 //    print_attrs(typeDef);
 
-    std::cout << "//@RuntimeClass(\"" << fullname << "\")" << std::endl;
+    if (attr.count("ContentPropertyAttribute"))
+    {
+        auto v = attr["ContentPropertyAttribute"];
+        for (auto& i : v)
+        {
+            for (auto& ii : i)
+            {
+                std::cout << "@ContentProperty(\"" << ii << "\")" << std::endl;
+
+            }
+        }
+    }
+
     std::cout << "//@Implements(\"";
     std::vector<std::string> ifaces;
     std::string defIface;

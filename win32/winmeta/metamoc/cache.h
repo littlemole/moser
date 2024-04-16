@@ -254,6 +254,11 @@ inline void visit_fixArgSig(FixedArgSig fixedArgSig, std::vector<std::string>& r
     }
 }
 
+inline void visit_namedArgSig(NamedArgSig namedArgSig, std::vector<std::string>& result)
+{
+    visit_fixArgSig(namedArgSig.value, result);
+}
+
 template<class T>
 std::map<std::string, std::vector<std::vector<std::string>>> get_attrs(T& typeDef)
 {
@@ -264,15 +269,26 @@ std::map<std::string, std::vector<std::vector<std::string>>> get_attrs(T& typeDe
     {
         std::vector<std::string> v;
 
-        if (attr.TypeNamespaceAndName().second == "OverloadAttribute")
+        if (attr.TypeNamespaceAndName().second == "ContentPropertyAttribute")
         {
             int x = 0;
         }
 
         auto n = std::string(attr.TypeNamespaceAndName().second);
         auto value = attr.Value();
+
+        std::vector<NamedArgSig> namedArgs = value.NamedArgs();
         std::vector<FixedArgSig> fixedArgs = value.FixedArgs();
 
+        if (!namedArgs.empty())
+        {
+            for (auto&& arg : namedArgs)
+            {
+//                std::string n = arg.name;
+                visit_namedArgSig(arg, v);
+            }
+        }
+        else
         if (!fixedArgs.empty())
         {
             for (auto&& arg : fixedArgs)

@@ -18943,6 +18943,7 @@ class Microsoft_UI_Xaml_FrameworkElement : WinRtInterface
 Microsoft.UI.Xaml.FrameworkElement = Microsoft_UI_Xaml_FrameworkElement;
 
 //@RuntimeClass("Microsoft.UI.Xaml.FrameworkTemplate")
+@ContentProperty("Template")
 //@Implements("Microsoft.UI.Xaml.IFrameworkTemplate")
 //@DefaultInterface("Microsoft.UI.Xaml.IFrameworkTemplate")
 @Proxy("WinRtProxy")
@@ -20744,6 +20745,7 @@ class Microsoft_UI_Xaml_TriggerBase : WinRtInterface
 Microsoft.UI.Xaml.TriggerBase = Microsoft_UI_Xaml_TriggerBase;
 
 //@RuntimeClass("Microsoft.UI.Xaml.EventTrigger")
+@ContentProperty("Actions")
 //@Implements("Microsoft.UI.Xaml.IEventTrigger")
 //@DefaultInterface("Microsoft.UI.Xaml.IEventTrigger")
 @Proxy("WinRtProxy")
@@ -22140,6 +22142,7 @@ class Microsoft_UI_Xaml_StateTrigger : WinRtInterface
 Microsoft.UI.Xaml.StateTrigger = Microsoft_UI_Xaml_StateTrigger;
 
 //@RuntimeClass("Microsoft.UI.Xaml.Style")
+@ContentProperty("Setters")
 //@Implements("Microsoft.UI.Xaml.IStyle")
 //@DefaultInterface("Microsoft.UI.Xaml.IStyle")
 @Proxy("WinRtProxy")
@@ -22879,6 +22882,7 @@ class Microsoft_UI_Xaml_Vector3Transition : WinRtInterface
 Microsoft.UI.Xaml.Vector3Transition = Microsoft_UI_Xaml_Vector3Transition;
 
 //@RuntimeClass("Microsoft.UI.Xaml.VisualState")
+@ContentProperty("Storyboard")
 //@Implements("Microsoft.UI.Xaml.IVisualState")
 //@DefaultInterface("Microsoft.UI.Xaml.IVisualState")
 @Proxy("WinRtProxy")
@@ -23038,6 +23042,7 @@ class Microsoft_UI_Xaml_VisualStateChangedEventArgs : WinRtInterface
 Microsoft.UI.Xaml.VisualStateChangedEventArgs = Microsoft_UI_Xaml_VisualStateChangedEventArgs;
 
 //@RuntimeClass("Microsoft.UI.Xaml.VisualStateGroup")
+@ContentProperty("States")
 //@Implements("Microsoft.UI.Xaml.IVisualStateGroup")
 //@DefaultInterface("Microsoft.UI.Xaml.IVisualStateGroup")
 @Proxy("WinRtProxy")
@@ -23278,6 +23283,7 @@ class Microsoft_UI_Xaml_VisualStateManager : WinRtInterface
 Microsoft.UI.Xaml.VisualStateManager = Microsoft_UI_Xaml_VisualStateManager;
 
 //@RuntimeClass("Microsoft.UI.Xaml.VisualTransition")
+@ContentProperty("Storyboard")
 //@Implements("Microsoft.UI.Xaml.IVisualTransition")
 //@DefaultInterface("Microsoft.UI.Xaml.IVisualTransition")
 @Proxy("WinRtProxy")
@@ -23406,6 +23412,7 @@ class Microsoft_UI_Xaml_VisualTransition : WinRtInterface
 Microsoft.UI.Xaml.VisualTransition = Microsoft_UI_Xaml_VisualTransition;
 
 //@RuntimeClass("Microsoft.UI.Xaml.Window")
+@ContentProperty("Content")
 //@Implements("Microsoft.UI.Xaml.IWindow","Microsoft.UI.Xaml.IWindow2")
 //@DefaultInterface("Microsoft.UI.Xaml.IWindow")
 @Proxy("WinRtProxy")

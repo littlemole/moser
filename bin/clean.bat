@@ -28,3 +28,10 @@ del /s /q /f win32\obj
 rmdir /s /q win32\obj
 
 del /S *.mbc
+
+del /s /q /f win32\wix\bin
+del /s /q /f win32\wix\moser
+del /s /q /f win32\wix\obj
+del /s /q /f win32\wix\moserSetup.msi
+del /s /q /f win32\wix\moserPerUserSetup.msi
+

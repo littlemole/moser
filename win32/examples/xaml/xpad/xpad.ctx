@@ -3,7 +3,7 @@ class Controller
     /* @Xaml(Element=theButt,Event=Click) */
     theButt_Click()
     {
-        this.xamlWnd.contentDialog(
+        this.xamlWnd.ContentDialog(
           {
              "Title"   : "XamlPad Dialog",
              "Content" : "A Message in a Content!"

@@ -1,6 +1,6 @@
 cd win32
 cd wix
-msbuild package.xml 
-msbuild package.xml /T:perUser
+msbuild build.xml -t:restore
+msbuild build.xml
 cd ..
 cd ..

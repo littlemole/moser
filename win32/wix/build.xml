@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+ <!-- Configuration -->
+
+ <PropertyGroup Label="Configuration">
+
+  <!-- wix output file -->
+  <msiOutput>.\bin\x64\Release\en-us\moserSetup.msi</msiOutput>
+  <msiTarget>.\moserSetup.msi</msiTarget>
+
+ </PropertyGroup>
+
+ <!-- Build -->
+
+  <Target Name="restore" >  
+      <MSBuild Projects="moserSetup.wixproj" Targets="restore" Properties="Configuration=Release;Platform=x64">
+      </MSBuild>  
+  </Target>
+
+  <Target Name="prepare" DependsOnTargets="">  
+    <PropertyGroup>
+     <FilesSource>..\..\out\build\x64-Release\</FilesSource>
+     <FilesDestination>moser</FilesDestination>
+    </PropertyGroup>
+    <Exec Command="XCOPY &quot;$(FilesSource)&quot; &quot;$(FilesDestination)&quot; /E /I /H /R /K /Y" />
+
+    <Exec Command="rd /s /q moser\.cmake" />
+    <Exec Command="rd /s /q moser\CMakeFiles" />
+    <Exec Command="rd /s /q moser\Testing" />
+    <Exec Command="rd /s /q moser\vcpkg_installed" />
+
+  </Target>
+
+
+  <Target Name="wix" DependsOnTargets="prepare">  
+      <MSBuild Projects="moserSetup.wixproj" Targets="Build" Properties="Configuration=Release;Platform=x64">
+      </MSBuild>  
+  </Target>
+
+ <Target Name="PerUSer" DependsOnTargets="wix">
+
+	<Exec Command="XCOPY &quot;$(msiOutput)&quot; &quot;$(msiTarget)&quot; /R /K /Y /-I " />
+	<Exec Command='copy /Y $(msiTarget) moserPerUserSetup.msi' WorkingDirectory="."/>
+	<Exec Command='cscript "patchMSI.wsf" moserPerUserSetup.msi' WorkingDirectory="."/>
+
+ </Target>
+
+ <Target Name="Build" DependsOnTargets="PerUser">
+
+ </Target>
+
+
+
+
+</Project>
