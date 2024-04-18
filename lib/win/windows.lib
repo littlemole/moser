@@ -4,34 +4,53 @@ extern {
     ptr memcpy( ptr, ptr, int );
 }
 
+// somehow missing from projection ??
+extern from "User32.dll" {
+  ptr SetFocus(ptr); 
+}
+
+extern from "Ntdll.dll" {
+  int RtlGetVersion( ptr );
+}
+
+fun WindowsVersion()
+{
+    var osver = Win32.OSVERSIONINFOEXW();
+    osver.dwOSVersionInfoSize = Win32.OSVERSIONINFOEXW.size;
+    RtlGetVersion(osver);
+
+    if( osver.dwMajorVersion >= 10 && osver.dwBuildNumber >= 22000 ) return 11;
+    return 10;
+}
+
 fun MAKELONG(lo,hi)
 {
-    return (lo & 0xFFFF ) | ( (hi & 0xFFFF) << 16 );
+    return ( int(lo) & 0xFFFF ) | ( ( int(hi) & 0xFFFF) << 16 );
 }
 
 fun MAKEWORD(lo,hi)
 {
-    return (lo & 0xFF ) | ( (hi & 0xFF) << 8 );
+    return ( int(lo) & 0xFF ) | ( ( int(hi) & 0xFF) << 8 );
 }
 
 fun HIWORD(x)
 {
-    return (x >> 16) & 0xFFFF;
+    return (int(x) >> 16) & 0xFFFF;
 }
 
 fun LOWORD(x)
 {
-    return x & 0xFFFF;
+    return int(x) & 0xFFFF;
 }
 
 fun HIBYTE(x)
 {
-    return (x >> 8) & 0xFF;
+    return ( int(x) >> 8) & 0xFF;
 }
 
 fun LOBYTE(x)
 {
-    return x & 0xFF;
+    return int(x) & 0xFF;
 }
 
 
@@ -60,14 +79,14 @@ class Wnd {
         this.hwnd = Win32.CreateWindowExW(
             this.exStyle,                   // Optional window styles.
             this.windowClass,               // Window class
-            wstring(title),    		        // Window text
+            wstring(title),    		    // Window text
             this.style,                     // Window style
 
             // Size and position
             Win32.CW_USEDEFAULT,Win32.CW_USEDEFAULT,Win32.CW_USEDEFAULT,Win32.CW_USEDEFAULT,
 
             this.parent,                    // Parent window    
-            this.id,       	                // Menu
+            this.id,       	            // Menu (for topelevel wnds) or child id
             Win32.GetModuleHandleW(0),      // Instance handle
             0        	                    // Additional application data
         );
@@ -128,6 +147,12 @@ class Window : Wnd {
         wc.lpfnWndProc = this.wndProc;
         wc.hInstance = Win32.GetModuleHandleW(0);
         wc.lpszClassName = this.windowClass;
+	if(!this.hIcon)
+	{
+	    this.hIcon = Win32.LoadIconA( Win32.GetModuleHandleW(0), win32.MAKEINTRESOURCE(107) );
+	}
+	wc.hIcon = int(this.hIcon);
+
 /*
 	var brush = Win32.HBRUSH();
 	brush.Value = Win32.SYS_COLOR_INDEX.COLOR_WINDOW+1;
@@ -215,7 +240,8 @@ class Window : Wnd {
                 return r;
             return Win32.DefWindowProcW(hWnd, msg, wParam, lParam);
         }
-        /*
+
+        /* note to self: better not handle these automagically
         if( msg == Win32.WM_DESTROY ) 
         {
             Win32.PostQuitMessage(0);
@@ -231,6 +257,7 @@ class Window : Wnd {
             return 0;
         }
         */
+
         if( msg == Win32.WM_COMMAND ) 
         {
             var id = LOWORD(int(wParam));
@@ -262,14 +289,14 @@ class Window : Wnd {
             font = args[4];
         }
 
-        var edit = Control( clazz, id );
-        edit.style = style;
+        var ctrl = Control( clazz, id );
+        ctrl.style = style;
                                 
-        this.add(edit);
-        edit.create(title);
+        this.add(ctrl);
+        ctrl.create(title);
 
         this.font = Font("Consolas").create();
-        Win32.SendMessageW(edit.hwnd, Win32.WM_SETFONT,font,1);
+        Win32.SendMessageW(ctrl.hwnd, Win32.WM_SETFONT,font,1);
 
         return edit;
     }
@@ -305,7 +332,7 @@ class Module
         this.handle = Win32.LoadLibraryW(wstring(filename));
     }
 
-    ~Module()
+    ~Module() // this won't work ????
     {
         Win32.FreeLibrary(this.handle);
     }

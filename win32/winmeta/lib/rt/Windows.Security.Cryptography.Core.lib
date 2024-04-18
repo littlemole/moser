@@ -49,7 +49,8 @@ class Windows_Security_Cryptography_Core_IAsymmetricAlgorithmNamesStatics : WinR
     Windows_Security_Cryptography_Core_IAsymmetricAlgorithmNamesStatics( comPtr )
     {
         var Windows = runtime.global("Windows");
-        this.comPtr = comPtr.queryInterface( "{CAF6FCE4-67C0-46AA-84F9-752E77449F9B}");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{CAF6FCE4-67C0-46AA-84F9-752E77449F9B}");
     }
 
     //@VtableIndex(6)
@@ -57,6 +58,7 @@ class Windows_Security_Cryptography_Core_IAsymmetricAlgorithmNamesStatics : WinR
     //@Returns("String")
     get_RsaPkcs1()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 6, "String", [], [] );
         return _r;
@@ -67,6 +69,7 @@ class Windows_Security_Cryptography_Core_IAsymmetricAlgorithmNamesStatics : WinR
     //@Returns("String")
     get_RsaOaepSha1()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 7, "String", [], [] );
         return _r;
@@ -77,6 +80,7 @@ class Windows_Security_Cryptography_Core_IAsymmetricAlgorithmNamesStatics : WinR
     //@Returns("String")
     get_RsaOaepSha256()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 8, "String", [], [] );
         return _r;
@@ -87,6 +91,7 @@ class Windows_Security_Cryptography_Core_IAsymmetricAlgorithmNamesStatics : WinR
     //@Returns("String")
     get_RsaOaepSha384()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 9, "String", [], [] );
         return _r;
@@ -97,6 +102,7 @@ class Windows_Security_Cryptography_Core_IAsymmetricAlgorithmNamesStatics : WinR
     //@Returns("String")
     get_RsaOaepSha512()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 10, "String", [], [] );
         return _r;
@@ -107,6 +113,7 @@ class Windows_Security_Cryptography_Core_IAsymmetricAlgorithmNamesStatics : WinR
     //@Returns("String")
     get_EcdsaP256Sha256()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 11, "String", [], [] );
         return _r;
@@ -117,6 +124,7 @@ class Windows_Security_Cryptography_Core_IAsymmetricAlgorithmNamesStatics : WinR
     //@Returns("String")
     get_EcdsaP384Sha384()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 12, "String", [], [] );
         return _r;
@@ -127,6 +135,7 @@ class Windows_Security_Cryptography_Core_IAsymmetricAlgorithmNamesStatics : WinR
     //@Returns("String")
     get_EcdsaP521Sha512()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 13, "String", [], [] );
         return _r;
@@ -137,6 +146,7 @@ class Windows_Security_Cryptography_Core_IAsymmetricAlgorithmNamesStatics : WinR
     //@Returns("String")
     get_DsaSha1()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 14, "String", [], [] );
         return _r;
@@ -147,6 +157,7 @@ class Windows_Security_Cryptography_Core_IAsymmetricAlgorithmNamesStatics : WinR
     //@Returns("String")
     get_DsaSha256()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 15, "String", [], [] );
         return _r;
@@ -157,6 +168,7 @@ class Windows_Security_Cryptography_Core_IAsymmetricAlgorithmNamesStatics : WinR
     //@Returns("String")
     get_RsaSignPkcs1Sha1()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 16, "String", [], [] );
         return _r;
@@ -167,6 +179,7 @@ class Windows_Security_Cryptography_Core_IAsymmetricAlgorithmNamesStatics : WinR
     //@Returns("String")
     get_RsaSignPkcs1Sha256()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 17, "String", [], [] );
         return _r;
@@ -177,6 +190,7 @@ class Windows_Security_Cryptography_Core_IAsymmetricAlgorithmNamesStatics : WinR
     //@Returns("String")
     get_RsaSignPkcs1Sha384()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 18, "String", [], [] );
         return _r;
@@ -187,6 +201,7 @@ class Windows_Security_Cryptography_Core_IAsymmetricAlgorithmNamesStatics : WinR
     //@Returns("String")
     get_RsaSignPkcs1Sha512()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 19, "String", [], [] );
         return _r;
@@ -197,6 +212,7 @@ class Windows_Security_Cryptography_Core_IAsymmetricAlgorithmNamesStatics : WinR
     //@Returns("String")
     get_RsaSignPssSha1()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 20, "String", [], [] );
         return _r;
@@ -207,6 +223,7 @@ class Windows_Security_Cryptography_Core_IAsymmetricAlgorithmNamesStatics : WinR
     //@Returns("String")
     get_RsaSignPssSha256()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 21, "String", [], [] );
         return _r;
@@ -217,6 +234,7 @@ class Windows_Security_Cryptography_Core_IAsymmetricAlgorithmNamesStatics : WinR
     //@Returns("String")
     get_RsaSignPssSha384()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 22, "String", [], [] );
         return _r;
@@ -227,6 +245,7 @@ class Windows_Security_Cryptography_Core_IAsymmetricAlgorithmNamesStatics : WinR
     //@Returns("String")
     get_RsaSignPssSha512()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 23, "String", [], [] );
         return _r;
@@ -245,7 +264,8 @@ class Windows_Security_Cryptography_Core_IAsymmetricAlgorithmNamesStatics2 : Win
     Windows_Security_Cryptography_Core_IAsymmetricAlgorithmNamesStatics2( comPtr )
     {
         var Windows = runtime.global("Windows");
-        this.comPtr = comPtr.queryInterface( "{F141C0D6-4BFF-4F23-BA66-6045B137D5DF}");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{F141C0D6-4BFF-4F23-BA66-6045B137D5DF}");
     }
 
     //@VtableIndex(6)
@@ -253,6 +273,7 @@ class Windows_Security_Cryptography_Core_IAsymmetricAlgorithmNamesStatics2 : Win
     //@Returns("String")
     get_EcdsaSha256()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 6, "String", [], [] );
         return _r;
@@ -263,6 +284,7 @@ class Windows_Security_Cryptography_Core_IAsymmetricAlgorithmNamesStatics2 : Win
     //@Returns("String")
     get_EcdsaSha384()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 7, "String", [], [] );
         return _r;
@@ -273,6 +295,7 @@ class Windows_Security_Cryptography_Core_IAsymmetricAlgorithmNamesStatics2 : Win
     //@Returns("String")
     get_EcdsaSha512()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 8, "String", [], [] );
         return _r;
@@ -291,7 +314,8 @@ class Windows_Security_Cryptography_Core_IAsymmetricKeyAlgorithmProvider : WinRt
     Windows_Security_Cryptography_Core_IAsymmetricKeyAlgorithmProvider( comPtr )
     {
         var Windows = runtime.global("Windows");
-        this.comPtr = comPtr.queryInterface( "{E8D2FF37-6259-4E88-B7E0-94191FDE699E}");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{E8D2FF37-6259-4E88-B7E0-94191FDE699E}");
     }
 
     //@VtableIndex(6)
@@ -299,6 +323,7 @@ class Windows_Security_Cryptography_Core_IAsymmetricKeyAlgorithmProvider : WinRt
     //@Returns("String")
     get_AlgorithmName()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 6, "String", [], [] );
         return _r;
@@ -310,6 +335,7 @@ class Windows_Security_Cryptography_Core_IAsymmetricKeyAlgorithmProvider : WinRt
     //@Parameters("UInt32")
     CreateKeyPair(keySize)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = keySize;
         var _r = Windows.Security.Cryptography.Core.CryptographicKey(
@@ -324,6 +350,7 @@ class Windows_Security_Cryptography_Core_IAsymmetricKeyAlgorithmProvider : WinRt
     //@Parameters("Windows.Storage.Streams.IBuffer")
     ImportDefaultPrivateKeyBlob(keyBlob)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = Windows.Storage.Streams.IBuffer( keyBlob); 
         var _r = Windows.Security.Cryptography.Core.CryptographicKey(
@@ -338,6 +365,7 @@ class Windows_Security_Cryptography_Core_IAsymmetricKeyAlgorithmProvider : WinRt
     //@Parameters("Windows.Storage.Streams.IBuffer","Windows.Security.Cryptography.Core.CryptographicPrivateKeyBlobType")
     ImportKeyPairWithBlobType(keyBlob,BlobType)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = Windows.Storage.Streams.IBuffer( keyBlob); 
         var p2 = BlobType;
@@ -353,6 +381,7 @@ class Windows_Security_Cryptography_Core_IAsymmetricKeyAlgorithmProvider : WinRt
     //@Parameters("Windows.Storage.Streams.IBuffer")
     ImportDefaultPublicKeyBlob(keyBlob)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = Windows.Storage.Streams.IBuffer( keyBlob); 
         var _r = Windows.Security.Cryptography.Core.CryptographicKey(
@@ -367,6 +396,7 @@ class Windows_Security_Cryptography_Core_IAsymmetricKeyAlgorithmProvider : WinRt
     //@Parameters("Windows.Storage.Streams.IBuffer","Windows.Security.Cryptography.Core.CryptographicPublicKeyBlobType")
     ImportPublicKeyWithBlobType(keyBlob,BlobType)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = Windows.Storage.Streams.IBuffer( keyBlob); 
         var p2 = BlobType;
@@ -389,7 +419,8 @@ class Windows_Security_Cryptography_Core_IAsymmetricKeyAlgorithmProvider2 : WinR
     Windows_Security_Cryptography_Core_IAsymmetricKeyAlgorithmProvider2( comPtr )
     {
         var Windows = runtime.global("Windows");
-        this.comPtr = comPtr.queryInterface( "{4E322A7E-7C4D-4997-AC4F-1B848B36306E}");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{4E322A7E-7C4D-4997-AC4F-1B848B36306E}");
     }
 
     //@VtableIndex(6)
@@ -398,6 +429,7 @@ class Windows_Security_Cryptography_Core_IAsymmetricKeyAlgorithmProvider2 : WinR
     //@Parameters("String")
     CreateKeyPairWithCurveName(curveName)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = curveName;
         var _r = Windows.Security.Cryptography.Core.CryptographicKey(
@@ -419,7 +451,8 @@ class Windows_Security_Cryptography_Core_IAsymmetricKeyAlgorithmProviderStatics 
     Windows_Security_Cryptography_Core_IAsymmetricKeyAlgorithmProviderStatics( comPtr )
     {
         var Windows = runtime.global("Windows");
-        this.comPtr = comPtr.queryInterface( "{425BDE18-A7F3-47A6-A8D2-C48D6033A65C}");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{425BDE18-A7F3-47A6-A8D2-C48D6033A65C}");
     }
 
     //@VtableIndex(6)
@@ -428,6 +461,7 @@ class Windows_Security_Cryptography_Core_IAsymmetricKeyAlgorithmProviderStatics 
     //@Parameters("String")
     OpenAlgorithm(algorithm)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = algorithm;
         var _r = Windows.Security.Cryptography.Core.AsymmetricKeyAlgorithmProvider(
@@ -449,7 +483,8 @@ class Windows_Security_Cryptography_Core_ICryptographicEngineStatics : WinRtInte
     Windows_Security_Cryptography_Core_ICryptographicEngineStatics( comPtr )
     {
         var Windows = runtime.global("Windows");
-        this.comPtr = comPtr.queryInterface( "{9FEA0639-6FF7-4C85-A095-95EB31715EB9}");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{9FEA0639-6FF7-4C85-A095-95EB31715EB9}");
     }
 
     //@VtableIndex(6)
@@ -458,6 +493,7 @@ class Windows_Security_Cryptography_Core_ICryptographicEngineStatics : WinRtInte
     //@Parameters("Windows.Security.Cryptography.Core.CryptographicKey","Windows.Storage.Streams.IBuffer","Windows.Storage.Streams.IBuffer")
     Encrypt(key,data,iv)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = Windows.Security.Cryptography.Core.CryptographicKey( key); 
         var p2 = Windows.Storage.Streams.IBuffer( data); 
@@ -474,6 +510,7 @@ class Windows_Security_Cryptography_Core_ICryptographicEngineStatics : WinRtInte
     //@Parameters("Windows.Security.Cryptography.Core.CryptographicKey","Windows.Storage.Streams.IBuffer","Windows.Storage.Streams.IBuffer")
     Decrypt(key,data,iv)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = Windows.Security.Cryptography.Core.CryptographicKey( key); 
         var p2 = Windows.Storage.Streams.IBuffer( data); 
@@ -490,6 +527,7 @@ class Windows_Security_Cryptography_Core_ICryptographicEngineStatics : WinRtInte
     //@Parameters("Windows.Security.Cryptography.Core.CryptographicKey","Windows.Storage.Streams.IBuffer","Windows.Storage.Streams.IBuffer","Windows.Storage.Streams.IBuffer")
     EncryptAndAuthenticate(key,data,nonce,authenticatedData)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = Windows.Security.Cryptography.Core.CryptographicKey( key); 
         var p2 = Windows.Storage.Streams.IBuffer( data); 
@@ -507,6 +545,7 @@ class Windows_Security_Cryptography_Core_ICryptographicEngineStatics : WinRtInte
     //@Parameters("Windows.Security.Cryptography.Core.CryptographicKey","Windows.Storage.Streams.IBuffer","Windows.Storage.Streams.IBuffer","Windows.Storage.Streams.IBuffer","Windows.Storage.Streams.IBuffer")
     DecryptAndAuthenticate(key,data,nonce,authenticationTag,authenticatedData)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = Windows.Security.Cryptography.Core.CryptographicKey( key); 
         var p2 = Windows.Storage.Streams.IBuffer( data); 
@@ -525,6 +564,7 @@ class Windows_Security_Cryptography_Core_ICryptographicEngineStatics : WinRtInte
     //@Parameters("Windows.Security.Cryptography.Core.CryptographicKey","Windows.Storage.Streams.IBuffer")
     Sign(key,data)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = Windows.Security.Cryptography.Core.CryptographicKey( key); 
         var p2 = Windows.Storage.Streams.IBuffer( data); 
@@ -540,6 +580,7 @@ class Windows_Security_Cryptography_Core_ICryptographicEngineStatics : WinRtInte
     //@Parameters("Windows.Security.Cryptography.Core.CryptographicKey","Windows.Storage.Streams.IBuffer","Windows.Storage.Streams.IBuffer")
     VerifySignature(key,data,signature)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = Windows.Security.Cryptography.Core.CryptographicKey( key); 
         var p2 = Windows.Storage.Streams.IBuffer( data); 
@@ -554,6 +595,7 @@ class Windows_Security_Cryptography_Core_ICryptographicEngineStatics : WinRtInte
     //@Parameters("Windows.Security.Cryptography.Core.CryptographicKey","Windows.Security.Cryptography.Core.KeyDerivationParameters","UInt32")
     DeriveKeyMaterial(key,parameters,desiredKeySize)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = Windows.Security.Cryptography.Core.CryptographicKey( key); 
         var p2 = Windows.Security.Cryptography.Core.KeyDerivationParameters( parameters); 
@@ -577,7 +619,8 @@ class Windows_Security_Cryptography_Core_ICryptographicEngineStatics2 : WinRtInt
     Windows_Security_Cryptography_Core_ICryptographicEngineStatics2( comPtr )
     {
         var Windows = runtime.global("Windows");
-        this.comPtr = comPtr.queryInterface( "{675948FE-DF9F-4191-92C7-6CE6F58420E0}");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{675948FE-DF9F-4191-92C7-6CE6F58420E0}");
     }
 
     //@VtableIndex(6)
@@ -586,6 +629,7 @@ class Windows_Security_Cryptography_Core_ICryptographicEngineStatics2 : WinRtInt
     //@Parameters("Windows.Security.Cryptography.Core.CryptographicKey","Windows.Storage.Streams.IBuffer")
     SignHashedData(key,data)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = Windows.Security.Cryptography.Core.CryptographicKey( key); 
         var p2 = Windows.Storage.Streams.IBuffer( data); 
@@ -601,6 +645,7 @@ class Windows_Security_Cryptography_Core_ICryptographicEngineStatics2 : WinRtInt
     //@Parameters("Windows.Security.Cryptography.Core.CryptographicKey","Windows.Storage.Streams.IBuffer","Windows.Storage.Streams.IBuffer")
     VerifySignatureWithHashInput(key,data,signature)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = Windows.Security.Cryptography.Core.CryptographicKey( key); 
         var p2 = Windows.Storage.Streams.IBuffer( data); 
@@ -615,6 +660,7 @@ class Windows_Security_Cryptography_Core_ICryptographicEngineStatics2 : WinRtInt
     //@Parameters("Windows.Security.Cryptography.Core.CryptographicKey","Windows.Storage.Streams.IBuffer","Windows.Storage.Streams.IBuffer")
     DecryptAsync(key,data,iv,cb)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = Windows.Security.Cryptography.Core.CryptographicKey( key); 
         var p2 = Windows.Storage.Streams.IBuffer( data); 
@@ -628,6 +674,7 @@ class Windows_Security_Cryptography_Core_ICryptographicEngineStatics2 : WinRtInt
     //@Parameters("Windows.Security.Cryptography.Core.CryptographicKey","Windows.Storage.Streams.IBuffer")
     SignAsync(key,data,cb)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = Windows.Security.Cryptography.Core.CryptographicKey( key); 
         var p2 = Windows.Storage.Streams.IBuffer( data); 
@@ -640,6 +687,7 @@ class Windows_Security_Cryptography_Core_ICryptographicEngineStatics2 : WinRtInt
     //@Parameters("Windows.Security.Cryptography.Core.CryptographicKey","Windows.Storage.Streams.IBuffer")
     SignHashedDataAsync(key,data,cb)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = Windows.Security.Cryptography.Core.CryptographicKey( key); 
         var p2 = Windows.Storage.Streams.IBuffer( data); 
@@ -659,7 +707,8 @@ class Windows_Security_Cryptography_Core_ICryptographicKey : WinRtInterface
     Windows_Security_Cryptography_Core_ICryptographicKey( comPtr )
     {
         var Windows = runtime.global("Windows");
-        this.comPtr = comPtr.queryInterface( "{ED2A3B70-8E7B-4009-8401-FFD1A62EEB27}");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{ED2A3B70-8E7B-4009-8401-FFD1A62EEB27}");
     }
 
     //@VtableIndex(6)
@@ -667,6 +716,7 @@ class Windows_Security_Cryptography_Core_ICryptographicKey : WinRtInterface
     //@Returns("UInt32")
     get_KeySize()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 6, "UInt32", [], [] );
         return _r;
@@ -677,6 +727,7 @@ class Windows_Security_Cryptography_Core_ICryptographicKey : WinRtInterface
     //@Returns("Windows.Storage.Streams.IBuffer")
     ExportDefaultPrivateKeyBlobType()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = Windows.Storage.Streams.IBuffer(
             this.comPtr.invoke( 7, "Windows.Storage.Streams.IBuffer", [], [] )
@@ -690,6 +741,7 @@ class Windows_Security_Cryptography_Core_ICryptographicKey : WinRtInterface
     //@Parameters("Windows.Security.Cryptography.Core.CryptographicPrivateKeyBlobType")
     ExportPrivateKeyWithBlobType(BlobType)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = BlobType;
         var _r = Windows.Storage.Streams.IBuffer(
@@ -703,6 +755,7 @@ class Windows_Security_Cryptography_Core_ICryptographicKey : WinRtInterface
     //@Returns("Windows.Storage.Streams.IBuffer")
     ExportDefaultPublicKeyBlobType()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = Windows.Storage.Streams.IBuffer(
             this.comPtr.invoke( 9, "Windows.Storage.Streams.IBuffer", [], [] )
@@ -716,6 +769,7 @@ class Windows_Security_Cryptography_Core_ICryptographicKey : WinRtInterface
     //@Parameters("Windows.Security.Cryptography.Core.CryptographicPublicKeyBlobType")
     ExportPublicKeyWithBlobType(BlobType)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = BlobType;
         var _r = Windows.Storage.Streams.IBuffer(
@@ -737,7 +791,8 @@ class Windows_Security_Cryptography_Core_IEccCurveNamesStatics : WinRtInterface
     Windows_Security_Cryptography_Core_IEccCurveNamesStatics( comPtr )
     {
         var Windows = runtime.global("Windows");
-        this.comPtr = comPtr.queryInterface( "{B3FF930C-AEEB-409E-B7D4-9B95295AAECF}");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{B3FF930C-AEEB-409E-B7D4-9B95295AAECF}");
     }
 
     //@VtableIndex(6)
@@ -745,6 +800,7 @@ class Windows_Security_Cryptography_Core_IEccCurveNamesStatics : WinRtInterface
     //@Returns("String")
     get_BrainpoolP160r1()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 6, "String", [], [] );
         return _r;
@@ -755,6 +811,7 @@ class Windows_Security_Cryptography_Core_IEccCurveNamesStatics : WinRtInterface
     //@Returns("String")
     get_BrainpoolP160t1()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 7, "String", [], [] );
         return _r;
@@ -765,6 +822,7 @@ class Windows_Security_Cryptography_Core_IEccCurveNamesStatics : WinRtInterface
     //@Returns("String")
     get_BrainpoolP192r1()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 8, "String", [], [] );
         return _r;
@@ -775,6 +833,7 @@ class Windows_Security_Cryptography_Core_IEccCurveNamesStatics : WinRtInterface
     //@Returns("String")
     get_BrainpoolP192t1()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 9, "String", [], [] );
         return _r;
@@ -785,6 +844,7 @@ class Windows_Security_Cryptography_Core_IEccCurveNamesStatics : WinRtInterface
     //@Returns("String")
     get_BrainpoolP224r1()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 10, "String", [], [] );
         return _r;
@@ -795,6 +855,7 @@ class Windows_Security_Cryptography_Core_IEccCurveNamesStatics : WinRtInterface
     //@Returns("String")
     get_BrainpoolP224t1()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 11, "String", [], [] );
         return _r;
@@ -805,6 +866,7 @@ class Windows_Security_Cryptography_Core_IEccCurveNamesStatics : WinRtInterface
     //@Returns("String")
     get_BrainpoolP256r1()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 12, "String", [], [] );
         return _r;
@@ -815,6 +877,7 @@ class Windows_Security_Cryptography_Core_IEccCurveNamesStatics : WinRtInterface
     //@Returns("String")
     get_BrainpoolP256t1()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 13, "String", [], [] );
         return _r;
@@ -825,6 +888,7 @@ class Windows_Security_Cryptography_Core_IEccCurveNamesStatics : WinRtInterface
     //@Returns("String")
     get_BrainpoolP320r1()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 14, "String", [], [] );
         return _r;
@@ -835,6 +899,7 @@ class Windows_Security_Cryptography_Core_IEccCurveNamesStatics : WinRtInterface
     //@Returns("String")
     get_BrainpoolP320t1()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 15, "String", [], [] );
         return _r;
@@ -845,6 +910,7 @@ class Windows_Security_Cryptography_Core_IEccCurveNamesStatics : WinRtInterface
     //@Returns("String")
     get_BrainpoolP384r1()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 16, "String", [], [] );
         return _r;
@@ -855,6 +921,7 @@ class Windows_Security_Cryptography_Core_IEccCurveNamesStatics : WinRtInterface
     //@Returns("String")
     get_BrainpoolP384t1()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 17, "String", [], [] );
         return _r;
@@ -865,6 +932,7 @@ class Windows_Security_Cryptography_Core_IEccCurveNamesStatics : WinRtInterface
     //@Returns("String")
     get_BrainpoolP512r1()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 18, "String", [], [] );
         return _r;
@@ -875,6 +943,7 @@ class Windows_Security_Cryptography_Core_IEccCurveNamesStatics : WinRtInterface
     //@Returns("String")
     get_BrainpoolP512t1()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 19, "String", [], [] );
         return _r;
@@ -885,6 +954,7 @@ class Windows_Security_Cryptography_Core_IEccCurveNamesStatics : WinRtInterface
     //@Returns("String")
     get_Curve25519()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 20, "String", [], [] );
         return _r;
@@ -895,6 +965,7 @@ class Windows_Security_Cryptography_Core_IEccCurveNamesStatics : WinRtInterface
     //@Returns("String")
     get_Ec192wapi()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 21, "String", [], [] );
         return _r;
@@ -905,6 +976,7 @@ class Windows_Security_Cryptography_Core_IEccCurveNamesStatics : WinRtInterface
     //@Returns("String")
     get_NistP192()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 22, "String", [], [] );
         return _r;
@@ -915,6 +987,7 @@ class Windows_Security_Cryptography_Core_IEccCurveNamesStatics : WinRtInterface
     //@Returns("String")
     get_NistP224()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 23, "String", [], [] );
         return _r;
@@ -925,6 +998,7 @@ class Windows_Security_Cryptography_Core_IEccCurveNamesStatics : WinRtInterface
     //@Returns("String")
     get_NistP256()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 24, "String", [], [] );
         return _r;
@@ -935,6 +1009,7 @@ class Windows_Security_Cryptography_Core_IEccCurveNamesStatics : WinRtInterface
     //@Returns("String")
     get_NistP384()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 25, "String", [], [] );
         return _r;
@@ -945,6 +1020,7 @@ class Windows_Security_Cryptography_Core_IEccCurveNamesStatics : WinRtInterface
     //@Returns("String")
     get_NistP521()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 26, "String", [], [] );
         return _r;
@@ -955,6 +1031,7 @@ class Windows_Security_Cryptography_Core_IEccCurveNamesStatics : WinRtInterface
     //@Returns("String")
     get_NumsP256t1()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 27, "String", [], [] );
         return _r;
@@ -965,6 +1042,7 @@ class Windows_Security_Cryptography_Core_IEccCurveNamesStatics : WinRtInterface
     //@Returns("String")
     get_NumsP384t1()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 28, "String", [], [] );
         return _r;
@@ -975,6 +1053,7 @@ class Windows_Security_Cryptography_Core_IEccCurveNamesStatics : WinRtInterface
     //@Returns("String")
     get_NumsP512t1()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 29, "String", [], [] );
         return _r;
@@ -985,6 +1064,7 @@ class Windows_Security_Cryptography_Core_IEccCurveNamesStatics : WinRtInterface
     //@Returns("String")
     get_SecP160k1()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 30, "String", [], [] );
         return _r;
@@ -995,6 +1075,7 @@ class Windows_Security_Cryptography_Core_IEccCurveNamesStatics : WinRtInterface
     //@Returns("String")
     get_SecP160r1()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 31, "String", [], [] );
         return _r;
@@ -1005,6 +1086,7 @@ class Windows_Security_Cryptography_Core_IEccCurveNamesStatics : WinRtInterface
     //@Returns("String")
     get_SecP160r2()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 32, "String", [], [] );
         return _r;
@@ -1015,6 +1097,7 @@ class Windows_Security_Cryptography_Core_IEccCurveNamesStatics : WinRtInterface
     //@Returns("String")
     get_SecP192k1()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 33, "String", [], [] );
         return _r;
@@ -1025,6 +1108,7 @@ class Windows_Security_Cryptography_Core_IEccCurveNamesStatics : WinRtInterface
     //@Returns("String")
     get_SecP192r1()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 34, "String", [], [] );
         return _r;
@@ -1035,6 +1119,7 @@ class Windows_Security_Cryptography_Core_IEccCurveNamesStatics : WinRtInterface
     //@Returns("String")
     get_SecP224k1()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 35, "String", [], [] );
         return _r;
@@ -1045,6 +1130,7 @@ class Windows_Security_Cryptography_Core_IEccCurveNamesStatics : WinRtInterface
     //@Returns("String")
     get_SecP224r1()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 36, "String", [], [] );
         return _r;
@@ -1055,6 +1141,7 @@ class Windows_Security_Cryptography_Core_IEccCurveNamesStatics : WinRtInterface
     //@Returns("String")
     get_SecP256k1()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 37, "String", [], [] );
         return _r;
@@ -1065,6 +1152,7 @@ class Windows_Security_Cryptography_Core_IEccCurveNamesStatics : WinRtInterface
     //@Returns("String")
     get_SecP256r1()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 38, "String", [], [] );
         return _r;
@@ -1075,6 +1163,7 @@ class Windows_Security_Cryptography_Core_IEccCurveNamesStatics : WinRtInterface
     //@Returns("String")
     get_SecP384r1()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 39, "String", [], [] );
         return _r;
@@ -1085,6 +1174,7 @@ class Windows_Security_Cryptography_Core_IEccCurveNamesStatics : WinRtInterface
     //@Returns("String")
     get_SecP521r1()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 40, "String", [], [] );
         return _r;
@@ -1095,6 +1185,7 @@ class Windows_Security_Cryptography_Core_IEccCurveNamesStatics : WinRtInterface
     //@Returns("String")
     get_Wtls7()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 41, "String", [], [] );
         return _r;
@@ -1105,6 +1196,7 @@ class Windows_Security_Cryptography_Core_IEccCurveNamesStatics : WinRtInterface
     //@Returns("String")
     get_Wtls9()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 42, "String", [], [] );
         return _r;
@@ -1115,6 +1207,7 @@ class Windows_Security_Cryptography_Core_IEccCurveNamesStatics : WinRtInterface
     //@Returns("String")
     get_Wtls12()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 43, "String", [], [] );
         return _r;
@@ -1125,6 +1218,7 @@ class Windows_Security_Cryptography_Core_IEccCurveNamesStatics : WinRtInterface
     //@Returns("String")
     get_X962P192v1()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 44, "String", [], [] );
         return _r;
@@ -1135,6 +1229,7 @@ class Windows_Security_Cryptography_Core_IEccCurveNamesStatics : WinRtInterface
     //@Returns("String")
     get_X962P192v2()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 45, "String", [], [] );
         return _r;
@@ -1145,6 +1240,7 @@ class Windows_Security_Cryptography_Core_IEccCurveNamesStatics : WinRtInterface
     //@Returns("String")
     get_X962P192v3()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 46, "String", [], [] );
         return _r;
@@ -1155,6 +1251,7 @@ class Windows_Security_Cryptography_Core_IEccCurveNamesStatics : WinRtInterface
     //@Returns("String")
     get_X962P239v1()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 47, "String", [], [] );
         return _r;
@@ -1165,6 +1262,7 @@ class Windows_Security_Cryptography_Core_IEccCurveNamesStatics : WinRtInterface
     //@Returns("String")
     get_X962P239v2()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 48, "String", [], [] );
         return _r;
@@ -1175,6 +1273,7 @@ class Windows_Security_Cryptography_Core_IEccCurveNamesStatics : WinRtInterface
     //@Returns("String")
     get_X962P239v3()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 49, "String", [], [] );
         return _r;
@@ -1185,6 +1284,7 @@ class Windows_Security_Cryptography_Core_IEccCurveNamesStatics : WinRtInterface
     //@Returns("String")
     get_X962P256v1()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 50, "String", [], [] );
         return _r;
@@ -1195,6 +1295,7 @@ class Windows_Security_Cryptography_Core_IEccCurveNamesStatics : WinRtInterface
     //@Returns("Windows.Foundation.Collections.IVectorView`1<String>")
     get_AllEccCurveNames()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = Windows.Foundation.Collections.IVectorView_1_String_(
             this.comPtr.invoke( 51, "Windows.Foundation.Collections.IVectorView`1<String>", [], [] )
@@ -1215,7 +1316,8 @@ class Windows_Security_Cryptography_Core_IEncryptedAndAuthenticatedData : WinRtI
     Windows_Security_Cryptography_Core_IEncryptedAndAuthenticatedData( comPtr )
     {
         var Windows = runtime.global("Windows");
-        this.comPtr = comPtr.queryInterface( "{6FA42FE7-1ECB-4B00-BEA5-60B83F862F17}");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{6FA42FE7-1ECB-4B00-BEA5-60B83F862F17}");
     }
 
     //@VtableIndex(6)
@@ -1223,6 +1325,7 @@ class Windows_Security_Cryptography_Core_IEncryptedAndAuthenticatedData : WinRtI
     //@Returns("Windows.Storage.Streams.IBuffer")
     get_EncryptedData()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = Windows.Storage.Streams.IBuffer(
             this.comPtr.invoke( 6, "Windows.Storage.Streams.IBuffer", [], [] )
@@ -1235,6 +1338,7 @@ class Windows_Security_Cryptography_Core_IEncryptedAndAuthenticatedData : WinRtI
     //@Returns("Windows.Storage.Streams.IBuffer")
     get_AuthenticationTag()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = Windows.Storage.Streams.IBuffer(
             this.comPtr.invoke( 7, "Windows.Storage.Streams.IBuffer", [], [] )
@@ -1255,7 +1359,8 @@ class Windows_Security_Cryptography_Core_IHashAlgorithmNamesStatics : WinRtInter
     Windows_Security_Cryptography_Core_IHashAlgorithmNamesStatics( comPtr )
     {
         var Windows = runtime.global("Windows");
-        this.comPtr = comPtr.queryInterface( "{6B5E0516-DE96-4F0A-8D57-DCC9DAE36C76}");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{6B5E0516-DE96-4F0A-8D57-DCC9DAE36C76}");
     }
 
     //@VtableIndex(6)
@@ -1263,6 +1368,7 @@ class Windows_Security_Cryptography_Core_IHashAlgorithmNamesStatics : WinRtInter
     //@Returns("String")
     get_Md5()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 6, "String", [], [] );
         return _r;
@@ -1273,6 +1379,7 @@ class Windows_Security_Cryptography_Core_IHashAlgorithmNamesStatics : WinRtInter
     //@Returns("String")
     get_Sha1()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 7, "String", [], [] );
         return _r;
@@ -1283,6 +1390,7 @@ class Windows_Security_Cryptography_Core_IHashAlgorithmNamesStatics : WinRtInter
     //@Returns("String")
     get_Sha256()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 8, "String", [], [] );
         return _r;
@@ -1293,6 +1401,7 @@ class Windows_Security_Cryptography_Core_IHashAlgorithmNamesStatics : WinRtInter
     //@Returns("String")
     get_Sha384()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 9, "String", [], [] );
         return _r;
@@ -1303,6 +1412,7 @@ class Windows_Security_Cryptography_Core_IHashAlgorithmNamesStatics : WinRtInter
     //@Returns("String")
     get_Sha512()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 10, "String", [], [] );
         return _r;
@@ -1321,7 +1431,8 @@ class Windows_Security_Cryptography_Core_IHashAlgorithmProvider : WinRtInterface
     Windows_Security_Cryptography_Core_IHashAlgorithmProvider( comPtr )
     {
         var Windows = runtime.global("Windows");
-        this.comPtr = comPtr.queryInterface( "{BE9B3080-B2C3-422B-BCE1-EC90EFB5D7B5}");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{BE9B3080-B2C3-422B-BCE1-EC90EFB5D7B5}");
     }
 
     //@VtableIndex(6)
@@ -1329,6 +1440,7 @@ class Windows_Security_Cryptography_Core_IHashAlgorithmProvider : WinRtInterface
     //@Returns("String")
     get_AlgorithmName()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 6, "String", [], [] );
         return _r;
@@ -1339,6 +1451,7 @@ class Windows_Security_Cryptography_Core_IHashAlgorithmProvider : WinRtInterface
     //@Returns("UInt32")
     get_HashLength()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 7, "UInt32", [], [] );
         return _r;
@@ -1350,6 +1463,7 @@ class Windows_Security_Cryptography_Core_IHashAlgorithmProvider : WinRtInterface
     //@Parameters("Windows.Storage.Streams.IBuffer")
     HashData(data)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = Windows.Storage.Streams.IBuffer( data); 
         var _r = Windows.Storage.Streams.IBuffer(
@@ -1363,6 +1477,7 @@ class Windows_Security_Cryptography_Core_IHashAlgorithmProvider : WinRtInterface
     //@Returns("Windows.Security.Cryptography.Core.CryptographicHash")
     CreateHash()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = Windows.Security.Cryptography.Core.CryptographicHash(
             this.comPtr.invoke( 9, "Windows.Security.Cryptography.Core.CryptographicHash", [], [] )
@@ -1383,7 +1498,8 @@ class Windows_Security_Cryptography_Core_IHashAlgorithmProviderStatics : WinRtIn
     Windows_Security_Cryptography_Core_IHashAlgorithmProviderStatics( comPtr )
     {
         var Windows = runtime.global("Windows");
-        this.comPtr = comPtr.queryInterface( "{9FAC9741-5CC4-4336-AE38-6212B75A915A}");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{9FAC9741-5CC4-4336-AE38-6212B75A915A}");
     }
 
     //@VtableIndex(6)
@@ -1392,6 +1508,7 @@ class Windows_Security_Cryptography_Core_IHashAlgorithmProviderStatics : WinRtIn
     //@Parameters("String")
     OpenAlgorithm(algorithm)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = algorithm;
         var _r = Windows.Security.Cryptography.Core.HashAlgorithmProvider(
@@ -1413,7 +1530,8 @@ class Windows_Security_Cryptography_Core_IHashComputation : WinRtInterface
     Windows_Security_Cryptography_Core_IHashComputation( comPtr )
     {
         var Windows = runtime.global("Windows");
-        this.comPtr = comPtr.queryInterface( "{5904D1B6-AD31-4603-A3A4-B1BDA98E2562}");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{5904D1B6-AD31-4603-A3A4-B1BDA98E2562}");
     }
 
     //@VtableIndex(6)
@@ -1422,6 +1540,7 @@ class Windows_Security_Cryptography_Core_IHashComputation : WinRtInterface
     //@Parameters("Windows.Storage.Streams.IBuffer")
     Append(data)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = Windows.Storage.Streams.IBuffer( data); 
         this.comPtr.invoke( 6, "void", ["Windows.Storage.Streams.IBuffer"], [p1] );
@@ -1432,6 +1551,7 @@ class Windows_Security_Cryptography_Core_IHashComputation : WinRtInterface
     //@Returns("Windows.Storage.Streams.IBuffer")
     GetValueAndReset()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = Windows.Storage.Streams.IBuffer(
             this.comPtr.invoke( 7, "Windows.Storage.Streams.IBuffer", [], [] )
@@ -1452,7 +1572,8 @@ class Windows_Security_Cryptography_Core_IKeyDerivationAlgorithmNamesStatics : W
     Windows_Security_Cryptography_Core_IKeyDerivationAlgorithmNamesStatics( comPtr )
     {
         var Windows = runtime.global("Windows");
-        this.comPtr = comPtr.queryInterface( "{7B6E363E-94D2-4739-A57B-022E0C3A402A}");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{7B6E363E-94D2-4739-A57B-022E0C3A402A}");
     }
 
     //@VtableIndex(6)
@@ -1460,6 +1581,7 @@ class Windows_Security_Cryptography_Core_IKeyDerivationAlgorithmNamesStatics : W
     //@Returns("String")
     get_Pbkdf2Md5()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 6, "String", [], [] );
         return _r;
@@ -1470,6 +1592,7 @@ class Windows_Security_Cryptography_Core_IKeyDerivationAlgorithmNamesStatics : W
     //@Returns("String")
     get_Pbkdf2Sha1()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 7, "String", [], [] );
         return _r;
@@ -1480,6 +1603,7 @@ class Windows_Security_Cryptography_Core_IKeyDerivationAlgorithmNamesStatics : W
     //@Returns("String")
     get_Pbkdf2Sha256()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 8, "String", [], [] );
         return _r;
@@ -1490,6 +1614,7 @@ class Windows_Security_Cryptography_Core_IKeyDerivationAlgorithmNamesStatics : W
     //@Returns("String")
     get_Pbkdf2Sha384()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 9, "String", [], [] );
         return _r;
@@ -1500,6 +1625,7 @@ class Windows_Security_Cryptography_Core_IKeyDerivationAlgorithmNamesStatics : W
     //@Returns("String")
     get_Pbkdf2Sha512()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 10, "String", [], [] );
         return _r;
@@ -1510,6 +1636,7 @@ class Windows_Security_Cryptography_Core_IKeyDerivationAlgorithmNamesStatics : W
     //@Returns("String")
     get_Sp800108CtrHmacMd5()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 11, "String", [], [] );
         return _r;
@@ -1520,6 +1647,7 @@ class Windows_Security_Cryptography_Core_IKeyDerivationAlgorithmNamesStatics : W
     //@Returns("String")
     get_Sp800108CtrHmacSha1()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 12, "String", [], [] );
         return _r;
@@ -1530,6 +1658,7 @@ class Windows_Security_Cryptography_Core_IKeyDerivationAlgorithmNamesStatics : W
     //@Returns("String")
     get_Sp800108CtrHmacSha256()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 13, "String", [], [] );
         return _r;
@@ -1540,6 +1669,7 @@ class Windows_Security_Cryptography_Core_IKeyDerivationAlgorithmNamesStatics : W
     //@Returns("String")
     get_Sp800108CtrHmacSha384()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 14, "String", [], [] );
         return _r;
@@ -1550,6 +1680,7 @@ class Windows_Security_Cryptography_Core_IKeyDerivationAlgorithmNamesStatics : W
     //@Returns("String")
     get_Sp800108CtrHmacSha512()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 15, "String", [], [] );
         return _r;
@@ -1560,6 +1691,7 @@ class Windows_Security_Cryptography_Core_IKeyDerivationAlgorithmNamesStatics : W
     //@Returns("String")
     get_Sp80056aConcatMd5()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 16, "String", [], [] );
         return _r;
@@ -1570,6 +1702,7 @@ class Windows_Security_Cryptography_Core_IKeyDerivationAlgorithmNamesStatics : W
     //@Returns("String")
     get_Sp80056aConcatSha1()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 17, "String", [], [] );
         return _r;
@@ -1580,6 +1713,7 @@ class Windows_Security_Cryptography_Core_IKeyDerivationAlgorithmNamesStatics : W
     //@Returns("String")
     get_Sp80056aConcatSha256()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 18, "String", [], [] );
         return _r;
@@ -1590,6 +1724,7 @@ class Windows_Security_Cryptography_Core_IKeyDerivationAlgorithmNamesStatics : W
     //@Returns("String")
     get_Sp80056aConcatSha384()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 19, "String", [], [] );
         return _r;
@@ -1600,6 +1735,7 @@ class Windows_Security_Cryptography_Core_IKeyDerivationAlgorithmNamesStatics : W
     //@Returns("String")
     get_Sp80056aConcatSha512()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 20, "String", [], [] );
         return _r;
@@ -1618,7 +1754,8 @@ class Windows_Security_Cryptography_Core_IKeyDerivationAlgorithmNamesStatics2 : 
     Windows_Security_Cryptography_Core_IKeyDerivationAlgorithmNamesStatics2( comPtr )
     {
         var Windows = runtime.global("Windows");
-        this.comPtr = comPtr.queryInterface( "{57953FAB-6044-466F-97F4-337B7808384D}");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{57953FAB-6044-466F-97F4-337B7808384D}");
     }
 
     //@VtableIndex(6)
@@ -1626,6 +1763,7 @@ class Windows_Security_Cryptography_Core_IKeyDerivationAlgorithmNamesStatics2 : 
     //@Returns("String")
     get_CapiKdfMd5()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 6, "String", [], [] );
         return _r;
@@ -1636,6 +1774,7 @@ class Windows_Security_Cryptography_Core_IKeyDerivationAlgorithmNamesStatics2 : 
     //@Returns("String")
     get_CapiKdfSha1()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 7, "String", [], [] );
         return _r;
@@ -1646,6 +1785,7 @@ class Windows_Security_Cryptography_Core_IKeyDerivationAlgorithmNamesStatics2 : 
     //@Returns("String")
     get_CapiKdfSha256()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 8, "String", [], [] );
         return _r;
@@ -1656,6 +1796,7 @@ class Windows_Security_Cryptography_Core_IKeyDerivationAlgorithmNamesStatics2 : 
     //@Returns("String")
     get_CapiKdfSha384()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 9, "String", [], [] );
         return _r;
@@ -1666,6 +1807,7 @@ class Windows_Security_Cryptography_Core_IKeyDerivationAlgorithmNamesStatics2 : 
     //@Returns("String")
     get_CapiKdfSha512()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 10, "String", [], [] );
         return _r;
@@ -1684,7 +1826,8 @@ class Windows_Security_Cryptography_Core_IKeyDerivationAlgorithmProvider : WinRt
     Windows_Security_Cryptography_Core_IKeyDerivationAlgorithmProvider( comPtr )
     {
         var Windows = runtime.global("Windows");
-        this.comPtr = comPtr.queryInterface( "{E1FBA83B-4671-43B7-9158-763AAA98B6BF}");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{E1FBA83B-4671-43B7-9158-763AAA98B6BF}");
     }
 
     //@VtableIndex(6)
@@ -1692,6 +1835,7 @@ class Windows_Security_Cryptography_Core_IKeyDerivationAlgorithmProvider : WinRt
     //@Returns("String")
     get_AlgorithmName()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 6, "String", [], [] );
         return _r;
@@ -1703,6 +1847,7 @@ class Windows_Security_Cryptography_Core_IKeyDerivationAlgorithmProvider : WinRt
     //@Parameters("Windows.Storage.Streams.IBuffer")
     CreateKey(keyMaterial)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = Windows.Storage.Streams.IBuffer( keyMaterial); 
         var _r = Windows.Security.Cryptography.Core.CryptographicKey(
@@ -1724,7 +1869,8 @@ class Windows_Security_Cryptography_Core_IKeyDerivationAlgorithmProviderStatics 
     Windows_Security_Cryptography_Core_IKeyDerivationAlgorithmProviderStatics( comPtr )
     {
         var Windows = runtime.global("Windows");
-        this.comPtr = comPtr.queryInterface( "{0A22097A-0A1C-443B-9418-B9498AEB1603}");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{0A22097A-0A1C-443B-9418-B9498AEB1603}");
     }
 
     //@VtableIndex(6)
@@ -1733,6 +1879,7 @@ class Windows_Security_Cryptography_Core_IKeyDerivationAlgorithmProviderStatics 
     //@Parameters("String")
     OpenAlgorithm(algorithm)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = algorithm;
         var _r = Windows.Security.Cryptography.Core.KeyDerivationAlgorithmProvider(
@@ -1754,7 +1901,8 @@ class Windows_Security_Cryptography_Core_IKeyDerivationParameters : WinRtInterfa
     Windows_Security_Cryptography_Core_IKeyDerivationParameters( comPtr )
     {
         var Windows = runtime.global("Windows");
-        this.comPtr = comPtr.queryInterface( "{7BF05967-047B-4A8C-964A-469FFD5522E2}");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{7BF05967-047B-4A8C-964A-469FFD5522E2}");
     }
 
     //@VtableIndex(6)
@@ -1762,6 +1910,7 @@ class Windows_Security_Cryptography_Core_IKeyDerivationParameters : WinRtInterfa
     //@Returns("Windows.Storage.Streams.IBuffer")
     get_KdfGenericBinary()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = Windows.Storage.Streams.IBuffer(
             this.comPtr.invoke( 6, "Windows.Storage.Streams.IBuffer", [], [] )
@@ -1775,6 +1924,7 @@ class Windows_Security_Cryptography_Core_IKeyDerivationParameters : WinRtInterfa
     //@Parameters("Windows.Storage.Streams.IBuffer")
     put_KdfGenericBinary(value)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = Windows.Storage.Streams.IBuffer( value); 
         this.comPtr.invoke( 7, "void", ["Windows.Storage.Streams.IBuffer"], [p1] );
@@ -1785,6 +1935,7 @@ class Windows_Security_Cryptography_Core_IKeyDerivationParameters : WinRtInterfa
     //@Returns("UInt32")
     get_IterationCount()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 8, "UInt32", [], [] );
         return _r;
@@ -1803,7 +1954,8 @@ class Windows_Security_Cryptography_Core_IKeyDerivationParameters2 : WinRtInterf
     Windows_Security_Cryptography_Core_IKeyDerivationParameters2( comPtr )
     {
         var Windows = runtime.global("Windows");
-        this.comPtr = comPtr.queryInterface( "{CD4166D1-417E-4F4C-B666-C0D879F3F8E0}");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{CD4166D1-417E-4F4C-B666-C0D879F3F8E0}");
     }
 
     //@VtableIndex(6)
@@ -1811,6 +1963,7 @@ class Windows_Security_Cryptography_Core_IKeyDerivationParameters2 : WinRtInterf
     //@Returns("Windows.Security.Cryptography.Core.Capi1KdfTargetAlgorithm")
     get_Capi1KdfTargetAlgorithm()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 6, "UInt32", [], [] );
         return _r;
@@ -1822,6 +1975,7 @@ class Windows_Security_Cryptography_Core_IKeyDerivationParameters2 : WinRtInterf
     //@Parameters("Windows.Security.Cryptography.Core.Capi1KdfTargetAlgorithm")
     put_Capi1KdfTargetAlgorithm(value)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = value;
         this.comPtr.invoke( 7, "void", ["UInt32"], [p1] );
@@ -1840,7 +1994,8 @@ class Windows_Security_Cryptography_Core_IKeyDerivationParametersStatics : WinRt
     Windows_Security_Cryptography_Core_IKeyDerivationParametersStatics( comPtr )
     {
         var Windows = runtime.global("Windows");
-        this.comPtr = comPtr.queryInterface( "{EA961FBE-F37F-4146-9DFE-A456F1735F4B}");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{EA961FBE-F37F-4146-9DFE-A456F1735F4B}");
     }
 
     //@VtableIndex(6)
@@ -1849,6 +2004,7 @@ class Windows_Security_Cryptography_Core_IKeyDerivationParametersStatics : WinRt
     //@Parameters("Windows.Storage.Streams.IBuffer","UInt32")
     BuildForPbkdf2(pbkdf2Salt,iterationCount)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = Windows.Storage.Streams.IBuffer( pbkdf2Salt); 
         var p2 = iterationCount;
@@ -1864,6 +2020,7 @@ class Windows_Security_Cryptography_Core_IKeyDerivationParametersStatics : WinRt
     //@Parameters("Windows.Storage.Streams.IBuffer","Windows.Storage.Streams.IBuffer")
     BuildForSP800108(label,context)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = Windows.Storage.Streams.IBuffer( label); 
         var p2 = Windows.Storage.Streams.IBuffer( context); 
@@ -1879,6 +2036,7 @@ class Windows_Security_Cryptography_Core_IKeyDerivationParametersStatics : WinRt
     //@Parameters("Windows.Storage.Streams.IBuffer","Windows.Storage.Streams.IBuffer","Windows.Storage.Streams.IBuffer","Windows.Storage.Streams.IBuffer","Windows.Storage.Streams.IBuffer")
     BuildForSP80056a(algorithmId,partyUInfo,partyVInfo,suppPubInfo,suppPrivInfo)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = Windows.Storage.Streams.IBuffer( algorithmId); 
         var p2 = Windows.Storage.Streams.IBuffer( partyUInfo); 
@@ -1904,7 +2062,8 @@ class Windows_Security_Cryptography_Core_IKeyDerivationParametersStatics2 : WinR
     Windows_Security_Cryptography_Core_IKeyDerivationParametersStatics2( comPtr )
     {
         var Windows = runtime.global("Windows");
-        this.comPtr = comPtr.queryInterface( "{A5783DD5-58E3-4EFB-B283-A1653126E1BE}");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{A5783DD5-58E3-4EFB-B283-A1653126E1BE}");
     }
 
     //@VtableIndex(6)
@@ -1913,6 +2072,7 @@ class Windows_Security_Cryptography_Core_IKeyDerivationParametersStatics2 : WinR
     //@Parameters("Windows.Security.Cryptography.Core.Capi1KdfTargetAlgorithm")
     BuildForCapi1Kdf(capi1KdfTargetAlgorithm)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = capi1KdfTargetAlgorithm;
         var _r = Windows.Security.Cryptography.Core.KeyDerivationParameters(
@@ -1934,7 +2094,8 @@ class Windows_Security_Cryptography_Core_IMacAlgorithmNamesStatics : WinRtInterf
     Windows_Security_Cryptography_Core_IMacAlgorithmNamesStatics( comPtr )
     {
         var Windows = runtime.global("Windows");
-        this.comPtr = comPtr.queryInterface( "{41412678-FB1E-43A4-895E-A9026E4390A3}");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{41412678-FB1E-43A4-895E-A9026E4390A3}");
     }
 
     //@VtableIndex(6)
@@ -1942,6 +2103,7 @@ class Windows_Security_Cryptography_Core_IMacAlgorithmNamesStatics : WinRtInterf
     //@Returns("String")
     get_HmacMd5()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 6, "String", [], [] );
         return _r;
@@ -1952,6 +2114,7 @@ class Windows_Security_Cryptography_Core_IMacAlgorithmNamesStatics : WinRtInterf
     //@Returns("String")
     get_HmacSha1()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 7, "String", [], [] );
         return _r;
@@ -1962,6 +2125,7 @@ class Windows_Security_Cryptography_Core_IMacAlgorithmNamesStatics : WinRtInterf
     //@Returns("String")
     get_HmacSha256()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 8, "String", [], [] );
         return _r;
@@ -1972,6 +2136,7 @@ class Windows_Security_Cryptography_Core_IMacAlgorithmNamesStatics : WinRtInterf
     //@Returns("String")
     get_HmacSha384()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 9, "String", [], [] );
         return _r;
@@ -1982,6 +2147,7 @@ class Windows_Security_Cryptography_Core_IMacAlgorithmNamesStatics : WinRtInterf
     //@Returns("String")
     get_HmacSha512()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 10, "String", [], [] );
         return _r;
@@ -1992,6 +2158,7 @@ class Windows_Security_Cryptography_Core_IMacAlgorithmNamesStatics : WinRtInterf
     //@Returns("String")
     get_AesCmac()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 11, "String", [], [] );
         return _r;
@@ -2010,7 +2177,8 @@ class Windows_Security_Cryptography_Core_IMacAlgorithmProvider : WinRtInterface
     Windows_Security_Cryptography_Core_IMacAlgorithmProvider( comPtr )
     {
         var Windows = runtime.global("Windows");
-        this.comPtr = comPtr.queryInterface( "{4A3FC5C3-1CBD-41CE-A092-AA0BC5D2D2F5}");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{4A3FC5C3-1CBD-41CE-A092-AA0BC5D2D2F5}");
     }
 
     //@VtableIndex(6)
@@ -2018,6 +2186,7 @@ class Windows_Security_Cryptography_Core_IMacAlgorithmProvider : WinRtInterface
     //@Returns("String")
     get_AlgorithmName()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 6, "String", [], [] );
         return _r;
@@ -2028,6 +2197,7 @@ class Windows_Security_Cryptography_Core_IMacAlgorithmProvider : WinRtInterface
     //@Returns("UInt32")
     get_MacLength()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 7, "UInt32", [], [] );
         return _r;
@@ -2039,6 +2209,7 @@ class Windows_Security_Cryptography_Core_IMacAlgorithmProvider : WinRtInterface
     //@Parameters("Windows.Storage.Streams.IBuffer")
     CreateKey(keyMaterial)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = Windows.Storage.Streams.IBuffer( keyMaterial); 
         var _r = Windows.Security.Cryptography.Core.CryptographicKey(
@@ -2060,7 +2231,8 @@ class Windows_Security_Cryptography_Core_IMacAlgorithmProvider2 : WinRtInterface
     Windows_Security_Cryptography_Core_IMacAlgorithmProvider2( comPtr )
     {
         var Windows = runtime.global("Windows");
-        this.comPtr = comPtr.queryInterface( "{6DA32A15-D931-42ED-8E7E-C301CAEE119C}");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{6DA32A15-D931-42ED-8E7E-C301CAEE119C}");
     }
 
     //@VtableIndex(6)
@@ -2069,6 +2241,7 @@ class Windows_Security_Cryptography_Core_IMacAlgorithmProvider2 : WinRtInterface
     //@Parameters("Windows.Storage.Streams.IBuffer")
     CreateHash(keyMaterial)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = Windows.Storage.Streams.IBuffer( keyMaterial); 
         var _r = Windows.Security.Cryptography.Core.CryptographicHash(
@@ -2090,7 +2263,8 @@ class Windows_Security_Cryptography_Core_IMacAlgorithmProviderStatics : WinRtInt
     Windows_Security_Cryptography_Core_IMacAlgorithmProviderStatics( comPtr )
     {
         var Windows = runtime.global("Windows");
-        this.comPtr = comPtr.queryInterface( "{C9BDC147-CC77-4DF0-9E4E-B921E080644C}");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{C9BDC147-CC77-4DF0-9E4E-B921E080644C}");
     }
 
     //@VtableIndex(6)
@@ -2099,6 +2273,7 @@ class Windows_Security_Cryptography_Core_IMacAlgorithmProviderStatics : WinRtInt
     //@Parameters("String")
     OpenAlgorithm(algorithm)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = algorithm;
         var _r = Windows.Security.Cryptography.Core.MacAlgorithmProvider(
@@ -2120,7 +2295,8 @@ class Windows_Security_Cryptography_Core_IPersistedKeyProviderStatics : WinRtInt
     Windows_Security_Cryptography_Core_IPersistedKeyProviderStatics( comPtr )
     {
         var Windows = runtime.global("Windows");
-        this.comPtr = comPtr.queryInterface( "{77274814-D9D4-4CF5-B668-E0457DF30894}");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{77274814-D9D4-4CF5-B668-E0457DF30894}");
     }
 
     //@VtableIndex(6)
@@ -2129,6 +2305,7 @@ class Windows_Security_Cryptography_Core_IPersistedKeyProviderStatics : WinRtInt
     //@Parameters("Windows.Security.Cryptography.Certificates.Certificate","String","Windows.Security.Cryptography.Core.CryptographicPadding")
     OpenKeyPairFromCertificateAsync(certificate,hashAlgorithmName,padding,cb)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = Windows.Security.Cryptography.Certificates.Certificate( certificate); 
         var p2 = hashAlgorithmName;
@@ -2142,6 +2319,7 @@ class Windows_Security_Cryptography_Core_IPersistedKeyProviderStatics : WinRtInt
     //@Parameters("Windows.Security.Cryptography.Certificates.Certificate","String","Windows.Security.Cryptography.Core.CryptographicPadding")
     OpenPublicKeyFromCertificate(certificate,hashAlgorithmName,padding)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = Windows.Security.Cryptography.Certificates.Certificate( certificate); 
         var p2 = hashAlgorithmName;
@@ -2165,7 +2343,8 @@ class Windows_Security_Cryptography_Core_ISymmetricAlgorithmNamesStatics : WinRt
     Windows_Security_Cryptography_Core_ISymmetricAlgorithmNamesStatics( comPtr )
     {
         var Windows = runtime.global("Windows");
-        this.comPtr = comPtr.queryInterface( "{6870727B-C996-4EAE-84D7-79B2AEB73B9C}");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{6870727B-C996-4EAE-84D7-79B2AEB73B9C}");
     }
 
     //@VtableIndex(6)
@@ -2173,6 +2352,7 @@ class Windows_Security_Cryptography_Core_ISymmetricAlgorithmNamesStatics : WinRt
     //@Returns("String")
     get_DesCbc()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 6, "String", [], [] );
         return _r;
@@ -2183,6 +2363,7 @@ class Windows_Security_Cryptography_Core_ISymmetricAlgorithmNamesStatics : WinRt
     //@Returns("String")
     get_DesEcb()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 7, "String", [], [] );
         return _r;
@@ -2193,6 +2374,7 @@ class Windows_Security_Cryptography_Core_ISymmetricAlgorithmNamesStatics : WinRt
     //@Returns("String")
     get_TripleDesCbc()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 8, "String", [], [] );
         return _r;
@@ -2203,6 +2385,7 @@ class Windows_Security_Cryptography_Core_ISymmetricAlgorithmNamesStatics : WinRt
     //@Returns("String")
     get_TripleDesEcb()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 9, "String", [], [] );
         return _r;
@@ -2213,6 +2396,7 @@ class Windows_Security_Cryptography_Core_ISymmetricAlgorithmNamesStatics : WinRt
     //@Returns("String")
     get_Rc2Cbc()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 10, "String", [], [] );
         return _r;
@@ -2223,6 +2407,7 @@ class Windows_Security_Cryptography_Core_ISymmetricAlgorithmNamesStatics : WinRt
     //@Returns("String")
     get_Rc2Ecb()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 11, "String", [], [] );
         return _r;
@@ -2233,6 +2418,7 @@ class Windows_Security_Cryptography_Core_ISymmetricAlgorithmNamesStatics : WinRt
     //@Returns("String")
     get_AesCbc()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 12, "String", [], [] );
         return _r;
@@ -2243,6 +2429,7 @@ class Windows_Security_Cryptography_Core_ISymmetricAlgorithmNamesStatics : WinRt
     //@Returns("String")
     get_AesEcb()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 13, "String", [], [] );
         return _r;
@@ -2253,6 +2440,7 @@ class Windows_Security_Cryptography_Core_ISymmetricAlgorithmNamesStatics : WinRt
     //@Returns("String")
     get_AesGcm()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 14, "String", [], [] );
         return _r;
@@ -2263,6 +2451,7 @@ class Windows_Security_Cryptography_Core_ISymmetricAlgorithmNamesStatics : WinRt
     //@Returns("String")
     get_AesCcm()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 15, "String", [], [] );
         return _r;
@@ -2273,6 +2462,7 @@ class Windows_Security_Cryptography_Core_ISymmetricAlgorithmNamesStatics : WinRt
     //@Returns("String")
     get_AesCbcPkcs7()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 16, "String", [], [] );
         return _r;
@@ -2283,6 +2473,7 @@ class Windows_Security_Cryptography_Core_ISymmetricAlgorithmNamesStatics : WinRt
     //@Returns("String")
     get_AesEcbPkcs7()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 17, "String", [], [] );
         return _r;
@@ -2293,6 +2484,7 @@ class Windows_Security_Cryptography_Core_ISymmetricAlgorithmNamesStatics : WinRt
     //@Returns("String")
     get_DesCbcPkcs7()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 18, "String", [], [] );
         return _r;
@@ -2303,6 +2495,7 @@ class Windows_Security_Cryptography_Core_ISymmetricAlgorithmNamesStatics : WinRt
     //@Returns("String")
     get_DesEcbPkcs7()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 19, "String", [], [] );
         return _r;
@@ -2313,6 +2506,7 @@ class Windows_Security_Cryptography_Core_ISymmetricAlgorithmNamesStatics : WinRt
     //@Returns("String")
     get_TripleDesCbcPkcs7()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 20, "String", [], [] );
         return _r;
@@ -2323,6 +2517,7 @@ class Windows_Security_Cryptography_Core_ISymmetricAlgorithmNamesStatics : WinRt
     //@Returns("String")
     get_TripleDesEcbPkcs7()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 21, "String", [], [] );
         return _r;
@@ -2333,6 +2528,7 @@ class Windows_Security_Cryptography_Core_ISymmetricAlgorithmNamesStatics : WinRt
     //@Returns("String")
     get_Rc2CbcPkcs7()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 22, "String", [], [] );
         return _r;
@@ -2343,6 +2539,7 @@ class Windows_Security_Cryptography_Core_ISymmetricAlgorithmNamesStatics : WinRt
     //@Returns("String")
     get_Rc2EcbPkcs7()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 23, "String", [], [] );
         return _r;
@@ -2353,6 +2550,7 @@ class Windows_Security_Cryptography_Core_ISymmetricAlgorithmNamesStatics : WinRt
     //@Returns("String")
     get_Rc4()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 24, "String", [], [] );
         return _r;
@@ -2371,7 +2569,8 @@ class Windows_Security_Cryptography_Core_ISymmetricKeyAlgorithmProvider : WinRtI
     Windows_Security_Cryptography_Core_ISymmetricKeyAlgorithmProvider( comPtr )
     {
         var Windows = runtime.global("Windows");
-        this.comPtr = comPtr.queryInterface( "{3D7E4A33-3BD0-4902-8AC8-470D50D21376}");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{3D7E4A33-3BD0-4902-8AC8-470D50D21376}");
     }
 
     //@VtableIndex(6)
@@ -2379,6 +2578,7 @@ class Windows_Security_Cryptography_Core_ISymmetricKeyAlgorithmProvider : WinRtI
     //@Returns("String")
     get_AlgorithmName()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 6, "String", [], [] );
         return _r;
@@ -2389,6 +2589,7 @@ class Windows_Security_Cryptography_Core_ISymmetricKeyAlgorithmProvider : WinRtI
     //@Returns("UInt32")
     get_BlockLength()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 7, "UInt32", [], [] );
         return _r;
@@ -2400,6 +2601,7 @@ class Windows_Security_Cryptography_Core_ISymmetricKeyAlgorithmProvider : WinRtI
     //@Parameters("Windows.Storage.Streams.IBuffer")
     CreateSymmetricKey(keyMaterial)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = Windows.Storage.Streams.IBuffer( keyMaterial); 
         var _r = Windows.Security.Cryptography.Core.CryptographicKey(
@@ -2421,7 +2623,8 @@ class Windows_Security_Cryptography_Core_ISymmetricKeyAlgorithmProviderStatics :
     Windows_Security_Cryptography_Core_ISymmetricKeyAlgorithmProviderStatics( comPtr )
     {
         var Windows = runtime.global("Windows");
-        this.comPtr = comPtr.queryInterface( "{8D3B2326-1F37-491F-B60E-F5431B26B483}");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{8D3B2326-1F37-491F-B60E-F5431B26B483}");
     }
 
     //@VtableIndex(6)
@@ -2430,6 +2633,7 @@ class Windows_Security_Cryptography_Core_ISymmetricKeyAlgorithmProviderStatics :
     //@Parameters("String")
     OpenAlgorithm(algorithm)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = algorithm;
         var _r = Windows.Security.Cryptography.Core.SymmetricKeyAlgorithmProvider(
@@ -2770,7 +2974,8 @@ class Windows_Security_Cryptography_Core_AsymmetricKeyAlgorithmProvider : WinRtI
     Windows_Security_Cryptography_Core_AsymmetricKeyAlgorithmProvider( comPtr )
     {
         var Windows = runtime.global("Windows");
-        this.comPtr = comPtr.queryInterface( Windows.Security.Cryptography.Core.IAsymmetricKeyAlgorithmProvider.iid );
+        if(!comPtr || !int(comPtr)) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( Windows.Security.Cryptography.Core.IAsymmetricKeyAlgorithmProvider.iid );
     }
 
     // s Windows.Security.Cryptography.Core.IAsymmetricKeyAlgorithmProviderStatics
@@ -2798,6 +3003,7 @@ class Windows_Security_Cryptography_Core_AsymmetricKeyAlgorithmProvider : WinRtI
     //@Returns("String")
     get_AlgorithmName()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Security.Cryptography.Core.IAsymmetricKeyAlgorithmProvider( this.comPtr );
         var _r = iface.get_AlgorithmName(  );
@@ -2810,6 +3016,7 @@ class Windows_Security_Cryptography_Core_AsymmetricKeyAlgorithmProvider : WinRtI
     //@Parameters("UInt32")
     CreateKeyPair(keySize)
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Security.Cryptography.Core.IAsymmetricKeyAlgorithmProvider( this.comPtr );
         var _r = iface.CreateKeyPair( keySize );
@@ -2822,6 +3029,7 @@ class Windows_Security_Cryptography_Core_AsymmetricKeyAlgorithmProvider : WinRtI
     //@Parameters("String")
     CreateKeyPairWithCurveName(curveName)
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Security.Cryptography.Core.IAsymmetricKeyAlgorithmProvider2( this.comPtr );
         var _r = iface.CreateKeyPairWithCurveName( curveName );
@@ -3075,7 +3283,8 @@ class Windows_Security_Cryptography_Core_CryptographicHash : WinRtInterface
     Windows_Security_Cryptography_Core_CryptographicHash( comPtr )
     {
         var Windows = runtime.global("Windows");
-        this.comPtr = comPtr.queryInterface( Windows.Security.Cryptography.Core.IHashComputation.iid );
+        if(!comPtr || !int(comPtr)) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( Windows.Security.Cryptography.Core.IHashComputation.iid );
     }
 
     static Create()
@@ -3089,6 +3298,7 @@ class Windows_Security_Cryptography_Core_CryptographicHash : WinRtInterface
     //@Parameters("Windows.Storage.Streams.IBuffer")
     Append(data)
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Security.Cryptography.Core.IHashComputation( this.comPtr );
         iface.Append( data );
@@ -3098,6 +3308,7 @@ class Windows_Security_Cryptography_Core_CryptographicHash : WinRtInterface
     //@Returns("Windows.Storage.Streams.IBuffer")
     GetValueAndReset()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Security.Cryptography.Core.IHashComputation( this.comPtr );
         var _r = iface.GetValueAndReset(  );
@@ -3118,7 +3329,8 @@ class Windows_Security_Cryptography_Core_CryptographicKey : WinRtInterface
     Windows_Security_Cryptography_Core_CryptographicKey( comPtr )
     {
         var Windows = runtime.global("Windows");
-        this.comPtr = comPtr.queryInterface( Windows.Security.Cryptography.Core.ICryptographicKey.iid );
+        if(!comPtr || !int(comPtr)) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( Windows.Security.Cryptography.Core.ICryptographicKey.iid );
     }
 
     static Create()
@@ -3130,6 +3342,7 @@ class Windows_Security_Cryptography_Core_CryptographicKey : WinRtInterface
     //@Returns("UInt32")
     get_KeySize()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Security.Cryptography.Core.ICryptographicKey( this.comPtr );
         var _r = iface.get_KeySize(  );
@@ -3816,7 +4029,8 @@ class Windows_Security_Cryptography_Core_EncryptedAndAuthenticatedData : WinRtIn
     Windows_Security_Cryptography_Core_EncryptedAndAuthenticatedData( comPtr )
     {
         var Windows = runtime.global("Windows");
-        this.comPtr = comPtr.queryInterface( Windows.Security.Cryptography.Core.IEncryptedAndAuthenticatedData.iid );
+        if(!comPtr || !int(comPtr)) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( Windows.Security.Cryptography.Core.IEncryptedAndAuthenticatedData.iid );
     }
 
     static Create()
@@ -3828,6 +4042,7 @@ class Windows_Security_Cryptography_Core_EncryptedAndAuthenticatedData : WinRtIn
     //@Returns("Windows.Storage.Streams.IBuffer")
     get_EncryptedData()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Security.Cryptography.Core.IEncryptedAndAuthenticatedData( this.comPtr );
         var _r = iface.get_EncryptedData(  );
@@ -3838,6 +4053,7 @@ class Windows_Security_Cryptography_Core_EncryptedAndAuthenticatedData : WinRtIn
     //@Returns("Windows.Storage.Streams.IBuffer")
     get_AuthenticationTag()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Security.Cryptography.Core.IEncryptedAndAuthenticatedData( this.comPtr );
         var _r = iface.get_AuthenticationTag(  );
@@ -3950,7 +4166,8 @@ class Windows_Security_Cryptography_Core_HashAlgorithmProvider : WinRtInterface
     Windows_Security_Cryptography_Core_HashAlgorithmProvider( comPtr )
     {
         var Windows = runtime.global("Windows");
-        this.comPtr = comPtr.queryInterface( Windows.Security.Cryptography.Core.IHashAlgorithmProvider.iid );
+        if(!comPtr || !int(comPtr)) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( Windows.Security.Cryptography.Core.IHashAlgorithmProvider.iid );
     }
 
     // s Windows.Security.Cryptography.Core.IHashAlgorithmProviderStatics
@@ -3978,6 +4195,7 @@ class Windows_Security_Cryptography_Core_HashAlgorithmProvider : WinRtInterface
     //@Returns("String")
     get_AlgorithmName()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Security.Cryptography.Core.IHashAlgorithmProvider( this.comPtr );
         var _r = iface.get_AlgorithmName(  );
@@ -3988,6 +4206,7 @@ class Windows_Security_Cryptography_Core_HashAlgorithmProvider : WinRtInterface
     //@Returns("UInt32")
     get_HashLength()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Security.Cryptography.Core.IHashAlgorithmProvider( this.comPtr );
         var _r = iface.get_HashLength(  );
@@ -4000,6 +4219,7 @@ class Windows_Security_Cryptography_Core_HashAlgorithmProvider : WinRtInterface
     //@Parameters("Windows.Storage.Streams.IBuffer")
     HashData(data)
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Security.Cryptography.Core.IHashAlgorithmProvider( this.comPtr );
         var _r = iface.HashData( data );
@@ -4010,6 +4230,7 @@ class Windows_Security_Cryptography_Core_HashAlgorithmProvider : WinRtInterface
     //@Returns("Windows.Security.Cryptography.Core.CryptographicHash")
     CreateHash()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Security.Cryptography.Core.IHashAlgorithmProvider( this.comPtr );
         var _r = iface.CreateHash(  );
@@ -4333,7 +4554,8 @@ class Windows_Security_Cryptography_Core_KeyDerivationAlgorithmProvider : WinRtI
     Windows_Security_Cryptography_Core_KeyDerivationAlgorithmProvider( comPtr )
     {
         var Windows = runtime.global("Windows");
-        this.comPtr = comPtr.queryInterface( Windows.Security.Cryptography.Core.IKeyDerivationAlgorithmProvider.iid );
+        if(!comPtr || !int(comPtr)) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( Windows.Security.Cryptography.Core.IKeyDerivationAlgorithmProvider.iid );
     }
 
     // s Windows.Security.Cryptography.Core.IKeyDerivationAlgorithmProviderStatics
@@ -4361,6 +4583,7 @@ class Windows_Security_Cryptography_Core_KeyDerivationAlgorithmProvider : WinRtI
     //@Returns("String")
     get_AlgorithmName()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Security.Cryptography.Core.IKeyDerivationAlgorithmProvider( this.comPtr );
         var _r = iface.get_AlgorithmName(  );
@@ -4373,6 +4596,7 @@ class Windows_Security_Cryptography_Core_KeyDerivationAlgorithmProvider : WinRtI
     //@Parameters("Windows.Storage.Streams.IBuffer")
     CreateKey(keyMaterial)
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Security.Cryptography.Core.IKeyDerivationAlgorithmProvider( this.comPtr );
         var _r = iface.CreateKey( keyMaterial );
@@ -4393,7 +4617,8 @@ class Windows_Security_Cryptography_Core_KeyDerivationParameters : WinRtInterfac
     Windows_Security_Cryptography_Core_KeyDerivationParameters( comPtr )
     {
         var Windows = runtime.global("Windows");
-        this.comPtr = comPtr.queryInterface( Windows.Security.Cryptography.Core.IKeyDerivationParameters.iid );
+        if(!comPtr || !int(comPtr)) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( Windows.Security.Cryptography.Core.IKeyDerivationParameters.iid );
     }
 
     // s Windows.Security.Cryptography.Core.IKeyDerivationParametersStatics2
@@ -4467,6 +4692,7 @@ class Windows_Security_Cryptography_Core_KeyDerivationParameters : WinRtInterfac
     //@Returns("Windows.Storage.Streams.IBuffer")
     get_KdfGenericBinary()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Security.Cryptography.Core.IKeyDerivationParameters( this.comPtr );
         var _r = iface.get_KdfGenericBinary(  );
@@ -4479,6 +4705,7 @@ class Windows_Security_Cryptography_Core_KeyDerivationParameters : WinRtInterfac
     //@Parameters("Windows.Storage.Streams.IBuffer")
     put_KdfGenericBinary(value)
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Security.Cryptography.Core.IKeyDerivationParameters( this.comPtr );
         iface.put_KdfGenericBinary( value );
@@ -4488,6 +4715,7 @@ class Windows_Security_Cryptography_Core_KeyDerivationParameters : WinRtInterfac
     //@Returns("UInt32")
     get_IterationCount()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Security.Cryptography.Core.IKeyDerivationParameters( this.comPtr );
         var _r = iface.get_IterationCount(  );
@@ -4498,6 +4726,7 @@ class Windows_Security_Cryptography_Core_KeyDerivationParameters : WinRtInterfac
     //@Returns("Windows.Security.Cryptography.Core.Capi1KdfTargetAlgorithm")
     get_Capi1KdfTargetAlgorithm()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Security.Cryptography.Core.IKeyDerivationParameters2( this.comPtr );
         var _r = iface.get_Capi1KdfTargetAlgorithm(  );
@@ -4510,6 +4739,7 @@ class Windows_Security_Cryptography_Core_KeyDerivationParameters : WinRtInterfac
     //@Parameters("Windows.Security.Cryptography.Core.Capi1KdfTargetAlgorithm")
     put_Capi1KdfTargetAlgorithm(value)
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Security.Cryptography.Core.IKeyDerivationParameters2( this.comPtr );
         iface.put_Capi1KdfTargetAlgorithm( value );
@@ -4635,7 +4865,8 @@ class Windows_Security_Cryptography_Core_MacAlgorithmProvider : WinRtInterface
     Windows_Security_Cryptography_Core_MacAlgorithmProvider( comPtr )
     {
         var Windows = runtime.global("Windows");
-        this.comPtr = comPtr.queryInterface( Windows.Security.Cryptography.Core.IMacAlgorithmProvider.iid );
+        if(!comPtr || !int(comPtr)) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( Windows.Security.Cryptography.Core.IMacAlgorithmProvider.iid );
     }
 
     // s Windows.Security.Cryptography.Core.IMacAlgorithmProviderStatics
@@ -4663,6 +4894,7 @@ class Windows_Security_Cryptography_Core_MacAlgorithmProvider : WinRtInterface
     //@Returns("String")
     get_AlgorithmName()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Security.Cryptography.Core.IMacAlgorithmProvider( this.comPtr );
         var _r = iface.get_AlgorithmName(  );
@@ -4673,6 +4905,7 @@ class Windows_Security_Cryptography_Core_MacAlgorithmProvider : WinRtInterface
     //@Returns("UInt32")
     get_MacLength()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Security.Cryptography.Core.IMacAlgorithmProvider( this.comPtr );
         var _r = iface.get_MacLength(  );
@@ -4685,6 +4918,7 @@ class Windows_Security_Cryptography_Core_MacAlgorithmProvider : WinRtInterface
     //@Parameters("Windows.Storage.Streams.IBuffer")
     CreateKey(keyMaterial)
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Security.Cryptography.Core.IMacAlgorithmProvider( this.comPtr );
         var _r = iface.CreateKey( keyMaterial );
@@ -4697,6 +4931,7 @@ class Windows_Security_Cryptography_Core_MacAlgorithmProvider : WinRtInterface
     //@Parameters("Windows.Storage.Streams.IBuffer")
     CreateHash(keyMaterial)
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Security.Cryptography.Core.IMacAlgorithmProvider2( this.comPtr );
         var _r = iface.CreateHash( keyMaterial );
@@ -5067,7 +5302,8 @@ class Windows_Security_Cryptography_Core_SymmetricKeyAlgorithmProvider : WinRtIn
     Windows_Security_Cryptography_Core_SymmetricKeyAlgorithmProvider( comPtr )
     {
         var Windows = runtime.global("Windows");
-        this.comPtr = comPtr.queryInterface( Windows.Security.Cryptography.Core.ISymmetricKeyAlgorithmProvider.iid );
+        if(!comPtr || !int(comPtr)) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( Windows.Security.Cryptography.Core.ISymmetricKeyAlgorithmProvider.iid );
     }
 
     // s Windows.Security.Cryptography.Core.ISymmetricKeyAlgorithmProviderStatics
@@ -5095,6 +5331,7 @@ class Windows_Security_Cryptography_Core_SymmetricKeyAlgorithmProvider : WinRtIn
     //@Returns("String")
     get_AlgorithmName()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Security.Cryptography.Core.ISymmetricKeyAlgorithmProvider( this.comPtr );
         var _r = iface.get_AlgorithmName(  );
@@ -5105,6 +5342,7 @@ class Windows_Security_Cryptography_Core_SymmetricKeyAlgorithmProvider : WinRtIn
     //@Returns("UInt32")
     get_BlockLength()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Security.Cryptography.Core.ISymmetricKeyAlgorithmProvider( this.comPtr );
         var _r = iface.get_BlockLength(  );
@@ -5117,6 +5355,7 @@ class Windows_Security_Cryptography_Core_SymmetricKeyAlgorithmProvider : WinRtIn
     //@Parameters("Windows.Storage.Streams.IBuffer")
     CreateSymmetricKey(keyMaterial)
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Security.Cryptography.Core.ISymmetricKeyAlgorithmProvider( this.comPtr );
         var _r = iface.CreateSymmetricKey( keyMaterial );
@@ -5152,7 +5391,8 @@ class Windows_Foundation_Collections_IVectorView_1_String_ : WinRtInterface
 {
     Windows_Foundation_Collections_IVectorView_1_String_( comPtr )
     {
-        this.comPtr = comPtr.queryInterface( "{2F13C006-A03A-5F69-B090-75A43E33423E}");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{2F13C006-A03A-5F69-B090-75A43E33423E}");
     }
 
     //@VtableIndex(6)
@@ -5160,6 +5400,7 @@ class Windows_Foundation_Collections_IVectorView_1_String_ : WinRtInterface
     //@Parameters("UInt32")
     GetAt(index)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = index;
         var _r = this.comPtr.invoke(6, "String", ["UInt32"], [p1] );
@@ -5170,6 +5411,7 @@ class Windows_Foundation_Collections_IVectorView_1_String_ : WinRtInterface
     //@Returns("UInt32")
     get_Size()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke(7, "UInt32", [], [] );
         return _r;

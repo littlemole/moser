@@ -4,6 +4,7 @@ import("win32/gdi");
 import("win32/user");
 import("win32/sysinfo");
 import("promise");
+import("rt/Windows.System");
 import("rt/Windows.Foundation");
 import("rt/Windows.Foundation.Collections");
 import("rt/Windows.Graphics");
@@ -31,21 +32,23 @@ import("windows");
 import("winrt");
 import("xaml");
 
-print io.cwd();
+var ID_EXIT = 101;
+
 
 var edit_xaml = "
 
 <Page Name='thePage' xmlns='http://schemas.microsoft.com/winfx/2006/xaml/presentation' 
     xmlns:x='http://schemas.microsoft.com/winfx/2006/xaml'
-    xmlns:m='using:moxaml'  Background='{ThemeResource MoserBackground}'>
+    xmlns:m='using:moxaml'  Background='{ThemeResource MoserBackground}' >
     <Page.Resources>
         <Style TargetType='TextBox'>
             <Setter Property='Margin' Value='5,5,5,5' />
             <Setter Property='FontFamily' Value='Consolas' />
         </Style>
+
     </Page.Resources>
 
-    <Grid Name='theGrid'>
+    <Grid Name='theGrid' >
 
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width='*'/>
@@ -57,21 +60,22 @@ var edit_xaml = "
 
         <StackPanel Grid.Column='0' Grid.Row='0' Orientation='Horizontal' Background='{ThemeResource ControlSolidFillColorDefaultBrush}' >
 
-            <AppBarButton Icon='OpenFile' Label='Open File' Name='openFile' />
-            <AppBarButton Icon='Save' Label='Save File' Name='saveFile'/>
+	    <AppBarButton Icon='OpenFile' Label='Open File' Name='openFile'  Command='{Binding [cmds][Open] }' />
+            <AppBarButton Icon='Save' Label='Save File' Name='saveFile' Command='{Binding [cmds][Save] }'/>
             <AppBarButton Icon='Tag' Label='EOL' Name='convert'>
-				<AppBarButton.Flyout>
-					<MenuFlyout>
-							<MenuFlyoutItem Name='toDos' Text='DOS' />
-							<MenuFlyoutItem Name='toUnix' Text='UNIX' />
-					</MenuFlyout>
-				</AppBarButton.Flyout>
-			</AppBarButton>
-
+	    	<AppBarButton.Flyout>
+		    <MenuFlyout>
+		    	<MenuFlyoutItem Name='Unix2Dos' Text='DOS' Command='{Binding [cmds][Unix2Dos] }'/>
+		    	<MenuFlyoutItem Name='Dos2Unix' Text='UNIX' Command='{Binding [cmds][Dos2Unix] }'/>
+		    </MenuFlyout>
+	    	</AppBarButton.Flyout>
+	    </AppBarButton>
         </StackPanel>
 
         <StackPanel Grid.Column='0' Grid.Row='0' HorizontalAlignment='Right' Orientation='Horizontal'  >
-            <TextBlock Name='eolMenu' Margin='5,35,15,5' Text='{Binding [eol]}' />
+
+            <Button Name='eolMenu' Margin='5,35,15,5' Command='{Binding [cmds][EOL] }' />
+
         </StackPanel>
 
         <TextBox Name='text' ScrollViewer.VerticalScrollBarVisibility='Visible' 
@@ -79,18 +83,92 @@ var edit_xaml = "
                  FontFamily='Consolas'
                  AcceptsReturn='True' TextWrapping='NoWrap' 
                  Grid.Column='0' Grid.Row='1' 
-                 Text='{Binding [text], Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}' />
+                 Text='{Binding [text], Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}' >
+	    <TextBox.ContextFlyout >
+    		<MenuFlyout >
+		    <MenuFlyoutItem Name='Open' Text='Open' Command='{Binding [cmds][Open] }'/>
+		    <MenuFlyoutItem Name='Save' Text='Save' Command='{Binding [cmds][Save] }'/>
+		    <MenuFlyoutItem Name='Dos' Text='DOS' Command='{Binding [cmds][Unix2Dos] }'/>
+		    <MenuFlyoutItem Name='Unix' Text='UNIX' Command='{Binding [cmds][Dos2Unix] }'/>
+    		</MenuFlyout>
+  	    </TextBox.ContextFlyout>
+	</TextBox>
     </Grid> 
 </Page>";
 
 
-var ID_FILE_EXIT  = 1001;
-var ID_FILE_OPEN  = 1002;
-var ID_FILE_SAVE  = 1003;
-var ID_DOS2UNIX   = 4001;
-var ID_UNIX2DOS   = 4002;
+fun fixupCommands(controller,xamlWnd)
+{
+	Xaml.ensureInitialized();
 
-var ID_EDIT       = 5001;
+        var methods = controller.methods();
+
+        methods.forEach( fun(k,m) 
+        {
+            if($m)
+            {
+                if($m.exists("XamlCommand"))
+                {
+		    var cmds = $m.XamlCommand;
+		    if(typeof(cmds) == "map")
+		    {
+			var keys = cmds.keys();
+			keys.forEach( fun(item) 
+			{
+			    var element = xamlWnd.find(item);
+			    if(element && element.comPtr && int(element.comPtr) )
+			    {
+				var cmd = Xaml.Command(item,m);	
+				element.Command = cmd;
+			    }
+			});
+		    }
+		    if(typeof(cmds) == "array")
+		    {
+			cmds.forEach( fun(item) 
+			{
+			    var element = xamlWnd.root().find(item);
+			    if(element && element.comPtr && int(element.comPtr) )
+			    {
+				var cmd = Xaml.Command(item,m);	
+				element.Command = cmd;
+			    }
+			});
+		    }
+		}
+                else if($m.exists("XamlStandardCommand"))
+                {
+		    var cmds = $m.XamlStandardCommand;
+		    if(typeof(cmds) == "map")
+		    {
+			var keys = cmds.keys();
+			keys.forEach( fun(item) 
+			{
+			    var element = xamlWnd.root().find(item);
+			    if(element && element.comPtr && int(element.comPtr) )
+			    {
+				var cmd = Xaml.StandardCommand(item,m);	
+				element.Command = cmd;
+			    }
+			});
+		    }
+		    if(typeof(cmds) == "array")
+		    {
+			var keys = cmds.keys();
+			keys.forEach( fun(item) 
+			{
+			    var element = xamlWnd.root().find(item);
+			    if(element && element.comPtr && int(element.comPtr) )
+			    {
+				var cmd = Xaml.StandardCommand(item,m);	
+				element.Command = cmd;
+			    }
+			});
+		    }
+		} // xamlCommands
+	    } // if($m)
+	}); // foreach
+}
 
 class MyWindow : Window 
 {
@@ -102,8 +180,8 @@ class MyWindow : Window
         {
             "filename" : "",
             "ext"      : "",
-            "eol"      : "DOS",
-            "text" : "<example text>"
+            "text"     : "<example text>" ,
+	    "cmds"     : Xaml.commands(this)
         });
     }
 
@@ -115,10 +193,8 @@ class MyWindow : Window
         return "UNIX";
     }
 
-    @cmd(ID_FILE_OPEN)
-    @accel(key=O,flag=FCONTROL)
-    @Xaml(Element=openFile,Event=Click)
-    onOpenFile()
+    @XamlStandardCommand(Open)
+    onOpenFile(sender,args)
     {
          this.xamlWnd.FileOpenPicker(
             { 
@@ -137,17 +213,18 @@ class MyWindow : Window
                     .then( fun(content) 
                     {
                         this.dataContext.text = content;
-                        this.dataContext.eol = this.eolMode(content);
+                        this.dataContext.cmds.EOL.Label = this.eolMode(content);
                     });
                 }
+		this.xamlWnd.focus();
             }
         );
     }
 
-    @cmd(ID_FILE_SAVE)
-    @accel(key=S,flag=FCONTROL)
-    @Xaml(Element=saveFile,Event=Click)
-    onSaveFile()
+    @XamlAccel(key=S,flag=Control)
+    @XamlCommand(Save)
+//same as:    @XamlStandardCommand(Save)
+    onSaveFile(sender,args)
     {
          this.xamlWnd.FileSavePicker(
             { 
@@ -162,7 +239,7 @@ class MyWindow : Window
                 {
                     var content =  this.dataContext.text;
 
-                    if(this.dataContext.eol == "DOS")
+                    if(this.dataContext.cmds.EOL.Label == "DOS")
                     {
                         content = os.toDos(content);
                     }
@@ -177,14 +254,18 @@ class MyWindow : Window
                         this.dataContext.filename = file.Path;
                     });
                 }
+		this.xamlWnd.focus();
             }
         );
     }
 
-    @Xaml(Element=eolMenu,Event=PointerPressed)
+    //instead of directly binding to Event
+    //@Xaml(Element=eolMenu,Event=PointerPressed)
+    @XamlAccel(key=T,flag=Control)
+    @XamlCommand(EOL)
     onEol()
     {
-        var eol = this.dataContext.eol;
+        var eol = this.dataContext.cmds.EOL.Label;
         print eol;
         if(eol == "DOS")
         {
@@ -194,31 +275,34 @@ class MyWindow : Window
         {
             eol = "DOS";
         }
-        this.dataContext.eol = eol;
+        this.dataContext.cmds.EOL.Label = eol;
     }
 
-    @Xaml(Element=toUnix,Event=Click)
-    onDos2Unix()
+    @XamlAccel(key=U,flag=Control)
+    @XamlCommand(Dos2Unix)
+    toDos()
     {
         var txt = this.dataContext.text;
 
         var r = os.toUnix(txt);        
-        this.dataContext.eol = "UNIX";
+        this.dataContext.cmds.EOL.Label = "UNIX";
         this.dataContext.text = r;
     }
     
-    @Xaml(Element=toDos,Event=Click)
+    @XamlAccel(key=D,flag=Control)
+    @XamlCommand(Unix2Dos)
     onUnix2Dos()
     {
         var txt = this.dataContext.text;
 
         var r = os.toDos(txt);     
-        this.dataContext.eol = "DOS";
+        this.dataContext.cmds.EOL.Label = "DOS";
         this.dataContext.text = r;
     }
     
-    @cmd(ID_FILE_EXIT)
-    @accel(key=X,flag=FCONTROL)
+    // global non-xaml accelerator 
+    @cmd(ID_EXIT)
+    @accel(key=Q,flag=FCONTROL)
     onExit(wParam,lParam)
     {
         Win32.DestroyWindow(this.hwnd);
@@ -228,7 +312,16 @@ class MyWindow : Window
     onCreate()
     {
         this.xamlWnd = XamlWindow( this, edit_xaml );
-        Xaml.expand(this.hwnd,200);
+        Xaml.expand(this.hwnd,300);
+
+	// focus the edit window
+	this.xamlWnd.find("text").Focus(3);
+
+//	fixupCommands(this,this.xamlWnd);
+	// workaround for lazy binding of initially hidden elements
+//	this.xamlWnd.find("toDos").Command = this.dataContext.cmds.Unix2Dos;
+//	this.xamlWnd.find("toUnix").Command = this.dataContext.cmds.Dos2Unix;
+	
     }
 
     @msg(WM_DESTROY)
@@ -255,6 +348,6 @@ var wnd = MyWindow();
 
 wnd.create( "mocpadx" );
 wnd.show();
-Xaml.run();
+Xaml.run(wnd);
 
 print "OK";

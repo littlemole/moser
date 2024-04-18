@@ -45,7 +45,8 @@ class Windows_Storage_Streams_IBuffer : WinRtInterface
     Windows_Storage_Streams_IBuffer( comPtr )
     {
         var Windows = runtime.global("Windows");
-        this.comPtr = comPtr.queryInterface( "{905A0FE0-BC53-11DF-8C49-001E4FC686DA}");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{905A0FE0-BC53-11DF-8C49-001E4FC686DA}");
     }
 
     //@VtableIndex(6)
@@ -53,6 +54,7 @@ class Windows_Storage_Streams_IBuffer : WinRtInterface
     //@Returns("UInt32")
     get_Capacity()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 6, "UInt32", [], [] );
         return _r;
@@ -63,6 +65,7 @@ class Windows_Storage_Streams_IBuffer : WinRtInterface
     //@Returns("UInt32")
     get_Length()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 7, "UInt32", [], [] );
         return _r;
@@ -74,6 +77,7 @@ class Windows_Storage_Streams_IBuffer : WinRtInterface
     //@Parameters("UInt32")
     put_Length(value)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = value;
         this.comPtr.invoke( 8, "void", ["UInt32"], [p1] );
@@ -92,7 +96,8 @@ class Windows_Storage_Streams_IBufferFactory : WinRtInterface
     Windows_Storage_Streams_IBufferFactory( comPtr )
     {
         var Windows = runtime.global("Windows");
-        this.comPtr = comPtr.queryInterface( "{71AF914D-C10F-484B-BC50-14BC623B3A27}");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{71AF914D-C10F-484B-BC50-14BC623B3A27}");
     }
 
     //@VtableIndex(6)
@@ -101,6 +106,7 @@ class Windows_Storage_Streams_IBufferFactory : WinRtInterface
     //@Parameters("UInt32")
     Create(capacity)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = capacity;
         var _r = Windows.Storage.Streams.Buffer(
@@ -122,7 +128,8 @@ class Windows_Storage_Streams_IBufferStatics : WinRtInterface
     Windows_Storage_Streams_IBufferStatics( comPtr )
     {
         var Windows = runtime.global("Windows");
-        this.comPtr = comPtr.queryInterface( "{E901E65B-D716-475A-A90A-AF7229B1E741}");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{E901E65B-D716-475A-A90A-AF7229B1E741}");
     }
 
     //@VtableIndex(6)
@@ -131,6 +138,7 @@ class Windows_Storage_Streams_IBufferStatics : WinRtInterface
     //@Parameters("Windows.Foundation.IMemoryBuffer")
     CreateCopyFromMemoryBuffer(input)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = Windows.Foundation.IMemoryBuffer( input); 
         var _r = Windows.Storage.Streams.Buffer(
@@ -145,6 +153,7 @@ class Windows_Storage_Streams_IBufferStatics : WinRtInterface
     //@Parameters("Windows.Storage.Streams.IBuffer")
     CreateMemoryBufferOverIBuffer(input)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = Windows.Storage.Streams.IBuffer( input); 
         var _r = Windows.Foundation.MemoryBuffer(
@@ -166,7 +175,8 @@ class Windows_Storage_Streams_IContentTypeProvider : WinRtInterface
     Windows_Storage_Streams_IContentTypeProvider( comPtr )
     {
         var Windows = runtime.global("Windows");
-        this.comPtr = comPtr.queryInterface( "{97D098A5-3B99-4DE9-88A5-E11D2F50C795}");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{97D098A5-3B99-4DE9-88A5-E11D2F50C795}");
     }
 
     //@VtableIndex(6)
@@ -174,6 +184,7 @@ class Windows_Storage_Streams_IContentTypeProvider : WinRtInterface
     //@Returns("String")
     get_ContentType()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 6, "String", [], [] );
         return _r;
@@ -192,7 +203,8 @@ class Windows_Storage_Streams_IDataReader : WinRtInterface
     Windows_Storage_Streams_IDataReader( comPtr )
     {
         var Windows = runtime.global("Windows");
-        this.comPtr = comPtr.queryInterface( "{E2B50029-B4C1-4314-A4B8-FB813A2F275E}");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{E2B50029-B4C1-4314-A4B8-FB813A2F275E}");
     }
 
     //@VtableIndex(6)
@@ -200,6 +212,7 @@ class Windows_Storage_Streams_IDataReader : WinRtInterface
     //@Returns("UInt32")
     get_UnconsumedBufferLength()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 6, "UInt32", [], [] );
         return _r;
@@ -210,6 +223,7 @@ class Windows_Storage_Streams_IDataReader : WinRtInterface
     //@Returns("Windows.Storage.Streams.UnicodeEncoding")
     get_UnicodeEncoding()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 7, "UInt32", [], [] );
         return _r;
@@ -221,6 +235,7 @@ class Windows_Storage_Streams_IDataReader : WinRtInterface
     //@Parameters("Windows.Storage.Streams.UnicodeEncoding")
     put_UnicodeEncoding(value)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = value;
         this.comPtr.invoke( 8, "void", ["UInt32"], [p1] );
@@ -231,6 +246,7 @@ class Windows_Storage_Streams_IDataReader : WinRtInterface
     //@Returns("Windows.Storage.Streams.ByteOrder")
     get_ByteOrder()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 9, "UInt32", [], [] );
         return _r;
@@ -242,6 +258,7 @@ class Windows_Storage_Streams_IDataReader : WinRtInterface
     //@Parameters("Windows.Storage.Streams.ByteOrder")
     put_ByteOrder(value)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = value;
         this.comPtr.invoke( 10, "void", ["UInt32"], [p1] );
@@ -252,6 +269,7 @@ class Windows_Storage_Streams_IDataReader : WinRtInterface
     //@Returns("Windows.Storage.Streams.InputStreamOptions")
     get_InputStreamOptions()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 11, "UInt32", [], [] );
         return _r;
@@ -263,6 +281,7 @@ class Windows_Storage_Streams_IDataReader : WinRtInterface
     //@Parameters("Windows.Storage.Streams.InputStreamOptions")
     put_InputStreamOptions(value)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = value;
         this.comPtr.invoke( 12, "void", ["UInt32"], [p1] );
@@ -273,6 +292,7 @@ class Windows_Storage_Streams_IDataReader : WinRtInterface
     //@Returns("UInt8")
     ReadByte()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 13, "UInt8", [], [] );
         return _r;
@@ -284,6 +304,7 @@ class Windows_Storage_Streams_IDataReader : WinRtInterface
     //@Parameters("UInt32")
     ReadBuffer(length)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = length;
         var _r = Windows.Storage.Streams.IBuffer(
@@ -297,6 +318,7 @@ class Windows_Storage_Streams_IDataReader : WinRtInterface
     //@Returns("Boolean")
     ReadBoolean()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 16, "Boolean", [], [] );
         return _r;
@@ -307,6 +329,7 @@ class Windows_Storage_Streams_IDataReader : WinRtInterface
     //@Returns("ptr")
     ReadGuid()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 17, "ptr", [], [] );
         return _r;
@@ -317,6 +340,7 @@ class Windows_Storage_Streams_IDataReader : WinRtInterface
     //@Returns("Int16")
     ReadInt16()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 18, "Int16", [], [] );
         return _r;
@@ -327,6 +351,7 @@ class Windows_Storage_Streams_IDataReader : WinRtInterface
     //@Returns("Int32")
     ReadInt32()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 19, "Int32", [], [] );
         return _r;
@@ -337,6 +362,7 @@ class Windows_Storage_Streams_IDataReader : WinRtInterface
     //@Returns("Int64")
     ReadInt64()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 20, "Int64", [], [] );
         return _r;
@@ -347,6 +373,7 @@ class Windows_Storage_Streams_IDataReader : WinRtInterface
     //@Returns("UInt16")
     ReadUInt16()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 21, "UInt16", [], [] );
         return _r;
@@ -357,6 +384,7 @@ class Windows_Storage_Streams_IDataReader : WinRtInterface
     //@Returns("UInt32")
     ReadUInt32()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 22, "UInt32", [], [] );
         return _r;
@@ -367,6 +395,7 @@ class Windows_Storage_Streams_IDataReader : WinRtInterface
     //@Returns("UInt64")
     ReadUInt64()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 23, "UInt64", [], [] );
         return _r;
@@ -377,6 +406,7 @@ class Windows_Storage_Streams_IDataReader : WinRtInterface
     //@Returns("Single")
     ReadSingle()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 24, "Single", [], [] );
         return _r;
@@ -387,6 +417,7 @@ class Windows_Storage_Streams_IDataReader : WinRtInterface
     //@Returns("Double")
     ReadDouble()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 25, "Double", [], [] );
         return _r;
@@ -398,6 +429,7 @@ class Windows_Storage_Streams_IDataReader : WinRtInterface
     //@Parameters("UInt32")
     ReadString(codeUnitCount)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = codeUnitCount;
         var _r = this.comPtr.invoke( 26, "String", ["UInt32"], [p1] );
@@ -409,6 +441,7 @@ class Windows_Storage_Streams_IDataReader : WinRtInterface
     //@Returns("Windows.Foundation.DateTime")
     ReadDateTime()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 27, "Windows.Foundation.DateTime", [], [] );
         return _r;
@@ -419,6 +452,7 @@ class Windows_Storage_Streams_IDataReader : WinRtInterface
     //@Returns("Windows.Foundation.TimeSpan")
     ReadTimeSpan()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 28, "Windows.Foundation.TimeSpan", [], [] );
         return _r;
@@ -430,6 +464,7 @@ class Windows_Storage_Streams_IDataReader : WinRtInterface
     //@Parameters("UInt32")
     LoadAsync(count)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = count;
         var _r = Windows.Storage.Streams.DataReaderLoadOperation(
@@ -443,6 +478,7 @@ class Windows_Storage_Streams_IDataReader : WinRtInterface
     //@Returns("Windows.Storage.Streams.IBuffer")
     DetachBuffer()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = Windows.Storage.Streams.IBuffer(
             this.comPtr.invoke( 30, "Windows.Storage.Streams.IBuffer", [], [] )
@@ -455,6 +491,7 @@ class Windows_Storage_Streams_IDataReader : WinRtInterface
     //@Returns("Windows.Storage.Streams.IInputStream")
     DetachStream()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = Windows.Storage.Streams.IInputStream(
             this.comPtr.invoke( 31, "Windows.Storage.Streams.IInputStream", [], [] )
@@ -475,7 +512,8 @@ class Windows_Storage_Streams_IDataReaderFactory : WinRtInterface
     Windows_Storage_Streams_IDataReaderFactory( comPtr )
     {
         var Windows = runtime.global("Windows");
-        this.comPtr = comPtr.queryInterface( "{D7527847-57DA-4E15-914C-06806699A098}");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{D7527847-57DA-4E15-914C-06806699A098}");
     }
 
     //@VtableIndex(6)
@@ -484,6 +522,7 @@ class Windows_Storage_Streams_IDataReaderFactory : WinRtInterface
     //@Parameters("Windows.Storage.Streams.IInputStream")
     CreateDataReader(inputStream)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = Windows.Storage.Streams.IInputStream( inputStream); 
         var _r = Windows.Storage.Streams.DataReader(
@@ -505,7 +544,8 @@ class Windows_Storage_Streams_IDataReaderStatics : WinRtInterface
     Windows_Storage_Streams_IDataReaderStatics( comPtr )
     {
         var Windows = runtime.global("Windows");
-        this.comPtr = comPtr.queryInterface( "{11FCBFC8-F93A-471B-B121-F379E349313C}");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{11FCBFC8-F93A-471B-B121-F379E349313C}");
     }
 
     //@VtableIndex(6)
@@ -514,6 +554,7 @@ class Windows_Storage_Streams_IDataReaderStatics : WinRtInterface
     //@Parameters("Windows.Storage.Streams.IBuffer")
     FromBuffer(buffer)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = Windows.Storage.Streams.IBuffer( buffer); 
         var _r = Windows.Storage.Streams.DataReader(
@@ -535,7 +576,8 @@ class Windows_Storage_Streams_IDataWriter : WinRtInterface
     Windows_Storage_Streams_IDataWriter( comPtr )
     {
         var Windows = runtime.global("Windows");
-        this.comPtr = comPtr.queryInterface( "{64B89265-D341-4922-B38A-DD4AF8808C4E}");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{64B89265-D341-4922-B38A-DD4AF8808C4E}");
     }
 
     //@VtableIndex(6)
@@ -543,6 +585,7 @@ class Windows_Storage_Streams_IDataWriter : WinRtInterface
     //@Returns("UInt32")
     get_UnstoredBufferLength()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 6, "UInt32", [], [] );
         return _r;
@@ -553,6 +596,7 @@ class Windows_Storage_Streams_IDataWriter : WinRtInterface
     //@Returns("Windows.Storage.Streams.UnicodeEncoding")
     get_UnicodeEncoding()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 7, "UInt32", [], [] );
         return _r;
@@ -564,6 +608,7 @@ class Windows_Storage_Streams_IDataWriter : WinRtInterface
     //@Parameters("Windows.Storage.Streams.UnicodeEncoding")
     put_UnicodeEncoding(value)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = value;
         this.comPtr.invoke( 8, "void", ["UInt32"], [p1] );
@@ -574,6 +619,7 @@ class Windows_Storage_Streams_IDataWriter : WinRtInterface
     //@Returns("Windows.Storage.Streams.ByteOrder")
     get_ByteOrder()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 9, "UInt32", [], [] );
         return _r;
@@ -585,6 +631,7 @@ class Windows_Storage_Streams_IDataWriter : WinRtInterface
     //@Parameters("Windows.Storage.Streams.ByteOrder")
     put_ByteOrder(value)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = value;
         this.comPtr.invoke( 10, "void", ["UInt32"], [p1] );
@@ -596,6 +643,7 @@ class Windows_Storage_Streams_IDataWriter : WinRtInterface
     //@Parameters("UInt8")
     WriteByte(value)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = value;
         this.comPtr.invoke( 11, "void", ["UInt8"], [p1] );
@@ -607,6 +655,7 @@ class Windows_Storage_Streams_IDataWriter : WinRtInterface
     //@Parameters("Windows.Storage.Streams.IBuffer")
     WriteBuffer(buffer)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = Windows.Storage.Streams.IBuffer( buffer); 
         this.comPtr.invoke( 13, "void", ["Windows.Storage.Streams.IBuffer"], [p1] );
@@ -618,6 +667,7 @@ class Windows_Storage_Streams_IDataWriter : WinRtInterface
     //@Parameters("Windows.Storage.Streams.IBuffer","UInt32","UInt32")
     WriteBufferRange(buffer,start,count)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = Windows.Storage.Streams.IBuffer( buffer); 
         var p2 = start;
@@ -631,6 +681,7 @@ class Windows_Storage_Streams_IDataWriter : WinRtInterface
     //@Parameters("Boolean")
     WriteBoolean(value)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = value;
         this.comPtr.invoke( 15, "void", ["Boolean"], [p1] );
@@ -642,6 +693,7 @@ class Windows_Storage_Streams_IDataWriter : WinRtInterface
     //@Parameters("ptr")
     WriteGuid(value)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = value;
         this.comPtr.invoke( 16, "void", ["ptr"], [p1] );
@@ -653,6 +705,7 @@ class Windows_Storage_Streams_IDataWriter : WinRtInterface
     //@Parameters("Int16")
     WriteInt16(value)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = value;
         this.comPtr.invoke( 17, "void", ["Int16"], [p1] );
@@ -664,6 +717,7 @@ class Windows_Storage_Streams_IDataWriter : WinRtInterface
     //@Parameters("Int32")
     WriteInt32(value)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = value;
         this.comPtr.invoke( 18, "void", ["Int32"], [p1] );
@@ -675,6 +729,7 @@ class Windows_Storage_Streams_IDataWriter : WinRtInterface
     //@Parameters("Int64")
     WriteInt64(value)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = value;
         this.comPtr.invoke( 19, "void", ["Int64"], [p1] );
@@ -686,6 +741,7 @@ class Windows_Storage_Streams_IDataWriter : WinRtInterface
     //@Parameters("UInt16")
     WriteUInt16(value)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = value;
         this.comPtr.invoke( 20, "void", ["UInt16"], [p1] );
@@ -697,6 +753,7 @@ class Windows_Storage_Streams_IDataWriter : WinRtInterface
     //@Parameters("UInt32")
     WriteUInt32(value)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = value;
         this.comPtr.invoke( 21, "void", ["UInt32"], [p1] );
@@ -708,6 +765,7 @@ class Windows_Storage_Streams_IDataWriter : WinRtInterface
     //@Parameters("UInt64")
     WriteUInt64(value)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = value;
         this.comPtr.invoke( 22, "void", ["UInt64"], [p1] );
@@ -719,6 +777,7 @@ class Windows_Storage_Streams_IDataWriter : WinRtInterface
     //@Parameters("Single")
     WriteSingle(value)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = value;
         this.comPtr.invoke( 23, "void", ["Single"], [p1] );
@@ -730,6 +789,7 @@ class Windows_Storage_Streams_IDataWriter : WinRtInterface
     //@Parameters("Double")
     WriteDouble(value)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = value;
         this.comPtr.invoke( 24, "void", ["Double"], [p1] );
@@ -741,6 +801,7 @@ class Windows_Storage_Streams_IDataWriter : WinRtInterface
     //@Parameters("Windows.Foundation.DateTime")
     WriteDateTime(value)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = value;
         this.comPtr.invoke( 25, "void", ["Windows.Foundation.DateTime"], [p1] );
@@ -752,6 +813,7 @@ class Windows_Storage_Streams_IDataWriter : WinRtInterface
     //@Parameters("Windows.Foundation.TimeSpan")
     WriteTimeSpan(value)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = value;
         this.comPtr.invoke( 26, "void", ["Windows.Foundation.TimeSpan"], [p1] );
@@ -763,6 +825,7 @@ class Windows_Storage_Streams_IDataWriter : WinRtInterface
     //@Parameters("String")
     WriteString(value)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = value;
         var _r = this.comPtr.invoke( 27, "UInt32", ["String"], [p1] );
@@ -775,6 +838,7 @@ class Windows_Storage_Streams_IDataWriter : WinRtInterface
     //@Parameters("String")
     MeasureString(value)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = value;
         var _r = this.comPtr.invoke( 28, "UInt32", ["String"], [p1] );
@@ -786,6 +850,7 @@ class Windows_Storage_Streams_IDataWriter : WinRtInterface
     //@Returns("Windows.Storage.Streams.DataWriterStoreOperation")
     StoreAsync()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = Windows.Storage.Streams.DataWriterStoreOperation(
             this.comPtr.invoke( 29, "Windows.Storage.Streams.DataWriterStoreOperation", [], [] )
@@ -798,6 +863,7 @@ class Windows_Storage_Streams_IDataWriter : WinRtInterface
     //@Returns("Windows.Foundation.IAsyncOperation`1<Boolean>")
     FlushAsync(cb)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         this.comPtr.asyncOperation( 30, "Boolean", Windows.Foundation.IAsyncOperation_1_Boolean_.handler_iid, [], [] , cb );
     }
@@ -807,6 +873,7 @@ class Windows_Storage_Streams_IDataWriter : WinRtInterface
     //@Returns("Windows.Storage.Streams.IBuffer")
     DetachBuffer()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = Windows.Storage.Streams.IBuffer(
             this.comPtr.invoke( 31, "Windows.Storage.Streams.IBuffer", [], [] )
@@ -819,6 +886,7 @@ class Windows_Storage_Streams_IDataWriter : WinRtInterface
     //@Returns("Windows.Storage.Streams.IOutputStream")
     DetachStream()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = Windows.Storage.Streams.IOutputStream(
             this.comPtr.invoke( 32, "Windows.Storage.Streams.IOutputStream", [], [] )
@@ -839,7 +907,8 @@ class Windows_Storage_Streams_IDataWriterFactory : WinRtInterface
     Windows_Storage_Streams_IDataWriterFactory( comPtr )
     {
         var Windows = runtime.global("Windows");
-        this.comPtr = comPtr.queryInterface( "{338C67C2-8B84-4C2B-9C50-7B8767847A1F}");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{338C67C2-8B84-4C2B-9C50-7B8767847A1F}");
     }
 
     //@VtableIndex(6)
@@ -848,6 +917,7 @@ class Windows_Storage_Streams_IDataWriterFactory : WinRtInterface
     //@Parameters("Windows.Storage.Streams.IOutputStream")
     CreateDataWriter(outputStream)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = Windows.Storage.Streams.IOutputStream( outputStream); 
         var _r = Windows.Storage.Streams.DataWriter(
@@ -869,7 +939,8 @@ class Windows_Storage_Streams_IFileRandomAccessStreamStatics : WinRtInterface
     Windows_Storage_Streams_IFileRandomAccessStreamStatics( comPtr )
     {
         var Windows = runtime.global("Windows");
-        this.comPtr = comPtr.queryInterface( "{73550107-3B57-4B5D-8345-554D2FC621F0}");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{73550107-3B57-4B5D-8345-554D2FC621F0}");
     }
 
     //@VtableIndex(6)
@@ -878,6 +949,7 @@ class Windows_Storage_Streams_IFileRandomAccessStreamStatics : WinRtInterface
     //@Parameters("String","Windows.Storage.FileAccessMode")
     OpenAsync(filePath,accessMode,cb)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = filePath;
         var p2 = accessMode;
@@ -890,6 +962,7 @@ class Windows_Storage_Streams_IFileRandomAccessStreamStatics : WinRtInterface
     //@Parameters("String","Windows.Storage.FileAccessMode","Windows.Storage.StorageOpenOptions","Windows.Storage.Streams.FileOpenDisposition")
     OpenWithOptionsAsync(filePath,accessMode,sharingOptions,openDisposition,cb)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = filePath;
         var p2 = accessMode;
@@ -904,6 +977,7 @@ class Windows_Storage_Streams_IFileRandomAccessStreamStatics : WinRtInterface
     //@Parameters("String")
     OpenTransactedWriteAsync(filePath,cb)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = filePath;
         this.comPtr.asyncOperation( 8, "Windows.Storage.StorageStreamTransaction", Windows.Foundation.IAsyncOperation_1_Windows_Storage_StorageStreamTransaction_.handler_iid, ["String"], [p1] , fun(status,value) { if(status == Windows.Foundation.AsyncStatus.Completed ) {cb(status, Windows.Storage.StorageStreamTransaction(value)); } else { cb( status, value ); } } );
@@ -915,6 +989,7 @@ class Windows_Storage_Streams_IFileRandomAccessStreamStatics : WinRtInterface
     //@Parameters("String","Windows.Storage.StorageOpenOptions","Windows.Storage.Streams.FileOpenDisposition")
     OpenTransactedWriteWithOptionsAsync(filePath,openOptions,openDisposition,cb)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = filePath;
         var p2 = openOptions;
@@ -928,6 +1003,7 @@ class Windows_Storage_Streams_IFileRandomAccessStreamStatics : WinRtInterface
     //@Parameters("Windows.System.User","String","Windows.Storage.FileAccessMode")
     OpenForUserAsync(user,filePath,accessMode,cb)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = Windows.System.User( user); 
         var p2 = filePath;
@@ -941,6 +1017,7 @@ class Windows_Storage_Streams_IFileRandomAccessStreamStatics : WinRtInterface
     //@Parameters("Windows.System.User","String","Windows.Storage.FileAccessMode","Windows.Storage.StorageOpenOptions","Windows.Storage.Streams.FileOpenDisposition")
     OpenForUserWithOptionsAsync(user,filePath,accessMode,sharingOptions,openDisposition,cb)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = Windows.System.User( user); 
         var p2 = filePath;
@@ -956,6 +1033,7 @@ class Windows_Storage_Streams_IFileRandomAccessStreamStatics : WinRtInterface
     //@Parameters("Windows.System.User","String")
     OpenTransactedWriteForUserAsync(user,filePath,cb)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = Windows.System.User( user); 
         var p2 = filePath;
@@ -968,6 +1046,7 @@ class Windows_Storage_Streams_IFileRandomAccessStreamStatics : WinRtInterface
     //@Parameters("Windows.System.User","String","Windows.Storage.StorageOpenOptions","Windows.Storage.Streams.FileOpenDisposition")
     OpenTransactedWriteForUserWithOptionsAsync(user,filePath,openOptions,openDisposition,cb)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = Windows.System.User( user); 
         var p2 = filePath;
@@ -989,7 +1068,8 @@ class Windows_Storage_Streams_IInputStream : WinRtInterface
     Windows_Storage_Streams_IInputStream( comPtr )
     {
         var Windows = runtime.global("Windows");
-        this.comPtr = comPtr.queryInterface( "{905A0FE2-BC53-11DF-8C49-001E4FC686DA}");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{905A0FE2-BC53-11DF-8C49-001E4FC686DA}");
     }
 
     //@VtableIndex(6)
@@ -998,6 +1078,7 @@ class Windows_Storage_Streams_IInputStream : WinRtInterface
     //@Parameters("Windows.Storage.Streams.IBuffer","UInt32","Windows.Storage.Streams.InputStreamOptions")
     ReadAsync(buffer,count,options,cb)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = Windows.Storage.Streams.IBuffer( buffer); 
         var p2 = count;
@@ -1018,7 +1099,8 @@ class Windows_Storage_Streams_IInputStreamReference : WinRtInterface
     Windows_Storage_Streams_IInputStreamReference( comPtr )
     {
         var Windows = runtime.global("Windows");
-        this.comPtr = comPtr.queryInterface( "{43929D18-5EC9-4B5A-919C-4205B0C804B6}");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{43929D18-5EC9-4B5A-919C-4205B0C804B6}");
     }
 
     //@VtableIndex(6)
@@ -1026,6 +1108,7 @@ class Windows_Storage_Streams_IInputStreamReference : WinRtInterface
     //@Returns("Windows.Foundation.IAsyncOperation`1<Windows.Storage.Streams.IInputStream>")
     OpenSequentialReadAsync(cb)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         this.comPtr.asyncOperation( 6, "Windows.Storage.Streams.IInputStream", Windows.Foundation.IAsyncOperation_1_Windows_Storage_Streams_IInputStream_.handler_iid, [], [] , fun(status,value) { if(status == Windows.Foundation.AsyncStatus.Completed ) {cb(status, Windows.Storage.Streams.IInputStream(value)); } else { cb( status, value ); } } );
     }
@@ -1043,7 +1126,8 @@ class Windows_Storage_Streams_IOutputStream : WinRtInterface
     Windows_Storage_Streams_IOutputStream( comPtr )
     {
         var Windows = runtime.global("Windows");
-        this.comPtr = comPtr.queryInterface( "{905A0FE6-BC53-11DF-8C49-001E4FC686DA}");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{905A0FE6-BC53-11DF-8C49-001E4FC686DA}");
     }
 
     //@VtableIndex(6)
@@ -1052,6 +1136,7 @@ class Windows_Storage_Streams_IOutputStream : WinRtInterface
     //@Parameters("Windows.Storage.Streams.IBuffer")
     WriteAsync(buffer,cb)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = Windows.Storage.Streams.IBuffer( buffer); 
         this.comPtr.asyncOperationWithProgress( 6, "UInt32", Windows.Foundation.IAsyncOperationWithProgress_2_UInt32_UInt32_.handler_iid, ["Windows.Storage.Streams.IBuffer"], [p1] , cb );
@@ -1062,6 +1147,7 @@ class Windows_Storage_Streams_IOutputStream : WinRtInterface
     //@Returns("Windows.Foundation.IAsyncOperation`1<Boolean>")
     FlushAsync(cb)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         this.comPtr.asyncOperation( 7, "Boolean", Windows.Foundation.IAsyncOperation_1_Boolean_.handler_iid, [], [] , cb );
     }
@@ -1079,7 +1165,8 @@ class Windows_Storage_Streams_IRandomAccessStream : WinRtInterface
     Windows_Storage_Streams_IRandomAccessStream( comPtr )
     {
         var Windows = runtime.global("Windows");
-        this.comPtr = comPtr.queryInterface( "{905A0FE1-BC53-11DF-8C49-001E4FC686DA}");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{905A0FE1-BC53-11DF-8C49-001E4FC686DA}");
     }
 
     //@VtableIndex(6)
@@ -1087,6 +1174,7 @@ class Windows_Storage_Streams_IRandomAccessStream : WinRtInterface
     //@Returns("UInt64")
     get_Size()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 6, "UInt64", [], [] );
         return _r;
@@ -1098,6 +1186,7 @@ class Windows_Storage_Streams_IRandomAccessStream : WinRtInterface
     //@Parameters("UInt64")
     put_Size(value)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = value;
         this.comPtr.invoke( 7, "void", ["UInt64"], [p1] );
@@ -1109,6 +1198,7 @@ class Windows_Storage_Streams_IRandomAccessStream : WinRtInterface
     //@Parameters("UInt64")
     GetInputStreamAt(position)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = position;
         var _r = Windows.Storage.Streams.IInputStream(
@@ -1123,6 +1213,7 @@ class Windows_Storage_Streams_IRandomAccessStream : WinRtInterface
     //@Parameters("UInt64")
     GetOutputStreamAt(position)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = position;
         var _r = Windows.Storage.Streams.IOutputStream(
@@ -1136,6 +1227,7 @@ class Windows_Storage_Streams_IRandomAccessStream : WinRtInterface
     //@Returns("UInt64")
     get_Position()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 10, "UInt64", [], [] );
         return _r;
@@ -1147,6 +1239,7 @@ class Windows_Storage_Streams_IRandomAccessStream : WinRtInterface
     //@Parameters("UInt64")
     Seek(position)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = position;
         this.comPtr.invoke( 11, "void", ["UInt64"], [p1] );
@@ -1157,6 +1250,7 @@ class Windows_Storage_Streams_IRandomAccessStream : WinRtInterface
     //@Returns("Windows.Storage.Streams.IRandomAccessStream")
     CloneStream()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = Windows.Storage.Streams.IRandomAccessStream(
             this.comPtr.invoke( 12, "Windows.Storage.Streams.IRandomAccessStream", [], [] )
@@ -1169,6 +1263,7 @@ class Windows_Storage_Streams_IRandomAccessStream : WinRtInterface
     //@Returns("Boolean")
     get_CanRead()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 13, "Boolean", [], [] );
         return _r;
@@ -1179,6 +1274,7 @@ class Windows_Storage_Streams_IRandomAccessStream : WinRtInterface
     //@Returns("Boolean")
     get_CanWrite()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 14, "Boolean", [], [] );
         return _r;
@@ -1197,7 +1293,8 @@ class Windows_Storage_Streams_IRandomAccessStreamReference : WinRtInterface
     Windows_Storage_Streams_IRandomAccessStreamReference( comPtr )
     {
         var Windows = runtime.global("Windows");
-        this.comPtr = comPtr.queryInterface( "{33EE3134-1DD6-4E3A-8067-D1C162E8642B}");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{33EE3134-1DD6-4E3A-8067-D1C162E8642B}");
     }
 
     //@VtableIndex(6)
@@ -1205,6 +1302,7 @@ class Windows_Storage_Streams_IRandomAccessStreamReference : WinRtInterface
     //@Returns("Windows.Foundation.IAsyncOperation`1<Windows.Storage.Streams.IRandomAccessStreamWithContentType>")
     OpenReadAsync(cb)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         this.comPtr.asyncOperation( 6, "Windows.Storage.Streams.IRandomAccessStreamWithContentType", Windows.Foundation.IAsyncOperation_1_Windows_Storage_Streams_IRandomAccessStreamWithContentType_.handler_iid, [], [] , fun(status,value) { if(status == Windows.Foundation.AsyncStatus.Completed ) {cb(status, Windows.Storage.Streams.IRandomAccessStreamWithContentType(value)); } else { cb( status, value ); } } );
     }
@@ -1222,7 +1320,8 @@ class Windows_Storage_Streams_IRandomAccessStreamReferenceStatics : WinRtInterfa
     Windows_Storage_Streams_IRandomAccessStreamReferenceStatics( comPtr )
     {
         var Windows = runtime.global("Windows");
-        this.comPtr = comPtr.queryInterface( "{857309DC-3FBF-4E7D-986F-EF3B1A07A964}");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{857309DC-3FBF-4E7D-986F-EF3B1A07A964}");
     }
 
     //@VtableIndex(6)
@@ -1231,6 +1330,7 @@ class Windows_Storage_Streams_IRandomAccessStreamReferenceStatics : WinRtInterfa
     //@Parameters("Windows.Storage.IStorageFile")
     CreateFromFile(file)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = Windows.Storage.IStorageFile( file); 
         var _r = Windows.Storage.Streams.RandomAccessStreamReference(
@@ -1245,6 +1345,7 @@ class Windows_Storage_Streams_IRandomAccessStreamReferenceStatics : WinRtInterfa
     //@Parameters("Windows.Foundation.Uri")
     CreateFromUri(uri)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = Windows.Foundation.Uri( uri); 
         var _r = Windows.Storage.Streams.RandomAccessStreamReference(
@@ -1259,6 +1360,7 @@ class Windows_Storage_Streams_IRandomAccessStreamReferenceStatics : WinRtInterfa
     //@Parameters("Windows.Storage.Streams.IRandomAccessStream")
     CreateFromStream(stream)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = Windows.Storage.Streams.IRandomAccessStream( stream); 
         var _r = Windows.Storage.Streams.RandomAccessStreamReference(
@@ -1280,7 +1382,8 @@ class Windows_Storage_Streams_IRandomAccessStreamStatics : WinRtInterface
     Windows_Storage_Streams_IRandomAccessStreamStatics( comPtr )
     {
         var Windows = runtime.global("Windows");
-        this.comPtr = comPtr.queryInterface( "{524CEDCF-6E29-4CE5-9573-6B753DB66C3A}");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{524CEDCF-6E29-4CE5-9573-6B753DB66C3A}");
     }
 
     //@VtableIndex(6)
@@ -1289,6 +1392,7 @@ class Windows_Storage_Streams_IRandomAccessStreamStatics : WinRtInterface
     //@Parameters("Windows.Storage.Streams.IInputStream","Windows.Storage.Streams.IOutputStream")
     CopyAsync(source,destination,cb)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = Windows.Storage.Streams.IInputStream( source); 
         var p2 = Windows.Storage.Streams.IOutputStream( destination); 
@@ -1301,6 +1405,7 @@ class Windows_Storage_Streams_IRandomAccessStreamStatics : WinRtInterface
     //@Parameters("Windows.Storage.Streams.IInputStream","Windows.Storage.Streams.IOutputStream","UInt64")
     CopySizeAsync(source,destination,bytesToCopy,cb)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = Windows.Storage.Streams.IInputStream( source); 
         var p2 = Windows.Storage.Streams.IOutputStream( destination); 
@@ -1314,6 +1419,7 @@ class Windows_Storage_Streams_IRandomAccessStreamStatics : WinRtInterface
     //@Parameters("Windows.Storage.Streams.IInputStream","Windows.Storage.Streams.IOutputStream")
     CopyAndCloseAsync(source,destination,cb)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = Windows.Storage.Streams.IInputStream( source); 
         var p2 = Windows.Storage.Streams.IOutputStream( destination); 
@@ -1333,7 +1439,8 @@ class Windows_Storage_Streams_IRandomAccessStreamWithContentType : WinRtInterfac
     Windows_Storage_Streams_IRandomAccessStreamWithContentType( comPtr )
     {
         var Windows = runtime.global("Windows");
-        this.comPtr = comPtr.queryInterface( "{CC254827-4B3D-438F-9232-10C76BC7E038}");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{CC254827-4B3D-438F-9232-10C76BC7E038}");
     }
 
 
@@ -1351,7 +1458,8 @@ class Windows_Storage_Streams_Buffer : WinRtInterface
     Windows_Storage_Streams_Buffer( comPtr )
     {
         var Windows = runtime.global("Windows");
-        this.comPtr = comPtr.queryInterface( Windows.Storage.Streams.IBuffer.iid );
+        if(!comPtr || !int(comPtr)) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( Windows.Storage.Streams.IBuffer.iid );
     }
 
     // s Windows.Storage.Streams.IBufferStatics
@@ -1407,6 +1515,7 @@ class Windows_Storage_Streams_Buffer : WinRtInterface
     //@Returns("UInt32")
     get_Capacity()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Storage.Streams.IBuffer( this.comPtr );
         var _r = iface.get_Capacity(  );
@@ -1417,6 +1526,7 @@ class Windows_Storage_Streams_Buffer : WinRtInterface
     //@Returns("UInt32")
     get_Length()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Storage.Streams.IBuffer( this.comPtr );
         var _r = iface.get_Length(  );
@@ -1429,6 +1539,7 @@ class Windows_Storage_Streams_Buffer : WinRtInterface
     //@Parameters("UInt32")
     put_Length(value)
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Storage.Streams.IBuffer( this.comPtr );
         iface.put_Length( value );
@@ -1448,7 +1559,8 @@ class Windows_Storage_Streams_DataReader : WinRtInterface
     Windows_Storage_Streams_DataReader( comPtr )
     {
         var Windows = runtime.global("Windows");
-        this.comPtr = comPtr.queryInterface( Windows.Storage.Streams.IDataReader.iid );
+        if(!comPtr || !int(comPtr)) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( Windows.Storage.Streams.IDataReader.iid );
     }
 
     // s Windows.Storage.Streams.IDataReaderStatics
@@ -1489,6 +1601,7 @@ class Windows_Storage_Streams_DataReader : WinRtInterface
     //@Returns("UInt32")
     get_UnconsumedBufferLength()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Storage.Streams.IDataReader( this.comPtr );
         var _r = iface.get_UnconsumedBufferLength(  );
@@ -1499,6 +1612,7 @@ class Windows_Storage_Streams_DataReader : WinRtInterface
     //@Returns("Windows.Storage.Streams.UnicodeEncoding")
     get_UnicodeEncoding()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Storage.Streams.IDataReader( this.comPtr );
         var _r = iface.get_UnicodeEncoding(  );
@@ -1511,6 +1625,7 @@ class Windows_Storage_Streams_DataReader : WinRtInterface
     //@Parameters("Windows.Storage.Streams.UnicodeEncoding")
     put_UnicodeEncoding(value)
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Storage.Streams.IDataReader( this.comPtr );
         iface.put_UnicodeEncoding( value );
@@ -1520,6 +1635,7 @@ class Windows_Storage_Streams_DataReader : WinRtInterface
     //@Returns("Windows.Storage.Streams.ByteOrder")
     get_ByteOrder()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Storage.Streams.IDataReader( this.comPtr );
         var _r = iface.get_ByteOrder(  );
@@ -1532,6 +1648,7 @@ class Windows_Storage_Streams_DataReader : WinRtInterface
     //@Parameters("Windows.Storage.Streams.ByteOrder")
     put_ByteOrder(value)
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Storage.Streams.IDataReader( this.comPtr );
         iface.put_ByteOrder( value );
@@ -1541,6 +1658,7 @@ class Windows_Storage_Streams_DataReader : WinRtInterface
     //@Returns("Windows.Storage.Streams.InputStreamOptions")
     get_InputStreamOptions()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Storage.Streams.IDataReader( this.comPtr );
         var _r = iface.get_InputStreamOptions(  );
@@ -1553,6 +1671,7 @@ class Windows_Storage_Streams_DataReader : WinRtInterface
     //@Parameters("Windows.Storage.Streams.InputStreamOptions")
     put_InputStreamOptions(value)
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Storage.Streams.IDataReader( this.comPtr );
         iface.put_InputStreamOptions( value );
@@ -1562,6 +1681,7 @@ class Windows_Storage_Streams_DataReader : WinRtInterface
     //@Returns("UInt8")
     ReadByte()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Storage.Streams.IDataReader( this.comPtr );
         var _r = iface.ReadByte(  );
@@ -1574,6 +1694,7 @@ class Windows_Storage_Streams_DataReader : WinRtInterface
     //@Parameters("UInt32")
     ReadBuffer(length)
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Storage.Streams.IDataReader( this.comPtr );
         var _r = iface.ReadBuffer( length );
@@ -1584,6 +1705,7 @@ class Windows_Storage_Streams_DataReader : WinRtInterface
     //@Returns("Boolean")
     ReadBoolean()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Storage.Streams.IDataReader( this.comPtr );
         var _r = iface.ReadBoolean(  );
@@ -1594,6 +1716,7 @@ class Windows_Storage_Streams_DataReader : WinRtInterface
     //@Returns("ptr")
     ReadGuid()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Storage.Streams.IDataReader( this.comPtr );
         var _r = iface.ReadGuid(  );
@@ -1604,6 +1727,7 @@ class Windows_Storage_Streams_DataReader : WinRtInterface
     //@Returns("Int16")
     ReadInt16()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Storage.Streams.IDataReader( this.comPtr );
         var _r = iface.ReadInt16(  );
@@ -1614,6 +1738,7 @@ class Windows_Storage_Streams_DataReader : WinRtInterface
     //@Returns("Int32")
     ReadInt32()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Storage.Streams.IDataReader( this.comPtr );
         var _r = iface.ReadInt32(  );
@@ -1624,6 +1749,7 @@ class Windows_Storage_Streams_DataReader : WinRtInterface
     //@Returns("Int64")
     ReadInt64()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Storage.Streams.IDataReader( this.comPtr );
         var _r = iface.ReadInt64(  );
@@ -1634,6 +1760,7 @@ class Windows_Storage_Streams_DataReader : WinRtInterface
     //@Returns("UInt16")
     ReadUInt16()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Storage.Streams.IDataReader( this.comPtr );
         var _r = iface.ReadUInt16(  );
@@ -1644,6 +1771,7 @@ class Windows_Storage_Streams_DataReader : WinRtInterface
     //@Returns("UInt32")
     ReadUInt32()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Storage.Streams.IDataReader( this.comPtr );
         var _r = iface.ReadUInt32(  );
@@ -1654,6 +1782,7 @@ class Windows_Storage_Streams_DataReader : WinRtInterface
     //@Returns("UInt64")
     ReadUInt64()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Storage.Streams.IDataReader( this.comPtr );
         var _r = iface.ReadUInt64(  );
@@ -1664,6 +1793,7 @@ class Windows_Storage_Streams_DataReader : WinRtInterface
     //@Returns("Single")
     ReadSingle()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Storage.Streams.IDataReader( this.comPtr );
         var _r = iface.ReadSingle(  );
@@ -1674,6 +1804,7 @@ class Windows_Storage_Streams_DataReader : WinRtInterface
     //@Returns("Double")
     ReadDouble()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Storage.Streams.IDataReader( this.comPtr );
         var _r = iface.ReadDouble(  );
@@ -1686,6 +1817,7 @@ class Windows_Storage_Streams_DataReader : WinRtInterface
     //@Parameters("UInt32")
     ReadString(codeUnitCount)
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Storage.Streams.IDataReader( this.comPtr );
         var _r = iface.ReadString( codeUnitCount );
@@ -1696,6 +1828,7 @@ class Windows_Storage_Streams_DataReader : WinRtInterface
     //@Returns("Windows.Foundation.DateTime")
     ReadDateTime()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Storage.Streams.IDataReader( this.comPtr );
         var _r = iface.ReadDateTime(  );
@@ -1706,6 +1839,7 @@ class Windows_Storage_Streams_DataReader : WinRtInterface
     //@Returns("Windows.Foundation.TimeSpan")
     ReadTimeSpan()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Storage.Streams.IDataReader( this.comPtr );
         var _r = iface.ReadTimeSpan(  );
@@ -1718,6 +1852,7 @@ class Windows_Storage_Streams_DataReader : WinRtInterface
     //@Parameters("UInt32")
     LoadAsync(count)
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Storage.Streams.IDataReader( this.comPtr );
         var _r = iface.LoadAsync( count );
@@ -1728,6 +1863,7 @@ class Windows_Storage_Streams_DataReader : WinRtInterface
     //@Returns("Windows.Storage.Streams.IBuffer")
     DetachBuffer()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Storage.Streams.IDataReader( this.comPtr );
         var _r = iface.DetachBuffer(  );
@@ -1738,6 +1874,7 @@ class Windows_Storage_Streams_DataReader : WinRtInterface
     //@Returns("Windows.Storage.Streams.IInputStream")
     DetachStream()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Storage.Streams.IDataReader( this.comPtr );
         var _r = iface.DetachStream(  );
@@ -1748,6 +1885,7 @@ class Windows_Storage_Streams_DataReader : WinRtInterface
     //@Returns("void")
     Close()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Foundation.IClosable( this.comPtr );
         iface.Close(  );
@@ -1780,6 +1918,7 @@ class Windows_Storage_Streams_DataReaderLoadOperation : WinRtInterface
     //@Parameters("Windows.Foundation.AsyncOperationCompletedHandler`1<UInt32>")
     put_Completed(handler)
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Foundation.IAsyncOperation_1_UInt32_( this.comPtr );
         iface.put_Completed( handler );
@@ -1789,6 +1928,7 @@ class Windows_Storage_Streams_DataReaderLoadOperation : WinRtInterface
     //@Returns("Windows.Foundation.AsyncOperationCompletedHandler`1<UInt32>")
     get_Completed()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Foundation.IAsyncOperation_1_UInt32_( this.comPtr );
         var _r = iface.get_Completed(  );
@@ -1799,6 +1939,7 @@ class Windows_Storage_Streams_DataReaderLoadOperation : WinRtInterface
     //@Returns("UInt32")
     GetResults()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Foundation.IAsyncOperation_1_UInt32_( this.comPtr );
         var _r = iface.GetResults(  );
@@ -1809,6 +1950,7 @@ class Windows_Storage_Streams_DataReaderLoadOperation : WinRtInterface
     //@Returns("UInt32")
     get_Id()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Foundation.IAsyncInfo( this.comPtr );
         var _r = iface.get_Id(  );
@@ -1819,6 +1961,7 @@ class Windows_Storage_Streams_DataReaderLoadOperation : WinRtInterface
     //@Returns("Windows.Foundation.AsyncStatus")
     get_Status()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Foundation.IAsyncInfo( this.comPtr );
         var _r = iface.get_Status(  );
@@ -1829,6 +1972,7 @@ class Windows_Storage_Streams_DataReaderLoadOperation : WinRtInterface
     //@Returns("Windows.Foundation.HResult")
     get_ErrorCode()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Foundation.IAsyncInfo( this.comPtr );
         var _r = iface.get_ErrorCode(  );
@@ -1839,6 +1983,7 @@ class Windows_Storage_Streams_DataReaderLoadOperation : WinRtInterface
     //@Returns("void")
     Cancel()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Foundation.IAsyncInfo( this.comPtr );
         iface.Cancel(  );
@@ -1848,6 +1993,7 @@ class Windows_Storage_Streams_DataReaderLoadOperation : WinRtInterface
     //@Returns("void")
     Close()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Foundation.IAsyncInfo( this.comPtr );
         iface.Close(  );
@@ -1867,7 +2013,8 @@ class Windows_Storage_Streams_DataWriter : WinRtInterface
     Windows_Storage_Streams_DataWriter( comPtr )
     {
         var Windows = runtime.global("Windows");
-        this.comPtr = comPtr.queryInterface( Windows.Storage.Streams.IDataWriter.iid );
+        if(!comPtr || !int(comPtr)) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( Windows.Storage.Streams.IDataWriter.iid );
     }
 
     static Create()
@@ -1892,6 +2039,7 @@ class Windows_Storage_Streams_DataWriter : WinRtInterface
     //@Returns("UInt32")
     get_UnstoredBufferLength()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Storage.Streams.IDataWriter( this.comPtr );
         var _r = iface.get_UnstoredBufferLength(  );
@@ -1902,6 +2050,7 @@ class Windows_Storage_Streams_DataWriter : WinRtInterface
     //@Returns("Windows.Storage.Streams.UnicodeEncoding")
     get_UnicodeEncoding()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Storage.Streams.IDataWriter( this.comPtr );
         var _r = iface.get_UnicodeEncoding(  );
@@ -1914,6 +2063,7 @@ class Windows_Storage_Streams_DataWriter : WinRtInterface
     //@Parameters("Windows.Storage.Streams.UnicodeEncoding")
     put_UnicodeEncoding(value)
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Storage.Streams.IDataWriter( this.comPtr );
         iface.put_UnicodeEncoding( value );
@@ -1923,6 +2073,7 @@ class Windows_Storage_Streams_DataWriter : WinRtInterface
     //@Returns("Windows.Storage.Streams.ByteOrder")
     get_ByteOrder()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Storage.Streams.IDataWriter( this.comPtr );
         var _r = iface.get_ByteOrder(  );
@@ -1935,6 +2086,7 @@ class Windows_Storage_Streams_DataWriter : WinRtInterface
     //@Parameters("Windows.Storage.Streams.ByteOrder")
     put_ByteOrder(value)
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Storage.Streams.IDataWriter( this.comPtr );
         iface.put_ByteOrder( value );
@@ -1946,6 +2098,7 @@ class Windows_Storage_Streams_DataWriter : WinRtInterface
     //@Parameters("UInt8")
     WriteByte(value)
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Storage.Streams.IDataWriter( this.comPtr );
         iface.WriteByte( value );
@@ -1957,6 +2110,7 @@ class Windows_Storage_Streams_DataWriter : WinRtInterface
     //@Parameters("Boolean")
     WriteBoolean(value)
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Storage.Streams.IDataWriter( this.comPtr );
         iface.WriteBoolean( value );
@@ -1968,6 +2122,7 @@ class Windows_Storage_Streams_DataWriter : WinRtInterface
     //@Parameters("ptr")
     WriteGuid(value)
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Storage.Streams.IDataWriter( this.comPtr );
         iface.WriteGuid( value );
@@ -1979,6 +2134,7 @@ class Windows_Storage_Streams_DataWriter : WinRtInterface
     //@Parameters("Int16")
     WriteInt16(value)
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Storage.Streams.IDataWriter( this.comPtr );
         iface.WriteInt16( value );
@@ -1990,6 +2146,7 @@ class Windows_Storage_Streams_DataWriter : WinRtInterface
     //@Parameters("Int32")
     WriteInt32(value)
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Storage.Streams.IDataWriter( this.comPtr );
         iface.WriteInt32( value );
@@ -2001,6 +2158,7 @@ class Windows_Storage_Streams_DataWriter : WinRtInterface
     //@Parameters("Int64")
     WriteInt64(value)
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Storage.Streams.IDataWriter( this.comPtr );
         iface.WriteInt64( value );
@@ -2012,6 +2170,7 @@ class Windows_Storage_Streams_DataWriter : WinRtInterface
     //@Parameters("UInt16")
     WriteUInt16(value)
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Storage.Streams.IDataWriter( this.comPtr );
         iface.WriteUInt16( value );
@@ -2023,6 +2182,7 @@ class Windows_Storage_Streams_DataWriter : WinRtInterface
     //@Parameters("UInt32")
     WriteUInt32(value)
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Storage.Streams.IDataWriter( this.comPtr );
         iface.WriteUInt32( value );
@@ -2034,6 +2194,7 @@ class Windows_Storage_Streams_DataWriter : WinRtInterface
     //@Parameters("UInt64")
     WriteUInt64(value)
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Storage.Streams.IDataWriter( this.comPtr );
         iface.WriteUInt64( value );
@@ -2045,6 +2206,7 @@ class Windows_Storage_Streams_DataWriter : WinRtInterface
     //@Parameters("Single")
     WriteSingle(value)
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Storage.Streams.IDataWriter( this.comPtr );
         iface.WriteSingle( value );
@@ -2056,6 +2218,7 @@ class Windows_Storage_Streams_DataWriter : WinRtInterface
     //@Parameters("Double")
     WriteDouble(value)
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Storage.Streams.IDataWriter( this.comPtr );
         iface.WriteDouble( value );
@@ -2067,6 +2230,7 @@ class Windows_Storage_Streams_DataWriter : WinRtInterface
     //@Parameters("Windows.Foundation.DateTime")
     WriteDateTime(value)
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Storage.Streams.IDataWriter( this.comPtr );
         iface.WriteDateTime( value );
@@ -2078,6 +2242,7 @@ class Windows_Storage_Streams_DataWriter : WinRtInterface
     //@Parameters("Windows.Foundation.TimeSpan")
     WriteTimeSpan(value)
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Storage.Streams.IDataWriter( this.comPtr );
         iface.WriteTimeSpan( value );
@@ -2089,6 +2254,7 @@ class Windows_Storage_Streams_DataWriter : WinRtInterface
     //@Parameters("String")
     WriteString(value)
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Storage.Streams.IDataWriter( this.comPtr );
         var _r = iface.WriteString( value );
@@ -2101,6 +2267,7 @@ class Windows_Storage_Streams_DataWriter : WinRtInterface
     //@Parameters("String")
     MeasureString(value)
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Storage.Streams.IDataWriter( this.comPtr );
         var _r = iface.MeasureString( value );
@@ -2111,6 +2278,7 @@ class Windows_Storage_Streams_DataWriter : WinRtInterface
     //@Returns("Windows.Storage.Streams.DataWriterStoreOperation")
     StoreAsync()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Storage.Streams.IDataWriter( this.comPtr );
         var _r = iface.StoreAsync(  );
@@ -2121,6 +2289,7 @@ class Windows_Storage_Streams_DataWriter : WinRtInterface
     //@Returns("Windows.Foundation.IAsyncOperation`1<Boolean>")
     FlushAsync()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Storage.Streams.IDataWriter( this.comPtr );
         var _promise = Future();
@@ -2141,6 +2310,7 @@ class Windows_Storage_Streams_DataWriter : WinRtInterface
     //@Returns("Windows.Storage.Streams.IBuffer")
     DetachBuffer()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Storage.Streams.IDataWriter( this.comPtr );
         var _r = iface.DetachBuffer(  );
@@ -2151,6 +2321,7 @@ class Windows_Storage_Streams_DataWriter : WinRtInterface
     //@Returns("Windows.Storage.Streams.IOutputStream")
     DetachStream()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Storage.Streams.IDataWriter( this.comPtr );
         var _r = iface.DetachStream(  );
@@ -2161,6 +2332,7 @@ class Windows_Storage_Streams_DataWriter : WinRtInterface
     //@Returns("void")
     Close()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Foundation.IClosable( this.comPtr );
         iface.Close(  );
@@ -2193,6 +2365,7 @@ class Windows_Storage_Streams_DataWriterStoreOperation : WinRtInterface
     //@Parameters("Windows.Foundation.AsyncOperationCompletedHandler`1<UInt32>")
     put_Completed(handler)
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Foundation.IAsyncOperation_1_UInt32_( this.comPtr );
         iface.put_Completed( handler );
@@ -2202,6 +2375,7 @@ class Windows_Storage_Streams_DataWriterStoreOperation : WinRtInterface
     //@Returns("Windows.Foundation.AsyncOperationCompletedHandler`1<UInt32>")
     get_Completed()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Foundation.IAsyncOperation_1_UInt32_( this.comPtr );
         var _r = iface.get_Completed(  );
@@ -2212,6 +2386,7 @@ class Windows_Storage_Streams_DataWriterStoreOperation : WinRtInterface
     //@Returns("UInt32")
     GetResults()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Foundation.IAsyncOperation_1_UInt32_( this.comPtr );
         var _r = iface.GetResults(  );
@@ -2222,6 +2397,7 @@ class Windows_Storage_Streams_DataWriterStoreOperation : WinRtInterface
     //@Returns("UInt32")
     get_Id()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Foundation.IAsyncInfo( this.comPtr );
         var _r = iface.get_Id(  );
@@ -2232,6 +2408,7 @@ class Windows_Storage_Streams_DataWriterStoreOperation : WinRtInterface
     //@Returns("Windows.Foundation.AsyncStatus")
     get_Status()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Foundation.IAsyncInfo( this.comPtr );
         var _r = iface.get_Status(  );
@@ -2242,6 +2419,7 @@ class Windows_Storage_Streams_DataWriterStoreOperation : WinRtInterface
     //@Returns("Windows.Foundation.HResult")
     get_ErrorCode()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Foundation.IAsyncInfo( this.comPtr );
         var _r = iface.get_ErrorCode(  );
@@ -2252,6 +2430,7 @@ class Windows_Storage_Streams_DataWriterStoreOperation : WinRtInterface
     //@Returns("void")
     Cancel()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Foundation.IAsyncInfo( this.comPtr );
         iface.Cancel(  );
@@ -2261,6 +2440,7 @@ class Windows_Storage_Streams_DataWriterStoreOperation : WinRtInterface
     //@Returns("void")
     Close()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Foundation.IAsyncInfo( this.comPtr );
         iface.Close(  );
@@ -2280,7 +2460,8 @@ class Windows_Storage_Streams_FileInputStream : WinRtInterface
     Windows_Storage_Streams_FileInputStream( comPtr )
     {
         var Windows = runtime.global("Windows");
-        this.comPtr = comPtr.queryInterface( Windows.Storage.Streams.IInputStream.iid );
+        if(!comPtr || !int(comPtr)) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( Windows.Storage.Streams.IInputStream.iid );
     }
 
     static Create()
@@ -2294,6 +2475,7 @@ class Windows_Storage_Streams_FileInputStream : WinRtInterface
     //@Parameters("Windows.Storage.Streams.IBuffer","UInt32","Windows.Storage.Streams.InputStreamOptions")
     ReadAsync(buffer,count,options)
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Storage.Streams.IInputStream( this.comPtr );
         var _promise = Future();
@@ -2314,6 +2496,7 @@ class Windows_Storage_Streams_FileInputStream : WinRtInterface
     //@Returns("void")
     Close()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Foundation.IClosable( this.comPtr );
         iface.Close(  );
@@ -2333,7 +2516,8 @@ class Windows_Storage_Streams_FileOutputStream : WinRtInterface
     Windows_Storage_Streams_FileOutputStream( comPtr )
     {
         var Windows = runtime.global("Windows");
-        this.comPtr = comPtr.queryInterface( Windows.Storage.Streams.IOutputStream.iid );
+        if(!comPtr || !int(comPtr)) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( Windows.Storage.Streams.IOutputStream.iid );
     }
 
     static Create()
@@ -2347,6 +2531,7 @@ class Windows_Storage_Streams_FileOutputStream : WinRtInterface
     //@Parameters("Windows.Storage.Streams.IBuffer")
     WriteAsync(buffer)
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Storage.Streams.IOutputStream( this.comPtr );
         var _promise = Future();
@@ -2367,6 +2552,7 @@ class Windows_Storage_Streams_FileOutputStream : WinRtInterface
     //@Returns("Windows.Foundation.IAsyncOperation`1<Boolean>")
     FlushAsync()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Storage.Streams.IOutputStream( this.comPtr );
         var _promise = Future();
@@ -2387,6 +2573,7 @@ class Windows_Storage_Streams_FileOutputStream : WinRtInterface
     //@Returns("void")
     Close()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Foundation.IClosable( this.comPtr );
         iface.Close(  );
@@ -2406,7 +2593,8 @@ class Windows_Storage_Streams_FileRandomAccessStream : WinRtInterface
     Windows_Storage_Streams_FileRandomAccessStream( comPtr )
     {
         var Windows = runtime.global("Windows");
-        this.comPtr = comPtr.queryInterface( Windows.Storage.Streams.IRandomAccessStream.iid );
+        if(!comPtr || !int(comPtr)) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( Windows.Storage.Streams.IRandomAccessStream.iid );
     }
 
     // s Windows.Storage.Streams.IFileRandomAccessStreamStatics
@@ -2619,6 +2807,7 @@ class Windows_Storage_Streams_FileRandomAccessStream : WinRtInterface
     //@Returns("UInt64")
     get_Size()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Storage.Streams.IRandomAccessStream( this.comPtr );
         var _r = iface.get_Size(  );
@@ -2631,6 +2820,7 @@ class Windows_Storage_Streams_FileRandomAccessStream : WinRtInterface
     //@Parameters("UInt64")
     put_Size(value)
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Storage.Streams.IRandomAccessStream( this.comPtr );
         iface.put_Size( value );
@@ -2642,6 +2832,7 @@ class Windows_Storage_Streams_FileRandomAccessStream : WinRtInterface
     //@Parameters("UInt64")
     GetInputStreamAt(position)
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Storage.Streams.IRandomAccessStream( this.comPtr );
         var _r = iface.GetInputStreamAt( position );
@@ -2654,6 +2845,7 @@ class Windows_Storage_Streams_FileRandomAccessStream : WinRtInterface
     //@Parameters("UInt64")
     GetOutputStreamAt(position)
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Storage.Streams.IRandomAccessStream( this.comPtr );
         var _r = iface.GetOutputStreamAt( position );
@@ -2664,6 +2856,7 @@ class Windows_Storage_Streams_FileRandomAccessStream : WinRtInterface
     //@Returns("UInt64")
     get_Position()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Storage.Streams.IRandomAccessStream( this.comPtr );
         var _r = iface.get_Position(  );
@@ -2676,6 +2869,7 @@ class Windows_Storage_Streams_FileRandomAccessStream : WinRtInterface
     //@Parameters("UInt64")
     Seek(position)
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Storage.Streams.IRandomAccessStream( this.comPtr );
         iface.Seek( position );
@@ -2685,6 +2879,7 @@ class Windows_Storage_Streams_FileRandomAccessStream : WinRtInterface
     //@Returns("Windows.Storage.Streams.IRandomAccessStream")
     CloneStream()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Storage.Streams.IRandomAccessStream( this.comPtr );
         var _r = iface.CloneStream(  );
@@ -2695,6 +2890,7 @@ class Windows_Storage_Streams_FileRandomAccessStream : WinRtInterface
     //@Returns("Boolean")
     get_CanRead()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Storage.Streams.IRandomAccessStream( this.comPtr );
         var _r = iface.get_CanRead(  );
@@ -2705,6 +2901,7 @@ class Windows_Storage_Streams_FileRandomAccessStream : WinRtInterface
     //@Returns("Boolean")
     get_CanWrite()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Storage.Streams.IRandomAccessStream( this.comPtr );
         var _r = iface.get_CanWrite(  );
@@ -2715,6 +2912,7 @@ class Windows_Storage_Streams_FileRandomAccessStream : WinRtInterface
     //@Returns("void")
     Close()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Foundation.IClosable( this.comPtr );
         iface.Close(  );
@@ -2726,6 +2924,7 @@ class Windows_Storage_Streams_FileRandomAccessStream : WinRtInterface
     //@Parameters("Windows.Storage.Streams.IBuffer","UInt32","Windows.Storage.Streams.InputStreamOptions")
     ReadAsync(buffer,count,options)
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Storage.Streams.IInputStream( this.comPtr );
         var _promise = Future();
@@ -2748,6 +2947,7 @@ class Windows_Storage_Streams_FileRandomAccessStream : WinRtInterface
     //@Parameters("Windows.Storage.Streams.IBuffer")
     WriteAsync(buffer)
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Storage.Streams.IOutputStream( this.comPtr );
         var _promise = Future();
@@ -2768,6 +2968,7 @@ class Windows_Storage_Streams_FileRandomAccessStream : WinRtInterface
     //@Returns("Windows.Foundation.IAsyncOperation`1<Boolean>")
     FlushAsync()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Storage.Streams.IOutputStream( this.comPtr );
         var _promise = Future();
@@ -2798,7 +2999,8 @@ class Windows_Storage_Streams_InMemoryRandomAccessStream : WinRtInterface
     Windows_Storage_Streams_InMemoryRandomAccessStream( comPtr )
     {
         var Windows = runtime.global("Windows");
-        this.comPtr = comPtr.queryInterface( Windows.Storage.Streams.IRandomAccessStream.iid );
+        if(!comPtr || !int(comPtr)) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( Windows.Storage.Streams.IRandomAccessStream.iid );
     }
 
     static Create()
@@ -2810,6 +3012,7 @@ class Windows_Storage_Streams_InMemoryRandomAccessStream : WinRtInterface
     //@Returns("UInt64")
     get_Size()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Storage.Streams.IRandomAccessStream( this.comPtr );
         var _r = iface.get_Size(  );
@@ -2822,6 +3025,7 @@ class Windows_Storage_Streams_InMemoryRandomAccessStream : WinRtInterface
     //@Parameters("UInt64")
     put_Size(value)
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Storage.Streams.IRandomAccessStream( this.comPtr );
         iface.put_Size( value );
@@ -2833,6 +3037,7 @@ class Windows_Storage_Streams_InMemoryRandomAccessStream : WinRtInterface
     //@Parameters("UInt64")
     GetInputStreamAt(position)
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Storage.Streams.IRandomAccessStream( this.comPtr );
         var _r = iface.GetInputStreamAt( position );
@@ -2845,6 +3050,7 @@ class Windows_Storage_Streams_InMemoryRandomAccessStream : WinRtInterface
     //@Parameters("UInt64")
     GetOutputStreamAt(position)
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Storage.Streams.IRandomAccessStream( this.comPtr );
         var _r = iface.GetOutputStreamAt( position );
@@ -2855,6 +3061,7 @@ class Windows_Storage_Streams_InMemoryRandomAccessStream : WinRtInterface
     //@Returns("UInt64")
     get_Position()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Storage.Streams.IRandomAccessStream( this.comPtr );
         var _r = iface.get_Position(  );
@@ -2867,6 +3074,7 @@ class Windows_Storage_Streams_InMemoryRandomAccessStream : WinRtInterface
     //@Parameters("UInt64")
     Seek(position)
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Storage.Streams.IRandomAccessStream( this.comPtr );
         iface.Seek( position );
@@ -2876,6 +3084,7 @@ class Windows_Storage_Streams_InMemoryRandomAccessStream : WinRtInterface
     //@Returns("Windows.Storage.Streams.IRandomAccessStream")
     CloneStream()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Storage.Streams.IRandomAccessStream( this.comPtr );
         var _r = iface.CloneStream(  );
@@ -2886,6 +3095,7 @@ class Windows_Storage_Streams_InMemoryRandomAccessStream : WinRtInterface
     //@Returns("Boolean")
     get_CanRead()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Storage.Streams.IRandomAccessStream( this.comPtr );
         var _r = iface.get_CanRead(  );
@@ -2896,6 +3106,7 @@ class Windows_Storage_Streams_InMemoryRandomAccessStream : WinRtInterface
     //@Returns("Boolean")
     get_CanWrite()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Storage.Streams.IRandomAccessStream( this.comPtr );
         var _r = iface.get_CanWrite(  );
@@ -2906,6 +3117,7 @@ class Windows_Storage_Streams_InMemoryRandomAccessStream : WinRtInterface
     //@Returns("void")
     Close()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Foundation.IClosable( this.comPtr );
         iface.Close(  );
@@ -2917,6 +3129,7 @@ class Windows_Storage_Streams_InMemoryRandomAccessStream : WinRtInterface
     //@Parameters("Windows.Storage.Streams.IBuffer","UInt32","Windows.Storage.Streams.InputStreamOptions")
     ReadAsync(buffer,count,options)
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Storage.Streams.IInputStream( this.comPtr );
         var _promise = Future();
@@ -2939,6 +3152,7 @@ class Windows_Storage_Streams_InMemoryRandomAccessStream : WinRtInterface
     //@Parameters("Windows.Storage.Streams.IBuffer")
     WriteAsync(buffer)
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Storage.Streams.IOutputStream( this.comPtr );
         var _promise = Future();
@@ -2959,6 +3173,7 @@ class Windows_Storage_Streams_InMemoryRandomAccessStream : WinRtInterface
     //@Returns("Windows.Foundation.IAsyncOperation`1<Boolean>")
     FlushAsync()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Storage.Streams.IOutputStream( this.comPtr );
         var _promise = Future();
@@ -2989,7 +3204,8 @@ class Windows_Storage_Streams_InputStreamOverStream : WinRtInterface
     Windows_Storage_Streams_InputStreamOverStream( comPtr )
     {
         var Windows = runtime.global("Windows");
-        this.comPtr = comPtr.queryInterface( Windows.Storage.Streams.IInputStream.iid );
+        if(!comPtr || !int(comPtr)) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( Windows.Storage.Streams.IInputStream.iid );
     }
 
     static Create()
@@ -3003,6 +3219,7 @@ class Windows_Storage_Streams_InputStreamOverStream : WinRtInterface
     //@Parameters("Windows.Storage.Streams.IBuffer","UInt32","Windows.Storage.Streams.InputStreamOptions")
     ReadAsync(buffer,count,options)
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Storage.Streams.IInputStream( this.comPtr );
         var _promise = Future();
@@ -3023,6 +3240,7 @@ class Windows_Storage_Streams_InputStreamOverStream : WinRtInterface
     //@Returns("void")
     Close()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Foundation.IClosable( this.comPtr );
         iface.Close(  );
@@ -3042,7 +3260,8 @@ class Windows_Storage_Streams_OutputStreamOverStream : WinRtInterface
     Windows_Storage_Streams_OutputStreamOverStream( comPtr )
     {
         var Windows = runtime.global("Windows");
-        this.comPtr = comPtr.queryInterface( Windows.Storage.Streams.IOutputStream.iid );
+        if(!comPtr || !int(comPtr)) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( Windows.Storage.Streams.IOutputStream.iid );
     }
 
     static Create()
@@ -3056,6 +3275,7 @@ class Windows_Storage_Streams_OutputStreamOverStream : WinRtInterface
     //@Parameters("Windows.Storage.Streams.IBuffer")
     WriteAsync(buffer)
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Storage.Streams.IOutputStream( this.comPtr );
         var _promise = Future();
@@ -3076,6 +3296,7 @@ class Windows_Storage_Streams_OutputStreamOverStream : WinRtInterface
     //@Returns("Windows.Foundation.IAsyncOperation`1<Boolean>")
     FlushAsync()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Storage.Streams.IOutputStream( this.comPtr );
         var _promise = Future();
@@ -3096,6 +3317,7 @@ class Windows_Storage_Streams_OutputStreamOverStream : WinRtInterface
     //@Returns("void")
     Close()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Foundation.IClosable( this.comPtr );
         iface.Close(  );
@@ -3212,7 +3434,8 @@ class Windows_Storage_Streams_RandomAccessStreamOverStream : WinRtInterface
     Windows_Storage_Streams_RandomAccessStreamOverStream( comPtr )
     {
         var Windows = runtime.global("Windows");
-        this.comPtr = comPtr.queryInterface( Windows.Storage.Streams.IRandomAccessStream.iid );
+        if(!comPtr || !int(comPtr)) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( Windows.Storage.Streams.IRandomAccessStream.iid );
     }
 
     static Create()
@@ -3224,6 +3447,7 @@ class Windows_Storage_Streams_RandomAccessStreamOverStream : WinRtInterface
     //@Returns("UInt64")
     get_Size()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Storage.Streams.IRandomAccessStream( this.comPtr );
         var _r = iface.get_Size(  );
@@ -3236,6 +3460,7 @@ class Windows_Storage_Streams_RandomAccessStreamOverStream : WinRtInterface
     //@Parameters("UInt64")
     put_Size(value)
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Storage.Streams.IRandomAccessStream( this.comPtr );
         iface.put_Size( value );
@@ -3247,6 +3472,7 @@ class Windows_Storage_Streams_RandomAccessStreamOverStream : WinRtInterface
     //@Parameters("UInt64")
     GetInputStreamAt(position)
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Storage.Streams.IRandomAccessStream( this.comPtr );
         var _r = iface.GetInputStreamAt( position );
@@ -3259,6 +3485,7 @@ class Windows_Storage_Streams_RandomAccessStreamOverStream : WinRtInterface
     //@Parameters("UInt64")
     GetOutputStreamAt(position)
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Storage.Streams.IRandomAccessStream( this.comPtr );
         var _r = iface.GetOutputStreamAt( position );
@@ -3269,6 +3496,7 @@ class Windows_Storage_Streams_RandomAccessStreamOverStream : WinRtInterface
     //@Returns("UInt64")
     get_Position()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Storage.Streams.IRandomAccessStream( this.comPtr );
         var _r = iface.get_Position(  );
@@ -3281,6 +3509,7 @@ class Windows_Storage_Streams_RandomAccessStreamOverStream : WinRtInterface
     //@Parameters("UInt64")
     Seek(position)
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Storage.Streams.IRandomAccessStream( this.comPtr );
         iface.Seek( position );
@@ -3290,6 +3519,7 @@ class Windows_Storage_Streams_RandomAccessStreamOverStream : WinRtInterface
     //@Returns("Windows.Storage.Streams.IRandomAccessStream")
     CloneStream()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Storage.Streams.IRandomAccessStream( this.comPtr );
         var _r = iface.CloneStream(  );
@@ -3300,6 +3530,7 @@ class Windows_Storage_Streams_RandomAccessStreamOverStream : WinRtInterface
     //@Returns("Boolean")
     get_CanRead()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Storage.Streams.IRandomAccessStream( this.comPtr );
         var _r = iface.get_CanRead(  );
@@ -3310,6 +3541,7 @@ class Windows_Storage_Streams_RandomAccessStreamOverStream : WinRtInterface
     //@Returns("Boolean")
     get_CanWrite()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Storage.Streams.IRandomAccessStream( this.comPtr );
         var _r = iface.get_CanWrite(  );
@@ -3320,6 +3552,7 @@ class Windows_Storage_Streams_RandomAccessStreamOverStream : WinRtInterface
     //@Returns("void")
     Close()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Foundation.IClosable( this.comPtr );
         iface.Close(  );
@@ -3331,6 +3564,7 @@ class Windows_Storage_Streams_RandomAccessStreamOverStream : WinRtInterface
     //@Parameters("Windows.Storage.Streams.IBuffer","UInt32","Windows.Storage.Streams.InputStreamOptions")
     ReadAsync(buffer,count,options)
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Storage.Streams.IInputStream( this.comPtr );
         var _promise = Future();
@@ -3353,6 +3587,7 @@ class Windows_Storage_Streams_RandomAccessStreamOverStream : WinRtInterface
     //@Parameters("Windows.Storage.Streams.IBuffer")
     WriteAsync(buffer)
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Storage.Streams.IOutputStream( this.comPtr );
         var _promise = Future();
@@ -3373,6 +3608,7 @@ class Windows_Storage_Streams_RandomAccessStreamOverStream : WinRtInterface
     //@Returns("Windows.Foundation.IAsyncOperation`1<Boolean>")
     FlushAsync()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Storage.Streams.IOutputStream( this.comPtr );
         var _promise = Future();
@@ -3403,7 +3639,8 @@ class Windows_Storage_Streams_RandomAccessStreamReference : WinRtInterface
     Windows_Storage_Streams_RandomAccessStreamReference( comPtr )
     {
         var Windows = runtime.global("Windows");
-        this.comPtr = comPtr.queryInterface( Windows.Storage.Streams.IRandomAccessStreamReference.iid );
+        if(!comPtr || !int(comPtr)) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( Windows.Storage.Streams.IRandomAccessStreamReference.iid );
     }
 
     // s Windows.Storage.Streams.IRandomAccessStreamReferenceStatics
@@ -3461,6 +3698,7 @@ class Windows_Storage_Streams_RandomAccessStreamReference : WinRtInterface
     //@Returns("Windows.Foundation.IAsyncOperation`1<Windows.Storage.Streams.IRandomAccessStreamWithContentType>")
     OpenReadAsync()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Storage.Streams.IRandomAccessStreamReference( this.comPtr );
         var _promise = Future();

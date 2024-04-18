@@ -2,27 +2,15 @@
 
 extern from "Microsoft.Internal.FrameworkUdk.dll" {
     int Windowing_GetWindowIdFromWindow( ptr, ptr );
+    int Windowing_GetWindowFromWindowId( ptr, ptr );
 }
 
 extern from "Microsoft.UI.Windowing.Core.dll" {
     int ContentPreTranslateMessage( ptr );
 }
 
-extern from "Ntdll.dll" {
-  int RtlGetVersion( ptr );
-}
 
-fun WinVersion()
-{
-    var osver = Win32.OSVERSIONINFOEXW();
-    osver.dwOSVersionInfoSize = Win32.OSVERSIONINFOEXW.size;
-    RtlGetVersion(osver);
-
-    if( osver.dwMajorVersion >= 10 && osver.dwBuildNumber >= 22000 ) return 11;
-    return 10;
-}
-
-var windowsVersion = WinVersion();
+var windowsVersion = WindowsVersion();
 
 fun getXamlClassByName(name)
 {
@@ -131,7 +119,10 @@ fun unbox(p)
 {
     var prop = Windows.Foundation.IPropertyValue(p);
 
-    if( int(prop.comPtr) == 0) return p;
+    if( int(prop.comPtr) == 0)
+    {
+       return p;
+    }
 
     var type = prop.get_Type();
     switch(type)
@@ -437,12 +428,12 @@ class Xaml
 
     static hwnd(xamlSource)
     {
-        // IDesktopWindowXamlSourceNative
-        var native = xamlSource.queryInterface("{3cbcf1bf-2f76-4e9c-96ab-e84b37972554}");
-        if(!native) return;
-        var hwnd = native.invoke( 4, "ptr", [], [] );
-        native.release();
-        return hwnd;
+	var bridge = xamlSource.get_SiteBridge();
+
+	var id = bridge.WindowId;
+	var hwnd = 0;
+	Windowing_GetWindowFromWindowId(id,&hwnd);
+	return hwnd;
     }
 
     static root(xamlSource)
@@ -688,16 +679,207 @@ class Xaml
 
     static run()
     {
-	var msg = Win32.MSG();
-	while (Win32.GetMessageW(msg, 0, 0, 0))
-	{
-	    if(ContentPreTranslateMessage(msg)) continue;
-	    Win32.TranslateMessage(msg);
-	    Win32.DispatchMessageW(msg);
-	}
+    	var args = arguments();
 
-	Xaml.shutdown();	
+    	if(args.length > 0)
+    	{      
+            var wnd = args[0];
+
+            while (Win32.GetMessageW(main_loop_msg, 0, 0, 0))
+            {
+ 	        if(ContentPreTranslateMessage(main_loop_msg)) continue;
+
+            	if ( (!wnd.accels) || (!int(Win32.TranslateAcceleratorW(wnd.hwnd, wnd.accels, main_loop_msg))) )
+            	{
+	            Win32.TranslateMessage(main_loop_msg);
+	            Win32.DispatchMessageW(main_loop_msg);
+            	}
+            }
+	    Xaml.shutdown();
+    	}
+    	else
+    	{
+            while (Win32.GetMessageW(main_loop_msg, 0, 0, 0))
+            {
+  	        if(ContentPreTranslateMessage(main_loop_msg)) continue;
+
+	        Win32.TranslateMessage(main_loop_msg);
+	        Win32.DispatchMessageW(main_loop_msg);
+            }
+	    Xaml.shutdown();
+    	}
     }
+
+
+    static setFocus(xamlSource)
+    {
+	var hwnd = Xaml.hwnd(xamlSource);
+	SetFocus(hwnd);
+    }
+
+    static Command(kind, handler) 
+    {
+        var cmd = Microsoft.UI.Xaml.Input.XamlUICommand.Create();
+
+        if($handler.exists("XamlAccel"))
+        {
+    	    var key = $handler.XamlAccel.key;
+            var flag = $handler.XamlAccel.flag;
+
+	    var accel = Microsoft.UI.Xaml.Input.KeyboardAccelerator.Create();
+            if( typeof(key) == "str")
+            {
+		key = Windows.System.VirtualKey{key};
+	    	accel.Key = key;
+            }
+            if( typeof(flag) == "str")
+            {
+            	flag = Windows.System.VirtualKeyModifiers{flag};
+	    	accel.Modifiers = flag;
+            }
+	    var v = cmd.KeyboardAccelerators;
+	    v.Append(accel);
+        }
+	cmd.Label = kind;
+        cmd.add_ExecuteRequested(handler);
+        return cmd;
+    }
+
+    static StandardCommand(kind, handler) 
+    {
+    	var cmd = Microsoft.UI.Xaml.Input.StandardUICommand.Create();
+    	cmd.Kind = Microsoft.UI.Xaml.Input.StandardUICommandKind{kind};
+    	cmd.add_ExecuteRequested(handler);
+    	return cmd;
+    }
+
+    static commands(controller) 
+    {
+	Xaml.ensureInitialized();
+
+        var methods = controller.methods();
+	var result = {};
+
+        methods.forEach( fun(k,m) 
+        {
+            if($m)
+            {
+                if($m.exists("XamlCommand"))
+                {
+		    var cmds = $m.XamlCommand;
+		    if(typeof(cmds) == "map")
+		    {
+			var keys = cmds.keys();
+			keys.forEach( fun(item) 
+			{
+			    result{item} = Xaml.Command(item,m);
+			});
+		    }
+		    if(typeof(cmds) == "array")
+		    {
+			cmds.forEach( fun(item) 
+			{
+			    result{item} = Xaml.Command(item,m);
+			});
+		    }
+		}
+                else if($m.exists("XamlStandardCommand"))
+                {
+		    var cmds = $m.XamlStandardCommand;
+		    if(typeof(cmds) == "map")
+		    {
+			var keys = cmds.keys();
+			keys.forEach( fun(item) 
+			{
+			    result{item} = Xaml.StandardCommand(item,m);
+			});
+		    }
+		    if(typeof(cmds) == "array")
+		    {
+			cmds.forEach( fun(item) 
+			{
+			    result{item} = Xaml.StandardCommand(item,m);
+			});
+		    }
+		}
+	    }
+	});
+	return result;
+    }
+
+    static fixupCommands(controller,xamlWnd)
+    {
+	Xaml.ensureInitialized();
+
+        var methods = controller.methods();
+
+        methods.forEach( fun(k,m) 
+        {
+            if($m)
+            {
+                if($m.exists("XamlCommand"))
+                {
+		    var cmds = $m.XamlCommand;
+		    if(typeof(cmds) == "map")
+		    {
+			var keys = cmds.keys();
+			keys.forEach( fun(item) 
+			{
+			    var element = xamlWnd.find(item);
+			    if(element && element.comPtr && int(element.comPtr) )
+			    {
+				var cmd = Xaml.Command(item,m);	
+				element.Command = cmd;
+			    }
+			});
+		    }
+		    if(typeof(cmds) == "array")
+		    {
+			cmds.forEach( fun(item) 
+			{
+			    var element = xamlWnd.root().find(item);
+			    if(element && element.comPtr && int(element.comPtr) )
+			    {
+				var cmd = Xaml.Command(item,m);	
+				element.Command = cmd;
+			    }
+			});
+		    }
+		}
+                else if($m.exists("XamlStandardCommand"))
+                {
+		    var cmds = $m.XamlStandardCommand;
+		    if(typeof(cmds) == "map")
+		    {
+			var keys = cmds.keys();
+			keys.forEach( fun(item) 
+			{
+			    var element = xamlWnd.root().find(item);
+			    if(element && element.comPtr && int(element.comPtr) )
+			    {
+				var cmd = Xaml.StandardCommand(item,m);	
+				element.Command = cmd;
+			    }
+			});
+		    }
+		    if(typeof(cmds) == "array")
+		    {
+			var keys = cmds.keys();
+			keys.forEach( fun(item) 
+			{
+			    var element = xamlWnd.root().find(item);
+			    if(element && element.comPtr && int(element.comPtr) )
+			    {
+				var cmd = Xaml.StandardCommand(item,m);	
+				element.Command = cmd;
+			    }
+			});
+		    }
+		} // xamlCommands
+	    } // if($m)
+	}); // foreach
+    }
+
 }
 
 class XamlWindow
@@ -711,8 +893,14 @@ class XamlWindow
         if(args.length > 1)
         {
             this.load(args[1]);
+	    this.focus();
         }
     }    
+
+    focus()
+    {
+	Xaml.setFocus(this.xamlSource);
+    }
 
     root()
     {
@@ -727,6 +915,7 @@ class XamlWindow
             this.hwnd = Xaml.hwnd(this.xamlSource);
 
 	    Xaml.bindEvents( this.root(), this.parentWnd );
+	    Xaml.fixupCommands( this.parentWnd, this );
 
             return this.xamlSource;
         }
@@ -736,6 +925,7 @@ class XamlWindow
             this.xamlSource.put_Content(xaml);
 
 	    Xaml.bindEvents( this.root(), this.parentWnd );
+	    Xaml.fixupCommands( this.parentWnd, this );
 
             return this.xamlSource;
         }       

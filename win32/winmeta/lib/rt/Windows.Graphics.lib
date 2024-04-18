@@ -41,7 +41,8 @@ class Windows_Graphics_IGeometrySource2D : WinRtInterface
     Windows_Graphics_IGeometrySource2D( comPtr )
     {
         var Windows = runtime.global("Windows");
-        this.comPtr = comPtr.queryInterface( "{CAFF7902-670C-4181-A624-DA977203B845}");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{CAFF7902-670C-4181-A624-DA977203B845}");
     }
 
 

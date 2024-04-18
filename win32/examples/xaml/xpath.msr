@@ -1,0 +1,342 @@
+import("win32/base");
+import("win32/lib");
+import("win32/gdi");
+import("win32/user");
+import("win32/sysinfo");
+import("promise");
+import("rt/Windows.System");
+import("rt/Windows.Foundation");
+import("rt/Windows.Foundation.Collections");
+import("rt/Windows.Graphics");
+import("rt/Windows.Data.Xml.Dom");
+import("rt/Windows.Storage");
+import("rt/Windows.Storage.Streams");
+import("rt/Windows.Storage.Pickers");
+import("rt/Windows.Security.Cryptography");
+import("rt/Windows.Security.Cryptography.Core");
+import("rt/Windows.Security.Cryptography.Certificates");
+import("rt\Microsoft.UI");
+import("rt/Microsoft.UI.Content");
+import("rt/Microsoft.UI.Dispatching");
+import("rt/Microsoft.UI.Windowing");
+import("rt\Microsoft.UI.Xaml");
+import("rt\Microsoft.UI.Xaml.Hosting");
+import("rt\Microsoft.UI.Xaml.Markup");
+import("rt\Microsoft.UI.Xaml.Interop");
+import("rt\Microsoft.UI.Xaml.Data");
+import("rt\Microsoft.UI.Xaml.Input");
+import("rt\Microsoft.UI.Xaml.Controls");
+import("rt\Microsoft.UI.Xaml.Controls.Primitives");
+import("rt/moxaml");
+
+import("windows");
+import("winrt");
+import("xaml");
+
+
+var ID_EXIT = 101;
+
+var default_namespaces = 
+" xmlns:xaml='http://schemas.microsoft.com/winfx/2006/xaml/presentation'
+  xmlns:x='http://schemas.microsoft.com/winfx/2006/xaml'
+  xmlns:d='http://schemas.microsoft.com/expression/blend/2008'
+  xmlns:mc='http://schemas.openxmlformats.org/markup-compatibility/2006'
+  xmlns:muxc='using:Microsoft.UI.Xaml.Controls'
+";
+
+
+var edit_xaml = "
+
+<Page
+  xmlns='http://schemas.microsoft.com/winfx/2006/xaml/presentation'
+  xmlns:x='http://schemas.microsoft.com/winfx/2006/xaml'
+  xmlns:d='http://schemas.microsoft.com/expression/blend/2008'
+  xmlns:mc='http://schemas.openxmlformats.org/markup-compatibility/2006'
+  xmlns:muxc='using:Microsoft.UI.Xaml.Controls'
+   Background='{ThemeResource MoserBackground}'
+  mc:Ignorable='d'>
+	<Grid Name='MasterGrid'>
+		<Grid.RowDefinitions>
+			<RowDefinition Height='auto'/>
+			<RowDefinition Height='auto'/>
+			<RowDefinition Height='1*'/>
+		</Grid.RowDefinitions>
+
+		<StackPanel  Grid.Row='0' Orientation='Horizontal' Background='{ThemeResource TopNavigationViewItemSeparatorForeground}'>
+			<AppBarButton Name='FileButton' Icon='Document' Label='File' >
+			    <AppBarButton.Flyout>
+			    	<MenuFlyout>
+					<MenuFlyoutItem Name='OpenXml' Text='Open Xml' />
+					<MenuFlyoutItem Name='SaveXml' Text='Save Xml' />
+			    	</MenuFlyout>
+			    </AppBarButton.Flyout>
+			</AppBarButton>
+			<AppBarSeparator/>
+			<AppBarButton Name='UpdateButton' Icon='Go' Label='Show XPath' />
+		</StackPanel>
+
+		<Grid Grid.Row='1' HorizontalAlignment='Stretch'  >
+
+		    <Grid.ColumnDefinitions>
+			<ColumnDefinition Width='100'/>
+			<ColumnDefinition Width='*'/>
+		    </Grid.ColumnDefinitions>
+		    <TextBlock Grid.Column='0' VerticalAlignment='Center' HorizontalAlignment='Center'>XPATH:</TextBlock>
+                    <TextBox Grid.Column='1' HorizontalAlignment='Stretch' FontFamily='Consolas' IsSpellCheckEnabled='False' Background='{ThemeResource ApplicationPageBackgroundThemeBrush}' Name='XpathSrc' MaxHeight='1800' VerticalAlignment='top'  AcceptsReturn='False' TextWrapping='NoWrap' Text='{Binding Path=[xpath], Mode=TwoWay, UpdateSourceTrigger=PropertyChanged }' />
+		</Grid>
+
+		<SplitView Name='CoreSplitView'
+		 Grid.Row='2'
+		 DisplayMode='Inline'
+		 IsPaneOpen='True'
+		 VerticalAlignment='Stretch'
+		 OpenPaneLength='{Binding Value, ElementName=MasterSlider, Mode=OneWay}' >
+
+		    <SplitView.Pane>
+
+			<Grid Name='PaneGrid' VerticalAlignment='Stretch'>
+			    <Grid.RowDefinitions>
+				<RowDefinition Name='RowDefinition' Height='*'/>
+			    </Grid.RowDefinitions>
+			    <Slider Name='MasterSlider'		 
+					 MinWidth='880'
+					 VerticalAlignment='Stretch'
+					 Maximum='880'
+					 Minimum='7'
+					 Opacity='0'
+					 Value='450' />
+
+	    		    <Border BorderBrush='{ThemeResource TopNavigationViewItemSeparatorForeground}' Margin='0,0,10,0'>
+
+			     <muxc:TabView Grid.Row='0' HorizontalAlignment='Stretch' IsAddTabButtonVisible='False' VerticalAlignment='Stretch'>
+			      <muxc:TabViewItem Header='Source' IsClosable='False'>
+				<muxc:TabViewItem.IconSource>
+				    <muxc:SymbolIconSource Symbol='Document' />
+				</muxc:TabViewItem.IconSource>
+
+				<Grid  VerticalAlignment='Stretch'>
+
+				  <ScrollViewer
+					VerticalScrollBarVisibility='Visible' 
+					HorizontalScrollBarVisibility='Visible'>
+
+				    <TextBox Grid.Row='0' 
+					HorizontalAlignment='Stretch' FontFamily='Consolas' 
+					IsSpellCheckEnabled='False' 
+					Background='{ThemeResource ApplicationPageBackgroundThemeBrush}' 
+					Name='XmlSrc' MaxHeight='1800' 
+					VerticalAlignment='Stretch'  
+					AcceptsReturn='True' 
+					TextWrapping='NoWrap' 
+					Margin='0,0,20,0'
+					Text='{Binding Path=[xml], Mode=TwoWay, UpdateSourceTrigger=PropertyChanged }' />
+				  </ScrollViewer>
+				</Grid>
+			      </muxc:TabViewItem>
+
+			      <muxc:TabViewItem Header='Namespaces' IsClosable='False'>
+				<muxc:TabViewItem.IconSource>
+				    <muxc:SymbolIconSource Symbol='Edit' />
+				</muxc:TabViewItem.IconSource>
+
+				<Grid VerticalAlignment='Stretch'>
+
+				 <ScrollViewer
+					VerticalScrollBarVisibility='Visible' 
+					HorizontalScrollBarVisibility='Visible'>
+				    <TextBox FontFamily='Consolas' 
+					IsSpellCheckEnabled='False' 
+					Background='{ThemeResource ApplicationPageBackgroundThemeBrush}' 
+					Name='Namespaces' MaxHeight='1800' 
+					 AcceptsReturn='True' 
+					TextWrapping='NoWrap' 
+					Margin='0,0,20,0'
+					Text='{Binding Path=[namespaces], Mode=TwoWay, UpdateSourceTrigger=PropertyChanged }' />
+				 </ScrollViewer>
+				</Grid>
+
+			      </muxc:TabViewItem>
+			    </muxc:TabView>
+                          </Border>
+			</Grid>
+
+			</SplitView.Pane>
+			<Grid VerticalAlignment='Stretch'  >
+				<Grid.RowDefinitions>
+					<RowDefinition Name='RowDefinition2' Height='*'/>
+				</Grid.RowDefinitions>
+
+					<TextBlock Name='Output' Text='{Binding [xpathResult]}' />
+			</Grid>
+		</SplitView>
+	</Grid>
+</Page>
+";
+
+var example_xml = "<?xml version='1.0' ?>
+<note>
+  <to>Tove</to>
+  <from>Jani</from>
+  <heading>Reminder</heading>
+  <body class='italics'>Don't forget me this weekend!</body>
+</note>";
+
+
+
+class MyWindow : Window 
+{
+    MyWindow()
+    {
+        super.Window();
+
+        this.dataContext = DataContext( 
+        {
+            "filename"    : "",
+            "ext"         : "",
+            "xml"         : example_xml ,
+	    "xpath"	  : "//body",
+	    "namespaces"  : default_namespaces,
+	    "xpathResult" : ""
+        });
+    }
+
+    @Xaml(Element=OpenXml) // defaults to ,Event=Click)
+    onOpenFile(sender,args)
+    {
+         this.xamlWnd.FileOpenPicker(
+            { 
+                "FileTypeFilter" : [ "*" ],
+            }
+        )
+        .then(
+            fun(file) 
+            {
+                if(file.valid()  )
+                {
+                    this.dataContext.filename = file.Path;
+                    this.dataContext.ext = file.FileType;
+                    
+                    Windows.Storage.FileIO.ReadTextAsync(file)
+                    .then( fun(content) 
+                    {
+                        this.dataContext.xml = content;
+                    });
+                }
+		this.xamlWnd.focus();
+            }
+        );
+    }
+
+    @Xaml(Element=SaveXml,Event=Click)
+    onSaveFile(sender,args)
+    {
+         this.xamlWnd.FileSavePicker(
+            { 
+                "FileName" : this.dataContext.filename,
+                "FileTypeChoices" : { "file" : [ this.dataContext.ext ] }
+            }
+            )
+         .then(
+            fun(file) 
+            {
+                if( file.valid() )
+                {
+                    var content =  this.dataContext.xml;
+
+                    Windows.Storage.FileIO.WriteTextAsync(file,content)
+                    .then( fun() 
+                    {
+                        this.dataContext.filename = file.Path;
+                    });
+                }
+		this.xamlWnd.focus();
+            }
+        );
+    }
+
+    @Xaml(Element=UpdateButton,Event=Click)
+    onXPath()
+    {
+	var xml_src = this.dataContext.xml;
+	var xpath = this.dataContext.xpath;
+
+	var xmlDoc = Windows.Data.Xml.Dom.XmlDocument.Create();
+	var parser = Windows.Data.Xml.Dom.IXmlDocumentIO(xmlDoc);
+	parser.LoadXml(xml_src);
+	var r = xmlDoc.GetXml();
+
+	if(r)
+	{
+	    r = "";
+	    var namespaces = this.dataContext.namespaces.replace_all("\r|\n"," ");
+
+	    var nodes = xmlDoc.SelectNodesNS(xpath,box(namespaces));
+	    if(nodes && nodes.comPtr && int(nodes.comPtr) )
+	    {
+	    	var size = nodes.Size;
+	    	for( var i = 0; i < size; i++ )
+	    	{
+		    var node = nodes.GetAt(i);
+		    var serializer = Windows.Data.Xml.Dom.IXmlNodeSerializer(node);
+		    r += serializer.GetXml() + "\r\n";
+	    	} 
+	    }
+	}
+	else
+	{
+	    r = "xml parsing failed.";
+	}
+	this.dataContext.xpathResult = r;
+    }
+
+    @Xaml(Element=XpathSrc,Event=KeyDown)
+    onEnter(sender,args)
+    {
+	if(args.Key == Windows.System.VirtualKey.Enter)
+	{
+	    this.onXPath();
+	}
+    }
+
+    // global non-xaml accelerator 
+    @cmd(ID_EXIT)
+    @accel(key=Q,flag=FCONTROL)
+    onExit(wParam,lParam)
+    {
+        Win32.DestroyWindow(this.hwnd);
+    }
+
+    @msg(WM_CREATE)
+    onCreate()
+    {
+        this.xamlWnd = XamlWindow( this, edit_xaml );
+        Xaml.expand(this.hwnd,300);
+    }
+
+    @msg(WM_DESTROY)
+    onDestroy(wParam,lParam)
+    {
+        Win32.PostQuitMessage(0);
+        return 0;
+    }
+
+    @msg(WM_SIZE)
+    onSize(wParam,lParam)
+    {
+	var width = LOWORD(int(lParam));
+        var height = HIWORD(int(lParam));
+
+	if(this.xamlWnd)
+	    this.xamlWnd.size(0,0,width,height);
+        return 0;
+    }
+}
+
+
+var wnd = MyWindow();
+
+wnd.create( "xpath test" );
+wnd.show();
+Xaml.run(wnd);
+
+print "OK";

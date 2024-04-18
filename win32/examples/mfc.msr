@@ -31,7 +31,7 @@ import("rt/Microsoft.UI.Xaml.Controls.Primitives");
 import("rt/moxaml");
 
 import("winrt");
-import("windows");
+import("windows2");
 import("xam2l");
 
 
@@ -61,7 +61,16 @@ class MyWindow : Window
 {
     MyWindow()
     {
+	this.hIcon = Win32.LoadImageW(
+	    0,
+	    wstring(io.dirname(io.self()) + "\\mole.ico"),
+	    Win32.GDI_IMAGE_TYPE.IMAGE_ICON,
+	    0,0,
+	    Win32.IMAGE_FLAGS.LR_DEFAULTSIZE | Win32.IMAGE_FLAGS.LR_LOADFROMFILE
+	);
+
         super.Window();
+
         this.menu = [
             [ "File",  
                 [ "Open", ID_FILE_OPEN ],
@@ -73,6 +82,7 @@ class MyWindow : Window
         {
             "name"      : "THE STRING"
         });
+
     }
 
     theButt_Click( sender, args )
@@ -99,7 +109,7 @@ class MyWindow : Window
     {
 
 	this.xaml = XamlWindow( this, my_xaml );
-	Xaml.expand(this.hwnd,100);
+//	Xaml.expand(this.hwnd,100);
 
 	var menuOpen = this.xaml.find("OpenGo");
 

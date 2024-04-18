@@ -36,7 +36,8 @@ class Windows_Storage_Pickers_IFileOpenPicker : WinRtInterface
     Windows_Storage_Pickers_IFileOpenPicker( comPtr )
     {
         var Windows = runtime.global("Windows");
-        this.comPtr = comPtr.queryInterface( "{2CA8278A-12C5-4C5F-8977-94547793C241}");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{2CA8278A-12C5-4C5F-8977-94547793C241}");
     }
 
     //@VtableIndex(6)
@@ -44,6 +45,7 @@ class Windows_Storage_Pickers_IFileOpenPicker : WinRtInterface
     //@Returns("Windows.Storage.Pickers.PickerViewMode")
     get_ViewMode()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 6, "UInt32", [], [] );
         return _r;
@@ -55,6 +57,7 @@ class Windows_Storage_Pickers_IFileOpenPicker : WinRtInterface
     //@Parameters("Windows.Storage.Pickers.PickerViewMode")
     put_ViewMode(value)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = value;
         this.comPtr.invoke( 7, "void", ["UInt32"], [p1] );
@@ -65,6 +68,7 @@ class Windows_Storage_Pickers_IFileOpenPicker : WinRtInterface
     //@Returns("String")
     get_SettingsIdentifier()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 8, "String", [], [] );
         return _r;
@@ -76,6 +80,7 @@ class Windows_Storage_Pickers_IFileOpenPicker : WinRtInterface
     //@Parameters("String")
     put_SettingsIdentifier(value)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = value;
         this.comPtr.invoke( 9, "void", ["String"], [p1] );
@@ -86,6 +91,7 @@ class Windows_Storage_Pickers_IFileOpenPicker : WinRtInterface
     //@Returns("Windows.Storage.Pickers.PickerLocationId")
     get_SuggestedStartLocation()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 10, "UInt32", [], [] );
         return _r;
@@ -97,6 +103,7 @@ class Windows_Storage_Pickers_IFileOpenPicker : WinRtInterface
     //@Parameters("Windows.Storage.Pickers.PickerLocationId")
     put_SuggestedStartLocation(value)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = value;
         this.comPtr.invoke( 11, "void", ["UInt32"], [p1] );
@@ -107,6 +114,7 @@ class Windows_Storage_Pickers_IFileOpenPicker : WinRtInterface
     //@Returns("String")
     get_CommitButtonText()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 12, "String", [], [] );
         return _r;
@@ -118,6 +126,7 @@ class Windows_Storage_Pickers_IFileOpenPicker : WinRtInterface
     //@Parameters("String")
     put_CommitButtonText(value)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = value;
         this.comPtr.invoke( 13, "void", ["String"], [p1] );
@@ -128,6 +137,7 @@ class Windows_Storage_Pickers_IFileOpenPicker : WinRtInterface
     //@Returns("Windows.Foundation.Collections.IVector`1<String>")
     get_FileTypeFilter()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = Windows.Foundation.Collections.IVector_1_String_(
             this.comPtr.invoke( 14, "Windows.Foundation.Collections.IVector`1<String>", [], [] )
@@ -140,6 +150,7 @@ class Windows_Storage_Pickers_IFileOpenPicker : WinRtInterface
     //@Returns("Windows.Foundation.IAsyncOperation`1<Windows.Storage.StorageFile>")
     PickSingleFileAsync(cb)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         this.comPtr.asyncOperation( 15, "Windows.Storage.StorageFile", Windows.Foundation.IAsyncOperation_1_Windows_Storage_StorageFile_.handler_iid, [], [] , fun(status,value) { if(status == Windows.Foundation.AsyncStatus.Completed ) {cb(status, Windows.Storage.StorageFile(value)); } else { cb( status, value ); } } );
     }
@@ -149,6 +160,7 @@ class Windows_Storage_Pickers_IFileOpenPicker : WinRtInterface
     //@Returns("Windows.Foundation.IAsyncOperation`1<Windows.Foundation.Collections.IVectorView`1<Windows.Storage.StorageFile>>")
     PickMultipleFilesAsync(cb)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         this.comPtr.asyncOperation( 16, "Windows.Foundation.Collections.IVectorView`1<Windows.Storage.StorageFile>", Windows.Foundation.IAsyncOperation_1_Windows_Foundation_Collections_IVectorView_1_Windows_Storage_StorageFile__.handler_iid, [], [] , fun(status,value) { if(status == Windows.Foundation.AsyncStatus.Completed ) {cb(status, Windows.Foundation.Collections.IVectorView_1_Windows_Storage_StorageFile_(value)); } else { cb( status, value ); } } );
     }
@@ -166,7 +178,8 @@ class Windows_Storage_Pickers_IFileOpenPicker2 : WinRtInterface
     Windows_Storage_Pickers_IFileOpenPicker2( comPtr )
     {
         var Windows = runtime.global("Windows");
-        this.comPtr = comPtr.queryInterface( "{8CEB6CD2-B446-46F7-B265-90F8E55AD650}");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{8CEB6CD2-B446-46F7-B265-90F8E55AD650}");
     }
 
     //@VtableIndex(6)
@@ -174,6 +187,7 @@ class Windows_Storage_Pickers_IFileOpenPicker2 : WinRtInterface
     //@Returns("Windows.Foundation.Collections.ValueSet")
     get_ContinuationData()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = Windows.Foundation.Collections.ValueSet(
             this.comPtr.invoke( 6, "Windows.Foundation.Collections.ValueSet", [], [] )
@@ -186,6 +200,7 @@ class Windows_Storage_Pickers_IFileOpenPicker2 : WinRtInterface
     //@Returns("void")
     PickSingleFileAndContinue()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         this.comPtr.invoke( 7, "void", [], [] );
     }
@@ -195,6 +210,7 @@ class Windows_Storage_Pickers_IFileOpenPicker2 : WinRtInterface
     //@Returns("void")
     PickMultipleFilesAndContinue()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         this.comPtr.invoke( 8, "void", [], [] );
     }
@@ -212,7 +228,8 @@ class Windows_Storage_Pickers_IFileOpenPicker3 : WinRtInterface
     Windows_Storage_Pickers_IFileOpenPicker3( comPtr )
     {
         var Windows = runtime.global("Windows");
-        this.comPtr = comPtr.queryInterface( "{D9A5C5B3-C5DC-5B98-BD80-A8D0CA0584D8}");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{D9A5C5B3-C5DC-5B98-BD80-A8D0CA0584D8}");
     }
 
     //@VtableIndex(6)
@@ -220,6 +237,7 @@ class Windows_Storage_Pickers_IFileOpenPicker3 : WinRtInterface
     //@Returns("Windows.System.User")
     get_User()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = Windows.System.User(
             this.comPtr.invoke( 6, "Windows.System.User", [], [] )
@@ -240,7 +258,8 @@ class Windows_Storage_Pickers_IFileOpenPickerStatics : WinRtInterface
     Windows_Storage_Pickers_IFileOpenPickerStatics( comPtr )
     {
         var Windows = runtime.global("Windows");
-        this.comPtr = comPtr.queryInterface( "{6821573B-2F02-4833-96D4-ABBFAD72B67B}");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{6821573B-2F02-4833-96D4-ABBFAD72B67B}");
     }
 
     //@VtableIndex(6)
@@ -248,6 +267,7 @@ class Windows_Storage_Pickers_IFileOpenPickerStatics : WinRtInterface
     //@Returns("Windows.Foundation.IAsyncOperation`1<Windows.Storage.StorageFile>")
     ResumePickSingleFileAsync(cb)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         this.comPtr.asyncOperation( 6, "Windows.Storage.StorageFile", Windows.Foundation.IAsyncOperation_1_Windows_Storage_StorageFile_.handler_iid, [], [] , fun(status,value) { if(status == Windows.Foundation.AsyncStatus.Completed ) {cb(status, Windows.Storage.StorageFile(value)); } else { cb( status, value ); } } );
     }
@@ -265,7 +285,8 @@ class Windows_Storage_Pickers_IFileOpenPickerStatics2 : WinRtInterface
     Windows_Storage_Pickers_IFileOpenPickerStatics2( comPtr )
     {
         var Windows = runtime.global("Windows");
-        this.comPtr = comPtr.queryInterface( "{E8917415-EDDD-5C98-B6F3-366FDFCAD392}");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{E8917415-EDDD-5C98-B6F3-366FDFCAD392}");
     }
 
     //@VtableIndex(6)
@@ -274,6 +295,7 @@ class Windows_Storage_Pickers_IFileOpenPickerStatics2 : WinRtInterface
     //@Parameters("Windows.System.User")
     CreateForUser(user)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = Windows.System.User( user); 
         var _r = Windows.Storage.Pickers.FileOpenPicker(
@@ -295,7 +317,8 @@ class Windows_Storage_Pickers_IFileOpenPickerWithOperationId : WinRtInterface
     Windows_Storage_Pickers_IFileOpenPickerWithOperationId( comPtr )
     {
         var Windows = runtime.global("Windows");
-        this.comPtr = comPtr.queryInterface( "{3F57B569-2522-4CA5-AA73-A15509F1FCBF}");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{3F57B569-2522-4CA5-AA73-A15509F1FCBF}");
     }
 
     //@VtableIndex(6)
@@ -304,6 +327,7 @@ class Windows_Storage_Pickers_IFileOpenPickerWithOperationId : WinRtInterface
     //@Parameters("String")
     PickSingleFileAsync(pickerOperationId,cb)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = pickerOperationId;
         this.comPtr.asyncOperation( 6, "Windows.Storage.StorageFile", Windows.Foundation.IAsyncOperation_1_Windows_Storage_StorageFile_.handler_iid, ["String"], [p1] , fun(status,value) { if(status == Windows.Foundation.AsyncStatus.Completed ) {cb(status, Windows.Storage.StorageFile(value)); } else { cb( status, value ); } } );
@@ -322,7 +346,8 @@ class Windows_Storage_Pickers_IFileSavePicker : WinRtInterface
     Windows_Storage_Pickers_IFileSavePicker( comPtr )
     {
         var Windows = runtime.global("Windows");
-        this.comPtr = comPtr.queryInterface( "{3286FFCB-617F-4CC5-AF6A-B3FDF29AD145}");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{3286FFCB-617F-4CC5-AF6A-B3FDF29AD145}");
     }
 
     //@VtableIndex(6)
@@ -330,6 +355,7 @@ class Windows_Storage_Pickers_IFileSavePicker : WinRtInterface
     //@Returns("String")
     get_SettingsIdentifier()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 6, "String", [], [] );
         return _r;
@@ -341,6 +367,7 @@ class Windows_Storage_Pickers_IFileSavePicker : WinRtInterface
     //@Parameters("String")
     put_SettingsIdentifier(value)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = value;
         this.comPtr.invoke( 7, "void", ["String"], [p1] );
@@ -351,6 +378,7 @@ class Windows_Storage_Pickers_IFileSavePicker : WinRtInterface
     //@Returns("Windows.Storage.Pickers.PickerLocationId")
     get_SuggestedStartLocation()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 8, "UInt32", [], [] );
         return _r;
@@ -362,6 +390,7 @@ class Windows_Storage_Pickers_IFileSavePicker : WinRtInterface
     //@Parameters("Windows.Storage.Pickers.PickerLocationId")
     put_SuggestedStartLocation(value)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = value;
         this.comPtr.invoke( 9, "void", ["UInt32"], [p1] );
@@ -372,6 +401,7 @@ class Windows_Storage_Pickers_IFileSavePicker : WinRtInterface
     //@Returns("String")
     get_CommitButtonText()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 10, "String", [], [] );
         return _r;
@@ -383,6 +413,7 @@ class Windows_Storage_Pickers_IFileSavePicker : WinRtInterface
     //@Parameters("String")
     put_CommitButtonText(value)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = value;
         this.comPtr.invoke( 11, "void", ["String"], [p1] );
@@ -393,6 +424,7 @@ class Windows_Storage_Pickers_IFileSavePicker : WinRtInterface
     //@Returns("Windows.Foundation.Collections.IMap`2<String,Windows.Foundation.Collections.IVector`1<String>>")
     get_FileTypeChoices()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = Windows.Foundation.Collections.IMap_2_String_Windows_Foundation_Collections_IVector_1_String__(
             this.comPtr.invoke( 12, "Windows.Foundation.Collections.IMap`2<String,Windows.Foundation.Collections.IVector`1<String>>", [], [] )
@@ -405,6 +437,7 @@ class Windows_Storage_Pickers_IFileSavePicker : WinRtInterface
     //@Returns("String")
     get_DefaultFileExtension()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 13, "String", [], [] );
         return _r;
@@ -416,6 +449,7 @@ class Windows_Storage_Pickers_IFileSavePicker : WinRtInterface
     //@Parameters("String")
     put_DefaultFileExtension(value)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = value;
         this.comPtr.invoke( 14, "void", ["String"], [p1] );
@@ -426,6 +460,7 @@ class Windows_Storage_Pickers_IFileSavePicker : WinRtInterface
     //@Returns("Windows.Storage.StorageFile")
     get_SuggestedSaveFile()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = Windows.Storage.StorageFile(
             this.comPtr.invoke( 15, "Windows.Storage.StorageFile", [], [] )
@@ -439,6 +474,7 @@ class Windows_Storage_Pickers_IFileSavePicker : WinRtInterface
     //@Parameters("Windows.Storage.StorageFile")
     put_SuggestedSaveFile(value)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = Windows.Storage.StorageFile( value); 
         this.comPtr.invoke( 16, "void", ["Windows.Storage.StorageFile"], [p1] );
@@ -449,6 +485,7 @@ class Windows_Storage_Pickers_IFileSavePicker : WinRtInterface
     //@Returns("String")
     get_SuggestedFileName()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 17, "String", [], [] );
         return _r;
@@ -460,6 +497,7 @@ class Windows_Storage_Pickers_IFileSavePicker : WinRtInterface
     //@Parameters("String")
     put_SuggestedFileName(value)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = value;
         this.comPtr.invoke( 18, "void", ["String"], [p1] );
@@ -470,6 +508,7 @@ class Windows_Storage_Pickers_IFileSavePicker : WinRtInterface
     //@Returns("Windows.Foundation.IAsyncOperation`1<Windows.Storage.StorageFile>")
     PickSaveFileAsync(cb)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         this.comPtr.asyncOperation( 19, "Windows.Storage.StorageFile", Windows.Foundation.IAsyncOperation_1_Windows_Storage_StorageFile_.handler_iid, [], [] , fun(status,value) { if(status == Windows.Foundation.AsyncStatus.Completed ) {cb(status, Windows.Storage.StorageFile(value)); } else { cb( status, value ); } } );
     }
@@ -487,7 +526,8 @@ class Windows_Storage_Pickers_IFileSavePicker2 : WinRtInterface
     Windows_Storage_Pickers_IFileSavePicker2( comPtr )
     {
         var Windows = runtime.global("Windows");
-        this.comPtr = comPtr.queryInterface( "{0EC313A2-D24B-449A-8197-E89104FD42CC}");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{0EC313A2-D24B-449A-8197-E89104FD42CC}");
     }
 
     //@VtableIndex(6)
@@ -495,6 +535,7 @@ class Windows_Storage_Pickers_IFileSavePicker2 : WinRtInterface
     //@Returns("Windows.Foundation.Collections.ValueSet")
     get_ContinuationData()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = Windows.Foundation.Collections.ValueSet(
             this.comPtr.invoke( 6, "Windows.Foundation.Collections.ValueSet", [], [] )
@@ -507,6 +548,7 @@ class Windows_Storage_Pickers_IFileSavePicker2 : WinRtInterface
     //@Returns("void")
     PickSaveFileAndContinue()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         this.comPtr.invoke( 7, "void", [], [] );
     }
@@ -524,7 +566,8 @@ class Windows_Storage_Pickers_IFileSavePicker3 : WinRtInterface
     Windows_Storage_Pickers_IFileSavePicker3( comPtr )
     {
         var Windows = runtime.global("Windows");
-        this.comPtr = comPtr.queryInterface( "{698AEC69-BA3C-4E51-BD90-4ABCBBF4CFAF}");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{698AEC69-BA3C-4E51-BD90-4ABCBBF4CFAF}");
     }
 
     //@VtableIndex(6)
@@ -532,6 +575,7 @@ class Windows_Storage_Pickers_IFileSavePicker3 : WinRtInterface
     //@Returns("String")
     get_EnterpriseId()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 6, "String", [], [] );
         return _r;
@@ -543,6 +587,7 @@ class Windows_Storage_Pickers_IFileSavePicker3 : WinRtInterface
     //@Parameters("String")
     put_EnterpriseId(value)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = value;
         this.comPtr.invoke( 7, "void", ["String"], [p1] );
@@ -561,7 +606,8 @@ class Windows_Storage_Pickers_IFileSavePicker4 : WinRtInterface
     Windows_Storage_Pickers_IFileSavePicker4( comPtr )
     {
         var Windows = runtime.global("Windows");
-        this.comPtr = comPtr.queryInterface( "{E7D83A5A-DDFA-5DE0-8B70-C842C21988EC}");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{E7D83A5A-DDFA-5DE0-8B70-C842C21988EC}");
     }
 
     //@VtableIndex(6)
@@ -569,6 +615,7 @@ class Windows_Storage_Pickers_IFileSavePicker4 : WinRtInterface
     //@Returns("Windows.System.User")
     get_User()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = Windows.System.User(
             this.comPtr.invoke( 6, "Windows.System.User", [], [] )
@@ -589,7 +636,8 @@ class Windows_Storage_Pickers_IFileSavePickerStatics : WinRtInterface
     Windows_Storage_Pickers_IFileSavePickerStatics( comPtr )
     {
         var Windows = runtime.global("Windows");
-        this.comPtr = comPtr.queryInterface( "{28E3CF9E-961C-5E2C-AED7-E64737F4CE37}");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{28E3CF9E-961C-5E2C-AED7-E64737F4CE37}");
     }
 
     //@VtableIndex(6)
@@ -598,6 +646,7 @@ class Windows_Storage_Pickers_IFileSavePickerStatics : WinRtInterface
     //@Parameters("Windows.System.User")
     CreateForUser(user)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = Windows.System.User( user); 
         var _r = Windows.Storage.Pickers.FileSavePicker(
@@ -619,7 +668,8 @@ class Windows_Storage_Pickers_IFolderPicker : WinRtInterface
     Windows_Storage_Pickers_IFolderPicker( comPtr )
     {
         var Windows = runtime.global("Windows");
-        this.comPtr = comPtr.queryInterface( "{084F7799-F3FB-400A-99B1-7B4A772FD60D}");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{084F7799-F3FB-400A-99B1-7B4A772FD60D}");
     }
 
     //@VtableIndex(6)
@@ -627,6 +677,7 @@ class Windows_Storage_Pickers_IFolderPicker : WinRtInterface
     //@Returns("Windows.Storage.Pickers.PickerViewMode")
     get_ViewMode()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 6, "UInt32", [], [] );
         return _r;
@@ -638,6 +689,7 @@ class Windows_Storage_Pickers_IFolderPicker : WinRtInterface
     //@Parameters("Windows.Storage.Pickers.PickerViewMode")
     put_ViewMode(value)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = value;
         this.comPtr.invoke( 7, "void", ["UInt32"], [p1] );
@@ -648,6 +700,7 @@ class Windows_Storage_Pickers_IFolderPicker : WinRtInterface
     //@Returns("String")
     get_SettingsIdentifier()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 8, "String", [], [] );
         return _r;
@@ -659,6 +712,7 @@ class Windows_Storage_Pickers_IFolderPicker : WinRtInterface
     //@Parameters("String")
     put_SettingsIdentifier(value)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = value;
         this.comPtr.invoke( 9, "void", ["String"], [p1] );
@@ -669,6 +723,7 @@ class Windows_Storage_Pickers_IFolderPicker : WinRtInterface
     //@Returns("Windows.Storage.Pickers.PickerLocationId")
     get_SuggestedStartLocation()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 10, "UInt32", [], [] );
         return _r;
@@ -680,6 +735,7 @@ class Windows_Storage_Pickers_IFolderPicker : WinRtInterface
     //@Parameters("Windows.Storage.Pickers.PickerLocationId")
     put_SuggestedStartLocation(value)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = value;
         this.comPtr.invoke( 11, "void", ["UInt32"], [p1] );
@@ -690,6 +746,7 @@ class Windows_Storage_Pickers_IFolderPicker : WinRtInterface
     //@Returns("String")
     get_CommitButtonText()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 12, "String", [], [] );
         return _r;
@@ -701,6 +758,7 @@ class Windows_Storage_Pickers_IFolderPicker : WinRtInterface
     //@Parameters("String")
     put_CommitButtonText(value)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = value;
         this.comPtr.invoke( 13, "void", ["String"], [p1] );
@@ -711,6 +769,7 @@ class Windows_Storage_Pickers_IFolderPicker : WinRtInterface
     //@Returns("Windows.Foundation.Collections.IVector`1<String>")
     get_FileTypeFilter()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = Windows.Foundation.Collections.IVector_1_String_(
             this.comPtr.invoke( 14, "Windows.Foundation.Collections.IVector`1<String>", [], [] )
@@ -723,6 +782,7 @@ class Windows_Storage_Pickers_IFolderPicker : WinRtInterface
     //@Returns("Windows.Foundation.IAsyncOperation`1<Windows.Storage.StorageFolder>")
     PickSingleFolderAsync(cb)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         this.comPtr.asyncOperation( 15, "Windows.Storage.StorageFolder", Windows.Foundation.IAsyncOperation_1_Windows_Storage_StorageFolder_.handler_iid, [], [] , fun(status,value) { if(status == Windows.Foundation.AsyncStatus.Completed ) {cb(status, Windows.Storage.StorageFolder(value)); } else { cb( status, value ); } } );
     }
@@ -740,7 +800,8 @@ class Windows_Storage_Pickers_IFolderPicker2 : WinRtInterface
     Windows_Storage_Pickers_IFolderPicker2( comPtr )
     {
         var Windows = runtime.global("Windows");
-        this.comPtr = comPtr.queryInterface( "{8EB3BA97-DC85-4616-BE94-9660881F2F5D}");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{8EB3BA97-DC85-4616-BE94-9660881F2F5D}");
     }
 
     //@VtableIndex(6)
@@ -748,6 +809,7 @@ class Windows_Storage_Pickers_IFolderPicker2 : WinRtInterface
     //@Returns("Windows.Foundation.Collections.ValueSet")
     get_ContinuationData()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = Windows.Foundation.Collections.ValueSet(
             this.comPtr.invoke( 6, "Windows.Foundation.Collections.ValueSet", [], [] )
@@ -760,6 +822,7 @@ class Windows_Storage_Pickers_IFolderPicker2 : WinRtInterface
     //@Returns("void")
     PickFolderAndContinue()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         this.comPtr.invoke( 7, "void", [], [] );
     }
@@ -777,7 +840,8 @@ class Windows_Storage_Pickers_IFolderPicker3 : WinRtInterface
     Windows_Storage_Pickers_IFolderPicker3( comPtr )
     {
         var Windows = runtime.global("Windows");
-        this.comPtr = comPtr.queryInterface( "{673B1E29-D326-53C0-BD24-A25C714CEE36}");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{673B1E29-D326-53C0-BD24-A25C714CEE36}");
     }
 
     //@VtableIndex(6)
@@ -785,6 +849,7 @@ class Windows_Storage_Pickers_IFolderPicker3 : WinRtInterface
     //@Returns("Windows.System.User")
     get_User()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = Windows.System.User(
             this.comPtr.invoke( 6, "Windows.System.User", [], [] )
@@ -805,7 +870,8 @@ class Windows_Storage_Pickers_IFolderPickerStatics : WinRtInterface
     Windows_Storage_Pickers_IFolderPickerStatics( comPtr )
     {
         var Windows = runtime.global("Windows");
-        this.comPtr = comPtr.queryInterface( "{9BE34740-7CA1-5942-A3C8-46F2551ECFF3}");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{9BE34740-7CA1-5942-A3C8-46F2551ECFF3}");
     }
 
     //@VtableIndex(6)
@@ -814,6 +880,7 @@ class Windows_Storage_Pickers_IFolderPickerStatics : WinRtInterface
     //@Parameters("Windows.System.User")
     CreateForUser(user)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = Windows.System.User( user); 
         var _r = Windows.Storage.Pickers.FolderPicker(
@@ -850,6 +917,7 @@ class Windows_Storage_Pickers_FileExtensionVector : WinRtInterface
     //@Parameters("UInt32")
     GetAt(index)
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Foundation.Collections.IVector_1_String_( this.comPtr );
         var _r = iface.GetAt( index );
@@ -860,6 +928,7 @@ class Windows_Storage_Pickers_FileExtensionVector : WinRtInterface
     //@Returns("UInt32")
     get_Size()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Foundation.Collections.IVector_1_String_( this.comPtr );
         var _r = iface.get_Size(  );
@@ -870,6 +939,7 @@ class Windows_Storage_Pickers_FileExtensionVector : WinRtInterface
     //@Returns("Windows.Foundation.Collections.IVectorView`1<String>")
     GetView()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Foundation.Collections.IVector_1_String_( this.comPtr );
         var _r = iface.GetView(  );
@@ -882,6 +952,7 @@ class Windows_Storage_Pickers_FileExtensionVector : WinRtInterface
     //@Parameters("UInt32","String")
     SetAt(index,value)
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Foundation.Collections.IVector_1_String_( this.comPtr );
         iface.SetAt( index, value );
@@ -893,6 +964,7 @@ class Windows_Storage_Pickers_FileExtensionVector : WinRtInterface
     //@Parameters("UInt32","String")
     InsertAt(index,value)
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Foundation.Collections.IVector_1_String_( this.comPtr );
         iface.InsertAt( index, value );
@@ -904,6 +976,7 @@ class Windows_Storage_Pickers_FileExtensionVector : WinRtInterface
     //@Parameters("UInt32")
     RemoveAt(index)
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Foundation.Collections.IVector_1_String_( this.comPtr );
         iface.RemoveAt( index );
@@ -915,6 +988,7 @@ class Windows_Storage_Pickers_FileExtensionVector : WinRtInterface
     //@Parameters("String")
     Append(value)
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Foundation.Collections.IVector_1_String_( this.comPtr );
         iface.Append( value );
@@ -924,6 +998,7 @@ class Windows_Storage_Pickers_FileExtensionVector : WinRtInterface
     //@Returns("void")
     RemoveAtEnd()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Foundation.Collections.IVector_1_String_( this.comPtr );
         iface.RemoveAtEnd(  );
@@ -933,6 +1008,7 @@ class Windows_Storage_Pickers_FileExtensionVector : WinRtInterface
     //@Returns("void")
     Clear()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Foundation.Collections.IVector_1_String_( this.comPtr );
         iface.Clear(  );
@@ -942,6 +1018,7 @@ class Windows_Storage_Pickers_FileExtensionVector : WinRtInterface
     //@Returns("Windows.Foundation.Collections.IIterator`1<String>")
     First()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Foundation.Collections.IIterable_1_String_( this.comPtr );
         var _r = iface.First(  );
@@ -962,7 +1039,8 @@ class Windows_Storage_Pickers_FileOpenPicker : WinRtInterface
     Windows_Storage_Pickers_FileOpenPicker( comPtr )
     {
         var Windows = runtime.global("Windows");
-        this.comPtr = comPtr.queryInterface( Windows.Storage.Pickers.IFileOpenPicker.iid );
+        if(!comPtr || !int(comPtr)) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( Windows.Storage.Pickers.IFileOpenPicker.iid );
     }
 
     // s Windows.Storage.Pickers.IFileOpenPickerStatics
@@ -1015,6 +1093,7 @@ class Windows_Storage_Pickers_FileOpenPicker : WinRtInterface
     //@Returns("Windows.Foundation.Collections.ValueSet")
     get_ContinuationData()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Storage.Pickers.IFileOpenPicker2( this.comPtr );
         var _r = iface.get_ContinuationData(  );
@@ -1025,6 +1104,7 @@ class Windows_Storage_Pickers_FileOpenPicker : WinRtInterface
     //@Returns("void")
     PickSingleFileAndContinue()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Storage.Pickers.IFileOpenPicker2( this.comPtr );
         iface.PickSingleFileAndContinue(  );
@@ -1034,6 +1114,7 @@ class Windows_Storage_Pickers_FileOpenPicker : WinRtInterface
     //@Returns("void")
     PickMultipleFilesAndContinue()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Storage.Pickers.IFileOpenPicker2( this.comPtr );
         iface.PickMultipleFilesAndContinue(  );
@@ -1045,6 +1126,7 @@ class Windows_Storage_Pickers_FileOpenPicker : WinRtInterface
     //@Parameters("String")
     PickSingleFileAsync(pickerOperationId)
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Storage.Pickers.IFileOpenPickerWithOperationId( this.comPtr );
         var _promise = Future();
@@ -1065,6 +1147,7 @@ class Windows_Storage_Pickers_FileOpenPicker : WinRtInterface
     //@Returns("Windows.Storage.Pickers.PickerViewMode")
     get_ViewMode()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Storage.Pickers.IFileOpenPicker( this.comPtr );
         var _r = iface.get_ViewMode(  );
@@ -1077,6 +1160,7 @@ class Windows_Storage_Pickers_FileOpenPicker : WinRtInterface
     //@Parameters("Windows.Storage.Pickers.PickerViewMode")
     put_ViewMode(value)
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Storage.Pickers.IFileOpenPicker( this.comPtr );
         iface.put_ViewMode( value );
@@ -1086,6 +1170,7 @@ class Windows_Storage_Pickers_FileOpenPicker : WinRtInterface
     //@Returns("String")
     get_SettingsIdentifier()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Storage.Pickers.IFileOpenPicker( this.comPtr );
         var _r = iface.get_SettingsIdentifier(  );
@@ -1098,6 +1183,7 @@ class Windows_Storage_Pickers_FileOpenPicker : WinRtInterface
     //@Parameters("String")
     put_SettingsIdentifier(value)
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Storage.Pickers.IFileOpenPicker( this.comPtr );
         iface.put_SettingsIdentifier( value );
@@ -1107,6 +1193,7 @@ class Windows_Storage_Pickers_FileOpenPicker : WinRtInterface
     //@Returns("Windows.Storage.Pickers.PickerLocationId")
     get_SuggestedStartLocation()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Storage.Pickers.IFileOpenPicker( this.comPtr );
         var _r = iface.get_SuggestedStartLocation(  );
@@ -1119,6 +1206,7 @@ class Windows_Storage_Pickers_FileOpenPicker : WinRtInterface
     //@Parameters("Windows.Storage.Pickers.PickerLocationId")
     put_SuggestedStartLocation(value)
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Storage.Pickers.IFileOpenPicker( this.comPtr );
         iface.put_SuggestedStartLocation( value );
@@ -1128,6 +1216,7 @@ class Windows_Storage_Pickers_FileOpenPicker : WinRtInterface
     //@Returns("String")
     get_CommitButtonText()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Storage.Pickers.IFileOpenPicker( this.comPtr );
         var _r = iface.get_CommitButtonText(  );
@@ -1140,6 +1229,7 @@ class Windows_Storage_Pickers_FileOpenPicker : WinRtInterface
     //@Parameters("String")
     put_CommitButtonText(value)
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Storage.Pickers.IFileOpenPicker( this.comPtr );
         iface.put_CommitButtonText( value );
@@ -1149,6 +1239,7 @@ class Windows_Storage_Pickers_FileOpenPicker : WinRtInterface
     //@Returns("Windows.Foundation.Collections.IVector`1<String>")
     get_FileTypeFilter()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Storage.Pickers.IFileOpenPicker( this.comPtr );
         var _r = iface.get_FileTypeFilter(  );
@@ -1159,6 +1250,7 @@ class Windows_Storage_Pickers_FileOpenPicker : WinRtInterface
     //@Returns("Windows.Foundation.IAsyncOperation`1<Windows.Storage.StorageFile>")
     PickSingleFileAsync_()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Storage.Pickers.IFileOpenPickerWithOperationId( this.comPtr );
         var _promise = Future();
@@ -1179,6 +1271,7 @@ class Windows_Storage_Pickers_FileOpenPicker : WinRtInterface
     //@Returns("Windows.Foundation.IAsyncOperation`1<Windows.Foundation.Collections.IVectorView`1<Windows.Storage.StorageFile>>")
     PickMultipleFilesAsync()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Storage.Pickers.IFileOpenPicker( this.comPtr );
         var _promise = Future();
@@ -1199,6 +1292,7 @@ class Windows_Storage_Pickers_FileOpenPicker : WinRtInterface
     //@Returns("Windows.System.User")
     get_User()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Storage.Pickers.IFileOpenPicker3( this.comPtr );
         var _r = iface.get_User(  );
@@ -1232,6 +1326,7 @@ class Windows_Storage_Pickers_FilePickerFileTypesOrderedMap : WinRtInterface
     //@Parameters("String")
     Lookup(key)
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Foundation.Collections.IMap_2_String_Windows_Foundation_Collections_IVector_1_String__( this.comPtr );
         var _r = iface.Lookup( key );
@@ -1242,6 +1337,7 @@ class Windows_Storage_Pickers_FilePickerFileTypesOrderedMap : WinRtInterface
     //@Returns("UInt32")
     get_Size()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Foundation.Collections.IMap_2_String_Windows_Foundation_Collections_IVector_1_String__( this.comPtr );
         var _r = iface.get_Size(  );
@@ -1254,6 +1350,7 @@ class Windows_Storage_Pickers_FilePickerFileTypesOrderedMap : WinRtInterface
     //@Parameters("String")
     HasKey(key)
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Foundation.Collections.IMap_2_String_Windows_Foundation_Collections_IVector_1_String__( this.comPtr );
         var _r = iface.HasKey( key );
@@ -1264,6 +1361,7 @@ class Windows_Storage_Pickers_FilePickerFileTypesOrderedMap : WinRtInterface
     //@Returns("Windows.Foundation.Collections.IMapView`2<String,Windows.Foundation.Collections.IVector`1<String>>")
     GetView()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Foundation.Collections.IMap_2_String_Windows_Foundation_Collections_IVector_1_String__( this.comPtr );
         var _r = iface.GetView(  );
@@ -1276,6 +1374,7 @@ class Windows_Storage_Pickers_FilePickerFileTypesOrderedMap : WinRtInterface
     //@Parameters("String","Windows.Foundation.Collections.IVector`1<String>")
     Insert(key,value)
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Foundation.Collections.IMap_2_String_Windows_Foundation_Collections_IVector_1_String__( this.comPtr );
         var _r = iface.Insert( key, value );
@@ -1288,6 +1387,7 @@ class Windows_Storage_Pickers_FilePickerFileTypesOrderedMap : WinRtInterface
     //@Parameters("String")
     Remove(key)
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Foundation.Collections.IMap_2_String_Windows_Foundation_Collections_IVector_1_String__( this.comPtr );
         iface.Remove( key );
@@ -1297,6 +1397,7 @@ class Windows_Storage_Pickers_FilePickerFileTypesOrderedMap : WinRtInterface
     //@Returns("void")
     Clear()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Foundation.Collections.IMap_2_String_Windows_Foundation_Collections_IVector_1_String__( this.comPtr );
         iface.Clear(  );
@@ -1306,6 +1407,7 @@ class Windows_Storage_Pickers_FilePickerFileTypesOrderedMap : WinRtInterface
     //@Returns("Windows.Foundation.Collections.IIterator`1<Windows.Foundation.Collections.IKeyValuePair`2<String,Windows.Foundation.Collections.IVector`1<String>>>")
     First()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Foundation.Collections.IIterable_1_Windows_Foundation_Collections_IKeyValuePair_2_String_Windows_Foundation_Collections_IVector_1_String___( this.comPtr );
         var _r = iface.First(  );
@@ -1339,6 +1441,7 @@ class Windows_Storage_Pickers_FilePickerSelectedFilesArray : WinRtInterface
     //@Parameters("UInt32")
     GetAt(index)
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Foundation.Collections.IVectorView_1_Windows_Storage_StorageFile_( this.comPtr );
         var _r = iface.GetAt( index );
@@ -1349,6 +1452,7 @@ class Windows_Storage_Pickers_FilePickerSelectedFilesArray : WinRtInterface
     //@Returns("UInt32")
     get_Size()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Foundation.Collections.IVectorView_1_Windows_Storage_StorageFile_( this.comPtr );
         var _r = iface.get_Size(  );
@@ -1359,6 +1463,7 @@ class Windows_Storage_Pickers_FilePickerSelectedFilesArray : WinRtInterface
     //@Returns("Windows.Foundation.Collections.IIterator`1<Windows.Storage.StorageFile>")
     First()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Foundation.Collections.IIterable_1_Windows_Storage_StorageFile_( this.comPtr );
         var _r = iface.First(  );
@@ -1379,7 +1484,8 @@ class Windows_Storage_Pickers_FileSavePicker : WinRtInterface
     Windows_Storage_Pickers_FileSavePicker( comPtr )
     {
         var Windows = runtime.global("Windows");
-        this.comPtr = comPtr.queryInterface( Windows.Storage.Pickers.IFileSavePicker.iid );
+        if(!comPtr || !int(comPtr)) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( Windows.Storage.Pickers.IFileSavePicker.iid );
     }
 
     // s Windows.Storage.Pickers.IFileSavePickerStatics
@@ -1407,6 +1513,7 @@ class Windows_Storage_Pickers_FileSavePicker : WinRtInterface
     //@Returns("Windows.Foundation.Collections.ValueSet")
     get_ContinuationData()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Storage.Pickers.IFileSavePicker2( this.comPtr );
         var _r = iface.get_ContinuationData(  );
@@ -1417,6 +1524,7 @@ class Windows_Storage_Pickers_FileSavePicker : WinRtInterface
     //@Returns("void")
     PickSaveFileAndContinue()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Storage.Pickers.IFileSavePicker2( this.comPtr );
         iface.PickSaveFileAndContinue(  );
@@ -1426,6 +1534,7 @@ class Windows_Storage_Pickers_FileSavePicker : WinRtInterface
     //@Returns("String")
     get_EnterpriseId()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Storage.Pickers.IFileSavePicker3( this.comPtr );
         var _r = iface.get_EnterpriseId(  );
@@ -1438,6 +1547,7 @@ class Windows_Storage_Pickers_FileSavePicker : WinRtInterface
     //@Parameters("String")
     put_EnterpriseId(value)
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Storage.Pickers.IFileSavePicker3( this.comPtr );
         iface.put_EnterpriseId( value );
@@ -1447,6 +1557,7 @@ class Windows_Storage_Pickers_FileSavePicker : WinRtInterface
     //@Returns("String")
     get_SettingsIdentifier()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Storage.Pickers.IFileSavePicker( this.comPtr );
         var _r = iface.get_SettingsIdentifier(  );
@@ -1459,6 +1570,7 @@ class Windows_Storage_Pickers_FileSavePicker : WinRtInterface
     //@Parameters("String")
     put_SettingsIdentifier(value)
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Storage.Pickers.IFileSavePicker( this.comPtr );
         iface.put_SettingsIdentifier( value );
@@ -1468,6 +1580,7 @@ class Windows_Storage_Pickers_FileSavePicker : WinRtInterface
     //@Returns("Windows.Storage.Pickers.PickerLocationId")
     get_SuggestedStartLocation()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Storage.Pickers.IFileSavePicker( this.comPtr );
         var _r = iface.get_SuggestedStartLocation(  );
@@ -1480,6 +1593,7 @@ class Windows_Storage_Pickers_FileSavePicker : WinRtInterface
     //@Parameters("Windows.Storage.Pickers.PickerLocationId")
     put_SuggestedStartLocation(value)
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Storage.Pickers.IFileSavePicker( this.comPtr );
         iface.put_SuggestedStartLocation( value );
@@ -1489,6 +1603,7 @@ class Windows_Storage_Pickers_FileSavePicker : WinRtInterface
     //@Returns("String")
     get_CommitButtonText()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Storage.Pickers.IFileSavePicker( this.comPtr );
         var _r = iface.get_CommitButtonText(  );
@@ -1501,6 +1616,7 @@ class Windows_Storage_Pickers_FileSavePicker : WinRtInterface
     //@Parameters("String")
     put_CommitButtonText(value)
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Storage.Pickers.IFileSavePicker( this.comPtr );
         iface.put_CommitButtonText( value );
@@ -1510,6 +1626,7 @@ class Windows_Storage_Pickers_FileSavePicker : WinRtInterface
     //@Returns("Windows.Foundation.Collections.IMap`2<String,Windows.Foundation.Collections.IVector`1<String>>")
     get_FileTypeChoices()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Storage.Pickers.IFileSavePicker( this.comPtr );
         var _r = iface.get_FileTypeChoices(  );
@@ -1520,6 +1637,7 @@ class Windows_Storage_Pickers_FileSavePicker : WinRtInterface
     //@Returns("String")
     get_DefaultFileExtension()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Storage.Pickers.IFileSavePicker( this.comPtr );
         var _r = iface.get_DefaultFileExtension(  );
@@ -1532,6 +1650,7 @@ class Windows_Storage_Pickers_FileSavePicker : WinRtInterface
     //@Parameters("String")
     put_DefaultFileExtension(value)
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Storage.Pickers.IFileSavePicker( this.comPtr );
         iface.put_DefaultFileExtension( value );
@@ -1541,6 +1660,7 @@ class Windows_Storage_Pickers_FileSavePicker : WinRtInterface
     //@Returns("Windows.Storage.StorageFile")
     get_SuggestedSaveFile()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Storage.Pickers.IFileSavePicker( this.comPtr );
         var _r = iface.get_SuggestedSaveFile(  );
@@ -1553,6 +1673,7 @@ class Windows_Storage_Pickers_FileSavePicker : WinRtInterface
     //@Parameters("Windows.Storage.StorageFile")
     put_SuggestedSaveFile(value)
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Storage.Pickers.IFileSavePicker( this.comPtr );
         iface.put_SuggestedSaveFile( value );
@@ -1562,6 +1683,7 @@ class Windows_Storage_Pickers_FileSavePicker : WinRtInterface
     //@Returns("String")
     get_SuggestedFileName()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Storage.Pickers.IFileSavePicker( this.comPtr );
         var _r = iface.get_SuggestedFileName(  );
@@ -1574,6 +1696,7 @@ class Windows_Storage_Pickers_FileSavePicker : WinRtInterface
     //@Parameters("String")
     put_SuggestedFileName(value)
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Storage.Pickers.IFileSavePicker( this.comPtr );
         iface.put_SuggestedFileName( value );
@@ -1583,6 +1706,7 @@ class Windows_Storage_Pickers_FileSavePicker : WinRtInterface
     //@Returns("Windows.Foundation.IAsyncOperation`1<Windows.Storage.StorageFile>")
     PickSaveFileAsync()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Storage.Pickers.IFileSavePicker( this.comPtr );
         var _promise = Future();
@@ -1603,6 +1727,7 @@ class Windows_Storage_Pickers_FileSavePicker : WinRtInterface
     //@Returns("Windows.System.User")
     get_User()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Storage.Pickers.IFileSavePicker4( this.comPtr );
         var _r = iface.get_User(  );
@@ -1623,7 +1748,8 @@ class Windows_Storage_Pickers_FolderPicker : WinRtInterface
     Windows_Storage_Pickers_FolderPicker( comPtr )
     {
         var Windows = runtime.global("Windows");
-        this.comPtr = comPtr.queryInterface( Windows.Storage.Pickers.IFolderPicker.iid );
+        if(!comPtr || !int(comPtr)) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( Windows.Storage.Pickers.IFolderPicker.iid );
     }
 
     // s Windows.Storage.Pickers.IFolderPickerStatics
@@ -1651,6 +1777,7 @@ class Windows_Storage_Pickers_FolderPicker : WinRtInterface
     //@Returns("Windows.Foundation.Collections.ValueSet")
     get_ContinuationData()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Storage.Pickers.IFolderPicker2( this.comPtr );
         var _r = iface.get_ContinuationData(  );
@@ -1661,6 +1788,7 @@ class Windows_Storage_Pickers_FolderPicker : WinRtInterface
     //@Returns("void")
     PickFolderAndContinue()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Storage.Pickers.IFolderPicker2( this.comPtr );
         iface.PickFolderAndContinue(  );
@@ -1670,6 +1798,7 @@ class Windows_Storage_Pickers_FolderPicker : WinRtInterface
     //@Returns("Windows.Storage.Pickers.PickerViewMode")
     get_ViewMode()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Storage.Pickers.IFolderPicker( this.comPtr );
         var _r = iface.get_ViewMode(  );
@@ -1682,6 +1811,7 @@ class Windows_Storage_Pickers_FolderPicker : WinRtInterface
     //@Parameters("Windows.Storage.Pickers.PickerViewMode")
     put_ViewMode(value)
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Storage.Pickers.IFolderPicker( this.comPtr );
         iface.put_ViewMode( value );
@@ -1691,6 +1821,7 @@ class Windows_Storage_Pickers_FolderPicker : WinRtInterface
     //@Returns("String")
     get_SettingsIdentifier()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Storage.Pickers.IFolderPicker( this.comPtr );
         var _r = iface.get_SettingsIdentifier(  );
@@ -1703,6 +1834,7 @@ class Windows_Storage_Pickers_FolderPicker : WinRtInterface
     //@Parameters("String")
     put_SettingsIdentifier(value)
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Storage.Pickers.IFolderPicker( this.comPtr );
         iface.put_SettingsIdentifier( value );
@@ -1712,6 +1844,7 @@ class Windows_Storage_Pickers_FolderPicker : WinRtInterface
     //@Returns("Windows.Storage.Pickers.PickerLocationId")
     get_SuggestedStartLocation()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Storage.Pickers.IFolderPicker( this.comPtr );
         var _r = iface.get_SuggestedStartLocation(  );
@@ -1724,6 +1857,7 @@ class Windows_Storage_Pickers_FolderPicker : WinRtInterface
     //@Parameters("Windows.Storage.Pickers.PickerLocationId")
     put_SuggestedStartLocation(value)
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Storage.Pickers.IFolderPicker( this.comPtr );
         iface.put_SuggestedStartLocation( value );
@@ -1733,6 +1867,7 @@ class Windows_Storage_Pickers_FolderPicker : WinRtInterface
     //@Returns("String")
     get_CommitButtonText()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Storage.Pickers.IFolderPicker( this.comPtr );
         var _r = iface.get_CommitButtonText(  );
@@ -1745,6 +1880,7 @@ class Windows_Storage_Pickers_FolderPicker : WinRtInterface
     //@Parameters("String")
     put_CommitButtonText(value)
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Storage.Pickers.IFolderPicker( this.comPtr );
         iface.put_CommitButtonText( value );
@@ -1754,6 +1890,7 @@ class Windows_Storage_Pickers_FolderPicker : WinRtInterface
     //@Returns("Windows.Foundation.Collections.IVector`1<String>")
     get_FileTypeFilter()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Storage.Pickers.IFolderPicker( this.comPtr );
         var _r = iface.get_FileTypeFilter(  );
@@ -1764,6 +1901,7 @@ class Windows_Storage_Pickers_FolderPicker : WinRtInterface
     //@Returns("Windows.Foundation.IAsyncOperation`1<Windows.Storage.StorageFolder>")
     PickSingleFolderAsync()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Storage.Pickers.IFolderPicker( this.comPtr );
         var _promise = Future();
@@ -1784,6 +1922,7 @@ class Windows_Storage_Pickers_FolderPicker : WinRtInterface
     //@Returns("Windows.System.User")
     get_User()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Storage.Pickers.IFolderPicker3( this.comPtr );
         var _r = iface.get_User(  );
@@ -1827,7 +1966,8 @@ class Windows_Foundation_Collections_IVector_1_String_ : WinRtInterface
 {
     Windows_Foundation_Collections_IVector_1_String_( comPtr )
     {
-        this.comPtr = comPtr.queryInterface( "{98B9ACC1-4B56-532E-AC73-03D5291CCA90}");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{98B9ACC1-4B56-532E-AC73-03D5291CCA90}");
     }
 
     //@VtableIndex(6)
@@ -1835,6 +1975,7 @@ class Windows_Foundation_Collections_IVector_1_String_ : WinRtInterface
     //@Parameters("UInt32")
     GetAt(index)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = index;
         var _r = this.comPtr.invoke(6, "String", ["UInt32"], [p1] );
@@ -1845,6 +1986,7 @@ class Windows_Foundation_Collections_IVector_1_String_ : WinRtInterface
     //@Returns("UInt32")
     get_Size()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke(7, "UInt32", [], [] );
         return _r;
@@ -1854,6 +1996,7 @@ class Windows_Foundation_Collections_IVector_1_String_ : WinRtInterface
     //@Returns("Windows.Foundation.Collections.IVectorView`1<T0>")
     GetView()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = Windows.Foundation.Collections.IVectorView_1_String_(
             this.comPtr.invoke(8, "Windows.Foundation.Collections.IVectorView`1<String>", [], [] )
@@ -1866,6 +2009,7 @@ class Windows_Foundation_Collections_IVector_1_String_ : WinRtInterface
     //@Parameters("UInt32","T0")
     SetAt(index,value)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = index;
         var p2 = value;
@@ -1877,6 +2021,7 @@ class Windows_Foundation_Collections_IVector_1_String_ : WinRtInterface
     //@Parameters("UInt32","T0")
     InsertAt(index,value)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = index;
         var p2 = value;
@@ -1888,6 +2033,7 @@ class Windows_Foundation_Collections_IVector_1_String_ : WinRtInterface
     //@Parameters("UInt32")
     RemoveAt(index)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = index;
         this.comPtr.invoke(12, "void", ["UInt32"], [p1] );
@@ -1898,6 +2044,7 @@ class Windows_Foundation_Collections_IVector_1_String_ : WinRtInterface
     //@Parameters("T0")
     Append(value)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = value;
         this.comPtr.invoke(13, "void", ["String"], [p1] );
@@ -1907,6 +2054,7 @@ class Windows_Foundation_Collections_IVector_1_String_ : WinRtInterface
     //@Returns("void")
     RemoveAtEnd()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         this.comPtr.invoke(14, "void", [], [] );
     }
@@ -1915,6 +2063,7 @@ class Windows_Foundation_Collections_IVector_1_String_ : WinRtInterface
     //@Returns("void")
     Clear()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         this.comPtr.invoke(15, "void", [], [] );
     }
@@ -1933,7 +2082,8 @@ class Windows_Foundation_Collections_IVectorView_1_Windows_Storage_StorageFile_ 
 {
     Windows_Foundation_Collections_IVectorView_1_Windows_Storage_StorageFile_( comPtr )
     {
-        this.comPtr = comPtr.queryInterface( "{80646519-5E2A-595D-A8CD-2A24B4067F1B}");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{80646519-5E2A-595D-A8CD-2A24B4067F1B}");
     }
 
     //@VtableIndex(6)
@@ -1941,6 +2091,7 @@ class Windows_Foundation_Collections_IVectorView_1_Windows_Storage_StorageFile_ 
     //@Parameters("UInt32")
     GetAt(index)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = index;
         var _r = Windows.Storage.StorageFile(
@@ -1953,6 +2104,7 @@ class Windows_Foundation_Collections_IVectorView_1_Windows_Storage_StorageFile_ 
     //@Returns("UInt32")
     get_Size()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke(7, "UInt32", [], [] );
         return _r;
@@ -1972,7 +2124,8 @@ class Windows_Foundation_Collections_IVectorView_1_String_ : WinRtInterface
 {
     Windows_Foundation_Collections_IVectorView_1_String_( comPtr )
     {
-        this.comPtr = comPtr.queryInterface( "{2F13C006-A03A-5F69-B090-75A43E33423E}");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{2F13C006-A03A-5F69-B090-75A43E33423E}");
     }
 
     //@VtableIndex(6)
@@ -1980,6 +2133,7 @@ class Windows_Foundation_Collections_IVectorView_1_String_ : WinRtInterface
     //@Parameters("UInt32")
     GetAt(index)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = index;
         var _r = this.comPtr.invoke(6, "String", ["UInt32"], [p1] );
@@ -1990,6 +2144,7 @@ class Windows_Foundation_Collections_IVectorView_1_String_ : WinRtInterface
     //@Returns("UInt32")
     get_Size()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke(7, "UInt32", [], [] );
         return _r;
@@ -2009,7 +2164,8 @@ class Windows_Foundation_Collections_IMap_2_String_Windows_Foundation_Collection
 {
     Windows_Foundation_Collections_IMap_2_String_Windows_Foundation_Collections_IVector_1_String__( comPtr )
     {
-        this.comPtr = comPtr.queryInterface( "{E475CA9D-6AFB-5992-993E-53E6EF7A9ECD}");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{E475CA9D-6AFB-5992-993E-53E6EF7A9ECD}");
     }
 
     //@VtableIndex(6)
@@ -2017,6 +2173,7 @@ class Windows_Foundation_Collections_IMap_2_String_Windows_Foundation_Collection
     //@Parameters("T0")
     Lookup(key)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = key;
         var _r = Windows.Foundation.Collections.IVector_1_String_(
@@ -2029,6 +2186,7 @@ class Windows_Foundation_Collections_IMap_2_String_Windows_Foundation_Collection
     //@Returns("UInt32")
     get_Size()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke(7, "UInt32", [], [] );
         return _r;
@@ -2039,6 +2197,7 @@ class Windows_Foundation_Collections_IMap_2_String_Windows_Foundation_Collection
     //@Parameters("T0")
     HasKey(key)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = key;
         var _r = this.comPtr.invoke(8, "Boolean", ["String"], [p1] );
@@ -2049,6 +2208,7 @@ class Windows_Foundation_Collections_IMap_2_String_Windows_Foundation_Collection
     //@Returns("Windows.Foundation.Collections.IMapView`2<T0,T1>")
     GetView()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = Windows.Foundation.Collections.IMapView_2_String_Windows_Foundation_Collections_IVector_1_String__(
             this.comPtr.invoke(9, "Windows.Foundation.Collections.IMapView`2<String,Windows.Foundation.Collections.IVector`1<String>>", [], [] )
@@ -2061,6 +2221,7 @@ class Windows_Foundation_Collections_IMap_2_String_Windows_Foundation_Collection
     //@Parameters("T0","T1")
     Insert(key,value)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = key;
         var p2 = Windows.Foundation.Collections.IVector_1_String_( value); 
@@ -2073,6 +2234,7 @@ class Windows_Foundation_Collections_IMap_2_String_Windows_Foundation_Collection
     //@Parameters("T0")
     Remove(key)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = key;
         this.comPtr.invoke(11, "void", ["String"], [p1] );
@@ -2082,6 +2244,7 @@ class Windows_Foundation_Collections_IMap_2_String_Windows_Foundation_Collection
     //@Returns("void")
     Clear()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         this.comPtr.invoke(12, "void", [], [] );
     }
@@ -2100,7 +2263,8 @@ class Windows_Foundation_Collections_IMap_2_String_Windows_Foundation_Collection
 {
     Windows_Foundation_Collections_IMap_2_String_Windows_Foundation_Collections_IVector_1_( comPtr )
     {
-        this.comPtr = comPtr.queryInterface( "{E475CA9D-6AFB-5992-993E-53E6EF7A9ECD}");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{E475CA9D-6AFB-5992-993E-53E6EF7A9ECD}");
     }
 
     //@VtableIndex(6)
@@ -2108,6 +2272,7 @@ class Windows_Foundation_Collections_IMap_2_String_Windows_Foundation_Collection
     //@Parameters("T0")
     Lookup(key)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = key;
         var _r = Windows.Foundation.Collections.IVector_1(
@@ -2120,6 +2285,7 @@ class Windows_Foundation_Collections_IMap_2_String_Windows_Foundation_Collection
     //@Returns("UInt32")
     get_Size()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke(7, "UInt32", [], [] );
         return _r;
@@ -2130,6 +2296,7 @@ class Windows_Foundation_Collections_IMap_2_String_Windows_Foundation_Collection
     //@Parameters("T0")
     HasKey(key)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = key;
         var _r = this.comPtr.invoke(8, "Boolean", ["String"], [p1] );
@@ -2140,6 +2307,7 @@ class Windows_Foundation_Collections_IMap_2_String_Windows_Foundation_Collection
     //@Returns("Windows.Foundation.Collections.IMapView`2<T0,T1>")
     GetView()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = Windows.Foundation.Collections.IMapView_2_String_Windows_Foundation_Collections_IVector_1_(
             this.comPtr.invoke(9, "Windows.Foundation.Collections.IMapView`2<String,Windows.Foundation.Collections.IVector`1>", [], [] )
@@ -2152,6 +2320,7 @@ class Windows_Foundation_Collections_IMap_2_String_Windows_Foundation_Collection
     //@Parameters("T0","T1")
     Insert(key,value)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = key;
         var p2 = Windows.Foundation.Collections.IVector_1( value); 
@@ -2164,6 +2333,7 @@ class Windows_Foundation_Collections_IMap_2_String_Windows_Foundation_Collection
     //@Parameters("T0")
     Remove(key)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = key;
         this.comPtr.invoke(11, "void", ["String"], [p1] );
@@ -2173,6 +2343,7 @@ class Windows_Foundation_Collections_IMap_2_String_Windows_Foundation_Collection
     //@Returns("void")
     Clear()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         this.comPtr.invoke(12, "void", [], [] );
     }
@@ -2191,7 +2362,8 @@ class Windows_Foundation_Collections_IMapView_2_String_Windows_Foundation_Collec
 {
     Windows_Foundation_Collections_IMapView_2_String_Windows_Foundation_Collections_IVector_1_String__( comPtr )
     {
-        this.comPtr = comPtr.queryInterface( "{153F9C9C-D22A-5C9E-9C74-8B85C908B000}");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{153F9C9C-D22A-5C9E-9C74-8B85C908B000}");
     }
 
     //@VtableIndex(6)
@@ -2199,6 +2371,7 @@ class Windows_Foundation_Collections_IMapView_2_String_Windows_Foundation_Collec
     //@Parameters("T0")
     Lookup(key)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = key;
         var _r = Windows.Foundation.Collections.IVector_1_String_(
@@ -2211,6 +2384,7 @@ class Windows_Foundation_Collections_IMapView_2_String_Windows_Foundation_Collec
     //@Returns("UInt32")
     get_Size()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke(7, "UInt32", [], [] );
         return _r;
@@ -2221,6 +2395,7 @@ class Windows_Foundation_Collections_IMapView_2_String_Windows_Foundation_Collec
     //@Parameters("T0")
     HasKey(key)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = key;
         var _r = this.comPtr.invoke(8, "Boolean", ["String"], [p1] );
@@ -2241,13 +2416,15 @@ class Windows_Foundation_Collections_IKeyValuePair_2_String_Windows_Foundation_C
 {
     Windows_Foundation_Collections_IKeyValuePair_2_String_Windows_Foundation_Collections_IVector_1_String__( comPtr )
     {
-        this.comPtr = comPtr.queryInterface( "{174F26C7-79EA-5F7C-BD70-AC4457F2CAC8}");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{174F26C7-79EA-5F7C-BD70-AC4457F2CAC8}");
     }
 
     //@VtableIndex(6)
     //@Returns("T0")
     get_Key()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke(6, "String", [], [] );
         return _r;
@@ -2257,6 +2434,7 @@ class Windows_Foundation_Collections_IKeyValuePair_2_String_Windows_Foundation_C
     //@Returns("T1")
     get_Value()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = Windows.Foundation.Collections.IVector_1_String_(
             this.comPtr.invoke(7, "Windows.Foundation.Collections.IVector`1<String>", [], [] )
@@ -2278,13 +2456,15 @@ class Windows_Foundation_Collections_IIterator_1_Windows_Storage_StorageFile_ : 
 {
     Windows_Foundation_Collections_IIterator_1_Windows_Storage_StorageFile_( comPtr )
     {
-        this.comPtr = comPtr.queryInterface( "{43E29F53-0298-55AA-A6C8-4EDD323D9598}");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{43E29F53-0298-55AA-A6C8-4EDD323D9598}");
     }
 
     //@VtableIndex(6)
     //@Returns("T0")
     get_Current()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = Windows.Storage.StorageFile(
             this.comPtr.invoke(6, "Windows.Storage.StorageFile", [], [] )
@@ -2296,6 +2476,7 @@ class Windows_Foundation_Collections_IIterator_1_Windows_Storage_StorageFile_ : 
     //@Returns("Boolean")
     get_HasCurrent()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke(7, "Boolean", [], [] );
         return _r;
@@ -2305,6 +2486,7 @@ class Windows_Foundation_Collections_IIterator_1_Windows_Storage_StorageFile_ : 
     //@Returns("Boolean")
     MoveNext()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke(8, "Boolean", [], [] );
         return _r;
@@ -2324,13 +2506,15 @@ class Windows_Foundation_Collections_IIterator_1_Windows_Foundation_Collections_
 {
     Windows_Foundation_Collections_IIterator_1_Windows_Foundation_Collections_IKeyValuePair_2_String_Windows_Foundation_Collections_IVector_1_String___( comPtr )
     {
-        this.comPtr = comPtr.queryInterface( "{A11824C9-E458-502A-AFD8-CE3CE0ABD6FE}");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{A11824C9-E458-502A-AFD8-CE3CE0ABD6FE}");
     }
 
     //@VtableIndex(6)
     //@Returns("T0")
     get_Current()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = Windows.Foundation.Collections.IKeyValuePair_2_String_Windows_Foundation_Collections_IVector_1_String__(
             this.comPtr.invoke(6, "Windows.Foundation.Collections.IKeyValuePair`2<String,Windows.Foundation.Collections.IVector`1<String>>", [], [] )
@@ -2342,6 +2526,7 @@ class Windows_Foundation_Collections_IIterator_1_Windows_Foundation_Collections_
     //@Returns("Boolean")
     get_HasCurrent()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke(7, "Boolean", [], [] );
         return _r;
@@ -2351,6 +2536,7 @@ class Windows_Foundation_Collections_IIterator_1_Windows_Foundation_Collections_
     //@Returns("Boolean")
     MoveNext()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke(8, "Boolean", [], [] );
         return _r;
@@ -2370,13 +2556,15 @@ class Windows_Foundation_Collections_IIterator_1_String_ : WinRtInterface
 {
     Windows_Foundation_Collections_IIterator_1_String_( comPtr )
     {
-        this.comPtr = comPtr.queryInterface( "{8C304EBB-6615-50A4-8829-879ECD443236}");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{8C304EBB-6615-50A4-8829-879ECD443236}");
     }
 
     //@VtableIndex(6)
     //@Returns("T0")
     get_Current()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke(6, "String", [], [] );
         return _r;
@@ -2386,6 +2574,7 @@ class Windows_Foundation_Collections_IIterator_1_String_ : WinRtInterface
     //@Returns("Boolean")
     get_HasCurrent()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke(7, "Boolean", [], [] );
         return _r;
@@ -2395,6 +2584,7 @@ class Windows_Foundation_Collections_IIterator_1_String_ : WinRtInterface
     //@Returns("Boolean")
     MoveNext()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke(8, "Boolean", [], [] );
         return _r;
@@ -2414,13 +2604,15 @@ class Windows_Foundation_Collections_IIterable_1_Windows_Storage_StorageFile_ : 
 {
     Windows_Foundation_Collections_IIterable_1_Windows_Storage_StorageFile_( comPtr )
     {
-        this.comPtr = comPtr.queryInterface( "{9AC00304-83EA-5688-87B6-AE38AAB65D0B}");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{9AC00304-83EA-5688-87B6-AE38AAB65D0B}");
     }
 
     //@VtableIndex(6)
     //@Returns("Windows.Foundation.Collections.IIterator`1<T0>")
     First()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = Windows.Foundation.Collections.IIterator_1_Windows_Storage_StorageFile_(
             this.comPtr.invoke(6, "Windows.Foundation.Collections.IIterator`1<Windows.Storage.StorageFile>", [], [] )
@@ -2442,13 +2634,15 @@ class Windows_Foundation_Collections_IIterable_1_Windows_Foundation_Collections_
 {
     Windows_Foundation_Collections_IIterable_1_Windows_Foundation_Collections_IKeyValuePair_2_( comPtr )
     {
-        this.comPtr = comPtr.queryInterface( "{4FED2669-D0D3-59F6-91D9-95902D728D6A}");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{4FED2669-D0D3-59F6-91D9-95902D728D6A}");
     }
 
     //@VtableIndex(6)
     //@Returns("Windows.Foundation.Collections.IIterator`1<T0>")
     First()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = Windows.Foundation.Collections.IIterator_1_Windows_Foundation_Collections_IKeyValuePair_2_(
             this.comPtr.invoke(6, "Windows.Foundation.Collections.IIterator`1<Windows.Foundation.Collections.IKeyValuePair`2>", [], [] )
@@ -2470,13 +2664,15 @@ class Windows_Foundation_Collections_IIterable_1_String_ : WinRtInterface
 {
     Windows_Foundation_Collections_IIterable_1_String_( comPtr )
     {
-        this.comPtr = comPtr.queryInterface( "{E2FCC7C1-3BFC-5A0B-B2B0-72E769D1CB7E}");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{E2FCC7C1-3BFC-5A0B-B2B0-72E769D1CB7E}");
     }
 
     //@VtableIndex(6)
     //@Returns("Windows.Foundation.Collections.IIterator`1<T0>")
     First()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = Windows.Foundation.Collections.IIterator_1_String_(
             this.comPtr.invoke(6, "Windows.Foundation.Collections.IIterator`1<String>", [], [] )

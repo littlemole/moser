@@ -20,7 +20,8 @@ class Microsoft_UI_Xaml_Controls_AnimatedVisuals_AnimatedAcceptVisualSource : Wi
     Microsoft_UI_Xaml_Controls_AnimatedVisuals_AnimatedAcceptVisualSource( comPtr )
     {
         var Microsoft = runtime.global("Microsoft");
-        this.comPtr = comPtr.queryInterface( Microsoft.UI.Xaml.Controls.IAnimatedVisualSource.iid );
+        if(!comPtr || !int(comPtr)) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( Microsoft.UI.Xaml.Controls.IAnimatedVisualSource.iid );
     }
 
     static Create()
@@ -32,6 +33,7 @@ class Microsoft_UI_Xaml_Controls_AnimatedVisuals_AnimatedAcceptVisualSource : Wi
     //@Returns("Windows.Foundation.Collections.IMapView`2<String,Double>")
     get_Markers()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.Xaml.Controls.IAnimatedVisualSource2( this.comPtr );
         var _r = iface.get_Markers(  );
@@ -44,6 +46,7 @@ class Microsoft_UI_Xaml_Controls_AnimatedVisuals_AnimatedAcceptVisualSource : Wi
     //@Parameters("String","Windows.UI.Color")
     SetColorProperty(propertyName,value)
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.Xaml.Controls.IAnimatedVisualSource2( this.comPtr );
         iface.SetColorProperty( propertyName, value );
@@ -63,7 +66,8 @@ class Microsoft_UI_Xaml_Controls_AnimatedVisuals_AnimatedBackVisualSource : WinR
     Microsoft_UI_Xaml_Controls_AnimatedVisuals_AnimatedBackVisualSource( comPtr )
     {
         var Microsoft = runtime.global("Microsoft");
-        this.comPtr = comPtr.queryInterface( Microsoft.UI.Xaml.Controls.IAnimatedVisualSource.iid );
+        if(!comPtr || !int(comPtr)) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( Microsoft.UI.Xaml.Controls.IAnimatedVisualSource.iid );
     }
 
     static Create()
@@ -75,6 +79,7 @@ class Microsoft_UI_Xaml_Controls_AnimatedVisuals_AnimatedBackVisualSource : WinR
     //@Returns("Windows.Foundation.Collections.IMapView`2<String,Double>")
     get_Markers()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.Xaml.Controls.IAnimatedVisualSource2( this.comPtr );
         var _r = iface.get_Markers(  );
@@ -87,6 +92,7 @@ class Microsoft_UI_Xaml_Controls_AnimatedVisuals_AnimatedBackVisualSource : WinR
     //@Parameters("String","Windows.UI.Color")
     SetColorProperty(propertyName,value)
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.Xaml.Controls.IAnimatedVisualSource2( this.comPtr );
         iface.SetColorProperty( propertyName, value );
@@ -106,7 +112,8 @@ class Microsoft_UI_Xaml_Controls_AnimatedVisuals_AnimatedChevronDownSmallVisualS
     Microsoft_UI_Xaml_Controls_AnimatedVisuals_AnimatedChevronDownSmallVisualSource( comPtr )
     {
         var Microsoft = runtime.global("Microsoft");
-        this.comPtr = comPtr.queryInterface( Microsoft.UI.Xaml.Controls.IAnimatedVisualSource.iid );
+        if(!comPtr || !int(comPtr)) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( Microsoft.UI.Xaml.Controls.IAnimatedVisualSource.iid );
     }
 
     static Create()
@@ -118,6 +125,7 @@ class Microsoft_UI_Xaml_Controls_AnimatedVisuals_AnimatedChevronDownSmallVisualS
     //@Returns("Windows.Foundation.Collections.IMapView`2<String,Double>")
     get_Markers()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.Xaml.Controls.IAnimatedVisualSource2( this.comPtr );
         var _r = iface.get_Markers(  );
@@ -130,6 +138,7 @@ class Microsoft_UI_Xaml_Controls_AnimatedVisuals_AnimatedChevronDownSmallVisualS
     //@Parameters("String","Windows.UI.Color")
     SetColorProperty(propertyName,value)
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.Xaml.Controls.IAnimatedVisualSource2( this.comPtr );
         iface.SetColorProperty( propertyName, value );
@@ -149,7 +158,8 @@ class Microsoft_UI_Xaml_Controls_AnimatedVisuals_AnimatedChevronRightDownSmallVi
     Microsoft_UI_Xaml_Controls_AnimatedVisuals_AnimatedChevronRightDownSmallVisualSource( comPtr )
     {
         var Microsoft = runtime.global("Microsoft");
-        this.comPtr = comPtr.queryInterface( Microsoft.UI.Xaml.Controls.IAnimatedVisualSource.iid );
+        if(!comPtr || !int(comPtr)) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( Microsoft.UI.Xaml.Controls.IAnimatedVisualSource.iid );
     }
 
     static Create()
@@ -161,6 +171,7 @@ class Microsoft_UI_Xaml_Controls_AnimatedVisuals_AnimatedChevronRightDownSmallVi
     //@Returns("Windows.Foundation.Collections.IMapView`2<String,Double>")
     get_Markers()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.Xaml.Controls.IAnimatedVisualSource2( this.comPtr );
         var _r = iface.get_Markers(  );
@@ -173,6 +184,7 @@ class Microsoft_UI_Xaml_Controls_AnimatedVisuals_AnimatedChevronRightDownSmallVi
     //@Parameters("String","Windows.UI.Color")
     SetColorProperty(propertyName,value)
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.Xaml.Controls.IAnimatedVisualSource2( this.comPtr );
         iface.SetColorProperty( propertyName, value );
@@ -192,7 +204,8 @@ class Microsoft_UI_Xaml_Controls_AnimatedVisuals_AnimatedChevronUpDownSmallVisua
     Microsoft_UI_Xaml_Controls_AnimatedVisuals_AnimatedChevronUpDownSmallVisualSource( comPtr )
     {
         var Microsoft = runtime.global("Microsoft");
-        this.comPtr = comPtr.queryInterface( Microsoft.UI.Xaml.Controls.IAnimatedVisualSource.iid );
+        if(!comPtr || !int(comPtr)) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( Microsoft.UI.Xaml.Controls.IAnimatedVisualSource.iid );
     }
 
     static Create()
@@ -204,6 +217,7 @@ class Microsoft_UI_Xaml_Controls_AnimatedVisuals_AnimatedChevronUpDownSmallVisua
     //@Returns("Windows.Foundation.Collections.IMapView`2<String,Double>")
     get_Markers()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.Xaml.Controls.IAnimatedVisualSource2( this.comPtr );
         var _r = iface.get_Markers(  );
@@ -216,6 +230,7 @@ class Microsoft_UI_Xaml_Controls_AnimatedVisuals_AnimatedChevronUpDownSmallVisua
     //@Parameters("String","Windows.UI.Color")
     SetColorProperty(propertyName,value)
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.Xaml.Controls.IAnimatedVisualSource2( this.comPtr );
         iface.SetColorProperty( propertyName, value );
@@ -235,7 +250,8 @@ class Microsoft_UI_Xaml_Controls_AnimatedVisuals_AnimatedFindVisualSource : WinR
     Microsoft_UI_Xaml_Controls_AnimatedVisuals_AnimatedFindVisualSource( comPtr )
     {
         var Microsoft = runtime.global("Microsoft");
-        this.comPtr = comPtr.queryInterface( Microsoft.UI.Xaml.Controls.IAnimatedVisualSource.iid );
+        if(!comPtr || !int(comPtr)) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( Microsoft.UI.Xaml.Controls.IAnimatedVisualSource.iid );
     }
 
     static Create()
@@ -247,6 +263,7 @@ class Microsoft_UI_Xaml_Controls_AnimatedVisuals_AnimatedFindVisualSource : WinR
     //@Returns("Windows.Foundation.Collections.IMapView`2<String,Double>")
     get_Markers()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.Xaml.Controls.IAnimatedVisualSource2( this.comPtr );
         var _r = iface.get_Markers(  );
@@ -259,6 +276,7 @@ class Microsoft_UI_Xaml_Controls_AnimatedVisuals_AnimatedFindVisualSource : WinR
     //@Parameters("String","Windows.UI.Color")
     SetColorProperty(propertyName,value)
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.Xaml.Controls.IAnimatedVisualSource2( this.comPtr );
         iface.SetColorProperty( propertyName, value );
@@ -278,7 +296,8 @@ class Microsoft_UI_Xaml_Controls_AnimatedVisuals_AnimatedGlobalNavigationButtonV
     Microsoft_UI_Xaml_Controls_AnimatedVisuals_AnimatedGlobalNavigationButtonVisualSource( comPtr )
     {
         var Microsoft = runtime.global("Microsoft");
-        this.comPtr = comPtr.queryInterface( Microsoft.UI.Xaml.Controls.IAnimatedVisualSource.iid );
+        if(!comPtr || !int(comPtr)) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( Microsoft.UI.Xaml.Controls.IAnimatedVisualSource.iid );
     }
 
     static Create()
@@ -290,6 +309,7 @@ class Microsoft_UI_Xaml_Controls_AnimatedVisuals_AnimatedGlobalNavigationButtonV
     //@Returns("Windows.Foundation.Collections.IMapView`2<String,Double>")
     get_Markers()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.Xaml.Controls.IAnimatedVisualSource2( this.comPtr );
         var _r = iface.get_Markers(  );
@@ -302,6 +322,7 @@ class Microsoft_UI_Xaml_Controls_AnimatedVisuals_AnimatedGlobalNavigationButtonV
     //@Parameters("String","Windows.UI.Color")
     SetColorProperty(propertyName,value)
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.Xaml.Controls.IAnimatedVisualSource2( this.comPtr );
         iface.SetColorProperty( propertyName, value );
@@ -321,7 +342,8 @@ class Microsoft_UI_Xaml_Controls_AnimatedVisuals_AnimatedSettingsVisualSource : 
     Microsoft_UI_Xaml_Controls_AnimatedVisuals_AnimatedSettingsVisualSource( comPtr )
     {
         var Microsoft = runtime.global("Microsoft");
-        this.comPtr = comPtr.queryInterface( Microsoft.UI.Xaml.Controls.IAnimatedVisualSource.iid );
+        if(!comPtr || !int(comPtr)) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( Microsoft.UI.Xaml.Controls.IAnimatedVisualSource.iid );
     }
 
     static Create()
@@ -333,6 +355,7 @@ class Microsoft_UI_Xaml_Controls_AnimatedVisuals_AnimatedSettingsVisualSource : 
     //@Returns("Windows.Foundation.Collections.IMapView`2<String,Double>")
     get_Markers()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.Xaml.Controls.IAnimatedVisualSource2( this.comPtr );
         var _r = iface.get_Markers(  );
@@ -345,6 +368,7 @@ class Microsoft_UI_Xaml_Controls_AnimatedVisuals_AnimatedSettingsVisualSource : 
     //@Parameters("String","Windows.UI.Color")
     SetColorProperty(propertyName,value)
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.Xaml.Controls.IAnimatedVisualSource2( this.comPtr );
         iface.SetColorProperty( propertyName, value );
@@ -363,7 +387,8 @@ class Windows_Foundation_Collections_IMapView_2_String_Double_ : WinRtInterface
 {
     Windows_Foundation_Collections_IMapView_2_String_Double_( comPtr )
     {
-        this.comPtr = comPtr.queryInterface( "{D18743CF-94D6-54AC-9DA2-F4755FA8E4F2}");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{D18743CF-94D6-54AC-9DA2-F4755FA8E4F2}");
     }
 
     //@VtableIndex(6)
@@ -371,6 +396,7 @@ class Windows_Foundation_Collections_IMapView_2_String_Double_ : WinRtInterface
     //@Parameters("T0")
     Lookup(key)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = key;
         var _r = this.comPtr.invoke(6, "Double", ["String"], [p1] );
@@ -381,6 +407,7 @@ class Windows_Foundation_Collections_IMapView_2_String_Double_ : WinRtInterface
     //@Returns("UInt32")
     get_Size()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke(7, "UInt32", [], [] );
         return _r;
@@ -391,6 +418,7 @@ class Windows_Foundation_Collections_IMapView_2_String_Double_ : WinRtInterface
     //@Parameters("T0")
     HasKey(key)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = key;
         var _r = this.comPtr.invoke(8, "Boolean", ["String"], [p1] );

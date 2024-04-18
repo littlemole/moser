@@ -37,7 +37,8 @@ class Microsoft_UI_Content_IContentCoordinateConverter : WinRtInterface
     Microsoft_UI_Content_IContentCoordinateConverter( comPtr )
     {
         var Microsoft = runtime.global("Microsoft");
-        this.comPtr = comPtr.queryInterface( "{10A11230-5EB4-5840-A346-570F4A49040F}");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{10A11230-5EB4-5840-A346-570F4A49040F}");
     }
 
     //@VtableIndex(6)
@@ -46,6 +47,7 @@ class Microsoft_UI_Content_IContentCoordinateConverter : WinRtInterface
     //@Parameters("Windows.Foundation.Point")
     ConvertLocalToScreenWithPoint(localPoint)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var p1 = localPoint;
         var _r = this.comPtr.invoke( 6, "Windows.Graphics.PointInt32", ["Windows.Foundation.Point"], [p1] );
@@ -58,6 +60,7 @@ class Microsoft_UI_Content_IContentCoordinateConverter : WinRtInterface
     //@Parameters("Windows.Foundation.Rect")
     ConvertLocalToScreenWithRect(localRect)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var p1 = localRect;
         var _r = this.comPtr.invoke( 9, "Windows.Graphics.RectInt32", ["Windows.Foundation.Rect"], [p1] );
@@ -70,6 +73,7 @@ class Microsoft_UI_Content_IContentCoordinateConverter : WinRtInterface
     //@Parameters("Windows.Graphics.PointInt32")
     ConvertScreenToLocalWithPoint(screenPoint)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var p1 = screenPoint;
         var _r = this.comPtr.invoke( 10, "Windows.Foundation.Point", ["Windows.Graphics.PointInt32"], [p1] );
@@ -82,6 +86,7 @@ class Microsoft_UI_Content_IContentCoordinateConverter : WinRtInterface
     //@Parameters("Windows.Graphics.RectInt32")
     ConvertScreenToLocalWithRect(screenRect)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var p1 = screenRect;
         var _r = this.comPtr.invoke( 12, "Windows.Foundation.Rect", ["Windows.Graphics.RectInt32"], [p1] );
@@ -101,7 +106,8 @@ class Microsoft_UI_Content_IContentCoordinateConverterFactory : WinRtInterface
     Microsoft_UI_Content_IContentCoordinateConverterFactory( comPtr )
     {
         var Microsoft = runtime.global("Microsoft");
-        this.comPtr = comPtr.queryInterface( "{A4B216EE-0E26-56BD-9209-A75CF9D80F27}");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{A4B216EE-0E26-56BD-9209-A75CF9D80F27}");
     }
 
 
@@ -117,7 +123,8 @@ class Microsoft_UI_Content_IContentCoordinateConverterStatics : WinRtInterface
     Microsoft_UI_Content_IContentCoordinateConverterStatics( comPtr )
     {
         var Microsoft = runtime.global("Microsoft");
-        this.comPtr = comPtr.queryInterface( "{F56374CE-B6DF-5B42-A58F-4E3BB039E3A9}");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{F56374CE-B6DF-5B42-A58F-4E3BB039E3A9}");
     }
 
     //@VtableIndex(6)
@@ -126,6 +133,7 @@ class Microsoft_UI_Content_IContentCoordinateConverterStatics : WinRtInterface
     //@Parameters("Microsoft.UI.WindowId")
     CreateForWindowId(windowId)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var p1 = windowId;
         var _r = Microsoft.UI.Content.ContentCoordinateConverter(
@@ -147,7 +155,8 @@ class Microsoft_UI_Content_IContentDeferral : WinRtInterface
     Microsoft_UI_Content_IContentDeferral( comPtr )
     {
         var Microsoft = runtime.global("Microsoft");
-        this.comPtr = comPtr.queryInterface( "{470529F5-CD93-599B-968E-F8A689BC3A07}");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{470529F5-CD93-599B-968E-F8A689BC3A07}");
     }
 
     //@VtableIndex(6)
@@ -155,6 +164,7 @@ class Microsoft_UI_Content_IContentDeferral : WinRtInterface
     //@Returns("void")
     Complete()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         this.comPtr.invoke( 6, "void", [], [] );
     }
@@ -172,7 +182,8 @@ class Microsoft_UI_Content_IContentEnvironmentSettingChangedEventArgs : WinRtInt
     Microsoft_UI_Content_IContentEnvironmentSettingChangedEventArgs( comPtr )
     {
         var Microsoft = runtime.global("Microsoft");
-        this.comPtr = comPtr.queryInterface( "{76478051-FC80-5EEC-A3F3-62606ABE06B7}");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{76478051-FC80-5EEC-A3F3-62606ABE06B7}");
     }
 
     //@VtableIndex(6)
@@ -180,6 +191,7 @@ class Microsoft_UI_Content_IContentEnvironmentSettingChangedEventArgs : WinRtInt
     //@Returns("String")
     get_SettingName()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 6, "String", [], [] );
         return _r;
@@ -198,7 +210,8 @@ class Microsoft_UI_Content_IContentEnvironmentStateChangedEventArgs : WinRtInter
     Microsoft_UI_Content_IContentEnvironmentStateChangedEventArgs( comPtr )
     {
         var Microsoft = runtime.global("Microsoft");
-        this.comPtr = comPtr.queryInterface( "{8970FA4F-10BA-5F67-970B-8C72BC009B67}");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{8970FA4F-10BA-5F67-970B-8C72BC009B67}");
     }
 
     //@VtableIndex(6)
@@ -206,6 +219,7 @@ class Microsoft_UI_Content_IContentEnvironmentStateChangedEventArgs : WinRtInter
     //@Returns("Boolean")
     get_DidAppWindowIdChange()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 6, "Boolean", [], [] );
         return _r;
@@ -216,6 +230,7 @@ class Microsoft_UI_Content_IContentEnvironmentStateChangedEventArgs : WinRtInter
     //@Returns("Boolean")
     get_DidDisplayIdChange()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 7, "Boolean", [], [] );
         return _r;
@@ -234,7 +249,8 @@ class Microsoft_UI_Content_IContentIsland : WinRtInterface
     Microsoft_UI_Content_IContentIsland( comPtr )
     {
         var Microsoft = runtime.global("Microsoft");
-        this.comPtr = comPtr.queryInterface( "{5B2504BA-361C-50AA-BD6E-4122C6D93889}");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{5B2504BA-361C-50AA-BD6E-4122C6D93889}");
     }
 
     //@VtableIndex(6)
@@ -242,6 +258,7 @@ class Microsoft_UI_Content_IContentIsland : WinRtInterface
     //@Returns("Windows.Foundation.Numerics.Vector2")
     get_ActualSize()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 6, "Windows.Foundation.Numerics.Vector2", [], [] );
         return _r;
@@ -252,6 +269,7 @@ class Microsoft_UI_Content_IContentIsland : WinRtInterface
     //@Returns("Object")
     get_AppData()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 7, "Object", [], [] );
         return _r;
@@ -263,6 +281,7 @@ class Microsoft_UI_Content_IContentIsland : WinRtInterface
     //@Parameters("Object")
     put_AppData(value)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var p1 = value;
         this.comPtr.invoke( 8, "void", ["Object"], [p1] );
@@ -273,6 +292,7 @@ class Microsoft_UI_Content_IContentIsland : WinRtInterface
     //@Returns("Microsoft.UI.Content.ContentCoordinateConverter")
     get_CoordinateConverter()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = Microsoft.UI.Content.ContentCoordinateConverter(
             this.comPtr.invoke( 9, "Microsoft.UI.Content.ContentCoordinateConverter", [], [] )
@@ -285,6 +305,7 @@ class Microsoft_UI_Content_IContentIsland : WinRtInterface
     //@Returns("Windows.Foundation.Collections.IPropertySet")
     get_CustomProperties()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = Windows.Foundation.Collections.IPropertySet(
             this.comPtr.invoke( 10, "Windows.Foundation.Collections.IPropertySet", [], [] )
@@ -297,6 +318,7 @@ class Microsoft_UI_Content_IContentIsland : WinRtInterface
     //@Returns("Microsoft.UI.Dispatching.DispatcherQueue")
     get_DispatcherQueue()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = Microsoft.UI.Dispatching.DispatcherQueue(
             this.comPtr.invoke( 11, "Microsoft.UI.Dispatching.DispatcherQueue", [], [] )
@@ -309,6 +331,7 @@ class Microsoft_UI_Content_IContentIsland : WinRtInterface
     //@Returns("Microsoft.UI.Content.ContentIslandEnvironment")
     get_Environment()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = Microsoft.UI.Content.ContentIslandEnvironment(
             this.comPtr.invoke( 12, "Microsoft.UI.Content.ContentIslandEnvironment", [], [] )
@@ -321,6 +344,7 @@ class Microsoft_UI_Content_IContentIsland : WinRtInterface
     //@Returns("UInt64")
     get_Id()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 13, "UInt64", [], [] );
         return _r;
@@ -331,6 +355,7 @@ class Microsoft_UI_Content_IContentIsland : WinRtInterface
     //@Returns("Boolean")
     get_IsConnected()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 14, "Boolean", [], [] );
         return _r;
@@ -341,6 +366,7 @@ class Microsoft_UI_Content_IContentIsland : WinRtInterface
     //@Returns("Boolean")
     get_IsHitTestVisibleWhenTransparent()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 15, "Boolean", [], [] );
         return _r;
@@ -352,6 +378,7 @@ class Microsoft_UI_Content_IContentIsland : WinRtInterface
     //@Parameters("Boolean")
     put_IsHitTestVisibleWhenTransparent(value)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var p1 = value;
         this.comPtr.invoke( 16, "void", ["Boolean"], [p1] );
@@ -362,6 +389,7 @@ class Microsoft_UI_Content_IContentIsland : WinRtInterface
     //@Returns("Boolean")
     get_IsIslandEnabled()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 17, "Boolean", [], [] );
         return _r;
@@ -373,6 +401,7 @@ class Microsoft_UI_Content_IContentIsland : WinRtInterface
     //@Parameters("Boolean")
     put_IsIslandEnabled(value)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var p1 = value;
         this.comPtr.invoke( 18, "void", ["Boolean"], [p1] );
@@ -383,6 +412,7 @@ class Microsoft_UI_Content_IContentIsland : WinRtInterface
     //@Returns("Boolean")
     get_IsIslandVisible()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 19, "Boolean", [], [] );
         return _r;
@@ -394,6 +424,7 @@ class Microsoft_UI_Content_IContentIsland : WinRtInterface
     //@Parameters("Boolean")
     put_IsIslandVisible(value)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var p1 = value;
         this.comPtr.invoke( 20, "void", ["Boolean"], [p1] );
@@ -404,6 +435,7 @@ class Microsoft_UI_Content_IContentIsland : WinRtInterface
     //@Returns("Boolean")
     get_IsSiteEnabled()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 21, "Boolean", [], [] );
         return _r;
@@ -414,6 +446,7 @@ class Microsoft_UI_Content_IContentIsland : WinRtInterface
     //@Returns("Boolean")
     get_IsSiteVisible()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 22, "Boolean", [], [] );
         return _r;
@@ -424,6 +457,7 @@ class Microsoft_UI_Content_IContentIsland : WinRtInterface
     //@Returns("Microsoft.UI.Content.ContentLayoutDirection")
     get_LayoutDirection()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 23, "UInt32", [], [] );
         return _r;
@@ -434,6 +468,7 @@ class Microsoft_UI_Content_IContentIsland : WinRtInterface
     //@Returns("Single")
     get_RasterizationScale()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 24, "Single", [], [] );
         return _r;
@@ -444,6 +479,7 @@ class Microsoft_UI_Content_IContentIsland : WinRtInterface
     //@Returns("Object")
     GetAutomationHostProvider()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 25, "Object", [], [] );
         return _r;
@@ -454,6 +490,7 @@ class Microsoft_UI_Content_IContentIsland : WinRtInterface
     //@Returns("Microsoft.UI.Content.ContentDeferral")
     GetStateChangeDeferral()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = Microsoft.UI.Content.ContentDeferral(
             this.comPtr.invoke( 26, "Microsoft.UI.Content.ContentDeferral", [], [] )
@@ -467,6 +504,7 @@ class Microsoft_UI_Content_IContentIsland : WinRtInterface
     //@Parameters("Windows.Foundation.Numerics.Vector2")
     RequestSize(size)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var p1 = size;
         this.comPtr.invoke( 27, "void", ["Windows.Foundation.Numerics.Vector2"], [p1] );
@@ -478,6 +516,7 @@ class Microsoft_UI_Content_IContentIsland : WinRtInterface
     //@Parameters("Windows.Foundation.TypedEventHandler`2<Microsoft.UI.Content.ContentIsland,Microsoft.UI.Content.ContentIslandAutomationProviderRequestedEventArgs>")
     add_AutomationProviderRequested(handler)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var p1 = nil; 
         if( typeof(handler) == "comptr" ) { 
@@ -495,6 +534,7 @@ class Microsoft_UI_Content_IContentIsland : WinRtInterface
     //@Parameters("Windows.Foundation.EventRegistrationToken")
     remove_AutomationProviderRequested(token)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var p1 = token;
         this.comPtr.invoke( 29, "void", ["Windows.Foundation.EventRegistrationToken"], [p1] );
@@ -506,6 +546,7 @@ class Microsoft_UI_Content_IContentIsland : WinRtInterface
     //@Parameters("Windows.Foundation.TypedEventHandler`2<Microsoft.UI.Content.ContentIsland,Microsoft.UI.Content.ContentIslandStateChangedEventArgs>")
     add_StateChanged(handler)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var p1 = nil; 
         if( typeof(handler) == "comptr" ) { 
@@ -523,6 +564,7 @@ class Microsoft_UI_Content_IContentIsland : WinRtInterface
     //@Parameters("Windows.Foundation.EventRegistrationToken")
     remove_StateChanged(token)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var p1 = token;
         this.comPtr.invoke( 31, "void", ["Windows.Foundation.EventRegistrationToken"], [p1] );
@@ -541,7 +583,8 @@ class Microsoft_UI_Content_IContentIslandAutomationProviderRequestedEventArgs : 
     Microsoft_UI_Content_IContentIslandAutomationProviderRequestedEventArgs( comPtr )
     {
         var Microsoft = runtime.global("Microsoft");
-        this.comPtr = comPtr.queryInterface( "{9FE24BED-2B9C-5137-887F-403C94841824}");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{9FE24BED-2B9C-5137-887F-403C94841824}");
     }
 
     //@VtableIndex(6)
@@ -549,6 +592,7 @@ class Microsoft_UI_Content_IContentIslandAutomationProviderRequestedEventArgs : 
     //@Returns("Object")
     get_AutomationProvider()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 6, "Object", [], [] );
         return _r;
@@ -560,6 +604,7 @@ class Microsoft_UI_Content_IContentIslandAutomationProviderRequestedEventArgs : 
     //@Parameters("Object")
     put_AutomationProvider(value)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var p1 = value;
         this.comPtr.invoke( 7, "void", ["Object"], [p1] );
@@ -570,6 +615,7 @@ class Microsoft_UI_Content_IContentIslandAutomationProviderRequestedEventArgs : 
     //@Returns("Boolean")
     get_Handled()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 8, "Boolean", [], [] );
         return _r;
@@ -581,6 +627,7 @@ class Microsoft_UI_Content_IContentIslandAutomationProviderRequestedEventArgs : 
     //@Parameters("Boolean")
     put_Handled(value)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var p1 = value;
         this.comPtr.invoke( 9, "void", ["Boolean"], [p1] );
@@ -599,7 +646,8 @@ class Microsoft_UI_Content_IContentIslandEnvironment : WinRtInterface
     Microsoft_UI_Content_IContentIslandEnvironment( comPtr )
     {
         var Microsoft = runtime.global("Microsoft");
-        this.comPtr = comPtr.queryInterface( "{C334236D-DA88-566D-811D-74AEF2EBA978}");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{C334236D-DA88-566D-811D-74AEF2EBA978}");
     }
 
     //@VtableIndex(6)
@@ -607,6 +655,7 @@ class Microsoft_UI_Content_IContentIslandEnvironment : WinRtInterface
     //@Returns("Microsoft.UI.WindowId")
     get_AppWindowId()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 6, "Microsoft.UI.WindowId", [], [] );
         return _r;
@@ -617,6 +666,7 @@ class Microsoft_UI_Content_IContentIslandEnvironment : WinRtInterface
     //@Returns("Microsoft.UI.DisplayId")
     get_DisplayId()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 7, "Microsoft.UI.DisplayId", [], [] );
         return _r;
@@ -628,6 +678,7 @@ class Microsoft_UI_Content_IContentIslandEnvironment : WinRtInterface
     //@Parameters("Windows.Foundation.TypedEventHandler`2<Microsoft.UI.Content.ContentIslandEnvironment,Microsoft.UI.Content.ContentEnvironmentSettingChangedEventArgs>")
     add_SettingChanged(handler)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var p1 = nil; 
         if( typeof(handler) == "comptr" ) { 
@@ -645,6 +696,7 @@ class Microsoft_UI_Content_IContentIslandEnvironment : WinRtInterface
     //@Parameters("Windows.Foundation.EventRegistrationToken")
     remove_SettingChanged(token)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var p1 = token;
         this.comPtr.invoke( 9, "void", ["Windows.Foundation.EventRegistrationToken"], [p1] );
@@ -656,6 +708,7 @@ class Microsoft_UI_Content_IContentIslandEnvironment : WinRtInterface
     //@Parameters("Windows.Foundation.TypedEventHandler`2<Microsoft.UI.Content.ContentIslandEnvironment,Microsoft.UI.Content.ContentEnvironmentStateChangedEventArgs>")
     add_StateChanged(handler)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var p1 = nil; 
         if( typeof(handler) == "comptr" ) { 
@@ -673,6 +726,7 @@ class Microsoft_UI_Content_IContentIslandEnvironment : WinRtInterface
     //@Parameters("Windows.Foundation.EventRegistrationToken")
     remove_StateChanged(token)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var p1 = token;
         this.comPtr.invoke( 11, "void", ["Windows.Foundation.EventRegistrationToken"], [p1] );
@@ -691,7 +745,8 @@ class Microsoft_UI_Content_IContentIslandEnvironmentFactory : WinRtInterface
     Microsoft_UI_Content_IContentIslandEnvironmentFactory( comPtr )
     {
         var Microsoft = runtime.global("Microsoft");
-        this.comPtr = comPtr.queryInterface( "{47A782D6-B177-5C1E-BF87-90437DD809D0}");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{47A782D6-B177-5C1E-BF87-90437DD809D0}");
     }
 
 
@@ -707,7 +762,8 @@ class Microsoft_UI_Content_IContentIslandFactory : WinRtInterface
     Microsoft_UI_Content_IContentIslandFactory( comPtr )
     {
         var Microsoft = runtime.global("Microsoft");
-        this.comPtr = comPtr.queryInterface( "{82383F52-E81A-5EC9-A954-BAC8A931BA7D}");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{82383F52-E81A-5EC9-A954-BAC8A931BA7D}");
     }
 
 
@@ -723,7 +779,8 @@ class Microsoft_UI_Content_IContentIslandStateChangedEventArgs : WinRtInterface
     Microsoft_UI_Content_IContentIslandStateChangedEventArgs( comPtr )
     {
         var Microsoft = runtime.global("Microsoft");
-        this.comPtr = comPtr.queryInterface( "{C828EEB2-0C62-5B40-9D48-77C06083C278}");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{C828EEB2-0C62-5B40-9D48-77C06083C278}");
     }
 
     //@VtableIndex(6)
@@ -731,6 +788,7 @@ class Microsoft_UI_Content_IContentIslandStateChangedEventArgs : WinRtInterface
     //@Returns("Boolean")
     get_DidActualSizeChange()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 6, "Boolean", [], [] );
         return _r;
@@ -741,6 +799,7 @@ class Microsoft_UI_Content_IContentIslandStateChangedEventArgs : WinRtInterface
     //@Returns("Boolean")
     get_DidSiteEnabledChange()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 7, "Boolean", [], [] );
         return _r;
@@ -751,6 +810,7 @@ class Microsoft_UI_Content_IContentIslandStateChangedEventArgs : WinRtInterface
     //@Returns("Boolean")
     get_DidSiteVisibleChange()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 8, "Boolean", [], [] );
         return _r;
@@ -761,6 +821,7 @@ class Microsoft_UI_Content_IContentIslandStateChangedEventArgs : WinRtInterface
     //@Returns("Boolean")
     get_DidLayoutDirectionChange()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 9, "Boolean", [], [] );
         return _r;
@@ -771,6 +832,7 @@ class Microsoft_UI_Content_IContentIslandStateChangedEventArgs : WinRtInterface
     //@Returns("Boolean")
     get_DidRasterizationScaleChange()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 10, "Boolean", [], [] );
         return _r;
@@ -789,7 +851,8 @@ class Microsoft_UI_Content_IContentIslandStatics : WinRtInterface
     Microsoft_UI_Content_IContentIslandStatics( comPtr )
     {
         var Microsoft = runtime.global("Microsoft");
-        this.comPtr = comPtr.queryInterface( "{7B9EB7CC-8C43-5E0A-AB23-AB48628FD223}");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{7B9EB7CC-8C43-5E0A-AB23-AB48628FD223}");
     }
 
     //@VtableIndex(6)
@@ -798,6 +861,7 @@ class Microsoft_UI_Content_IContentIslandStatics : WinRtInterface
     //@Parameters("Microsoft.UI.Composition.Visual")
     Create(Root)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var p1 = Microsoft.UI.Composition.Visual( Root); 
         var _r = Microsoft.UI.Content.ContentIsland(
@@ -812,6 +876,7 @@ class Microsoft_UI_Content_IContentIslandStatics : WinRtInterface
     //@Parameters("Microsoft.UI.Composition.Visual")
     GetByVisual(child)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var p1 = Microsoft.UI.Composition.Visual( child); 
         var _r = Microsoft.UI.Content.ContentIsland(
@@ -826,6 +891,7 @@ class Microsoft_UI_Content_IContentIslandStatics : WinRtInterface
     //@Parameters("UInt64")
     GetFromId(id)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var p1 = id;
         var _r = Microsoft.UI.Content.ContentIsland(
@@ -847,7 +913,8 @@ class Microsoft_UI_Content_IContentSite : WinRtInterface
     Microsoft_UI_Content_IContentSite( comPtr )
     {
         var Microsoft = runtime.global("Microsoft");
-        this.comPtr = comPtr.queryInterface( "{996C60C4-02B2-5EEF-93B0-DD6B1EC2FD7B}");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{996C60C4-02B2-5EEF-93B0-DD6B1EC2FD7B}");
     }
 
     //@VtableIndex(6)
@@ -855,6 +922,7 @@ class Microsoft_UI_Content_IContentSite : WinRtInterface
     //@Returns("Windows.Foundation.Numerics.Vector2")
     get_ActualSize()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 6, "Windows.Foundation.Numerics.Vector2", [], [] );
         return _r;
@@ -866,6 +934,7 @@ class Microsoft_UI_Content_IContentSite : WinRtInterface
     //@Parameters("Windows.Foundation.Numerics.Vector2")
     put_ActualSize(value)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var p1 = value;
         this.comPtr.invoke( 7, "void", ["Windows.Foundation.Numerics.Vector2"], [p1] );
@@ -876,6 +945,7 @@ class Microsoft_UI_Content_IContentSite : WinRtInterface
     //@Returns("Windows.Graphics.SizeInt32")
     get_ClientSize()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 8, "Windows.Graphics.SizeInt32", [], [] );
         return _r;
@@ -887,6 +957,7 @@ class Microsoft_UI_Content_IContentSite : WinRtInterface
     //@Parameters("Windows.Graphics.SizeInt32")
     put_ClientSize(value)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var p1 = value;
         this.comPtr.invoke( 9, "void", ["Windows.Graphics.SizeInt32"], [p1] );
@@ -897,6 +968,7 @@ class Microsoft_UI_Content_IContentSite : WinRtInterface
     //@Returns("Microsoft.UI.Content.ContentCoordinateConverter")
     get_CoordinateConverter()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = Microsoft.UI.Content.ContentCoordinateConverter(
             this.comPtr.invoke( 10, "Microsoft.UI.Content.ContentCoordinateConverter", [], [] )
@@ -909,6 +981,7 @@ class Microsoft_UI_Content_IContentSite : WinRtInterface
     //@Returns("Microsoft.UI.Dispatching.DispatcherQueue")
     get_DispatcherQueue()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = Microsoft.UI.Dispatching.DispatcherQueue(
             this.comPtr.invoke( 11, "Microsoft.UI.Dispatching.DispatcherQueue", [], [] )
@@ -921,6 +994,7 @@ class Microsoft_UI_Content_IContentSite : WinRtInterface
     //@Returns("Microsoft.UI.Content.ContentSiteEnvironment")
     get_Environment()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = Microsoft.UI.Content.ContentSiteEnvironment(
             this.comPtr.invoke( 12, "Microsoft.UI.Content.ContentSiteEnvironment", [], [] )
@@ -933,6 +1007,7 @@ class Microsoft_UI_Content_IContentSite : WinRtInterface
     //@Returns("Boolean")
     get_IsConnected()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 13, "Boolean", [], [] );
         return _r;
@@ -943,6 +1018,7 @@ class Microsoft_UI_Content_IContentSite : WinRtInterface
     //@Returns("Boolean")
     get_IsSiteEnabled()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 14, "Boolean", [], [] );
         return _r;
@@ -954,6 +1030,7 @@ class Microsoft_UI_Content_IContentSite : WinRtInterface
     //@Parameters("Boolean")
     put_IsSiteEnabled(value)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var p1 = value;
         this.comPtr.invoke( 15, "void", ["Boolean"], [p1] );
@@ -964,6 +1041,7 @@ class Microsoft_UI_Content_IContentSite : WinRtInterface
     //@Returns("Boolean")
     get_IsSiteVisible()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 16, "Boolean", [], [] );
         return _r;
@@ -975,6 +1053,7 @@ class Microsoft_UI_Content_IContentSite : WinRtInterface
     //@Parameters("Boolean")
     put_IsSiteVisible(value)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var p1 = value;
         this.comPtr.invoke( 17, "void", ["Boolean"], [p1] );
@@ -985,6 +1064,7 @@ class Microsoft_UI_Content_IContentSite : WinRtInterface
     //@Returns("Microsoft.UI.Content.ContentLayoutDirection")
     get_LayoutDirection()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 18, "UInt32", [], [] );
         return _r;
@@ -996,6 +1076,7 @@ class Microsoft_UI_Content_IContentSite : WinRtInterface
     //@Parameters("Microsoft.UI.Content.ContentLayoutDirection")
     put_LayoutDirection(value)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var p1 = value;
         this.comPtr.invoke( 19, "void", ["UInt32"], [p1] );
@@ -1006,6 +1087,7 @@ class Microsoft_UI_Content_IContentSite : WinRtInterface
     //@Returns("Single")
     get_OverrideScale()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 20, "Single", [], [] );
         return _r;
@@ -1017,6 +1099,7 @@ class Microsoft_UI_Content_IContentSite : WinRtInterface
     //@Parameters("Single")
     put_OverrideScale(value)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var p1 = value;
         this.comPtr.invoke( 21, "void", ["Single"], [p1] );
@@ -1027,6 +1110,7 @@ class Microsoft_UI_Content_IContentSite : WinRtInterface
     //@Returns("Single")
     get_ParentScale()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 22, "Single", [], [] );
         return _r;
@@ -1038,6 +1122,7 @@ class Microsoft_UI_Content_IContentSite : WinRtInterface
     //@Parameters("Single")
     put_ParentScale(value)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var p1 = value;
         this.comPtr.invoke( 23, "void", ["Single"], [p1] );
@@ -1048,6 +1133,7 @@ class Microsoft_UI_Content_IContentSite : WinRtInterface
     //@Returns("Single")
     get_RasterizationScale()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 24, "Single", [], [] );
         return _r;
@@ -1058,6 +1144,7 @@ class Microsoft_UI_Content_IContentSite : WinRtInterface
     //@Returns("Windows.Foundation.Numerics.Vector2")
     get_RequestedSize()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 25, "Windows.Foundation.Numerics.Vector2", [], [] );
         return _r;
@@ -1068,6 +1155,7 @@ class Microsoft_UI_Content_IContentSite : WinRtInterface
     //@Returns("Boolean")
     get_ShouldApplyRasterizationScale()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 26, "Boolean", [], [] );
         return _r;
@@ -1079,6 +1167,7 @@ class Microsoft_UI_Content_IContentSite : WinRtInterface
     //@Parameters("Boolean")
     put_ShouldApplyRasterizationScale(value)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var p1 = value;
         this.comPtr.invoke( 27, "void", ["Boolean"], [p1] );
@@ -1089,6 +1178,7 @@ class Microsoft_UI_Content_IContentSite : WinRtInterface
     //@Returns("Microsoft.UI.Content.ContentSiteView")
     get_View()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = Microsoft.UI.Content.ContentSiteView(
             this.comPtr.invoke( 28, "Microsoft.UI.Content.ContentSiteView", [], [] )
@@ -1101,6 +1191,7 @@ class Microsoft_UI_Content_IContentSite : WinRtInterface
     //@Returns("Microsoft.UI.Content.ContentDeferral")
     GetIslandStateChangeDeferral()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = Microsoft.UI.Content.ContentDeferral(
             this.comPtr.invoke( 29, "Microsoft.UI.Content.ContentDeferral", [], [] )
@@ -1114,6 +1205,7 @@ class Microsoft_UI_Content_IContentSite : WinRtInterface
     //@Parameters("Windows.Foundation.TypedEventHandler`2<Microsoft.UI.Content.ContentSite,Microsoft.UI.Content.ContentSiteRequestedStateChangedEventArgs>")
     add_RequestedStateChanged(handler)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var p1 = nil; 
         if( typeof(handler) == "comptr" ) { 
@@ -1131,6 +1223,7 @@ class Microsoft_UI_Content_IContentSite : WinRtInterface
     //@Parameters("Windows.Foundation.EventRegistrationToken")
     remove_RequestedStateChanged(token)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var p1 = token;
         this.comPtr.invoke( 31, "void", ["Windows.Foundation.EventRegistrationToken"], [p1] );
@@ -1149,7 +1242,8 @@ class Microsoft_UI_Content_IContentSiteBridge : WinRtInterface
     Microsoft_UI_Content_IContentSiteBridge( comPtr )
     {
         var Microsoft = runtime.global("Microsoft");
-        this.comPtr = comPtr.queryInterface( "{FAAAB99E-A42B-549C-92DF-3B6D6E1E368B}");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{FAAAB99E-A42B-549C-92DF-3B6D6E1E368B}");
     }
 
     //@VtableIndex(6)
@@ -1157,6 +1251,7 @@ class Microsoft_UI_Content_IContentSiteBridge : WinRtInterface
     //@Returns("Microsoft.UI.Dispatching.DispatcherQueue")
     get_DispatcherQueue()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = Microsoft.UI.Dispatching.DispatcherQueue(
             this.comPtr.invoke( 6, "Microsoft.UI.Dispatching.DispatcherQueue", [], [] )
@@ -1169,6 +1264,7 @@ class Microsoft_UI_Content_IContentSiteBridge : WinRtInterface
     //@Returns("Windows.Foundation.IReference`1<Microsoft.UI.Content.ContentLayoutDirection>")
     get_LayoutDirectionOverride()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = Windows.Foundation.IReference_1_Microsoft_UI_Content_ContentLayoutDirection_(
             this.comPtr.invoke( 7, "Windows.Foundation.IReference`1<Microsoft.UI.Content.ContentLayoutDirection>", [], [] )
@@ -1182,6 +1278,7 @@ class Microsoft_UI_Content_IContentSiteBridge : WinRtInterface
     //@Parameters("Windows.Foundation.IReference`1<Microsoft.UI.Content.ContentLayoutDirection>")
     put_LayoutDirectionOverride(value)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var p1 = Windows.Foundation.IReference_1_Microsoft_UI_Content_ContentLayoutDirection_( value); 
         this.comPtr.invoke( 8, "void", ["Windows.Foundation.IReference`1<Microsoft.UI.Content.ContentLayoutDirection>"], [p1] );
@@ -1192,6 +1289,7 @@ class Microsoft_UI_Content_IContentSiteBridge : WinRtInterface
     //@Returns("Single")
     get_OverrideScale()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 9, "Single", [], [] );
         return _r;
@@ -1203,6 +1301,7 @@ class Microsoft_UI_Content_IContentSiteBridge : WinRtInterface
     //@Parameters("Single")
     put_OverrideScale(value)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var p1 = value;
         this.comPtr.invoke( 10, "void", ["Single"], [p1] );
@@ -1221,7 +1320,8 @@ class Microsoft_UI_Content_IContentSiteEnvironment : WinRtInterface
     Microsoft_UI_Content_IContentSiteEnvironment( comPtr )
     {
         var Microsoft = runtime.global("Microsoft");
-        this.comPtr = comPtr.queryInterface( "{685D085D-BE53-55D1-AEC4-BA2273D5468B}");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{685D085D-BE53-55D1-AEC4-BA2273D5468B}");
     }
 
     //@VtableIndex(6)
@@ -1229,6 +1329,7 @@ class Microsoft_UI_Content_IContentSiteEnvironment : WinRtInterface
     //@Returns("Microsoft.UI.WindowId")
     get_AppWindowId()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 6, "Microsoft.UI.WindowId", [], [] );
         return _r;
@@ -1240,6 +1341,7 @@ class Microsoft_UI_Content_IContentSiteEnvironment : WinRtInterface
     //@Parameters("Microsoft.UI.WindowId")
     put_AppWindowId(value)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var p1 = value;
         this.comPtr.invoke( 7, "void", ["Microsoft.UI.WindowId"], [p1] );
@@ -1250,6 +1352,7 @@ class Microsoft_UI_Content_IContentSiteEnvironment : WinRtInterface
     //@Returns("Microsoft.UI.DisplayId")
     get_DisplayId()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 8, "Microsoft.UI.DisplayId", [], [] );
         return _r;
@@ -1261,6 +1364,7 @@ class Microsoft_UI_Content_IContentSiteEnvironment : WinRtInterface
     //@Parameters("Microsoft.UI.DisplayId")
     put_DisplayId(value)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var p1 = value;
         this.comPtr.invoke( 9, "void", ["Microsoft.UI.DisplayId"], [p1] );
@@ -1271,6 +1375,7 @@ class Microsoft_UI_Content_IContentSiteEnvironment : WinRtInterface
     //@Returns("Microsoft.UI.Content.ContentSiteEnvironmentView")
     get_View()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = Microsoft.UI.Content.ContentSiteEnvironmentView(
             this.comPtr.invoke( 10, "Microsoft.UI.Content.ContentSiteEnvironmentView", [], [] )
@@ -1284,6 +1389,7 @@ class Microsoft_UI_Content_IContentSiteEnvironment : WinRtInterface
     //@Parameters("String")
     NotifySettingChanged(setting)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var p1 = setting;
         this.comPtr.invoke( 11, "void", ["String"], [p1] );
@@ -1302,7 +1408,8 @@ class Microsoft_UI_Content_IContentSiteEnvironmentFactory : WinRtInterface
     Microsoft_UI_Content_IContentSiteEnvironmentFactory( comPtr )
     {
         var Microsoft = runtime.global("Microsoft");
-        this.comPtr = comPtr.queryInterface( "{0BEFA998-CB15-5F16-A4A5-C0ED1674E186}");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{0BEFA998-CB15-5F16-A4A5-C0ED1674E186}");
     }
 
 
@@ -1318,7 +1425,8 @@ class Microsoft_UI_Content_IContentSiteEnvironmentView : WinRtInterface
     Microsoft_UI_Content_IContentSiteEnvironmentView( comPtr )
     {
         var Microsoft = runtime.global("Microsoft");
-        this.comPtr = comPtr.queryInterface( "{5B6FE420-0BB3-54DD-8589-786CF02E38F1}");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{5B6FE420-0BB3-54DD-8589-786CF02E38F1}");
     }
 
     //@VtableIndex(6)
@@ -1326,6 +1434,7 @@ class Microsoft_UI_Content_IContentSiteEnvironmentView : WinRtInterface
     //@Returns("Microsoft.UI.WindowId")
     get_AppWindowId()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 6, "Microsoft.UI.WindowId", [], [] );
         return _r;
@@ -1336,6 +1445,7 @@ class Microsoft_UI_Content_IContentSiteEnvironmentView : WinRtInterface
     //@Returns("Microsoft.UI.DisplayId")
     get_DisplayId()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 7, "Microsoft.UI.DisplayId", [], [] );
         return _r;
@@ -1354,7 +1464,8 @@ class Microsoft_UI_Content_IContentSiteEnvironmentViewFactory : WinRtInterface
     Microsoft_UI_Content_IContentSiteEnvironmentViewFactory( comPtr )
     {
         var Microsoft = runtime.global("Microsoft");
-        this.comPtr = comPtr.queryInterface( "{C901EDF2-F184-5A64-8D58-8CF8EFA8B678}");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{C901EDF2-F184-5A64-8D58-8CF8EFA8B678}");
     }
 
 
@@ -1370,7 +1481,8 @@ class Microsoft_UI_Content_IContentSiteFactory : WinRtInterface
     Microsoft_UI_Content_IContentSiteFactory( comPtr )
     {
         var Microsoft = runtime.global("Microsoft");
-        this.comPtr = comPtr.queryInterface( "{72FB98D5-B28A-57F1-91FA-24C014A342C1}");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{72FB98D5-B28A-57F1-91FA-24C014A342C1}");
     }
 
 
@@ -1386,7 +1498,8 @@ class Microsoft_UI_Content_IContentSiteRequestedStateChangedEventArgs : WinRtInt
     Microsoft_UI_Content_IContentSiteRequestedStateChangedEventArgs( comPtr )
     {
         var Microsoft = runtime.global("Microsoft");
-        this.comPtr = comPtr.queryInterface( "{1B55FD1D-7292-562B-B4A1-D4DE7972E684}");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{1B55FD1D-7292-562B-B4A1-D4DE7972E684}");
     }
 
     //@VtableIndex(6)
@@ -1394,6 +1507,7 @@ class Microsoft_UI_Content_IContentSiteRequestedStateChangedEventArgs : WinRtInt
     //@Returns("Boolean")
     get_DidRequestedSizeChange()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 6, "Boolean", [], [] );
         return _r;
@@ -1412,7 +1526,8 @@ class Microsoft_UI_Content_IContentSiteView : WinRtInterface
     Microsoft_UI_Content_IContentSiteView( comPtr )
     {
         var Microsoft = runtime.global("Microsoft");
-        this.comPtr = comPtr.queryInterface( "{2D5D8DD5-358E-5B05-993B-B2666D1786B3}");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{2D5D8DD5-358E-5B05-993B-B2666D1786B3}");
     }
 
     //@VtableIndex(6)
@@ -1420,6 +1535,7 @@ class Microsoft_UI_Content_IContentSiteView : WinRtInterface
     //@Returns("Windows.Foundation.Numerics.Vector2")
     get_ActualSize()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 6, "Windows.Foundation.Numerics.Vector2", [], [] );
         return _r;
@@ -1430,6 +1546,7 @@ class Microsoft_UI_Content_IContentSiteView : WinRtInterface
     //@Returns("Windows.Graphics.SizeInt32")
     get_ClientSize()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 7, "Windows.Graphics.SizeInt32", [], [] );
         return _r;
@@ -1440,6 +1557,7 @@ class Microsoft_UI_Content_IContentSiteView : WinRtInterface
     //@Returns("Microsoft.UI.Content.ContentCoordinateConverter")
     get_CoordinateConverter()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = Microsoft.UI.Content.ContentCoordinateConverter(
             this.comPtr.invoke( 8, "Microsoft.UI.Content.ContentCoordinateConverter", [], [] )
@@ -1452,6 +1570,7 @@ class Microsoft_UI_Content_IContentSiteView : WinRtInterface
     //@Returns("Microsoft.UI.Dispatching.DispatcherQueue")
     get_DispatcherQueue()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = Microsoft.UI.Dispatching.DispatcherQueue(
             this.comPtr.invoke( 9, "Microsoft.UI.Dispatching.DispatcherQueue", [], [] )
@@ -1464,6 +1583,7 @@ class Microsoft_UI_Content_IContentSiteView : WinRtInterface
     //@Returns("Microsoft.UI.Content.ContentSiteEnvironmentView")
     get_EnvironmentView()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = Microsoft.UI.Content.ContentSiteEnvironmentView(
             this.comPtr.invoke( 10, "Microsoft.UI.Content.ContentSiteEnvironmentView", [], [] )
@@ -1476,6 +1596,7 @@ class Microsoft_UI_Content_IContentSiteView : WinRtInterface
     //@Returns("Boolean")
     get_IsConnected()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 11, "Boolean", [], [] );
         return _r;
@@ -1486,6 +1607,7 @@ class Microsoft_UI_Content_IContentSiteView : WinRtInterface
     //@Returns("Boolean")
     get_IsSiteEnabled()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 12, "Boolean", [], [] );
         return _r;
@@ -1496,6 +1618,7 @@ class Microsoft_UI_Content_IContentSiteView : WinRtInterface
     //@Returns("Boolean")
     get_IsSiteVisible()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 13, "Boolean", [], [] );
         return _r;
@@ -1506,6 +1629,7 @@ class Microsoft_UI_Content_IContentSiteView : WinRtInterface
     //@Returns("Microsoft.UI.Content.ContentLayoutDirection")
     get_LayoutDirection()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 14, "UInt32", [], [] );
         return _r;
@@ -1516,6 +1640,7 @@ class Microsoft_UI_Content_IContentSiteView : WinRtInterface
     //@Returns("Single")
     get_OverrideScale()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 15, "Single", [], [] );
         return _r;
@@ -1526,6 +1651,7 @@ class Microsoft_UI_Content_IContentSiteView : WinRtInterface
     //@Returns("Single")
     get_ParentScale()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 16, "Single", [], [] );
         return _r;
@@ -1536,6 +1662,7 @@ class Microsoft_UI_Content_IContentSiteView : WinRtInterface
     //@Returns("Single")
     get_RasterizationScale()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 17, "Single", [], [] );
         return _r;
@@ -1546,6 +1673,7 @@ class Microsoft_UI_Content_IContentSiteView : WinRtInterface
     //@Returns("Windows.Foundation.Numerics.Vector2")
     get_RequestedSize()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 18, "Windows.Foundation.Numerics.Vector2", [], [] );
         return _r;
@@ -1556,6 +1684,7 @@ class Microsoft_UI_Content_IContentSiteView : WinRtInterface
     //@Returns("Boolean")
     get_ShouldApplyRasterizationScale()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 19, "Boolean", [], [] );
         return _r;
@@ -1574,7 +1703,8 @@ class Microsoft_UI_Content_IContentSiteViewFactory : WinRtInterface
     Microsoft_UI_Content_IContentSiteViewFactory( comPtr )
     {
         var Microsoft = runtime.global("Microsoft");
-        this.comPtr = comPtr.queryInterface( "{9EFD72F0-63EF-5B6A-A50C-5685BD8100F1}");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{9EFD72F0-63EF-5B6A-A50C-5685BD8100F1}");
     }
 
 
@@ -1590,7 +1720,8 @@ class Microsoft_UI_Content_IDesktopChildSiteBridge : WinRtInterface
     Microsoft_UI_Content_IDesktopChildSiteBridge( comPtr )
     {
         var Microsoft = runtime.global("Microsoft");
-        this.comPtr = comPtr.queryInterface( "{B2F2FF7B-1825-51B0-B80B-7599889C569F}");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{B2F2FF7B-1825-51B0-B80B-7599889C569F}");
     }
 
     //@VtableIndex(6)
@@ -1598,6 +1729,7 @@ class Microsoft_UI_Content_IDesktopChildSiteBridge : WinRtInterface
     //@Returns("Microsoft.UI.Content.ContentSizePolicy")
     get_ResizePolicy()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 6, "UInt32", [], [] );
         return _r;
@@ -1609,6 +1741,7 @@ class Microsoft_UI_Content_IDesktopChildSiteBridge : WinRtInterface
     //@Parameters("Microsoft.UI.Content.ContentSizePolicy")
     put_ResizePolicy(value)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var p1 = value;
         this.comPtr.invoke( 7, "void", ["UInt32"], [p1] );
@@ -1619,6 +1752,7 @@ class Microsoft_UI_Content_IDesktopChildSiteBridge : WinRtInterface
     //@Returns("Microsoft.UI.Content.ContentSiteView")
     get_SiteView()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = Microsoft.UI.Content.ContentSiteView(
             this.comPtr.invoke( 8, "Microsoft.UI.Content.ContentSiteView", [], [] )
@@ -1639,7 +1773,8 @@ class Microsoft_UI_Content_IDesktopChildSiteBridgeStatics : WinRtInterface
     Microsoft_UI_Content_IDesktopChildSiteBridgeStatics( comPtr )
     {
         var Microsoft = runtime.global("Microsoft");
-        this.comPtr = comPtr.queryInterface( "{AB6B82DE-6A47-5DE3-A860-613C8DB679AB}");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{AB6B82DE-6A47-5DE3-A860-613C8DB679AB}");
     }
 
     //@VtableIndex(6)
@@ -1648,6 +1783,7 @@ class Microsoft_UI_Content_IDesktopChildSiteBridgeStatics : WinRtInterface
     //@Parameters("Microsoft.UI.Composition.Compositor","Microsoft.UI.WindowId")
     Create(compositor,parentWindowId)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var p1 = Microsoft.UI.Composition.Compositor( compositor); 
         var p2 = parentWindowId;
@@ -1670,7 +1806,8 @@ class Microsoft_UI_Content_IDesktopSiteBridge : WinRtInterface
     Microsoft_UI_Content_IDesktopSiteBridge( comPtr )
     {
         var Microsoft = runtime.global("Microsoft");
-        this.comPtr = comPtr.queryInterface( "{F0AE8750-905C-50A2-8A12-4545C6245BB4}");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{F0AE8750-905C-50A2-8A12-4545C6245BB4}");
     }
 
     //@VtableIndex(6)
@@ -1678,6 +1815,7 @@ class Microsoft_UI_Content_IDesktopSiteBridge : WinRtInterface
     //@Returns("Boolean")
     get_IsEnabled()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 6, "Boolean", [], [] );
         return _r;
@@ -1688,6 +1826,7 @@ class Microsoft_UI_Content_IDesktopSiteBridge : WinRtInterface
     //@Returns("Boolean")
     get_IsVisible()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 7, "Boolean", [], [] );
         return _r;
@@ -1698,6 +1837,7 @@ class Microsoft_UI_Content_IDesktopSiteBridge : WinRtInterface
     //@Returns("Microsoft.UI.WindowId")
     get_WindowId()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 8, "Microsoft.UI.WindowId", [], [] );
         return _r;
@@ -1709,6 +1849,7 @@ class Microsoft_UI_Content_IDesktopSiteBridge : WinRtInterface
     //@Parameters("Microsoft.UI.Content.ContentIsland")
     Connect(content)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var p1 = Microsoft.UI.Content.ContentIsland( content); 
         this.comPtr.invoke( 9, "void", ["Microsoft.UI.Content.ContentIsland"], [p1] );
@@ -1719,6 +1860,7 @@ class Microsoft_UI_Content_IDesktopSiteBridge : WinRtInterface
     //@Returns("void")
     Disable()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         this.comPtr.invoke( 10, "void", [], [] );
     }
@@ -1728,6 +1870,7 @@ class Microsoft_UI_Content_IDesktopSiteBridge : WinRtInterface
     //@Returns("void")
     Enable()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         this.comPtr.invoke( 11, "void", [], [] );
     }
@@ -1737,6 +1880,7 @@ class Microsoft_UI_Content_IDesktopSiteBridge : WinRtInterface
     //@Returns("void")
     Hide()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         this.comPtr.invoke( 12, "void", [], [] );
     }
@@ -1747,6 +1891,7 @@ class Microsoft_UI_Content_IDesktopSiteBridge : WinRtInterface
     //@Parameters("Windows.Graphics.RectInt32")
     MoveAndResize(rect)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var p1 = rect;
         this.comPtr.invoke( 13, "void", ["Windows.Graphics.RectInt32"], [p1] );
@@ -1757,6 +1902,7 @@ class Microsoft_UI_Content_IDesktopSiteBridge : WinRtInterface
     //@Returns("void")
     MoveInZOrderAtBottom()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         this.comPtr.invoke( 14, "void", [], [] );
     }
@@ -1766,6 +1912,7 @@ class Microsoft_UI_Content_IDesktopSiteBridge : WinRtInterface
     //@Returns("void")
     MoveInZOrderAtTop()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         this.comPtr.invoke( 15, "void", [], [] );
     }
@@ -1776,6 +1923,7 @@ class Microsoft_UI_Content_IDesktopSiteBridge : WinRtInterface
     //@Parameters("Microsoft.UI.WindowId")
     MoveInZOrderBelow(windowId)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var p1 = windowId;
         this.comPtr.invoke( 16, "void", ["Microsoft.UI.WindowId"], [p1] );
@@ -1786,6 +1934,7 @@ class Microsoft_UI_Content_IDesktopSiteBridge : WinRtInterface
     //@Returns("void")
     Show()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         this.comPtr.invoke( 17, "void", [], [] );
     }
@@ -1803,7 +1952,8 @@ class Microsoft_UI_Content_IDesktopSiteBridgeFactory : WinRtInterface
     Microsoft_UI_Content_IDesktopSiteBridgeFactory( comPtr )
     {
         var Microsoft = runtime.global("Microsoft");
-        this.comPtr = comPtr.queryInterface( "{D94EE1FF-3AF1-54D0-9311-652B29C57C5B}");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{D94EE1FF-3AF1-54D0-9311-652B29C57C5B}");
     }
 
 
@@ -1819,7 +1969,8 @@ class Microsoft_UI_Content_IDesktopSiteBridgeStatics : WinRtInterface
     Microsoft_UI_Content_IDesktopSiteBridgeStatics( comPtr )
     {
         var Microsoft = runtime.global("Microsoft");
-        this.comPtr = comPtr.queryInterface( "{E0B38DAF-9CD4-50C5-83EE-C76E3CF34EBA}");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{E0B38DAF-9CD4-50C5-83EE-C76E3CF34EBA}");
     }
 
     //@VtableIndex(6)
@@ -1827,6 +1978,7 @@ class Microsoft_UI_Content_IDesktopSiteBridgeStatics : WinRtInterface
     //@Returns("Boolean")
     IsSupported()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 6, "Boolean", [], [] );
         return _r;
@@ -1847,7 +1999,8 @@ class Microsoft_UI_Content_ContentCoordinateConverter : WinRtInterface
     Microsoft_UI_Content_ContentCoordinateConverter( comPtr )
     {
         var Microsoft = runtime.global("Microsoft");
-        this.comPtr = comPtr.queryInterface( Microsoft.UI.Content.IContentCoordinateConverter.iid );
+        if(!comPtr || !int(comPtr)) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( Microsoft.UI.Content.IContentCoordinateConverter.iid );
     }
 
     // s Microsoft.UI.Content.IContentCoordinateConverterStatics
@@ -1885,7 +2038,8 @@ class Microsoft_UI_Content_ContentDeferral : WinRtInterface
     Microsoft_UI_Content_ContentDeferral( comPtr )
     {
         var Microsoft = runtime.global("Microsoft");
-        this.comPtr = comPtr.queryInterface( Microsoft.UI.Content.IContentDeferral.iid );
+        if(!comPtr || !int(comPtr)) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( Microsoft.UI.Content.IContentDeferral.iid );
     }
 
     static Create()
@@ -1897,6 +2051,7 @@ class Microsoft_UI_Content_ContentDeferral : WinRtInterface
     //@Returns("void")
     Complete()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.Content.IContentDeferral( this.comPtr );
         iface.Complete(  );
@@ -1916,7 +2071,8 @@ class Microsoft_UI_Content_ContentEnvironmentSettingChangedEventArgs : WinRtInte
     Microsoft_UI_Content_ContentEnvironmentSettingChangedEventArgs( comPtr )
     {
         var Microsoft = runtime.global("Microsoft");
-        this.comPtr = comPtr.queryInterface( Microsoft.UI.Content.IContentEnvironmentSettingChangedEventArgs.iid );
+        if(!comPtr || !int(comPtr)) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( Microsoft.UI.Content.IContentEnvironmentSettingChangedEventArgs.iid );
     }
 
     static Create()
@@ -1928,6 +2084,7 @@ class Microsoft_UI_Content_ContentEnvironmentSettingChangedEventArgs : WinRtInte
     //@Returns("String")
     get_SettingName()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.Content.IContentEnvironmentSettingChangedEventArgs( this.comPtr );
         var _r = iface.get_SettingName(  );
@@ -1948,7 +2105,8 @@ class Microsoft_UI_Content_ContentEnvironmentStateChangedEventArgs : WinRtInterf
     Microsoft_UI_Content_ContentEnvironmentStateChangedEventArgs( comPtr )
     {
         var Microsoft = runtime.global("Microsoft");
-        this.comPtr = comPtr.queryInterface( Microsoft.UI.Content.IContentEnvironmentStateChangedEventArgs.iid );
+        if(!comPtr || !int(comPtr)) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( Microsoft.UI.Content.IContentEnvironmentStateChangedEventArgs.iid );
     }
 
     static Create()
@@ -1960,6 +2118,7 @@ class Microsoft_UI_Content_ContentEnvironmentStateChangedEventArgs : WinRtInterf
     //@Returns("Boolean")
     get_DidAppWindowIdChange()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.Content.IContentEnvironmentStateChangedEventArgs( this.comPtr );
         var _r = iface.get_DidAppWindowIdChange(  );
@@ -1970,6 +2129,7 @@ class Microsoft_UI_Content_ContentEnvironmentStateChangedEventArgs : WinRtInterf
     //@Returns("Boolean")
     get_DidDisplayIdChange()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.Content.IContentEnvironmentStateChangedEventArgs( this.comPtr );
         var _r = iface.get_DidDisplayIdChange(  );
@@ -1990,7 +2150,8 @@ class Microsoft_UI_Content_ContentIsland : WinRtInterface
     Microsoft_UI_Content_ContentIsland( comPtr )
     {
         var Microsoft = runtime.global("Microsoft");
-        this.comPtr = comPtr.queryInterface( Microsoft.UI.Content.IContentIsland.iid );
+        if(!comPtr || !int(comPtr)) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( Microsoft.UI.Content.IContentIsland.iid );
     }
 
     // s Microsoft.UI.Content.IContentIslandStatics
@@ -2052,6 +2213,7 @@ class Microsoft_UI_Content_ContentIsland : WinRtInterface
     //@Parameters("Boolean")
     put_IsIslandEnabled(value)
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.Content.IContentIsland( this.comPtr );
         iface.put_IsIslandEnabled( value );
@@ -2063,6 +2225,7 @@ class Microsoft_UI_Content_ContentIsland : WinRtInterface
     //@Parameters("Object")
     put_AppData(value)
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.Content.IContentIsland( this.comPtr );
         iface.put_AppData( value );
@@ -2072,6 +2235,7 @@ class Microsoft_UI_Content_ContentIsland : WinRtInterface
     //@Returns("Microsoft.UI.Content.ContentCoordinateConverter")
     get_CoordinateConverter()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.Content.IContentIsland( this.comPtr );
         var _r = iface.get_CoordinateConverter(  );
@@ -2082,6 +2246,7 @@ class Microsoft_UI_Content_ContentIsland : WinRtInterface
     //@Returns("Windows.Foundation.Collections.IPropertySet")
     get_CustomProperties()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.Content.IContentIsland( this.comPtr );
         var _r = iface.get_CustomProperties(  );
@@ -2092,6 +2257,7 @@ class Microsoft_UI_Content_ContentIsland : WinRtInterface
     //@Returns("Microsoft.UI.Dispatching.DispatcherQueue")
     get_DispatcherQueue()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.Content.IContentIsland( this.comPtr );
         var _r = iface.get_DispatcherQueue(  );
@@ -2102,6 +2268,7 @@ class Microsoft_UI_Content_ContentIsland : WinRtInterface
     //@Returns("Microsoft.UI.Content.ContentIslandEnvironment")
     get_Environment()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.Content.IContentIsland( this.comPtr );
         var _r = iface.get_Environment(  );
@@ -2112,6 +2279,7 @@ class Microsoft_UI_Content_ContentIsland : WinRtInterface
     //@Returns("UInt64")
     get_Id()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.Content.IContentIsland( this.comPtr );
         var _r = iface.get_Id(  );
@@ -2122,6 +2290,7 @@ class Microsoft_UI_Content_ContentIsland : WinRtInterface
     //@Returns("Boolean")
     get_IsConnected()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.Content.IContentIsland( this.comPtr );
         var _r = iface.get_IsConnected(  );
@@ -2132,6 +2301,7 @@ class Microsoft_UI_Content_ContentIsland : WinRtInterface
     //@Returns("Boolean")
     get_IsHitTestVisibleWhenTransparent()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.Content.IContentIsland( this.comPtr );
         var _r = iface.get_IsHitTestVisibleWhenTransparent(  );
@@ -2144,6 +2314,7 @@ class Microsoft_UI_Content_ContentIsland : WinRtInterface
     //@Parameters("Boolean")
     put_IsHitTestVisibleWhenTransparent(value)
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.Content.IContentIsland( this.comPtr );
         iface.put_IsHitTestVisibleWhenTransparent( value );
@@ -2153,6 +2324,7 @@ class Microsoft_UI_Content_ContentIsland : WinRtInterface
     //@Returns("Boolean")
     get_IsIslandEnabled()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.Content.IContentIsland( this.comPtr );
         var _r = iface.get_IsIslandEnabled(  );
@@ -2163,6 +2335,7 @@ class Microsoft_UI_Content_ContentIsland : WinRtInterface
     //@Returns("Object")
     get_AppData()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.Content.IContentIsland( this.comPtr );
         var _r = iface.get_AppData(  );
@@ -2173,6 +2346,7 @@ class Microsoft_UI_Content_ContentIsland : WinRtInterface
     //@Returns("Boolean")
     get_IsIslandVisible()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.Content.IContentIsland( this.comPtr );
         var _r = iface.get_IsIslandVisible(  );
@@ -2185,6 +2359,7 @@ class Microsoft_UI_Content_ContentIsland : WinRtInterface
     //@Parameters("Boolean")
     put_IsIslandVisible(value)
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.Content.IContentIsland( this.comPtr );
         iface.put_IsIslandVisible( value );
@@ -2194,6 +2369,7 @@ class Microsoft_UI_Content_ContentIsland : WinRtInterface
     //@Returns("Boolean")
     get_IsSiteEnabled()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.Content.IContentIsland( this.comPtr );
         var _r = iface.get_IsSiteEnabled(  );
@@ -2204,6 +2380,7 @@ class Microsoft_UI_Content_ContentIsland : WinRtInterface
     //@Returns("Boolean")
     get_IsSiteVisible()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.Content.IContentIsland( this.comPtr );
         var _r = iface.get_IsSiteVisible(  );
@@ -2214,6 +2391,7 @@ class Microsoft_UI_Content_ContentIsland : WinRtInterface
     //@Returns("Microsoft.UI.Content.ContentLayoutDirection")
     get_LayoutDirection()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.Content.IContentIsland( this.comPtr );
         var _r = iface.get_LayoutDirection(  );
@@ -2224,6 +2402,7 @@ class Microsoft_UI_Content_ContentIsland : WinRtInterface
     //@Returns("Single")
     get_RasterizationScale()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.Content.IContentIsland( this.comPtr );
         var _r = iface.get_RasterizationScale(  );
@@ -2234,6 +2413,7 @@ class Microsoft_UI_Content_ContentIsland : WinRtInterface
     //@Returns("Object")
     GetAutomationHostProvider()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.Content.IContentIsland( this.comPtr );
         var _r = iface.GetAutomationHostProvider(  );
@@ -2244,6 +2424,7 @@ class Microsoft_UI_Content_ContentIsland : WinRtInterface
     //@Returns("Microsoft.UI.Content.ContentDeferral")
     GetStateChangeDeferral()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.Content.IContentIsland( this.comPtr );
         var _r = iface.GetStateChangeDeferral(  );
@@ -2256,6 +2437,7 @@ class Microsoft_UI_Content_ContentIsland : WinRtInterface
     //@Parameters("Windows.Foundation.Numerics.Vector2")
     RequestSize(size)
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.Content.IContentIsland( this.comPtr );
         iface.RequestSize( size );
@@ -2267,6 +2449,7 @@ class Microsoft_UI_Content_ContentIsland : WinRtInterface
     //@Parameters("Windows.Foundation.TypedEventHandler`2<Microsoft.UI.Content.ContentIsland,Microsoft.UI.Content.ContentIslandAutomationProviderRequestedEventArgs>")
     add_AutomationProviderRequested(handler)
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.Content.IContentIsland( this.comPtr );
         var _r = iface.add_AutomationProviderRequested( handler );
@@ -2279,6 +2462,7 @@ class Microsoft_UI_Content_ContentIsland : WinRtInterface
     //@Parameters("Windows.Foundation.EventRegistrationToken")
     remove_AutomationProviderRequested(token)
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.Content.IContentIsland( this.comPtr );
         iface.remove_AutomationProviderRequested( token );
@@ -2290,6 +2474,7 @@ class Microsoft_UI_Content_ContentIsland : WinRtInterface
     //@Parameters("Windows.Foundation.TypedEventHandler`2<Microsoft.UI.Content.ContentIsland,Microsoft.UI.Content.ContentIslandStateChangedEventArgs>")
     add_StateChanged(handler)
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.Content.IContentIsland( this.comPtr );
         var _r = iface.add_StateChanged( handler );
@@ -2302,6 +2487,7 @@ class Microsoft_UI_Content_ContentIsland : WinRtInterface
     //@Parameters("Windows.Foundation.EventRegistrationToken")
     remove_StateChanged(token)
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.Content.IContentIsland( this.comPtr );
         iface.remove_StateChanged( token );
@@ -2311,6 +2497,7 @@ class Microsoft_UI_Content_ContentIsland : WinRtInterface
     //@Returns("Windows.Foundation.Numerics.Vector2")
     get_ActualSize()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.Content.IContentIsland( this.comPtr );
         var _r = iface.get_ActualSize(  );
@@ -2321,6 +2508,7 @@ class Microsoft_UI_Content_ContentIsland : WinRtInterface
     //@Returns("void")
     Close()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var iface = Windows.Foundation.IClosable( this.comPtr );
         iface.Close(  );
@@ -2330,6 +2518,7 @@ class Microsoft_UI_Content_ContentIsland : WinRtInterface
     //@Returns("Boolean")
     get_IsClosed()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.IClosableNotifier( this.comPtr );
         var _r = iface.get_IsClosed(  );
@@ -2342,6 +2531,7 @@ class Microsoft_UI_Content_ContentIsland : WinRtInterface
     //@Parameters("Microsoft.UI.ClosableNotifierHandler")
     add_Closed(handler)
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.IClosableNotifier( this.comPtr );
         var _r = iface.add_Closed( handler );
@@ -2354,6 +2544,7 @@ class Microsoft_UI_Content_ContentIsland : WinRtInterface
     //@Parameters("Windows.Foundation.EventRegistrationToken")
     remove_Closed(token)
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.IClosableNotifier( this.comPtr );
         iface.remove_Closed( token );
@@ -2365,6 +2556,7 @@ class Microsoft_UI_Content_ContentIsland : WinRtInterface
     //@Parameters("Microsoft.UI.ClosableNotifierHandler")
     add_FrameworkClosed(handler)
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.IClosableNotifier( this.comPtr );
         var _r = iface.add_FrameworkClosed( handler );
@@ -2377,6 +2569,7 @@ class Microsoft_UI_Content_ContentIsland : WinRtInterface
     //@Parameters("Windows.Foundation.EventRegistrationToken")
     remove_FrameworkClosed(token)
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.IClosableNotifier( this.comPtr );
         iface.remove_FrameworkClosed( token );
@@ -2386,6 +2579,7 @@ class Microsoft_UI_Content_ContentIsland : WinRtInterface
     //@Returns("Windows.UI.Composition.CompositionBrush")
     get_SystemBackdrop()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.Composition.ICompositionSupportsSystemBackdrop( this.comPtr );
         var _r = iface.get_SystemBackdrop(  );
@@ -2398,6 +2592,7 @@ class Microsoft_UI_Content_ContentIsland : WinRtInterface
     //@Parameters("Windows.UI.Composition.CompositionBrush")
     put_SystemBackdrop(value)
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.Composition.ICompositionSupportsSystemBackdrop( this.comPtr );
         iface.put_SystemBackdrop( value );
@@ -2417,7 +2612,8 @@ class Microsoft_UI_Content_ContentIslandAutomationProviderRequestedEventArgs : W
     Microsoft_UI_Content_ContentIslandAutomationProviderRequestedEventArgs( comPtr )
     {
         var Microsoft = runtime.global("Microsoft");
-        this.comPtr = comPtr.queryInterface( Microsoft.UI.Content.IContentIslandAutomationProviderRequestedEventArgs.iid );
+        if(!comPtr || !int(comPtr)) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( Microsoft.UI.Content.IContentIslandAutomationProviderRequestedEventArgs.iid );
     }
 
     static Create()
@@ -2431,6 +2627,7 @@ class Microsoft_UI_Content_ContentIslandAutomationProviderRequestedEventArgs : W
     //@Parameters("Object")
     put_AutomationProvider(value)
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.Content.IContentIslandAutomationProviderRequestedEventArgs( this.comPtr );
         iface.put_AutomationProvider( value );
@@ -2440,6 +2637,7 @@ class Microsoft_UI_Content_ContentIslandAutomationProviderRequestedEventArgs : W
     //@Returns("Object")
     get_AutomationProvider()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.Content.IContentIslandAutomationProviderRequestedEventArgs( this.comPtr );
         var _r = iface.get_AutomationProvider(  );
@@ -2450,6 +2648,7 @@ class Microsoft_UI_Content_ContentIslandAutomationProviderRequestedEventArgs : W
     //@Returns("Boolean")
     get_Handled()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.Content.IContentIslandAutomationProviderRequestedEventArgs( this.comPtr );
         var _r = iface.get_Handled(  );
@@ -2462,6 +2661,7 @@ class Microsoft_UI_Content_ContentIslandAutomationProviderRequestedEventArgs : W
     //@Parameters("Boolean")
     put_Handled(value)
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.Content.IContentIslandAutomationProviderRequestedEventArgs( this.comPtr );
         iface.put_Handled( value );
@@ -2481,7 +2681,8 @@ class Microsoft_UI_Content_ContentIslandEnvironment : WinRtInterface
     Microsoft_UI_Content_ContentIslandEnvironment( comPtr )
     {
         var Microsoft = runtime.global("Microsoft");
-        this.comPtr = comPtr.queryInterface( Microsoft.UI.Content.IContentIslandEnvironment.iid );
+        if(!comPtr || !int(comPtr)) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( Microsoft.UI.Content.IContentIslandEnvironment.iid );
     }
 
     static Create()
@@ -2495,6 +2696,7 @@ class Microsoft_UI_Content_ContentIslandEnvironment : WinRtInterface
     //@Parameters("Windows.Foundation.EventRegistrationToken")
     remove_SettingChanged(token)
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.Content.IContentIslandEnvironment( this.comPtr );
         iface.remove_SettingChanged( token );
@@ -2504,6 +2706,7 @@ class Microsoft_UI_Content_ContentIslandEnvironment : WinRtInterface
     //@Returns("Microsoft.UI.DisplayId")
     get_DisplayId()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.Content.IContentIslandEnvironment( this.comPtr );
         var _r = iface.get_DisplayId(  );
@@ -2516,6 +2719,7 @@ class Microsoft_UI_Content_ContentIslandEnvironment : WinRtInterface
     //@Parameters("Windows.Foundation.TypedEventHandler`2<Microsoft.UI.Content.ContentIslandEnvironment,Microsoft.UI.Content.ContentEnvironmentSettingChangedEventArgs>")
     add_SettingChanged(handler)
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.Content.IContentIslandEnvironment( this.comPtr );
         var _r = iface.add_SettingChanged( handler );
@@ -2526,6 +2730,7 @@ class Microsoft_UI_Content_ContentIslandEnvironment : WinRtInterface
     //@Returns("Microsoft.UI.WindowId")
     get_AppWindowId()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.Content.IContentIslandEnvironment( this.comPtr );
         var _r = iface.get_AppWindowId(  );
@@ -2538,6 +2743,7 @@ class Microsoft_UI_Content_ContentIslandEnvironment : WinRtInterface
     //@Parameters("Windows.Foundation.TypedEventHandler`2<Microsoft.UI.Content.ContentIslandEnvironment,Microsoft.UI.Content.ContentEnvironmentStateChangedEventArgs>")
     add_StateChanged(handler)
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.Content.IContentIslandEnvironment( this.comPtr );
         var _r = iface.add_StateChanged( handler );
@@ -2550,6 +2756,7 @@ class Microsoft_UI_Content_ContentIslandEnvironment : WinRtInterface
     //@Parameters("Windows.Foundation.EventRegistrationToken")
     remove_StateChanged(token)
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.Content.IContentIslandEnvironment( this.comPtr );
         iface.remove_StateChanged( token );
@@ -2569,7 +2776,8 @@ class Microsoft_UI_Content_ContentIslandStateChangedEventArgs : WinRtInterface
     Microsoft_UI_Content_ContentIslandStateChangedEventArgs( comPtr )
     {
         var Microsoft = runtime.global("Microsoft");
-        this.comPtr = comPtr.queryInterface( Microsoft.UI.Content.IContentIslandStateChangedEventArgs.iid );
+        if(!comPtr || !int(comPtr)) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( Microsoft.UI.Content.IContentIslandStateChangedEventArgs.iid );
     }
 
     static Create()
@@ -2581,6 +2789,7 @@ class Microsoft_UI_Content_ContentIslandStateChangedEventArgs : WinRtInterface
     //@Returns("Boolean")
     get_DidActualSizeChange()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.Content.IContentIslandStateChangedEventArgs( this.comPtr );
         var _r = iface.get_DidActualSizeChange(  );
@@ -2591,6 +2800,7 @@ class Microsoft_UI_Content_ContentIslandStateChangedEventArgs : WinRtInterface
     //@Returns("Boolean")
     get_DidSiteEnabledChange()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.Content.IContentIslandStateChangedEventArgs( this.comPtr );
         var _r = iface.get_DidSiteEnabledChange(  );
@@ -2601,6 +2811,7 @@ class Microsoft_UI_Content_ContentIslandStateChangedEventArgs : WinRtInterface
     //@Returns("Boolean")
     get_DidSiteVisibleChange()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.Content.IContentIslandStateChangedEventArgs( this.comPtr );
         var _r = iface.get_DidSiteVisibleChange(  );
@@ -2611,6 +2822,7 @@ class Microsoft_UI_Content_ContentIslandStateChangedEventArgs : WinRtInterface
     //@Returns("Boolean")
     get_DidLayoutDirectionChange()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.Content.IContentIslandStateChangedEventArgs( this.comPtr );
         var _r = iface.get_DidLayoutDirectionChange(  );
@@ -2621,6 +2833,7 @@ class Microsoft_UI_Content_ContentIslandStateChangedEventArgs : WinRtInterface
     //@Returns("Boolean")
     get_DidRasterizationScaleChange()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.Content.IContentIslandStateChangedEventArgs( this.comPtr );
         var _r = iface.get_DidRasterizationScaleChange(  );
@@ -2641,7 +2854,8 @@ class Microsoft_UI_Content_ContentSite : WinRtInterface
     Microsoft_UI_Content_ContentSite( comPtr )
     {
         var Microsoft = runtime.global("Microsoft");
-        this.comPtr = comPtr.queryInterface( Microsoft.UI.Content.IContentSite.iid );
+        if(!comPtr || !int(comPtr)) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( Microsoft.UI.Content.IContentSite.iid );
     }
 
     static Create()
@@ -2653,6 +2867,7 @@ class Microsoft_UI_Content_ContentSite : WinRtInterface
     //@Returns("Boolean")
     get_IsSiteEnabled()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.Content.IContentSite( this.comPtr );
         var _r = iface.get_IsSiteEnabled(  );
@@ -2665,6 +2880,7 @@ class Microsoft_UI_Content_ContentSite : WinRtInterface
     //@Parameters("Windows.Foundation.Numerics.Vector2")
     put_ActualSize(value)
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.Content.IContentSite( this.comPtr );
         iface.put_ActualSize( value );
@@ -2674,6 +2890,7 @@ class Microsoft_UI_Content_ContentSite : WinRtInterface
     //@Returns("Windows.Graphics.SizeInt32")
     get_ClientSize()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.Content.IContentSite( this.comPtr );
         var _r = iface.get_ClientSize(  );
@@ -2686,6 +2903,7 @@ class Microsoft_UI_Content_ContentSite : WinRtInterface
     //@Parameters("Windows.Graphics.SizeInt32")
     put_ClientSize(value)
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.Content.IContentSite( this.comPtr );
         iface.put_ClientSize( value );
@@ -2695,6 +2913,7 @@ class Microsoft_UI_Content_ContentSite : WinRtInterface
     //@Returns("Microsoft.UI.Content.ContentCoordinateConverter")
     get_CoordinateConverter()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.Content.IContentSite( this.comPtr );
         var _r = iface.get_CoordinateConverter(  );
@@ -2705,6 +2924,7 @@ class Microsoft_UI_Content_ContentSite : WinRtInterface
     //@Returns("Windows.Foundation.Numerics.Vector2")
     get_ActualSize()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.Content.IContentSite( this.comPtr );
         var _r = iface.get_ActualSize(  );
@@ -2715,6 +2935,7 @@ class Microsoft_UI_Content_ContentSite : WinRtInterface
     //@Returns("Microsoft.UI.Content.ContentSiteEnvironment")
     get_Environment()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.Content.IContentSite( this.comPtr );
         var _r = iface.get_Environment(  );
@@ -2725,6 +2946,7 @@ class Microsoft_UI_Content_ContentSite : WinRtInterface
     //@Returns("Boolean")
     get_IsConnected()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.Content.IContentSite( this.comPtr );
         var _r = iface.get_IsConnected(  );
@@ -2735,6 +2957,7 @@ class Microsoft_UI_Content_ContentSite : WinRtInterface
     //@Returns("Microsoft.UI.Dispatching.DispatcherQueue")
     get_DispatcherQueue()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.Content.IContentSite( this.comPtr );
         var _r = iface.get_DispatcherQueue(  );
@@ -2747,6 +2970,7 @@ class Microsoft_UI_Content_ContentSite : WinRtInterface
     //@Parameters("Boolean")
     put_IsSiteEnabled(value)
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.Content.IContentSite( this.comPtr );
         iface.put_IsSiteEnabled( value );
@@ -2756,6 +2980,7 @@ class Microsoft_UI_Content_ContentSite : WinRtInterface
     //@Returns("Boolean")
     get_IsSiteVisible()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.Content.IContentSite( this.comPtr );
         var _r = iface.get_IsSiteVisible(  );
@@ -2768,6 +2993,7 @@ class Microsoft_UI_Content_ContentSite : WinRtInterface
     //@Parameters("Boolean")
     put_IsSiteVisible(value)
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.Content.IContentSite( this.comPtr );
         iface.put_IsSiteVisible( value );
@@ -2777,6 +3003,7 @@ class Microsoft_UI_Content_ContentSite : WinRtInterface
     //@Returns("Microsoft.UI.Content.ContentLayoutDirection")
     get_LayoutDirection()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.Content.IContentSite( this.comPtr );
         var _r = iface.get_LayoutDirection(  );
@@ -2789,6 +3016,7 @@ class Microsoft_UI_Content_ContentSite : WinRtInterface
     //@Parameters("Microsoft.UI.Content.ContentLayoutDirection")
     put_LayoutDirection(value)
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.Content.IContentSite( this.comPtr );
         iface.put_LayoutDirection( value );
@@ -2798,6 +3026,7 @@ class Microsoft_UI_Content_ContentSite : WinRtInterface
     //@Returns("Single")
     get_OverrideScale()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.Content.IContentSite( this.comPtr );
         var _r = iface.get_OverrideScale(  );
@@ -2810,6 +3039,7 @@ class Microsoft_UI_Content_ContentSite : WinRtInterface
     //@Parameters("Single")
     put_OverrideScale(value)
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.Content.IContentSite( this.comPtr );
         iface.put_OverrideScale( value );
@@ -2819,6 +3049,7 @@ class Microsoft_UI_Content_ContentSite : WinRtInterface
     //@Returns("Single")
     get_ParentScale()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.Content.IContentSite( this.comPtr );
         var _r = iface.get_ParentScale(  );
@@ -2831,6 +3062,7 @@ class Microsoft_UI_Content_ContentSite : WinRtInterface
     //@Parameters("Single")
     put_ParentScale(value)
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.Content.IContentSite( this.comPtr );
         iface.put_ParentScale( value );
@@ -2840,6 +3072,7 @@ class Microsoft_UI_Content_ContentSite : WinRtInterface
     //@Returns("Single")
     get_RasterizationScale()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.Content.IContentSite( this.comPtr );
         var _r = iface.get_RasterizationScale(  );
@@ -2850,6 +3083,7 @@ class Microsoft_UI_Content_ContentSite : WinRtInterface
     //@Returns("Windows.Foundation.Numerics.Vector2")
     get_RequestedSize()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.Content.IContentSite( this.comPtr );
         var _r = iface.get_RequestedSize(  );
@@ -2860,6 +3094,7 @@ class Microsoft_UI_Content_ContentSite : WinRtInterface
     //@Returns("Boolean")
     get_ShouldApplyRasterizationScale()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.Content.IContentSite( this.comPtr );
         var _r = iface.get_ShouldApplyRasterizationScale(  );
@@ -2872,6 +3107,7 @@ class Microsoft_UI_Content_ContentSite : WinRtInterface
     //@Parameters("Boolean")
     put_ShouldApplyRasterizationScale(value)
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.Content.IContentSite( this.comPtr );
         iface.put_ShouldApplyRasterizationScale( value );
@@ -2881,6 +3117,7 @@ class Microsoft_UI_Content_ContentSite : WinRtInterface
     //@Returns("Microsoft.UI.Content.ContentSiteView")
     get_View()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.Content.IContentSite( this.comPtr );
         var _r = iface.get_View(  );
@@ -2891,6 +3128,7 @@ class Microsoft_UI_Content_ContentSite : WinRtInterface
     //@Returns("Microsoft.UI.Content.ContentDeferral")
     GetIslandStateChangeDeferral()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.Content.IContentSite( this.comPtr );
         var _r = iface.GetIslandStateChangeDeferral(  );
@@ -2903,6 +3141,7 @@ class Microsoft_UI_Content_ContentSite : WinRtInterface
     //@Parameters("Windows.Foundation.TypedEventHandler`2<Microsoft.UI.Content.ContentSite,Microsoft.UI.Content.ContentSiteRequestedStateChangedEventArgs>")
     add_RequestedStateChanged(handler)
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.Content.IContentSite( this.comPtr );
         var _r = iface.add_RequestedStateChanged( handler );
@@ -2915,6 +3154,7 @@ class Microsoft_UI_Content_ContentSite : WinRtInterface
     //@Parameters("Windows.Foundation.EventRegistrationToken")
     remove_RequestedStateChanged(token)
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.Content.IContentSite( this.comPtr );
         iface.remove_RequestedStateChanged( token );
@@ -2924,6 +3164,7 @@ class Microsoft_UI_Content_ContentSite : WinRtInterface
     //@Returns("void")
     Close()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var iface = Windows.Foundation.IClosable( this.comPtr );
         iface.Close(  );
@@ -2933,6 +3174,7 @@ class Microsoft_UI_Content_ContentSite : WinRtInterface
     //@Returns("Boolean")
     get_IsClosed()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.IClosableNotifier( this.comPtr );
         var _r = iface.get_IsClosed(  );
@@ -2945,6 +3187,7 @@ class Microsoft_UI_Content_ContentSite : WinRtInterface
     //@Parameters("Microsoft.UI.ClosableNotifierHandler")
     add_Closed(handler)
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.IClosableNotifier( this.comPtr );
         var _r = iface.add_Closed( handler );
@@ -2957,6 +3200,7 @@ class Microsoft_UI_Content_ContentSite : WinRtInterface
     //@Parameters("Windows.Foundation.EventRegistrationToken")
     remove_Closed(token)
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.IClosableNotifier( this.comPtr );
         iface.remove_Closed( token );
@@ -2968,6 +3212,7 @@ class Microsoft_UI_Content_ContentSite : WinRtInterface
     //@Parameters("Microsoft.UI.ClosableNotifierHandler")
     add_FrameworkClosed(handler)
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.IClosableNotifier( this.comPtr );
         var _r = iface.add_FrameworkClosed( handler );
@@ -2980,6 +3225,7 @@ class Microsoft_UI_Content_ContentSite : WinRtInterface
     //@Parameters("Windows.Foundation.EventRegistrationToken")
     remove_FrameworkClosed(token)
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.IClosableNotifier( this.comPtr );
         iface.remove_FrameworkClosed( token );
@@ -2999,7 +3245,8 @@ class Microsoft_UI_Content_ContentSiteEnvironment : WinRtInterface
     Microsoft_UI_Content_ContentSiteEnvironment( comPtr )
     {
         var Microsoft = runtime.global("Microsoft");
-        this.comPtr = comPtr.queryInterface( Microsoft.UI.Content.IContentSiteEnvironment.iid );
+        if(!comPtr || !int(comPtr)) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( Microsoft.UI.Content.IContentSiteEnvironment.iid );
     }
 
     static Create()
@@ -3013,6 +3260,7 @@ class Microsoft_UI_Content_ContentSiteEnvironment : WinRtInterface
     //@Parameters("Microsoft.UI.DisplayId")
     put_DisplayId(value)
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.Content.IContentSiteEnvironment( this.comPtr );
         iface.put_DisplayId( value );
@@ -3022,6 +3270,7 @@ class Microsoft_UI_Content_ContentSiteEnvironment : WinRtInterface
     //@Returns("Microsoft.UI.DisplayId")
     get_DisplayId()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.Content.IContentSiteEnvironment( this.comPtr );
         var _r = iface.get_DisplayId(  );
@@ -3034,6 +3283,7 @@ class Microsoft_UI_Content_ContentSiteEnvironment : WinRtInterface
     //@Parameters("Microsoft.UI.WindowId")
     put_AppWindowId(value)
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.Content.IContentSiteEnvironment( this.comPtr );
         iface.put_AppWindowId( value );
@@ -3043,6 +3293,7 @@ class Microsoft_UI_Content_ContentSiteEnvironment : WinRtInterface
     //@Returns("Microsoft.UI.Content.ContentSiteEnvironmentView")
     get_View()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.Content.IContentSiteEnvironment( this.comPtr );
         var _r = iface.get_View(  );
@@ -3055,6 +3306,7 @@ class Microsoft_UI_Content_ContentSiteEnvironment : WinRtInterface
     //@Parameters("String")
     NotifySettingChanged(setting)
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.Content.IContentSiteEnvironment( this.comPtr );
         iface.NotifySettingChanged( setting );
@@ -3064,6 +3316,7 @@ class Microsoft_UI_Content_ContentSiteEnvironment : WinRtInterface
     //@Returns("Microsoft.UI.WindowId")
     get_AppWindowId()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.Content.IContentSiteEnvironment( this.comPtr );
         var _r = iface.get_AppWindowId(  );
@@ -3084,7 +3337,8 @@ class Microsoft_UI_Content_ContentSiteEnvironmentView : WinRtInterface
     Microsoft_UI_Content_ContentSiteEnvironmentView( comPtr )
     {
         var Microsoft = runtime.global("Microsoft");
-        this.comPtr = comPtr.queryInterface( Microsoft.UI.Content.IContentSiteEnvironmentView.iid );
+        if(!comPtr || !int(comPtr)) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( Microsoft.UI.Content.IContentSiteEnvironmentView.iid );
     }
 
     static Create()
@@ -3096,6 +3350,7 @@ class Microsoft_UI_Content_ContentSiteEnvironmentView : WinRtInterface
     //@Returns("Microsoft.UI.WindowId")
     get_AppWindowId()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.Content.IContentSiteEnvironmentView( this.comPtr );
         var _r = iface.get_AppWindowId(  );
@@ -3106,6 +3361,7 @@ class Microsoft_UI_Content_ContentSiteEnvironmentView : WinRtInterface
     //@Returns("Microsoft.UI.DisplayId")
     get_DisplayId()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.Content.IContentSiteEnvironmentView( this.comPtr );
         var _r = iface.get_DisplayId(  );
@@ -3126,7 +3382,8 @@ class Microsoft_UI_Content_ContentSiteRequestedStateChangedEventArgs : WinRtInte
     Microsoft_UI_Content_ContentSiteRequestedStateChangedEventArgs( comPtr )
     {
         var Microsoft = runtime.global("Microsoft");
-        this.comPtr = comPtr.queryInterface( Microsoft.UI.Content.IContentSiteRequestedStateChangedEventArgs.iid );
+        if(!comPtr || !int(comPtr)) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( Microsoft.UI.Content.IContentSiteRequestedStateChangedEventArgs.iid );
     }
 
     static Create()
@@ -3138,6 +3395,7 @@ class Microsoft_UI_Content_ContentSiteRequestedStateChangedEventArgs : WinRtInte
     //@Returns("Boolean")
     get_DidRequestedSizeChange()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.Content.IContentSiteRequestedStateChangedEventArgs( this.comPtr );
         var _r = iface.get_DidRequestedSizeChange(  );
@@ -3158,7 +3416,8 @@ class Microsoft_UI_Content_ContentSiteView : WinRtInterface
     Microsoft_UI_Content_ContentSiteView( comPtr )
     {
         var Microsoft = runtime.global("Microsoft");
-        this.comPtr = comPtr.queryInterface( Microsoft.UI.Content.IContentSiteView.iid );
+        if(!comPtr || !int(comPtr)) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( Microsoft.UI.Content.IContentSiteView.iid );
     }
 
     static Create()
@@ -3170,6 +3429,7 @@ class Microsoft_UI_Content_ContentSiteView : WinRtInterface
     //@Returns("Microsoft.UI.Content.ContentCoordinateConverter")
     get_CoordinateConverter()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.Content.IContentSiteView( this.comPtr );
         var _r = iface.get_CoordinateConverter(  );
@@ -3180,6 +3440,7 @@ class Microsoft_UI_Content_ContentSiteView : WinRtInterface
     //@Returns("Windows.Graphics.SizeInt32")
     get_ClientSize()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.Content.IContentSiteView( this.comPtr );
         var _r = iface.get_ClientSize(  );
@@ -3190,6 +3451,7 @@ class Microsoft_UI_Content_ContentSiteView : WinRtInterface
     //@Returns("Windows.Foundation.Numerics.Vector2")
     get_ActualSize()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.Content.IContentSiteView( this.comPtr );
         var _r = iface.get_ActualSize(  );
@@ -3200,6 +3462,7 @@ class Microsoft_UI_Content_ContentSiteView : WinRtInterface
     //@Returns("Microsoft.UI.Dispatching.DispatcherQueue")
     get_DispatcherQueue()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.Content.IContentSiteView( this.comPtr );
         var _r = iface.get_DispatcherQueue(  );
@@ -3210,6 +3473,7 @@ class Microsoft_UI_Content_ContentSiteView : WinRtInterface
     //@Returns("Microsoft.UI.Content.ContentSiteEnvironmentView")
     get_EnvironmentView()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.Content.IContentSiteView( this.comPtr );
         var _r = iface.get_EnvironmentView(  );
@@ -3220,6 +3484,7 @@ class Microsoft_UI_Content_ContentSiteView : WinRtInterface
     //@Returns("Boolean")
     get_IsConnected()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.Content.IContentSiteView( this.comPtr );
         var _r = iface.get_IsConnected(  );
@@ -3230,6 +3495,7 @@ class Microsoft_UI_Content_ContentSiteView : WinRtInterface
     //@Returns("Boolean")
     get_IsSiteEnabled()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.Content.IContentSiteView( this.comPtr );
         var _r = iface.get_IsSiteEnabled(  );
@@ -3240,6 +3506,7 @@ class Microsoft_UI_Content_ContentSiteView : WinRtInterface
     //@Returns("Boolean")
     get_IsSiteVisible()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.Content.IContentSiteView( this.comPtr );
         var _r = iface.get_IsSiteVisible(  );
@@ -3250,6 +3517,7 @@ class Microsoft_UI_Content_ContentSiteView : WinRtInterface
     //@Returns("Microsoft.UI.Content.ContentLayoutDirection")
     get_LayoutDirection()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.Content.IContentSiteView( this.comPtr );
         var _r = iface.get_LayoutDirection(  );
@@ -3260,6 +3528,7 @@ class Microsoft_UI_Content_ContentSiteView : WinRtInterface
     //@Returns("Single")
     get_OverrideScale()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.Content.IContentSiteView( this.comPtr );
         var _r = iface.get_OverrideScale(  );
@@ -3270,6 +3539,7 @@ class Microsoft_UI_Content_ContentSiteView : WinRtInterface
     //@Returns("Single")
     get_ParentScale()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.Content.IContentSiteView( this.comPtr );
         var _r = iface.get_ParentScale(  );
@@ -3280,6 +3550,7 @@ class Microsoft_UI_Content_ContentSiteView : WinRtInterface
     //@Returns("Single")
     get_RasterizationScale()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.Content.IContentSiteView( this.comPtr );
         var _r = iface.get_RasterizationScale(  );
@@ -3290,6 +3561,7 @@ class Microsoft_UI_Content_ContentSiteView : WinRtInterface
     //@Returns("Windows.Foundation.Numerics.Vector2")
     get_RequestedSize()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.Content.IContentSiteView( this.comPtr );
         var _r = iface.get_RequestedSize(  );
@@ -3300,6 +3572,7 @@ class Microsoft_UI_Content_ContentSiteView : WinRtInterface
     //@Returns("Boolean")
     get_ShouldApplyRasterizationScale()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.Content.IContentSiteView( this.comPtr );
         var _r = iface.get_ShouldApplyRasterizationScale(  );
@@ -3320,7 +3593,8 @@ class Microsoft_UI_Content_DesktopSiteBridge : WinRtInterface
     Microsoft_UI_Content_DesktopSiteBridge( comPtr )
     {
         var Microsoft = runtime.global("Microsoft");
-        this.comPtr = comPtr.queryInterface( Microsoft.UI.Content.IDesktopSiteBridge.iid );
+        if(!comPtr || !int(comPtr)) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( Microsoft.UI.Content.IDesktopSiteBridge.iid );
     }
 
     // s Microsoft.UI.Content.IDesktopSiteBridgeStatics
@@ -3347,6 +3621,7 @@ class Microsoft_UI_Content_DesktopSiteBridge : WinRtInterface
     //@Returns("void")
     Close()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var iface = Windows.Foundation.IClosable( this.comPtr );
         iface.Close(  );
@@ -3358,6 +3633,7 @@ class Microsoft_UI_Content_DesktopSiteBridge : WinRtInterface
     //@Parameters("Microsoft.UI.WindowId")
     MoveInZOrderBelow(windowId)
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.Content.IDesktopSiteBridge( this.comPtr );
         iface.MoveInZOrderBelow( windowId );
@@ -3367,6 +3643,7 @@ class Microsoft_UI_Content_DesktopSiteBridge : WinRtInterface
     //@Returns("void")
     Show()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.Content.IDesktopSiteBridge( this.comPtr );
         iface.Show(  );
@@ -3378,6 +3655,7 @@ class Microsoft_UI_Content_DesktopSiteBridge : WinRtInterface
     //@Parameters("Single")
     put_OverrideScale(value)
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.Content.IContentSiteBridge( this.comPtr );
         iface.put_OverrideScale( value );
@@ -3387,6 +3665,7 @@ class Microsoft_UI_Content_DesktopSiteBridge : WinRtInterface
     //@Returns("Boolean")
     get_IsEnabled()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.Content.IDesktopSiteBridge( this.comPtr );
         var _r = iface.get_IsEnabled(  );
@@ -3397,6 +3676,7 @@ class Microsoft_UI_Content_DesktopSiteBridge : WinRtInterface
     //@Returns("Microsoft.UI.WindowId")
     get_WindowId()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.Content.IDesktopSiteBridge( this.comPtr );
         var _r = iface.get_WindowId(  );
@@ -3409,6 +3689,7 @@ class Microsoft_UI_Content_DesktopSiteBridge : WinRtInterface
     //@Parameters("Microsoft.UI.Content.ContentIsland")
     Connect(content)
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.Content.IDesktopSiteBridge( this.comPtr );
         iface.Connect( content );
@@ -3418,6 +3699,7 @@ class Microsoft_UI_Content_DesktopSiteBridge : WinRtInterface
     //@Returns("void")
     Disable()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.Content.IDesktopSiteBridge( this.comPtr );
         iface.Disable(  );
@@ -3427,6 +3709,7 @@ class Microsoft_UI_Content_DesktopSiteBridge : WinRtInterface
     //@Returns("void")
     Enable()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.Content.IDesktopSiteBridge( this.comPtr );
         iface.Enable(  );
@@ -3436,6 +3719,7 @@ class Microsoft_UI_Content_DesktopSiteBridge : WinRtInterface
     //@Returns("void")
     Hide()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.Content.IDesktopSiteBridge( this.comPtr );
         iface.Hide(  );
@@ -3447,6 +3731,7 @@ class Microsoft_UI_Content_DesktopSiteBridge : WinRtInterface
     //@Parameters("Windows.Graphics.RectInt32")
     MoveAndResize(rect)
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.Content.IDesktopSiteBridge( this.comPtr );
         iface.MoveAndResize( rect );
@@ -3456,6 +3741,7 @@ class Microsoft_UI_Content_DesktopSiteBridge : WinRtInterface
     //@Returns("void")
     MoveInZOrderAtBottom()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.Content.IDesktopSiteBridge( this.comPtr );
         iface.MoveInZOrderAtBottom(  );
@@ -3465,6 +3751,7 @@ class Microsoft_UI_Content_DesktopSiteBridge : WinRtInterface
     //@Returns("void")
     MoveInZOrderAtTop()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.Content.IDesktopSiteBridge( this.comPtr );
         iface.MoveInZOrderAtTop(  );
@@ -3474,6 +3761,7 @@ class Microsoft_UI_Content_DesktopSiteBridge : WinRtInterface
     //@Returns("Boolean")
     get_IsVisible()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.Content.IDesktopSiteBridge( this.comPtr );
         var _r = iface.get_IsVisible(  );
@@ -3484,6 +3772,7 @@ class Microsoft_UI_Content_DesktopSiteBridge : WinRtInterface
     //@Returns("Boolean")
     get_IsClosed()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.IClosableNotifier( this.comPtr );
         var _r = iface.get_IsClosed(  );
@@ -3496,6 +3785,7 @@ class Microsoft_UI_Content_DesktopSiteBridge : WinRtInterface
     //@Parameters("Microsoft.UI.ClosableNotifierHandler")
     add_Closed(handler)
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.IClosableNotifier( this.comPtr );
         var _r = iface.add_Closed( handler );
@@ -3508,6 +3798,7 @@ class Microsoft_UI_Content_DesktopSiteBridge : WinRtInterface
     //@Parameters("Windows.Foundation.EventRegistrationToken")
     remove_Closed(token)
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.IClosableNotifier( this.comPtr );
         iface.remove_Closed( token );
@@ -3519,6 +3810,7 @@ class Microsoft_UI_Content_DesktopSiteBridge : WinRtInterface
     //@Parameters("Microsoft.UI.ClosableNotifierHandler")
     add_FrameworkClosed(handler)
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.IClosableNotifier( this.comPtr );
         var _r = iface.add_FrameworkClosed( handler );
@@ -3531,6 +3823,7 @@ class Microsoft_UI_Content_DesktopSiteBridge : WinRtInterface
     //@Parameters("Windows.Foundation.EventRegistrationToken")
     remove_FrameworkClosed(token)
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.IClosableNotifier( this.comPtr );
         iface.remove_FrameworkClosed( token );
@@ -3540,6 +3833,7 @@ class Microsoft_UI_Content_DesktopSiteBridge : WinRtInterface
     //@Returns("Microsoft.UI.Dispatching.DispatcherQueue")
     get_DispatcherQueue()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.Content.IContentSiteBridge( this.comPtr );
         var _r = iface.get_DispatcherQueue(  );
@@ -3550,6 +3844,7 @@ class Microsoft_UI_Content_DesktopSiteBridge : WinRtInterface
     //@Returns("Windows.Foundation.IReference`1<Microsoft.UI.Content.ContentLayoutDirection>")
     get_LayoutDirectionOverride()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.Content.IContentSiteBridge( this.comPtr );
         var _r = iface.get_LayoutDirectionOverride(  );
@@ -3562,6 +3857,7 @@ class Microsoft_UI_Content_DesktopSiteBridge : WinRtInterface
     //@Parameters("Windows.Foundation.IReference`1<Microsoft.UI.Content.ContentLayoutDirection>")
     put_LayoutDirectionOverride(value)
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.Content.IContentSiteBridge( this.comPtr );
         iface.put_LayoutDirectionOverride( value );
@@ -3571,6 +3867,7 @@ class Microsoft_UI_Content_DesktopSiteBridge : WinRtInterface
     //@Returns("Single")
     get_OverrideScale()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.Content.IContentSiteBridge( this.comPtr );
         var _r = iface.get_OverrideScale(  );
@@ -3592,7 +3889,8 @@ class Microsoft_UI_Content_DesktopChildSiteBridge : WinRtInterface
     Microsoft_UI_Content_DesktopChildSiteBridge( comPtr )
     {
         var Microsoft = runtime.global("Microsoft");
-        this.comPtr = comPtr.queryInterface( Microsoft.UI.Content.IDesktopChildSiteBridge.iid );
+        if(!comPtr || !int(comPtr)) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( Microsoft.UI.Content.IDesktopChildSiteBridge.iid );
     }
 
     // s Microsoft.UI.Content.IDesktopChildSiteBridgeStatics
@@ -3620,6 +3918,7 @@ class Microsoft_UI_Content_DesktopChildSiteBridge : WinRtInterface
     //@Returns("Microsoft.UI.Content.ContentSizePolicy")
     get_ResizePolicy()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.Content.IDesktopChildSiteBridge( this.comPtr );
         var _r = iface.get_ResizePolicy(  );
@@ -3630,6 +3929,7 @@ class Microsoft_UI_Content_DesktopChildSiteBridge : WinRtInterface
     //@Returns("Microsoft.UI.Content.ContentSiteView")
     get_SiteView()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.Content.IDesktopChildSiteBridge( this.comPtr );
         var _r = iface.get_SiteView(  );
@@ -3642,6 +3942,7 @@ class Microsoft_UI_Content_DesktopChildSiteBridge : WinRtInterface
     //@Parameters("Microsoft.UI.Content.ContentSizePolicy")
     put_ResizePolicy(value)
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.Content.IDesktopChildSiteBridge( this.comPtr );
         iface.put_ResizePolicy( value );
@@ -3659,13 +3960,15 @@ class Windows_Foundation_IReference_1_Microsoft_UI_Content_ContentLayoutDirectio
 {
     Windows_Foundation_IReference_1_Microsoft_UI_Content_ContentLayoutDirection_( comPtr )
     {
-        this.comPtr = comPtr.queryInterface( "{76E53EED-3539-540B-8D51-4206BCA63F5F}");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{76E53EED-3539-540B-8D51-4206BCA63F5F}");
     }
 
     //@VtableIndex(6)
     //@Returns("T0")
     get_Value()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke(6, "UInt32", [], [] );
         return _r;

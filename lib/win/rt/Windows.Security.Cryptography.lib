@@ -23,7 +23,8 @@ class Windows_Security_Cryptography_ICryptographicBufferStatics : WinRtInterface
     Windows_Security_Cryptography_ICryptographicBufferStatics( comPtr )
     {
         var Windows = runtime.global("Windows");
-        this.comPtr = comPtr.queryInterface( "{320B7E22-3CB0-4CDF-8663-1D28910065EB}");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{320B7E22-3CB0-4CDF-8663-1D28910065EB}");
     }
 
     //@VtableIndex(6)
@@ -32,6 +33,7 @@ class Windows_Security_Cryptography_ICryptographicBufferStatics : WinRtInterface
     //@Parameters("Windows.Storage.Streams.IBuffer","Windows.Storage.Streams.IBuffer")
     Compare(object1,object2)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = Windows.Storage.Streams.IBuffer( object1); 
         var p2 = Windows.Storage.Streams.IBuffer( object2); 
@@ -45,6 +47,7 @@ class Windows_Security_Cryptography_ICryptographicBufferStatics : WinRtInterface
     //@Parameters("UInt32")
     GenerateRandom(length)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = length;
         var _r = Windows.Storage.Streams.IBuffer(
@@ -58,6 +61,7 @@ class Windows_Security_Cryptography_ICryptographicBufferStatics : WinRtInterface
     //@Returns("UInt32")
     GenerateRandomNumber()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 8, "UInt32", [], [] );
         return _r;
@@ -69,6 +73,7 @@ class Windows_Security_Cryptography_ICryptographicBufferStatics : WinRtInterface
     //@Parameters("String")
     DecodeFromHexString(value)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = value;
         var _r = Windows.Storage.Streams.IBuffer(
@@ -83,6 +88,7 @@ class Windows_Security_Cryptography_ICryptographicBufferStatics : WinRtInterface
     //@Parameters("Windows.Storage.Streams.IBuffer")
     EncodeToHexString(buffer)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = Windows.Storage.Streams.IBuffer( buffer); 
         var _r = this.comPtr.invoke( 12, "String", ["Windows.Storage.Streams.IBuffer"], [p1] );
@@ -95,6 +101,7 @@ class Windows_Security_Cryptography_ICryptographicBufferStatics : WinRtInterface
     //@Parameters("String")
     DecodeFromBase64String(value)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = value;
         var _r = Windows.Storage.Streams.IBuffer(
@@ -109,6 +116,7 @@ class Windows_Security_Cryptography_ICryptographicBufferStatics : WinRtInterface
     //@Parameters("Windows.Storage.Streams.IBuffer")
     EncodeToBase64String(buffer)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = Windows.Storage.Streams.IBuffer( buffer); 
         var _r = this.comPtr.invoke( 14, "String", ["Windows.Storage.Streams.IBuffer"], [p1] );
@@ -121,6 +129,7 @@ class Windows_Security_Cryptography_ICryptographicBufferStatics : WinRtInterface
     //@Parameters("String","Windows.Security.Cryptography.BinaryStringEncoding")
     ConvertStringToBinary(value,encoding)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = value;
         var p2 = encoding;
@@ -136,6 +145,7 @@ class Windows_Security_Cryptography_ICryptographicBufferStatics : WinRtInterface
     //@Parameters("Windows.Security.Cryptography.BinaryStringEncoding","Windows.Storage.Streams.IBuffer")
     ConvertBinaryToString(encoding,buffer)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = encoding;
         var p2 = Windows.Storage.Streams.IBuffer( buffer); 

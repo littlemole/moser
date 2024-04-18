@@ -471,6 +471,7 @@ inline void print_class_method(std::string name, const TypeDef& typeDef, const M
     auto nsr = nsRoot(ns);
 
     std::cout << "    {" << std::endl;
+    std::cout << "        if (!this.comPtr || !int(this.comPtr)) return nil;" << std::endl;
     std::cout << "        var " + nsr + " = runtime.global(\"" + nsr + "\");" << std::endl;
     std::cout << "        var iface = " << ungen(impl) << "( this.comPtr );" << std::endl;
     make_promise_cb(asyncMode);
@@ -563,6 +564,7 @@ inline void print_iface_method(std::string fullname, const MethodDef& methodDef,
 
     print_signature(name, sig, params, asyncMode != async_mode::NONE);
     std::cout << "    {" << std::endl;
+    std::cout << "        if(!this.comPtr || !int(this.comPtr)) return nil;" << std::endl;
 
     std::string nsr = nsRoot(fullname);
     std::cout << "        var " + nsr + " = runtime.global(\"" + nsr + "\");" << std::endl;
@@ -749,6 +751,7 @@ inline void print_gen_iface_method(std::string fullname, const MethodDef& method
     async_mode asyncMode = is_async(retType);
     print_signature(name, sig, params, asyncMode != async_mode::NONE);
     std::cout << "    {" << std::endl;
+    std::cout << "        if(!this.comPtr || !int(this.comPtr)) return nil;" << std::endl;
 
     std::string nsr = nsRoot(fullname);
     std::cout << "        var " + nsr + " = runtime.global(\"" + nsr + "\");" << std::endl;
@@ -941,7 +944,8 @@ void write_iface(TypeDef& typeDef)
     std::cout << "    " << flatname << "( comPtr )" << std::endl;
     std::cout << "    {" << std::endl;
     std::cout << "        var " + nsr + " = runtime.global(\"" + nsr + "\");" << std::endl;
-    std::cout << "        this.comPtr = comPtr.queryInterface( \"" << guid_2_string(guid) << "\");" << std::endl;
+    std::cout << "        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }" << std::endl;
+    std::cout << "        else this.comPtr = comPtr.queryInterface( \"" << guid_2_string(guid) << "\");" << std::endl;
     std::cout << "    }" << std::endl << std::endl;
 
     write_iface_methods(typeDef, vtable_start_index);
@@ -1319,7 +1323,8 @@ inline void write_gen_iface(TypeDef& typeDef, GUID guid, std::vector<std::string
     std::cout << " : WinRtInterface " << std::endl << "{" << std::endl;
     std::cout << "    " << flatname << "( comPtr )" << std::endl;
     std::cout << "    {" << std::endl;
-    std::cout << "        this.comPtr = comPtr.queryInterface( \"" << guid_2_string(guid) << "\");" << std::endl;
+    std::cout << "        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }" << std::endl;
+    std::cout << "        else this.comPtr = comPtr.queryInterface( \"" << guid_2_string(guid) << "\");" << std::endl;
     std::cout << "    }" << std::endl << std::endl;
 
     write_gen_iface_methods(typeDef, vtable_start_index, args);
@@ -1549,7 +1554,8 @@ inline void write_class(TypeDef& typeDef)
     else
     {
         std::cout << "        var " + nsr + " = runtime.global(\"" + nsr + "\");" << std::endl;
-        std::cout << "    " << "    this.comPtr = comPtr.queryInterface( " << ungen(defIface) << ".iid );" << std::endl;
+        std::cout << "        if(!comPtr || !int(comPtr)) { this.comPtr = comPtr; }" << std::endl;
+        std::cout << "        else this.comPtr = comPtr.queryInterface( " << ungen(defIface) << ".iid );" << std::endl;
     }
     std::cout << "    }" << std::endl << std::endl;
     //write_methods(typeDef, -1);

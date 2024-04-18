@@ -29,7 +29,8 @@ class Windows_System_Threading_IThreadPoolStatics : WinRtInterface
     Windows_System_Threading_IThreadPoolStatics( comPtr )
     {
         var Windows = runtime.global("Windows");
-        this.comPtr = comPtr.queryInterface( "{B6BF67DD-84BD-44F8-AC1C-93EBCB9DBA91}");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{B6BF67DD-84BD-44F8-AC1C-93EBCB9DBA91}");
     }
 
     //@VtableIndex(6)
@@ -38,6 +39,7 @@ class Windows_System_Threading_IThreadPoolStatics : WinRtInterface
     //@Parameters("Windows.System.Threading.WorkItemHandler")
     RunAsync(handler,cb)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = nil; 
         if( typeof(handler) == "comptr" ) { 
@@ -54,6 +56,7 @@ class Windows_System_Threading_IThreadPoolStatics : WinRtInterface
     //@Parameters("Windows.System.Threading.WorkItemHandler","Windows.System.Threading.WorkItemPriority")
     RunWithPriorityAsync(handler,priority,cb)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = nil; 
         if( typeof(handler) == "comptr" ) { 
@@ -71,6 +74,7 @@ class Windows_System_Threading_IThreadPoolStatics : WinRtInterface
     //@Parameters("Windows.System.Threading.WorkItemHandler","Windows.System.Threading.WorkItemPriority","Windows.System.Threading.WorkItemOptions")
     RunWithPriorityAndOptionsAsync(handler,priority,options,cb)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = nil; 
         if( typeof(handler) == "comptr" ) { 
@@ -96,7 +100,8 @@ class Windows_System_Threading_IThreadPoolTimer : WinRtInterface
     Windows_System_Threading_IThreadPoolTimer( comPtr )
     {
         var Windows = runtime.global("Windows");
-        this.comPtr = comPtr.queryInterface( "{594EBE78-55EA-4A88-A50D-3402AE1F9CF2}");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{594EBE78-55EA-4A88-A50D-3402AE1F9CF2}");
     }
 
     //@VtableIndex(6)
@@ -104,6 +109,7 @@ class Windows_System_Threading_IThreadPoolTimer : WinRtInterface
     //@Returns("Windows.Foundation.TimeSpan")
     get_Period()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 6, "Windows.Foundation.TimeSpan", [], [] );
         return _r;
@@ -114,6 +120,7 @@ class Windows_System_Threading_IThreadPoolTimer : WinRtInterface
     //@Returns("Windows.Foundation.TimeSpan")
     get_Delay()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 7, "Windows.Foundation.TimeSpan", [], [] );
         return _r;
@@ -124,6 +131,7 @@ class Windows_System_Threading_IThreadPoolTimer : WinRtInterface
     //@Returns("void")
     Cancel()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         this.comPtr.invoke( 8, "void", [], [] );
     }
@@ -141,7 +149,8 @@ class Windows_System_Threading_IThreadPoolTimerStatics : WinRtInterface
     Windows_System_Threading_IThreadPoolTimerStatics( comPtr )
     {
         var Windows = runtime.global("Windows");
-        this.comPtr = comPtr.queryInterface( "{1A8A9D02-E482-461B-B8C7-8EFAD1CCE590}");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{1A8A9D02-E482-461B-B8C7-8EFAD1CCE590}");
     }
 
     //@VtableIndex(6)
@@ -150,6 +159,7 @@ class Windows_System_Threading_IThreadPoolTimerStatics : WinRtInterface
     //@Parameters("Windows.System.Threading.TimerElapsedHandler","Windows.Foundation.TimeSpan")
     CreatePeriodicTimer(handler,period)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = nil; 
         if( typeof(handler) == "comptr" ) { 
@@ -170,6 +180,7 @@ class Windows_System_Threading_IThreadPoolTimerStatics : WinRtInterface
     //@Parameters("Windows.System.Threading.TimerElapsedHandler","Windows.Foundation.TimeSpan")
     CreateTimer(handler,delay)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = nil; 
         if( typeof(handler) == "comptr" ) { 
@@ -190,6 +201,7 @@ class Windows_System_Threading_IThreadPoolTimerStatics : WinRtInterface
     //@Parameters("Windows.System.Threading.TimerElapsedHandler","Windows.Foundation.TimeSpan","Windows.System.Threading.TimerDestroyedHandler")
     CreatePeriodicTimerWithCompletion(handler,period,destroyed)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = nil; 
         if( typeof(handler) == "comptr" ) { 
@@ -216,6 +228,7 @@ class Windows_System_Threading_IThreadPoolTimerStatics : WinRtInterface
     //@Parameters("Windows.System.Threading.TimerElapsedHandler","Windows.Foundation.TimeSpan","Windows.System.Threading.TimerDestroyedHandler")
     CreateTimerWithCompletion(handler,delay,destroyed)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = nil; 
         if( typeof(handler) == "comptr" ) { 
@@ -348,7 +361,8 @@ class Windows_System_Threading_ThreadPoolTimer : WinRtInterface
     Windows_System_Threading_ThreadPoolTimer( comPtr )
     {
         var Windows = runtime.global("Windows");
-        this.comPtr = comPtr.queryInterface( Windows.System.Threading.IThreadPoolTimer.iid );
+        if(!comPtr || !int(comPtr)) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( Windows.System.Threading.IThreadPoolTimer.iid );
     }
 
     // s Windows.System.Threading.IThreadPoolTimerStatics
@@ -421,6 +435,7 @@ class Windows_System_Threading_ThreadPoolTimer : WinRtInterface
     //@Returns("Windows.Foundation.TimeSpan")
     get_Period()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.System.Threading.IThreadPoolTimer( this.comPtr );
         var _r = iface.get_Period(  );
@@ -431,6 +446,7 @@ class Windows_System_Threading_ThreadPoolTimer : WinRtInterface
     //@Returns("Windows.Foundation.TimeSpan")
     get_Delay()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.System.Threading.IThreadPoolTimer( this.comPtr );
         var _r = iface.get_Delay(  );
@@ -441,6 +457,7 @@ class Windows_System_Threading_ThreadPoolTimer : WinRtInterface
     //@Returns("void")
     Cancel()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.System.Threading.IThreadPoolTimer( this.comPtr );
         iface.Cancel(  );

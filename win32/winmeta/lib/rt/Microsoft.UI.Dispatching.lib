@@ -30,7 +30,8 @@ class Microsoft_UI_Dispatching_IDispatcherExitDeferral : WinRtInterface
     Microsoft_UI_Dispatching_IDispatcherExitDeferral( comPtr )
     {
         var Microsoft = runtime.global("Microsoft");
-        this.comPtr = comPtr.queryInterface( "{910B5AAC-3310-563E-8418-F3005579729E}");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{910B5AAC-3310-563E-8418-F3005579729E}");
     }
 
     //@VtableIndex(6)
@@ -38,6 +39,7 @@ class Microsoft_UI_Dispatching_IDispatcherExitDeferral : WinRtInterface
     //@Returns("void")
     Complete()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         this.comPtr.invoke( 6, "void", [], [] );
     }
@@ -55,7 +57,8 @@ class Microsoft_UI_Dispatching_IDispatcherQueue : WinRtInterface
     Microsoft_UI_Dispatching_IDispatcherQueue( comPtr )
     {
         var Microsoft = runtime.global("Microsoft");
-        this.comPtr = comPtr.queryInterface( "{F6EBF8FA-BE1C-5BF6-A467-73DA28738AE8}");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{F6EBF8FA-BE1C-5BF6-A467-73DA28738AE8}");
     }
 
     //@VtableIndex(6)
@@ -63,6 +66,7 @@ class Microsoft_UI_Dispatching_IDispatcherQueue : WinRtInterface
     //@Returns("Microsoft.UI.Dispatching.DispatcherQueueTimer")
     CreateTimer()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = Microsoft.UI.Dispatching.DispatcherQueueTimer(
             this.comPtr.invoke( 6, "Microsoft.UI.Dispatching.DispatcherQueueTimer", [], [] )
@@ -76,6 +80,7 @@ class Microsoft_UI_Dispatching_IDispatcherQueue : WinRtInterface
     //@Parameters("Microsoft.UI.Dispatching.DispatcherQueueHandler")
     TryEnqueue(callback)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var p1 = nil; 
         if( typeof(callback) == "comptr" ) { 
@@ -93,6 +98,7 @@ class Microsoft_UI_Dispatching_IDispatcherQueue : WinRtInterface
     //@Parameters("Microsoft.UI.Dispatching.DispatcherQueuePriority","Microsoft.UI.Dispatching.DispatcherQueueHandler")
     TryEnqueueWithPriority(priority,callback)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var p1 = priority;
         var p2 = nil; 
@@ -111,6 +117,7 @@ class Microsoft_UI_Dispatching_IDispatcherQueue : WinRtInterface
     //@Parameters("Windows.Foundation.TypedEventHandler`2<Microsoft.UI.Dispatching.DispatcherQueue,Microsoft.UI.Dispatching.DispatcherQueueShutdownStartingEventArgs>")
     add_ShutdownStarting(handler)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var p1 = nil; 
         if( typeof(handler) == "comptr" ) { 
@@ -128,6 +135,7 @@ class Microsoft_UI_Dispatching_IDispatcherQueue : WinRtInterface
     //@Parameters("Windows.Foundation.EventRegistrationToken")
     remove_ShutdownStarting(token)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var p1 = token;
         this.comPtr.invoke( 10, "void", ["Windows.Foundation.EventRegistrationToken"], [p1] );
@@ -139,6 +147,7 @@ class Microsoft_UI_Dispatching_IDispatcherQueue : WinRtInterface
     //@Parameters("Windows.Foundation.TypedEventHandler`2<Microsoft.UI.Dispatching.DispatcherQueue,Object>")
     add_ShutdownCompleted(handler)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var p1 = nil; 
         if( typeof(handler) == "comptr" ) { 
@@ -156,6 +165,7 @@ class Microsoft_UI_Dispatching_IDispatcherQueue : WinRtInterface
     //@Parameters("Windows.Foundation.EventRegistrationToken")
     remove_ShutdownCompleted(token)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var p1 = token;
         this.comPtr.invoke( 12, "void", ["Windows.Foundation.EventRegistrationToken"], [p1] );
@@ -174,7 +184,8 @@ class Microsoft_UI_Dispatching_IDispatcherQueue2 : WinRtInterface
     Microsoft_UI_Dispatching_IDispatcherQueue2( comPtr )
     {
         var Microsoft = runtime.global("Microsoft");
-        this.comPtr = comPtr.queryInterface( "{0CF48751-F1AC-59B8-BA52-6CE7A1444D6F}");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{0CF48751-F1AC-59B8-BA52-6CE7A1444D6F}");
     }
 
     //@VtableIndex(6)
@@ -182,6 +193,7 @@ class Microsoft_UI_Dispatching_IDispatcherQueue2 : WinRtInterface
     //@Returns("Boolean")
     get_HasThreadAccess()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 6, "Boolean", [], [] );
         return _r;
@@ -200,7 +212,8 @@ class Microsoft_UI_Dispatching_IDispatcherQueue3 : WinRtInterface
     Microsoft_UI_Dispatching_IDispatcherQueue3( comPtr )
     {
         var Microsoft = runtime.global("Microsoft");
-        this.comPtr = comPtr.queryInterface( "{14A7A175-5C27-5A35-B079-21960CF764A8}");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{14A7A175-5C27-5A35-B079-21960CF764A8}");
     }
 
     //@VtableIndex(6)
@@ -208,6 +221,7 @@ class Microsoft_UI_Dispatching_IDispatcherQueue3 : WinRtInterface
     //@Returns("void")
     EnqueueEventLoopExit()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         this.comPtr.invoke( 6, "void", [], [] );
     }
@@ -217,6 +231,7 @@ class Microsoft_UI_Dispatching_IDispatcherQueue3 : WinRtInterface
     //@Returns("void")
     EnsureSystemDispatcherQueue()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         this.comPtr.invoke( 7, "void", [], [] );
     }
@@ -226,6 +241,7 @@ class Microsoft_UI_Dispatching_IDispatcherQueue3 : WinRtInterface
     //@Returns("void")
     RunEventLoop()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         this.comPtr.invoke( 8, "void", [], [] );
     }
@@ -236,6 +252,7 @@ class Microsoft_UI_Dispatching_IDispatcherQueue3 : WinRtInterface
     //@Parameters("Microsoft.UI.Dispatching.DispatcherRunOptions","Microsoft.UI.Dispatching.DispatcherExitDeferral")
     RunEventLoopWithOptions(options,deferral)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var p1 = options;
         var p2 = Microsoft.UI.Dispatching.DispatcherExitDeferral( deferral); 
@@ -248,6 +265,7 @@ class Microsoft_UI_Dispatching_IDispatcherQueue3 : WinRtInterface
     //@Parameters("Windows.Foundation.TypedEventHandler`2<Microsoft.UI.Dispatching.DispatcherQueue,Microsoft.UI.Dispatching.DispatcherQueueShutdownStartingEventArgs>")
     add_FrameworkShutdownStarting(handler)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var p1 = nil; 
         if( typeof(handler) == "comptr" ) { 
@@ -265,6 +283,7 @@ class Microsoft_UI_Dispatching_IDispatcherQueue3 : WinRtInterface
     //@Parameters("Windows.Foundation.EventRegistrationToken")
     remove_FrameworkShutdownStarting(token)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var p1 = token;
         this.comPtr.invoke( 11, "void", ["Windows.Foundation.EventRegistrationToken"], [p1] );
@@ -276,6 +295,7 @@ class Microsoft_UI_Dispatching_IDispatcherQueue3 : WinRtInterface
     //@Parameters("Windows.Foundation.TypedEventHandler`2<Microsoft.UI.Dispatching.DispatcherQueue,Object>")
     add_FrameworkShutdownCompleted(handler)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var p1 = nil; 
         if( typeof(handler) == "comptr" ) { 
@@ -293,6 +313,7 @@ class Microsoft_UI_Dispatching_IDispatcherQueue3 : WinRtInterface
     //@Parameters("Windows.Foundation.EventRegistrationToken")
     remove_FrameworkShutdownCompleted(token)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var p1 = token;
         this.comPtr.invoke( 13, "void", ["Windows.Foundation.EventRegistrationToken"], [p1] );
@@ -311,7 +332,8 @@ class Microsoft_UI_Dispatching_IDispatcherQueueController : WinRtInterface
     Microsoft_UI_Dispatching_IDispatcherQueueController( comPtr )
     {
         var Microsoft = runtime.global("Microsoft");
-        this.comPtr = comPtr.queryInterface( "{BCE8178D-2183-584C-9E5B-F9366F6AE484}");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{BCE8178D-2183-584C-9E5B-F9366F6AE484}");
     }
 
     //@VtableIndex(6)
@@ -319,6 +341,7 @@ class Microsoft_UI_Dispatching_IDispatcherQueueController : WinRtInterface
     //@Returns("Microsoft.UI.Dispatching.DispatcherQueue")
     get_DispatcherQueue()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = Microsoft.UI.Dispatching.DispatcherQueue(
             this.comPtr.invoke( 6, "Microsoft.UI.Dispatching.DispatcherQueue", [], [] )
@@ -331,6 +354,7 @@ class Microsoft_UI_Dispatching_IDispatcherQueueController : WinRtInterface
     //@Returns("Windows.Foundation.IAsyncAction")
     ShutdownQueueAsync(cb)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         this.comPtr.asyncAction( 7, "Windows.Foundation.IAsyncAction", Windows.Foundation.IAsyncAction.handler_iid, [], [] , cb );
     }
@@ -348,7 +372,8 @@ class Microsoft_UI_Dispatching_IDispatcherQueueController2 : WinRtInterface
     Microsoft_UI_Dispatching_IDispatcherQueueController2( comPtr )
     {
         var Microsoft = runtime.global("Microsoft");
-        this.comPtr = comPtr.queryInterface( "{4C68EE2A-1CB1-5591-A3A2-9B590B8F8B9A}");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{4C68EE2A-1CB1-5591-A3A2-9B590B8F8B9A}");
     }
 
     //@VtableIndex(6)
@@ -356,6 +381,7 @@ class Microsoft_UI_Dispatching_IDispatcherQueueController2 : WinRtInterface
     //@Returns("void")
     ShutdownQueue()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         this.comPtr.invoke( 6, "void", [], [] );
     }
@@ -373,7 +399,8 @@ class Microsoft_UI_Dispatching_IDispatcherQueueControllerStatics : WinRtInterfac
     Microsoft_UI_Dispatching_IDispatcherQueueControllerStatics( comPtr )
     {
         var Microsoft = runtime.global("Microsoft");
-        this.comPtr = comPtr.queryInterface( "{F18D6145-722B-593D-BCF2-A61E713F0037}");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{F18D6145-722B-593D-BCF2-A61E713F0037}");
     }
 
     //@VtableIndex(6)
@@ -381,6 +408,7 @@ class Microsoft_UI_Dispatching_IDispatcherQueueControllerStatics : WinRtInterfac
     //@Returns("Microsoft.UI.Dispatching.DispatcherQueueController")
     CreateOnDedicatedThread()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = Microsoft.UI.Dispatching.DispatcherQueueController(
             this.comPtr.invoke( 6, "Microsoft.UI.Dispatching.DispatcherQueueController", [], [] )
@@ -393,6 +421,7 @@ class Microsoft_UI_Dispatching_IDispatcherQueueControllerStatics : WinRtInterfac
     //@Returns("Microsoft.UI.Dispatching.DispatcherQueueController")
     CreateOnCurrentThread()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = Microsoft.UI.Dispatching.DispatcherQueueController(
             this.comPtr.invoke( 7, "Microsoft.UI.Dispatching.DispatcherQueueController", [], [] )
@@ -413,7 +442,8 @@ class Microsoft_UI_Dispatching_IDispatcherQueueShutdownStartingEventArgs : WinRt
     Microsoft_UI_Dispatching_IDispatcherQueueShutdownStartingEventArgs( comPtr )
     {
         var Microsoft = runtime.global("Microsoft");
-        this.comPtr = comPtr.queryInterface( "{32519BE5-072B-5660-A70E-8835C9B8157D}");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{32519BE5-072B-5660-A70E-8835C9B8157D}");
     }
 
     //@VtableIndex(6)
@@ -421,6 +451,7 @@ class Microsoft_UI_Dispatching_IDispatcherQueueShutdownStartingEventArgs : WinRt
     //@Returns("Windows.Foundation.Deferral")
     GetDeferral()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = Windows.Foundation.Deferral(
             this.comPtr.invoke( 6, "Windows.Foundation.Deferral", [], [] )
@@ -441,7 +472,8 @@ class Microsoft_UI_Dispatching_IDispatcherQueueStatics : WinRtInterface
     Microsoft_UI_Dispatching_IDispatcherQueueStatics( comPtr )
     {
         var Microsoft = runtime.global("Microsoft");
-        this.comPtr = comPtr.queryInterface( "{CD3382EA-A455-5124-B63A-CA40D34CA23C}");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{CD3382EA-A455-5124-B63A-CA40D34CA23C}");
     }
 
     //@VtableIndex(6)
@@ -449,6 +481,7 @@ class Microsoft_UI_Dispatching_IDispatcherQueueStatics : WinRtInterface
     //@Returns("Microsoft.UI.Dispatching.DispatcherQueue")
     GetForCurrentThread()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = Microsoft.UI.Dispatching.DispatcherQueue(
             this.comPtr.invoke( 6, "Microsoft.UI.Dispatching.DispatcherQueue", [], [] )
@@ -469,7 +502,8 @@ class Microsoft_UI_Dispatching_IDispatcherQueueTimer : WinRtInterface
     Microsoft_UI_Dispatching_IDispatcherQueueTimer( comPtr )
     {
         var Microsoft = runtime.global("Microsoft");
-        this.comPtr = comPtr.queryInterface( "{AD4D63FD-88FE-541F-AC11-BF2DC1ED2CE5}");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{AD4D63FD-88FE-541F-AC11-BF2DC1ED2CE5}");
     }
 
     //@VtableIndex(6)
@@ -477,6 +511,7 @@ class Microsoft_UI_Dispatching_IDispatcherQueueTimer : WinRtInterface
     //@Returns("Windows.Foundation.TimeSpan")
     get_Interval()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 6, "Windows.Foundation.TimeSpan", [], [] );
         return _r;
@@ -488,6 +523,7 @@ class Microsoft_UI_Dispatching_IDispatcherQueueTimer : WinRtInterface
     //@Parameters("Windows.Foundation.TimeSpan")
     put_Interval(value)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var p1 = value;
         this.comPtr.invoke( 7, "void", ["Windows.Foundation.TimeSpan"], [p1] );
@@ -498,6 +534,7 @@ class Microsoft_UI_Dispatching_IDispatcherQueueTimer : WinRtInterface
     //@Returns("Boolean")
     get_IsRunning()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 8, "Boolean", [], [] );
         return _r;
@@ -508,6 +545,7 @@ class Microsoft_UI_Dispatching_IDispatcherQueueTimer : WinRtInterface
     //@Returns("Boolean")
     get_IsRepeating()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 9, "Boolean", [], [] );
         return _r;
@@ -519,6 +557,7 @@ class Microsoft_UI_Dispatching_IDispatcherQueueTimer : WinRtInterface
     //@Parameters("Boolean")
     put_IsRepeating(value)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var p1 = value;
         this.comPtr.invoke( 10, "void", ["Boolean"], [p1] );
@@ -529,6 +568,7 @@ class Microsoft_UI_Dispatching_IDispatcherQueueTimer : WinRtInterface
     //@Returns("void")
     Start()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         this.comPtr.invoke( 11, "void", [], [] );
     }
@@ -538,6 +578,7 @@ class Microsoft_UI_Dispatching_IDispatcherQueueTimer : WinRtInterface
     //@Returns("void")
     Stop()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         this.comPtr.invoke( 12, "void", [], [] );
     }
@@ -548,6 +589,7 @@ class Microsoft_UI_Dispatching_IDispatcherQueueTimer : WinRtInterface
     //@Parameters("Windows.Foundation.TypedEventHandler`2<Microsoft.UI.Dispatching.DispatcherQueueTimer,Object>")
     add_Tick(handler)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var p1 = nil; 
         if( typeof(handler) == "comptr" ) { 
@@ -565,6 +607,7 @@ class Microsoft_UI_Dispatching_IDispatcherQueueTimer : WinRtInterface
     //@Parameters("Windows.Foundation.EventRegistrationToken")
     remove_Tick(token)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var p1 = token;
         this.comPtr.invoke( 14, "void", ["Windows.Foundation.EventRegistrationToken"], [p1] );
@@ -585,7 +628,8 @@ class Microsoft_UI_Dispatching_DispatcherExitDeferral : WinRtInterface
     Microsoft_UI_Dispatching_DispatcherExitDeferral( comPtr )
     {
         var Microsoft = runtime.global("Microsoft");
-        this.comPtr = comPtr.queryInterface( Microsoft.UI.Dispatching.IDispatcherExitDeferral.iid );
+        if(!comPtr || !int(comPtr)) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( Microsoft.UI.Dispatching.IDispatcherExitDeferral.iid );
     }
 
     static Create()
@@ -597,6 +641,7 @@ class Microsoft_UI_Dispatching_DispatcherExitDeferral : WinRtInterface
     //@Returns("void")
     Complete()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.Dispatching.IDispatcherExitDeferral( this.comPtr );
         iface.Complete(  );
@@ -616,7 +661,8 @@ class Microsoft_UI_Dispatching_DispatcherQueue : WinRtInterface
     Microsoft_UI_Dispatching_DispatcherQueue( comPtr )
     {
         var Microsoft = runtime.global("Microsoft");
-        this.comPtr = comPtr.queryInterface( Microsoft.UI.Dispatching.IDispatcherQueue.iid );
+        if(!comPtr || !int(comPtr)) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( Microsoft.UI.Dispatching.IDispatcherQueue.iid );
     }
 
     // s Microsoft.UI.Dispatching.IDispatcherQueueStatics
@@ -643,6 +689,7 @@ class Microsoft_UI_Dispatching_DispatcherQueue : WinRtInterface
     //@Returns("Microsoft.UI.Dispatching.DispatcherQueueTimer")
     CreateTimer()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.Dispatching.IDispatcherQueue( this.comPtr );
         var _r = iface.CreateTimer(  );
@@ -655,6 +702,7 @@ class Microsoft_UI_Dispatching_DispatcherQueue : WinRtInterface
     //@Parameters("Windows.Foundation.EventRegistrationToken")
     remove_ShutdownStarting(token)
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.Dispatching.IDispatcherQueue( this.comPtr );
         iface.remove_ShutdownStarting( token );
@@ -666,6 +714,7 @@ class Microsoft_UI_Dispatching_DispatcherQueue : WinRtInterface
     //@Parameters("Windows.Foundation.TypedEventHandler`2<Microsoft.UI.Dispatching.DispatcherQueue,Object>")
     add_ShutdownCompleted(handler)
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.Dispatching.IDispatcherQueue( this.comPtr );
         var _r = iface.add_ShutdownCompleted( handler );
@@ -678,6 +727,7 @@ class Microsoft_UI_Dispatching_DispatcherQueue : WinRtInterface
     //@Parameters("Windows.Foundation.EventRegistrationToken")
     remove_ShutdownCompleted(token)
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.Dispatching.IDispatcherQueue( this.comPtr );
         iface.remove_ShutdownCompleted( token );
@@ -687,6 +737,7 @@ class Microsoft_UI_Dispatching_DispatcherQueue : WinRtInterface
     //@Returns("Boolean")
     get_HasThreadAccess()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.Dispatching.IDispatcherQueue2( this.comPtr );
         var _r = iface.get_HasThreadAccess(  );
@@ -697,6 +748,7 @@ class Microsoft_UI_Dispatching_DispatcherQueue : WinRtInterface
     //@Returns("void")
     EnqueueEventLoopExit()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.Dispatching.IDispatcherQueue3( this.comPtr );
         iface.EnqueueEventLoopExit(  );
@@ -706,6 +758,7 @@ class Microsoft_UI_Dispatching_DispatcherQueue : WinRtInterface
     //@Returns("void")
     EnsureSystemDispatcherQueue()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.Dispatching.IDispatcherQueue3( this.comPtr );
         iface.EnsureSystemDispatcherQueue(  );
@@ -717,6 +770,7 @@ class Microsoft_UI_Dispatching_DispatcherQueue : WinRtInterface
     //@Parameters("Windows.Foundation.TypedEventHandler`2<Microsoft.UI.Dispatching.DispatcherQueue,Microsoft.UI.Dispatching.DispatcherQueueShutdownStartingEventArgs>")
     add_ShutdownStarting(handler)
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.Dispatching.IDispatcherQueue( this.comPtr );
         var _r = iface.add_ShutdownStarting( handler );
@@ -729,6 +783,7 @@ class Microsoft_UI_Dispatching_DispatcherQueue : WinRtInterface
     //@Parameters("Windows.Foundation.TypedEventHandler`2<Microsoft.UI.Dispatching.DispatcherQueue,Microsoft.UI.Dispatching.DispatcherQueueShutdownStartingEventArgs>")
     add_FrameworkShutdownStarting(handler)
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.Dispatching.IDispatcherQueue3( this.comPtr );
         var _r = iface.add_FrameworkShutdownStarting( handler );
@@ -741,6 +796,7 @@ class Microsoft_UI_Dispatching_DispatcherQueue : WinRtInterface
     //@Parameters("Windows.Foundation.EventRegistrationToken")
     remove_FrameworkShutdownStarting(token)
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.Dispatching.IDispatcherQueue3( this.comPtr );
         iface.remove_FrameworkShutdownStarting( token );
@@ -752,6 +808,7 @@ class Microsoft_UI_Dispatching_DispatcherQueue : WinRtInterface
     //@Parameters("Windows.Foundation.TypedEventHandler`2<Microsoft.UI.Dispatching.DispatcherQueue,Object>")
     add_FrameworkShutdownCompleted(handler)
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.Dispatching.IDispatcherQueue3( this.comPtr );
         var _r = iface.add_FrameworkShutdownCompleted( handler );
@@ -764,6 +821,7 @@ class Microsoft_UI_Dispatching_DispatcherQueue : WinRtInterface
     //@Parameters("Windows.Foundation.EventRegistrationToken")
     remove_FrameworkShutdownCompleted(token)
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.Dispatching.IDispatcherQueue3( this.comPtr );
         iface.remove_FrameworkShutdownCompleted( token );
@@ -783,7 +841,8 @@ class Microsoft_UI_Dispatching_DispatcherQueueController : WinRtInterface
     Microsoft_UI_Dispatching_DispatcherQueueController( comPtr )
     {
         var Microsoft = runtime.global("Microsoft");
-        this.comPtr = comPtr.queryInterface( Microsoft.UI.Dispatching.IDispatcherQueueController.iid );
+        if(!comPtr || !int(comPtr)) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( Microsoft.UI.Dispatching.IDispatcherQueueController.iid );
     }
 
     // s Microsoft.UI.Dispatching.IDispatcherQueueControllerStatics
@@ -824,6 +883,7 @@ class Microsoft_UI_Dispatching_DispatcherQueueController : WinRtInterface
     //@Returns("Microsoft.UI.Dispatching.DispatcherQueue")
     get_DispatcherQueue()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.Dispatching.IDispatcherQueueController( this.comPtr );
         var _r = iface.get_DispatcherQueue(  );
@@ -834,6 +894,7 @@ class Microsoft_UI_Dispatching_DispatcherQueueController : WinRtInterface
     //@Returns("Windows.Foundation.IAsyncAction")
     ShutdownQueueAsync()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.Dispatching.IDispatcherQueueController( this.comPtr );
         var _promise = Future();
@@ -854,6 +915,7 @@ class Microsoft_UI_Dispatching_DispatcherQueueController : WinRtInterface
     //@Returns("void")
     ShutdownQueue()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.Dispatching.IDispatcherQueueController2( this.comPtr );
         iface.ShutdownQueue(  );
@@ -873,7 +935,8 @@ class Microsoft_UI_Dispatching_DispatcherQueueShutdownStartingEventArgs : WinRtI
     Microsoft_UI_Dispatching_DispatcherQueueShutdownStartingEventArgs( comPtr )
     {
         var Microsoft = runtime.global("Microsoft");
-        this.comPtr = comPtr.queryInterface( Microsoft.UI.Dispatching.IDispatcherQueueShutdownStartingEventArgs.iid );
+        if(!comPtr || !int(comPtr)) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( Microsoft.UI.Dispatching.IDispatcherQueueShutdownStartingEventArgs.iid );
     }
 
     static Create()
@@ -885,6 +948,7 @@ class Microsoft_UI_Dispatching_DispatcherQueueShutdownStartingEventArgs : WinRtI
     //@Returns("Windows.Foundation.Deferral")
     GetDeferral()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.Dispatching.IDispatcherQueueShutdownStartingEventArgs( this.comPtr );
         var _r = iface.GetDeferral(  );
@@ -905,7 +969,8 @@ class Microsoft_UI_Dispatching_DispatcherQueueTimer : WinRtInterface
     Microsoft_UI_Dispatching_DispatcherQueueTimer( comPtr )
     {
         var Microsoft = runtime.global("Microsoft");
-        this.comPtr = comPtr.queryInterface( Microsoft.UI.Dispatching.IDispatcherQueueTimer.iid );
+        if(!comPtr || !int(comPtr)) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( Microsoft.UI.Dispatching.IDispatcherQueueTimer.iid );
     }
 
     static Create()
@@ -917,6 +982,7 @@ class Microsoft_UI_Dispatching_DispatcherQueueTimer : WinRtInterface
     //@Returns("Boolean")
     get_IsRepeating()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.Dispatching.IDispatcherQueueTimer( this.comPtr );
         var _r = iface.get_IsRepeating(  );
@@ -929,6 +995,7 @@ class Microsoft_UI_Dispatching_DispatcherQueueTimer : WinRtInterface
     //@Parameters("Windows.Foundation.TimeSpan")
     put_Interval(value)
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.Dispatching.IDispatcherQueueTimer( this.comPtr );
         iface.put_Interval( value );
@@ -938,6 +1005,7 @@ class Microsoft_UI_Dispatching_DispatcherQueueTimer : WinRtInterface
     //@Returns("Boolean")
     get_IsRunning()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.Dispatching.IDispatcherQueueTimer( this.comPtr );
         var _r = iface.get_IsRunning(  );
@@ -950,6 +1018,7 @@ class Microsoft_UI_Dispatching_DispatcherQueueTimer : WinRtInterface
     //@Parameters("Boolean")
     put_IsRepeating(value)
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.Dispatching.IDispatcherQueueTimer( this.comPtr );
         iface.put_IsRepeating( value );
@@ -959,6 +1028,7 @@ class Microsoft_UI_Dispatching_DispatcherQueueTimer : WinRtInterface
     //@Returns("Windows.Foundation.TimeSpan")
     get_Interval()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.Dispatching.IDispatcherQueueTimer( this.comPtr );
         var _r = iface.get_Interval(  );
@@ -969,6 +1039,7 @@ class Microsoft_UI_Dispatching_DispatcherQueueTimer : WinRtInterface
     //@Returns("void")
     Start()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.Dispatching.IDispatcherQueueTimer( this.comPtr );
         iface.Start(  );
@@ -978,6 +1049,7 @@ class Microsoft_UI_Dispatching_DispatcherQueueTimer : WinRtInterface
     //@Returns("void")
     Stop()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.Dispatching.IDispatcherQueueTimer( this.comPtr );
         iface.Stop(  );
@@ -989,6 +1061,7 @@ class Microsoft_UI_Dispatching_DispatcherQueueTimer : WinRtInterface
     //@Parameters("Windows.Foundation.TypedEventHandler`2<Microsoft.UI.Dispatching.DispatcherQueueTimer,Object>")
     add_Tick(handler)
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.Dispatching.IDispatcherQueueTimer( this.comPtr );
         var _r = iface.add_Tick( handler );
@@ -1001,6 +1074,7 @@ class Microsoft_UI_Dispatching_DispatcherQueueTimer : WinRtInterface
     //@Parameters("Windows.Foundation.EventRegistrationToken")
     remove_Tick(token)
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var iface = Microsoft.UI.Dispatching.IDispatcherQueueTimer( this.comPtr );
         iface.remove_Tick( token );

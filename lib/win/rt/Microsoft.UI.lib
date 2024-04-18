@@ -30,7 +30,8 @@ class Microsoft_UI_IClosableNotifier : WinRtInterface
     Microsoft_UI_IClosableNotifier( comPtr )
     {
         var Microsoft = runtime.global("Microsoft");
-        this.comPtr = comPtr.queryInterface( "{2989E93B-ED0F-5E79-90F2-EAC592FC6E6A}");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{2989E93B-ED0F-5E79-90F2-EAC592FC6E6A}");
     }
 
     //@VtableIndex(6)
@@ -38,6 +39,7 @@ class Microsoft_UI_IClosableNotifier : WinRtInterface
     //@Returns("Boolean")
     get_IsClosed()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 6, "Boolean", [], [] );
         return _r;
@@ -49,6 +51,7 @@ class Microsoft_UI_IClosableNotifier : WinRtInterface
     //@Parameters("Microsoft.UI.ClosableNotifierHandler")
     add_Closed(handler)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var p1 = nil; 
         if( typeof(handler) == "comptr" ) { 
@@ -66,6 +69,7 @@ class Microsoft_UI_IClosableNotifier : WinRtInterface
     //@Parameters("Windows.Foundation.EventRegistrationToken")
     remove_Closed(token)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var p1 = token;
         this.comPtr.invoke( 8, "void", ["Windows.Foundation.EventRegistrationToken"], [p1] );
@@ -77,6 +81,7 @@ class Microsoft_UI_IClosableNotifier : WinRtInterface
     //@Parameters("Microsoft.UI.ClosableNotifierHandler")
     add_FrameworkClosed(handler)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var p1 = nil; 
         if( typeof(handler) == "comptr" ) { 
@@ -94,6 +99,7 @@ class Microsoft_UI_IClosableNotifier : WinRtInterface
     //@Parameters("Windows.Foundation.EventRegistrationToken")
     remove_FrameworkClosed(token)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var p1 = token;
         this.comPtr.invoke( 10, "void", ["Windows.Foundation.EventRegistrationToken"], [p1] );
@@ -112,7 +118,8 @@ class Microsoft_UI_IColorHelper : WinRtInterface
     Microsoft_UI_IColorHelper( comPtr )
     {
         var Microsoft = runtime.global("Microsoft");
-        this.comPtr = comPtr.queryInterface( "{3ADDDCCD-3949-585B-A566-CCB8350DD221}");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{3ADDDCCD-3949-585B-A566-CCB8350DD221}");
     }
 
 
@@ -128,7 +135,8 @@ class Microsoft_UI_IColorHelperStatics : WinRtInterface
     Microsoft_UI_IColorHelperStatics( comPtr )
     {
         var Microsoft = runtime.global("Microsoft");
-        this.comPtr = comPtr.queryInterface( "{1D1D85A1-EB63-538A-84F0-019210BC406B}");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{1D1D85A1-EB63-538A-84F0-019210BC406B}");
     }
 
     //@VtableIndex(6)
@@ -137,6 +145,7 @@ class Microsoft_UI_IColorHelperStatics : WinRtInterface
     //@Parameters("UInt8","UInt8","UInt8","UInt8")
     FromArgb(a,r,g,b)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var p1 = a;
         var p2 = r;
@@ -159,7 +168,8 @@ class Microsoft_UI_IColors : WinRtInterface
     Microsoft_UI_IColors( comPtr )
     {
         var Microsoft = runtime.global("Microsoft");
-        this.comPtr = comPtr.queryInterface( "{8CF15863-8411-5AFD-946C-328E04DA2F2F}");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{8CF15863-8411-5AFD-946C-328E04DA2F2F}");
     }
 
 
@@ -175,7 +185,8 @@ class Microsoft_UI_IColorsStatics : WinRtInterface
     Microsoft_UI_IColorsStatics( comPtr )
     {
         var Microsoft = runtime.global("Microsoft");
-        this.comPtr = comPtr.queryInterface( "{8620A5B0-015A-57AC-A3F3-895D0B1269AE}");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{8620A5B0-015A-57AC-A3F3-895D0B1269AE}");
     }
 
     //@VtableIndex(6)
@@ -183,6 +194,7 @@ class Microsoft_UI_IColorsStatics : WinRtInterface
     //@Returns("Windows.UI.Color")
     get_AliceBlue()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 6, "Windows.UI.Color", [], [] );
         return _r;
@@ -193,6 +205,7 @@ class Microsoft_UI_IColorsStatics : WinRtInterface
     //@Returns("Windows.UI.Color")
     get_AntiqueWhite()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 7, "Windows.UI.Color", [], [] );
         return _r;
@@ -203,6 +216,7 @@ class Microsoft_UI_IColorsStatics : WinRtInterface
     //@Returns("Windows.UI.Color")
     get_Aqua()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 8, "Windows.UI.Color", [], [] );
         return _r;
@@ -213,6 +227,7 @@ class Microsoft_UI_IColorsStatics : WinRtInterface
     //@Returns("Windows.UI.Color")
     get_Aquamarine()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 9, "Windows.UI.Color", [], [] );
         return _r;
@@ -223,6 +238,7 @@ class Microsoft_UI_IColorsStatics : WinRtInterface
     //@Returns("Windows.UI.Color")
     get_Azure()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 10, "Windows.UI.Color", [], [] );
         return _r;
@@ -233,6 +249,7 @@ class Microsoft_UI_IColorsStatics : WinRtInterface
     //@Returns("Windows.UI.Color")
     get_Beige()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 11, "Windows.UI.Color", [], [] );
         return _r;
@@ -243,6 +260,7 @@ class Microsoft_UI_IColorsStatics : WinRtInterface
     //@Returns("Windows.UI.Color")
     get_Bisque()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 12, "Windows.UI.Color", [], [] );
         return _r;
@@ -253,6 +271,7 @@ class Microsoft_UI_IColorsStatics : WinRtInterface
     //@Returns("Windows.UI.Color")
     get_Black()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 13, "Windows.UI.Color", [], [] );
         return _r;
@@ -263,6 +282,7 @@ class Microsoft_UI_IColorsStatics : WinRtInterface
     //@Returns("Windows.UI.Color")
     get_BlanchedAlmond()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 14, "Windows.UI.Color", [], [] );
         return _r;
@@ -273,6 +293,7 @@ class Microsoft_UI_IColorsStatics : WinRtInterface
     //@Returns("Windows.UI.Color")
     get_Blue()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 15, "Windows.UI.Color", [], [] );
         return _r;
@@ -283,6 +304,7 @@ class Microsoft_UI_IColorsStatics : WinRtInterface
     //@Returns("Windows.UI.Color")
     get_BlueViolet()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 16, "Windows.UI.Color", [], [] );
         return _r;
@@ -293,6 +315,7 @@ class Microsoft_UI_IColorsStatics : WinRtInterface
     //@Returns("Windows.UI.Color")
     get_Brown()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 17, "Windows.UI.Color", [], [] );
         return _r;
@@ -303,6 +326,7 @@ class Microsoft_UI_IColorsStatics : WinRtInterface
     //@Returns("Windows.UI.Color")
     get_BurlyWood()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 18, "Windows.UI.Color", [], [] );
         return _r;
@@ -313,6 +337,7 @@ class Microsoft_UI_IColorsStatics : WinRtInterface
     //@Returns("Windows.UI.Color")
     get_CadetBlue()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 19, "Windows.UI.Color", [], [] );
         return _r;
@@ -323,6 +348,7 @@ class Microsoft_UI_IColorsStatics : WinRtInterface
     //@Returns("Windows.UI.Color")
     get_Chartreuse()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 20, "Windows.UI.Color", [], [] );
         return _r;
@@ -333,6 +359,7 @@ class Microsoft_UI_IColorsStatics : WinRtInterface
     //@Returns("Windows.UI.Color")
     get_Chocolate()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 21, "Windows.UI.Color", [], [] );
         return _r;
@@ -343,6 +370,7 @@ class Microsoft_UI_IColorsStatics : WinRtInterface
     //@Returns("Windows.UI.Color")
     get_Coral()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 22, "Windows.UI.Color", [], [] );
         return _r;
@@ -353,6 +381,7 @@ class Microsoft_UI_IColorsStatics : WinRtInterface
     //@Returns("Windows.UI.Color")
     get_CornflowerBlue()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 23, "Windows.UI.Color", [], [] );
         return _r;
@@ -363,6 +392,7 @@ class Microsoft_UI_IColorsStatics : WinRtInterface
     //@Returns("Windows.UI.Color")
     get_Cornsilk()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 24, "Windows.UI.Color", [], [] );
         return _r;
@@ -373,6 +403,7 @@ class Microsoft_UI_IColorsStatics : WinRtInterface
     //@Returns("Windows.UI.Color")
     get_Crimson()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 25, "Windows.UI.Color", [], [] );
         return _r;
@@ -383,6 +414,7 @@ class Microsoft_UI_IColorsStatics : WinRtInterface
     //@Returns("Windows.UI.Color")
     get_Cyan()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 26, "Windows.UI.Color", [], [] );
         return _r;
@@ -393,6 +425,7 @@ class Microsoft_UI_IColorsStatics : WinRtInterface
     //@Returns("Windows.UI.Color")
     get_DarkBlue()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 27, "Windows.UI.Color", [], [] );
         return _r;
@@ -403,6 +436,7 @@ class Microsoft_UI_IColorsStatics : WinRtInterface
     //@Returns("Windows.UI.Color")
     get_DarkCyan()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 28, "Windows.UI.Color", [], [] );
         return _r;
@@ -413,6 +447,7 @@ class Microsoft_UI_IColorsStatics : WinRtInterface
     //@Returns("Windows.UI.Color")
     get_DarkGoldenrod()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 29, "Windows.UI.Color", [], [] );
         return _r;
@@ -423,6 +458,7 @@ class Microsoft_UI_IColorsStatics : WinRtInterface
     //@Returns("Windows.UI.Color")
     get_DarkGray()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 30, "Windows.UI.Color", [], [] );
         return _r;
@@ -433,6 +469,7 @@ class Microsoft_UI_IColorsStatics : WinRtInterface
     //@Returns("Windows.UI.Color")
     get_DarkGreen()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 31, "Windows.UI.Color", [], [] );
         return _r;
@@ -443,6 +480,7 @@ class Microsoft_UI_IColorsStatics : WinRtInterface
     //@Returns("Windows.UI.Color")
     get_DarkKhaki()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 32, "Windows.UI.Color", [], [] );
         return _r;
@@ -453,6 +491,7 @@ class Microsoft_UI_IColorsStatics : WinRtInterface
     //@Returns("Windows.UI.Color")
     get_DarkMagenta()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 33, "Windows.UI.Color", [], [] );
         return _r;
@@ -463,6 +502,7 @@ class Microsoft_UI_IColorsStatics : WinRtInterface
     //@Returns("Windows.UI.Color")
     get_DarkOliveGreen()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 34, "Windows.UI.Color", [], [] );
         return _r;
@@ -473,6 +513,7 @@ class Microsoft_UI_IColorsStatics : WinRtInterface
     //@Returns("Windows.UI.Color")
     get_DarkOrange()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 35, "Windows.UI.Color", [], [] );
         return _r;
@@ -483,6 +524,7 @@ class Microsoft_UI_IColorsStatics : WinRtInterface
     //@Returns("Windows.UI.Color")
     get_DarkOrchid()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 36, "Windows.UI.Color", [], [] );
         return _r;
@@ -493,6 +535,7 @@ class Microsoft_UI_IColorsStatics : WinRtInterface
     //@Returns("Windows.UI.Color")
     get_DarkRed()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 37, "Windows.UI.Color", [], [] );
         return _r;
@@ -503,6 +546,7 @@ class Microsoft_UI_IColorsStatics : WinRtInterface
     //@Returns("Windows.UI.Color")
     get_DarkSalmon()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 38, "Windows.UI.Color", [], [] );
         return _r;
@@ -513,6 +557,7 @@ class Microsoft_UI_IColorsStatics : WinRtInterface
     //@Returns("Windows.UI.Color")
     get_DarkSeaGreen()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 39, "Windows.UI.Color", [], [] );
         return _r;
@@ -523,6 +568,7 @@ class Microsoft_UI_IColorsStatics : WinRtInterface
     //@Returns("Windows.UI.Color")
     get_DarkSlateBlue()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 40, "Windows.UI.Color", [], [] );
         return _r;
@@ -533,6 +579,7 @@ class Microsoft_UI_IColorsStatics : WinRtInterface
     //@Returns("Windows.UI.Color")
     get_DarkSlateGray()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 41, "Windows.UI.Color", [], [] );
         return _r;
@@ -543,6 +590,7 @@ class Microsoft_UI_IColorsStatics : WinRtInterface
     //@Returns("Windows.UI.Color")
     get_DarkTurquoise()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 42, "Windows.UI.Color", [], [] );
         return _r;
@@ -553,6 +601,7 @@ class Microsoft_UI_IColorsStatics : WinRtInterface
     //@Returns("Windows.UI.Color")
     get_DarkViolet()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 43, "Windows.UI.Color", [], [] );
         return _r;
@@ -563,6 +612,7 @@ class Microsoft_UI_IColorsStatics : WinRtInterface
     //@Returns("Windows.UI.Color")
     get_DeepPink()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 44, "Windows.UI.Color", [], [] );
         return _r;
@@ -573,6 +623,7 @@ class Microsoft_UI_IColorsStatics : WinRtInterface
     //@Returns("Windows.UI.Color")
     get_DeepSkyBlue()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 45, "Windows.UI.Color", [], [] );
         return _r;
@@ -583,6 +634,7 @@ class Microsoft_UI_IColorsStatics : WinRtInterface
     //@Returns("Windows.UI.Color")
     get_DimGray()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 46, "Windows.UI.Color", [], [] );
         return _r;
@@ -593,6 +645,7 @@ class Microsoft_UI_IColorsStatics : WinRtInterface
     //@Returns("Windows.UI.Color")
     get_DodgerBlue()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 47, "Windows.UI.Color", [], [] );
         return _r;
@@ -603,6 +656,7 @@ class Microsoft_UI_IColorsStatics : WinRtInterface
     //@Returns("Windows.UI.Color")
     get_Firebrick()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 48, "Windows.UI.Color", [], [] );
         return _r;
@@ -613,6 +667,7 @@ class Microsoft_UI_IColorsStatics : WinRtInterface
     //@Returns("Windows.UI.Color")
     get_FloralWhite()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 49, "Windows.UI.Color", [], [] );
         return _r;
@@ -623,6 +678,7 @@ class Microsoft_UI_IColorsStatics : WinRtInterface
     //@Returns("Windows.UI.Color")
     get_ForestGreen()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 50, "Windows.UI.Color", [], [] );
         return _r;
@@ -633,6 +689,7 @@ class Microsoft_UI_IColorsStatics : WinRtInterface
     //@Returns("Windows.UI.Color")
     get_Fuchsia()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 51, "Windows.UI.Color", [], [] );
         return _r;
@@ -643,6 +700,7 @@ class Microsoft_UI_IColorsStatics : WinRtInterface
     //@Returns("Windows.UI.Color")
     get_Gainsboro()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 52, "Windows.UI.Color", [], [] );
         return _r;
@@ -653,6 +711,7 @@ class Microsoft_UI_IColorsStatics : WinRtInterface
     //@Returns("Windows.UI.Color")
     get_GhostWhite()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 53, "Windows.UI.Color", [], [] );
         return _r;
@@ -663,6 +722,7 @@ class Microsoft_UI_IColorsStatics : WinRtInterface
     //@Returns("Windows.UI.Color")
     get_Gold()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 54, "Windows.UI.Color", [], [] );
         return _r;
@@ -673,6 +733,7 @@ class Microsoft_UI_IColorsStatics : WinRtInterface
     //@Returns("Windows.UI.Color")
     get_Goldenrod()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 55, "Windows.UI.Color", [], [] );
         return _r;
@@ -683,6 +744,7 @@ class Microsoft_UI_IColorsStatics : WinRtInterface
     //@Returns("Windows.UI.Color")
     get_Gray()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 56, "Windows.UI.Color", [], [] );
         return _r;
@@ -693,6 +755,7 @@ class Microsoft_UI_IColorsStatics : WinRtInterface
     //@Returns("Windows.UI.Color")
     get_Green()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 57, "Windows.UI.Color", [], [] );
         return _r;
@@ -703,6 +766,7 @@ class Microsoft_UI_IColorsStatics : WinRtInterface
     //@Returns("Windows.UI.Color")
     get_GreenYellow()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 58, "Windows.UI.Color", [], [] );
         return _r;
@@ -713,6 +777,7 @@ class Microsoft_UI_IColorsStatics : WinRtInterface
     //@Returns("Windows.UI.Color")
     get_Honeydew()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 59, "Windows.UI.Color", [], [] );
         return _r;
@@ -723,6 +788,7 @@ class Microsoft_UI_IColorsStatics : WinRtInterface
     //@Returns("Windows.UI.Color")
     get_HotPink()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 60, "Windows.UI.Color", [], [] );
         return _r;
@@ -733,6 +799,7 @@ class Microsoft_UI_IColorsStatics : WinRtInterface
     //@Returns("Windows.UI.Color")
     get_IndianRed()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 61, "Windows.UI.Color", [], [] );
         return _r;
@@ -743,6 +810,7 @@ class Microsoft_UI_IColorsStatics : WinRtInterface
     //@Returns("Windows.UI.Color")
     get_Indigo()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 62, "Windows.UI.Color", [], [] );
         return _r;
@@ -753,6 +821,7 @@ class Microsoft_UI_IColorsStatics : WinRtInterface
     //@Returns("Windows.UI.Color")
     get_Ivory()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 63, "Windows.UI.Color", [], [] );
         return _r;
@@ -763,6 +832,7 @@ class Microsoft_UI_IColorsStatics : WinRtInterface
     //@Returns("Windows.UI.Color")
     get_Khaki()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 64, "Windows.UI.Color", [], [] );
         return _r;
@@ -773,6 +843,7 @@ class Microsoft_UI_IColorsStatics : WinRtInterface
     //@Returns("Windows.UI.Color")
     get_Lavender()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 65, "Windows.UI.Color", [], [] );
         return _r;
@@ -783,6 +854,7 @@ class Microsoft_UI_IColorsStatics : WinRtInterface
     //@Returns("Windows.UI.Color")
     get_LavenderBlush()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 66, "Windows.UI.Color", [], [] );
         return _r;
@@ -793,6 +865,7 @@ class Microsoft_UI_IColorsStatics : WinRtInterface
     //@Returns("Windows.UI.Color")
     get_LawnGreen()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 67, "Windows.UI.Color", [], [] );
         return _r;
@@ -803,6 +876,7 @@ class Microsoft_UI_IColorsStatics : WinRtInterface
     //@Returns("Windows.UI.Color")
     get_LemonChiffon()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 68, "Windows.UI.Color", [], [] );
         return _r;
@@ -813,6 +887,7 @@ class Microsoft_UI_IColorsStatics : WinRtInterface
     //@Returns("Windows.UI.Color")
     get_LightBlue()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 69, "Windows.UI.Color", [], [] );
         return _r;
@@ -823,6 +898,7 @@ class Microsoft_UI_IColorsStatics : WinRtInterface
     //@Returns("Windows.UI.Color")
     get_LightCoral()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 70, "Windows.UI.Color", [], [] );
         return _r;
@@ -833,6 +909,7 @@ class Microsoft_UI_IColorsStatics : WinRtInterface
     //@Returns("Windows.UI.Color")
     get_LightCyan()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 71, "Windows.UI.Color", [], [] );
         return _r;
@@ -843,6 +920,7 @@ class Microsoft_UI_IColorsStatics : WinRtInterface
     //@Returns("Windows.UI.Color")
     get_LightGoldenrodYellow()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 72, "Windows.UI.Color", [], [] );
         return _r;
@@ -853,6 +931,7 @@ class Microsoft_UI_IColorsStatics : WinRtInterface
     //@Returns("Windows.UI.Color")
     get_LightGreen()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 73, "Windows.UI.Color", [], [] );
         return _r;
@@ -863,6 +942,7 @@ class Microsoft_UI_IColorsStatics : WinRtInterface
     //@Returns("Windows.UI.Color")
     get_LightGray()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 74, "Windows.UI.Color", [], [] );
         return _r;
@@ -873,6 +953,7 @@ class Microsoft_UI_IColorsStatics : WinRtInterface
     //@Returns("Windows.UI.Color")
     get_LightPink()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 75, "Windows.UI.Color", [], [] );
         return _r;
@@ -883,6 +964,7 @@ class Microsoft_UI_IColorsStatics : WinRtInterface
     //@Returns("Windows.UI.Color")
     get_LightSalmon()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 76, "Windows.UI.Color", [], [] );
         return _r;
@@ -893,6 +975,7 @@ class Microsoft_UI_IColorsStatics : WinRtInterface
     //@Returns("Windows.UI.Color")
     get_LightSeaGreen()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 77, "Windows.UI.Color", [], [] );
         return _r;
@@ -903,6 +986,7 @@ class Microsoft_UI_IColorsStatics : WinRtInterface
     //@Returns("Windows.UI.Color")
     get_LightSkyBlue()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 78, "Windows.UI.Color", [], [] );
         return _r;
@@ -913,6 +997,7 @@ class Microsoft_UI_IColorsStatics : WinRtInterface
     //@Returns("Windows.UI.Color")
     get_LightSlateGray()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 79, "Windows.UI.Color", [], [] );
         return _r;
@@ -923,6 +1008,7 @@ class Microsoft_UI_IColorsStatics : WinRtInterface
     //@Returns("Windows.UI.Color")
     get_LightSteelBlue()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 80, "Windows.UI.Color", [], [] );
         return _r;
@@ -933,6 +1019,7 @@ class Microsoft_UI_IColorsStatics : WinRtInterface
     //@Returns("Windows.UI.Color")
     get_LightYellow()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 81, "Windows.UI.Color", [], [] );
         return _r;
@@ -943,6 +1030,7 @@ class Microsoft_UI_IColorsStatics : WinRtInterface
     //@Returns("Windows.UI.Color")
     get_Lime()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 82, "Windows.UI.Color", [], [] );
         return _r;
@@ -953,6 +1041,7 @@ class Microsoft_UI_IColorsStatics : WinRtInterface
     //@Returns("Windows.UI.Color")
     get_LimeGreen()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 83, "Windows.UI.Color", [], [] );
         return _r;
@@ -963,6 +1052,7 @@ class Microsoft_UI_IColorsStatics : WinRtInterface
     //@Returns("Windows.UI.Color")
     get_Linen()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 84, "Windows.UI.Color", [], [] );
         return _r;
@@ -973,6 +1063,7 @@ class Microsoft_UI_IColorsStatics : WinRtInterface
     //@Returns("Windows.UI.Color")
     get_Magenta()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 85, "Windows.UI.Color", [], [] );
         return _r;
@@ -983,6 +1074,7 @@ class Microsoft_UI_IColorsStatics : WinRtInterface
     //@Returns("Windows.UI.Color")
     get_Maroon()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 86, "Windows.UI.Color", [], [] );
         return _r;
@@ -993,6 +1085,7 @@ class Microsoft_UI_IColorsStatics : WinRtInterface
     //@Returns("Windows.UI.Color")
     get_MediumAquamarine()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 87, "Windows.UI.Color", [], [] );
         return _r;
@@ -1003,6 +1096,7 @@ class Microsoft_UI_IColorsStatics : WinRtInterface
     //@Returns("Windows.UI.Color")
     get_MediumBlue()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 88, "Windows.UI.Color", [], [] );
         return _r;
@@ -1013,6 +1107,7 @@ class Microsoft_UI_IColorsStatics : WinRtInterface
     //@Returns("Windows.UI.Color")
     get_MediumOrchid()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 89, "Windows.UI.Color", [], [] );
         return _r;
@@ -1023,6 +1118,7 @@ class Microsoft_UI_IColorsStatics : WinRtInterface
     //@Returns("Windows.UI.Color")
     get_MediumPurple()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 90, "Windows.UI.Color", [], [] );
         return _r;
@@ -1033,6 +1129,7 @@ class Microsoft_UI_IColorsStatics : WinRtInterface
     //@Returns("Windows.UI.Color")
     get_MediumSeaGreen()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 91, "Windows.UI.Color", [], [] );
         return _r;
@@ -1043,6 +1140,7 @@ class Microsoft_UI_IColorsStatics : WinRtInterface
     //@Returns("Windows.UI.Color")
     get_MediumSlateBlue()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 92, "Windows.UI.Color", [], [] );
         return _r;
@@ -1053,6 +1151,7 @@ class Microsoft_UI_IColorsStatics : WinRtInterface
     //@Returns("Windows.UI.Color")
     get_MediumSpringGreen()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 93, "Windows.UI.Color", [], [] );
         return _r;
@@ -1063,6 +1162,7 @@ class Microsoft_UI_IColorsStatics : WinRtInterface
     //@Returns("Windows.UI.Color")
     get_MediumTurquoise()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 94, "Windows.UI.Color", [], [] );
         return _r;
@@ -1073,6 +1173,7 @@ class Microsoft_UI_IColorsStatics : WinRtInterface
     //@Returns("Windows.UI.Color")
     get_MediumVioletRed()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 95, "Windows.UI.Color", [], [] );
         return _r;
@@ -1083,6 +1184,7 @@ class Microsoft_UI_IColorsStatics : WinRtInterface
     //@Returns("Windows.UI.Color")
     get_MidnightBlue()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 96, "Windows.UI.Color", [], [] );
         return _r;
@@ -1093,6 +1195,7 @@ class Microsoft_UI_IColorsStatics : WinRtInterface
     //@Returns("Windows.UI.Color")
     get_MintCream()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 97, "Windows.UI.Color", [], [] );
         return _r;
@@ -1103,6 +1206,7 @@ class Microsoft_UI_IColorsStatics : WinRtInterface
     //@Returns("Windows.UI.Color")
     get_MistyRose()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 98, "Windows.UI.Color", [], [] );
         return _r;
@@ -1113,6 +1217,7 @@ class Microsoft_UI_IColorsStatics : WinRtInterface
     //@Returns("Windows.UI.Color")
     get_Moccasin()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 99, "Windows.UI.Color", [], [] );
         return _r;
@@ -1123,6 +1228,7 @@ class Microsoft_UI_IColorsStatics : WinRtInterface
     //@Returns("Windows.UI.Color")
     get_NavajoWhite()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 100, "Windows.UI.Color", [], [] );
         return _r;
@@ -1133,6 +1239,7 @@ class Microsoft_UI_IColorsStatics : WinRtInterface
     //@Returns("Windows.UI.Color")
     get_Navy()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 101, "Windows.UI.Color", [], [] );
         return _r;
@@ -1143,6 +1250,7 @@ class Microsoft_UI_IColorsStatics : WinRtInterface
     //@Returns("Windows.UI.Color")
     get_OldLace()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 102, "Windows.UI.Color", [], [] );
         return _r;
@@ -1153,6 +1261,7 @@ class Microsoft_UI_IColorsStatics : WinRtInterface
     //@Returns("Windows.UI.Color")
     get_Olive()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 103, "Windows.UI.Color", [], [] );
         return _r;
@@ -1163,6 +1272,7 @@ class Microsoft_UI_IColorsStatics : WinRtInterface
     //@Returns("Windows.UI.Color")
     get_OliveDrab()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 104, "Windows.UI.Color", [], [] );
         return _r;
@@ -1173,6 +1283,7 @@ class Microsoft_UI_IColorsStatics : WinRtInterface
     //@Returns("Windows.UI.Color")
     get_Orange()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 105, "Windows.UI.Color", [], [] );
         return _r;
@@ -1183,6 +1294,7 @@ class Microsoft_UI_IColorsStatics : WinRtInterface
     //@Returns("Windows.UI.Color")
     get_OrangeRed()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 106, "Windows.UI.Color", [], [] );
         return _r;
@@ -1193,6 +1305,7 @@ class Microsoft_UI_IColorsStatics : WinRtInterface
     //@Returns("Windows.UI.Color")
     get_Orchid()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 107, "Windows.UI.Color", [], [] );
         return _r;
@@ -1203,6 +1316,7 @@ class Microsoft_UI_IColorsStatics : WinRtInterface
     //@Returns("Windows.UI.Color")
     get_PaleGoldenrod()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 108, "Windows.UI.Color", [], [] );
         return _r;
@@ -1213,6 +1327,7 @@ class Microsoft_UI_IColorsStatics : WinRtInterface
     //@Returns("Windows.UI.Color")
     get_PaleGreen()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 109, "Windows.UI.Color", [], [] );
         return _r;
@@ -1223,6 +1338,7 @@ class Microsoft_UI_IColorsStatics : WinRtInterface
     //@Returns("Windows.UI.Color")
     get_PaleTurquoise()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 110, "Windows.UI.Color", [], [] );
         return _r;
@@ -1233,6 +1349,7 @@ class Microsoft_UI_IColorsStatics : WinRtInterface
     //@Returns("Windows.UI.Color")
     get_PaleVioletRed()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 111, "Windows.UI.Color", [], [] );
         return _r;
@@ -1243,6 +1360,7 @@ class Microsoft_UI_IColorsStatics : WinRtInterface
     //@Returns("Windows.UI.Color")
     get_PapayaWhip()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 112, "Windows.UI.Color", [], [] );
         return _r;
@@ -1253,6 +1371,7 @@ class Microsoft_UI_IColorsStatics : WinRtInterface
     //@Returns("Windows.UI.Color")
     get_PeachPuff()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 113, "Windows.UI.Color", [], [] );
         return _r;
@@ -1263,6 +1382,7 @@ class Microsoft_UI_IColorsStatics : WinRtInterface
     //@Returns("Windows.UI.Color")
     get_Peru()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 114, "Windows.UI.Color", [], [] );
         return _r;
@@ -1273,6 +1393,7 @@ class Microsoft_UI_IColorsStatics : WinRtInterface
     //@Returns("Windows.UI.Color")
     get_Pink()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 115, "Windows.UI.Color", [], [] );
         return _r;
@@ -1283,6 +1404,7 @@ class Microsoft_UI_IColorsStatics : WinRtInterface
     //@Returns("Windows.UI.Color")
     get_Plum()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 116, "Windows.UI.Color", [], [] );
         return _r;
@@ -1293,6 +1415,7 @@ class Microsoft_UI_IColorsStatics : WinRtInterface
     //@Returns("Windows.UI.Color")
     get_PowderBlue()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 117, "Windows.UI.Color", [], [] );
         return _r;
@@ -1303,6 +1426,7 @@ class Microsoft_UI_IColorsStatics : WinRtInterface
     //@Returns("Windows.UI.Color")
     get_Purple()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 118, "Windows.UI.Color", [], [] );
         return _r;
@@ -1313,6 +1437,7 @@ class Microsoft_UI_IColorsStatics : WinRtInterface
     //@Returns("Windows.UI.Color")
     get_Red()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 119, "Windows.UI.Color", [], [] );
         return _r;
@@ -1323,6 +1448,7 @@ class Microsoft_UI_IColorsStatics : WinRtInterface
     //@Returns("Windows.UI.Color")
     get_RosyBrown()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 120, "Windows.UI.Color", [], [] );
         return _r;
@@ -1333,6 +1459,7 @@ class Microsoft_UI_IColorsStatics : WinRtInterface
     //@Returns("Windows.UI.Color")
     get_RoyalBlue()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 121, "Windows.UI.Color", [], [] );
         return _r;
@@ -1343,6 +1470,7 @@ class Microsoft_UI_IColorsStatics : WinRtInterface
     //@Returns("Windows.UI.Color")
     get_SaddleBrown()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 122, "Windows.UI.Color", [], [] );
         return _r;
@@ -1353,6 +1481,7 @@ class Microsoft_UI_IColorsStatics : WinRtInterface
     //@Returns("Windows.UI.Color")
     get_Salmon()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 123, "Windows.UI.Color", [], [] );
         return _r;
@@ -1363,6 +1492,7 @@ class Microsoft_UI_IColorsStatics : WinRtInterface
     //@Returns("Windows.UI.Color")
     get_SandyBrown()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 124, "Windows.UI.Color", [], [] );
         return _r;
@@ -1373,6 +1503,7 @@ class Microsoft_UI_IColorsStatics : WinRtInterface
     //@Returns("Windows.UI.Color")
     get_SeaGreen()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 125, "Windows.UI.Color", [], [] );
         return _r;
@@ -1383,6 +1514,7 @@ class Microsoft_UI_IColorsStatics : WinRtInterface
     //@Returns("Windows.UI.Color")
     get_SeaShell()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 126, "Windows.UI.Color", [], [] );
         return _r;
@@ -1393,6 +1525,7 @@ class Microsoft_UI_IColorsStatics : WinRtInterface
     //@Returns("Windows.UI.Color")
     get_Sienna()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 127, "Windows.UI.Color", [], [] );
         return _r;
@@ -1403,6 +1536,7 @@ class Microsoft_UI_IColorsStatics : WinRtInterface
     //@Returns("Windows.UI.Color")
     get_Silver()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 128, "Windows.UI.Color", [], [] );
         return _r;
@@ -1413,6 +1547,7 @@ class Microsoft_UI_IColorsStatics : WinRtInterface
     //@Returns("Windows.UI.Color")
     get_SkyBlue()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 129, "Windows.UI.Color", [], [] );
         return _r;
@@ -1423,6 +1558,7 @@ class Microsoft_UI_IColorsStatics : WinRtInterface
     //@Returns("Windows.UI.Color")
     get_SlateBlue()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 130, "Windows.UI.Color", [], [] );
         return _r;
@@ -1433,6 +1569,7 @@ class Microsoft_UI_IColorsStatics : WinRtInterface
     //@Returns("Windows.UI.Color")
     get_SlateGray()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 131, "Windows.UI.Color", [], [] );
         return _r;
@@ -1443,6 +1580,7 @@ class Microsoft_UI_IColorsStatics : WinRtInterface
     //@Returns("Windows.UI.Color")
     get_Snow()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 132, "Windows.UI.Color", [], [] );
         return _r;
@@ -1453,6 +1591,7 @@ class Microsoft_UI_IColorsStatics : WinRtInterface
     //@Returns("Windows.UI.Color")
     get_SpringGreen()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 133, "Windows.UI.Color", [], [] );
         return _r;
@@ -1463,6 +1602,7 @@ class Microsoft_UI_IColorsStatics : WinRtInterface
     //@Returns("Windows.UI.Color")
     get_SteelBlue()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 134, "Windows.UI.Color", [], [] );
         return _r;
@@ -1473,6 +1613,7 @@ class Microsoft_UI_IColorsStatics : WinRtInterface
     //@Returns("Windows.UI.Color")
     get_Tan()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 135, "Windows.UI.Color", [], [] );
         return _r;
@@ -1483,6 +1624,7 @@ class Microsoft_UI_IColorsStatics : WinRtInterface
     //@Returns("Windows.UI.Color")
     get_Teal()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 136, "Windows.UI.Color", [], [] );
         return _r;
@@ -1493,6 +1635,7 @@ class Microsoft_UI_IColorsStatics : WinRtInterface
     //@Returns("Windows.UI.Color")
     get_Thistle()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 137, "Windows.UI.Color", [], [] );
         return _r;
@@ -1503,6 +1646,7 @@ class Microsoft_UI_IColorsStatics : WinRtInterface
     //@Returns("Windows.UI.Color")
     get_Tomato()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 138, "Windows.UI.Color", [], [] );
         return _r;
@@ -1513,6 +1657,7 @@ class Microsoft_UI_IColorsStatics : WinRtInterface
     //@Returns("Windows.UI.Color")
     get_Transparent()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 139, "Windows.UI.Color", [], [] );
         return _r;
@@ -1523,6 +1668,7 @@ class Microsoft_UI_IColorsStatics : WinRtInterface
     //@Returns("Windows.UI.Color")
     get_Turquoise()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 140, "Windows.UI.Color", [], [] );
         return _r;
@@ -1533,6 +1679,7 @@ class Microsoft_UI_IColorsStatics : WinRtInterface
     //@Returns("Windows.UI.Color")
     get_Violet()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 141, "Windows.UI.Color", [], [] );
         return _r;
@@ -1543,6 +1690,7 @@ class Microsoft_UI_IColorsStatics : WinRtInterface
     //@Returns("Windows.UI.Color")
     get_Wheat()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 142, "Windows.UI.Color", [], [] );
         return _r;
@@ -1553,6 +1701,7 @@ class Microsoft_UI_IColorsStatics : WinRtInterface
     //@Returns("Windows.UI.Color")
     get_White()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 143, "Windows.UI.Color", [], [] );
         return _r;
@@ -1563,6 +1712,7 @@ class Microsoft_UI_IColorsStatics : WinRtInterface
     //@Returns("Windows.UI.Color")
     get_WhiteSmoke()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 144, "Windows.UI.Color", [], [] );
         return _r;
@@ -1573,6 +1723,7 @@ class Microsoft_UI_IColorsStatics : WinRtInterface
     //@Returns("Windows.UI.Color")
     get_Yellow()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 145, "Windows.UI.Color", [], [] );
         return _r;
@@ -1583,6 +1734,7 @@ class Microsoft_UI_IColorsStatics : WinRtInterface
     //@Returns("Windows.UI.Color")
     get_YellowGreen()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 146, "Windows.UI.Color", [], [] );
         return _r;
@@ -1603,7 +1755,8 @@ class Microsoft_UI_ColorHelper : WinRtInterface
     Microsoft_UI_ColorHelper( comPtr )
     {
         var Microsoft = runtime.global("Microsoft");
-        this.comPtr = comPtr.queryInterface( Microsoft.UI.IColorHelper.iid );
+        if(!comPtr || !int(comPtr)) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( Microsoft.UI.IColorHelper.iid );
     }
 
     // s Microsoft.UI.IColorHelperStatics
@@ -1641,7 +1794,8 @@ class Microsoft_UI_Colors : WinRtInterface
     Microsoft_UI_Colors( comPtr )
     {
         var Microsoft = runtime.global("Microsoft");
-        this.comPtr = comPtr.queryInterface( Microsoft.UI.IColors.iid );
+        if(!comPtr || !int(comPtr)) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( Microsoft.UI.IColors.iid );
     }
 
     // s Microsoft.UI.IColorsStatics

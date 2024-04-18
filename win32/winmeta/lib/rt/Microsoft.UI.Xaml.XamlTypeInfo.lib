@@ -17,7 +17,8 @@ class Microsoft_UI_Xaml_XamlTypeInfo_IXamlControlsXamlMetaDataProvider : WinRtIn
     Microsoft_UI_Xaml_XamlTypeInfo_IXamlControlsXamlMetaDataProvider( comPtr )
     {
         var Microsoft = runtime.global("Microsoft");
-        this.comPtr = comPtr.queryInterface( "{17FA3F58-3472-5AA2-A0F8-1AB8A519573D}");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{17FA3F58-3472-5AA2-A0F8-1AB8A519573D}");
     }
 
 
@@ -33,7 +34,8 @@ class Microsoft_UI_Xaml_XamlTypeInfo_IXamlControlsXamlMetaDataProviderStatics : 
     Microsoft_UI_Xaml_XamlTypeInfo_IXamlControlsXamlMetaDataProviderStatics( comPtr )
     {
         var Microsoft = runtime.global("Microsoft");
-        this.comPtr = comPtr.queryInterface( "{2D7EB3FD-ECDB-5084-B7E0-12F9598381EF}");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{2D7EB3FD-ECDB-5084-B7E0-12F9598381EF}");
     }
 
     //@VtableIndex(6)
@@ -41,6 +43,7 @@ class Microsoft_UI_Xaml_XamlTypeInfo_IXamlControlsXamlMetaDataProviderStatics : 
     //@Returns("void")
     Initialize()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Microsoft = runtime.global("Microsoft");
         this.comPtr.invoke( 6, "void", [], [] );
     }
@@ -60,7 +63,8 @@ class Microsoft_UI_Xaml_XamlTypeInfo_XamlControlsXamlMetaDataProvider : WinRtInt
     Microsoft_UI_Xaml_XamlTypeInfo_XamlControlsXamlMetaDataProvider( comPtr )
     {
         var Microsoft = runtime.global("Microsoft");
-        this.comPtr = comPtr.queryInterface( Microsoft.UI.Xaml.Markup.IXamlMetadataProvider.iid );
+        if(!comPtr || !int(comPtr)) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( Microsoft.UI.Xaml.Markup.IXamlMetadataProvider.iid );
     }
 
     // s Microsoft.UI.Xaml.XamlTypeInfo.IXamlControlsXamlMetaDataProviderStatics
