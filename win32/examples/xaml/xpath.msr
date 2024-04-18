@@ -165,8 +165,12 @@ var edit_xaml = "
 				<Grid.RowDefinitions>
 					<RowDefinition Name='RowDefinition2' Height='*'/>
 				</Grid.RowDefinitions>
+				<ScrollViewer
+					VerticalScrollBarVisibility='Visible' 
+					HorizontalScrollBarVisibility='Visible'>
 
-					<TextBlock Name='Output' Text='{Binding [xpathResult]}' />
+				    <TextBlock Name='Output' Text='{Binding [xpathResult]}' />
+				</ScrollViewer>
 			</Grid>
 		</SplitView>
 	</Grid>
@@ -335,7 +339,7 @@ class MyWindow : Window
 
 var wnd = MyWindow();
 
-wnd.create( "xpath test" );
+wnd.create( "xpath evaluation" );
 wnd.show();
 Xaml.run(wnd);
 

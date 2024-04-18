@@ -1,4 +1,4 @@
-winrt.classForName = fun(name)
+winrt.ClassForName = fun(name)
 {
     var a = name.split(".");
     var c = runtime.global(a[0]);
@@ -12,7 +12,7 @@ winrt.classForName = fun(name)
     return c;
 };
 
-winrt.getTypeNameFromComPtr = fun (ptr)
+winrt.TypeName = fun (ptr)
 {
     if( !ptr || !int(ptr) ) return;
 
@@ -20,15 +20,15 @@ winrt.getTypeNameFromComPtr = fun (ptr)
     return typeName;
 };
 
-winrt.classFromComPtr = fun(ptr)
+winrt.Class = fun(ptr)
 {
-    var typeName = winrt.getTypeNameFromComPtr(ptr);
+    var typeName = winrt.TypeName(ptr);
     if(!typeName) return;
 
-    return winrt.classForName(typeName);
+    return winrt.ClassForName(typeName);
 };
 
-winrt.self = fun(ptr)
+winrt.RuntimeClass = fun(ptr)
 {
     if(!ptr) return;
 
@@ -37,7 +37,7 @@ winrt.self = fun(ptr)
     if(!ptr) return;
     if(!int(ptr)) return;
     
-    var clazz == winrt.classFromComPtr(ptr);
+    var clazz = winrt.Class(ptr);
     if(!clazz) return nil;
     return clazz(ptr);
 };
