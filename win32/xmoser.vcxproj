@@ -127,7 +127,7 @@
   </ImportGroup>
   <PropertyGroup>
     <IntDir>$(ProjectDir)\obj\$(Platform)\$(Configuration)\$(MSBuildProjectName)\</IntDir>
-    <OutDir Condition="'$(Configuration)'=='Debug'">$(ProjectDir)\..\out\build\x64-Debug</OutDir>
+    <OutDir Condition="'$(Configuration)'=='Debug'">$(ProjectDir)\..\out\build\x64-Debug\</OutDir>
     <OutDir Condition="'$(Configuration)'=='Release'">$(ProjectDir)\..\out\build\x64-Release\</OutDir>
     <GeneratedFilesDir>$(ProjectDir)\obj\Gen\$(Platform)\$(Configuration)\</GeneratedFilesDir>
   </PropertyGroup>

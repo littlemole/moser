@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+ <!-- Configuration -->
+
+ <PropertyGroup Label="Configuration">
+
+   <Configuration Condition=" '$(Configuration)' == '' ">Release</Configuration>
+   <Platform Condition=" '$(Platform)' == '' ">x64</Platform>
+
+   <preset Condition=" '$(Configuration)' == 'Release' ">win-x64-release</preset>
+   <preset Condition=" '$(Configuration)' == 'Debug' ">win-x64-debug</preset>
+
+   <vcredistdir>C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Redist\MSVC\14.38.33135\x64\</vcredistdir>
+   <appsdk>Microsoft.WindowsAppSDK.1.5.240311000</appsdk>
+   <win32meta>Microsoft.Windows.SDK.Win32Metadata.59.0.13-preview</win32meta>
+
+ </PropertyGroup>
+
+ <!-- Build -->
+
+  <Target Name="purgeVcpkg" >  
+      <Exec Command="rd /s /q vcpkg" WorkingDirectory="$(MSBuildThisFileDirectory)"/>
+  </Target>
+
+  <Target Name="initVcpkg" >  
+      <Exec Command="git clone https://github.com/microsoft/vcpkg.git" WorkingDirectory="$(MSBuildThisFileDirectory)"/>
+      <Exec Command="cmd.exe /C bootstrap-vcpkg.bat" WorkingDirectory="$(MSBuildThisFileDirectory)\vcpkg"/>
+  </Target>
+
+
+  <Target Name="prepareDirectories" AfterTargets="clean,purge">
+      <Exec Command="mkdir out" Condition="!Exists('out')" WorkingDirectory="$(MSBuildThisFileDirectory)"/>
+      <Exec Command="mkdir out\build" Condition="!Exists('out\build')" WorkingDirectory="$(MSBuildThisFileDirectory)"/>
+      <Exec Command="mkdir out\build\x64-Debug" Condition="!Exists('out\build\x64-Debug')" WorkingDirectory="$(MSBuildThisFileDirectory)"/>
+      <Exec Command="mkdir out\build\x64-Release" Condition="!Exists('out\build\x64-Release')" WorkingDirectory="$(MSBuildThisFileDirectory)"/>
+
+      <Exec Command="mkdir lib\win\rt" Condition="!Exists('lib\win\rt')" WorkingDirectory="$(MSBuildThisFileDirectory)"/>
+      <Exec Command="mkdir lib\win\win32" Condition="!Exists('lib\win\win32')" WorkingDirectory="$(MSBuildThisFileDirectory)"/>
+
+      <Exec Command="mkdir win32\winmd" Condition="!Exists('win32\winmd')" WorkingDirectory="$(MSBuildThisFileDirectory)"/>
+      <Exec Command="mkdir win32\idl" Condition="!Exists('win32\idl')" WorkingDirectory="$(MSBuildThisFileDirectory)"/>
+
+      <Exec Command="mkdir win32\winmeta\lib" Condition="!Exists('win32\winmeta\lib')" WorkingDirectory="$(MSBuildThisFileDirectory)"/>
+      <Exec Command="mkdir win32\winmeta\lib\rt" Condition="!Exists('win32\winmeta\lib\rt')" WorkingDirectory="$(MSBuildThisFileDirectory)"/>
+
+      <Exec Command="mkdir win32\winmeta\winmetamoc\lib" Condition="!Exists('win32\winmeta\winmetamoc\lib')" WorkingDirectory="$(MSBuildThisFileDirectory)"/>
+      <Exec Command="mkdir win32\winmeta\winmetamoc\lib\win32" Condition="!Exists('win32\winmeta\winmetamoc\lib\win32')" WorkingDirectory="$(MSBuildThisFileDirectory)"/>
+
+  </Target>
+
+  <Target Name="cmakePrepare" >  
+      <Exec Command="cmake --preset $(preset)" WorkingDirectory="$(MSBuildThisFileDirectory)"/>
+  </Target>
+
+  <Target Name="moser" >  
+      <Exec Command="cmake --build --preset $(preset)" WorkingDirectory="$(MSBuildThisFileDirectory)"/>
+  </Target>
+
+  <Target Name="nugetRestore" >  
+      <MSBuild Projects="win32\xmoser.vcxproj" Targets="restore" Properties="RestorePackagesConfig=true" />
+      <MSBuild Projects="win32\wix\moserSetup.wixproj" Targets="restore" Properties="RestorePackagesConfig=true;Configuration=Release;Platform=x64" />
+  </Target>
+
+  <Target Name="moxaml" >  
+      <MSBuild Projects="win32\moxaml\moxaml.vcxproj" Targets="build" Properties="Configuration=$(Configuration);Platform=x64" />
+  </Target>
+
+
+  <Target Name="xmoser" >  
+      <MSBuild Projects="win32\xmoser.vcxproj" Targets="build" Properties="Configuration=$(Configuration);Platform=x64" />
+  </Target>
+
+
+  <Target Name="vcredist" >  
+      <Exec Command='copy /Y "$(vcredistdir)\Microsoft.VC143.CRT\*.dll" out\build\x64-$(Configuration)' WorkingDirectory="$(MSBuildThisFileDirectory)"/>
+      <Exec Command='copy /Y "$(vcredistdir)\Microsoft.VC143.CXXAMP\*.dll" out\build\x64-$(Configuration)' WorkingDirectory="$(MSBuildThisFileDirectory)"/>
+      <Exec Command='copy /Y "$(vcredistdir)\Microsoft.VC143.OpenMP\*.dll" out\build\x64-$(Configuration)' WorkingDirectory="$(MSBuildThisFileDirectory)"/>
+  </Target>
+
+  <Target Name="winmd" >  
+      <Exec Command="copy /Y out\build\x64-Release\moxaml.winmd win32\winmd" WorkingDirectory="$(MSBuildThisFileDirectory)"/>
+      <Exec Command="copy /Y win32\packages\$(appsdk)\lib\uap10.0\*.winmd win32\winmd" WorkingDirectory="$(MSBuildThisFileDirectory)"/>
+      <Exec Command="copy /Y win32\packages\$(appsdk)\lib\uap10.0.17763\*.winmd win32\winmd" WorkingDirectory="$(MSBuildThisFileDirectory)"/>
+      <Exec Command="copy /Y win32\packages\$(win32meta)\*.winmd win32\winmd" WorkingDirectory="$(MSBuildThisFileDirectory)"/>
+      <Exec Command="copy /Y win32\packages\$(win32meta)\Windows.Win32.winmd win32\winmeta\winmetamoc" WorkingDirectory="$(MSBuildThisFileDirectory)"/>
+
+      <Exec Command="copy /Y win32\winmd\*.winmd win32\winmeta\" WorkingDirectory="$(MSBuildThisFileDirectory)"/>
+  </Target>
+
+
+  <Target Name="mocres" >  
+      <MSBuild Projects="win32\mocres\mocres.sln" Targets="build" Properties="Configuration=$(Configuration);Platform=x64" />
+  </Target>
+
+
+  <Target Name="meta" >  
+      <MSBuild Condition="$(Configuration) == 'Debug'" Projects="win32\winmeta\winmeta.sln" Targets="build" Properties="Configuration=Release;Platform=x64" />
+      <MSBuild Projects="win32\winmeta\winmeta.sln" Targets="build" Properties="Configuration=$(Configuration);Platform=x64" />
+  </Target>
+
+  <Target Name="winrt" >  
+      <Exec Command="cmd.exe /C gen.bat" WorkingDirectory="$(MSBuildThisFileDirectory)\win32\winmeta"/>
+      <Exec Command="copy /Y win32\winmeta\lib\rt\*.lib lib\win\rt" WorkingDirectory="$(MSBuildThisFileDirectory)"/>
+  </Target>
+
+  <Target Name="win32" >  
+      <Exec Command="cmd.exe /C gen.bat" WorkingDirectory="$(MSBuildThisFileDirectory)\win32\winmeta\winmetamoc" />
+      <Exec Command="copy /Y win32\winmeta\winmetamoc\lib\win32\*.lib lib\win\win32" WorkingDirectory="$(MSBuildThisFileDirectory)"/>
+  </Target>
+
+  <Target Name="precompile" >  
+      <Exec Command="cmd.exe /C bin\precompile.bat" WorkingDirectory="$(MSBuildThisFileDirectory)" />
+  </Target>
+
+  <Target Name="purge" DependsOnTargets="clean">  
+      <Exec Command="rd /s /q vcpkg" WorkingDirectory="$(MSBuildThisFileDirectory)" />
+
+      <Exec Command="rd /s /q win32\mocres\mocres\x64" WorkingDirectory="$(MSBuildThisFileDirectory)" />
+
+      <Exec Command="rd /s /q win32\packages" WorkingDirectory="$(MSBuildThisFileDirectory)" />
+
+      <Exec Command="rd /s /q win32\moxaml\obj" WorkingDirectory="$(MSBuildThisFileDirectory)" />
+      <Exec Command="rd /s /q win32\moxaml\packages" WorkingDirectory="$(MSBuildThisFileDirectory)" />
+      <Exec Command="rd /s /q win32\moxaml\AppPackages" WorkingDirectory="$(MSBuildThisFileDirectory)" />
+
+      <Exec Command="del /s /q /f win32\winmd\*.winmd" WorkingDirectory="$(MSBuildThisFileDirectory)" />
+
+      <Exec Command="rd /s /q win32\winmeta\x64" WorkingDirectory="$(MSBuildThisFileDirectory)" />
+      <Exec Command="rd /s /q win32\winmeta\lib" WorkingDirectory="$(MSBuildThisFileDirectory)" />
+      <Exec Command="del /s /q /f win32\winmeta\*.winmd" WorkingDirectory="$(MSBuildThisFileDirectory)" />
+
+      <Exec Command="rd /s /q win32\winmeta\metamoc\x64" WorkingDirectory="$(MSBuildThisFileDirectory)" />
+
+      <Exec Command="del /s /q /f win32\winmeta\winmetamoc\*.winmd" WorkingDirectory="$(MSBuildThisFileDirectory)" />
+      <Exec Command="rd /s /q win32\winmeta\winmetamoc\lib" WorkingDirectory="$(MSBuildThisFileDirectory)" />
+      <Exec Command="rd /s /q win32\winmeta\winmetamoc\x64" WorkingDirectory="$(MSBuildThisFileDirectory)" />
+
+  </Target>
+
+
+  <Target Name="purgeWix" >  
+
+      <Exec Command="rd /s /q win32\wix\bin" WorkingDirectory="$(MSBuildThisFileDirectory)" />
+      <Exec Command="rd /s /q win32\wix\moser" WorkingDirectory="$(MSBuildThisFileDirectory)" />
+      <Exec Command="rd /s /q win32\wix\obj" WorkingDirectory="$(MSBuildThisFileDirectory)" />
+
+      <Exec Command="del /s /q /f win32\wix\moserSetup.msi" WorkingDirectory="$(MSBuildThisFileDirectory)" />
+      <Exec Command="del /s /q /f win32\wix\moserPerUserSetup.msi" WorkingDirectory="$(MSBuildThisFileDirectory)" />
+
+  </Target>
+
+  <Target Name="clean" DependsOnTargets="purgeWix">  
+
+      <Exec Command="rd /s /q out" WorkingDirectory="$(MSBuildThisFileDirectory)" />
+
+      <Exec Command="del /s /q /f win32\winmeta\winmetamoc\*.winmd" WorkingDirectory="$(MSBuildThisFileDirectory)" />
+      <Exec Command="rd /s /q win32\winmeta\winmetamoc\lib" WorkingDirectory="$(MSBuildThisFileDirectory)" />
+
+      <Exec Command="rd /s /q win32\obj" WorkingDirectory="$(MSBuildThisFileDirectory)" />
+
+      <Exec Command="del /s *.mbc" WorkingDirectory="$(MSBuildThisFileDirectory)" />
+
+  </Target>
+
+  <Target Name="armageddon" DependsOnTargets="purge;bootstrap">  
+  </Target>
+
+  <Target Name="bootstrap" DependsOnTargets="initVcpkg;prepareDirectories;nugetRestore;moxaml;cmakePrepare;moser;mocres;meta;winmd;winrt;win32;xmoser;vcredist;precompile">  
+  </Target>
+
+  <Target Name="build" DependsOnTargets="prepareDirectories;moxaml;mocres;cmakePrepare;moser;xmoser;vcredist;precompile">  
+  </Target>
+
+  <Target Name="restoreWix" DependsOnTargets="purgeWix">  
+      <MSBuild Projects="win32\wix\build.xml" Targets="restore" Properties="Configuration=Release;Platform=x64" />
+  </Target>
+
+  <Target Name="package" DependsOnTargets="restoreWix">  
+
+	<!-- won't work global conf mismatch:     
+		<MSBuild Projects="win32\wix\build.xml" Targets="build" Properties="Configuration=Release;Platform=x64" /> 
+	-->
+
+      <Exec Command="msbuild win32\wix\build.xml -t:build" WorkingDirectory="$(MSBuildThisFileDirectory)" />
+
+  </Target>
+  
+
+</Project>
