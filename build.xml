@@ -148,6 +148,8 @@
       <Exec Command="del /s /q /f win32\wix\moserSetup.msi" WorkingDirectory="$(MSBuildThisFileDirectory)" />
       <Exec Command="del /s /q /f win32\wix\moserPerUserSetup.msi" WorkingDirectory="$(MSBuildThisFileDirectory)" />
 
+      <Exec Command="del /s /q /f win32\wix\*.zip" WorkingDirectory="$(MSBuildThisFileDirectory)" />
+
   </Target>
 
   <Target Name="clean" DependsOnTargets="purgeWix">  

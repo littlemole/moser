@@ -59,7 +59,7 @@ set(SOURCES
 )
 
 IF (WIN32)
-	set(SOURCES ${SOURCES} src/win32/xmoser.rc)
+	set(SOURCES ${SOURCES} src/win32/xmoser.rc moser.manifest)
 endif()
 
 add_executable(moser 

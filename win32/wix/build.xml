@@ -29,6 +29,12 @@
     <Exec Command="rd /s /q moser\CMakeFiles" />
     <Exec Command="rd /s /q moser\Testing" />
     <Exec Command="rd /s /q moser\vcpkg_installed" />
+    <Exec Command="del /s /q /f moser\*.pdb" />
+    <Exec Command="del /s /q /f moser\*.exp" />
+    <Exec Command="del /s /q /f moser\*.winmd" />
+    <Exec Command="del /s /q /f moser\ninja_*" />
+    <Exec Command="del /s /q /f moser\build.ninja" />
+    <Exec Command="del /s /q /f moser\cmake*.*" />
 
   </Target>
 
@@ -46,8 +52,14 @@
 
  </Target>
 
- <Target Name="Build" DependsOnTargets="PerUser">
+ <Target Name="zip" DependsOnTargets="">
+	<Exec Command="cscript zip.vbs moser.zip moser" />
+	<Exec Command="cscript zip.vbs moserSetup.zip moserSetup.msi" />
+	<Exec Command="cscript zip.vbs moserPerUserSetup.zip moserPerUserSetup.msi" />
 
+ </Target>
+
+ <Target Name="Build" DependsOnTargets="PerUser;zip">
  </Target>
 
 
