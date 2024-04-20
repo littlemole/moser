@@ -67,9 +67,10 @@ std::string get_env_var(std::string const& key)
     return retval;
 }
 
+
+
 int main(int argc, char** argv)
 {
-
     VM vm;
     std::string libpath = path_to_self_directory("lib");
     vm.include_path.push_back(libpath);
