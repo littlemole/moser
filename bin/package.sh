@@ -11,15 +11,18 @@ rm -rf ./build
 
 #config
 cmake --preset gcc-release
+
 #build
 cmake --build --preset gcc-release
+
 #(local) install
 DESTDIR=./_install cmake --build --target install --preset gcc-release
+
 # package
 cpack --config build/CPackConfig.cmake  -G DEB
-
 echo "package created"
-# print sha256 hash
+
+# print hashes
 ls _packages/moser_1.0_amd64.deb
 echo "md5"
 cat _packages/moser_1.0_amd64.deb | md5sum
