@@ -79,6 +79,10 @@ int main(int argc, char** argv)
     libpath += "\\win";
 #else
     libpath += "/linux";
+    vm.include_path.push_back(libpath);
+    libpath = "/usr/local/lib/moser/lib";
+    vm.include_path.push_back(libpath);
+    libpath += "/linux";
 #endif
     vm.include_path.push_back(libpath);
 

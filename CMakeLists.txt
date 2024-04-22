@@ -71,13 +71,39 @@ target_link_libraries(moser PRIVATE ${LIBS})
 file(COPY lib DESTINATION  ${CMAKE_BINARY_DIR} )
 
 
+if(UNIX) 
+
 ############################################
 # install rules
 ############################################
 
-if(UNIX) 
-
   install(TARGETS moser DESTINATION bin)
   install(DIRECTORY "lib" DESTINATION "lib/moser/" )
+
+  
+############################################
+# Create and install package configuration 
+# and version files.
+############################################
+
+configure_file(
+   ${moser_SOURCE_DIR}/moser-config.cmake.in
+   ${moser_BINARY_DIR}/moser-config.cmake @ONLY)
+
+configure_file(
+   ${moser_SOURCE_DIR}/moser-config-version.cmake.in
+   ${moser_BINARY_DIR}/moser-config-version.cmake @ONLY)
+
+#install(FILES ${moser_BINARY_DIR}/moser-config.cmake
+#         ${moser_BINARY_DIR}/moser-config-version.cmake
+#         DESTINATION lib/cryptoneat-${VERSION})
+
+############################################
+# packaging
+############################################
+
+set(CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}")
+include(package)
+           
 
 endif()
