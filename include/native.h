@@ -70,7 +70,7 @@ namespace native {
             T* target = (T*)((char*)ptr + elements[key].offset);
 
             if (sizeof(T) != elements[key].type->size) {
-                printf("error mismatched size for %s %lu != %lu\n", key.c_str(), sizeof(T), elements[key].type->size);
+                printf("error mismatched size for %s %zu != %zu\n", key.c_str(), sizeof(T), elements[key].type->size);
                 exit(1);
             }
 
