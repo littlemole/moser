@@ -188,6 +188,27 @@ inline void visit_elemSig(ElemSig& elemSig, std::string& result)
                         result = oss.str();
                     }, av.value);
             }
+	    else if constexpr(std::is_same_v< std::decay_t<decltype(av)>, char16_t>)
+	    {
+	    }
+	    else if constexpr(std::is_same_v< std::decay_t<decltype(av)>, double>)
+	    {
+	    }
+	    else if constexpr(std::is_same_v< std::decay_t<decltype(av)>, float>)
+	    {
+	    }
+	    else if constexpr(std::is_same_v< std::decay_t<decltype(av)>, int64_t>)
+	    {
+	    }
+	    else if constexpr(std::is_same_v< std::decay_t<decltype(av)>, size_t>)
+	    {
+	    }
+	    else if constexpr(std::is_same_v< std::decay_t<decltype(av)>, int16_t>)
+	    {
+	    }
+	    else if constexpr(std::is_same_v< std::decay_t<decltype(av)>, uint16_t>)
+	    {
+	    }
             else
             {
                 result = av;
@@ -601,7 +622,7 @@ inline std::vector<std::string> split_generic(const std::string& gen)
 
     auto wgen = to_wstring(gen);
     HSTRING hstr = nullptr;
-    ::WindowsCreateString(wgen.c_str(), wgen.size(), &hstr);
+    ::WindowsCreateString(wgen.c_str(), (UINT32) wgen.size(), &hstr);
 
     DWORD cnt = 0;
     HSTRING* parts = nullptr;
@@ -612,12 +633,12 @@ inline std::vector<std::string> split_generic(const std::string& gen)
         return result;
     }
 
-    for (int i = 0; i < cnt; i++)
+    for (unsigned int i = 0; i < cnt; i++)
     {
         result.push_back(to_utf8(WindowsGetStringRawBuffer(parts[i], nullptr)));
     }
 
-    for (int i = 0; i < cnt; i++)
+    for (unsigned int i = 0; i < cnt; i++)
     {
         ::WindowsDeleteString(parts[i]);
     }

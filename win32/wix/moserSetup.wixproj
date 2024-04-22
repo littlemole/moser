@@ -7,10 +7,12 @@
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <Cultures>en-US</Cultures>
-    <VerboseOutput>true</VerboseOutput>
+<!--    <VerboseOutput>true</VerboseOutput> -->
     <SuppressCom>true</SuppressCom>
     <SuppressIces>ICE03;</SuppressIces>
     <SuppressValidation>true</SuppressValidation>
+    <SuppressSpecificWarnings>5436</SuppressSpecificWarnings>
+    <HarvestDirectorySuppressAllWarnings>True</HarvestDirectorySuppressAllWarnings>
   </PropertyGroup>
   <ItemGroup>
     <HarvestDirectory Include="./moser/">

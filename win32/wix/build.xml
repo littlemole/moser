@@ -59,7 +59,19 @@
 
  </Target>
 
- <Target Name="Build" DependsOnTargets="PerUser;zip">
+ <Target Name="hash" DependsOnTargets="">
+	<Exec Command="certutil -hashfile moser.zip MD5" />
+	<Exec Command="certutil -hashfile moser.zip SHA256" />
+
+	<Exec Command="certutil -hashfile moserSetup.zip MD5" />
+	<Exec Command="certutil -hashfile moserSetup.zip SHA256" />
+
+	<Exec Command="certutil -hashfile moserPerUserSetup.zip MD5" />
+	<Exec Command="certutil -hashfile moserPerUserSetup.zip SHA256" />
+ </Target>
+
+ <Target Name="Build" DependsOnTargets="PerUser;zip;hash">
+
  </Target>
 
 

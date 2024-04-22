@@ -629,7 +629,7 @@ struct RoMetaDataLocator : public IRoMetaDataLocator
             {
                 names.push_back(it.c_str());
             }
-            metaDataDestination.SetStruct(nameElement, strs.size(), &names[0]);
+            metaDataDestination.SetStruct(nameElement, (UINT32)strs.size(), &names[0]);
             break;
         }
         case category::enum_type:
@@ -678,7 +678,7 @@ inline GUID get_generic(const std::string& gen)
 
     auto wgen = to_wstring(gen);
     HSTRING hstr = nullptr;
-    ::WindowsCreateString(wgen.c_str(), wgen.size(), &hstr);
+    ::WindowsCreateString(wgen.c_str(), (UINT32)wgen.size(), &hstr);
 
     DWORD cnt = 0;
     HSTRING* parts = nullptr;
@@ -690,7 +690,7 @@ inline GUID get_generic(const std::string& gen)
     }
 
     std::vector<const wchar_t*> str;
-    for (int i = 0; i < cnt; i++)
+    for (unsigned int i = 0; i < cnt; i++)
     {
         str.push_back(WindowsGetStringRawBuffer(parts[i], nullptr));
     }
@@ -702,7 +702,7 @@ inline GUID get_generic(const std::string& gen)
     {
         int x = 1;
     }
-    for (int i = 0; i < cnt; i++)
+    for (unsigned int i = 0; i < cnt; i++)
     {
         //std::wcout << WindowsGetStringRawBuffer(parts[i], nullptr) << std::endl;
         ::WindowsDeleteString(parts[i]);

@@ -1,10 +1,7 @@
 {
-    "name": "moc",
+    "name": "moser",
     "version-string": "ba1ea176a5909e9cf86331bdff865b1cfecbdc4c",
     "dependencies": [
-	  {
-            "name": "winmdparser"
-        },
         {
             "name": "libffi"
         },

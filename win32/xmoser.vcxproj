@@ -144,7 +144,7 @@
       <AdditionalIncludeDirectories>$(MSBuildThisFileDirectory)..\include\;$(MSBuildThisFileDirectory)..\include\win32\xaml\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>ole32.lib;libffi.lib;user32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>ole32.lib;ffi.lib;user32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <DelayLoadDLLs>Microsoft.UI.Windowing.Core.dll</DelayLoadDLLs>
     </Link>
   </ItemDefinitionGroup>

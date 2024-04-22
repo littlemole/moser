@@ -7,7 +7,7 @@
 #include <iostream>
 #include <sstream>
 #include <filesystem>
-#include <winmdparser/winmd_reader.h>
+#include <winmd_reader.h>
 #include <windows.h>
 #include <windows.foundation.h>
 #include <rometadataresolution.h>

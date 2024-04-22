@@ -610,7 +610,7 @@ inline std::vector<std::string> split_generic(const std::string& gen)
 
     auto wgen = to_wstring(gen);
     HSTRING hstr = nullptr;
-    ::WindowsCreateString(wgen.c_str(), wgen.size(), &hstr);
+    ::WindowsCreateString(wgen.c_str(), (UINT32)wgen.size(), &hstr);
 
     DWORD cnt = 0;
     HSTRING* parts = nullptr;
@@ -621,12 +621,12 @@ inline std::vector<std::string> split_generic(const std::string& gen)
         return result;
     }
 
-    for (int i = 0; i < cnt; i++)
+    for (unsigned int i = 0; i < cnt; i++)
     {
-        result.push_back(to_utf8(WindowsGetStringRawBuffer(parts[i], nullptr)));
+        result.push_back(to_utf8(WindowsGetStringRawBuffer(parts[i], 0)));
     }
 
-    for (int i = 0; i < cnt; i++)
+    for (unsigned int i = 0; i < cnt; i++)
     {
         ::WindowsDeleteString(parts[i]);
     }

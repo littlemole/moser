@@ -24,8 +24,8 @@
   </Target>
 
   <Target Name="initVcpkg" >  
-      <Exec Command="git clone https://github.com/microsoft/vcpkg.git" WorkingDirectory="$(MSBuildThisFileDirectory)"/>
-      <Exec Command="cmd.exe /C bootstrap-vcpkg.bat" WorkingDirectory="$(MSBuildThisFileDirectory)\vcpkg"/>
+      <Exec Command="git clone https://github.com/microsoft/vcpkg.git" WorkingDirectory="$(MSBuildThisFileDirectory)" Condition="!Exists('vcpkg')"/>
+      <Exec Command="cmd.exe /C bootstrap-vcpkg.bat" WorkingDirectory="$(MSBuildThisFileDirectory)\vcpkg" Condition="!Exists('vcpkg')"/>
   </Target>
 
 
