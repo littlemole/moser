@@ -10,8 +10,6 @@ extern from "Microsoft.UI.Windowing.Core.dll" {
 }
 
 
-var windowsVersion = WindowsVersion();
-
 fun getXamlClassByName(name)
 {
     var a = name.split(".");
@@ -627,8 +625,6 @@ class Xaml
     static expand( hwnd )
     {
         var args = arguments();
-
-        if(windowsVersion < 11) return;
 
         if(!Windowing_GetWindowIdFromWindow) return;
         if(!Microsoft.UI.Windowing.AppWindowTitleBar.IsCustomizationSupported()) return;
