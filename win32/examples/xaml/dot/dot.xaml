@@ -3,7 +3,7 @@
   xmlns:x='http://schemas.microsoft.com/winfx/2006/xaml'
   xmlns:mc='http://schemas.openxmlformats.org/markup-compatibility/2006'
   xmlns:mux='using:Microsoft.UI.Xaml.Controls'
-  Background='{ThemeResource ApplicationPageBackgroundThemeBrush}'
+  Background='{ThemeResource MoserBackground}'
   mc:Ignorable='d'>
 	
 	<Grid Name='MasterGrid'>
@@ -61,7 +61,7 @@
 					<RowDefinition Name='RowDefinition2' Height='*'/>
 				</Grid.RowDefinitions>
 				<Border BorderThickness="2" BorderBrush="{ThemeResource PersonPictureEllipseBadgeFillThemeBrush}">
-					<mux:WebView2 Grid.Row='1' Grid.Column='1' x:Name='dotWebView'
+					<mux:WebView2 Grid.Row='1' Grid.Column='1' Name='dotWebView'
 					    Source='about:blank'
 						HorizontalAlignment='Stretch' VerticalAlignment='Stretch' 
 					/>

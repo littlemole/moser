@@ -1,0 +1,4064 @@
+{
+class WinRtInterface { 
+    queryInterface(iid) { return this.comPtr.queryInterface(iid); }
+    release() { this.comPtr.release(); this.comPtr = nil; }
+    valid() { return this.comPtr != nil && int(this.comPtr) != 0; }
+}
+
+if( runtime.global("Microsoft") == nil ) { runtime.global("Microsoft", {}); }
+var Microsoft = runtime.global("Microsoft");
+if ( Microsoft.UI == nil ) { Microsoft.UI = {}; }
+if ( Microsoft.UI.Content == nil ) { Microsoft.UI.Content = {}; }
+
+Microsoft.UI.Content.ContentCoordinateRoundingMode = {
+    "Auto" : 0, 
+    "Floor" : 1, 
+    "Round" : 2, 
+    "Ceiling" : 3
+};
+
+
+Microsoft.UI.Content.ContentLayoutDirection = {
+    "LeftToRight" : 0, 
+    "RightToLeft" : 1
+};
+
+
+Microsoft.UI.Content.ContentSizePolicy = {
+    "None" : 0, 
+    "ResizeContentToParentWindow" : 1, 
+    "ResizeParentWindowToContent" : 2
+};
+
+//@Interface("Microsoft.UI.Content.IContentCoordinateConverter")
+//@IID("{10A11230-5EB4-5840-A346-570F4A49040F}")
+class Microsoft_UI_Content_IContentCoordinateConverter : WinRtInterface 
+{
+    Microsoft_UI_Content_IContentCoordinateConverter( comPtr )
+    {
+        var Microsoft = runtime.global("Microsoft");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{10A11230-5EB4-5840-A346-570F4A49040F}");
+    }
+
+    //@VtableIndex(6)
+    //@Async(0)
+    //@Returns("Windows.Graphics.PointInt32")
+    //@Parameters("Windows.Foundation.Point")
+    ConvertLocalToScreenWithPoint(localPoint)
+    {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var p1 = localPoint;
+        var _r = this.comPtr.invoke( 6, "Windows.Graphics.PointInt32", ["Windows.Foundation.Point"], [p1] );
+        return _r;
+    }
+
+    //@VtableIndex(9)
+    //@Async(0)
+    //@Returns("Windows.Graphics.RectInt32")
+    //@Parameters("Windows.Foundation.Rect")
+    ConvertLocalToScreenWithRect(localRect)
+    {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var p1 = localRect;
+        var _r = this.comPtr.invoke( 9, "Windows.Graphics.RectInt32", ["Windows.Foundation.Rect"], [p1] );
+        return _r;
+    }
+
+    //@VtableIndex(10)
+    //@Async(0)
+    //@Returns("Windows.Foundation.Point")
+    //@Parameters("Windows.Graphics.PointInt32")
+    ConvertScreenToLocalWithPoint(screenPoint)
+    {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var p1 = screenPoint;
+        var _r = this.comPtr.invoke( 10, "Windows.Foundation.Point", ["Windows.Graphics.PointInt32"], [p1] );
+        return _r;
+    }
+
+    //@VtableIndex(12)
+    //@Async(0)
+    //@Returns("Windows.Foundation.Rect")
+    //@Parameters("Windows.Graphics.RectInt32")
+    ConvertScreenToLocalWithRect(screenRect)
+    {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var p1 = screenRect;
+        var _r = this.comPtr.invoke( 12, "Windows.Foundation.Rect", ["Windows.Graphics.RectInt32"], [p1] );
+        return _r;
+    }
+
+
+}
+Microsoft_UI_Content_IContentCoordinateConverter.iid = "{10A11230-5EB4-5840-A346-570F4A49040F}";
+Microsoft.UI.Content.IContentCoordinateConverter = Microsoft_UI_Content_IContentCoordinateConverter;
+
+
+//@Interface("Microsoft.UI.Content.IContentCoordinateConverterFactory")
+//@IID("{A4B216EE-0E26-56BD-9209-A75CF9D80F27}")
+class Microsoft_UI_Content_IContentCoordinateConverterFactory : WinRtInterface 
+{
+    Microsoft_UI_Content_IContentCoordinateConverterFactory( comPtr )
+    {
+        var Microsoft = runtime.global("Microsoft");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{A4B216EE-0E26-56BD-9209-A75CF9D80F27}");
+    }
+
+
+}
+Microsoft_UI_Content_IContentCoordinateConverterFactory.iid = "{A4B216EE-0E26-56BD-9209-A75CF9D80F27}";
+Microsoft.UI.Content.IContentCoordinateConverterFactory = Microsoft_UI_Content_IContentCoordinateConverterFactory;
+
+
+//@Interface("Microsoft.UI.Content.IContentCoordinateConverterStatics")
+//@IID("{F56374CE-B6DF-5B42-A58F-4E3BB039E3A9}")
+class Microsoft_UI_Content_IContentCoordinateConverterStatics : WinRtInterface 
+{
+    Microsoft_UI_Content_IContentCoordinateConverterStatics( comPtr )
+    {
+        var Microsoft = runtime.global("Microsoft");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{F56374CE-B6DF-5B42-A58F-4E3BB039E3A9}");
+    }
+
+    //@VtableIndex(6)
+    //@Async(0)
+    //@Returns("Microsoft.UI.Content.ContentCoordinateConverter")
+    //@Parameters("Microsoft.UI.WindowId")
+    CreateForWindowId(windowId)
+    {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var p1 = windowId;
+        var _r = Microsoft.UI.Content.ContentCoordinateConverter(
+            this.comPtr.invoke( 6, "Microsoft.UI.Content.ContentCoordinateConverter", ["Microsoft.UI.WindowId"], [p1] )
+        );
+        return _r;
+    }
+
+
+}
+Microsoft_UI_Content_IContentCoordinateConverterStatics.iid = "{F56374CE-B6DF-5B42-A58F-4E3BB039E3A9}";
+Microsoft.UI.Content.IContentCoordinateConverterStatics = Microsoft_UI_Content_IContentCoordinateConverterStatics;
+
+
+//@Interface("Microsoft.UI.Content.IContentDeferral")
+//@IID("{470529F5-CD93-599B-968E-F8A689BC3A07}")
+class Microsoft_UI_Content_IContentDeferral : WinRtInterface 
+{
+    Microsoft_UI_Content_IContentDeferral( comPtr )
+    {
+        var Microsoft = runtime.global("Microsoft");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{470529F5-CD93-599B-968E-F8A689BC3A07}");
+    }
+
+    //@VtableIndex(6)
+    //@Async(0)
+    //@Returns("void")
+    Complete()
+    {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        this.comPtr.invoke( 6, "void", [], [] );
+    }
+
+
+}
+Microsoft_UI_Content_IContentDeferral.iid = "{470529F5-CD93-599B-968E-F8A689BC3A07}";
+Microsoft.UI.Content.IContentDeferral = Microsoft_UI_Content_IContentDeferral;
+
+
+//@Interface("Microsoft.UI.Content.IContentEnvironmentSettingChangedEventArgs")
+//@IID("{76478051-FC80-5EEC-A3F3-62606ABE06B7}")
+class Microsoft_UI_Content_IContentEnvironmentSettingChangedEventArgs : WinRtInterface 
+{
+    Microsoft_UI_Content_IContentEnvironmentSettingChangedEventArgs( comPtr )
+    {
+        var Microsoft = runtime.global("Microsoft");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{76478051-FC80-5EEC-A3F3-62606ABE06B7}");
+    }
+
+    //@VtableIndex(6)
+    //@Async(0)
+    //@Returns("String")
+    get_SettingName()
+    {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var _r = this.comPtr.invoke( 6, "String", [], [] );
+        return _r;
+    }
+
+
+}
+Microsoft_UI_Content_IContentEnvironmentSettingChangedEventArgs.iid = "{76478051-FC80-5EEC-A3F3-62606ABE06B7}";
+Microsoft.UI.Content.IContentEnvironmentSettingChangedEventArgs = Microsoft_UI_Content_IContentEnvironmentSettingChangedEventArgs;
+
+
+//@Interface("Microsoft.UI.Content.IContentEnvironmentStateChangedEventArgs")
+//@IID("{8970FA4F-10BA-5F67-970B-8C72BC009B67}")
+class Microsoft_UI_Content_IContentEnvironmentStateChangedEventArgs : WinRtInterface 
+{
+    Microsoft_UI_Content_IContentEnvironmentStateChangedEventArgs( comPtr )
+    {
+        var Microsoft = runtime.global("Microsoft");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{8970FA4F-10BA-5F67-970B-8C72BC009B67}");
+    }
+
+    //@VtableIndex(6)
+    //@Async(0)
+    //@Returns("Boolean")
+    get_DidAppWindowIdChange()
+    {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var _r = this.comPtr.invoke( 6, "Boolean", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(7)
+    //@Async(0)
+    //@Returns("Boolean")
+    get_DidDisplayIdChange()
+    {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var _r = this.comPtr.invoke( 7, "Boolean", [], [] );
+        return _r;
+    }
+
+
+}
+Microsoft_UI_Content_IContentEnvironmentStateChangedEventArgs.iid = "{8970FA4F-10BA-5F67-970B-8C72BC009B67}";
+Microsoft.UI.Content.IContentEnvironmentStateChangedEventArgs = Microsoft_UI_Content_IContentEnvironmentStateChangedEventArgs;
+
+
+//@Interface("Microsoft.UI.Content.IContentIsland")
+//@IID("{5B2504BA-361C-50AA-BD6E-4122C6D93889}")
+class Microsoft_UI_Content_IContentIsland : WinRtInterface 
+{
+    Microsoft_UI_Content_IContentIsland( comPtr )
+    {
+        var Microsoft = runtime.global("Microsoft");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{5B2504BA-361C-50AA-BD6E-4122C6D93889}");
+    }
+
+    //@VtableIndex(6)
+    //@Async(0)
+    //@Returns("Windows.Foundation.Numerics.Vector2")
+    get_ActualSize()
+    {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var _r = this.comPtr.invoke( 6, "Windows.Foundation.Numerics.Vector2", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(7)
+    //@Async(0)
+    //@Returns("Object")
+    get_AppData()
+    {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var _r = this.comPtr.invoke( 7, "Object", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(8)
+    //@Async(0)
+    //@Returns("void")
+    //@Parameters("Object")
+    put_AppData(value)
+    {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var p1 = value;
+        this.comPtr.invoke( 8, "void", ["Object"], [p1] );
+    }
+
+    //@VtableIndex(9)
+    //@Async(0)
+    //@Returns("Microsoft.UI.Content.ContentCoordinateConverter")
+    get_CoordinateConverter()
+    {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var _r = Microsoft.UI.Content.ContentCoordinateConverter(
+            this.comPtr.invoke( 9, "Microsoft.UI.Content.ContentCoordinateConverter", [], [] )
+        );
+        return _r;
+    }
+
+    //@VtableIndex(10)
+    //@Async(0)
+    //@Returns("Windows.Foundation.Collections.IPropertySet")
+    get_CustomProperties()
+    {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var _r = Windows.Foundation.Collections.IPropertySet(
+            this.comPtr.invoke( 10, "Windows.Foundation.Collections.IPropertySet", [], [] )
+        );
+        return _r;
+    }
+
+    //@VtableIndex(11)
+    //@Async(0)
+    //@Returns("Microsoft.UI.Dispatching.DispatcherQueue")
+    get_DispatcherQueue()
+    {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var _r = Microsoft.UI.Dispatching.DispatcherQueue(
+            this.comPtr.invoke( 11, "Microsoft.UI.Dispatching.DispatcherQueue", [], [] )
+        );
+        return _r;
+    }
+
+    //@VtableIndex(12)
+    //@Async(0)
+    //@Returns("Microsoft.UI.Content.ContentIslandEnvironment")
+    get_Environment()
+    {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var _r = Microsoft.UI.Content.ContentIslandEnvironment(
+            this.comPtr.invoke( 12, "Microsoft.UI.Content.ContentIslandEnvironment", [], [] )
+        );
+        return _r;
+    }
+
+    //@VtableIndex(13)
+    //@Async(0)
+    //@Returns("UInt64")
+    get_Id()
+    {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var _r = this.comPtr.invoke( 13, "UInt64", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(14)
+    //@Async(0)
+    //@Returns("Boolean")
+    get_IsConnected()
+    {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var _r = this.comPtr.invoke( 14, "Boolean", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(15)
+    //@Async(0)
+    //@Returns("Boolean")
+    get_IsHitTestVisibleWhenTransparent()
+    {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var _r = this.comPtr.invoke( 15, "Boolean", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(16)
+    //@Async(0)
+    //@Returns("void")
+    //@Parameters("Boolean")
+    put_IsHitTestVisibleWhenTransparent(value)
+    {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var p1 = value;
+        this.comPtr.invoke( 16, "void", ["Boolean"], [p1] );
+    }
+
+    //@VtableIndex(17)
+    //@Async(0)
+    //@Returns("Boolean")
+    get_IsIslandEnabled()
+    {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var _r = this.comPtr.invoke( 17, "Boolean", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(18)
+    //@Async(0)
+    //@Returns("void")
+    //@Parameters("Boolean")
+    put_IsIslandEnabled(value)
+    {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var p1 = value;
+        this.comPtr.invoke( 18, "void", ["Boolean"], [p1] );
+    }
+
+    //@VtableIndex(19)
+    //@Async(0)
+    //@Returns("Boolean")
+    get_IsIslandVisible()
+    {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var _r = this.comPtr.invoke( 19, "Boolean", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(20)
+    //@Async(0)
+    //@Returns("void")
+    //@Parameters("Boolean")
+    put_IsIslandVisible(value)
+    {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var p1 = value;
+        this.comPtr.invoke( 20, "void", ["Boolean"], [p1] );
+    }
+
+    //@VtableIndex(21)
+    //@Async(0)
+    //@Returns("Boolean")
+    get_IsSiteEnabled()
+    {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var _r = this.comPtr.invoke( 21, "Boolean", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(22)
+    //@Async(0)
+    //@Returns("Boolean")
+    get_IsSiteVisible()
+    {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var _r = this.comPtr.invoke( 22, "Boolean", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(23)
+    //@Async(0)
+    //@Returns("Microsoft.UI.Content.ContentLayoutDirection")
+    get_LayoutDirection()
+    {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var _r = this.comPtr.invoke( 23, "UInt32", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(24)
+    //@Async(0)
+    //@Returns("Single")
+    get_RasterizationScale()
+    {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var _r = this.comPtr.invoke( 24, "Single", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(25)
+    //@Async(0)
+    //@Returns("Object")
+    GetAutomationHostProvider()
+    {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var _r = this.comPtr.invoke( 25, "Object", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(26)
+    //@Async(0)
+    //@Returns("Microsoft.UI.Content.ContentDeferral")
+    GetStateChangeDeferral()
+    {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var _r = Microsoft.UI.Content.ContentDeferral(
+            this.comPtr.invoke( 26, "Microsoft.UI.Content.ContentDeferral", [], [] )
+        );
+        return _r;
+    }
+
+    //@VtableIndex(27)
+    //@Async(0)
+    //@Returns("void")
+    //@Parameters("Windows.Foundation.Numerics.Vector2")
+    RequestSize(size)
+    {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var p1 = size;
+        this.comPtr.invoke( 27, "void", ["Windows.Foundation.Numerics.Vector2"], [p1] );
+    }
+
+    //@VtableIndex(28)
+    //@Async(0)
+    //@Returns("Windows.Foundation.EventRegistrationToken")
+    //@Parameters("Windows.Foundation.TypedEventHandler`2<Microsoft.UI.Content.ContentIsland,Microsoft.UI.Content.ContentIslandAutomationProviderRequestedEventArgs>")
+    add_AutomationProviderRequested(handler)
+    {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var p1 = nil; 
+        if( typeof(handler) == "comptr" ) { 
+            p1 = handler;
+        } else {
+            p1 = Windows.Foundation.TypedEventHandler_2_Microsoft_UI_Content_ContentIsland_Microsoft_UI_Content_ContentIslandAutomationProviderRequestedEventArgs_.Create( handler); 
+        }
+        var _r = this.comPtr.invoke( 28, "Windows.Foundation.EventRegistrationToken", ["Windows.Foundation.TypedEventHandler`2<Microsoft.UI.Content.ContentIsland,Microsoft.UI.Content.ContentIslandAutomationProviderRequestedEventArgs>"], [p1] );
+        return _r;
+    }
+
+    //@VtableIndex(29)
+    //@Async(0)
+    //@Returns("void")
+    //@Parameters("Windows.Foundation.EventRegistrationToken")
+    remove_AutomationProviderRequested(token)
+    {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var p1 = token;
+        this.comPtr.invoke( 29, "void", ["Windows.Foundation.EventRegistrationToken"], [p1] );
+    }
+
+    //@VtableIndex(30)
+    //@Async(0)
+    //@Returns("Windows.Foundation.EventRegistrationToken")
+    //@Parameters("Windows.Foundation.TypedEventHandler`2<Microsoft.UI.Content.ContentIsland,Microsoft.UI.Content.ContentIslandStateChangedEventArgs>")
+    add_StateChanged(handler)
+    {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var p1 = nil; 
+        if( typeof(handler) == "comptr" ) { 
+            p1 = handler;
+        } else {
+            p1 = Windows.Foundation.TypedEventHandler_2_Microsoft_UI_Content_ContentIsland_Microsoft_UI_Content_ContentIslandStateChangedEventArgs_.Create( handler); 
+        }
+        var _r = this.comPtr.invoke( 30, "Windows.Foundation.EventRegistrationToken", ["Windows.Foundation.TypedEventHandler`2<Microsoft.UI.Content.ContentIsland,Microsoft.UI.Content.ContentIslandStateChangedEventArgs>"], [p1] );
+        return _r;
+    }
+
+    //@VtableIndex(31)
+    //@Async(0)
+    //@Returns("void")
+    //@Parameters("Windows.Foundation.EventRegistrationToken")
+    remove_StateChanged(token)
+    {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var p1 = token;
+        this.comPtr.invoke( 31, "void", ["Windows.Foundation.EventRegistrationToken"], [p1] );
+    }
+
+
+}
+Microsoft_UI_Content_IContentIsland.iid = "{5B2504BA-361C-50AA-BD6E-4122C6D93889}";
+Microsoft.UI.Content.IContentIsland = Microsoft_UI_Content_IContentIsland;
+
+
+//@Interface("Microsoft.UI.Content.IContentIslandAutomationProviderRequestedEventArgs")
+//@IID("{9FE24BED-2B9C-5137-887F-403C94841824}")
+class Microsoft_UI_Content_IContentIslandAutomationProviderRequestedEventArgs : WinRtInterface 
+{
+    Microsoft_UI_Content_IContentIslandAutomationProviderRequestedEventArgs( comPtr )
+    {
+        var Microsoft = runtime.global("Microsoft");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{9FE24BED-2B9C-5137-887F-403C94841824}");
+    }
+
+    //@VtableIndex(6)
+    //@Async(0)
+    //@Returns("Object")
+    get_AutomationProvider()
+    {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var _r = this.comPtr.invoke( 6, "Object", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(7)
+    //@Async(0)
+    //@Returns("void")
+    //@Parameters("Object")
+    put_AutomationProvider(value)
+    {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var p1 = value;
+        this.comPtr.invoke( 7, "void", ["Object"], [p1] );
+    }
+
+    //@VtableIndex(8)
+    //@Async(0)
+    //@Returns("Boolean")
+    get_Handled()
+    {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var _r = this.comPtr.invoke( 8, "Boolean", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(9)
+    //@Async(0)
+    //@Returns("void")
+    //@Parameters("Boolean")
+    put_Handled(value)
+    {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var p1 = value;
+        this.comPtr.invoke( 9, "void", ["Boolean"], [p1] );
+    }
+
+
+}
+Microsoft_UI_Content_IContentIslandAutomationProviderRequestedEventArgs.iid = "{9FE24BED-2B9C-5137-887F-403C94841824}";
+Microsoft.UI.Content.IContentIslandAutomationProviderRequestedEventArgs = Microsoft_UI_Content_IContentIslandAutomationProviderRequestedEventArgs;
+
+
+//@Interface("Microsoft.UI.Content.IContentIslandEnvironment")
+//@IID("{C334236D-DA88-566D-811D-74AEF2EBA978}")
+class Microsoft_UI_Content_IContentIslandEnvironment : WinRtInterface 
+{
+    Microsoft_UI_Content_IContentIslandEnvironment( comPtr )
+    {
+        var Microsoft = runtime.global("Microsoft");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{C334236D-DA88-566D-811D-74AEF2EBA978}");
+    }
+
+    //@VtableIndex(6)
+    //@Async(0)
+    //@Returns("Microsoft.UI.WindowId")
+    get_AppWindowId()
+    {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var _r = this.comPtr.invoke( 6, "Microsoft.UI.WindowId", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(7)
+    //@Async(0)
+    //@Returns("Microsoft.UI.DisplayId")
+    get_DisplayId()
+    {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var _r = this.comPtr.invoke( 7, "Microsoft.UI.DisplayId", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(8)
+    //@Async(0)
+    //@Returns("Windows.Foundation.EventRegistrationToken")
+    //@Parameters("Windows.Foundation.TypedEventHandler`2<Microsoft.UI.Content.ContentIslandEnvironment,Microsoft.UI.Content.ContentEnvironmentSettingChangedEventArgs>")
+    add_SettingChanged(handler)
+    {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var p1 = nil; 
+        if( typeof(handler) == "comptr" ) { 
+            p1 = handler;
+        } else {
+            p1 = Windows.Foundation.TypedEventHandler_2_Microsoft_UI_Content_ContentIslandEnvironment_Microsoft_UI_Content_ContentEnvironmentSettingChangedEventArgs_.Create( handler); 
+        }
+        var _r = this.comPtr.invoke( 8, "Windows.Foundation.EventRegistrationToken", ["Windows.Foundation.TypedEventHandler`2<Microsoft.UI.Content.ContentIslandEnvironment,Microsoft.UI.Content.ContentEnvironmentSettingChangedEventArgs>"], [p1] );
+        return _r;
+    }
+
+    //@VtableIndex(9)
+    //@Async(0)
+    //@Returns("void")
+    //@Parameters("Windows.Foundation.EventRegistrationToken")
+    remove_SettingChanged(token)
+    {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var p1 = token;
+        this.comPtr.invoke( 9, "void", ["Windows.Foundation.EventRegistrationToken"], [p1] );
+    }
+
+    //@VtableIndex(10)
+    //@Async(0)
+    //@Returns("Windows.Foundation.EventRegistrationToken")
+    //@Parameters("Windows.Foundation.TypedEventHandler`2<Microsoft.UI.Content.ContentIslandEnvironment,Microsoft.UI.Content.ContentEnvironmentStateChangedEventArgs>")
+    add_StateChanged(handler)
+    {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var p1 = nil; 
+        if( typeof(handler) == "comptr" ) { 
+            p1 = handler;
+        } else {
+            p1 = Windows.Foundation.TypedEventHandler_2_Microsoft_UI_Content_ContentIslandEnvironment_Microsoft_UI_Content_ContentEnvironmentStateChangedEventArgs_.Create( handler); 
+        }
+        var _r = this.comPtr.invoke( 10, "Windows.Foundation.EventRegistrationToken", ["Windows.Foundation.TypedEventHandler`2<Microsoft.UI.Content.ContentIslandEnvironment,Microsoft.UI.Content.ContentEnvironmentStateChangedEventArgs>"], [p1] );
+        return _r;
+    }
+
+    //@VtableIndex(11)
+    //@Async(0)
+    //@Returns("void")
+    //@Parameters("Windows.Foundation.EventRegistrationToken")
+    remove_StateChanged(token)
+    {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var p1 = token;
+        this.comPtr.invoke( 11, "void", ["Windows.Foundation.EventRegistrationToken"], [p1] );
+    }
+
+
+}
+Microsoft_UI_Content_IContentIslandEnvironment.iid = "{C334236D-DA88-566D-811D-74AEF2EBA978}";
+Microsoft.UI.Content.IContentIslandEnvironment = Microsoft_UI_Content_IContentIslandEnvironment;
+
+
+//@Interface("Microsoft.UI.Content.IContentIslandEnvironmentFactory")
+//@IID("{47A782D6-B177-5C1E-BF87-90437DD809D0}")
+class Microsoft_UI_Content_IContentIslandEnvironmentFactory : WinRtInterface 
+{
+    Microsoft_UI_Content_IContentIslandEnvironmentFactory( comPtr )
+    {
+        var Microsoft = runtime.global("Microsoft");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{47A782D6-B177-5C1E-BF87-90437DD809D0}");
+    }
+
+
+}
+Microsoft_UI_Content_IContentIslandEnvironmentFactory.iid = "{47A782D6-B177-5C1E-BF87-90437DD809D0}";
+Microsoft.UI.Content.IContentIslandEnvironmentFactory = Microsoft_UI_Content_IContentIslandEnvironmentFactory;
+
+
+//@Interface("Microsoft.UI.Content.IContentIslandFactory")
+//@IID("{82383F52-E81A-5EC9-A954-BAC8A931BA7D}")
+class Microsoft_UI_Content_IContentIslandFactory : WinRtInterface 
+{
+    Microsoft_UI_Content_IContentIslandFactory( comPtr )
+    {
+        var Microsoft = runtime.global("Microsoft");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{82383F52-E81A-5EC9-A954-BAC8A931BA7D}");
+    }
+
+
+}
+Microsoft_UI_Content_IContentIslandFactory.iid = "{82383F52-E81A-5EC9-A954-BAC8A931BA7D}";
+Microsoft.UI.Content.IContentIslandFactory = Microsoft_UI_Content_IContentIslandFactory;
+
+
+//@Interface("Microsoft.UI.Content.IContentIslandStateChangedEventArgs")
+//@IID("{C828EEB2-0C62-5B40-9D48-77C06083C278}")
+class Microsoft_UI_Content_IContentIslandStateChangedEventArgs : WinRtInterface 
+{
+    Microsoft_UI_Content_IContentIslandStateChangedEventArgs( comPtr )
+    {
+        var Microsoft = runtime.global("Microsoft");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{C828EEB2-0C62-5B40-9D48-77C06083C278}");
+    }
+
+    //@VtableIndex(6)
+    //@Async(0)
+    //@Returns("Boolean")
+    get_DidActualSizeChange()
+    {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var _r = this.comPtr.invoke( 6, "Boolean", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(7)
+    //@Async(0)
+    //@Returns("Boolean")
+    get_DidSiteEnabledChange()
+    {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var _r = this.comPtr.invoke( 7, "Boolean", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(8)
+    //@Async(0)
+    //@Returns("Boolean")
+    get_DidSiteVisibleChange()
+    {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var _r = this.comPtr.invoke( 8, "Boolean", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(9)
+    //@Async(0)
+    //@Returns("Boolean")
+    get_DidLayoutDirectionChange()
+    {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var _r = this.comPtr.invoke( 9, "Boolean", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(10)
+    //@Async(0)
+    //@Returns("Boolean")
+    get_DidRasterizationScaleChange()
+    {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var _r = this.comPtr.invoke( 10, "Boolean", [], [] );
+        return _r;
+    }
+
+
+}
+Microsoft_UI_Content_IContentIslandStateChangedEventArgs.iid = "{C828EEB2-0C62-5B40-9D48-77C06083C278}";
+Microsoft.UI.Content.IContentIslandStateChangedEventArgs = Microsoft_UI_Content_IContentIslandStateChangedEventArgs;
+
+
+//@Interface("Microsoft.UI.Content.IContentIslandStatics")
+//@IID("{7B9EB7CC-8C43-5E0A-AB23-AB48628FD223}")
+class Microsoft_UI_Content_IContentIslandStatics : WinRtInterface 
+{
+    Microsoft_UI_Content_IContentIslandStatics( comPtr )
+    {
+        var Microsoft = runtime.global("Microsoft");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{7B9EB7CC-8C43-5E0A-AB23-AB48628FD223}");
+    }
+
+    //@VtableIndex(6)
+    //@Async(0)
+    //@Returns("Microsoft.UI.Content.ContentIsland")
+    //@Parameters("Microsoft.UI.Composition.Visual")
+    Create(Root)
+    {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var p1 = Microsoft.UI.Composition.Visual( Root); 
+        var _r = Microsoft.UI.Content.ContentIsland(
+            this.comPtr.invoke( 6, "Microsoft.UI.Content.ContentIsland", ["Microsoft.UI.Composition.Visual"], [p1] )
+        );
+        return _r;
+    }
+
+    //@VtableIndex(9)
+    //@Async(0)
+    //@Returns("Microsoft.UI.Content.ContentIsland")
+    //@Parameters("Microsoft.UI.Composition.Visual")
+    GetByVisual(child)
+    {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var p1 = Microsoft.UI.Composition.Visual( child); 
+        var _r = Microsoft.UI.Content.ContentIsland(
+            this.comPtr.invoke( 9, "Microsoft.UI.Content.ContentIsland", ["Microsoft.UI.Composition.Visual"], [p1] )
+        );
+        return _r;
+    }
+
+    //@VtableIndex(10)
+    //@Async(0)
+    //@Returns("Microsoft.UI.Content.ContentIsland")
+    //@Parameters("UInt64")
+    GetFromId(id)
+    {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var p1 = id;
+        var _r = Microsoft.UI.Content.ContentIsland(
+            this.comPtr.invoke( 10, "Microsoft.UI.Content.ContentIsland", ["UInt64"], [p1] )
+        );
+        return _r;
+    }
+
+
+}
+Microsoft_UI_Content_IContentIslandStatics.iid = "{7B9EB7CC-8C43-5E0A-AB23-AB48628FD223}";
+Microsoft.UI.Content.IContentIslandStatics = Microsoft_UI_Content_IContentIslandStatics;
+
+
+//@Interface("Microsoft.UI.Content.IContentSite")
+//@IID("{996C60C4-02B2-5EEF-93B0-DD6B1EC2FD7B}")
+class Microsoft_UI_Content_IContentSite : WinRtInterface 
+{
+    Microsoft_UI_Content_IContentSite( comPtr )
+    {
+        var Microsoft = runtime.global("Microsoft");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{996C60C4-02B2-5EEF-93B0-DD6B1EC2FD7B}");
+    }
+
+    //@VtableIndex(6)
+    //@Async(0)
+    //@Returns("Windows.Foundation.Numerics.Vector2")
+    get_ActualSize()
+    {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var _r = this.comPtr.invoke( 6, "Windows.Foundation.Numerics.Vector2", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(7)
+    //@Async(0)
+    //@Returns("void")
+    //@Parameters("Windows.Foundation.Numerics.Vector2")
+    put_ActualSize(value)
+    {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var p1 = value;
+        this.comPtr.invoke( 7, "void", ["Windows.Foundation.Numerics.Vector2"], [p1] );
+    }
+
+    //@VtableIndex(8)
+    //@Async(0)
+    //@Returns("Windows.Graphics.SizeInt32")
+    get_ClientSize()
+    {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var _r = this.comPtr.invoke( 8, "Windows.Graphics.SizeInt32", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(9)
+    //@Async(0)
+    //@Returns("void")
+    //@Parameters("Windows.Graphics.SizeInt32")
+    put_ClientSize(value)
+    {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var p1 = value;
+        this.comPtr.invoke( 9, "void", ["Windows.Graphics.SizeInt32"], [p1] );
+    }
+
+    //@VtableIndex(10)
+    //@Async(0)
+    //@Returns("Microsoft.UI.Content.ContentCoordinateConverter")
+    get_CoordinateConverter()
+    {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var _r = Microsoft.UI.Content.ContentCoordinateConverter(
+            this.comPtr.invoke( 10, "Microsoft.UI.Content.ContentCoordinateConverter", [], [] )
+        );
+        return _r;
+    }
+
+    //@VtableIndex(11)
+    //@Async(0)
+    //@Returns("Microsoft.UI.Dispatching.DispatcherQueue")
+    get_DispatcherQueue()
+    {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var _r = Microsoft.UI.Dispatching.DispatcherQueue(
+            this.comPtr.invoke( 11, "Microsoft.UI.Dispatching.DispatcherQueue", [], [] )
+        );
+        return _r;
+    }
+
+    //@VtableIndex(12)
+    //@Async(0)
+    //@Returns("Microsoft.UI.Content.ContentSiteEnvironment")
+    get_Environment()
+    {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var _r = Microsoft.UI.Content.ContentSiteEnvironment(
+            this.comPtr.invoke( 12, "Microsoft.UI.Content.ContentSiteEnvironment", [], [] )
+        );
+        return _r;
+    }
+
+    //@VtableIndex(13)
+    //@Async(0)
+    //@Returns("Boolean")
+    get_IsConnected()
+    {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var _r = this.comPtr.invoke( 13, "Boolean", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(14)
+    //@Async(0)
+    //@Returns("Boolean")
+    get_IsSiteEnabled()
+    {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var _r = this.comPtr.invoke( 14, "Boolean", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(15)
+    //@Async(0)
+    //@Returns("void")
+    //@Parameters("Boolean")
+    put_IsSiteEnabled(value)
+    {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var p1 = value;
+        this.comPtr.invoke( 15, "void", ["Boolean"], [p1] );
+    }
+
+    //@VtableIndex(16)
+    //@Async(0)
+    //@Returns("Boolean")
+    get_IsSiteVisible()
+    {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var _r = this.comPtr.invoke( 16, "Boolean", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(17)
+    //@Async(0)
+    //@Returns("void")
+    //@Parameters("Boolean")
+    put_IsSiteVisible(value)
+    {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var p1 = value;
+        this.comPtr.invoke( 17, "void", ["Boolean"], [p1] );
+    }
+
+    //@VtableIndex(18)
+    //@Async(0)
+    //@Returns("Microsoft.UI.Content.ContentLayoutDirection")
+    get_LayoutDirection()
+    {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var _r = this.comPtr.invoke( 18, "UInt32", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(19)
+    //@Async(0)
+    //@Returns("void")
+    //@Parameters("Microsoft.UI.Content.ContentLayoutDirection")
+    put_LayoutDirection(value)
+    {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var p1 = value;
+        this.comPtr.invoke( 19, "void", ["UInt32"], [p1] );
+    }
+
+    //@VtableIndex(20)
+    //@Async(0)
+    //@Returns("Single")
+    get_OverrideScale()
+    {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var _r = this.comPtr.invoke( 20, "Single", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(21)
+    //@Async(0)
+    //@Returns("void")
+    //@Parameters("Single")
+    put_OverrideScale(value)
+    {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var p1 = value;
+        this.comPtr.invoke( 21, "void", ["Single"], [p1] );
+    }
+
+    //@VtableIndex(22)
+    //@Async(0)
+    //@Returns("Single")
+    get_ParentScale()
+    {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var _r = this.comPtr.invoke( 22, "Single", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(23)
+    //@Async(0)
+    //@Returns("void")
+    //@Parameters("Single")
+    put_ParentScale(value)
+    {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var p1 = value;
+        this.comPtr.invoke( 23, "void", ["Single"], [p1] );
+    }
+
+    //@VtableIndex(24)
+    //@Async(0)
+    //@Returns("Single")
+    get_RasterizationScale()
+    {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var _r = this.comPtr.invoke( 24, "Single", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(25)
+    //@Async(0)
+    //@Returns("Windows.Foundation.Numerics.Vector2")
+    get_RequestedSize()
+    {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var _r = this.comPtr.invoke( 25, "Windows.Foundation.Numerics.Vector2", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(26)
+    //@Async(0)
+    //@Returns("Boolean")
+    get_ShouldApplyRasterizationScale()
+    {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var _r = this.comPtr.invoke( 26, "Boolean", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(27)
+    //@Async(0)
+    //@Returns("void")
+    //@Parameters("Boolean")
+    put_ShouldApplyRasterizationScale(value)
+    {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var p1 = value;
+        this.comPtr.invoke( 27, "void", ["Boolean"], [p1] );
+    }
+
+    //@VtableIndex(28)
+    //@Async(0)
+    //@Returns("Microsoft.UI.Content.ContentSiteView")
+    get_View()
+    {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var _r = Microsoft.UI.Content.ContentSiteView(
+            this.comPtr.invoke( 28, "Microsoft.UI.Content.ContentSiteView", [], [] )
+        );
+        return _r;
+    }
+
+    //@VtableIndex(29)
+    //@Async(0)
+    //@Returns("Microsoft.UI.Content.ContentDeferral")
+    GetIslandStateChangeDeferral()
+    {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var _r = Microsoft.UI.Content.ContentDeferral(
+            this.comPtr.invoke( 29, "Microsoft.UI.Content.ContentDeferral", [], [] )
+        );
+        return _r;
+    }
+
+    //@VtableIndex(30)
+    //@Async(0)
+    //@Returns("Windows.Foundation.EventRegistrationToken")
+    //@Parameters("Windows.Foundation.TypedEventHandler`2<Microsoft.UI.Content.ContentSite,Microsoft.UI.Content.ContentSiteRequestedStateChangedEventArgs>")
+    add_RequestedStateChanged(handler)
+    {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var p1 = nil; 
+        if( typeof(handler) == "comptr" ) { 
+            p1 = handler;
+        } else {
+            p1 = Windows.Foundation.TypedEventHandler_2_Microsoft_UI_Content_ContentSite_Microsoft_UI_Content_ContentSiteRequestedStateChangedEventArgs_.Create( handler); 
+        }
+        var _r = this.comPtr.invoke( 30, "Windows.Foundation.EventRegistrationToken", ["Windows.Foundation.TypedEventHandler`2<Microsoft.UI.Content.ContentSite,Microsoft.UI.Content.ContentSiteRequestedStateChangedEventArgs>"], [p1] );
+        return _r;
+    }
+
+    //@VtableIndex(31)
+    //@Async(0)
+    //@Returns("void")
+    //@Parameters("Windows.Foundation.EventRegistrationToken")
+    remove_RequestedStateChanged(token)
+    {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var p1 = token;
+        this.comPtr.invoke( 31, "void", ["Windows.Foundation.EventRegistrationToken"], [p1] );
+    }
+
+
+}
+Microsoft_UI_Content_IContentSite.iid = "{996C60C4-02B2-5EEF-93B0-DD6B1EC2FD7B}";
+Microsoft.UI.Content.IContentSite = Microsoft_UI_Content_IContentSite;
+
+
+//@Interface("Microsoft.UI.Content.IContentSiteBridge")
+//@IID("{FAAAB99E-A42B-549C-92DF-3B6D6E1E368B}")
+class Microsoft_UI_Content_IContentSiteBridge : WinRtInterface 
+{
+    Microsoft_UI_Content_IContentSiteBridge( comPtr )
+    {
+        var Microsoft = runtime.global("Microsoft");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{FAAAB99E-A42B-549C-92DF-3B6D6E1E368B}");
+    }
+
+    //@VtableIndex(6)
+    //@Async(0)
+    //@Returns("Microsoft.UI.Dispatching.DispatcherQueue")
+    get_DispatcherQueue()
+    {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var _r = Microsoft.UI.Dispatching.DispatcherQueue(
+            this.comPtr.invoke( 6, "Microsoft.UI.Dispatching.DispatcherQueue", [], [] )
+        );
+        return _r;
+    }
+
+    //@VtableIndex(7)
+    //@Async(0)
+    //@Returns("Windows.Foundation.IReference`1<Microsoft.UI.Content.ContentLayoutDirection>")
+    get_LayoutDirectionOverride()
+    {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var _r = Windows.Foundation.IReference_1_Microsoft_UI_Content_ContentLayoutDirection_(
+            this.comPtr.invoke( 7, "Windows.Foundation.IReference`1<Microsoft.UI.Content.ContentLayoutDirection>", [], [] )
+        );
+        return _r;
+    }
+
+    //@VtableIndex(8)
+    //@Async(0)
+    //@Returns("void")
+    //@Parameters("Windows.Foundation.IReference`1<Microsoft.UI.Content.ContentLayoutDirection>")
+    put_LayoutDirectionOverride(value)
+    {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var p1 = Windows.Foundation.IReference_1_Microsoft_UI_Content_ContentLayoutDirection_( value); 
+        this.comPtr.invoke( 8, "void", ["Windows.Foundation.IReference`1<Microsoft.UI.Content.ContentLayoutDirection>"], [p1] );
+    }
+
+    //@VtableIndex(9)
+    //@Async(0)
+    //@Returns("Single")
+    get_OverrideScale()
+    {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var _r = this.comPtr.invoke( 9, "Single", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(10)
+    //@Async(0)
+    //@Returns("void")
+    //@Parameters("Single")
+    put_OverrideScale(value)
+    {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var p1 = value;
+        this.comPtr.invoke( 10, "void", ["Single"], [p1] );
+    }
+
+
+}
+Microsoft_UI_Content_IContentSiteBridge.iid = "{FAAAB99E-A42B-549C-92DF-3B6D6E1E368B}";
+Microsoft.UI.Content.IContentSiteBridge = Microsoft_UI_Content_IContentSiteBridge;
+
+
+//@Interface("Microsoft.UI.Content.IContentSiteEnvironment")
+//@IID("{685D085D-BE53-55D1-AEC4-BA2273D5468B}")
+class Microsoft_UI_Content_IContentSiteEnvironment : WinRtInterface 
+{
+    Microsoft_UI_Content_IContentSiteEnvironment( comPtr )
+    {
+        var Microsoft = runtime.global("Microsoft");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{685D085D-BE53-55D1-AEC4-BA2273D5468B}");
+    }
+
+    //@VtableIndex(6)
+    //@Async(0)
+    //@Returns("Microsoft.UI.WindowId")
+    get_AppWindowId()
+    {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var _r = this.comPtr.invoke( 6, "Microsoft.UI.WindowId", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(7)
+    //@Async(0)
+    //@Returns("void")
+    //@Parameters("Microsoft.UI.WindowId")
+    put_AppWindowId(value)
+    {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var p1 = value;
+        this.comPtr.invoke( 7, "void", ["Microsoft.UI.WindowId"], [p1] );
+    }
+
+    //@VtableIndex(8)
+    //@Async(0)
+    //@Returns("Microsoft.UI.DisplayId")
+    get_DisplayId()
+    {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var _r = this.comPtr.invoke( 8, "Microsoft.UI.DisplayId", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(9)
+    //@Async(0)
+    //@Returns("void")
+    //@Parameters("Microsoft.UI.DisplayId")
+    put_DisplayId(value)
+    {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var p1 = value;
+        this.comPtr.invoke( 9, "void", ["Microsoft.UI.DisplayId"], [p1] );
+    }
+
+    //@VtableIndex(10)
+    //@Async(0)
+    //@Returns("Microsoft.UI.Content.ContentSiteEnvironmentView")
+    get_View()
+    {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var _r = Microsoft.UI.Content.ContentSiteEnvironmentView(
+            this.comPtr.invoke( 10, "Microsoft.UI.Content.ContentSiteEnvironmentView", [], [] )
+        );
+        return _r;
+    }
+
+    //@VtableIndex(11)
+    //@Async(0)
+    //@Returns("void")
+    //@Parameters("String")
+    NotifySettingChanged(setting)
+    {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var p1 = setting;
+        this.comPtr.invoke( 11, "void", ["String"], [p1] );
+    }
+
+
+}
+Microsoft_UI_Content_IContentSiteEnvironment.iid = "{685D085D-BE53-55D1-AEC4-BA2273D5468B}";
+Microsoft.UI.Content.IContentSiteEnvironment = Microsoft_UI_Content_IContentSiteEnvironment;
+
+
+//@Interface("Microsoft.UI.Content.IContentSiteEnvironmentFactory")
+//@IID("{0BEFA998-CB15-5F16-A4A5-C0ED1674E186}")
+class Microsoft_UI_Content_IContentSiteEnvironmentFactory : WinRtInterface 
+{
+    Microsoft_UI_Content_IContentSiteEnvironmentFactory( comPtr )
+    {
+        var Microsoft = runtime.global("Microsoft");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{0BEFA998-CB15-5F16-A4A5-C0ED1674E186}");
+    }
+
+
+}
+Microsoft_UI_Content_IContentSiteEnvironmentFactory.iid = "{0BEFA998-CB15-5F16-A4A5-C0ED1674E186}";
+Microsoft.UI.Content.IContentSiteEnvironmentFactory = Microsoft_UI_Content_IContentSiteEnvironmentFactory;
+
+
+//@Interface("Microsoft.UI.Content.IContentSiteEnvironmentView")
+//@IID("{5B6FE420-0BB3-54DD-8589-786CF02E38F1}")
+class Microsoft_UI_Content_IContentSiteEnvironmentView : WinRtInterface 
+{
+    Microsoft_UI_Content_IContentSiteEnvironmentView( comPtr )
+    {
+        var Microsoft = runtime.global("Microsoft");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{5B6FE420-0BB3-54DD-8589-786CF02E38F1}");
+    }
+
+    //@VtableIndex(6)
+    //@Async(0)
+    //@Returns("Microsoft.UI.WindowId")
+    get_AppWindowId()
+    {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var _r = this.comPtr.invoke( 6, "Microsoft.UI.WindowId", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(7)
+    //@Async(0)
+    //@Returns("Microsoft.UI.DisplayId")
+    get_DisplayId()
+    {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var _r = this.comPtr.invoke( 7, "Microsoft.UI.DisplayId", [], [] );
+        return _r;
+    }
+
+
+}
+Microsoft_UI_Content_IContentSiteEnvironmentView.iid = "{5B6FE420-0BB3-54DD-8589-786CF02E38F1}";
+Microsoft.UI.Content.IContentSiteEnvironmentView = Microsoft_UI_Content_IContentSiteEnvironmentView;
+
+
+//@Interface("Microsoft.UI.Content.IContentSiteEnvironmentViewFactory")
+//@IID("{C901EDF2-F184-5A64-8D58-8CF8EFA8B678}")
+class Microsoft_UI_Content_IContentSiteEnvironmentViewFactory : WinRtInterface 
+{
+    Microsoft_UI_Content_IContentSiteEnvironmentViewFactory( comPtr )
+    {
+        var Microsoft = runtime.global("Microsoft");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{C901EDF2-F184-5A64-8D58-8CF8EFA8B678}");
+    }
+
+
+}
+Microsoft_UI_Content_IContentSiteEnvironmentViewFactory.iid = "{C901EDF2-F184-5A64-8D58-8CF8EFA8B678}";
+Microsoft.UI.Content.IContentSiteEnvironmentViewFactory = Microsoft_UI_Content_IContentSiteEnvironmentViewFactory;
+
+
+//@Interface("Microsoft.UI.Content.IContentSiteFactory")
+//@IID("{72FB98D5-B28A-57F1-91FA-24C014A342C1}")
+class Microsoft_UI_Content_IContentSiteFactory : WinRtInterface 
+{
+    Microsoft_UI_Content_IContentSiteFactory( comPtr )
+    {
+        var Microsoft = runtime.global("Microsoft");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{72FB98D5-B28A-57F1-91FA-24C014A342C1}");
+    }
+
+
+}
+Microsoft_UI_Content_IContentSiteFactory.iid = "{72FB98D5-B28A-57F1-91FA-24C014A342C1}";
+Microsoft.UI.Content.IContentSiteFactory = Microsoft_UI_Content_IContentSiteFactory;
+
+
+//@Interface("Microsoft.UI.Content.IContentSiteRequestedStateChangedEventArgs")
+//@IID("{1B55FD1D-7292-562B-B4A1-D4DE7972E684}")
+class Microsoft_UI_Content_IContentSiteRequestedStateChangedEventArgs : WinRtInterface 
+{
+    Microsoft_UI_Content_IContentSiteRequestedStateChangedEventArgs( comPtr )
+    {
+        var Microsoft = runtime.global("Microsoft");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{1B55FD1D-7292-562B-B4A1-D4DE7972E684}");
+    }
+
+    //@VtableIndex(6)
+    //@Async(0)
+    //@Returns("Boolean")
+    get_DidRequestedSizeChange()
+    {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var _r = this.comPtr.invoke( 6, "Boolean", [], [] );
+        return _r;
+    }
+
+
+}
+Microsoft_UI_Content_IContentSiteRequestedStateChangedEventArgs.iid = "{1B55FD1D-7292-562B-B4A1-D4DE7972E684}";
+Microsoft.UI.Content.IContentSiteRequestedStateChangedEventArgs = Microsoft_UI_Content_IContentSiteRequestedStateChangedEventArgs;
+
+
+//@Interface("Microsoft.UI.Content.IContentSiteView")
+//@IID("{2D5D8DD5-358E-5B05-993B-B2666D1786B3}")
+class Microsoft_UI_Content_IContentSiteView : WinRtInterface 
+{
+    Microsoft_UI_Content_IContentSiteView( comPtr )
+    {
+        var Microsoft = runtime.global("Microsoft");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{2D5D8DD5-358E-5B05-993B-B2666D1786B3}");
+    }
+
+    //@VtableIndex(6)
+    //@Async(0)
+    //@Returns("Windows.Foundation.Numerics.Vector2")
+    get_ActualSize()
+    {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var _r = this.comPtr.invoke( 6, "Windows.Foundation.Numerics.Vector2", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(7)
+    //@Async(0)
+    //@Returns("Windows.Graphics.SizeInt32")
+    get_ClientSize()
+    {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var _r = this.comPtr.invoke( 7, "Windows.Graphics.SizeInt32", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(8)
+    //@Async(0)
+    //@Returns("Microsoft.UI.Content.ContentCoordinateConverter")
+    get_CoordinateConverter()
+    {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var _r = Microsoft.UI.Content.ContentCoordinateConverter(
+            this.comPtr.invoke( 8, "Microsoft.UI.Content.ContentCoordinateConverter", [], [] )
+        );
+        return _r;
+    }
+
+    //@VtableIndex(9)
+    //@Async(0)
+    //@Returns("Microsoft.UI.Dispatching.DispatcherQueue")
+    get_DispatcherQueue()
+    {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var _r = Microsoft.UI.Dispatching.DispatcherQueue(
+            this.comPtr.invoke( 9, "Microsoft.UI.Dispatching.DispatcherQueue", [], [] )
+        );
+        return _r;
+    }
+
+    //@VtableIndex(10)
+    //@Async(0)
+    //@Returns("Microsoft.UI.Content.ContentSiteEnvironmentView")
+    get_EnvironmentView()
+    {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var _r = Microsoft.UI.Content.ContentSiteEnvironmentView(
+            this.comPtr.invoke( 10, "Microsoft.UI.Content.ContentSiteEnvironmentView", [], [] )
+        );
+        return _r;
+    }
+
+    //@VtableIndex(11)
+    //@Async(0)
+    //@Returns("Boolean")
+    get_IsConnected()
+    {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var _r = this.comPtr.invoke( 11, "Boolean", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(12)
+    //@Async(0)
+    //@Returns("Boolean")
+    get_IsSiteEnabled()
+    {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var _r = this.comPtr.invoke( 12, "Boolean", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(13)
+    //@Async(0)
+    //@Returns("Boolean")
+    get_IsSiteVisible()
+    {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var _r = this.comPtr.invoke( 13, "Boolean", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(14)
+    //@Async(0)
+    //@Returns("Microsoft.UI.Content.ContentLayoutDirection")
+    get_LayoutDirection()
+    {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var _r = this.comPtr.invoke( 14, "UInt32", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(15)
+    //@Async(0)
+    //@Returns("Single")
+    get_OverrideScale()
+    {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var _r = this.comPtr.invoke( 15, "Single", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(16)
+    //@Async(0)
+    //@Returns("Single")
+    get_ParentScale()
+    {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var _r = this.comPtr.invoke( 16, "Single", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(17)
+    //@Async(0)
+    //@Returns("Single")
+    get_RasterizationScale()
+    {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var _r = this.comPtr.invoke( 17, "Single", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(18)
+    //@Async(0)
+    //@Returns("Windows.Foundation.Numerics.Vector2")
+    get_RequestedSize()
+    {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var _r = this.comPtr.invoke( 18, "Windows.Foundation.Numerics.Vector2", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(19)
+    //@Async(0)
+    //@Returns("Boolean")
+    get_ShouldApplyRasterizationScale()
+    {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var _r = this.comPtr.invoke( 19, "Boolean", [], [] );
+        return _r;
+    }
+
+
+}
+Microsoft_UI_Content_IContentSiteView.iid = "{2D5D8DD5-358E-5B05-993B-B2666D1786B3}";
+Microsoft.UI.Content.IContentSiteView = Microsoft_UI_Content_IContentSiteView;
+
+
+//@Interface("Microsoft.UI.Content.IContentSiteViewFactory")
+//@IID("{9EFD72F0-63EF-5B6A-A50C-5685BD8100F1}")
+class Microsoft_UI_Content_IContentSiteViewFactory : WinRtInterface 
+{
+    Microsoft_UI_Content_IContentSiteViewFactory( comPtr )
+    {
+        var Microsoft = runtime.global("Microsoft");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{9EFD72F0-63EF-5B6A-A50C-5685BD8100F1}");
+    }
+
+
+}
+Microsoft_UI_Content_IContentSiteViewFactory.iid = "{9EFD72F0-63EF-5B6A-A50C-5685BD8100F1}";
+Microsoft.UI.Content.IContentSiteViewFactory = Microsoft_UI_Content_IContentSiteViewFactory;
+
+
+//@Interface("Microsoft.UI.Content.IDesktopChildSiteBridge")
+//@IID("{B2F2FF7B-1825-51B0-B80B-7599889C569F}")
+class Microsoft_UI_Content_IDesktopChildSiteBridge : WinRtInterface 
+{
+    Microsoft_UI_Content_IDesktopChildSiteBridge( comPtr )
+    {
+        var Microsoft = runtime.global("Microsoft");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{B2F2FF7B-1825-51B0-B80B-7599889C569F}");
+    }
+
+    //@VtableIndex(6)
+    //@Async(0)
+    //@Returns("Microsoft.UI.Content.ContentSizePolicy")
+    get_ResizePolicy()
+    {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var _r = this.comPtr.invoke( 6, "UInt32", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(7)
+    //@Async(0)
+    //@Returns("void")
+    //@Parameters("Microsoft.UI.Content.ContentSizePolicy")
+    put_ResizePolicy(value)
+    {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var p1 = value;
+        this.comPtr.invoke( 7, "void", ["UInt32"], [p1] );
+    }
+
+    //@VtableIndex(8)
+    //@Async(0)
+    //@Returns("Microsoft.UI.Content.ContentSiteView")
+    get_SiteView()
+    {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var _r = Microsoft.UI.Content.ContentSiteView(
+            this.comPtr.invoke( 8, "Microsoft.UI.Content.ContentSiteView", [], [] )
+        );
+        return _r;
+    }
+
+
+}
+Microsoft_UI_Content_IDesktopChildSiteBridge.iid = "{B2F2FF7B-1825-51B0-B80B-7599889C569F}";
+Microsoft.UI.Content.IDesktopChildSiteBridge = Microsoft_UI_Content_IDesktopChildSiteBridge;
+
+
+//@Interface("Microsoft.UI.Content.IDesktopChildSiteBridgeStatics")
+//@IID("{AB6B82DE-6A47-5DE3-A860-613C8DB679AB}")
+class Microsoft_UI_Content_IDesktopChildSiteBridgeStatics : WinRtInterface 
+{
+    Microsoft_UI_Content_IDesktopChildSiteBridgeStatics( comPtr )
+    {
+        var Microsoft = runtime.global("Microsoft");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{AB6B82DE-6A47-5DE3-A860-613C8DB679AB}");
+    }
+
+    //@VtableIndex(6)
+    //@Async(0)
+    //@Returns("Microsoft.UI.Content.DesktopChildSiteBridge")
+    //@Parameters("Microsoft.UI.Composition.Compositor","Microsoft.UI.WindowId")
+    Create(compositor,parentWindowId)
+    {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var p1 = Microsoft.UI.Composition.Compositor( compositor); 
+        var p2 = parentWindowId;
+        var _r = Microsoft.UI.Content.DesktopChildSiteBridge(
+            this.comPtr.invoke( 6, "Microsoft.UI.Content.DesktopChildSiteBridge", ["Microsoft.UI.Composition.Compositor", "Microsoft.UI.WindowId"], [p1, p2] )
+        );
+        return _r;
+    }
+
+
+}
+Microsoft_UI_Content_IDesktopChildSiteBridgeStatics.iid = "{AB6B82DE-6A47-5DE3-A860-613C8DB679AB}";
+Microsoft.UI.Content.IDesktopChildSiteBridgeStatics = Microsoft_UI_Content_IDesktopChildSiteBridgeStatics;
+
+
+//@Interface("Microsoft.UI.Content.IDesktopSiteBridge")
+//@IID("{F0AE8750-905C-50A2-8A12-4545C6245BB4}")
+class Microsoft_UI_Content_IDesktopSiteBridge : WinRtInterface 
+{
+    Microsoft_UI_Content_IDesktopSiteBridge( comPtr )
+    {
+        var Microsoft = runtime.global("Microsoft");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{F0AE8750-905C-50A2-8A12-4545C6245BB4}");
+    }
+
+    //@VtableIndex(6)
+    //@Async(0)
+    //@Returns("Boolean")
+    get_IsEnabled()
+    {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var _r = this.comPtr.invoke( 6, "Boolean", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(7)
+    //@Async(0)
+    //@Returns("Boolean")
+    get_IsVisible()
+    {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var _r = this.comPtr.invoke( 7, "Boolean", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(8)
+    //@Async(0)
+    //@Returns("Microsoft.UI.WindowId")
+    get_WindowId()
+    {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var _r = this.comPtr.invoke( 8, "Microsoft.UI.WindowId", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(9)
+    //@Async(0)
+    //@Returns("void")
+    //@Parameters("Microsoft.UI.Content.ContentIsland")
+    Connect(content)
+    {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var p1 = Microsoft.UI.Content.ContentIsland( content); 
+        this.comPtr.invoke( 9, "void", ["Microsoft.UI.Content.ContentIsland"], [p1] );
+    }
+
+    //@VtableIndex(10)
+    //@Async(0)
+    //@Returns("void")
+    Disable()
+    {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        this.comPtr.invoke( 10, "void", [], [] );
+    }
+
+    //@VtableIndex(11)
+    //@Async(0)
+    //@Returns("void")
+    Enable()
+    {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        this.comPtr.invoke( 11, "void", [], [] );
+    }
+
+    //@VtableIndex(12)
+    //@Async(0)
+    //@Returns("void")
+    Hide()
+    {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        this.comPtr.invoke( 12, "void", [], [] );
+    }
+
+    //@VtableIndex(13)
+    //@Async(0)
+    //@Returns("void")
+    //@Parameters("Windows.Graphics.RectInt32")
+    MoveAndResize(rect)
+    {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var p1 = rect;
+        this.comPtr.invoke( 13, "void", ["Windows.Graphics.RectInt32"], [p1] );
+    }
+
+    //@VtableIndex(14)
+    //@Async(0)
+    //@Returns("void")
+    MoveInZOrderAtBottom()
+    {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        this.comPtr.invoke( 14, "void", [], [] );
+    }
+
+    //@VtableIndex(15)
+    //@Async(0)
+    //@Returns("void")
+    MoveInZOrderAtTop()
+    {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        this.comPtr.invoke( 15, "void", [], [] );
+    }
+
+    //@VtableIndex(16)
+    //@Async(0)
+    //@Returns("void")
+    //@Parameters("Microsoft.UI.WindowId")
+    MoveInZOrderBelow(windowId)
+    {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var p1 = windowId;
+        this.comPtr.invoke( 16, "void", ["Microsoft.UI.WindowId"], [p1] );
+    }
+
+    //@VtableIndex(17)
+    //@Async(0)
+    //@Returns("void")
+    Show()
+    {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        this.comPtr.invoke( 17, "void", [], [] );
+    }
+
+
+}
+Microsoft_UI_Content_IDesktopSiteBridge.iid = "{F0AE8750-905C-50A2-8A12-4545C6245BB4}";
+Microsoft.UI.Content.IDesktopSiteBridge = Microsoft_UI_Content_IDesktopSiteBridge;
+
+
+//@Interface("Microsoft.UI.Content.IDesktopSiteBridgeFactory")
+//@IID("{D94EE1FF-3AF1-54D0-9311-652B29C57C5B}")
+class Microsoft_UI_Content_IDesktopSiteBridgeFactory : WinRtInterface 
+{
+    Microsoft_UI_Content_IDesktopSiteBridgeFactory( comPtr )
+    {
+        var Microsoft = runtime.global("Microsoft");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{D94EE1FF-3AF1-54D0-9311-652B29C57C5B}");
+    }
+
+
+}
+Microsoft_UI_Content_IDesktopSiteBridgeFactory.iid = "{D94EE1FF-3AF1-54D0-9311-652B29C57C5B}";
+Microsoft.UI.Content.IDesktopSiteBridgeFactory = Microsoft_UI_Content_IDesktopSiteBridgeFactory;
+
+
+//@Interface("Microsoft.UI.Content.IDesktopSiteBridgeStatics")
+//@IID("{E0B38DAF-9CD4-50C5-83EE-C76E3CF34EBA}")
+class Microsoft_UI_Content_IDesktopSiteBridgeStatics : WinRtInterface 
+{
+    Microsoft_UI_Content_IDesktopSiteBridgeStatics( comPtr )
+    {
+        var Microsoft = runtime.global("Microsoft");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{E0B38DAF-9CD4-50C5-83EE-C76E3CF34EBA}");
+    }
+
+    //@VtableIndex(6)
+    //@Async(0)
+    //@Returns("Boolean")
+    IsSupported()
+    {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var _r = this.comPtr.invoke( 6, "Boolean", [], [] );
+        return _r;
+    }
+
+
+}
+Microsoft_UI_Content_IDesktopSiteBridgeStatics.iid = "{E0B38DAF-9CD4-50C5-83EE-C76E3CF34EBA}";
+Microsoft.UI.Content.IDesktopSiteBridgeStatics = Microsoft_UI_Content_IDesktopSiteBridgeStatics;
+
+
+//@RuntimeClass("Microsoft.UI.Content.ContentCoordinateConverter")
+//@Implements("Microsoft.UI.Content.IContentCoordinateConverter")
+//@DefaultInterface("Microsoft.UI.Content.IContentCoordinateConverter")
+@Proxy("WinRtProxy")
+class Microsoft_UI_Content_ContentCoordinateConverter : WinRtInterface
+{
+    Microsoft_UI_Content_ContentCoordinateConverter( comPtr )
+    {
+        var Microsoft = runtime.global("Microsoft");
+        if(!comPtr || !int(comPtr)) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( Microsoft.UI.Content.IContentCoordinateConverter.iid );
+    }
+
+    // s Microsoft.UI.Content.IContentCoordinateConverterStatics
+    //@Async(0)
+    //@Returns("Microsoft.UI.Content.ContentCoordinateConverter")
+    //@Parameters("Microsoft.UI.WindowId")
+    static CreateForWindowId( windowId)
+    {
+        var Microsoft = runtime.global("Microsoft");
+        var factory = winrt.activationFactory( "Microsoft.UI.Content.ContentCoordinateConverter" );
+        var iface = Microsoft.UI.Content.IContentCoordinateConverterStatics( factory );
+        var _r = iface.CreateForWindowId( windowId);
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    static Create()
+    {
+        return Microsoft.UI.Content.ContentCoordinateConverter(
+            winrt.activate("Microsoft.UI.Content.ContentCoordinateConverter")
+        );
+    }
+
+}
+Microsoft.UI.Content.ContentCoordinateConverter = Microsoft_UI_Content_ContentCoordinateConverter;
+
+//@RuntimeClass("Microsoft.UI.Content.ContentDeferral")
+//@Implements("Microsoft.UI.Content.IContentDeferral")
+//@DefaultInterface("Microsoft.UI.Content.IContentDeferral")
+@Proxy("WinRtProxy")
+class Microsoft_UI_Content_ContentDeferral : WinRtInterface
+{
+    Microsoft_UI_Content_ContentDeferral( comPtr )
+    {
+        var Microsoft = runtime.global("Microsoft");
+        if(!comPtr || !int(comPtr)) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( Microsoft.UI.Content.IContentDeferral.iid );
+    }
+
+    static Create()
+    {
+        return Microsoft.UI.Content.ContentDeferral(
+            winrt.activate("Microsoft.UI.Content.ContentDeferral")
+        );
+    }
+    //@Returns("void")
+    Complete()
+    {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Content.IContentDeferral( this.comPtr );
+        iface.Complete(  );
+        iface.release();
+    }
+
+
+}
+Microsoft.UI.Content.ContentDeferral = Microsoft_UI_Content_ContentDeferral;
+
+//@RuntimeClass("Microsoft.UI.Content.ContentEnvironmentSettingChangedEventArgs")
+//@Implements("Microsoft.UI.Content.IContentEnvironmentSettingChangedEventArgs")
+//@DefaultInterface("Microsoft.UI.Content.IContentEnvironmentSettingChangedEventArgs")
+@Proxy("WinRtProxy")
+class Microsoft_UI_Content_ContentEnvironmentSettingChangedEventArgs : WinRtInterface
+{
+    Microsoft_UI_Content_ContentEnvironmentSettingChangedEventArgs( comPtr )
+    {
+        var Microsoft = runtime.global("Microsoft");
+        if(!comPtr || !int(comPtr)) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( Microsoft.UI.Content.IContentEnvironmentSettingChangedEventArgs.iid );
+    }
+
+    static Create()
+    {
+        return Microsoft.UI.Content.ContentEnvironmentSettingChangedEventArgs(
+            winrt.activate("Microsoft.UI.Content.ContentEnvironmentSettingChangedEventArgs")
+        );
+    }
+    //@Returns("String")
+    get_SettingName()
+    {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Content.IContentEnvironmentSettingChangedEventArgs( this.comPtr );
+        var _r = iface.get_SettingName(  );
+        iface.release();
+        return _r;
+    }
+
+
+}
+Microsoft.UI.Content.ContentEnvironmentSettingChangedEventArgs = Microsoft_UI_Content_ContentEnvironmentSettingChangedEventArgs;
+
+//@RuntimeClass("Microsoft.UI.Content.ContentEnvironmentStateChangedEventArgs")
+//@Implements("Microsoft.UI.Content.IContentEnvironmentStateChangedEventArgs")
+//@DefaultInterface("Microsoft.UI.Content.IContentEnvironmentStateChangedEventArgs")
+@Proxy("WinRtProxy")
+class Microsoft_UI_Content_ContentEnvironmentStateChangedEventArgs : WinRtInterface
+{
+    Microsoft_UI_Content_ContentEnvironmentStateChangedEventArgs( comPtr )
+    {
+        var Microsoft = runtime.global("Microsoft");
+        if(!comPtr || !int(comPtr)) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( Microsoft.UI.Content.IContentEnvironmentStateChangedEventArgs.iid );
+    }
+
+    static Create()
+    {
+        return Microsoft.UI.Content.ContentEnvironmentStateChangedEventArgs(
+            winrt.activate("Microsoft.UI.Content.ContentEnvironmentStateChangedEventArgs")
+        );
+    }
+    //@Returns("Boolean")
+    get_DidAppWindowIdChange()
+    {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Content.IContentEnvironmentStateChangedEventArgs( this.comPtr );
+        var _r = iface.get_DidAppWindowIdChange(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Returns("Boolean")
+    get_DidDisplayIdChange()
+    {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Content.IContentEnvironmentStateChangedEventArgs( this.comPtr );
+        var _r = iface.get_DidDisplayIdChange(  );
+        iface.release();
+        return _r;
+    }
+
+
+}
+Microsoft.UI.Content.ContentEnvironmentStateChangedEventArgs = Microsoft_UI_Content_ContentEnvironmentStateChangedEventArgs;
+
+//@RuntimeClass("Microsoft.UI.Content.ContentIsland")
+//@Implements("Microsoft.UI.Content.IContentIsland","Windows.Foundation.IClosable","Microsoft.UI.IClosableNotifier","Microsoft.UI.Composition.ICompositionSupportsSystemBackdrop")
+//@DefaultInterface("Microsoft.UI.Content.IContentIsland")
+@Proxy("WinRtProxy")
+class Microsoft_UI_Content_ContentIsland : WinRtInterface
+{
+    Microsoft_UI_Content_ContentIsland( comPtr )
+    {
+        var Microsoft = runtime.global("Microsoft");
+        if(!comPtr || !int(comPtr)) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( Microsoft.UI.Content.IContentIsland.iid );
+    }
+
+    // s Microsoft.UI.Content.IContentIslandStatics
+    //@Async(0)
+    //@Returns("Microsoft.UI.Content.ContentIsland")
+    //@Parameters("Microsoft.UI.Composition.Visual")
+    static Create( Root)
+    {
+        var Microsoft = runtime.global("Microsoft");
+        var factory = winrt.activationFactory( "Microsoft.UI.Content.ContentIsland" );
+        var iface = Microsoft.UI.Content.IContentIslandStatics( factory );
+        var _r = iface.Create( Root);
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+
+
+    //@Async(0)
+    //@Returns("Microsoft.UI.Content.ContentIsland")
+    //@Parameters("Microsoft.UI.Composition.Visual")
+    static GetByVisual( child)
+    {
+        var Microsoft = runtime.global("Microsoft");
+        var factory = winrt.activationFactory( "Microsoft.UI.Content.ContentIsland" );
+        var iface = Microsoft.UI.Content.IContentIslandStatics( factory );
+        var _r = iface.GetByVisual( child);
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    //@Async(0)
+    //@Returns("Microsoft.UI.Content.ContentIsland")
+    //@Parameters("UInt64")
+    static GetFromId( id)
+    {
+        var Microsoft = runtime.global("Microsoft");
+        var factory = winrt.activationFactory( "Microsoft.UI.Content.ContentIsland" );
+        var iface = Microsoft.UI.Content.IContentIslandStatics( factory );
+        var _r = iface.GetFromId( id);
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    static Create()
+    {
+        return Microsoft.UI.Content.ContentIsland(
+            winrt.activate("Microsoft.UI.Content.ContentIsland")
+        );
+    }
+    //@Parameters("Boolean")
+    //@Returns("void")
+    //@Parameters("Boolean")
+    put_IsIslandEnabled(value)
+    {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Content.IContentIsland( this.comPtr );
+        iface.put_IsIslandEnabled( value );
+        iface.release();
+    }
+
+    //@Parameters("Object")
+    //@Returns("void")
+    //@Parameters("Object")
+    put_AppData(value)
+    {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Content.IContentIsland( this.comPtr );
+        iface.put_AppData( value );
+        iface.release();
+    }
+
+    //@Returns("Microsoft.UI.Content.ContentCoordinateConverter")
+    get_CoordinateConverter()
+    {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Content.IContentIsland( this.comPtr );
+        var _r = iface.get_CoordinateConverter(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Returns("Windows.Foundation.Collections.IPropertySet")
+    get_CustomProperties()
+    {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Content.IContentIsland( this.comPtr );
+        var _r = iface.get_CustomProperties(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Returns("Microsoft.UI.Dispatching.DispatcherQueue")
+    get_DispatcherQueue()
+    {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Content.IContentIsland( this.comPtr );
+        var _r = iface.get_DispatcherQueue(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Returns("Microsoft.UI.Content.ContentIslandEnvironment")
+    get_Environment()
+    {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Content.IContentIsland( this.comPtr );
+        var _r = iface.get_Environment(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Returns("UInt64")
+    get_Id()
+    {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Content.IContentIsland( this.comPtr );
+        var _r = iface.get_Id(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Returns("Boolean")
+    get_IsConnected()
+    {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Content.IContentIsland( this.comPtr );
+        var _r = iface.get_IsConnected(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Returns("Boolean")
+    get_IsHitTestVisibleWhenTransparent()
+    {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Content.IContentIsland( this.comPtr );
+        var _r = iface.get_IsHitTestVisibleWhenTransparent(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Parameters("Boolean")
+    //@Returns("void")
+    //@Parameters("Boolean")
+    put_IsHitTestVisibleWhenTransparent(value)
+    {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Content.IContentIsland( this.comPtr );
+        iface.put_IsHitTestVisibleWhenTransparent( value );
+        iface.release();
+    }
+
+    //@Returns("Boolean")
+    get_IsIslandEnabled()
+    {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Content.IContentIsland( this.comPtr );
+        var _r = iface.get_IsIslandEnabled(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Returns("Object")
+    get_AppData()
+    {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Content.IContentIsland( this.comPtr );
+        var _r = iface.get_AppData(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Returns("Boolean")
+    get_IsIslandVisible()
+    {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Content.IContentIsland( this.comPtr );
+        var _r = iface.get_IsIslandVisible(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Parameters("Boolean")
+    //@Returns("void")
+    //@Parameters("Boolean")
+    put_IsIslandVisible(value)
+    {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Content.IContentIsland( this.comPtr );
+        iface.put_IsIslandVisible( value );
+        iface.release();
+    }
+
+    //@Returns("Boolean")
+    get_IsSiteEnabled()
+    {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Content.IContentIsland( this.comPtr );
+        var _r = iface.get_IsSiteEnabled(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Returns("Boolean")
+    get_IsSiteVisible()
+    {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Content.IContentIsland( this.comPtr );
+        var _r = iface.get_IsSiteVisible(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Returns("Microsoft.UI.Content.ContentLayoutDirection")
+    get_LayoutDirection()
+    {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Content.IContentIsland( this.comPtr );
+        var _r = iface.get_LayoutDirection(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Returns("Single")
+    get_RasterizationScale()
+    {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Content.IContentIsland( this.comPtr );
+        var _r = iface.get_RasterizationScale(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Returns("Object")
+    GetAutomationHostProvider()
+    {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Content.IContentIsland( this.comPtr );
+        var _r = iface.GetAutomationHostProvider(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Returns("Microsoft.UI.Content.ContentDeferral")
+    GetStateChangeDeferral()
+    {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Content.IContentIsland( this.comPtr );
+        var _r = iface.GetStateChangeDeferral(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Parameters("Windows.Foundation.Numerics.Vector2")
+    //@Returns("void")
+    //@Parameters("Windows.Foundation.Numerics.Vector2")
+    RequestSize(size)
+    {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Content.IContentIsland( this.comPtr );
+        iface.RequestSize( size );
+        iface.release();
+    }
+
+    //@Parameters("Windows.Foundation.TypedEventHandler`2<Microsoft.UI.Content.ContentIsland,Microsoft.UI.Content.ContentIslandAutomationProviderRequestedEventArgs>")
+    //@Returns("Windows.Foundation.EventRegistrationToken")
+    //@Parameters("Windows.Foundation.TypedEventHandler`2<Microsoft.UI.Content.ContentIsland,Microsoft.UI.Content.ContentIslandAutomationProviderRequestedEventArgs>")
+    add_AutomationProviderRequested(handler)
+    {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Content.IContentIsland( this.comPtr );
+        var _r = iface.add_AutomationProviderRequested( handler );
+        iface.release();
+        return _r;
+    }
+
+    //@Parameters("Windows.Foundation.EventRegistrationToken")
+    //@Returns("void")
+    //@Parameters("Windows.Foundation.EventRegistrationToken")
+    remove_AutomationProviderRequested(token)
+    {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Content.IContentIsland( this.comPtr );
+        iface.remove_AutomationProviderRequested( token );
+        iface.release();
+    }
+
+    //@Parameters("Windows.Foundation.TypedEventHandler`2<Microsoft.UI.Content.ContentIsland,Microsoft.UI.Content.ContentIslandStateChangedEventArgs>")
+    //@Returns("Windows.Foundation.EventRegistrationToken")
+    //@Parameters("Windows.Foundation.TypedEventHandler`2<Microsoft.UI.Content.ContentIsland,Microsoft.UI.Content.ContentIslandStateChangedEventArgs>")
+    add_StateChanged(handler)
+    {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Content.IContentIsland( this.comPtr );
+        var _r = iface.add_StateChanged( handler );
+        iface.release();
+        return _r;
+    }
+
+    //@Parameters("Windows.Foundation.EventRegistrationToken")
+    //@Returns("void")
+    //@Parameters("Windows.Foundation.EventRegistrationToken")
+    remove_StateChanged(token)
+    {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Content.IContentIsland( this.comPtr );
+        iface.remove_StateChanged( token );
+        iface.release();
+    }
+
+    //@Returns("Windows.Foundation.Numerics.Vector2")
+    get_ActualSize()
+    {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Content.IContentIsland( this.comPtr );
+        var _r = iface.get_ActualSize(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Returns("void")
+    Close()
+    {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Windows.Foundation.IClosable( this.comPtr );
+        iface.Close(  );
+        iface.release();
+    }
+
+    //@Returns("Boolean")
+    get_IsClosed()
+    {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.IClosableNotifier( this.comPtr );
+        var _r = iface.get_IsClosed(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Parameters("Microsoft.UI.ClosableNotifierHandler")
+    //@Returns("Windows.Foundation.EventRegistrationToken")
+    //@Parameters("Microsoft.UI.ClosableNotifierHandler")
+    add_Closed(handler)
+    {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.IClosableNotifier( this.comPtr );
+        var _r = iface.add_Closed( handler );
+        iface.release();
+        return _r;
+    }
+
+    //@Parameters("Windows.Foundation.EventRegistrationToken")
+    //@Returns("void")
+    //@Parameters("Windows.Foundation.EventRegistrationToken")
+    remove_Closed(token)
+    {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.IClosableNotifier( this.comPtr );
+        iface.remove_Closed( token );
+        iface.release();
+    }
+
+    //@Parameters("Microsoft.UI.ClosableNotifierHandler")
+    //@Returns("Windows.Foundation.EventRegistrationToken")
+    //@Parameters("Microsoft.UI.ClosableNotifierHandler")
+    add_FrameworkClosed(handler)
+    {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.IClosableNotifier( this.comPtr );
+        var _r = iface.add_FrameworkClosed( handler );
+        iface.release();
+        return _r;
+    }
+
+    //@Parameters("Windows.Foundation.EventRegistrationToken")
+    //@Returns("void")
+    //@Parameters("Windows.Foundation.EventRegistrationToken")
+    remove_FrameworkClosed(token)
+    {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.IClosableNotifier( this.comPtr );
+        iface.remove_FrameworkClosed( token );
+        iface.release();
+    }
+
+    //@Returns("Windows.UI.Composition.CompositionBrush")
+    get_SystemBackdrop()
+    {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Composition.ICompositionSupportsSystemBackdrop( this.comPtr );
+        var _r = iface.get_SystemBackdrop(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Parameters("Windows.UI.Composition.CompositionBrush")
+    //@Returns("void")
+    //@Parameters("Windows.UI.Composition.CompositionBrush")
+    put_SystemBackdrop(value)
+    {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Composition.ICompositionSupportsSystemBackdrop( this.comPtr );
+        iface.put_SystemBackdrop( value );
+        iface.release();
+    }
+
+
+}
+Microsoft.UI.Content.ContentIsland = Microsoft_UI_Content_ContentIsland;
+
+//@RuntimeClass("Microsoft.UI.Content.ContentIslandAutomationProviderRequestedEventArgs")
+//@Implements("Microsoft.UI.Content.IContentIslandAutomationProviderRequestedEventArgs")
+//@DefaultInterface("Microsoft.UI.Content.IContentIslandAutomationProviderRequestedEventArgs")
+@Proxy("WinRtProxy")
+class Microsoft_UI_Content_ContentIslandAutomationProviderRequestedEventArgs : WinRtInterface
+{
+    Microsoft_UI_Content_ContentIslandAutomationProviderRequestedEventArgs( comPtr )
+    {
+        var Microsoft = runtime.global("Microsoft");
+        if(!comPtr || !int(comPtr)) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( Microsoft.UI.Content.IContentIslandAutomationProviderRequestedEventArgs.iid );
+    }
+
+    static Create()
+    {
+        return Microsoft.UI.Content.ContentIslandAutomationProviderRequestedEventArgs(
+            winrt.activate("Microsoft.UI.Content.ContentIslandAutomationProviderRequestedEventArgs")
+        );
+    }
+    //@Parameters("Object")
+    //@Returns("void")
+    //@Parameters("Object")
+    put_AutomationProvider(value)
+    {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Content.IContentIslandAutomationProviderRequestedEventArgs( this.comPtr );
+        iface.put_AutomationProvider( value );
+        iface.release();
+    }
+
+    //@Returns("Object")
+    get_AutomationProvider()
+    {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Content.IContentIslandAutomationProviderRequestedEventArgs( this.comPtr );
+        var _r = iface.get_AutomationProvider(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Returns("Boolean")
+    get_Handled()
+    {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Content.IContentIslandAutomationProviderRequestedEventArgs( this.comPtr );
+        var _r = iface.get_Handled(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Parameters("Boolean")
+    //@Returns("void")
+    //@Parameters("Boolean")
+    put_Handled(value)
+    {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Content.IContentIslandAutomationProviderRequestedEventArgs( this.comPtr );
+        iface.put_Handled( value );
+        iface.release();
+    }
+
+
+}
+Microsoft.UI.Content.ContentIslandAutomationProviderRequestedEventArgs = Microsoft_UI_Content_ContentIslandAutomationProviderRequestedEventArgs;
+
+//@RuntimeClass("Microsoft.UI.Content.ContentIslandEnvironment")
+//@Implements("Microsoft.UI.Content.IContentIslandEnvironment")
+//@DefaultInterface("Microsoft.UI.Content.IContentIslandEnvironment")
+@Proxy("WinRtProxy")
+class Microsoft_UI_Content_ContentIslandEnvironment : WinRtInterface
+{
+    Microsoft_UI_Content_ContentIslandEnvironment( comPtr )
+    {
+        var Microsoft = runtime.global("Microsoft");
+        if(!comPtr || !int(comPtr)) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( Microsoft.UI.Content.IContentIslandEnvironment.iid );
+    }
+
+    static Create()
+    {
+        return Microsoft.UI.Content.ContentIslandEnvironment(
+            winrt.activate("Microsoft.UI.Content.ContentIslandEnvironment")
+        );
+    }
+    //@Parameters("Windows.Foundation.EventRegistrationToken")
+    //@Returns("void")
+    //@Parameters("Windows.Foundation.EventRegistrationToken")
+    remove_SettingChanged(token)
+    {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Content.IContentIslandEnvironment( this.comPtr );
+        iface.remove_SettingChanged( token );
+        iface.release();
+    }
+
+    //@Returns("Microsoft.UI.DisplayId")
+    get_DisplayId()
+    {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Content.IContentIslandEnvironment( this.comPtr );
+        var _r = iface.get_DisplayId(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Parameters("Windows.Foundation.TypedEventHandler`2<Microsoft.UI.Content.ContentIslandEnvironment,Microsoft.UI.Content.ContentEnvironmentSettingChangedEventArgs>")
+    //@Returns("Windows.Foundation.EventRegistrationToken")
+    //@Parameters("Windows.Foundation.TypedEventHandler`2<Microsoft.UI.Content.ContentIslandEnvironment,Microsoft.UI.Content.ContentEnvironmentSettingChangedEventArgs>")
+    add_SettingChanged(handler)
+    {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Content.IContentIslandEnvironment( this.comPtr );
+        var _r = iface.add_SettingChanged( handler );
+        iface.release();
+        return _r;
+    }
+
+    //@Returns("Microsoft.UI.WindowId")
+    get_AppWindowId()
+    {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Content.IContentIslandEnvironment( this.comPtr );
+        var _r = iface.get_AppWindowId(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Parameters("Windows.Foundation.TypedEventHandler`2<Microsoft.UI.Content.ContentIslandEnvironment,Microsoft.UI.Content.ContentEnvironmentStateChangedEventArgs>")
+    //@Returns("Windows.Foundation.EventRegistrationToken")
+    //@Parameters("Windows.Foundation.TypedEventHandler`2<Microsoft.UI.Content.ContentIslandEnvironment,Microsoft.UI.Content.ContentEnvironmentStateChangedEventArgs>")
+    add_StateChanged(handler)
+    {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Content.IContentIslandEnvironment( this.comPtr );
+        var _r = iface.add_StateChanged( handler );
+        iface.release();
+        return _r;
+    }
+
+    //@Parameters("Windows.Foundation.EventRegistrationToken")
+    //@Returns("void")
+    //@Parameters("Windows.Foundation.EventRegistrationToken")
+    remove_StateChanged(token)
+    {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Content.IContentIslandEnvironment( this.comPtr );
+        iface.remove_StateChanged( token );
+        iface.release();
+    }
+
+
+}
+Microsoft.UI.Content.ContentIslandEnvironment = Microsoft_UI_Content_ContentIslandEnvironment;
+
+//@RuntimeClass("Microsoft.UI.Content.ContentIslandStateChangedEventArgs")
+//@Implements("Microsoft.UI.Content.IContentIslandStateChangedEventArgs")
+//@DefaultInterface("Microsoft.UI.Content.IContentIslandStateChangedEventArgs")
+@Proxy("WinRtProxy")
+class Microsoft_UI_Content_ContentIslandStateChangedEventArgs : WinRtInterface
+{
+    Microsoft_UI_Content_ContentIslandStateChangedEventArgs( comPtr )
+    {
+        var Microsoft = runtime.global("Microsoft");
+        if(!comPtr || !int(comPtr)) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( Microsoft.UI.Content.IContentIslandStateChangedEventArgs.iid );
+    }
+
+    static Create()
+    {
+        return Microsoft.UI.Content.ContentIslandStateChangedEventArgs(
+            winrt.activate("Microsoft.UI.Content.ContentIslandStateChangedEventArgs")
+        );
+    }
+    //@Returns("Boolean")
+    get_DidActualSizeChange()
+    {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Content.IContentIslandStateChangedEventArgs( this.comPtr );
+        var _r = iface.get_DidActualSizeChange(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Returns("Boolean")
+    get_DidSiteEnabledChange()
+    {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Content.IContentIslandStateChangedEventArgs( this.comPtr );
+        var _r = iface.get_DidSiteEnabledChange(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Returns("Boolean")
+    get_DidSiteVisibleChange()
+    {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Content.IContentIslandStateChangedEventArgs( this.comPtr );
+        var _r = iface.get_DidSiteVisibleChange(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Returns("Boolean")
+    get_DidLayoutDirectionChange()
+    {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Content.IContentIslandStateChangedEventArgs( this.comPtr );
+        var _r = iface.get_DidLayoutDirectionChange(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Returns("Boolean")
+    get_DidRasterizationScaleChange()
+    {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Content.IContentIslandStateChangedEventArgs( this.comPtr );
+        var _r = iface.get_DidRasterizationScaleChange(  );
+        iface.release();
+        return _r;
+    }
+
+
+}
+Microsoft.UI.Content.ContentIslandStateChangedEventArgs = Microsoft_UI_Content_ContentIslandStateChangedEventArgs;
+
+//@RuntimeClass("Microsoft.UI.Content.ContentSite")
+//@Implements("Microsoft.UI.Content.IContentSite","Windows.Foundation.IClosable","Microsoft.UI.IClosableNotifier")
+//@DefaultInterface("Microsoft.UI.Content.IContentSite")
+@Proxy("WinRtProxy")
+class Microsoft_UI_Content_ContentSite : WinRtInterface
+{
+    Microsoft_UI_Content_ContentSite( comPtr )
+    {
+        var Microsoft = runtime.global("Microsoft");
+        if(!comPtr || !int(comPtr)) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( Microsoft.UI.Content.IContentSite.iid );
+    }
+
+    static Create()
+    {
+        return Microsoft.UI.Content.ContentSite(
+            winrt.activate("Microsoft.UI.Content.ContentSite")
+        );
+    }
+    //@Returns("Boolean")
+    get_IsSiteEnabled()
+    {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Content.IContentSite( this.comPtr );
+        var _r = iface.get_IsSiteEnabled(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Parameters("Windows.Foundation.Numerics.Vector2")
+    //@Returns("void")
+    //@Parameters("Windows.Foundation.Numerics.Vector2")
+    put_ActualSize(value)
+    {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Content.IContentSite( this.comPtr );
+        iface.put_ActualSize( value );
+        iface.release();
+    }
+
+    //@Returns("Windows.Graphics.SizeInt32")
+    get_ClientSize()
+    {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Content.IContentSite( this.comPtr );
+        var _r = iface.get_ClientSize(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Parameters("Windows.Graphics.SizeInt32")
+    //@Returns("void")
+    //@Parameters("Windows.Graphics.SizeInt32")
+    put_ClientSize(value)
+    {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Content.IContentSite( this.comPtr );
+        iface.put_ClientSize( value );
+        iface.release();
+    }
+
+    //@Returns("Microsoft.UI.Content.ContentCoordinateConverter")
+    get_CoordinateConverter()
+    {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Content.IContentSite( this.comPtr );
+        var _r = iface.get_CoordinateConverter(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Returns("Windows.Foundation.Numerics.Vector2")
+    get_ActualSize()
+    {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Content.IContentSite( this.comPtr );
+        var _r = iface.get_ActualSize(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Returns("Microsoft.UI.Content.ContentSiteEnvironment")
+    get_Environment()
+    {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Content.IContentSite( this.comPtr );
+        var _r = iface.get_Environment(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Returns("Boolean")
+    get_IsConnected()
+    {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Content.IContentSite( this.comPtr );
+        var _r = iface.get_IsConnected(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Returns("Microsoft.UI.Dispatching.DispatcherQueue")
+    get_DispatcherQueue()
+    {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Content.IContentSite( this.comPtr );
+        var _r = iface.get_DispatcherQueue(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Parameters("Boolean")
+    //@Returns("void")
+    //@Parameters("Boolean")
+    put_IsSiteEnabled(value)
+    {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Content.IContentSite( this.comPtr );
+        iface.put_IsSiteEnabled( value );
+        iface.release();
+    }
+
+    //@Returns("Boolean")
+    get_IsSiteVisible()
+    {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Content.IContentSite( this.comPtr );
+        var _r = iface.get_IsSiteVisible(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Parameters("Boolean")
+    //@Returns("void")
+    //@Parameters("Boolean")
+    put_IsSiteVisible(value)
+    {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Content.IContentSite( this.comPtr );
+        iface.put_IsSiteVisible( value );
+        iface.release();
+    }
+
+    //@Returns("Microsoft.UI.Content.ContentLayoutDirection")
+    get_LayoutDirection()
+    {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Content.IContentSite( this.comPtr );
+        var _r = iface.get_LayoutDirection(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Parameters("Microsoft.UI.Content.ContentLayoutDirection")
+    //@Returns("void")
+    //@Parameters("Microsoft.UI.Content.ContentLayoutDirection")
+    put_LayoutDirection(value)
+    {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Content.IContentSite( this.comPtr );
+        iface.put_LayoutDirection( value );
+        iface.release();
+    }
+
+    //@Returns("Single")
+    get_OverrideScale()
+    {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Content.IContentSite( this.comPtr );
+        var _r = iface.get_OverrideScale(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Parameters("Single")
+    //@Returns("void")
+    //@Parameters("Single")
+    put_OverrideScale(value)
+    {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Content.IContentSite( this.comPtr );
+        iface.put_OverrideScale( value );
+        iface.release();
+    }
+
+    //@Returns("Single")
+    get_ParentScale()
+    {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Content.IContentSite( this.comPtr );
+        var _r = iface.get_ParentScale(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Parameters("Single")
+    //@Returns("void")
+    //@Parameters("Single")
+    put_ParentScale(value)
+    {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Content.IContentSite( this.comPtr );
+        iface.put_ParentScale( value );
+        iface.release();
+    }
+
+    //@Returns("Single")
+    get_RasterizationScale()
+    {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Content.IContentSite( this.comPtr );
+        var _r = iface.get_RasterizationScale(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Returns("Windows.Foundation.Numerics.Vector2")
+    get_RequestedSize()
+    {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Content.IContentSite( this.comPtr );
+        var _r = iface.get_RequestedSize(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Returns("Boolean")
+    get_ShouldApplyRasterizationScale()
+    {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Content.IContentSite( this.comPtr );
+        var _r = iface.get_ShouldApplyRasterizationScale(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Parameters("Boolean")
+    //@Returns("void")
+    //@Parameters("Boolean")
+    put_ShouldApplyRasterizationScale(value)
+    {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Content.IContentSite( this.comPtr );
+        iface.put_ShouldApplyRasterizationScale( value );
+        iface.release();
+    }
+
+    //@Returns("Microsoft.UI.Content.ContentSiteView")
+    get_View()
+    {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Content.IContentSite( this.comPtr );
+        var _r = iface.get_View(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Returns("Microsoft.UI.Content.ContentDeferral")
+    GetIslandStateChangeDeferral()
+    {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Content.IContentSite( this.comPtr );
+        var _r = iface.GetIslandStateChangeDeferral(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Parameters("Windows.Foundation.TypedEventHandler`2<Microsoft.UI.Content.ContentSite,Microsoft.UI.Content.ContentSiteRequestedStateChangedEventArgs>")
+    //@Returns("Windows.Foundation.EventRegistrationToken")
+    //@Parameters("Windows.Foundation.TypedEventHandler`2<Microsoft.UI.Content.ContentSite,Microsoft.UI.Content.ContentSiteRequestedStateChangedEventArgs>")
+    add_RequestedStateChanged(handler)
+    {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Content.IContentSite( this.comPtr );
+        var _r = iface.add_RequestedStateChanged( handler );
+        iface.release();
+        return _r;
+    }
+
+    //@Parameters("Windows.Foundation.EventRegistrationToken")
+    //@Returns("void")
+    //@Parameters("Windows.Foundation.EventRegistrationToken")
+    remove_RequestedStateChanged(token)
+    {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Content.IContentSite( this.comPtr );
+        iface.remove_RequestedStateChanged( token );
+        iface.release();
+    }
+
+    //@Returns("void")
+    Close()
+    {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Windows.Foundation.IClosable( this.comPtr );
+        iface.Close(  );
+        iface.release();
+    }
+
+    //@Returns("Boolean")
+    get_IsClosed()
+    {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.IClosableNotifier( this.comPtr );
+        var _r = iface.get_IsClosed(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Parameters("Microsoft.UI.ClosableNotifierHandler")
+    //@Returns("Windows.Foundation.EventRegistrationToken")
+    //@Parameters("Microsoft.UI.ClosableNotifierHandler")
+    add_Closed(handler)
+    {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.IClosableNotifier( this.comPtr );
+        var _r = iface.add_Closed( handler );
+        iface.release();
+        return _r;
+    }
+
+    //@Parameters("Windows.Foundation.EventRegistrationToken")
+    //@Returns("void")
+    //@Parameters("Windows.Foundation.EventRegistrationToken")
+    remove_Closed(token)
+    {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.IClosableNotifier( this.comPtr );
+        iface.remove_Closed( token );
+        iface.release();
+    }
+
+    //@Parameters("Microsoft.UI.ClosableNotifierHandler")
+    //@Returns("Windows.Foundation.EventRegistrationToken")
+    //@Parameters("Microsoft.UI.ClosableNotifierHandler")
+    add_FrameworkClosed(handler)
+    {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.IClosableNotifier( this.comPtr );
+        var _r = iface.add_FrameworkClosed( handler );
+        iface.release();
+        return _r;
+    }
+
+    //@Parameters("Windows.Foundation.EventRegistrationToken")
+    //@Returns("void")
+    //@Parameters("Windows.Foundation.EventRegistrationToken")
+    remove_FrameworkClosed(token)
+    {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.IClosableNotifier( this.comPtr );
+        iface.remove_FrameworkClosed( token );
+        iface.release();
+    }
+
+
+}
+Microsoft.UI.Content.ContentSite = Microsoft_UI_Content_ContentSite;
+
+//@RuntimeClass("Microsoft.UI.Content.ContentSiteEnvironment")
+//@Implements("Microsoft.UI.Content.IContentSiteEnvironment")
+//@DefaultInterface("Microsoft.UI.Content.IContentSiteEnvironment")
+@Proxy("WinRtProxy")
+class Microsoft_UI_Content_ContentSiteEnvironment : WinRtInterface
+{
+    Microsoft_UI_Content_ContentSiteEnvironment( comPtr )
+    {
+        var Microsoft = runtime.global("Microsoft");
+        if(!comPtr || !int(comPtr)) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( Microsoft.UI.Content.IContentSiteEnvironment.iid );
+    }
+
+    static Create()
+    {
+        return Microsoft.UI.Content.ContentSiteEnvironment(
+            winrt.activate("Microsoft.UI.Content.ContentSiteEnvironment")
+        );
+    }
+    //@Parameters("Microsoft.UI.DisplayId")
+    //@Returns("void")
+    //@Parameters("Microsoft.UI.DisplayId")
+    put_DisplayId(value)
+    {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Content.IContentSiteEnvironment( this.comPtr );
+        iface.put_DisplayId( value );
+        iface.release();
+    }
+
+    //@Returns("Microsoft.UI.DisplayId")
+    get_DisplayId()
+    {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Content.IContentSiteEnvironment( this.comPtr );
+        var _r = iface.get_DisplayId(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Parameters("Microsoft.UI.WindowId")
+    //@Returns("void")
+    //@Parameters("Microsoft.UI.WindowId")
+    put_AppWindowId(value)
+    {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Content.IContentSiteEnvironment( this.comPtr );
+        iface.put_AppWindowId( value );
+        iface.release();
+    }
+
+    //@Returns("Microsoft.UI.Content.ContentSiteEnvironmentView")
+    get_View()
+    {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Content.IContentSiteEnvironment( this.comPtr );
+        var _r = iface.get_View(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Parameters("String")
+    //@Returns("void")
+    //@Parameters("String")
+    NotifySettingChanged(setting)
+    {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Content.IContentSiteEnvironment( this.comPtr );
+        iface.NotifySettingChanged( setting );
+        iface.release();
+    }
+
+    //@Returns("Microsoft.UI.WindowId")
+    get_AppWindowId()
+    {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Content.IContentSiteEnvironment( this.comPtr );
+        var _r = iface.get_AppWindowId(  );
+        iface.release();
+        return _r;
+    }
+
+
+}
+Microsoft.UI.Content.ContentSiteEnvironment = Microsoft_UI_Content_ContentSiteEnvironment;
+
+//@RuntimeClass("Microsoft.UI.Content.ContentSiteEnvironmentView")
+//@Implements("Microsoft.UI.Content.IContentSiteEnvironmentView")
+//@DefaultInterface("Microsoft.UI.Content.IContentSiteEnvironmentView")
+@Proxy("WinRtProxy")
+class Microsoft_UI_Content_ContentSiteEnvironmentView : WinRtInterface
+{
+    Microsoft_UI_Content_ContentSiteEnvironmentView( comPtr )
+    {
+        var Microsoft = runtime.global("Microsoft");
+        if(!comPtr || !int(comPtr)) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( Microsoft.UI.Content.IContentSiteEnvironmentView.iid );
+    }
+
+    static Create()
+    {
+        return Microsoft.UI.Content.ContentSiteEnvironmentView(
+            winrt.activate("Microsoft.UI.Content.ContentSiteEnvironmentView")
+        );
+    }
+    //@Returns("Microsoft.UI.WindowId")
+    get_AppWindowId()
+    {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Content.IContentSiteEnvironmentView( this.comPtr );
+        var _r = iface.get_AppWindowId(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Returns("Microsoft.UI.DisplayId")
+    get_DisplayId()
+    {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Content.IContentSiteEnvironmentView( this.comPtr );
+        var _r = iface.get_DisplayId(  );
+        iface.release();
+        return _r;
+    }
+
+
+}
+Microsoft.UI.Content.ContentSiteEnvironmentView = Microsoft_UI_Content_ContentSiteEnvironmentView;
+
+//@RuntimeClass("Microsoft.UI.Content.ContentSiteRequestedStateChangedEventArgs")
+//@Implements("Microsoft.UI.Content.IContentSiteRequestedStateChangedEventArgs")
+//@DefaultInterface("Microsoft.UI.Content.IContentSiteRequestedStateChangedEventArgs")
+@Proxy("WinRtProxy")
+class Microsoft_UI_Content_ContentSiteRequestedStateChangedEventArgs : WinRtInterface
+{
+    Microsoft_UI_Content_ContentSiteRequestedStateChangedEventArgs( comPtr )
+    {
+        var Microsoft = runtime.global("Microsoft");
+        if(!comPtr || !int(comPtr)) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( Microsoft.UI.Content.IContentSiteRequestedStateChangedEventArgs.iid );
+    }
+
+    static Create()
+    {
+        return Microsoft.UI.Content.ContentSiteRequestedStateChangedEventArgs(
+            winrt.activate("Microsoft.UI.Content.ContentSiteRequestedStateChangedEventArgs")
+        );
+    }
+    //@Returns("Boolean")
+    get_DidRequestedSizeChange()
+    {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Content.IContentSiteRequestedStateChangedEventArgs( this.comPtr );
+        var _r = iface.get_DidRequestedSizeChange(  );
+        iface.release();
+        return _r;
+    }
+
+
+}
+Microsoft.UI.Content.ContentSiteRequestedStateChangedEventArgs = Microsoft_UI_Content_ContentSiteRequestedStateChangedEventArgs;
+
+//@RuntimeClass("Microsoft.UI.Content.ContentSiteView")
+//@Implements("Microsoft.UI.Content.IContentSiteView")
+//@DefaultInterface("Microsoft.UI.Content.IContentSiteView")
+@Proxy("WinRtProxy")
+class Microsoft_UI_Content_ContentSiteView : WinRtInterface
+{
+    Microsoft_UI_Content_ContentSiteView( comPtr )
+    {
+        var Microsoft = runtime.global("Microsoft");
+        if(!comPtr || !int(comPtr)) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( Microsoft.UI.Content.IContentSiteView.iid );
+    }
+
+    static Create()
+    {
+        return Microsoft.UI.Content.ContentSiteView(
+            winrt.activate("Microsoft.UI.Content.ContentSiteView")
+        );
+    }
+    //@Returns("Microsoft.UI.Content.ContentCoordinateConverter")
+    get_CoordinateConverter()
+    {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Content.IContentSiteView( this.comPtr );
+        var _r = iface.get_CoordinateConverter(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Returns("Windows.Graphics.SizeInt32")
+    get_ClientSize()
+    {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Content.IContentSiteView( this.comPtr );
+        var _r = iface.get_ClientSize(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Returns("Windows.Foundation.Numerics.Vector2")
+    get_ActualSize()
+    {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Content.IContentSiteView( this.comPtr );
+        var _r = iface.get_ActualSize(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Returns("Microsoft.UI.Dispatching.DispatcherQueue")
+    get_DispatcherQueue()
+    {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Content.IContentSiteView( this.comPtr );
+        var _r = iface.get_DispatcherQueue(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Returns("Microsoft.UI.Content.ContentSiteEnvironmentView")
+    get_EnvironmentView()
+    {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Content.IContentSiteView( this.comPtr );
+        var _r = iface.get_EnvironmentView(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Returns("Boolean")
+    get_IsConnected()
+    {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Content.IContentSiteView( this.comPtr );
+        var _r = iface.get_IsConnected(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Returns("Boolean")
+    get_IsSiteEnabled()
+    {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Content.IContentSiteView( this.comPtr );
+        var _r = iface.get_IsSiteEnabled(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Returns("Boolean")
+    get_IsSiteVisible()
+    {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Content.IContentSiteView( this.comPtr );
+        var _r = iface.get_IsSiteVisible(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Returns("Microsoft.UI.Content.ContentLayoutDirection")
+    get_LayoutDirection()
+    {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Content.IContentSiteView( this.comPtr );
+        var _r = iface.get_LayoutDirection(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Returns("Single")
+    get_OverrideScale()
+    {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Content.IContentSiteView( this.comPtr );
+        var _r = iface.get_OverrideScale(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Returns("Single")
+    get_ParentScale()
+    {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Content.IContentSiteView( this.comPtr );
+        var _r = iface.get_ParentScale(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Returns("Single")
+    get_RasterizationScale()
+    {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Content.IContentSiteView( this.comPtr );
+        var _r = iface.get_RasterizationScale(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Returns("Windows.Foundation.Numerics.Vector2")
+    get_RequestedSize()
+    {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Content.IContentSiteView( this.comPtr );
+        var _r = iface.get_RequestedSize(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Returns("Boolean")
+    get_ShouldApplyRasterizationScale()
+    {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Content.IContentSiteView( this.comPtr );
+        var _r = iface.get_ShouldApplyRasterizationScale(  );
+        iface.release();
+        return _r;
+    }
+
+
+}
+Microsoft.UI.Content.ContentSiteView = Microsoft_UI_Content_ContentSiteView;
+
+//@RuntimeClass("Microsoft.UI.Content.DesktopSiteBridge")
+//@Implements("Microsoft.UI.Content.IDesktopSiteBridge","Microsoft.UI.IClosableNotifier","Microsoft.UI.Content.IContentSiteBridge","Windows.Foundation.IClosable")
+//@DefaultInterface("Microsoft.UI.Content.IDesktopSiteBridge")
+@Proxy("WinRtProxy")
+class Microsoft_UI_Content_DesktopSiteBridge : WinRtInterface
+{
+    Microsoft_UI_Content_DesktopSiteBridge( comPtr )
+    {
+        var Microsoft = runtime.global("Microsoft");
+        if(!comPtr || !int(comPtr)) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( Microsoft.UI.Content.IDesktopSiteBridge.iid );
+    }
+
+    // s Microsoft.UI.Content.IDesktopSiteBridgeStatics
+    //@Async(0)
+    //@Returns("Boolean")
+    static IsSupported( )
+    {
+        var Microsoft = runtime.global("Microsoft");
+        var factory = winrt.activationFactory( "Microsoft.UI.Content.DesktopSiteBridge" );
+        var iface = Microsoft.UI.Content.IDesktopSiteBridgeStatics( factory );
+        var _r = iface.IsSupported( );
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    static Create()
+    {
+        return Microsoft.UI.Content.DesktopSiteBridge(
+            winrt.activate("Microsoft.UI.Content.DesktopSiteBridge")
+        );
+    }
+    //@Returns("void")
+    Close()
+    {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Windows.Foundation.IClosable( this.comPtr );
+        iface.Close(  );
+        iface.release();
+    }
+
+    //@Parameters("Microsoft.UI.WindowId")
+    //@Returns("void")
+    //@Parameters("Microsoft.UI.WindowId")
+    MoveInZOrderBelow(windowId)
+    {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Content.IDesktopSiteBridge( this.comPtr );
+        iface.MoveInZOrderBelow( windowId );
+        iface.release();
+    }
+
+    //@Returns("void")
+    Show()
+    {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Content.IDesktopSiteBridge( this.comPtr );
+        iface.Show(  );
+        iface.release();
+    }
+
+    //@Parameters("Single")
+    //@Returns("void")
+    //@Parameters("Single")
+    put_OverrideScale(value)
+    {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Content.IContentSiteBridge( this.comPtr );
+        iface.put_OverrideScale( value );
+        iface.release();
+    }
+
+    //@Returns("Boolean")
+    get_IsEnabled()
+    {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Content.IDesktopSiteBridge( this.comPtr );
+        var _r = iface.get_IsEnabled(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Returns("Microsoft.UI.WindowId")
+    get_WindowId()
+    {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Content.IDesktopSiteBridge( this.comPtr );
+        var _r = iface.get_WindowId(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Parameters("Microsoft.UI.Content.ContentIsland")
+    //@Returns("void")
+    //@Parameters("Microsoft.UI.Content.ContentIsland")
+    Connect(content)
+    {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Content.IDesktopSiteBridge( this.comPtr );
+        iface.Connect( content );
+        iface.release();
+    }
+
+    //@Returns("void")
+    Disable()
+    {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Content.IDesktopSiteBridge( this.comPtr );
+        iface.Disable(  );
+        iface.release();
+    }
+
+    //@Returns("void")
+    Enable()
+    {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Content.IDesktopSiteBridge( this.comPtr );
+        iface.Enable(  );
+        iface.release();
+    }
+
+    //@Returns("void")
+    Hide()
+    {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Content.IDesktopSiteBridge( this.comPtr );
+        iface.Hide(  );
+        iface.release();
+    }
+
+    //@Parameters("Windows.Graphics.RectInt32")
+    //@Returns("void")
+    //@Parameters("Windows.Graphics.RectInt32")
+    MoveAndResize(rect)
+    {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Content.IDesktopSiteBridge( this.comPtr );
+        iface.MoveAndResize( rect );
+        iface.release();
+    }
+
+    //@Returns("void")
+    MoveInZOrderAtBottom()
+    {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Content.IDesktopSiteBridge( this.comPtr );
+        iface.MoveInZOrderAtBottom(  );
+        iface.release();
+    }
+
+    //@Returns("void")
+    MoveInZOrderAtTop()
+    {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Content.IDesktopSiteBridge( this.comPtr );
+        iface.MoveInZOrderAtTop(  );
+        iface.release();
+    }
+
+    //@Returns("Boolean")
+    get_IsVisible()
+    {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Content.IDesktopSiteBridge( this.comPtr );
+        var _r = iface.get_IsVisible(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Returns("Boolean")
+    get_IsClosed()
+    {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.IClosableNotifier( this.comPtr );
+        var _r = iface.get_IsClosed(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Parameters("Microsoft.UI.ClosableNotifierHandler")
+    //@Returns("Windows.Foundation.EventRegistrationToken")
+    //@Parameters("Microsoft.UI.ClosableNotifierHandler")
+    add_Closed(handler)
+    {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.IClosableNotifier( this.comPtr );
+        var _r = iface.add_Closed( handler );
+        iface.release();
+        return _r;
+    }
+
+    //@Parameters("Windows.Foundation.EventRegistrationToken")
+    //@Returns("void")
+    //@Parameters("Windows.Foundation.EventRegistrationToken")
+    remove_Closed(token)
+    {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.IClosableNotifier( this.comPtr );
+        iface.remove_Closed( token );
+        iface.release();
+    }
+
+    //@Parameters("Microsoft.UI.ClosableNotifierHandler")
+    //@Returns("Windows.Foundation.EventRegistrationToken")
+    //@Parameters("Microsoft.UI.ClosableNotifierHandler")
+    add_FrameworkClosed(handler)
+    {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.IClosableNotifier( this.comPtr );
+        var _r = iface.add_FrameworkClosed( handler );
+        iface.release();
+        return _r;
+    }
+
+    //@Parameters("Windows.Foundation.EventRegistrationToken")
+    //@Returns("void")
+    //@Parameters("Windows.Foundation.EventRegistrationToken")
+    remove_FrameworkClosed(token)
+    {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.IClosableNotifier( this.comPtr );
+        iface.remove_FrameworkClosed( token );
+        iface.release();
+    }
+
+    //@Returns("Microsoft.UI.Dispatching.DispatcherQueue")
+    get_DispatcherQueue()
+    {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Content.IContentSiteBridge( this.comPtr );
+        var _r = iface.get_DispatcherQueue(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Returns("Windows.Foundation.IReference`1<Microsoft.UI.Content.ContentLayoutDirection>")
+    get_LayoutDirectionOverride()
+    {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Content.IContentSiteBridge( this.comPtr );
+        var _r = iface.get_LayoutDirectionOverride(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Parameters("Windows.Foundation.IReference`1<Microsoft.UI.Content.ContentLayoutDirection>")
+    //@Returns("void")
+    //@Parameters("Windows.Foundation.IReference`1<Microsoft.UI.Content.ContentLayoutDirection>")
+    put_LayoutDirectionOverride(value)
+    {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Content.IContentSiteBridge( this.comPtr );
+        iface.put_LayoutDirectionOverride( value );
+        iface.release();
+    }
+
+    //@Returns("Single")
+    get_OverrideScale()
+    {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Content.IContentSiteBridge( this.comPtr );
+        var _r = iface.get_OverrideScale(  );
+        iface.release();
+        return _r;
+    }
+
+
+}
+Microsoft.UI.Content.DesktopSiteBridge = Microsoft_UI_Content_DesktopSiteBridge;
+
+//@RuntimeClass("Microsoft.UI.Content.DesktopChildSiteBridge")
+//@Implements("Microsoft.UI.Content.IDesktopChildSiteBridge")
+//@DefaultInterface("Microsoft.UI.Content.IDesktopChildSiteBridge")
+@Proxy("WinRtProxy")
+@Extends("Microsoft.UI.Content.DesktopSiteBridge")
+class Microsoft_UI_Content_DesktopChildSiteBridge : WinRtInterface
+{
+    Microsoft_UI_Content_DesktopChildSiteBridge( comPtr )
+    {
+        var Microsoft = runtime.global("Microsoft");
+        if(!comPtr || !int(comPtr)) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( Microsoft.UI.Content.IDesktopChildSiteBridge.iid );
+    }
+
+    // s Microsoft.UI.Content.IDesktopChildSiteBridgeStatics
+    //@Async(0)
+    //@Returns("Microsoft.UI.Content.DesktopChildSiteBridge")
+    //@Parameters("Microsoft.UI.Composition.Compositor","Microsoft.UI.WindowId")
+    static Create( compositor, parentWindowId)
+    {
+        var Microsoft = runtime.global("Microsoft");
+        var factory = winrt.activationFactory( "Microsoft.UI.Content.DesktopChildSiteBridge" );
+        var iface = Microsoft.UI.Content.IDesktopChildSiteBridgeStatics( factory );
+        var _r = iface.Create( compositor, parentWindowId);
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    static Create()
+    {
+        return Microsoft.UI.Content.DesktopChildSiteBridge(
+            winrt.activate("Microsoft.UI.Content.DesktopChildSiteBridge")
+        );
+    }
+    //@Returns("Microsoft.UI.Content.ContentSizePolicy")
+    get_ResizePolicy()
+    {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Content.IDesktopChildSiteBridge( this.comPtr );
+        var _r = iface.get_ResizePolicy(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Returns("Microsoft.UI.Content.ContentSiteView")
+    get_SiteView()
+    {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Content.IDesktopChildSiteBridge( this.comPtr );
+        var _r = iface.get_SiteView(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Parameters("Microsoft.UI.Content.ContentSizePolicy")
+    //@Returns("void")
+    //@Parameters("Microsoft.UI.Content.ContentSizePolicy")
+    put_ResizePolicy(value)
+    {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Content.IDesktopChildSiteBridge( this.comPtr );
+        iface.put_ResizePolicy( value );
+        iface.release();
+    }
+
+
+}
+Microsoft.UI.Content.DesktopChildSiteBridge = Microsoft_UI_Content_DesktopChildSiteBridge;
+
+if ( Windows.Foundation == nil ) { Windows.Foundation = {}; }
+//@Interface("Windows.Foundation.IReference`1<Microsoft.UI.Content.ContentLayoutDirection>")
+//@IID("{76E53EED-3539-540B-8D51-4206BCA63F5F}")
+class Windows_Foundation_IReference_1_Microsoft_UI_Content_ContentLayoutDirection_ : WinRtInterface 
+{
+    Windows_Foundation_IReference_1_Microsoft_UI_Content_ContentLayoutDirection_( comPtr )
+    {
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{76E53EED-3539-540B-8D51-4206BCA63F5F}");
+    }
+
+    //@VtableIndex(6)
+    //@Returns("T0")
+    get_Value()
+    {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
+        var Windows = runtime.global("Windows");
+        var _r = this.comPtr.invoke(6, "UInt32", [], [] );
+        return _r;
+    }
+
+
+}
+Windows_Foundation_IReference_1_Microsoft_UI_Content_ContentLayoutDirection_.iid = "{76E53EED-3539-540B-8D51-4206BCA63F5F}";
+Windows.Foundation.IReference_1_Microsoft_UI_Content_ContentLayoutDirection_ = Windows_Foundation_IReference_1_Microsoft_UI_Content_ContentLayoutDirection_;
+
+
+if ( Windows.Foundation == nil ) { Windows.Foundation = {}; }
+//@Delegate("Windows.Foundation.TypedEventHandler`2<Microsoft.UI.Content.ContentSite,Microsoft.UI.Content.ContentSiteRequestedStateChangedEventArgs>")
+//@IID("{B34E5337-73E6-5227-8921-6321EEA32A9B}")
+class Windows_Foundation_TypedEventHandler_2_Microsoft_UI_Content_ContentSite_Microsoft_UI_Content_ContentSiteRequestedStateChangedEventArgs_{
+    static Create( cb ) 
+    {
+        var callback = fun( s, arg ) {
+            cb( s, Microsoft.UI.Content.ContentSiteRequestedStateChangedEventArgs(arg) );
+        };
+        return winrt.Delegate(["Microsoft.UI.Content.ContentSite", "Microsoft.UI.Content.ContentSiteRequestedStateChangedEventArgs"], "{B34E5337-73E6-5227-8921-6321EEA32A9B}", callback );
+    }
+}
+Windows_Foundation_TypedEventHandler_2_Microsoft_UI_Content_ContentSite_Microsoft_UI_Content_ContentSiteRequestedStateChangedEventArgs_.iid = "{B34E5337-73E6-5227-8921-6321EEA32A9B}";
+Windows.Foundation.TypedEventHandler_2_Microsoft_UI_Content_ContentSite_Microsoft_UI_Content_ContentSiteRequestedStateChangedEventArgs_ = Windows_Foundation_TypedEventHandler_2_Microsoft_UI_Content_ContentSite_Microsoft_UI_Content_ContentSiteRequestedStateChangedEventArgs_;
+
+
+if ( Windows.Foundation == nil ) { Windows.Foundation = {}; }
+//@Delegate("Windows.Foundation.TypedEventHandler`2<Microsoft.UI.Content.ContentIslandEnvironment,Microsoft.UI.Content.ContentEnvironmentStateChangedEventArgs>")
+//@IID("{C7742341-CFD5-5EF6-AB2A-D38C65B780B5}")
+class Windows_Foundation_TypedEventHandler_2_Microsoft_UI_Content_ContentIslandEnvironment_Microsoft_UI_Content_ContentEnvironmentStateChangedEventArgs_{
+    static Create( cb ) 
+    {
+        var callback = fun( s, arg ) {
+            cb( s, Microsoft.UI.Content.ContentEnvironmentStateChangedEventArgs(arg) );
+        };
+        return winrt.Delegate(["Microsoft.UI.Content.ContentIslandEnvironment", "Microsoft.UI.Content.ContentEnvironmentStateChangedEventArgs"], "{C7742341-CFD5-5EF6-AB2A-D38C65B780B5}", callback );
+    }
+}
+Windows_Foundation_TypedEventHandler_2_Microsoft_UI_Content_ContentIslandEnvironment_Microsoft_UI_Content_ContentEnvironmentStateChangedEventArgs_.iid = "{C7742341-CFD5-5EF6-AB2A-D38C65B780B5}";
+Windows.Foundation.TypedEventHandler_2_Microsoft_UI_Content_ContentIslandEnvironment_Microsoft_UI_Content_ContentEnvironmentStateChangedEventArgs_ = Windows_Foundation_TypedEventHandler_2_Microsoft_UI_Content_ContentIslandEnvironment_Microsoft_UI_Content_ContentEnvironmentStateChangedEventArgs_;
+
+
+if ( Windows.Foundation == nil ) { Windows.Foundation = {}; }
+//@Delegate("Windows.Foundation.TypedEventHandler`2<Microsoft.UI.Content.ContentIslandEnvironment,Microsoft.UI.Content.ContentEnvironmentSettingChangedEventArgs>")
+//@IID("{1AD20C79-1495-5501-AC8A-A38845E8F218}")
+class Windows_Foundation_TypedEventHandler_2_Microsoft_UI_Content_ContentIslandEnvironment_Microsoft_UI_Content_ContentEnvironmentSettingChangedEventArgs_{
+    static Create( cb ) 
+    {
+        var callback = fun( s, arg ) {
+            cb( s, Microsoft.UI.Content.ContentEnvironmentSettingChangedEventArgs(arg) );
+        };
+        return winrt.Delegate(["Microsoft.UI.Content.ContentIslandEnvironment", "Microsoft.UI.Content.ContentEnvironmentSettingChangedEventArgs"], "{1AD20C79-1495-5501-AC8A-A38845E8F218}", callback );
+    }
+}
+Windows_Foundation_TypedEventHandler_2_Microsoft_UI_Content_ContentIslandEnvironment_Microsoft_UI_Content_ContentEnvironmentSettingChangedEventArgs_.iid = "{1AD20C79-1495-5501-AC8A-A38845E8F218}";
+Windows.Foundation.TypedEventHandler_2_Microsoft_UI_Content_ContentIslandEnvironment_Microsoft_UI_Content_ContentEnvironmentSettingChangedEventArgs_ = Windows_Foundation_TypedEventHandler_2_Microsoft_UI_Content_ContentIslandEnvironment_Microsoft_UI_Content_ContentEnvironmentSettingChangedEventArgs_;
+
+
+if ( Windows.Foundation == nil ) { Windows.Foundation = {}; }
+//@Delegate("Windows.Foundation.TypedEventHandler`2<Microsoft.UI.Content.ContentIsland,Microsoft.UI.Content.ContentIslandStateChangedEventArgs>")
+//@IID("{CEB771A4-BF66-529D-883A-602D592F390C}")
+class Windows_Foundation_TypedEventHandler_2_Microsoft_UI_Content_ContentIsland_Microsoft_UI_Content_ContentIslandStateChangedEventArgs_{
+    static Create( cb ) 
+    {
+        var callback = fun( s, arg ) {
+            cb( s, Microsoft.UI.Content.ContentIslandStateChangedEventArgs(arg) );
+        };
+        return winrt.Delegate(["Microsoft.UI.Content.ContentIsland", "Microsoft.UI.Content.ContentIslandStateChangedEventArgs"], "{CEB771A4-BF66-529D-883A-602D592F390C}", callback );
+    }
+}
+Windows_Foundation_TypedEventHandler_2_Microsoft_UI_Content_ContentIsland_Microsoft_UI_Content_ContentIslandStateChangedEventArgs_.iid = "{CEB771A4-BF66-529D-883A-602D592F390C}";
+Windows.Foundation.TypedEventHandler_2_Microsoft_UI_Content_ContentIsland_Microsoft_UI_Content_ContentIslandStateChangedEventArgs_ = Windows_Foundation_TypedEventHandler_2_Microsoft_UI_Content_ContentIsland_Microsoft_UI_Content_ContentIslandStateChangedEventArgs_;
+
+
+if ( Windows.Foundation == nil ) { Windows.Foundation = {}; }
+//@Delegate("Windows.Foundation.TypedEventHandler`2<Microsoft.UI.Content.ContentIsland,Microsoft.UI.Content.ContentIslandAutomationProviderRequestedEventArgs>")
+//@IID("{3B44F287-F0EF-5D10-AB5F-1B324F45F7DA}")
+class Windows_Foundation_TypedEventHandler_2_Microsoft_UI_Content_ContentIsland_Microsoft_UI_Content_ContentIslandAutomationProviderRequestedEventArgs_{
+    static Create( cb ) 
+    {
+        var callback = fun( s, arg ) {
+            cb( s, Microsoft.UI.Content.ContentIslandAutomationProviderRequestedEventArgs(arg) );
+        };
+        return winrt.Delegate(["Microsoft.UI.Content.ContentIsland", "Microsoft.UI.Content.ContentIslandAutomationProviderRequestedEventArgs"], "{3B44F287-F0EF-5D10-AB5F-1B324F45F7DA}", callback );
+    }
+}
+Windows_Foundation_TypedEventHandler_2_Microsoft_UI_Content_ContentIsland_Microsoft_UI_Content_ContentIslandAutomationProviderRequestedEventArgs_.iid = "{3B44F287-F0EF-5D10-AB5F-1B324F45F7DA}";
+Windows.Foundation.TypedEventHandler_2_Microsoft_UI_Content_ContentIsland_Microsoft_UI_Content_ContentIslandAutomationProviderRequestedEventArgs_ = Windows_Foundation_TypedEventHandler_2_Microsoft_UI_Content_ContentIsland_Microsoft_UI_Content_ContentIslandAutomationProviderRequestedEventArgs_;
+
+
+
+}

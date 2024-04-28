@@ -42,12 +42,15 @@ End With
 
 ' set the default install directory
 
-Set View = Database.OpenView("SELECT Directory_Parent FROM Directory WHERE Directory = 'INSTALLLOCATION' ")
+Set View = Database.OpenView("SELECT Directory_Parent FROM Directory WHERE Directory = 'INSTALLFOLDER' ")
 
 View.Execute
 Set Record = View.Fetch
+WScript.Echo Record.StringData(1)
+
 Record.StringData(1) = "LocalAppDataFolder"
 View.Modify 2, Record              ' msiViewModifyUpdate
+
 Database.Commit
 View.Close
 

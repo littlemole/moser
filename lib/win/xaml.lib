@@ -2,23 +2,13 @@
 
 extern from "Microsoft.Internal.FrameworkUdk.dll" {
     int Windowing_GetWindowIdFromWindow( ptr, ptr );
+    int Windowing_GetWindowFromWindowId( ptr, ptr );
 }
 
-extern from "Ntdll.dll" {
-  int RtlGetVersion( ptr );
+extern from "Microsoft.UI.Windowing.Core.dll" {
+    int ContentPreTranslateMessage( ptr );
 }
 
-fun WinVersion()
-{
-    var osver = Win32.OSVERSIONINFOEXW();
-    osver.dwOSVersionInfoSize = Win32.OSVERSIONINFOEXW.size;
-    RtlGetVersion(osver);
-
-    if( osver.dwMajorVersion >= 10 && osver.dwBuildNumber >= 22000 ) return 11;
-    return 10;
-}
-
-var windowsVersion = WinVersion();
 
 fun getXamlClassByName(name)
 {
@@ -54,8 +44,8 @@ fun bindXaml( element, source )
 {
     var args = arguments();
     var path = nil;
-    var mode = Windows.UI.Xaml.Data.BindingMode.OneWay;
-    var property = Windows.UI.Xaml.Controls.ContentControl.get_ContentProperty();
+    var mode = Microsoft.UI.Xaml.Data.BindingMode.OneWay;
+    var property = Microsoft.UI.Xaml.Controls.ContentControl.get_ContentProperty();
 
     if(args.length > 2)
     {
@@ -70,18 +60,18 @@ fun bindXaml( element, source )
         property = args[4];
     }
 
-    var b = winrt.activate("Windows.UI.Xaml.Data.Binding");
-    var binding = Windows.UI.Xaml.Data.Binding(b);
+    var b = winrt.activate("Microsoft.UI.Xaml.Data.Binding");
+    var binding = Microsoft.UI.Xaml.Data.Binding(b);
     binding.put_Mode( mode ); 
     binding.put_Source(source);
 
     if(path != nil)
     {
-        var bindpath = Windows.UI.Xaml.PropertyPath.CreateInstance(path);
+        var bindpath = Microsoft.UI.Xaml.PropertyPath.CreateInstance(path);
         binding.put_Path(bindpath);
     }
 
-    var fe = Windows.UI.Xaml.FrameworkElement(element);
+    var fe = Microsoft.UI.Xaml.FrameworkElement(element);
     fe.SetBinding( property, binding);
 }
 
@@ -127,7 +117,10 @@ fun unbox(p)
 {
     var prop = Windows.Foundation.IPropertyValue(p);
 
-    if( int(prop.comPtr) == 0) return p;
+    if( int(prop.comPtr) == 0)
+    {
+       return p;
+    }
 
     var type = prop.get_Type();
     switch(type)
@@ -390,135 +383,176 @@ class Xaml
 {
     static ensureInitialized()
     {
-        if(!Xaml.app)
+        if(!Xaml.isInitialized)
         {
-            Xaml.app = winrt.activate("moxaml.App");
-            Xaml.sources = [];
+	    Xaml.dispatcher = Microsoft.UI.Dispatching.DispatcherQueueController.CreateOnCurrentThread();
+	    winrt.xaml.init();
+	    Xaml.isInitialized = true;
         }
+    }
+
+    static shutdown()
+    {
+	if(Xaml.dispatcher)
+	{
+	    Xaml.dispatcher.ShutdownQueue();
+	    Xaml.dispatcher = nil;
+	}
     }
 
     static window( parentWnd, xaml)
     {
         Xaml.ensureInitialized();
 
-        // load root UI element if not loaded yet
-        if(typeof(xaml) == "str")
-        {            
-            xaml = Xaml.load(xaml,parentWnd);
-        }
+	var source = Xaml.source(parentWnd);
 
-        // make xaml child window
-        var xamlSource = Xaml.source( parentWnd );
+	var xamlroot = Microsoft.UI.Xaml.UIElement( Xaml.load(xaml) );
+	source.Content = xamlroot;
 
-        // put the xaml content
-        xamlSource.put_Content(xaml);
-
-        return xamlSource;
+	return source;
     }
 
     static source( parentWnd )
     {
         Xaml.ensureInitialized();
 
-        var comPtr = winrt.activate("Windows.UI.Xaml.Hosting.DesktopWindowXamlSource");
-        var xamlSource = Windows.UI.Xaml.Hosting.DesktopWindowXamlSource(comPtr);
-        comPtr.release();
+        var id = 0;
+        Windowing_GetWindowIdFromWindow( parentWnd.hwnd, &id );
+	var source = Microsoft.UI.Xaml.Hosting.DesktopWindowXamlSource.Create();
+	source.Initialize(id);
 
-        // IDesktopWindowXamlSourceNative
-        var native = xamlSource.comPtr.queryInterface("{3cbcf1bf-2f76-4e9c-96ab-e84b37972554}");
-        if(!native) return;
-
-        Xaml.sources.push(xamlSource);
-
-        // AttachToWindow
-        native.invoke( 3, "void", [ "HWND"], [ parentWnd.hwnd ] );
-
-        // get_WindowHandle of the xaml child wnd
-        var hwnd = native.invoke( 4, "ptr", [], [] );
-        native.release();
-
-        // initial resize
-        var rc = Win32.RECT();
-        Win32.GetClientRect( parentWnd.hwnd, rc);
-        Win32.SetWindowPos( hwnd, 0, rc.left, rc.top, rc.right, rc.bottom, Win32.SET_WINDOW_POS_FLAGS.SWP_SHOWWINDOW);
-
-        return xamlSource;
+	return source;
     }
 
     static hwnd(xamlSource)
     {
-        // IDesktopWindowXamlSourceNative
-        var native = xamlSource.comPtr.queryInterface("{3cbcf1bf-2f76-4e9c-96ab-e84b37972554}");
-        if(!native) return;
-        var hwnd = native.invoke( 4, "ptr", [], [] );
-        native.release();
-        return hwnd;
+	var bridge = xamlSource.get_SiteBridge();
+
+	var id = bridge.WindowId;
+	var hwnd = 0;
+	Windowing_GetWindowFromWindowId(id,&hwnd);
+	return hwnd;
     }
 
     static root(xamlSource)
     {
-        return Windows.UI.Xaml.FrameworkElement( xamlSource.get_Content() );
+        return Microsoft.UI.Xaml.FrameworkElement( xamlSource.get_Content() );
     }
 
     static load( xaml )
     {
         var args = arguments();
-        var target = nil;
-        if(args.length > 1)
-        {
-            target = args[1];
-        }
 
         Xaml.ensureInitialized();
 
-        var result = Windows.UI.Xaml.UIElement( Windows.UI.Xaml.Markup.XamlReader.Load( xaml ) );
-        if(target)
-        {
-            Xaml.bindEvents( result, target );
-        }
+        var result = Microsoft.UI.Xaml.UIElement( Microsoft.UI.Xaml.Markup.XamlReader.Load( xaml ) );
+
         return result;
     }
 
+
+    static contentProperty(el)
+    {
+        var clazz = el.target;
+	if(!clazz) clazz = el;
+
+	var m = $clazz;
+
+        var p = m{"ContentProperty"};
+        if(p) 
+        {
+            return p;
+        }
+
+        var base = m{"Extends"};
+        if(base)
+        {
+            return Xaml.contentProperty(getXamlClassByName(base));
+        }
+ 
+        return nil;    
+    }
+
+
     static enumerateChildren(element, cb)
     {
-        var page = Windows.UI.Xaml.Controls.Page(element);
-        if ( page && page.comPtr && int(page.comPtr) )
-        {
-            var c = page.Content;
-            cb(c);
-            Xaml.enumerateChildren(c,cb);
-            return;
-        }
-        var panel = Windows.UI.Xaml.Controls.Panel(element);
-        if ( panel && panel.comPtr && int(panel.comPtr) )
-        {
-            var children = panel.Children;
-            var size = children.Size;
 
+        if(!element || !element.comPtr || !int(element.comPtr) ) return nil;
+
+	var clazz = getXamlClassFromComPtr(element.comPtr);
+	var el = clazz(element);
+
+        var r = cb(el);
+        if(r) return r;
+
+	if(el.Flyout)
+	{    
+            var c = el.Flyout;
+	    if (c && c.comPtr && int(c.comPtr) )
+	    {
+	        var r = cb(c);
+	    	if(r) return r;
+            	r = Xaml.enumerateChildren(c,cb);
+            	if(r) return r;
+	    }
+	}
+
+
+	var prop = Xaml.contentProperty(el);
+	if(!prop)
+	{
+	   return nil;
+	}
+
+	if(prop == "Inlines") return nil;
+
+        var p = el{prop};
+	if(!p) return nil;
+	if(typeof(p) == "str") return nil;
+
+	if(typeof(p) == "comptr" )
+	{
+	    p = getXamlClassFromComPtr(p);
+	}
+	if(!p) return nil;
+
+        if(p.get_Size && p.GetAt)
+        {
+            var size = p.get_Size();
             for( var i = 0; i < size; i++)
-            {
-                var c = children.GetAt(i);
-                cb(c);
-                Xaml.enumerateChildren(c,cb);
-            }
-            return;
+	    {
+		var child = p.GetAt(i);
+		r = Xaml.enumerateChildren(child,cb);
+	        if(r) return r;
+ 	    }
         }
+	else 
+	{
+	    r = Xaml.enumerateChildren(p,cb);
+	    if(r) return r;
+
+	    if(p.get_Pane)
+	    {
+		var c = p.Pane;
+		r = Xaml.enumerateChildren(c,cb);
+	        if(r) return r;
+	    }
+	}
     }
 
-    static find( root, name)
-    {
-        var el = Windows.UI.Xaml.FrameworkElement(root).FindName(name);
 
-        if(el == nil || int(el) == 0) return nil;
+    static find(root,name) {
 
-        var elementType = getXamlClassFromComPtr(el);
-        if(elementType == nil) return nil;
+	var fe = Microsoft.UI.Xaml.FrameworkElement(root);
+	if(!fe || !fe.comPtr || !int(fe.comPtr) ) return nil;
 
-        var element = elementType(el);
-        if(element == nil || element.comPtr == nil || int(element.comPtr) == 0) return nil;
-
-        return element;        
+	var r = fe.FindName(name);
+	if(!r || !int(r)) return nil;
+	var clazz = getXamlClassFromComPtr(r);
+	if(!clazz) return nil;
+	return clazz(r);
     }
+
 
     static bindEvents( element, targetWnd )
     {
@@ -529,7 +563,7 @@ class Xaml
             dataContext = args[2];
         }
 
-        var root = Windows.UI.Xaml.FrameworkElement( element );
+        var root = Microsoft.UI.Xaml.FrameworkElement( element );
         var methods = targetWnd.methods();
         methods.forEach( fun(k,m) 
         {
@@ -538,13 +572,12 @@ class Xaml
                 if($m.exists("Xaml"))
                 {
                     var src = $m.Xaml.Element;
-                    var ev  = $m.Xaml.Event;
+                    var ev  = $m.Xaml.Event || "Click";
 
-                    var el = root.FindName( src );
-
+		    var el = Xaml.find(element,src);
                     if(el == nil || int(el) == 0) return nil;
 
-                    var elementType = getXamlClassFromComPtr(el);
+                    var elementType = getXamlClassFromComPtr(el.comPtr);
                     if(elementType == nil) return nil;
 
                     var element = elementType(el);
@@ -553,7 +586,6 @@ class Xaml
                     if(element)
                     {
                         var n ="add_" + ev;
-                        
                         runtime.invoke(element,n,[m]);
                     }
                 }
@@ -564,12 +596,15 @@ class Xaml
         { 
             if( runtime.global("moxaml") == nil ) return;
 
+	    if(!int(el.comPtr)) return;
+
             var elementType = getXamlClassFromComPtr(el.comPtr);
             var element = elementType(el);
             var name = element.get_Name();
             if(!name) return;
+
             var e = moxaml.mox.GetEvent(element);
-            if(!e) return;
+            if(!e || e == "") return;
 
             var handler = name + "_" + e;
 
@@ -583,15 +618,13 @@ class Xaml
 
         if(targetWnd{"dataContext"} )
         {
-             Windows.UI.Xaml.FrameworkElement(element).DataContext = targetWnd.dataContext;
+             Microsoft.UI.Xaml.FrameworkElement(element).DataContext = targetWnd.dataContext;
         }
     }
 
     static expand( hwnd )
     {
         var args = arguments();
-
-        if(windowsVersion < 11) return;
 
         if(!Windowing_GetWindowIdFromWindow) return;
         if(!Microsoft.UI.Windowing.AppWindowTitleBar.IsCustomizationSupported()) return;
@@ -623,7 +656,6 @@ class Xaml
 
         titleBar.ExtendsContentIntoTitleBar = true;
 
-        print x + ", " + y + ", " +w + "," + h;
 
         var nRects = 1;
         titleBar.comPtr.invoke( 38, "void", [ "Uint32", "Windows.Graphics.RectInt32"], [nRects, rect] );
@@ -631,17 +663,219 @@ class Xaml
 
     static initWnd(picker, hwnd)
     {
-        //print "init";
         if(!picker.comPtr || !int(picker.comPtr)) return;
 
         // IInitializeWithWindow native
         var initializeWithWindows = picker.comPtr.queryInterface("{3E68D4BD-7135-4D10-8018-9FB6D9F33FA1}");
-        //print initializeWithWindows + " : " + int(initializeWithWindows);
         if(!initializeWithWindows || !int(initializeWithWindows) ) return;
 
         initializeWithWindows.invoke( 3, "void", ["HWND"], [hwnd] );
         initializeWithWindows.release();
     }
+
+    static run()
+    {
+    	var args = arguments();
+
+    	if(args.length > 0)
+    	{      
+            var wnd = args[0];
+
+            while (Win32.GetMessageW(main_loop_msg, 0, 0, 0))
+            {
+ 	        if(ContentPreTranslateMessage(main_loop_msg)) continue;
+
+            	if ( (!wnd.accels) || (!int(Win32.TranslateAcceleratorW(wnd.hwnd, wnd.accels, main_loop_msg))) )
+            	{
+	            Win32.TranslateMessage(main_loop_msg);
+	            Win32.DispatchMessageW(main_loop_msg);
+            	}
+            }
+	    Xaml.shutdown();
+    	}
+    	else
+    	{
+            while (Win32.GetMessageW(main_loop_msg, 0, 0, 0))
+            {
+  	        if(ContentPreTranslateMessage(main_loop_msg)) continue;
+
+	        Win32.TranslateMessage(main_loop_msg);
+	        Win32.DispatchMessageW(main_loop_msg);
+            }
+	    Xaml.shutdown();
+    	}
+    }
+
+
+    static setFocus(xamlSource)
+    {
+	var hwnd = Xaml.hwnd(xamlSource);
+	SetFocus(hwnd);
+    }
+
+    static Command(kind, handler) 
+    {
+        var cmd = Microsoft.UI.Xaml.Input.XamlUICommand.Create();
+
+        if($handler.exists("XamlAccel"))
+        {
+    	    var key = $handler.XamlAccel.key;
+            var flag = $handler.XamlAccel.flag;
+
+	    var accel = Microsoft.UI.Xaml.Input.KeyboardAccelerator.Create();
+            if( typeof(key) == "str")
+            {
+		key = Windows.System.VirtualKey{key};
+	    	accel.Key = key;
+            }
+            if( typeof(flag) == "str")
+            {
+            	flag = Windows.System.VirtualKeyModifiers{flag};
+	    	accel.Modifiers = flag;
+            }
+	    var v = cmd.KeyboardAccelerators;
+	    v.Append(accel);
+        }
+	cmd.Label = kind;
+        cmd.add_ExecuteRequested(handler);
+        return cmd;
+    }
+
+    static StandardCommand(kind, handler) 
+    {
+    	var cmd = Microsoft.UI.Xaml.Input.StandardUICommand.Create();
+    	cmd.Kind = Microsoft.UI.Xaml.Input.StandardUICommandKind{kind};
+    	cmd.add_ExecuteRequested(handler);
+    	return cmd;
+    }
+
+    static commands(controller) 
+    {
+	Xaml.ensureInitialized();
+
+        var methods = controller.methods();
+	var result = {};
+
+        methods.forEach( fun(k,m) 
+        {
+            if($m)
+            {
+                if($m.exists("XamlCommand"))
+                {
+		    var cmds = $m.XamlCommand;
+		    if(typeof(cmds) == "map")
+		    {
+			var keys = cmds.keys();
+			keys.forEach( fun(item) 
+			{
+			    result{item} = Xaml.Command(item,m);
+			});
+		    }
+		    if(typeof(cmds) == "array")
+		    {
+			cmds.forEach( fun(item) 
+			{
+			    result{item} = Xaml.Command(item,m);
+			});
+		    }
+		}
+                else if($m.exists("XamlStandardCommand"))
+                {
+		    var cmds = $m.XamlStandardCommand;
+		    if(typeof(cmds) == "map")
+		    {
+			var keys = cmds.keys();
+			keys.forEach( fun(item) 
+			{
+			    result{item} = Xaml.StandardCommand(item,m);
+			});
+		    }
+		    if(typeof(cmds) == "array")
+		    {
+			cmds.forEach( fun(item) 
+			{
+			    result{item} = Xaml.StandardCommand(item,m);
+			});
+		    }
+		}
+	    }
+	});
+	return result;
+    }
+
+    static fixupCommands(controller,xamlWnd)
+    {
+	Xaml.ensureInitialized();
+
+        var methods = controller.methods();
+
+        methods.forEach( fun(k,m) 
+        {
+            if($m)
+            {
+                if($m.exists("XamlCommand"))
+                {
+		    var cmds = $m.XamlCommand;
+		    if(typeof(cmds) == "map")
+		    {
+			var keys = cmds.keys();
+			keys.forEach( fun(item) 
+			{
+			    var element = xamlWnd.find(item);
+			    if(element && element.comPtr && int(element.comPtr) )
+			    {
+				var cmd = Xaml.Command(item,m);	
+				element.Command = cmd;
+			    }
+			});
+		    }
+		    if(typeof(cmds) == "array")
+		    {
+			cmds.forEach( fun(item) 
+			{
+			    var element = xamlWnd.root().find(item);
+			    if(element && element.comPtr && int(element.comPtr) )
+			    {
+				var cmd = Xaml.Command(item,m);	
+				element.Command = cmd;
+			    }
+			});
+		    }
+		}
+                else if($m.exists("XamlStandardCommand"))
+                {
+		    var cmds = $m.XamlStandardCommand;
+		    if(typeof(cmds) == "map")
+		    {
+			var keys = cmds.keys();
+			keys.forEach( fun(item) 
+			{
+			    var element = xamlWnd.root().find(item);
+			    if(element && element.comPtr && int(element.comPtr) )
+			    {
+				var cmd = Xaml.StandardCommand(item,m);	
+				element.Command = cmd;
+			    }
+			});
+		    }
+		    if(typeof(cmds) == "array")
+		    {
+			var keys = cmds.keys();
+			keys.forEach( fun(item) 
+			{
+			    var element = xamlWnd.root().find(item);
+			    if(element && element.comPtr && int(element.comPtr) )
+			    {
+				var cmd = Xaml.StandardCommand(item,m);	
+				element.Command = cmd;
+			    }
+			});
+		    }
+		} // xamlCommands
+	    } // if($m)
+	}); // foreach
+    }
+
 }
 
 class XamlWindow
@@ -655,8 +889,19 @@ class XamlWindow
         if(args.length > 1)
         {
             this.load(args[1]);
+	    this.focus();
         }
     }    
+
+    focus()
+    {
+	Xaml.setFocus(this.xamlSource);
+    }
+
+    root()
+    {
+	return Microsoft.UI.Xaml.UIElement( Xaml.root( this.xamlSource ) );	
+    }
 
     load(xml)
     {
@@ -664,12 +909,20 @@ class XamlWindow
         {
             this.xamlSource = Xaml.window( this.parentWnd, xml );
             this.hwnd = Xaml.hwnd(this.xamlSource);
+
+	    Xaml.bindEvents( this.root(), this.parentWnd );
+	    Xaml.fixupCommands( this.parentWnd, this );
+
             return this.xamlSource;
         }
         else
         {
             var xaml = Xaml.load(xml);
             this.xamlSource.put_Content(xaml);
+
+	    Xaml.bindEvents( this.root(), this.parentWnd );
+	    Xaml.fixupCommands( this.parentWnd, this );
+
             return this.xamlSource;
         }       
     }
@@ -678,6 +931,21 @@ class XamlWindow
     {
         var root = Xaml.root(this.xamlSource);
         return Xaml.find( root, name );
+    }
+
+    size( left, top, width, height)
+    {
+        var r = Windows.Graphics.RectInt32();
+	r.X = left;
+	r.Y = top;
+	r.Width = width;
+	r.Height = height;
+
+	if( this.xamlSource)
+	{
+	    var bridge = this.xamlSource.get_SiteBridge();
+	    bridge.MoveAndResize(r);
+	}
     }
 
     FileOpenPicker()
@@ -830,7 +1098,6 @@ class XamlWindow
         }
 
         this.picker = Windows.Storage.Pickers.FolderPicker.Create();
-        //winrt.xaml.initWnd( this.picker, this.parentWnd.hwnd );
         Xaml.initWnd( this.picker,  this.parentWnd.hwnd );
         
         this.picker.ViewMode = opts.ViewMode; 
@@ -844,7 +1111,7 @@ class XamlWindow
         return this.picker.PickSingleFolderAsync();
     }
 
-    contentDialog(opts)
+    ContentDialog(opts)
     {
         var args = arguments();
         var options = {
@@ -857,9 +1124,9 @@ class XamlWindow
 
         opts.forEach( fun(k,v) { options{k} = v; } );
 
-        var dlg = winrt.activate("Windows.UI.Xaml.Controls.ContentDialog");
+        var dlg = winrt.activate("Microsoft.UI.Xaml.Controls.ContentDialog");
 
-        var xamlContentDlg = Windows.UI.Xaml.Controls.ContentDialog( dlg );
+        var xamlContentDlg = Microsoft.UI.Xaml.Controls.ContentDialog( dlg );
         Xaml.initWnd( dlg,  this.parentWnd.hwnd );
 
         var root = Xaml.root( this.xamlSource).XamlRoot;
@@ -878,7 +1145,7 @@ class XamlWindow
             xamlContentDlg.Content = content;
         }
         
-        var iface = Windows.UI.Xaml.Controls.IContentDialog(xamlContentDlg);
+        var iface = Microsoft.UI.Xaml.Controls.IContentDialog(xamlContentDlg);
         var promise = Future();
         var cb = fun(status,result)
         {

@@ -3,6 +3,112 @@
 if( runtime.global("Win32") == nil ) { runtime.global("Win32", {}); }
 var Win32 = runtime.global("Win32");
 
+Win32.DNS_TYPE = {
+    "DNS_TYPE_ZERO" : 0, 
+    "DNS_TYPE_A" : 1, 
+    "DNS_TYPE_NS" : 2, 
+    "DNS_TYPE_MD" : 3, 
+    "DNS_TYPE_MF" : 4, 
+    "DNS_TYPE_CNAME" : 5, 
+    "DNS_TYPE_SOA" : 6, 
+    "DNS_TYPE_MB" : 7, 
+    "DNS_TYPE_MG" : 8, 
+    "DNS_TYPE_MR" : 9, 
+    "DNS_TYPE_NULL" : 10, 
+    "DNS_TYPE_WKS" : 11, 
+    "DNS_TYPE_PTR" : 12, 
+    "DNS_TYPE_HINFO" : 13, 
+    "DNS_TYPE_MINFO" : 14, 
+    "DNS_TYPE_MX" : 15, 
+    "DNS_TYPE_TEXT" : 16, 
+    "DNS_TYPE_RP" : 17, 
+    "DNS_TYPE_AFSDB" : 18, 
+    "DNS_TYPE_X25" : 19, 
+    "DNS_TYPE_ISDN" : 20, 
+    "DNS_TYPE_RT" : 21, 
+    "DNS_TYPE_NSAP" : 22, 
+    "DNS_TYPE_NSAPPTR" : 23, 
+    "DNS_TYPE_SIG" : 24, 
+    "DNS_TYPE_KEY" : 25, 
+    "DNS_TYPE_PX" : 26, 
+    "DNS_TYPE_GPOS" : 27, 
+    "DNS_TYPE_AAAA" : 28, 
+    "DNS_TYPE_LOC" : 29, 
+    "DNS_TYPE_NXT" : 30, 
+    "DNS_TYPE_EID" : 31, 
+    "DNS_TYPE_NIMLOC" : 32, 
+    "DNS_TYPE_SRV" : 33, 
+    "DNS_TYPE_ATMA" : 34, 
+    "DNS_TYPE_NAPTR" : 35, 
+    "DNS_TYPE_KX" : 36, 
+    "DNS_TYPE_CERT" : 37, 
+    "DNS_TYPE_A6" : 38, 
+    "DNS_TYPE_DNAME" : 39, 
+    "DNS_TYPE_SINK" : 40, 
+    "DNS_TYPE_OPT" : 41, 
+    "DNS_TYPE_DS" : 43, 
+    "DNS_TYPE_RRSIG" : 46, 
+    "DNS_TYPE_NSEC" : 47, 
+    "DNS_TYPE_DNSKEY" : 48, 
+    "DNS_TYPE_DHCID" : 49, 
+    "DNS_TYPE_NSEC3" : 50, 
+    "DNS_TYPE_NSEC3PARAM" : 51, 
+    "DNS_TYPE_TLSA" : 52, 
+    "DNS_TYPE_SVCB" : 64, 
+    "DNS_TYPE_HTTPS" : 65, 
+    "DNS_TYPE_UINFO" : 100, 
+    "DNS_TYPE_UID" : 101, 
+    "DNS_TYPE_GID" : 102, 
+    "DNS_TYPE_UNSPEC" : 103, 
+    "DNS_TYPE_ADDRS" : 248, 
+    "DNS_TYPE_TKEY" : 249, 
+    "DNS_TYPE_TSIG" : 250, 
+    "DNS_TYPE_IXFR" : 251, 
+    "DNS_TYPE_AXFR" : 252, 
+    "DNS_TYPE_MAILB" : 253, 
+    "DNS_TYPE_MAILA" : 254, 
+    "DNS_TYPE_ALL" : 255, 
+    "DNS_TYPE_ANY" : 255, 
+    "DNS_TYPE_WINS" : 65281, 
+    "DNS_TYPE_WINSR" : 65282, 
+    "DNS_TYPE_NBSTAT" : 65282
+};
+
+
+Win32.DNS_QUERY_OPTIONS = {
+    "DNS_QUERY_STANDARD" : 0, 
+    "DNS_QUERY_ACCEPT_TRUNCATED_RESPONSE" : 1, 
+    "DNS_QUERY_USE_TCP_ONLY" : 2, 
+    "DNS_QUERY_NO_RECURSION" : 4, 
+    "DNS_QUERY_BYPASS_CACHE" : 8, 
+    "DNS_QUERY_NO_WIRE_QUERY" : 16, 
+    "DNS_QUERY_NO_LOCAL_NAME" : 32, 
+    "DNS_QUERY_NO_HOSTS_FILE" : 64, 
+    "DNS_QUERY_NO_NETBT" : 128, 
+    "DNS_QUERY_WIRE_ONLY" : 256, 
+    "DNS_QUERY_RETURN_MESSAGE" : 512, 
+    "DNS_QUERY_MULTICAST_ONLY" : 1024, 
+    "DNS_QUERY_NO_MULTICAST" : 2048, 
+    "DNS_QUERY_TREAT_AS_FQDN" : 4096, 
+    "DNS_QUERY_ADDRCONFIG" : 8192, 
+    "DNS_QUERY_DUAL_ADDR" : 16384, 
+    "DNS_QUERY_DONT_RESET_TTL_VALUES" : 1048576, 
+    "DNS_QUERY_DISABLE_IDN_ENCODING" : 2097152, 
+    "DNS_QUERY_APPEND_MULTILABEL" : 8388608, 
+    "DNS_QUERY_DNSSEC_OK" : 16777216, 
+    "DNS_QUERY_DNSSEC_CHECKING_DISABLED" : 33554432, 
+    "DNS_QUERY_RESERVED" : 4026531840, 
+    "DNS_QUERY_CACHE_ONLY" : 16, 
+    "DNS_QUERY_REQUEST_VERSION1" : 1, 
+    "DNS_QUERY_REQUEST_VERSION2" : 2, 
+    "DNS_QUERY_RESULTS_VERSION1" : 1, 
+    "DNS_QUERY_REQUEST_VERSION3" : 3, 
+    "DNS_QUERY_RAW_RESULTS_VERSION1" : 1, 
+    "DNS_QUERY_RAW_REQUEST_VERSION1" : 1, 
+    "DNS_QUERY_RAW_OPTION_BEST_EFFORT_PARSE" : 1
+};
+
+
 Win32.DNS_CONFIG_TYPE = {
     "DnsConfigPrimaryDomainName_W" : 0, 
     "DnsConfigPrimaryDomainName_A" : 1, 
@@ -23,6 +129,20 @@ Win32.DNS_CONFIG_TYPE = {
     "DnsConfigFullHostName_A" : 16, 
     "DnsConfigFullHostName_UTF8" : 17, 
     "DnsConfigNameServer" : 18
+};
+
+
+Win32.DNS_SVCB_PARAM_TYPE = {
+    "DnsSvcbParamMandatory" : 0, 
+    "DnsSvcbParamAlpn" : 1, 
+    "DnsSvcbParamNoDefaultAlpn" : 2, 
+    "DnsSvcbParamPort" : 3, 
+    "DnsSvcbParamIpv4Hint" : 4, 
+    "DnsSvcbParamEch" : 5, 
+    "DnsSvcbParamIpv6Hint" : 6, 
+    "DnsSvcbParamDohPath" : 7, 
+    "DnsSvcbParamDohPathQuad9" : 65380, 
+    "DnsSvcbParamDohPathOpenDns" : 65432
 };
 
 
@@ -89,11 +209,6 @@ Win32.DNS_CONNECTION_POLICY_TAG = {
     "TAG_DNS_CONNECTION_POLICY_TAG_CONNECTION_MANAGER" : 1, 
     "TAG_DNS_CONNECTION_POLICY_TAG_WWWPT" : 2
 };
-
-
-Win32.DnsContextHandle = foreign.named_struct( "Windows.Win32.NetworkManagement.Dns.DnsContextHandle", [ 
-    "Value:ptr"
-]); 
 
 
 Win32.IP6_ADDRESS = foreign.named_struct( "Windows.Win32.NetworkManagement.Dns.IP6_ADDRESS", [ 
@@ -527,6 +642,56 @@ Win32.DNS_WINSR_DATAA = foreign.named_struct( "Windows.Win32.NetworkManagement.D
 ]); 
 
 
+Win32.DNS_SVCB_PARAM_MANDATORY = foreign.named_struct( "Windows.Win32.NetworkManagement.Dns.DNS_SVCB_PARAM_MANDATORY", [ 
+    "cMandatoryKeys:ushort", 
+    "rgwMandatoryKeys[1]:ushort"
+]); 
+
+
+Win32.DNS_SVCB_PARAM_ALPN_ID = foreign.named_struct( "Windows.Win32.NetworkManagement.Dns.DNS_SVCB_PARAM_ALPN_ID", [ 
+    "cBytes:ubyte", 
+    "pbId:ptr"
+]); 
+
+
+Win32.DNS_SVCB_PARAM_ALPN = foreign.named_struct( "Windows.Win32.NetworkManagement.Dns.DNS_SVCB_PARAM_ALPN", [ 
+    "cIds:ushort", 
+    "rgIds[1]:Windows.Win32.NetworkManagement.Dns.DNS_SVCB_PARAM_ALPN_ID"
+]); 
+
+
+Win32.DNS_SVCB_PARAM_IPV4 = foreign.named_struct( "Windows.Win32.NetworkManagement.Dns.DNS_SVCB_PARAM_IPV4", [ 
+    "cIps:ushort", 
+    "rgIps[1]:uint"
+]); 
+
+
+Win32.DNS_SVCB_PARAM_IPV6 = foreign.named_struct( "Windows.Win32.NetworkManagement.Dns.DNS_SVCB_PARAM_IPV6", [ 
+    "cIps:ushort", 
+    "rgIps[1]:Windows.Win32.NetworkManagement.Dns.IP6_ADDRESS"
+]); 
+
+
+Win32.DNS_SVCB_PARAM_UNKNOWN = foreign.named_struct( "Windows.Win32.NetworkManagement.Dns.DNS_SVCB_PARAM_UNKNOWN", [ 
+    "cBytes:ushort", 
+    "pbSvcParamValue[1]:ubyte"
+]); 
+
+
+Win32.DNS_SVCB_PARAM = foreign.named_struct( "Windows.Win32.NetworkManagement.Dns.DNS_SVCB_PARAM", [ 
+    "wSvcParamKey:ushort", 
+    "Anonymous:._Anonymous_e__Union"
+]); 
+
+
+Win32.DNS_SVCB_DATA = foreign.named_struct( "Windows.Win32.NetworkManagement.Dns.DNS_SVCB_DATA", [ 
+    "wSvcPriority:ushort", 
+    "pszTargetName:str", 
+    "cSvcParams:ushort", 
+    "pSvcParams:ptr"
+]); 
+
+
 Win32.DNS_RECORD_FLAGS = foreign.named_struct( "Windows.Win32.NetworkManagement.Dns.DNS_RECORD_FLAGS", [ 
     "_bitfield:uint"
 ]); 
@@ -604,6 +769,20 @@ Win32.DNS_QUERY_RESULT = foreign.named_struct( "Windows.Win32.NetworkManagement.
 ]); 
 
 
+Win32.DNS_CUSTOM_SERVER = foreign.named_struct( "Windows.Win32.NetworkManagement.Dns.DNS_CUSTOM_SERVER", [ 
+    "dwServerType:uint", 
+    "ullFlags:ulong", 
+    "Anonymous1:._Anonymous1_e__Union", 
+    "Anonymous2:._Anonymous2_e__Union"
+]); 
+
+
+Win32.DNS_APPLICATION_SETTINGS = foreign.named_struct( "Windows.Win32.NetworkManagement.Dns.DNS_APPLICATION_SETTINGS", [ 
+    "Version:uint", 
+    "Flags:ulong"
+]); 
+
+
 Win32.DNS_QUERY_REQUEST = foreign.named_struct( "Windows.Win32.NetworkManagement.Dns.DNS_QUERY_REQUEST", [ 
     "Version:uint", 
     "QueryName:wstr", 
@@ -618,14 +797,6 @@ Win32.DNS_QUERY_REQUEST = foreign.named_struct( "Windows.Win32.NetworkManagement
 
 Win32.DNS_QUERY_CANCEL = foreign.named_struct( "Windows.Win32.NetworkManagement.Dns.DNS_QUERY_CANCEL", [ 
     "Reserved[32]:Windows.Win32.Foundation.CHAR"
-]); 
-
-
-Win32.DNS_CUSTOM_SERVER = foreign.named_struct( "Windows.Win32.NetworkManagement.Dns.DNS_CUSTOM_SERVER", [ 
-    "dwServerType:uint", 
-    "ullFlags:ulong", 
-    "Anonymous1:._Anonymous1_e__Union", 
-    "Anonymous2:._Anonymous2_e__Union"
 ]); 
 
 
@@ -645,9 +816,41 @@ Win32.DNS_QUERY_REQUEST3 = foreign.named_struct( "Windows.Win32.NetworkManagemen
 ]); 
 
 
-Win32.DNS_APPLICATION_SETTINGS = foreign.named_struct( "Windows.Win32.NetworkManagement.Dns.DNS_APPLICATION_SETTINGS", [ 
-    "Version:uint", 
-    "Flags:ulong"
+Win32.DNS_QUERY_RAW_RESULT = foreign.named_struct( "Windows.Win32.NetworkManagement.Dns.DNS_QUERY_RAW_RESULT", [ 
+    "version:uint", 
+    "queryStatus:int", 
+    "queryOptions:ulong", 
+    "queryRawOptions:ulong", 
+    "responseFlags:ulong", 
+    "queryRawResponseSize:uint", 
+    "queryRawResponse:ptr", 
+    "queryRecords:ptr", 
+    "protocol:uint", 
+    "Anonymous:._Anonymous_e__Union"
+]); 
+
+
+Win32.DNS_QUERY_RAW_REQUEST = foreign.named_struct( "Windows.Win32.NetworkManagement.Dns.DNS_QUERY_RAW_REQUEST", [ 
+    "version:uint", 
+    "resultsVersion:uint", 
+    "dnsQueryRawSize:uint", 
+    "dnsQueryRaw:ptr", 
+    "dnsQueryName:wstr", 
+    "dnsQueryType:ushort", 
+    "queryOptions:ulong", 
+    "interfaceIndex:uint", 
+    "queryCompletionCallback:ptr", 
+    "queryContext:ptr", 
+    "queryRawOptions:ulong", 
+    "customServersSize:uint", 
+    "customServers:ptr", 
+    "protocol:uint", 
+    "Anonymous:._Anonymous_e__Union"
+]); 
+
+
+Win32.DNS_QUERY_RAW_CANCEL = foreign.named_struct( "Windows.Win32.NetworkManagement.Dns.DNS_QUERY_RAW_CANCEL", [ 
+    "reserved[32]:Windows.Win32.Foundation.CHAR"
 ]); 
 
 
@@ -863,72 +1066,7 @@ Win32.DNS_RCLASS_NONE = 65024;
 Win32.DNS_RCLASS_ALL = 65280;
 Win32.DNS_RCLASS_ANY = 65280;
 Win32.DNS_RCLASS_UNICAST_RESPONSE = 128;
-Win32.DNS_TYPE_ZERO = 0;
-Win32.DNS_TYPE_A = 1;
-Win32.DNS_TYPE_NS = 2;
-Win32.DNS_TYPE_MD = 3;
-Win32.DNS_TYPE_MF = 4;
-Win32.DNS_TYPE_CNAME = 5;
-Win32.DNS_TYPE_SOA = 6;
-Win32.DNS_TYPE_MB = 7;
-Win32.DNS_TYPE_MG = 8;
-Win32.DNS_TYPE_MR = 9;
-Win32.DNS_TYPE_NULL = 10;
-Win32.DNS_TYPE_WKS = 11;
-Win32.DNS_TYPE_PTR = 12;
-Win32.DNS_TYPE_HINFO = 13;
-Win32.DNS_TYPE_MINFO = 14;
-Win32.DNS_TYPE_MX = 15;
-Win32.DNS_TYPE_TEXT = 16;
-Win32.DNS_TYPE_RP = 17;
-Win32.DNS_TYPE_AFSDB = 18;
-Win32.DNS_TYPE_X25 = 19;
-Win32.DNS_TYPE_ISDN = 20;
-Win32.DNS_TYPE_RT = 21;
-Win32.DNS_TYPE_NSAP = 22;
-Win32.DNS_TYPE_NSAPPTR = 23;
-Win32.DNS_TYPE_SIG = 24;
-Win32.DNS_TYPE_KEY = 25;
-Win32.DNS_TYPE_PX = 26;
-Win32.DNS_TYPE_GPOS = 27;
-Win32.DNS_TYPE_AAAA = 28;
-Win32.DNS_TYPE_LOC = 29;
-Win32.DNS_TYPE_NXT = 30;
-Win32.DNS_TYPE_EID = 31;
-Win32.DNS_TYPE_NIMLOC = 32;
-Win32.DNS_TYPE_SRV = 33;
-Win32.DNS_TYPE_ATMA = 34;
-Win32.DNS_TYPE_NAPTR = 35;
-Win32.DNS_TYPE_KX = 36;
-Win32.DNS_TYPE_CERT = 37;
-Win32.DNS_TYPE_A6 = 38;
-Win32.DNS_TYPE_DNAME = 39;
-Win32.DNS_TYPE_SINK = 40;
-Win32.DNS_TYPE_OPT = 41;
-Win32.DNS_TYPE_DS = 43;
-Win32.DNS_TYPE_RRSIG = 46;
-Win32.DNS_TYPE_NSEC = 47;
-Win32.DNS_TYPE_DNSKEY = 48;
-Win32.DNS_TYPE_DHCID = 49;
-Win32.DNS_TYPE_NSEC3 = 50;
-Win32.DNS_TYPE_NSEC3PARAM = 51;
-Win32.DNS_TYPE_TLSA = 52;
-Win32.DNS_TYPE_UINFO = 100;
-Win32.DNS_TYPE_UID = 101;
-Win32.DNS_TYPE_GID = 102;
-Win32.DNS_TYPE_UNSPEC = 103;
-Win32.DNS_TYPE_ADDRS = 248;
-Win32.DNS_TYPE_TKEY = 249;
-Win32.DNS_TYPE_TSIG = 250;
-Win32.DNS_TYPE_IXFR = 251;
-Win32.DNS_TYPE_AXFR = 252;
-Win32.DNS_TYPE_MAILB = 253;
-Win32.DNS_TYPE_MAILA = 254;
-Win32.DNS_TYPE_ALL = 255;
-Win32.DNS_TYPE_ANY = 255;
-Win32.DNS_TYPE_WINS = 65281;
-Win32.DNS_TYPE_WINSR = 65282;
-Win32.DNS_TYPE_NBSTAT = 65282;
+Win32.DNS_RCLASS_MDNS_CACHE_FLUSH = 128;
 Win32.DNS_RTYPE_A = 256;
 Win32.DNS_RTYPE_NS = 512;
 Win32.DNS_RTYPE_MD = 768;
@@ -1051,6 +1189,7 @@ Win32.DNS_TKEY_MODE_RESOLVER_ASSIGN = 4;
 Win32.DNS_WINS_FLAG_SCOPE = 2147483648;
 Win32.DNS_WINS_FLAG_LOCAL = 65536;
 Win32.DNS_CONFIG_FLAG_ALLOC = 1;
+Win32.DDR_MAX_IP_HINTS = 4;
 Win32.DNSREC_SECTION = 3;
 Win32.DNSREC_QUESTION = 0;
 Win32.DNSREC_ANSWER = 1;
@@ -1061,38 +1200,16 @@ Win32.DNSREC_PREREQ = 1;
 Win32.DNSREC_UPDATE = 2;
 Win32.DNSREC_DELETE = 4;
 Win32.DNSREC_NOEXIST = 4;
-Win32.DNS_QUERY_STANDARD = 0;
-Win32.DNS_QUERY_ACCEPT_TRUNCATED_RESPONSE = 1;
-Win32.DNS_QUERY_USE_TCP_ONLY = 2;
-Win32.DNS_QUERY_NO_RECURSION = 4;
-Win32.DNS_QUERY_BYPASS_CACHE = 8;
-Win32.DNS_QUERY_NO_WIRE_QUERY = 16;
-Win32.DNS_QUERY_NO_LOCAL_NAME = 32;
-Win32.DNS_QUERY_NO_HOSTS_FILE = 64;
-Win32.DNS_QUERY_NO_NETBT = 128;
-Win32.DNS_QUERY_WIRE_ONLY = 256;
-Win32.DNS_QUERY_RETURN_MESSAGE = 512;
-Win32.DNS_QUERY_MULTICAST_ONLY = 1024;
-Win32.DNS_QUERY_NO_MULTICAST = 2048;
-Win32.DNS_QUERY_TREAT_AS_FQDN = 4096;
-Win32.DNS_QUERY_ADDRCONFIG = 8192;
-Win32.DNS_QUERY_DUAL_ADDR = 16384;
-Win32.DNS_QUERY_DONT_RESET_TTL_VALUES = 1048576;
-Win32.DNS_QUERY_DISABLE_IDN_ENCODING = 2097152;
-Win32.DNS_QUERY_APPEND_MULTILABEL = 8388608;
-Win32.DNS_QUERY_DNSSEC_OK = 16777216;
-Win32.DNS_QUERY_DNSSEC_CHECKING_DISABLED = 33554432;
-Win32.DNS_QUERY_RESERVED = 4026531840;
-Win32.DNS_QUERY_CACHE_ONLY = 16;
-Win32.DNS_QUERY_REQUEST_VERSION1 = 1;
-Win32.DNS_QUERY_REQUEST_VERSION2 = 2;
-Win32.DNS_QUERY_RESULTS_VERSION1 = 1;
-Win32.DNS_QUERY_REQUEST_VERSION3 = 3;
 Win32.DNS_CUSTOM_SERVER_TYPE_UDP = 1;
 Win32.DNS_CUSTOM_SERVER_TYPE_DOH = 2;
 Win32.DNS_CUSTOM_SERVER_UDP_FALLBACK = 1;
 Win32.DNS_APP_SETTINGS_VERSION1 = 1;
 Win32.DNS_APP_SETTINGS_EXCLUSIVE_SERVERS = 1;
+Win32.DNS_PROTOCOL_UNSPECIFIED = 0;
+Win32.DNS_PROTOCOL_UDP = 1;
+Win32.DNS_PROTOCOL_TCP = 2;
+Win32.DNS_PROTOCOL_DOH = 3;
+Win32.DNS_PROTOCOL_NO_WIRE = 5;
 Win32.DNS_UPDATE_SECURITY_USE_DEFAULT = 0;
 Win32.DNS_UPDATE_SECURITY_OFF = 16;
 Win32.DNS_UPDATE_SECURITY_ON = 32;
@@ -1130,14 +1247,17 @@ Win32.DnsRecordCompare = foreign.native( "DNSAPI.dll", "int", "DnsRecordCompare"
 Win32.DnsRecordSetCompare = foreign.native( "DNSAPI.dll", "int", "DnsRecordSetCompare", [ "ptr", "ptr", "ptr", "ptr" ] ); 
 Win32.DnsRecordSetDetach = foreign.native( "DNSAPI.dll", "ptr", "DnsRecordSetDetach", [ "ptr" ] ); 
 Win32.DnsFree = foreign.native( "DNSAPI.dll", "void", "DnsFree", [ "ptr", "int" ] ); 
-Win32.DnsQuery_A = foreign.native( "DNSAPI.dll", "int", "DnsQuery_A", [ "ptr", "ushort", "uint", "ptr", "ptr", "ptr" ] ); 
-Win32.DnsQuery_UTF8 = foreign.native( "DNSAPI.dll", "int", "DnsQuery_UTF8", [ "ptr", "ushort", "uint", "ptr", "ptr", "ptr" ] ); 
-Win32.DnsQuery_W = foreign.native( "DNSAPI.dll", "int", "DnsQuery_W", [ "wstr", "ushort", "uint", "ptr", "ptr", "ptr" ] ); 
-Win32.DnsQueryEx = foreign.native( "DNSAPI.dll", "int", "DnsQueryEx", [ "ptr", "ptr", "ptr" ] ); 
-Win32.DnsCancelQuery = foreign.native( "DNSAPI.dll", "int", "DnsCancelQuery", [ "ptr" ] ); 
+Win32.DnsQuery_A = foreign.native( "DNSAPI.dll", "uint", "DnsQuery_A", [ "ptr", "ushort", "uint", "ptr", "ptr", "ptr" ] ); 
+Win32.DnsQuery_UTF8 = foreign.native( "DNSAPI.dll", "uint", "DnsQuery_UTF8", [ "ptr", "ushort", "uint", "ptr", "ptr", "ptr" ] ); 
+Win32.DnsQuery_W = foreign.native( "DNSAPI.dll", "uint", "DnsQuery_W", [ "wstr", "ushort", "uint", "ptr", "ptr", "ptr" ] ); 
 Win32.DnsFreeCustomServers = foreign.native( "DNSAPI.dll", "void", "DnsFreeCustomServers", [ "ptr", "ptr" ] ); 
 Win32.DnsGetApplicationSettings = foreign.native( "DNSAPI.dll", "uint", "DnsGetApplicationSettings", [ "ptr", "ptr", "ptr" ] ); 
 Win32.DnsSetApplicationSettings = foreign.native( "DNSAPI.dll", "uint", "DnsSetApplicationSettings", [ "uint", "ptr", "ptr" ] ); 
+Win32.DnsQueryEx = foreign.native( "DNSAPI.dll", "int", "DnsQueryEx", [ "ptr", "ptr", "ptr" ] ); 
+Win32.DnsCancelQuery = foreign.native( "DNSAPI.dll", "int", "DnsCancelQuery", [ "ptr" ] ); 
+Win32.DnsQueryRawResultFree = foreign.native( "DNSAPI.dll", "void", "DnsQueryRawResultFree", [ "ptr" ] ); 
+Win32.DnsQueryRaw = foreign.native( "DNSAPI.dll", "int", "DnsQueryRaw", [ "ptr", "ptr" ] ); 
+Win32.DnsCancelQueryRaw = foreign.native( "DNSAPI.dll", "int", "DnsCancelQueryRaw", [ "ptr" ] ); 
 Win32.DnsAcquireContextHandle_W = foreign.native( "DNSAPI.dll", "int", "DnsAcquireContextHandle_W", [ "uint", "ptr", "ptr" ] ); 
 Win32.DnsAcquireContextHandle_A = foreign.native( "DNSAPI.dll", "int", "DnsAcquireContextHandle_A", [ "uint", "ptr", "ptr" ] ); 
 Win32.DnsReleaseContextHandle = foreign.native( "DNSAPI.dll", "void", "DnsReleaseContextHandle", [ "ptr" ] ); 
@@ -1159,6 +1279,7 @@ Win32.DnsExtractRecordsFromMessage_UTF8 = foreign.native( "DNSAPI.dll", "int", "
 Win32.DnsGetProxyInformation = foreign.native( "DNSAPI.dll", "uint", "DnsGetProxyInformation", [ "wstr", "ptr", "ptr", "ptr", "ptr" ] ); 
 Win32.DnsFreeProxyName = foreign.native( "DNSAPI.dll", "void", "DnsFreeProxyName", [ "wstr" ] ); 
 Win32.DnsConnectionGetProxyInfoForHostUrl = foreign.native( "DNSAPI.dll", "uint", "DnsConnectionGetProxyInfoForHostUrl", [ "wstr", "ptr", "uint", "uint", "ptr" ] ); 
+Win32.DnsConnectionGetProxyInfoForHostUrlEx = foreign.native( "DNSAPI.dll", "uint", "DnsConnectionGetProxyInfoForHostUrlEx", [ "wstr", "ptr", "uint", "uint", "wstr", "ptr" ] ); 
 Win32.DnsConnectionFreeProxyInfoEx = foreign.native( "DNSAPI.dll", "void", "DnsConnectionFreeProxyInfoEx", [ "ptr" ] ); 
 Win32.DnsConnectionGetProxyInfo = foreign.native( "DNSAPI.dll", "uint", "DnsConnectionGetProxyInfo", [ "wstr", "int", "ptr" ] ); 
 Win32.DnsConnectionFreeProxyInfo = foreign.native( "DNSAPI.dll", "void", "DnsConnectionFreeProxyInfo", [ "ptr" ] ); 
@@ -1185,6 +1306,7 @@ Win32.DnsStartMulticastQuery = foreign.native( "DNSAPI.dll", "int", "DnsStartMul
 Win32.DnsStopMulticastQuery = foreign.native( "DNSAPI.dll", "int", "DnsStopMulticastQuery", [ "ptr" ] ); 
 Win32.DNS_PROXY_COMPLETION_ROUTINE = foreign.callback( "void", [ "ptr", "int"] );
 Win32.PDNS_QUERY_COMPLETION_ROUTINE = foreign.callback( "void", [ "ptr", "ptr"] );
+Win32.DNS_QUERY_RAW_COMPLETION_ROUTINE = foreign.callback( "void", [ "ptr", "ptr"] );
 Win32.PDNS_SERVICE_BROWSE_CALLBACK = foreign.callback( "void", [ "uint", "ptr", "ptr"] );
 Win32.PDNS_SERVICE_RESOLVE_COMPLETE = foreign.callback( "void", [ "uint", "ptr", "ptr"] );
 Win32.PDNS_SERVICE_REGISTER_COMPLETE = foreign.callback( "void", [ "uint", "ptr", "ptr"] );

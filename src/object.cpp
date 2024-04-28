@@ -1,3 +1,4 @@
+//#include "pch.h"
 #include "object.h"
 #include "value.h"
 #include "vm.h"
@@ -1981,14 +1982,14 @@ bool ObjDecorator::invokeMethod(const std::string& /*mname*/, int /*argCount*/)
 Value ObjDecorator::getProperty(const std::string& pname)
 {
     Value target = fields["target"];
-    Value proxy  = fields["proxy"];
+//    Value proxy  = fields["proxy"];
 
     auto obj = as<ObjInstance>(target);
     if(obj)
     {
         Value m = obj->getProperty(pname);
         return m;
-        return new ObjDecorator(vm, m.as.obj,proxy.as.obj);
+//        return new ObjDecorator(vm, m.as.obj,proxy.as.obj);
     }
 
     auto p = as<ObjDecorator>(target);

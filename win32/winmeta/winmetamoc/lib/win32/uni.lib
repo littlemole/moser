@@ -106,6 +106,13 @@ Win32.IS_TEXT_UNICODE_RESULT = {
 };
 
 
+Win32.COMPARESTRING_RESULT = {
+    "CSTR_LESS_THAN" : 1, 
+    "CSTR_EQUAL" : 2, 
+    "CSTR_GREATER_THAN" : 3
+};
+
+
 Win32.SYSNLS_FUNCTION = {
     "COMPARE_STRING" : 1
 };
@@ -2809,6 +2816,19 @@ Win32.MLSTR_FLAGS = {
 };
 
 
+Win32.CALDATETIME_DATEUNIT = {
+    "EraUnit" : 0, 
+    "YearUnit" : 1, 
+    "MonthUnit" : 2, 
+    "WeekUnit" : 3, 
+    "DayUnit" : 4, 
+    "HourUnit" : 5, 
+    "MinuteUnit" : 6, 
+    "SecondUnit" : 7, 
+    "TickUnit" : 8
+};
+
+
 Win32.HIMC = foreign.named_struct( "Windows.Win32.Globalization.HIMC", [ 
     "Value:ptr"
 ]); 
@@ -2820,6 +2840,221 @@ Win32.HIMCC = foreign.named_struct( "Windows.Win32.Globalization.HIMCC", [
 
 
 Win32.HSAVEDUILANGUAGES = foreign.named_struct( "Windows.Win32.Globalization.HSAVEDUILANGUAGES", [ 
+    "Value:ptr"
+]); 
+
+
+Win32.UBiDi = foreign.named_struct( "Windows.Win32.Globalization.UBiDi", [ 
+    "Value:ptr"
+]); 
+
+
+Win32.UBiDiTransform = foreign.named_struct( "Windows.Win32.Globalization.UBiDiTransform", [ 
+    "Value:ptr"
+]); 
+
+
+Win32.UBreakIterator = foreign.named_struct( "Windows.Win32.Globalization.UBreakIterator", [ 
+    "Value:ptr"
+]); 
+
+
+Win32.UCaseMap = foreign.named_struct( "Windows.Win32.Globalization.UCaseMap", [ 
+    "Value:ptr"
+]); 
+
+
+Win32.UCharsetDetector = foreign.named_struct( "Windows.Win32.Globalization.UCharsetDetector", [ 
+    "Value:ptr"
+]); 
+
+
+Win32.UCharsetMatch = foreign.named_struct( "Windows.Win32.Globalization.UCharsetMatch", [ 
+    "Value:ptr"
+]); 
+
+
+Win32.UCollationElements = foreign.named_struct( "Windows.Win32.Globalization.UCollationElements", [ 
+    "Value:ptr"
+]); 
+
+
+Win32.UCollator = foreign.named_struct( "Windows.Win32.Globalization.UCollator", [ 
+    "Value:ptr"
+]); 
+
+
+Win32.UConstrainedFieldPosition = foreign.named_struct( "Windows.Win32.Globalization.UConstrainedFieldPosition", [ 
+    "Value:ptr"
+]); 
+
+
+Win32.UConverter = foreign.named_struct( "Windows.Win32.Globalization.UConverter", [ 
+    "Value:ptr"
+]); 
+
+
+Win32.UConverterSelector = foreign.named_struct( "Windows.Win32.Globalization.UConverterSelector", [ 
+    "Value:ptr"
+]); 
+
+
+Win32.UCPMap = foreign.named_struct( "Windows.Win32.Globalization.UCPMap", [ 
+    "Value:ptr"
+]); 
+
+
+Win32.UDateFormatSymbols = foreign.named_struct( "Windows.Win32.Globalization.UDateFormatSymbols", [ 
+    "Value:ptr"
+]); 
+
+
+Win32.UDateIntervalFormat = foreign.named_struct( "Windows.Win32.Globalization.UDateIntervalFormat", [ 
+    "Value:ptr"
+]); 
+
+
+Win32.UEnumeration = foreign.named_struct( "Windows.Win32.Globalization.UEnumeration", [ 
+    "Value:ptr"
+]); 
+
+
+Win32.UFieldPositionIterator = foreign.named_struct( "Windows.Win32.Globalization.UFieldPositionIterator", [ 
+    "Value:ptr"
+]); 
+
+
+Win32.UFormattedDateInterval = foreign.named_struct( "Windows.Win32.Globalization.UFormattedDateInterval", [ 
+    "Value:ptr"
+]); 
+
+
+Win32.UFormattedList = foreign.named_struct( "Windows.Win32.Globalization.UFormattedList", [ 
+    "Value:ptr"
+]); 
+
+
+Win32.UFormattedNumber = foreign.named_struct( "Windows.Win32.Globalization.UFormattedNumber", [ 
+    "Value:ptr"
+]); 
+
+
+Win32.UFormattedNumberRange = foreign.named_struct( "Windows.Win32.Globalization.UFormattedNumberRange", [ 
+    "Value:ptr"
+]); 
+
+
+Win32.UFormattedRelativeDateTime = foreign.named_struct( "Windows.Win32.Globalization.UFormattedRelativeDateTime", [ 
+    "Value:ptr"
+]); 
+
+
+Win32.UFormattedValue = foreign.named_struct( "Windows.Win32.Globalization.UFormattedValue", [ 
+    "Value:ptr"
+]); 
+
+
+Win32.UGenderInfo = foreign.named_struct( "Windows.Win32.Globalization.UGenderInfo", [ 
+    "Value:ptr"
+]); 
+
+
+Win32.UHashtable = foreign.named_struct( "Windows.Win32.Globalization.UHashtable", [ 
+    "Value:ptr"
+]); 
+
+
+Win32.UIDNA = foreign.named_struct( "Windows.Win32.Globalization.UIDNA", [ 
+    "Value:ptr"
+]); 
+
+
+Win32.UListFormatter = foreign.named_struct( "Windows.Win32.Globalization.UListFormatter", [ 
+    "Value:ptr"
+]); 
+
+
+Win32.ULocaleData = foreign.named_struct( "Windows.Win32.Globalization.ULocaleData", [ 
+    "Value:ptr"
+]); 
+
+
+Win32.ULocaleDisplayNames = foreign.named_struct( "Windows.Win32.Globalization.ULocaleDisplayNames", [ 
+    "Value:ptr"
+]); 
+
+
+Win32.UMutableCPTrie = foreign.named_struct( "Windows.Win32.Globalization.UMutableCPTrie", [ 
+    "Value:ptr"
+]); 
+
+
+Win32.UNormalizer2 = foreign.named_struct( "Windows.Win32.Globalization.UNormalizer2", [ 
+    "Value:ptr"
+]); 
+
+
+Win32.UNumberFormatter = foreign.named_struct( "Windows.Win32.Globalization.UNumberFormatter", [ 
+    "Value:ptr"
+]); 
+
+
+Win32.UNumberingSystem = foreign.named_struct( "Windows.Win32.Globalization.UNumberingSystem", [ 
+    "Value:ptr"
+]); 
+
+
+Win32.UPluralRules = foreign.named_struct( "Windows.Win32.Globalization.UPluralRules", [ 
+    "Value:ptr"
+]); 
+
+
+Win32.URegion = foreign.named_struct( "Windows.Win32.Globalization.URegion", [ 
+    "Value:ptr"
+]); 
+
+
+Win32.URegularExpression = foreign.named_struct( "Windows.Win32.Globalization.URegularExpression", [ 
+    "Value:ptr"
+]); 
+
+
+Win32.URelativeDateTimeFormatter = foreign.named_struct( "Windows.Win32.Globalization.URelativeDateTimeFormatter", [ 
+    "Value:ptr"
+]); 
+
+
+Win32.UResourceBundle = foreign.named_struct( "Windows.Win32.Globalization.UResourceBundle", [ 
+    "Value:ptr"
+]); 
+
+
+Win32.USearch = foreign.named_struct( "Windows.Win32.Globalization.USearch", [ 
+    "Value:ptr"
+]); 
+
+
+Win32.USet = foreign.named_struct( "Windows.Win32.Globalization.USet", [ 
+    "Value:ptr"
+]); 
+
+
+Win32.USpoofChecker = foreign.named_struct( "Windows.Win32.Globalization.USpoofChecker", [ 
+    "Value:ptr"
+]); 
+
+
+Win32.USpoofCheckResult = foreign.named_struct( "Windows.Win32.Globalization.USpoofCheckResult", [ 
+    "Value:ptr"
+]); 
+
+
+Win32.UStringPrepProfile = foreign.named_struct( "Windows.Win32.Globalization.UStringPrepProfile", [ 
+    "Value:ptr"
+]); 
+
+
+Win32.UStringSearch = foreign.named_struct( "Windows.Win32.Globalization.UStringSearch", [ 
     "Value:ptr"
 ]); 
 
@@ -3197,26 +3432,6 @@ Win32.UCharIterator = foreign.named_struct( "Windows.Win32.Globalization.UCharIt
 ]); 
 
 
-Win32.UEnumeration = foreign.named_struct( "Windows.Win32.Globalization.UEnumeration", [ 
-    
-]); 
-
-
-Win32.UResourceBundle = foreign.named_struct( "Windows.Win32.Globalization.UResourceBundle", [ 
-    
-]); 
-
-
-Win32.ULocaleDisplayNames = foreign.named_struct( "Windows.Win32.Globalization.ULocaleDisplayNames", [ 
-    
-]); 
-
-
-Win32.UCPMap = foreign.named_struct( "Windows.Win32.Globalization.UCPMap", [ 
-    
-]); 
-
-
 Win32.UCPTrieData = foreign.named_struct( "Windows.Win32.Globalization.UCPTrieData", [ 
     "ptr0:ptr", 
     "ptr16:ptr", 
@@ -3242,16 +3457,6 @@ Win32.UCPTrie = foreign.named_struct( "Windows.Win32.Globalization.UCPTrie", [
 ]); 
 
 
-Win32.UMutableCPTrie = foreign.named_struct( "Windows.Win32.Globalization.UMutableCPTrie", [ 
-    
-]); 
-
-
-Win32.UConverter = foreign.named_struct( "Windows.Win32.Globalization.UConverter", [ 
-    
-]); 
-
-
 Win32.UConverterFromUnicodeArgs = foreign.named_struct( "Windows.Win32.Globalization.UConverterFromUnicodeArgs", [ 
     "size:ushort", 
     "flush:byte", 
@@ -3273,21 +3478,6 @@ Win32.UConverterToUnicodeArgs = foreign.named_struct( "Windows.Win32.Globalizati
     "target:ptr", 
     "targetLimit:ptr", 
     "offsets:ptr"
-]); 
-
-
-Win32.USet = foreign.named_struct( "Windows.Win32.Globalization.USet", [ 
-    
-]); 
-
-
-Win32.UBiDi = foreign.named_struct( "Windows.Win32.Globalization.UBiDi", [ 
-    
-]); 
-
-
-Win32.UBiDiTransform = foreign.named_struct( "Windows.Win32.Globalization.UBiDiTransform", [ 
-    
 ]); 
 
 
@@ -3347,41 +3537,11 @@ Win32.USerializedSet = foreign.named_struct( "Windows.Win32.Globalization.USeria
 ]); 
 
 
-Win32.UNormalizer2 = foreign.named_struct( "Windows.Win32.Globalization.UNormalizer2", [ 
-    
-]); 
-
-
-Win32.UConverterSelector = foreign.named_struct( "Windows.Win32.Globalization.UConverterSelector", [ 
-    
-]); 
-
-
-Win32.UBreakIterator = foreign.named_struct( "Windows.Win32.Globalization.UBreakIterator", [ 
-    
-]); 
-
-
-Win32.UCaseMap = foreign.named_struct( "Windows.Win32.Globalization.UCaseMap", [ 
-    
-]); 
-
-
 Win32.UParseError = foreign.named_struct( "Windows.Win32.Globalization.UParseError", [ 
     "line:int", 
     "offset:int", 
     "preContext[16]:ushort", 
     "postContext[16]:ushort"
-]); 
-
-
-Win32.UStringPrepProfile = foreign.named_struct( "Windows.Win32.Globalization.UStringPrepProfile", [ 
-    
-]); 
-
-
-Win32.UIDNA = foreign.named_struct( "Windows.Win32.Globalization.UIDNA", [ 
-    
 ]); 
 
 
@@ -3395,166 +3555,11 @@ Win32.UIDNAInfo = foreign.named_struct( "Windows.Win32.Globalization.UIDNAInfo",
 ]); 
 
 
-Win32.UCollator = foreign.named_struct( "Windows.Win32.Globalization.UCollator", [ 
-    
-]); 
-
-
-Win32.UCollationElements = foreign.named_struct( "Windows.Win32.Globalization.UCollationElements", [ 
-    
-]); 
-
-
-Win32.UCharsetDetector = foreign.named_struct( "Windows.Win32.Globalization.UCharsetDetector", [ 
-    
-]); 
-
-
-Win32.UCharsetMatch = foreign.named_struct( "Windows.Win32.Globalization.UCharsetMatch", [ 
-    
-]); 
-
-
-Win32.UFieldPositionIterator = foreign.named_struct( "Windows.Win32.Globalization.UFieldPositionIterator", [ 
-    
-]); 
-
-
-Win32.UConstrainedFieldPosition = foreign.named_struct( "Windows.Win32.Globalization.UConstrainedFieldPosition", [ 
-    
-]); 
-
-
-Win32.UFormattedValue = foreign.named_struct( "Windows.Win32.Globalization.UFormattedValue", [ 
-    
-]); 
-
-
-Win32.UDateIntervalFormat = foreign.named_struct( "Windows.Win32.Globalization.UDateIntervalFormat", [ 
-    
-]); 
-
-
-Win32.UFormattedDateInterval = foreign.named_struct( "Windows.Win32.Globalization.UFormattedDateInterval", [ 
-    
-]); 
-
-
-Win32.UGenderInfo = foreign.named_struct( "Windows.Win32.Globalization.UGenderInfo", [ 
-    
-]); 
-
-
-Win32.UListFormatter = foreign.named_struct( "Windows.Win32.Globalization.UListFormatter", [ 
-    
-]); 
-
-
-Win32.UFormattedList = foreign.named_struct( "Windows.Win32.Globalization.UFormattedList", [ 
-    
-]); 
-
-
-Win32.ULocaleData = foreign.named_struct( "Windows.Win32.Globalization.ULocaleData", [ 
-    
-]); 
-
-
-Win32.UDateFormatSymbols = foreign.named_struct( "Windows.Win32.Globalization.UDateFormatSymbols", [ 
-    
-]); 
-
-
-Win32.UNumberFormatter = foreign.named_struct( "Windows.Win32.Globalization.UNumberFormatter", [ 
-    
-]); 
-
-
-Win32.UFormattedNumber = foreign.named_struct( "Windows.Win32.Globalization.UFormattedNumber", [ 
-    
-]); 
-
-
-Win32.UNumberingSystem = foreign.named_struct( "Windows.Win32.Globalization.UNumberingSystem", [ 
-    
-]); 
-
-
-Win32.UFormattedNumberRange = foreign.named_struct( "Windows.Win32.Globalization.UFormattedNumberRange", [ 
-    
-]); 
-
-
-Win32.UPluralRules = foreign.named_struct( "Windows.Win32.Globalization.UPluralRules", [ 
-    
-]); 
-
-
-Win32.URegularExpression = foreign.named_struct( "Windows.Win32.Globalization.URegularExpression", [ 
-    
-]); 
-
-
-Win32.URegion = foreign.named_struct( "Windows.Win32.Globalization.URegion", [ 
-    
-]); 
-
-
-Win32.URelativeDateTimeFormatter = foreign.named_struct( "Windows.Win32.Globalization.URelativeDateTimeFormatter", [ 
-    
-]); 
-
-
-Win32.UFormattedRelativeDateTime = foreign.named_struct( "Windows.Win32.Globalization.UFormattedRelativeDateTime", [ 
-    
-]); 
-
-
-Win32.UStringSearch = foreign.named_struct( "Windows.Win32.Globalization.UStringSearch", [ 
-    
-]); 
-
-
-Win32.USpoofChecker = foreign.named_struct( "Windows.Win32.Globalization.USpoofChecker", [ 
-    
-]); 
-
-
-Win32.USpoofCheckResult = foreign.named_struct( "Windows.Win32.Globalization.USpoofCheckResult", [ 
-    
-]); 
-
-
 Win32.UTransPosition = foreign.named_struct( "Windows.Win32.Globalization.UTransPosition", [ 
     "contextStart:int", 
     "contextLimit:int", 
     "start:int", 
     "limit:int"
-]); 
-
-
-Win32.UHashtable = foreign.named_struct( "Windows.Win32.Globalization.UHashtable", [ 
-    
-]); 
-
-
-Win32.USearch = foreign.named_struct( "Windows.Win32.Globalization.USearch", [ 
-    
-]); 
-
-
-Win32.CMLangString = foreign.named_struct( "Windows.Win32.Globalization.CMLangString", [ 
-    
-]); 
-
-
-Win32.CMLangConvertCharset = foreign.named_struct( "Windows.Win32.Globalization.CMLangConvertCharset", [ 
-    
-]); 
-
-
-Win32.CMultiLanguage = foreign.named_struct( "Windows.Win32.Globalization.CMultiLanguage", [ 
-    
 ]); 
 
 
@@ -3612,6 +3617,35 @@ Win32.SCRIPTFONTINFO = foreign.named_struct( "Windows.Win32.Globalization.SCRIPT
 Win32.UNICODERANGE = foreign.named_struct( "Windows.Win32.Globalization.UNICODERANGE", [ 
     "wcFrom:short", 
     "wcTo:short"
+]); 
+
+
+Win32.CMLangString = foreign.named_struct( "Windows.Win32.Globalization.CMLangString", [ 
+    
+]); 
+
+
+Win32.CMLangConvertCharset = foreign.named_struct( "Windows.Win32.Globalization.CMLangConvertCharset", [ 
+    
+]); 
+
+
+Win32.CMultiLanguage = foreign.named_struct( "Windows.Win32.Globalization.CMultiLanguage", [ 
+    
+]); 
+
+
+Win32.CALDATETIME = foreign.named_struct( "Windows.Win32.Globalization.CALDATETIME", [ 
+    "CalId:uint", 
+    "Era:uint", 
+    "Year:uint", 
+    "Month:uint", 
+    "Day:uint", 
+    "DayOfWeek:uint", 
+    "Hour:uint", 
+    "Minute:uint", 
+    "Second:uint", 
+    "Tick:uint"
 ]); 
 
 Win32.ALL_SERVICE_TYPES = 0;
@@ -3698,9 +3732,6 @@ Win32.LOCALE_ALTERNATE_SORTS = 4;
 Win32.LOCALE_REPLACEMENT = 8;
 Win32.LOCALE_NEUTRALDATA = 16;
 Win32.LOCALE_SPECIFICDATA = 32;
-Win32.CSTR_LESS_THAN = 1;
-Win32.CSTR_EQUAL = 2;
-Win32.CSTR_GREATER_THAN = 3;
 Win32.CP_ACP = 0;
 Win32.CP_OEMCP = 1;
 Win32.CP_MACCP = 2;
@@ -4551,12 +4582,12 @@ Win32.EnumDateFormatsExW = foreign.native( "KERNEL32.dll", "int", "EnumDateForma
 Win32.IsValidLanguageGroup = foreign.native( "KERNEL32.dll", "int", "IsValidLanguageGroup", [ "uint", "uint" ] ); 
 Win32.GetNLSVersion = foreign.native( "KERNEL32.dll", "int", "GetNLSVersion", [ "uint", "uint", "ptr" ] ); 
 Win32.IsValidLocale = foreign.native( "KERNEL32.dll", "int", "IsValidLocale", [ "uint", "uint" ] ); 
-Win32.GetGeoInfoA = foreign.native( "KERNEL32.dll", "int", "GetGeoInfoA", [ "int", "uint", "ptr", "int", "ushort" ] ); 
-Win32.GetGeoInfoW = foreign.native( "KERNEL32.dll", "int", "GetGeoInfoW", [ "int", "uint", "wstr", "int", "ushort" ] ); 
-Win32.GetGeoInfoEx = foreign.native( "KERNEL32.dll", "int", "GetGeoInfoEx", [ "wstr", "uint", "wstr", "int" ] ); 
+Win32.GetGeoInfoA = foreign.native( "KERNEL32.dll", "int", "GetGeoInfoA", [ "int", "int", "ptr", "int", "ushort" ] ); 
+Win32.GetGeoInfoW = foreign.native( "KERNEL32.dll", "int", "GetGeoInfoW", [ "int", "int", "wstr", "int", "ushort" ] ); 
+Win32.GetGeoInfoEx = foreign.native( "KERNEL32.dll", "int", "GetGeoInfoEx", [ "wstr", "int", "wstr", "int" ] ); 
 Win32.EnumSystemGeoID = foreign.native( "KERNEL32.dll", "int", "EnumSystemGeoID", [ "uint", "int", "ptr" ] ); 
 Win32.EnumSystemGeoNames = foreign.native( "KERNEL32.dll", "int", "EnumSystemGeoNames", [ "uint", "ptr", "ptr" ] ); 
-Win32.GetUserGeoID = foreign.native( "KERNEL32.dll", "int", "GetUserGeoID", [ "uint" ] ); 
+Win32.GetUserGeoID = foreign.native( "KERNEL32.dll", "int", "GetUserGeoID", [ "int" ] ); 
 Win32.GetUserDefaultGeoName = foreign.native( "KERNEL32.dll", "int", "GetUserDefaultGeoName", [ "wstr", "int" ] ); 
 Win32.SetUserGeoID = foreign.native( "KERNEL32.dll", "int", "SetUserGeoID", [ "int" ] ); 
 Win32.SetUserGeoName = foreign.native( "KERNEL32.dll", "int", "SetUserGeoName", [ "wstr" ] ); 
@@ -5692,6 +5723,13 @@ Win32.utrans_toRules = foreign.native( "icu.dll", "int", "utrans_toRules", [ "pt
 Win32.utrans_getSourceSet = foreign.native( "icu.dll", "ptr", "utrans_getSourceSet", [ "ptr", "byte", "ptr", "ptr" ] ); 
 Win32.GetDistanceOfClosestLanguageInList = foreign.native( "bcp47mrm.dll", "int", "GetDistanceOfClosestLanguageInList", [ "wstr", "wstr", "short", "ptr" ] ); 
 Win32.IsWellFormedTag = foreign.native( "bcp47mrm.dll", "ubyte", "IsWellFormedTag", [ "wstr" ] ); 
+Win32.GetCalendarSupportedDateRange = foreign.native( "KERNEL32.dll", "int", "GetCalendarSupportedDateRange", [ "uint", "ptr", "ptr" ] ); 
+Win32.GetCalendarDateFormatEx = foreign.native( "KERNEL32.dll", "int", "GetCalendarDateFormatEx", [ "wstr", "uint", "ptr", "wstr", "wstr", "int" ] ); 
+Win32.ConvertSystemTimeToCalDateTime = foreign.native( "KERNEL32.dll", "int", "ConvertSystemTimeToCalDateTime", [ "ptr", "uint", "ptr" ] ); 
+Win32.UpdateCalendarDayOfWeek = foreign.native( "KERNEL32.dll", "int", "UpdateCalendarDayOfWeek", [ "ptr" ] ); 
+Win32.AdjustCalendarDate = foreign.native( "KERNEL32.dll", "int", "AdjustCalendarDate", [ "ptr", "int", "int" ] ); 
+Win32.ConvertCalDateTimeToSystemTime = foreign.native( "KERNEL32.dll", "int", "ConvertCalDateTimeToSystemTime", [ "ptr", "ptr" ] ); 
+Win32.IsCalendarLeapYear = foreign.native( "KERNEL32.dll", "int", "IsCalendarLeapYear", [ "uint", "uint", "uint" ] ); 
 Win32.FindStringOrdinal = foreign.native( "KERNEL32.dll", "int", "FindStringOrdinal", [ "uint", "wstr", "int", "wstr", "int", "int" ] ); 
 Win32.lstrcmpA = foreign.native( "KERNEL32.dll", "int", "lstrcmpA", [ "ptr", "ptr" ] ); 
 Win32.lstrcmpW = foreign.native( "KERNEL32.dll", "int", "lstrcmpW", [ "wstr", "wstr" ] ); 

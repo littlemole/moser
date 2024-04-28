@@ -1,3 +1,4 @@
+//#include "pch.h"
 #include "lib.h"
 #include "foreign.h"
 #include "gc.h"
@@ -31,6 +32,10 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <unistd.h>
+#endif
+
+#ifdef ENABLE_MOSER_XAML
+#include "MoserX.h"
 #endif
 
 using namespace nlohmann;
@@ -781,7 +786,7 @@ bool file_exists(const std::string& file)
     struct stat buffer;
     return (stat(file.c_str(), &buffer) == 0);
 #endif
-    return false;
+//    return false;
 }
 
 #ifdef _WIN32
@@ -1015,7 +1020,7 @@ Value floatNative(VM&, int argCount, Value* args)
         }
         default: return NIL_VAL;
     }
-    return NIL_VAL;
+//    return NIL_VAL;
 }
 
 Value randNative(VM&, int argCount, Value* args) 
@@ -1855,6 +1860,18 @@ Value wrtInitNative(VM& vm, int /* argCount */, Value* /* args */)
     return NIL_VAL;
 }
 
+#ifdef ENABLE_MOSER_XAML
+
+MoserX xmos;
+
+Value xamlInitNative(VM& /*vm*/, int /* argCount */, Value* /* args */)
+{
+    xmos.init();
+    return NIL_VAL;
+}
+
+#endif
+
 #endif
 
 void init_stdlib(VM& vm)
@@ -1990,6 +2007,14 @@ void init_stdlib(VM& vm)
     winrt->item("Delegate", new ObjNativeFun(vm, delegateNative));
     winrt->item("init", new ObjNativeFun(vm, wrtInitNative));
     vm.defineGlobal("winrt", winrt);
+
+#ifdef ENABLE_MOSER_XAML
+
+    // xaml
+    auto xaml = new ObjMap(vm);
+    xaml->item("init", new ObjNativeFun(vm, xamlInitNative));
+    winrt->item("xaml", xaml);
+#endif
 
 #endif
 }

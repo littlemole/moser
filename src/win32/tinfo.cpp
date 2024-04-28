@@ -1,3 +1,5 @@
+#include "pch.h"
+
 #ifdef _WIN32
 #include "win32/tinfo.h"
 

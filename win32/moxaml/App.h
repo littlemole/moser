@@ -1,11 +1,11 @@
 ﻿#pragma once
-#include "App.g.h"
-#include "App.base.h"
+#include "App.xaml.g.h"
+//#include "App.base.h"
 #include "mox.h"
 
 namespace winrt::moxaml::implementation
 {
-    class App : public AppT2<App>
+    class App : public AppT<App>
     {
     public:
         App();
@@ -13,10 +13,11 @@ namespace winrt::moxaml::implementation
     };
 
 }
-
+/*
 namespace winrt::moxaml::factory_implementation
 {
     class App : public AppT<App, implementation::App>
     {
     };
 }
+*/

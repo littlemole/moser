@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildThisFileDirectory)\..\..\packages\Microsoft.Windows.WinMD.1.0.210629.2\build\native\Microsoft.Windows.WinMD.props" Condition="Exists('$(MSBuildThisFileDirectory)\..\..\packages\Microsoft.Windows.WinMD.1.0.210629.2\build\native\Microsoft.Windows.WinMD.props')" />
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
       <Configuration>Debug</Configuration>
@@ -18,13 +19,6 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
-  <PropertyGroup>
-    <VcpkgEnableManifest>True</VcpkgEnableManifest>
-    <VCPkgLocalAppDataDisabled>true</VCPkgLocalAppDataDisabled>
-    <VcpkgInstalledDir>..\..\..\out\build\x64-$(Configuration)\vcpkg_installed</VcpkgInstalledDir>
-    <VcpkgConfiguration>$(Configuration)</VcpkgConfiguration>
-  </PropertyGroup>
-  <Import Project="..\..\..\vcpkg\scripts\buildsystems\msbuild\vcpkg.targets" Condition="Exists('..\..\..\vcpkg\scripts\buildsystems\msbuild\vcpkg.targets')" />
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
@@ -112,6 +106,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;WINMETAVER="$(WindowsTargetPlatformVersion)";%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

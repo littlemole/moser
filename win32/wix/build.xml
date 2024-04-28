@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+ <!-- Configuration -->
+
+ <PropertyGroup Label="Configuration">
+
+  <!-- wix output file -->
+  <msiOutput>.\bin\x64\Release\en-us\moserSetup.msi</msiOutput>
+  <msiTarget>.\moserSetup.msi</msiTarget>
+
+ </PropertyGroup>
+
+ <!-- Build -->
+
+  <Target Name="restore" >  
+      <MSBuild Projects="moserSetup.wixproj" Targets="restore" Properties="Configuration=Release;Platform=x64">
+      </MSBuild>  
+  </Target>
+
+  <Target Name="prepare" DependsOnTargets="">  
+    <PropertyGroup>
+     <FilesSource>..\..\out\build\x64-Release\</FilesSource>
+     <FilesDestination>moser</FilesDestination>
+    </PropertyGroup>
+    <Exec Command="XCOPY &quot;$(FilesSource)&quot; &quot;$(FilesDestination)&quot; /E /I /H /R /K /Y" />
+
+    <Exec Command="rd /s /q moser\.cmake" />
+    <Exec Command="rd /s /q moser\CMakeFiles" />
+    <Exec Command="rd /s /q moser\Testing" />
+    <Exec Command="rd /s /q moser\vcpkg_installed" />
+    <Exec Command="del /s /q /f moser\*.pdb" />
+    <Exec Command="del /s /q /f moser\*.exp" />
+    <Exec Command="del /s /q /f moser\*.winmd" />
+    <Exec Command="del /s /q /f moser\ninja_*" />
+    <Exec Command="del /s /q /f moser\build.ninja" />
+    <Exec Command="del /s /q /f moser\cmake*.*" />
+
+  </Target>
+
+
+  <Target Name="wix" DependsOnTargets="prepare">  
+      <MSBuild Projects="moserSetup.wixproj" Targets="Build" Properties="Configuration=Release;Platform=x64">
+      </MSBuild>  
+  </Target>
+
+ <Target Name="PerUSer" DependsOnTargets="wix">
+
+	<Exec Command="XCOPY &quot;$(msiOutput)&quot; &quot;$(msiTarget)&quot; /R /K /Y /-I " />
+	<Exec Command='copy /Y $(msiTarget) moserPerUserSetup.msi' WorkingDirectory="."/>
+	<Exec Command='cscript "patchMSI.wsf" moserPerUserSetup.msi' WorkingDirectory="."/>
+
+ </Target>
+
+ <Target Name="zip" DependsOnTargets="">
+	<Exec Command="cscript zip.vbs moser.zip moser" />
+	<Exec Command="cscript zip.vbs moserSetup.zip moserSetup.msi" />
+	<Exec Command="cscript zip.vbs moserPerUserSetup.zip moserPerUserSetup.msi" />
+
+ </Target>
+
+ <Target Name="hash" DependsOnTargets="">
+	<Exec Command="certutil -hashfile moser.zip MD5" />
+	<Exec Command="certutil -hashfile moser.zip SHA256" />
+
+	<Exec Command="certutil -hashfile moserSetup.zip MD5" />
+	<Exec Command="certutil -hashfile moserSetup.zip SHA256" />
+
+	<Exec Command="certutil -hashfile moserPerUserSetup.zip MD5" />
+	<Exec Command="certutil -hashfile moserPerUserSetup.zip SHA256" />
+ </Target>
+
+ <Target Name="Build" DependsOnTargets="PerUser;zip;hash">
+
+ </Target>
+
+
+
+
+</Project>

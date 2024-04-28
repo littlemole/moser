@@ -1,3 +1,4 @@
+#include "pch.h"
 #include "debug.h"
 #include "value.h"
 #include "object.h"
@@ -247,6 +248,6 @@ size_t disassembleInstruction(Chunk& chunk, size_t offset)
       printf("Unknown opcode %d\n", (int)instruction);
       return offset + 1;
   }
-  return 0;
+//  return 0;
 }
 

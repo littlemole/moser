@@ -1,3 +1,4 @@
+//#include "pch.h"
 #include "common.h"
 #include "vm.h"
 #include "gc.h"
@@ -66,9 +67,10 @@ std::string get_env_var(std::string const& key)
     return retval;
 }
 
+
+
 int main(int argc, char** argv)
 {
-
     VM vm;
     std::string libpath = path_to_self_directory("lib");
     vm.include_path.push_back(libpath);
@@ -76,6 +78,10 @@ int main(int argc, char** argv)
 #ifdef _WIN32
     libpath += "\\win";
 #else
+    libpath += "/linux";
+    vm.include_path.push_back(libpath);
+    libpath = "/usr/local/lib/moser/lib";
+    vm.include_path.push_back(libpath);
     libpath += "/linux";
 #endif
     vm.include_path.push_back(libpath);

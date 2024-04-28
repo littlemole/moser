@@ -108,7 +108,8 @@ class Windows_Foundation_IAsyncAction : WinRtInterface
     Windows_Foundation_IAsyncAction( comPtr )
     {
         var Windows = runtime.global("Windows");
-        this.comPtr = comPtr.queryInterface( "{5A648006-843A-4DA9-865B-9D26E5DFAD7B}");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{5A648006-843A-4DA9-865B-9D26E5DFAD7B}");
     }
 
     //@VtableIndex(6)
@@ -117,6 +118,7 @@ class Windows_Foundation_IAsyncAction : WinRtInterface
     //@Parameters("Windows.Foundation.AsyncActionCompletedHandler")
     put_Completed(handler)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = nil; 
         if( typeof(handler) == "comptr" ) { 
@@ -132,6 +134,7 @@ class Windows_Foundation_IAsyncAction : WinRtInterface
     //@Returns("Windows.Foundation.AsyncActionCompletedHandler")
     get_Completed()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 7, "Windows.Foundation.AsyncActionCompletedHandler", [], [] );
         return _r;
@@ -142,6 +145,7 @@ class Windows_Foundation_IAsyncAction : WinRtInterface
     //@Returns("void")
     GetResults()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         this.comPtr.invoke( 8, "void", [], [] );
     }
@@ -161,7 +165,8 @@ class Windows_Foundation_IAsyncInfo : WinRtInterface
     Windows_Foundation_IAsyncInfo( comPtr )
     {
         var Windows = runtime.global("Windows");
-        this.comPtr = comPtr.queryInterface( "{00000036-0000-0000-C000-000000000046}");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{00000036-0000-0000-C000-000000000046}");
     }
 
     //@VtableIndex(6)
@@ -169,6 +174,7 @@ class Windows_Foundation_IAsyncInfo : WinRtInterface
     //@Returns("UInt32")
     get_Id()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 6, "UInt32", [], [] );
         return _r;
@@ -179,6 +185,7 @@ class Windows_Foundation_IAsyncInfo : WinRtInterface
     //@Returns("Windows.Foundation.AsyncStatus")
     get_Status()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 7, "UInt32", [], [] );
         return _r;
@@ -189,6 +196,7 @@ class Windows_Foundation_IAsyncInfo : WinRtInterface
     //@Returns("Windows.Foundation.HResult")
     get_ErrorCode()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 8, "Windows.Foundation.HResult", [], [] );
         return _r;
@@ -199,6 +207,7 @@ class Windows_Foundation_IAsyncInfo : WinRtInterface
     //@Returns("void")
     Cancel()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         this.comPtr.invoke( 9, "void", [], [] );
     }
@@ -208,6 +217,7 @@ class Windows_Foundation_IAsyncInfo : WinRtInterface
     //@Returns("void")
     Close()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         this.comPtr.invoke( 10, "void", [], [] );
     }
@@ -225,7 +235,8 @@ class Windows_Foundation_IClosable : WinRtInterface
     Windows_Foundation_IClosable( comPtr )
     {
         var Windows = runtime.global("Windows");
-        this.comPtr = comPtr.queryInterface( "{30D5A829-7FA4-4026-83BB-D75BAE4EA99E}");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{30D5A829-7FA4-4026-83BB-D75BAE4EA99E}");
     }
 
     //@VtableIndex(6)
@@ -233,6 +244,7 @@ class Windows_Foundation_IClosable : WinRtInterface
     //@Returns("void")
     Close()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         this.comPtr.invoke( 6, "void", [], [] );
     }
@@ -250,7 +262,8 @@ class Windows_Foundation_IDeferral : WinRtInterface
     Windows_Foundation_IDeferral( comPtr )
     {
         var Windows = runtime.global("Windows");
-        this.comPtr = comPtr.queryInterface( "{D6269732-3B7F-46A7-B40B-4FDCA2A2C693}");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{D6269732-3B7F-46A7-B40B-4FDCA2A2C693}");
     }
 
     //@VtableIndex(6)
@@ -258,6 +271,7 @@ class Windows_Foundation_IDeferral : WinRtInterface
     //@Returns("void")
     Complete()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         this.comPtr.invoke( 6, "void", [], [] );
     }
@@ -275,7 +289,8 @@ class Windows_Foundation_IDeferralFactory : WinRtInterface
     Windows_Foundation_IDeferralFactory( comPtr )
     {
         var Windows = runtime.global("Windows");
-        this.comPtr = comPtr.queryInterface( "{65A1ECC5-3FB5-4832-8CA9-F061B281D13A}");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{65A1ECC5-3FB5-4832-8CA9-F061B281D13A}");
     }
 
     //@VtableIndex(6)
@@ -284,6 +299,7 @@ class Windows_Foundation_IDeferralFactory : WinRtInterface
     //@Parameters("Windows.Foundation.DeferralCompletedHandler")
     Create(handler)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = nil; 
         if( typeof(handler) == "comptr" ) { 
@@ -310,7 +326,8 @@ class Windows_Foundation_IGetActivationFactory : WinRtInterface
     Windows_Foundation_IGetActivationFactory( comPtr )
     {
         var Windows = runtime.global("Windows");
-        this.comPtr = comPtr.queryInterface( "{4EDB8EE2-96DD-49A7-94F7-4607DDAB8E3C}");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{4EDB8EE2-96DD-49A7-94F7-4607DDAB8E3C}");
     }
 
     //@VtableIndex(6)
@@ -319,6 +336,7 @@ class Windows_Foundation_IGetActivationFactory : WinRtInterface
     //@Parameters("String")
     GetActivationFactory(activatableClassId)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = activatableClassId;
         var _r = this.comPtr.invoke( 6, "Object", ["String"], [p1] );
@@ -338,7 +356,8 @@ class Windows_Foundation_IGuidHelperStatics : WinRtInterface
     Windows_Foundation_IGuidHelperStatics( comPtr )
     {
         var Windows = runtime.global("Windows");
-        this.comPtr = comPtr.queryInterface( "{59C7966B-AE52-5283-AD7F-A1B9E9678ADD}");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{59C7966B-AE52-5283-AD7F-A1B9E9678ADD}");
     }
 
     //@VtableIndex(6)
@@ -346,6 +365,7 @@ class Windows_Foundation_IGuidHelperStatics : WinRtInterface
     //@Returns("ptr")
     CreateNewGuid()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 6, "ptr", [], [] );
         return _r;
@@ -356,6 +376,7 @@ class Windows_Foundation_IGuidHelperStatics : WinRtInterface
     //@Returns("ptr")
     get_Empty()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 7, "ptr", [], [] );
         return _r;
@@ -367,6 +388,7 @@ class Windows_Foundation_IGuidHelperStatics : WinRtInterface
     //@Parameters("ptr","ptr")
     Equals(target,value)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = target;
         var p2 = value;
@@ -387,7 +409,8 @@ class Windows_Foundation_IMemoryBuffer : WinRtInterface
     Windows_Foundation_IMemoryBuffer( comPtr )
     {
         var Windows = runtime.global("Windows");
-        this.comPtr = comPtr.queryInterface( "{FBC4DD2A-245B-11E4-AF98-689423260CF8}");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{FBC4DD2A-245B-11E4-AF98-689423260CF8}");
     }
 
     //@VtableIndex(6)
@@ -395,6 +418,7 @@ class Windows_Foundation_IMemoryBuffer : WinRtInterface
     //@Returns("Windows.Foundation.IMemoryBufferReference")
     CreateReference()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = Windows.Foundation.IMemoryBufferReference(
             this.comPtr.invoke( 6, "Windows.Foundation.IMemoryBufferReference", [], [] )
@@ -415,7 +439,8 @@ class Windows_Foundation_IMemoryBufferFactory : WinRtInterface
     Windows_Foundation_IMemoryBufferFactory( comPtr )
     {
         var Windows = runtime.global("Windows");
-        this.comPtr = comPtr.queryInterface( "{FBC4DD2B-245B-11E4-AF98-689423260CF8}");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{FBC4DD2B-245B-11E4-AF98-689423260CF8}");
     }
 
     //@VtableIndex(6)
@@ -424,6 +449,7 @@ class Windows_Foundation_IMemoryBufferFactory : WinRtInterface
     //@Parameters("UInt32")
     Create(capacity)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = capacity;
         var _r = Windows.Foundation.MemoryBuffer(
@@ -445,7 +471,8 @@ class Windows_Foundation_IMemoryBufferReference : WinRtInterface
     Windows_Foundation_IMemoryBufferReference( comPtr )
     {
         var Windows = runtime.global("Windows");
-        this.comPtr = comPtr.queryInterface( "{FBC4DD29-245B-11E4-AF98-689423260CF8}");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{FBC4DD29-245B-11E4-AF98-689423260CF8}");
     }
 
     //@VtableIndex(6)
@@ -453,6 +480,7 @@ class Windows_Foundation_IMemoryBufferReference : WinRtInterface
     //@Returns("UInt32")
     get_Capacity()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 6, "UInt32", [], [] );
         return _r;
@@ -464,6 +492,7 @@ class Windows_Foundation_IMemoryBufferReference : WinRtInterface
     //@Parameters("Windows.Foundation.TypedEventHandler`2<Windows.Foundation.IMemoryBufferReference,Object>")
     add_Closed(handler)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = nil; 
         if( typeof(handler) == "comptr" ) { 
@@ -481,6 +510,7 @@ class Windows_Foundation_IMemoryBufferReference : WinRtInterface
     //@Parameters("Windows.Foundation.EventRegistrationToken")
     remove_Closed(cookie)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = cookie;
         this.comPtr.invoke( 8, "void", ["Windows.Foundation.EventRegistrationToken"], [p1] );
@@ -499,7 +529,8 @@ class Windows_Foundation_IPropertyValue : WinRtInterface
     Windows_Foundation_IPropertyValue( comPtr )
     {
         var Windows = runtime.global("Windows");
-        this.comPtr = comPtr.queryInterface( "{4BD682DD-7554-40E9-9A9B-82654EDE7E62}");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{4BD682DD-7554-40E9-9A9B-82654EDE7E62}");
     }
 
     //@VtableIndex(6)
@@ -507,6 +538,7 @@ class Windows_Foundation_IPropertyValue : WinRtInterface
     //@Returns("Windows.Foundation.PropertyType")
     get_Type()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 6, "UInt32", [], [] );
         return _r;
@@ -517,6 +549,7 @@ class Windows_Foundation_IPropertyValue : WinRtInterface
     //@Returns("Boolean")
     get_IsNumericScalar()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 7, "Boolean", [], [] );
         return _r;
@@ -527,6 +560,7 @@ class Windows_Foundation_IPropertyValue : WinRtInterface
     //@Returns("UInt8")
     GetUInt8()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 8, "UInt8", [], [] );
         return _r;
@@ -537,6 +571,7 @@ class Windows_Foundation_IPropertyValue : WinRtInterface
     //@Returns("Int16")
     GetInt16()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 9, "Int16", [], [] );
         return _r;
@@ -547,6 +582,7 @@ class Windows_Foundation_IPropertyValue : WinRtInterface
     //@Returns("UInt16")
     GetUInt16()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 10, "UInt16", [], [] );
         return _r;
@@ -557,6 +593,7 @@ class Windows_Foundation_IPropertyValue : WinRtInterface
     //@Returns("Int32")
     GetInt32()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 11, "Int32", [], [] );
         return _r;
@@ -567,6 +604,7 @@ class Windows_Foundation_IPropertyValue : WinRtInterface
     //@Returns("UInt32")
     GetUInt32()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 12, "UInt32", [], [] );
         return _r;
@@ -577,6 +615,7 @@ class Windows_Foundation_IPropertyValue : WinRtInterface
     //@Returns("Int64")
     GetInt64()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 13, "Int64", [], [] );
         return _r;
@@ -587,6 +626,7 @@ class Windows_Foundation_IPropertyValue : WinRtInterface
     //@Returns("UInt64")
     GetUInt64()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 14, "UInt64", [], [] );
         return _r;
@@ -597,6 +637,7 @@ class Windows_Foundation_IPropertyValue : WinRtInterface
     //@Returns("Single")
     GetSingle()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 15, "Single", [], [] );
         return _r;
@@ -607,6 +648,7 @@ class Windows_Foundation_IPropertyValue : WinRtInterface
     //@Returns("Double")
     GetDouble()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 16, "Double", [], [] );
         return _r;
@@ -617,6 +659,7 @@ class Windows_Foundation_IPropertyValue : WinRtInterface
     //@Returns("unk")
     GetChar16()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 17, "unk", [], [] );
         return _r;
@@ -627,6 +670,7 @@ class Windows_Foundation_IPropertyValue : WinRtInterface
     //@Returns("Boolean")
     GetBoolean()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 18, "Boolean", [], [] );
         return _r;
@@ -637,6 +681,7 @@ class Windows_Foundation_IPropertyValue : WinRtInterface
     //@Returns("String")
     GetString()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 19, "String", [], [] );
         return _r;
@@ -647,6 +692,7 @@ class Windows_Foundation_IPropertyValue : WinRtInterface
     //@Returns("ptr")
     GetGuid()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 20, "ptr", [], [] );
         return _r;
@@ -657,6 +703,7 @@ class Windows_Foundation_IPropertyValue : WinRtInterface
     //@Returns("Windows.Foundation.DateTime")
     GetDateTime()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 21, "Windows.Foundation.DateTime", [], [] );
         return _r;
@@ -667,6 +714,7 @@ class Windows_Foundation_IPropertyValue : WinRtInterface
     //@Returns("Windows.Foundation.TimeSpan")
     GetTimeSpan()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 22, "Windows.Foundation.TimeSpan", [], [] );
         return _r;
@@ -677,6 +725,7 @@ class Windows_Foundation_IPropertyValue : WinRtInterface
     //@Returns("Windows.Foundation.Point")
     GetPoint()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 23, "Windows.Foundation.Point", [], [] );
         return _r;
@@ -687,6 +736,7 @@ class Windows_Foundation_IPropertyValue : WinRtInterface
     //@Returns("Windows.Foundation.Size")
     GetSize()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 24, "Windows.Foundation.Size", [], [] );
         return _r;
@@ -697,6 +747,7 @@ class Windows_Foundation_IPropertyValue : WinRtInterface
     //@Returns("Windows.Foundation.Rect")
     GetRect()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 25, "Windows.Foundation.Rect", [], [] );
         return _r;
@@ -715,7 +766,8 @@ class Windows_Foundation_IPropertyValueStatics : WinRtInterface
     Windows_Foundation_IPropertyValueStatics( comPtr )
     {
         var Windows = runtime.global("Windows");
-        this.comPtr = comPtr.queryInterface( "{629BDBC8-D932-4FF4-96B9-8D96C5C1E858}");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{629BDBC8-D932-4FF4-96B9-8D96C5C1E858}");
     }
 
     //@VtableIndex(6)
@@ -723,6 +775,7 @@ class Windows_Foundation_IPropertyValueStatics : WinRtInterface
     //@Returns("Object")
     CreateEmpty()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 6, "Object", [], [] );
         return _r;
@@ -734,6 +787,7 @@ class Windows_Foundation_IPropertyValueStatics : WinRtInterface
     //@Parameters("UInt8")
     CreateUInt8(value)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = value;
         var _r = this.comPtr.invoke( 7, "Object", ["UInt8"], [p1] );
@@ -746,6 +800,7 @@ class Windows_Foundation_IPropertyValueStatics : WinRtInterface
     //@Parameters("Int16")
     CreateInt16(value)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = value;
         var _r = this.comPtr.invoke( 8, "Object", ["Int16"], [p1] );
@@ -758,6 +813,7 @@ class Windows_Foundation_IPropertyValueStatics : WinRtInterface
     //@Parameters("UInt16")
     CreateUInt16(value)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = value;
         var _r = this.comPtr.invoke( 9, "Object", ["UInt16"], [p1] );
@@ -770,6 +826,7 @@ class Windows_Foundation_IPropertyValueStatics : WinRtInterface
     //@Parameters("Int32")
     CreateInt32(value)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = value;
         var _r = this.comPtr.invoke( 10, "Object", ["Int32"], [p1] );
@@ -782,6 +839,7 @@ class Windows_Foundation_IPropertyValueStatics : WinRtInterface
     //@Parameters("UInt32")
     CreateUInt32(value)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = value;
         var _r = this.comPtr.invoke( 11, "Object", ["UInt32"], [p1] );
@@ -794,6 +852,7 @@ class Windows_Foundation_IPropertyValueStatics : WinRtInterface
     //@Parameters("Int64")
     CreateInt64(value)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = value;
         var _r = this.comPtr.invoke( 12, "Object", ["Int64"], [p1] );
@@ -806,6 +865,7 @@ class Windows_Foundation_IPropertyValueStatics : WinRtInterface
     //@Parameters("UInt64")
     CreateUInt64(value)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = value;
         var _r = this.comPtr.invoke( 13, "Object", ["UInt64"], [p1] );
@@ -818,6 +878,7 @@ class Windows_Foundation_IPropertyValueStatics : WinRtInterface
     //@Parameters("Single")
     CreateSingle(value)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = value;
         var _r = this.comPtr.invoke( 14, "Object", ["Single"], [p1] );
@@ -830,6 +891,7 @@ class Windows_Foundation_IPropertyValueStatics : WinRtInterface
     //@Parameters("Double")
     CreateDouble(value)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = value;
         var _r = this.comPtr.invoke( 15, "Object", ["Double"], [p1] );
@@ -842,6 +904,7 @@ class Windows_Foundation_IPropertyValueStatics : WinRtInterface
     //@Parameters("unk")
     CreateChar16(value)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = value;
         var _r = this.comPtr.invoke( 16, "Object", ["unk"], [p1] );
@@ -854,6 +917,7 @@ class Windows_Foundation_IPropertyValueStatics : WinRtInterface
     //@Parameters("Boolean")
     CreateBoolean(value)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = value;
         var _r = this.comPtr.invoke( 17, "Object", ["Boolean"], [p1] );
@@ -866,6 +930,7 @@ class Windows_Foundation_IPropertyValueStatics : WinRtInterface
     //@Parameters("String")
     CreateString(value)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = value;
         var _r = this.comPtr.invoke( 18, "Object", ["String"], [p1] );
@@ -878,6 +943,7 @@ class Windows_Foundation_IPropertyValueStatics : WinRtInterface
     //@Parameters("Object")
     CreateInspectable(value)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = value;
         var _r = this.comPtr.invoke( 19, "Object", ["Object"], [p1] );
@@ -890,6 +956,7 @@ class Windows_Foundation_IPropertyValueStatics : WinRtInterface
     //@Parameters("ptr")
     CreateGuid(value)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = value;
         var _r = this.comPtr.invoke( 20, "Object", ["ptr"], [p1] );
@@ -902,6 +969,7 @@ class Windows_Foundation_IPropertyValueStatics : WinRtInterface
     //@Parameters("Windows.Foundation.DateTime")
     CreateDateTime(value)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = value;
         var _r = this.comPtr.invoke( 21, "Object", ["Windows.Foundation.DateTime"], [p1] );
@@ -914,6 +982,7 @@ class Windows_Foundation_IPropertyValueStatics : WinRtInterface
     //@Parameters("Windows.Foundation.TimeSpan")
     CreateTimeSpan(value)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = value;
         var _r = this.comPtr.invoke( 22, "Object", ["Windows.Foundation.TimeSpan"], [p1] );
@@ -926,6 +995,7 @@ class Windows_Foundation_IPropertyValueStatics : WinRtInterface
     //@Parameters("Windows.Foundation.Point")
     CreatePoint(value)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = value;
         var _r = this.comPtr.invoke( 23, "Object", ["Windows.Foundation.Point"], [p1] );
@@ -938,6 +1008,7 @@ class Windows_Foundation_IPropertyValueStatics : WinRtInterface
     //@Parameters("Windows.Foundation.Size")
     CreateSize(value)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = value;
         var _r = this.comPtr.invoke( 24, "Object", ["Windows.Foundation.Size"], [p1] );
@@ -950,6 +1021,7 @@ class Windows_Foundation_IPropertyValueStatics : WinRtInterface
     //@Parameters("Windows.Foundation.Rect")
     CreateRect(value)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = value;
         var _r = this.comPtr.invoke( 25, "Object", ["Windows.Foundation.Rect"], [p1] );
@@ -969,7 +1041,8 @@ class Windows_Foundation_IStringable : WinRtInterface
     Windows_Foundation_IStringable( comPtr )
     {
         var Windows = runtime.global("Windows");
-        this.comPtr = comPtr.queryInterface( "{96369F54-8EB6-48F0-ABCE-C1B211E627C3}");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{96369F54-8EB6-48F0-ABCE-C1B211E627C3}");
     }
 
     //@VtableIndex(6)
@@ -977,6 +1050,7 @@ class Windows_Foundation_IStringable : WinRtInterface
     //@Returns("String")
     ToString()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 6, "String", [], [] );
         return _r;
@@ -995,7 +1069,8 @@ class Windows_Foundation_IUriEscapeStatics : WinRtInterface
     Windows_Foundation_IUriEscapeStatics( comPtr )
     {
         var Windows = runtime.global("Windows");
-        this.comPtr = comPtr.queryInterface( "{C1D432BA-C824-4452-A7FD-512BC3BBE9A1}");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{C1D432BA-C824-4452-A7FD-512BC3BBE9A1}");
     }
 
     //@VtableIndex(6)
@@ -1004,6 +1079,7 @@ class Windows_Foundation_IUriEscapeStatics : WinRtInterface
     //@Parameters("String")
     UnescapeComponent(toUnescape)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = toUnescape;
         var _r = this.comPtr.invoke( 6, "String", ["String"], [p1] );
@@ -1016,6 +1092,7 @@ class Windows_Foundation_IUriEscapeStatics : WinRtInterface
     //@Parameters("String")
     EscapeComponent(toEscape)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = toEscape;
         var _r = this.comPtr.invoke( 7, "String", ["String"], [p1] );
@@ -1035,7 +1112,8 @@ class Windows_Foundation_IUriRuntimeClass : WinRtInterface
     Windows_Foundation_IUriRuntimeClass( comPtr )
     {
         var Windows = runtime.global("Windows");
-        this.comPtr = comPtr.queryInterface( "{9E365E57-48B2-4160-956F-C7385120BBFC}");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{9E365E57-48B2-4160-956F-C7385120BBFC}");
     }
 
     //@VtableIndex(6)
@@ -1043,6 +1121,7 @@ class Windows_Foundation_IUriRuntimeClass : WinRtInterface
     //@Returns("String")
     get_AbsoluteUri()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 6, "String", [], [] );
         return _r;
@@ -1053,6 +1132,7 @@ class Windows_Foundation_IUriRuntimeClass : WinRtInterface
     //@Returns("String")
     get_DisplayUri()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 7, "String", [], [] );
         return _r;
@@ -1063,6 +1143,7 @@ class Windows_Foundation_IUriRuntimeClass : WinRtInterface
     //@Returns("String")
     get_Domain()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 8, "String", [], [] );
         return _r;
@@ -1073,6 +1154,7 @@ class Windows_Foundation_IUriRuntimeClass : WinRtInterface
     //@Returns("String")
     get_Extension()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 9, "String", [], [] );
         return _r;
@@ -1083,6 +1165,7 @@ class Windows_Foundation_IUriRuntimeClass : WinRtInterface
     //@Returns("String")
     get_Fragment()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 10, "String", [], [] );
         return _r;
@@ -1093,6 +1176,7 @@ class Windows_Foundation_IUriRuntimeClass : WinRtInterface
     //@Returns("String")
     get_Host()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 11, "String", [], [] );
         return _r;
@@ -1103,6 +1187,7 @@ class Windows_Foundation_IUriRuntimeClass : WinRtInterface
     //@Returns("String")
     get_Password()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 12, "String", [], [] );
         return _r;
@@ -1113,6 +1198,7 @@ class Windows_Foundation_IUriRuntimeClass : WinRtInterface
     //@Returns("String")
     get_Path()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 13, "String", [], [] );
         return _r;
@@ -1123,6 +1209,7 @@ class Windows_Foundation_IUriRuntimeClass : WinRtInterface
     //@Returns("String")
     get_Query()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 14, "String", [], [] );
         return _r;
@@ -1133,6 +1220,7 @@ class Windows_Foundation_IUriRuntimeClass : WinRtInterface
     //@Returns("Windows.Foundation.WwwFormUrlDecoder")
     get_QueryParsed()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = Windows.Foundation.WwwFormUrlDecoder(
             this.comPtr.invoke( 15, "Windows.Foundation.WwwFormUrlDecoder", [], [] )
@@ -1145,6 +1233,7 @@ class Windows_Foundation_IUriRuntimeClass : WinRtInterface
     //@Returns("String")
     get_RawUri()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 16, "String", [], [] );
         return _r;
@@ -1155,6 +1244,7 @@ class Windows_Foundation_IUriRuntimeClass : WinRtInterface
     //@Returns("String")
     get_SchemeName()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 17, "String", [], [] );
         return _r;
@@ -1165,6 +1255,7 @@ class Windows_Foundation_IUriRuntimeClass : WinRtInterface
     //@Returns("String")
     get_UserName()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 18, "String", [], [] );
         return _r;
@@ -1175,6 +1266,7 @@ class Windows_Foundation_IUriRuntimeClass : WinRtInterface
     //@Returns("Int32")
     get_Port()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 19, "Int32", [], [] );
         return _r;
@@ -1185,6 +1277,7 @@ class Windows_Foundation_IUriRuntimeClass : WinRtInterface
     //@Returns("Boolean")
     get_Suspicious()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 20, "Boolean", [], [] );
         return _r;
@@ -1196,6 +1289,7 @@ class Windows_Foundation_IUriRuntimeClass : WinRtInterface
     //@Parameters("Windows.Foundation.Uri")
     Equals(pUri)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = Windows.Foundation.Uri( pUri); 
         var _r = this.comPtr.invoke( 21, "Boolean", ["Windows.Foundation.Uri"], [p1] );
@@ -1208,6 +1302,7 @@ class Windows_Foundation_IUriRuntimeClass : WinRtInterface
     //@Parameters("String")
     CombineUri(relativeUri)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = relativeUri;
         var _r = Windows.Foundation.Uri(
@@ -1229,7 +1324,8 @@ class Windows_Foundation_IUriRuntimeClassFactory : WinRtInterface
     Windows_Foundation_IUriRuntimeClassFactory( comPtr )
     {
         var Windows = runtime.global("Windows");
-        this.comPtr = comPtr.queryInterface( "{44A9796F-723E-4FDF-A218-033E75B0C084}");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{44A9796F-723E-4FDF-A218-033E75B0C084}");
     }
 
     //@VtableIndex(6)
@@ -1238,6 +1334,7 @@ class Windows_Foundation_IUriRuntimeClassFactory : WinRtInterface
     //@Parameters("String")
     CreateUri(uri)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = uri;
         var _r = Windows.Foundation.Uri(
@@ -1252,6 +1349,7 @@ class Windows_Foundation_IUriRuntimeClassFactory : WinRtInterface
     //@Parameters("String","String")
     CreateWithRelativeUri(baseUri,relativeUri)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = baseUri;
         var p2 = relativeUri;
@@ -1274,7 +1372,8 @@ class Windows_Foundation_IUriRuntimeClassWithAbsoluteCanonicalUri : WinRtInterfa
     Windows_Foundation_IUriRuntimeClassWithAbsoluteCanonicalUri( comPtr )
     {
         var Windows = runtime.global("Windows");
-        this.comPtr = comPtr.queryInterface( "{758D9661-221C-480F-A339-50656673F46F}");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{758D9661-221C-480F-A339-50656673F46F}");
     }
 
     //@VtableIndex(6)
@@ -1282,6 +1381,7 @@ class Windows_Foundation_IUriRuntimeClassWithAbsoluteCanonicalUri : WinRtInterfa
     //@Returns("String")
     get_AbsoluteCanonicalUri()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 6, "String", [], [] );
         return _r;
@@ -1292,6 +1392,7 @@ class Windows_Foundation_IUriRuntimeClassWithAbsoluteCanonicalUri : WinRtInterfa
     //@Returns("String")
     get_DisplayIri()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 7, "String", [], [] );
         return _r;
@@ -1310,7 +1411,8 @@ class Windows_Foundation_IWwwFormUrlDecoderEntry : WinRtInterface
     Windows_Foundation_IWwwFormUrlDecoderEntry( comPtr )
     {
         var Windows = runtime.global("Windows");
-        this.comPtr = comPtr.queryInterface( "{125E7431-F678-4E8E-B670-20A9B06C512D}");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{125E7431-F678-4E8E-B670-20A9B06C512D}");
     }
 
     //@VtableIndex(6)
@@ -1318,6 +1420,7 @@ class Windows_Foundation_IWwwFormUrlDecoderEntry : WinRtInterface
     //@Returns("String")
     get_Name()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 6, "String", [], [] );
         return _r;
@@ -1328,6 +1431,7 @@ class Windows_Foundation_IWwwFormUrlDecoderEntry : WinRtInterface
     //@Returns("String")
     get_Value()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 7, "String", [], [] );
         return _r;
@@ -1346,7 +1450,8 @@ class Windows_Foundation_IWwwFormUrlDecoderRuntimeClass : WinRtInterface
     Windows_Foundation_IWwwFormUrlDecoderRuntimeClass( comPtr )
     {
         var Windows = runtime.global("Windows");
-        this.comPtr = comPtr.queryInterface( "{D45A0451-F225-4542-9296-0E1DF5D254DF}");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{D45A0451-F225-4542-9296-0E1DF5D254DF}");
     }
 
     //@VtableIndex(6)
@@ -1355,6 +1460,7 @@ class Windows_Foundation_IWwwFormUrlDecoderRuntimeClass : WinRtInterface
     //@Parameters("String")
     GetFirstValueByName(name)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = name;
         var _r = this.comPtr.invoke( 6, "String", ["String"], [p1] );
@@ -1374,7 +1480,8 @@ class Windows_Foundation_IWwwFormUrlDecoderRuntimeClassFactory : WinRtInterface
     Windows_Foundation_IWwwFormUrlDecoderRuntimeClassFactory( comPtr )
     {
         var Windows = runtime.global("Windows");
-        this.comPtr = comPtr.queryInterface( "{5B8C6B3D-24AE-41B5-A1BF-F0C3D544845B}");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{5B8C6B3D-24AE-41B5-A1BF-F0C3D544845B}");
     }
 
     //@VtableIndex(6)
@@ -1383,6 +1490,7 @@ class Windows_Foundation_IWwwFormUrlDecoderRuntimeClassFactory : WinRtInterface
     //@Parameters("String")
     CreateWwwFormUrlDecoder(query)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = query;
         var _r = Windows.Foundation.WwwFormUrlDecoder(
@@ -1406,7 +1514,8 @@ class Windows_Foundation_Deferral : WinRtInterface
     Windows_Foundation_Deferral( comPtr )
     {
         var Windows = runtime.global("Windows");
-        this.comPtr = comPtr.queryInterface( Windows.Foundation.IDeferral.iid );
+        if(!comPtr || !int(comPtr)) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( Windows.Foundation.IDeferral.iid );
     }
 
     static Create()
@@ -1431,6 +1540,7 @@ class Windows_Foundation_Deferral : WinRtInterface
     //@Returns("void")
     Complete()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Foundation.IDeferral( this.comPtr );
         iface.Complete(  );
@@ -1440,6 +1550,7 @@ class Windows_Foundation_Deferral : WinRtInterface
     //@Returns("void")
     Close()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Foundation.IClosable( this.comPtr );
         iface.Close(  );
@@ -1524,7 +1635,8 @@ class Windows_Foundation_MemoryBuffer : WinRtInterface
     Windows_Foundation_MemoryBuffer( comPtr )
     {
         var Windows = runtime.global("Windows");
-        this.comPtr = comPtr.queryInterface( Windows.Foundation.IMemoryBuffer.iid );
+        if(!comPtr || !int(comPtr)) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( Windows.Foundation.IMemoryBuffer.iid );
     }
 
     static Create()
@@ -1549,6 +1661,7 @@ class Windows_Foundation_MemoryBuffer : WinRtInterface
     //@Returns("Windows.Foundation.IMemoryBufferReference")
     CreateReference()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Foundation.IMemoryBuffer( this.comPtr );
         var _r = iface.CreateReference(  );
@@ -1559,6 +1672,7 @@ class Windows_Foundation_MemoryBuffer : WinRtInterface
     //@Returns("void")
     Close()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Foundation.IClosable( this.comPtr );
         iface.Close(  );
@@ -1918,7 +2032,8 @@ class Windows_Foundation_Uri : WinRtInterface
     Windows_Foundation_Uri( comPtr )
     {
         var Windows = runtime.global("Windows");
-        this.comPtr = comPtr.queryInterface( Windows.Foundation.IUriRuntimeClass.iid );
+        if(!comPtr || !int(comPtr)) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( Windows.Foundation.IUriRuntimeClass.iid );
     }
 
     // s Windows.Foundation.IUriEscapeStatics
@@ -1986,6 +2101,7 @@ class Windows_Foundation_Uri : WinRtInterface
     //@Returns("String")
     get_AbsoluteUri()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Foundation.IUriRuntimeClass( this.comPtr );
         var _r = iface.get_AbsoluteUri(  );
@@ -1996,6 +2112,7 @@ class Windows_Foundation_Uri : WinRtInterface
     //@Returns("String")
     get_DisplayUri()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Foundation.IUriRuntimeClass( this.comPtr );
         var _r = iface.get_DisplayUri(  );
@@ -2006,6 +2123,7 @@ class Windows_Foundation_Uri : WinRtInterface
     //@Returns("String")
     get_Domain()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Foundation.IUriRuntimeClass( this.comPtr );
         var _r = iface.get_Domain(  );
@@ -2016,6 +2134,7 @@ class Windows_Foundation_Uri : WinRtInterface
     //@Returns("String")
     get_Extension()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Foundation.IUriRuntimeClass( this.comPtr );
         var _r = iface.get_Extension(  );
@@ -2026,6 +2145,7 @@ class Windows_Foundation_Uri : WinRtInterface
     //@Returns("String")
     get_Fragment()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Foundation.IUriRuntimeClass( this.comPtr );
         var _r = iface.get_Fragment(  );
@@ -2036,6 +2156,7 @@ class Windows_Foundation_Uri : WinRtInterface
     //@Returns("String")
     get_Host()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Foundation.IUriRuntimeClass( this.comPtr );
         var _r = iface.get_Host(  );
@@ -2046,6 +2167,7 @@ class Windows_Foundation_Uri : WinRtInterface
     //@Returns("String")
     get_Password()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Foundation.IUriRuntimeClass( this.comPtr );
         var _r = iface.get_Password(  );
@@ -2056,6 +2178,7 @@ class Windows_Foundation_Uri : WinRtInterface
     //@Returns("String")
     get_Path()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Foundation.IUriRuntimeClass( this.comPtr );
         var _r = iface.get_Path(  );
@@ -2066,6 +2189,7 @@ class Windows_Foundation_Uri : WinRtInterface
     //@Returns("String")
     get_Query()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Foundation.IUriRuntimeClass( this.comPtr );
         var _r = iface.get_Query(  );
@@ -2076,6 +2200,7 @@ class Windows_Foundation_Uri : WinRtInterface
     //@Returns("Windows.Foundation.WwwFormUrlDecoder")
     get_QueryParsed()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Foundation.IUriRuntimeClass( this.comPtr );
         var _r = iface.get_QueryParsed(  );
@@ -2086,6 +2211,7 @@ class Windows_Foundation_Uri : WinRtInterface
     //@Returns("String")
     get_RawUri()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Foundation.IUriRuntimeClass( this.comPtr );
         var _r = iface.get_RawUri(  );
@@ -2096,6 +2222,7 @@ class Windows_Foundation_Uri : WinRtInterface
     //@Returns("String")
     get_SchemeName()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Foundation.IUriRuntimeClass( this.comPtr );
         var _r = iface.get_SchemeName(  );
@@ -2106,6 +2233,7 @@ class Windows_Foundation_Uri : WinRtInterface
     //@Returns("String")
     get_UserName()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Foundation.IUriRuntimeClass( this.comPtr );
         var _r = iface.get_UserName(  );
@@ -2116,6 +2244,7 @@ class Windows_Foundation_Uri : WinRtInterface
     //@Returns("Int32")
     get_Port()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Foundation.IUriRuntimeClass( this.comPtr );
         var _r = iface.get_Port(  );
@@ -2126,6 +2255,7 @@ class Windows_Foundation_Uri : WinRtInterface
     //@Returns("Boolean")
     get_Suspicious()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Foundation.IUriRuntimeClass( this.comPtr );
         var _r = iface.get_Suspicious(  );
@@ -2138,6 +2268,7 @@ class Windows_Foundation_Uri : WinRtInterface
     //@Parameters("Windows.Foundation.Uri")
     Equals(pUri)
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Foundation.IUriRuntimeClass( this.comPtr );
         var _r = iface.Equals( pUri );
@@ -2150,6 +2281,7 @@ class Windows_Foundation_Uri : WinRtInterface
     //@Parameters("String")
     CombineUri(relativeUri)
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Foundation.IUriRuntimeClass( this.comPtr );
         var _r = iface.CombineUri( relativeUri );
@@ -2160,6 +2292,7 @@ class Windows_Foundation_Uri : WinRtInterface
     //@Returns("String")
     get_AbsoluteCanonicalUri()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Foundation.IUriRuntimeClassWithAbsoluteCanonicalUri( this.comPtr );
         var _r = iface.get_AbsoluteCanonicalUri(  );
@@ -2170,6 +2303,7 @@ class Windows_Foundation_Uri : WinRtInterface
     //@Returns("String")
     get_DisplayIri()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Foundation.IUriRuntimeClassWithAbsoluteCanonicalUri( this.comPtr );
         var _r = iface.get_DisplayIri(  );
@@ -2180,6 +2314,7 @@ class Windows_Foundation_Uri : WinRtInterface
     //@Returns("String")
     ToString()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Foundation.IStringable( this.comPtr );
         var _r = iface.ToString(  );
@@ -2200,7 +2335,8 @@ class Windows_Foundation_WwwFormUrlDecoder : WinRtInterface
     Windows_Foundation_WwwFormUrlDecoder( comPtr )
     {
         var Windows = runtime.global("Windows");
-        this.comPtr = comPtr.queryInterface( Windows.Foundation.IWwwFormUrlDecoderRuntimeClass.iid );
+        if(!comPtr || !int(comPtr)) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( Windows.Foundation.IWwwFormUrlDecoderRuntimeClass.iid );
     }
 
     static Create()
@@ -2227,6 +2363,7 @@ class Windows_Foundation_WwwFormUrlDecoder : WinRtInterface
     //@Parameters("String")
     GetFirstValueByName(name)
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Foundation.IWwwFormUrlDecoderRuntimeClass( this.comPtr );
         var _r = iface.GetFirstValueByName( name );
@@ -2237,6 +2374,7 @@ class Windows_Foundation_WwwFormUrlDecoder : WinRtInterface
     //@Returns("Windows.Foundation.Collections.IIterator`1<Windows.Foundation.IWwwFormUrlDecoderEntry>")
     First()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Foundation.Collections.IIterable_1_Windows_Foundation_IWwwFormUrlDecoderEntry_( this.comPtr );
         var _r = iface.First(  );
@@ -2249,6 +2387,7 @@ class Windows_Foundation_WwwFormUrlDecoder : WinRtInterface
     //@Parameters("UInt32")
     GetAt(index)
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Foundation.Collections.IVectorView_1_Windows_Foundation_IWwwFormUrlDecoderEntry_( this.comPtr );
         var _r = iface.GetAt( index );
@@ -2259,6 +2398,7 @@ class Windows_Foundation_WwwFormUrlDecoder : WinRtInterface
     //@Returns("UInt32")
     get_Size()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Foundation.Collections.IVectorView_1_Windows_Foundation_IWwwFormUrlDecoderEntry_( this.comPtr );
         var _r = iface.get_Size(  );
@@ -2279,7 +2419,8 @@ class Windows_Foundation_WwwFormUrlDecoderEntry : WinRtInterface
     Windows_Foundation_WwwFormUrlDecoderEntry( comPtr )
     {
         var Windows = runtime.global("Windows");
-        this.comPtr = comPtr.queryInterface( Windows.Foundation.IWwwFormUrlDecoderEntry.iid );
+        if(!comPtr || !int(comPtr)) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( Windows.Foundation.IWwwFormUrlDecoderEntry.iid );
     }
 
     static Create()
@@ -2291,6 +2432,7 @@ class Windows_Foundation_WwwFormUrlDecoderEntry : WinRtInterface
     //@Returns("String")
     get_Name()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Foundation.IWwwFormUrlDecoderEntry( this.comPtr );
         var _r = iface.get_Name(  );
@@ -2301,6 +2443,7 @@ class Windows_Foundation_WwwFormUrlDecoderEntry : WinRtInterface
     //@Returns("String")
     get_Value()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Foundation.IWwwFormUrlDecoderEntry( this.comPtr );
         var _r = iface.get_Value(  );
@@ -2348,7 +2491,8 @@ class Windows_Foundation_Collections_IVectorView_1_Windows_Foundation_IWwwFormUr
 {
     Windows_Foundation_Collections_IVectorView_1_Windows_Foundation_IWwwFormUrlDecoderEntry_( comPtr )
     {
-        this.comPtr = comPtr.queryInterface( "{B1F00D3B-1F06-5117-93EA-2A0D79116701}");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{B1F00D3B-1F06-5117-93EA-2A0D79116701}");
     }
 
     //@VtableIndex(6)
@@ -2356,6 +2500,7 @@ class Windows_Foundation_Collections_IVectorView_1_Windows_Foundation_IWwwFormUr
     //@Parameters("UInt32")
     GetAt(index)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = index;
         var _r = Windows.Foundation.IWwwFormUrlDecoderEntry(
@@ -2368,6 +2513,7 @@ class Windows_Foundation_Collections_IVectorView_1_Windows_Foundation_IWwwFormUr
     //@Returns("UInt32")
     get_Size()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke(7, "UInt32", [], [] );
         return _r;
@@ -2387,13 +2533,15 @@ class Windows_Foundation_Collections_IIterator_1_Windows_Foundation_IWwwFormUrlD
 {
     Windows_Foundation_Collections_IIterator_1_Windows_Foundation_IWwwFormUrlDecoderEntry_( comPtr )
     {
-        this.comPtr = comPtr.queryInterface( "{32E54295-373C-50CB-80A1-468A990CA780}");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{32E54295-373C-50CB-80A1-468A990CA780}");
     }
 
     //@VtableIndex(6)
     //@Returns("T0")
     get_Current()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = Windows.Foundation.IWwwFormUrlDecoderEntry(
             this.comPtr.invoke(6, "Windows.Foundation.IWwwFormUrlDecoderEntry", [], [] )
@@ -2405,6 +2553,7 @@ class Windows_Foundation_Collections_IIterator_1_Windows_Foundation_IWwwFormUrlD
     //@Returns("Boolean")
     get_HasCurrent()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke(7, "Boolean", [], [] );
         return _r;
@@ -2414,6 +2563,7 @@ class Windows_Foundation_Collections_IIterator_1_Windows_Foundation_IWwwFormUrlD
     //@Returns("Boolean")
     MoveNext()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke(8, "Boolean", [], [] );
         return _r;
@@ -2433,13 +2583,15 @@ class Windows_Foundation_Collections_IIterable_1_Windows_Foundation_IWwwFormUrlD
 {
     Windows_Foundation_Collections_IIterable_1_Windows_Foundation_IWwwFormUrlDecoderEntry_( comPtr )
     {
-        this.comPtr = comPtr.queryInterface( "{876BE83B-7218-5BFB-A169-83152EF7E146}");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{876BE83B-7218-5BFB-A169-83152EF7E146}");
     }
 
     //@VtableIndex(6)
     //@Returns("Windows.Foundation.Collections.IIterator`1<T0>")
     First()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = Windows.Foundation.Collections.IIterator_1_Windows_Foundation_IWwwFormUrlDecoderEntry_(
             this.comPtr.invoke(6, "Windows.Foundation.Collections.IIterator`1<Windows.Foundation.IWwwFormUrlDecoderEntry>", [], [] )

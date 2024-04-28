@@ -7,12 +7,12 @@ namespace winrt::moxaml::implementation
     {
         mox() = default;
 
-        static winrt::Windows::UI::Xaml::DependencyProperty EventProperty();
-        static hstring GetEvent(winrt::Windows::UI::Xaml::DependencyObject const& target);
-        static void SetEvent(winrt::Windows::UI::Xaml::DependencyObject const& target, hstring const& value);
+        static winrt::Microsoft::UI::Xaml::DependencyProperty EventProperty();
+        static hstring GetEvent(winrt::Microsoft::UI::Xaml::DependencyObject const& target);
+        static void SetEvent(winrt::Microsoft::UI::Xaml::DependencyObject const& target, hstring const& value);
     
     private:
-        static Windows::UI::Xaml::DependencyProperty m_EventProperty;
+        static Microsoft::UI::Xaml::DependencyProperty m_EventProperty;
     };
 }
 namespace winrt::moxaml::factory_implementation

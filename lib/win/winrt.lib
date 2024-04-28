@@ -1,3 +1,47 @@
+winrt.ClassForName = fun(name)
+{
+    var a = name.split(".");
+    var c = runtime.global(a[0]);
+    if (c == nil) return nil;
+    for (var i = 1; i < a.length; i++)
+    {
+        var it = a[i];
+        if (c{ it } == nil) return nil;
+        c = c{ it };
+    }
+    return c;
+};
+
+winrt.TypeName = fun (ptr)
+{
+    if( !ptr || !int(ptr) ) return;
+
+    var typeName = ptr.invoke( 4, "String", [], [] );
+    return typeName;
+};
+
+winrt.Class = fun(ptr)
+{
+    var typeName = winrt.TypeName(ptr);
+    if(!typeName) return;
+
+    return winrt.ClassForName(typeName);
+};
+
+winrt.RuntimeClass = fun(ptr)
+{
+    if(!ptr) return;
+
+    if(ptr.comPtr) ptr = ptr.comPtr;
+
+    if(!ptr) return;
+    if(!int(ptr)) return;
+    
+    var clazz = winrt.Class(ptr);
+    if(!clazz) return nil;
+    return clazz(ptr);
+};
+
 class WinRtProxy
 {
     getter(target,name)

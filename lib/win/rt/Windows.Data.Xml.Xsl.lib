@@ -1,0 +1,170 @@
+{
+class WinRtInterface { 
+    queryInterface(iid) { return this.comPtr.queryInterface(iid); }
+    release() { this.comPtr.release(); this.comPtr = nil; }
+    valid() { return this.comPtr != nil && int(this.comPtr) != 0; }
+}
+
+if( runtime.global("Windows") == nil ) { runtime.global("Windows", {}); }
+var Windows = runtime.global("Windows");
+if ( Windows.Data == nil ) { Windows.Data = {}; }
+if ( Windows.Data.Xml == nil ) { Windows.Data.Xml = {}; }
+if ( Windows.Data.Xml.Xsl == nil ) { Windows.Data.Xml.Xsl = {}; }
+//@Interface("Windows.Data.Xml.Xsl.IXsltProcessor")
+//@IID("{7B64703F-550C-48C6-A90F-93A5B964518F}")
+class Windows_Data_Xml_Xsl_IXsltProcessor : WinRtInterface 
+{
+    Windows_Data_Xml_Xsl_IXsltProcessor( comPtr )
+    {
+        var Windows = runtime.global("Windows");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{7B64703F-550C-48C6-A90F-93A5B964518F}");
+    }
+
+    //@VtableIndex(6)
+    //@Async(0)
+    //@Returns("String")
+    //@Parameters("Windows.Data.Xml.Dom.IXmlNode")
+    TransformToString(inputNode)
+    {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
+        var Windows = runtime.global("Windows");
+        var p1 = Windows.Data.Xml.Dom.IXmlNode( inputNode); 
+        var _r = this.comPtr.invoke( 6, "String", ["Windows.Data.Xml.Dom.IXmlNode"], [p1] );
+        return _r;
+    }
+
+
+}
+Windows_Data_Xml_Xsl_IXsltProcessor.iid = "{7B64703F-550C-48C6-A90F-93A5B964518F}";
+Windows.Data.Xml.Xsl.IXsltProcessor = Windows_Data_Xml_Xsl_IXsltProcessor;
+
+
+//@Interface("Windows.Data.Xml.Xsl.IXsltProcessor2")
+//@IID("{8DA45C56-97A5-44CB-A8BE-27D86280C70A}")
+class Windows_Data_Xml_Xsl_IXsltProcessor2 : WinRtInterface 
+{
+    Windows_Data_Xml_Xsl_IXsltProcessor2( comPtr )
+    {
+        var Windows = runtime.global("Windows");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{8DA45C56-97A5-44CB-A8BE-27D86280C70A}");
+    }
+
+    //@VtableIndex(6)
+    //@Async(0)
+    //@Returns("Windows.Data.Xml.Dom.XmlDocument")
+    //@Parameters("Windows.Data.Xml.Dom.IXmlNode")
+    TransformToDocument(inputNode)
+    {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
+        var Windows = runtime.global("Windows");
+        var p1 = Windows.Data.Xml.Dom.IXmlNode( inputNode); 
+        var _r = Windows.Data.Xml.Dom.XmlDocument(
+            this.comPtr.invoke( 6, "Windows.Data.Xml.Dom.XmlDocument", ["Windows.Data.Xml.Dom.IXmlNode"], [p1] )
+        );
+        return _r;
+    }
+
+
+}
+Windows_Data_Xml_Xsl_IXsltProcessor2.iid = "{8DA45C56-97A5-44CB-A8BE-27D86280C70A}";
+Windows.Data.Xml.Xsl.IXsltProcessor2 = Windows_Data_Xml_Xsl_IXsltProcessor2;
+
+
+//@Interface("Windows.Data.Xml.Xsl.IXsltProcessorFactory")
+//@IID("{274146C0-9A51-4663-BF30-0EF742146F20}")
+class Windows_Data_Xml_Xsl_IXsltProcessorFactory : WinRtInterface 
+{
+    Windows_Data_Xml_Xsl_IXsltProcessorFactory( comPtr )
+    {
+        var Windows = runtime.global("Windows");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{274146C0-9A51-4663-BF30-0EF742146F20}");
+    }
+
+    //@VtableIndex(6)
+    //@Async(0)
+    //@Returns("Windows.Data.Xml.Xsl.XsltProcessor")
+    //@Parameters("Windows.Data.Xml.Dom.XmlDocument")
+    CreateInstance(document)
+    {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
+        var Windows = runtime.global("Windows");
+        var p1 = Windows.Data.Xml.Dom.XmlDocument( document); 
+        var _r = Windows.Data.Xml.Xsl.XsltProcessor(
+            this.comPtr.invoke( 6, "Windows.Data.Xml.Xsl.XsltProcessor", ["Windows.Data.Xml.Dom.XmlDocument"], [p1] )
+        );
+        return _r;
+    }
+
+
+}
+Windows_Data_Xml_Xsl_IXsltProcessorFactory.iid = "{274146C0-9A51-4663-BF30-0EF742146F20}";
+Windows.Data.Xml.Xsl.IXsltProcessorFactory = Windows_Data_Xml_Xsl_IXsltProcessorFactory;
+
+
+//@RuntimeClass("Windows.Data.Xml.Xsl.XsltProcessor")
+//@Implements("Windows.Data.Xml.Xsl.IXsltProcessor","Windows.Data.Xml.Xsl.IXsltProcessor2")
+//@DefaultInterface("Windows.Data.Xml.Xsl.IXsltProcessor")
+@Proxy("WinRtProxy")
+class Windows_Data_Xml_Xsl_XsltProcessor : WinRtInterface
+{
+    Windows_Data_Xml_Xsl_XsltProcessor( comPtr )
+    {
+        var Windows = runtime.global("Windows");
+        if(!comPtr || !int(comPtr)) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( Windows.Data.Xml.Xsl.IXsltProcessor.iid );
+    }
+
+    static Create()
+    {
+        return Windows.Data.Xml.Xsl.XsltProcessor(
+            winrt.activate("Windows.Data.Xml.Xsl.XsltProcessor")
+        );
+    }
+    //@Returns("Windows.Data.Xml.Xsl.XsltProcessor")
+    //@Parameters("Windows.Data.Xml.Dom.XmlDocument")
+    static CreateInstance(document)
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Data.Xml.Xsl.XsltProcessor");
+        var iface = Windows.Data.Xml.Xsl.IXsltProcessorFactory( factory );
+        var result = iface.CreateInstance( document );
+        iface.release();
+        factory.release();
+        return result;
+    }
+    // f Windows.Data.Xml.Xsl.IXsltProcessorFactory
+    //@Parameters("Windows.Data.Xml.Dom.IXmlNode")
+    //@Returns("String")
+    //@Parameters("Windows.Data.Xml.Dom.IXmlNode")
+    TransformToString(inputNode)
+    {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Data.Xml.Xsl.IXsltProcessor( this.comPtr );
+        var _r = iface.TransformToString( inputNode );
+        iface.release();
+        return _r;
+    }
+
+    //@Parameters("Windows.Data.Xml.Dom.IXmlNode")
+    //@Returns("Windows.Data.Xml.Dom.XmlDocument")
+    //@Parameters("Windows.Data.Xml.Dom.IXmlNode")
+    TransformToDocument(inputNode)
+    {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
+        var Windows = runtime.global("Windows");
+        var iface = Windows.Data.Xml.Xsl.IXsltProcessor2( this.comPtr );
+        var _r = iface.TransformToDocument( inputNode );
+        iface.release();
+        return _r;
+    }
+
+
+}
+Windows.Data.Xml.Xsl.XsltProcessor = Windows_Data_Xml_Xsl_XsltProcessor;
+
+
+}

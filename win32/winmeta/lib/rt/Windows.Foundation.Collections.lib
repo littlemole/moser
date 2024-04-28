@@ -24,7 +24,8 @@ class Windows_Foundation_Collections_IPropertySet : WinRtInterface
     Windows_Foundation_Collections_IPropertySet( comPtr )
     {
         var Windows = runtime.global("Windows");
-        this.comPtr = comPtr.queryInterface( "{8A43ED9F-F4E6-4421-ACF9-1DAB2986820C}");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{8A43ED9F-F4E6-4421-ACF9-1DAB2986820C}");
     }
 
 
@@ -40,7 +41,8 @@ class Windows_Foundation_Collections_IVectorChangedEventArgs : WinRtInterface
     Windows_Foundation_Collections_IVectorChangedEventArgs( comPtr )
     {
         var Windows = runtime.global("Windows");
-        this.comPtr = comPtr.queryInterface( "{575933DF-34FE-4480-AF15-07691F3D5D9B}");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{575933DF-34FE-4480-AF15-07691F3D5D9B}");
     }
 
     //@VtableIndex(6)
@@ -48,6 +50,7 @@ class Windows_Foundation_Collections_IVectorChangedEventArgs : WinRtInterface
     //@Returns("Windows.Foundation.Collections.CollectionChange")
     get_CollectionChange()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 6, "UInt32", [], [] );
         return _r;
@@ -58,6 +61,7 @@ class Windows_Foundation_Collections_IVectorChangedEventArgs : WinRtInterface
     //@Returns("UInt32")
     get_Index()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke( 7, "UInt32", [], [] );
         return _r;
@@ -78,7 +82,8 @@ class Windows_Foundation_Collections_PropertySet : WinRtInterface
     Windows_Foundation_Collections_PropertySet( comPtr )
     {
         var Windows = runtime.global("Windows");
-        this.comPtr = comPtr.queryInterface( Windows.Foundation.Collections.IPropertySet.iid );
+        if(!comPtr || !int(comPtr)) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( Windows.Foundation.Collections.IPropertySet.iid );
     }
 
     static Create()
@@ -92,6 +97,7 @@ class Windows_Foundation_Collections_PropertySet : WinRtInterface
     //@Parameters("Windows.Foundation.Collections.MapChangedEventHandler`2<String,Object>")
     add_MapChanged(vhnd)
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Foundation.Collections.IObservableMap_2_String_Object_( this.comPtr );
         var _r = iface.add_MapChanged( vhnd );
@@ -104,6 +110,7 @@ class Windows_Foundation_Collections_PropertySet : WinRtInterface
     //@Parameters("Windows.Foundation.EventRegistrationToken")
     remove_MapChanged(token)
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Foundation.Collections.IObservableMap_2_String_Object_( this.comPtr );
         iface.remove_MapChanged( token );
@@ -115,6 +122,7 @@ class Windows_Foundation_Collections_PropertySet : WinRtInterface
     //@Parameters("String")
     Lookup(key)
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Foundation.Collections.IMap_2_String_Object_( this.comPtr );
         var _r = iface.Lookup( key );
@@ -125,6 +133,7 @@ class Windows_Foundation_Collections_PropertySet : WinRtInterface
     //@Returns("UInt32")
     get_Size()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Foundation.Collections.IMap_2_String_Object_( this.comPtr );
         var _r = iface.get_Size(  );
@@ -137,6 +146,7 @@ class Windows_Foundation_Collections_PropertySet : WinRtInterface
     //@Parameters("String")
     HasKey(key)
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Foundation.Collections.IMap_2_String_Object_( this.comPtr );
         var _r = iface.HasKey( key );
@@ -147,6 +157,7 @@ class Windows_Foundation_Collections_PropertySet : WinRtInterface
     //@Returns("Windows.Foundation.Collections.IMapView`2<String,Object>")
     GetView()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Foundation.Collections.IMap_2_String_Object_( this.comPtr );
         var _r = iface.GetView(  );
@@ -159,6 +170,7 @@ class Windows_Foundation_Collections_PropertySet : WinRtInterface
     //@Parameters("String","Object")
     Insert(key,value)
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Foundation.Collections.IMap_2_String_Object_( this.comPtr );
         var _r = iface.Insert( key, value );
@@ -171,6 +183,7 @@ class Windows_Foundation_Collections_PropertySet : WinRtInterface
     //@Parameters("String")
     Remove(key)
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Foundation.Collections.IMap_2_String_Object_( this.comPtr );
         iface.Remove( key );
@@ -180,6 +193,7 @@ class Windows_Foundation_Collections_PropertySet : WinRtInterface
     //@Returns("void")
     Clear()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Foundation.Collections.IMap_2_String_Object_( this.comPtr );
         iface.Clear(  );
@@ -189,6 +203,7 @@ class Windows_Foundation_Collections_PropertySet : WinRtInterface
     //@Returns("Windows.Foundation.Collections.IIterator`1<Windows.Foundation.Collections.IKeyValuePair`2<String,Object>>")
     First()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Foundation.Collections.IIterable_1_Windows_Foundation_Collections_IKeyValuePair_2_String_Object__( this.comPtr );
         var _r = iface.First(  );
@@ -222,6 +237,7 @@ class Windows_Foundation_Collections_StringMap : WinRtInterface
     //@Parameters("String")
     Lookup(key)
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Foundation.Collections.IMap_2_String_String_( this.comPtr );
         var _r = iface.Lookup( key );
@@ -232,6 +248,7 @@ class Windows_Foundation_Collections_StringMap : WinRtInterface
     //@Returns("UInt32")
     get_Size()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Foundation.Collections.IMap_2_String_String_( this.comPtr );
         var _r = iface.get_Size(  );
@@ -244,6 +261,7 @@ class Windows_Foundation_Collections_StringMap : WinRtInterface
     //@Parameters("String")
     HasKey(key)
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Foundation.Collections.IMap_2_String_String_( this.comPtr );
         var _r = iface.HasKey( key );
@@ -254,6 +272,7 @@ class Windows_Foundation_Collections_StringMap : WinRtInterface
     //@Returns("Windows.Foundation.Collections.IMapView`2<String,String>")
     GetView()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Foundation.Collections.IMap_2_String_String_( this.comPtr );
         var _r = iface.GetView(  );
@@ -266,6 +285,7 @@ class Windows_Foundation_Collections_StringMap : WinRtInterface
     //@Parameters("String","String")
     Insert(key,value)
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Foundation.Collections.IMap_2_String_String_( this.comPtr );
         var _r = iface.Insert( key, value );
@@ -278,6 +298,7 @@ class Windows_Foundation_Collections_StringMap : WinRtInterface
     //@Parameters("String")
     Remove(key)
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Foundation.Collections.IMap_2_String_String_( this.comPtr );
         iface.Remove( key );
@@ -287,6 +308,7 @@ class Windows_Foundation_Collections_StringMap : WinRtInterface
     //@Returns("void")
     Clear()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Foundation.Collections.IMap_2_String_String_( this.comPtr );
         iface.Clear(  );
@@ -296,6 +318,7 @@ class Windows_Foundation_Collections_StringMap : WinRtInterface
     //@Returns("Windows.Foundation.Collections.IIterator`1<Windows.Foundation.Collections.IKeyValuePair`2<String,String>>")
     First()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Foundation.Collections.IIterable_1_Windows_Foundation_Collections_IKeyValuePair_2_String_String__( this.comPtr );
         var _r = iface.First(  );
@@ -308,6 +331,7 @@ class Windows_Foundation_Collections_StringMap : WinRtInterface
     //@Parameters("Windows.Foundation.Collections.MapChangedEventHandler`2<String,String>")
     add_MapChanged(vhnd)
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Foundation.Collections.IObservableMap_2_String_String_( this.comPtr );
         var _r = iface.add_MapChanged( vhnd );
@@ -320,6 +344,7 @@ class Windows_Foundation_Collections_StringMap : WinRtInterface
     //@Parameters("Windows.Foundation.EventRegistrationToken")
     remove_MapChanged(token)
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Foundation.Collections.IObservableMap_2_String_String_( this.comPtr );
         iface.remove_MapChanged( token );
@@ -339,7 +364,8 @@ class Windows_Foundation_Collections_ValueSet : WinRtInterface
     Windows_Foundation_Collections_ValueSet( comPtr )
     {
         var Windows = runtime.global("Windows");
-        this.comPtr = comPtr.queryInterface( Windows.Foundation.Collections.IPropertySet.iid );
+        if(!comPtr || !int(comPtr)) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( Windows.Foundation.Collections.IPropertySet.iid );
     }
 
     static Create()
@@ -353,6 +379,7 @@ class Windows_Foundation_Collections_ValueSet : WinRtInterface
     //@Parameters("Windows.Foundation.Collections.MapChangedEventHandler`2<String,Object>")
     add_MapChanged(vhnd)
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Foundation.Collections.IObservableMap_2_String_Object_( this.comPtr );
         var _r = iface.add_MapChanged( vhnd );
@@ -365,6 +392,7 @@ class Windows_Foundation_Collections_ValueSet : WinRtInterface
     //@Parameters("Windows.Foundation.EventRegistrationToken")
     remove_MapChanged(token)
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Foundation.Collections.IObservableMap_2_String_Object_( this.comPtr );
         iface.remove_MapChanged( token );
@@ -376,6 +404,7 @@ class Windows_Foundation_Collections_ValueSet : WinRtInterface
     //@Parameters("String")
     Lookup(key)
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Foundation.Collections.IMap_2_String_Object_( this.comPtr );
         var _r = iface.Lookup( key );
@@ -386,6 +415,7 @@ class Windows_Foundation_Collections_ValueSet : WinRtInterface
     //@Returns("UInt32")
     get_Size()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Foundation.Collections.IMap_2_String_Object_( this.comPtr );
         var _r = iface.get_Size(  );
@@ -398,6 +428,7 @@ class Windows_Foundation_Collections_ValueSet : WinRtInterface
     //@Parameters("String")
     HasKey(key)
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Foundation.Collections.IMap_2_String_Object_( this.comPtr );
         var _r = iface.HasKey( key );
@@ -408,6 +439,7 @@ class Windows_Foundation_Collections_ValueSet : WinRtInterface
     //@Returns("Windows.Foundation.Collections.IMapView`2<String,Object>")
     GetView()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Foundation.Collections.IMap_2_String_Object_( this.comPtr );
         var _r = iface.GetView(  );
@@ -420,6 +452,7 @@ class Windows_Foundation_Collections_ValueSet : WinRtInterface
     //@Parameters("String","Object")
     Insert(key,value)
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Foundation.Collections.IMap_2_String_Object_( this.comPtr );
         var _r = iface.Insert( key, value );
@@ -432,6 +465,7 @@ class Windows_Foundation_Collections_ValueSet : WinRtInterface
     //@Parameters("String")
     Remove(key)
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Foundation.Collections.IMap_2_String_Object_( this.comPtr );
         iface.Remove( key );
@@ -441,6 +475,7 @@ class Windows_Foundation_Collections_ValueSet : WinRtInterface
     //@Returns("void")
     Clear()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Foundation.Collections.IMap_2_String_Object_( this.comPtr );
         iface.Clear(  );
@@ -450,6 +485,7 @@ class Windows_Foundation_Collections_ValueSet : WinRtInterface
     //@Returns("Windows.Foundation.Collections.IIterator`1<Windows.Foundation.Collections.IKeyValuePair`2<String,Object>>")
     First()
     {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var iface = Windows.Foundation.Collections.IIterable_1_Windows_Foundation_Collections_IKeyValuePair_2_String_Object__( this.comPtr );
         var _r = iface.First(  );
@@ -469,7 +505,8 @@ class Windows_Foundation_Collections_IObservableMap_2_String_String_ : WinRtInte
 {
     Windows_Foundation_Collections_IObservableMap_2_String_String_( comPtr )
     {
-        this.comPtr = comPtr.queryInterface( "{1E036276-2F60-55F6-B7F3-F86079E6900B}");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{1E036276-2F60-55F6-B7F3-F86079E6900B}");
     }
 
     //@VtableIndex(6)
@@ -477,6 +514,7 @@ class Windows_Foundation_Collections_IObservableMap_2_String_String_ : WinRtInte
     //@Parameters("Windows.Foundation.Collections.MapChangedEventHandler`2<T0,T1>")
     add_MapChanged(vhnd)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = nil; 
         if( typeof(vhnd) == "comptr" ) { 
@@ -493,6 +531,7 @@ class Windows_Foundation_Collections_IObservableMap_2_String_String_ : WinRtInte
     //@Parameters("Windows.Foundation.EventRegistrationToken")
     remove_MapChanged(token)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = token;
         this.comPtr.invoke(7, "void", ["Windows.Foundation.EventRegistrationToken"], [p1] );
@@ -512,7 +551,8 @@ class Windows_Foundation_Collections_IObservableMap_2_String_Object_ : WinRtInte
 {
     Windows_Foundation_Collections_IObservableMap_2_String_Object_( comPtr )
     {
-        this.comPtr = comPtr.queryInterface( "{236AAC9D-FB12-5C4D-A41C-9E445FB4D7EC}");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{236AAC9D-FB12-5C4D-A41C-9E445FB4D7EC}");
     }
 
     //@VtableIndex(6)
@@ -520,6 +560,7 @@ class Windows_Foundation_Collections_IObservableMap_2_String_Object_ : WinRtInte
     //@Parameters("Windows.Foundation.Collections.MapChangedEventHandler`2<T0,T1>")
     add_MapChanged(vhnd)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = nil; 
         if( typeof(vhnd) == "comptr" ) { 
@@ -536,6 +577,7 @@ class Windows_Foundation_Collections_IObservableMap_2_String_Object_ : WinRtInte
     //@Parameters("Windows.Foundation.EventRegistrationToken")
     remove_MapChanged(token)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = token;
         this.comPtr.invoke(7, "void", ["Windows.Foundation.EventRegistrationToken"], [p1] );
@@ -555,7 +597,8 @@ class Windows_Foundation_Collections_IMap_2_String_String_ : WinRtInterface
 {
     Windows_Foundation_Collections_IMap_2_String_String_( comPtr )
     {
-        this.comPtr = comPtr.queryInterface( "{F6D1F700-49C2-52AE-8154-826F9908773C}");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{F6D1F700-49C2-52AE-8154-826F9908773C}");
     }
 
     //@VtableIndex(6)
@@ -563,6 +606,7 @@ class Windows_Foundation_Collections_IMap_2_String_String_ : WinRtInterface
     //@Parameters("T0")
     Lookup(key)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = key;
         var _r = this.comPtr.invoke(6, "String", ["String"], [p1] );
@@ -573,6 +617,7 @@ class Windows_Foundation_Collections_IMap_2_String_String_ : WinRtInterface
     //@Returns("UInt32")
     get_Size()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke(7, "UInt32", [], [] );
         return _r;
@@ -583,6 +628,7 @@ class Windows_Foundation_Collections_IMap_2_String_String_ : WinRtInterface
     //@Parameters("T0")
     HasKey(key)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = key;
         var _r = this.comPtr.invoke(8, "Boolean", ["String"], [p1] );
@@ -593,6 +639,7 @@ class Windows_Foundation_Collections_IMap_2_String_String_ : WinRtInterface
     //@Returns("Windows.Foundation.Collections.IMapView`2<T0,T1>")
     GetView()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = Windows.Foundation.Collections.IMapView_2_String_String_(
             this.comPtr.invoke(9, "Windows.Foundation.Collections.IMapView`2<String,String>", [], [] )
@@ -605,6 +652,7 @@ class Windows_Foundation_Collections_IMap_2_String_String_ : WinRtInterface
     //@Parameters("T0","T1")
     Insert(key,value)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = key;
         var p2 = value;
@@ -617,6 +665,7 @@ class Windows_Foundation_Collections_IMap_2_String_String_ : WinRtInterface
     //@Parameters("T0")
     Remove(key)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = key;
         this.comPtr.invoke(11, "void", ["String"], [p1] );
@@ -626,6 +675,7 @@ class Windows_Foundation_Collections_IMap_2_String_String_ : WinRtInterface
     //@Returns("void")
     Clear()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         this.comPtr.invoke(12, "void", [], [] );
     }
@@ -644,7 +694,8 @@ class Windows_Foundation_Collections_IMap_2_String_Object_ : WinRtInterface
 {
     Windows_Foundation_Collections_IMap_2_String_Object_( comPtr )
     {
-        this.comPtr = comPtr.queryInterface( "{1B0D3570-0877-5EC2-8A2C-3B9539506ACA}");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{1B0D3570-0877-5EC2-8A2C-3B9539506ACA}");
     }
 
     //@VtableIndex(6)
@@ -652,6 +703,7 @@ class Windows_Foundation_Collections_IMap_2_String_Object_ : WinRtInterface
     //@Parameters("T0")
     Lookup(key)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = key;
         var _r = this.comPtr.invoke(6, "Object", ["String"], [p1] );
@@ -662,6 +714,7 @@ class Windows_Foundation_Collections_IMap_2_String_Object_ : WinRtInterface
     //@Returns("UInt32")
     get_Size()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke(7, "UInt32", [], [] );
         return _r;
@@ -672,6 +725,7 @@ class Windows_Foundation_Collections_IMap_2_String_Object_ : WinRtInterface
     //@Parameters("T0")
     HasKey(key)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = key;
         var _r = this.comPtr.invoke(8, "Boolean", ["String"], [p1] );
@@ -682,6 +736,7 @@ class Windows_Foundation_Collections_IMap_2_String_Object_ : WinRtInterface
     //@Returns("Windows.Foundation.Collections.IMapView`2<T0,T1>")
     GetView()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = Windows.Foundation.Collections.IMapView_2_String_Object_(
             this.comPtr.invoke(9, "Windows.Foundation.Collections.IMapView`2<String,Object>", [], [] )
@@ -694,6 +749,7 @@ class Windows_Foundation_Collections_IMap_2_String_Object_ : WinRtInterface
     //@Parameters("T0","T1")
     Insert(key,value)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = key;
         var p2 = value;
@@ -706,6 +762,7 @@ class Windows_Foundation_Collections_IMap_2_String_Object_ : WinRtInterface
     //@Parameters("T0")
     Remove(key)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = key;
         this.comPtr.invoke(11, "void", ["String"], [p1] );
@@ -715,6 +772,7 @@ class Windows_Foundation_Collections_IMap_2_String_Object_ : WinRtInterface
     //@Returns("void")
     Clear()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         this.comPtr.invoke(12, "void", [], [] );
     }
@@ -733,7 +791,8 @@ class Windows_Foundation_Collections_IMapView_2_String_String_ : WinRtInterface
 {
     Windows_Foundation_Collections_IMapView_2_String_String_( comPtr )
     {
-        this.comPtr = comPtr.queryInterface( "{AC7F26F2-FEB7-5B2A-8AC4-345BC62CAEDE}");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{AC7F26F2-FEB7-5B2A-8AC4-345BC62CAEDE}");
     }
 
     //@VtableIndex(6)
@@ -741,6 +800,7 @@ class Windows_Foundation_Collections_IMapView_2_String_String_ : WinRtInterface
     //@Parameters("T0")
     Lookup(key)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = key;
         var _r = this.comPtr.invoke(6, "String", ["String"], [p1] );
@@ -751,6 +811,7 @@ class Windows_Foundation_Collections_IMapView_2_String_String_ : WinRtInterface
     //@Returns("UInt32")
     get_Size()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke(7, "UInt32", [], [] );
         return _r;
@@ -761,6 +822,7 @@ class Windows_Foundation_Collections_IMapView_2_String_String_ : WinRtInterface
     //@Parameters("T0")
     HasKey(key)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = key;
         var _r = this.comPtr.invoke(8, "Boolean", ["String"], [p1] );
@@ -781,7 +843,8 @@ class Windows_Foundation_Collections_IMapView_2_String_Object_ : WinRtInterface
 {
     Windows_Foundation_Collections_IMapView_2_String_Object_( comPtr )
     {
-        this.comPtr = comPtr.queryInterface( "{BB78502A-F79D-54FA-92C9-90C5039FDF7E}");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{BB78502A-F79D-54FA-92C9-90C5039FDF7E}");
     }
 
     //@VtableIndex(6)
@@ -789,6 +852,7 @@ class Windows_Foundation_Collections_IMapView_2_String_Object_ : WinRtInterface
     //@Parameters("T0")
     Lookup(key)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = key;
         var _r = this.comPtr.invoke(6, "Object", ["String"], [p1] );
@@ -799,6 +863,7 @@ class Windows_Foundation_Collections_IMapView_2_String_Object_ : WinRtInterface
     //@Returns("UInt32")
     get_Size()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke(7, "UInt32", [], [] );
         return _r;
@@ -809,6 +874,7 @@ class Windows_Foundation_Collections_IMapView_2_String_Object_ : WinRtInterface
     //@Parameters("T0")
     HasKey(key)
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var p1 = key;
         var _r = this.comPtr.invoke(8, "Boolean", ["String"], [p1] );
@@ -829,13 +895,15 @@ class Windows_Foundation_Collections_IKeyValuePair_2_String_String_ : WinRtInter
 {
     Windows_Foundation_Collections_IKeyValuePair_2_String_String_( comPtr )
     {
-        this.comPtr = comPtr.queryInterface( "{60310303-49C5-52E6-ABC6-A9B36ECCC716}");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{60310303-49C5-52E6-ABC6-A9B36ECCC716}");
     }
 
     //@VtableIndex(6)
     //@Returns("T0")
     get_Key()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke(6, "String", [], [] );
         return _r;
@@ -845,6 +913,7 @@ class Windows_Foundation_Collections_IKeyValuePair_2_String_String_ : WinRtInter
     //@Returns("T1")
     get_Value()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke(7, "String", [], [] );
         return _r;
@@ -864,13 +933,15 @@ class Windows_Foundation_Collections_IKeyValuePair_2_String_Object_ : WinRtInter
 {
     Windows_Foundation_Collections_IKeyValuePair_2_String_Object_( comPtr )
     {
-        this.comPtr = comPtr.queryInterface( "{09335560-6C6B-5A26-9348-97B781132B20}");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{09335560-6C6B-5A26-9348-97B781132B20}");
     }
 
     //@VtableIndex(6)
     //@Returns("T0")
     get_Key()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke(6, "String", [], [] );
         return _r;
@@ -880,6 +951,7 @@ class Windows_Foundation_Collections_IKeyValuePair_2_String_Object_ : WinRtInter
     //@Returns("T1")
     get_Value()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke(7, "Object", [], [] );
         return _r;
@@ -899,13 +971,15 @@ class Windows_Foundation_Collections_IIterator_1_Windows_Foundation_Collections_
 {
     Windows_Foundation_Collections_IIterator_1_Windows_Foundation_Collections_IKeyValuePair_2_String_String__( comPtr )
     {
-        this.comPtr = comPtr.queryInterface( "{05EB86F1-7140-5517-B88D-CBAEBE57E6B1}");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{05EB86F1-7140-5517-B88D-CBAEBE57E6B1}");
     }
 
     //@VtableIndex(6)
     //@Returns("T0")
     get_Current()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = Windows.Foundation.Collections.IKeyValuePair_2_String_String_(
             this.comPtr.invoke(6, "Windows.Foundation.Collections.IKeyValuePair`2<String,String>", [], [] )
@@ -917,6 +991,7 @@ class Windows_Foundation_Collections_IIterator_1_Windows_Foundation_Collections_
     //@Returns("Boolean")
     get_HasCurrent()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke(7, "Boolean", [], [] );
         return _r;
@@ -926,6 +1001,7 @@ class Windows_Foundation_Collections_IIterator_1_Windows_Foundation_Collections_
     //@Returns("Boolean")
     MoveNext()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke(8, "Boolean", [], [] );
         return _r;
@@ -945,13 +1021,15 @@ class Windows_Foundation_Collections_IIterator_1_Windows_Foundation_Collections_
 {
     Windows_Foundation_Collections_IIterator_1_Windows_Foundation_Collections_IKeyValuePair_2_String_Object__( comPtr )
     {
-        this.comPtr = comPtr.queryInterface( "{5DB5FA32-707C-5849-A06B-91C8EB9D10E8}");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{5DB5FA32-707C-5849-A06B-91C8EB9D10E8}");
     }
 
     //@VtableIndex(6)
     //@Returns("T0")
     get_Current()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = Windows.Foundation.Collections.IKeyValuePair_2_String_Object_(
             this.comPtr.invoke(6, "Windows.Foundation.Collections.IKeyValuePair`2<String,Object>", [], [] )
@@ -963,6 +1041,7 @@ class Windows_Foundation_Collections_IIterator_1_Windows_Foundation_Collections_
     //@Returns("Boolean")
     get_HasCurrent()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke(7, "Boolean", [], [] );
         return _r;
@@ -972,6 +1051,7 @@ class Windows_Foundation_Collections_IIterator_1_Windows_Foundation_Collections_
     //@Returns("Boolean")
     MoveNext()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke(8, "Boolean", [], [] );
         return _r;
@@ -991,13 +1071,15 @@ class Windows_Foundation_Collections_IIterable_1_Windows_Foundation_Collections_
 {
     Windows_Foundation_Collections_IIterable_1_Windows_Foundation_Collections_IKeyValuePair_2_( comPtr )
     {
-        this.comPtr = comPtr.queryInterface( "{FE2F3D47-5D47-5499-8374-430C7CDA0204}");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{FE2F3D47-5D47-5499-8374-430C7CDA0204}");
     }
 
     //@VtableIndex(6)
     //@Returns("Windows.Foundation.Collections.IIterator`1<T0>")
     First()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = Windows.Foundation.Collections.IIterator_1_Windows_Foundation_Collections_IKeyValuePair_2_(
             this.comPtr.invoke(6, "Windows.Foundation.Collections.IIterator`1<Windows.Foundation.Collections.IKeyValuePair`2>", [], [] )
@@ -1034,13 +1116,15 @@ class Windows_Foundation_Collections_IMapChangedEventArgs_1_String_ : WinRtInter
 {
     Windows_Foundation_Collections_IMapChangedEventArgs_1_String_( comPtr )
     {
-        this.comPtr = comPtr.queryInterface( "{60141EFB-F2F9-5377-96FD-F8C60D9558B5}");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{60141EFB-F2F9-5377-96FD-F8C60D9558B5}");
     }
 
     //@VtableIndex(6)
     //@Returns("Windows.Foundation.Collections.CollectionChange")
     get_CollectionChange()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke(6, "UInt32", [], [] );
         return _r;
@@ -1050,6 +1134,7 @@ class Windows_Foundation_Collections_IMapChangedEventArgs_1_String_ : WinRtInter
     //@Returns("T0")
     get_Key()
     {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
         var Windows = runtime.global("Windows");
         var _r = this.comPtr.invoke(7, "String", [], [] );
         return _r;

@@ -1,18 +1,15 @@
 namespace moxaml
 {
-     [default_interface]
-     runtimeclass App : Microsoft.Toolkit.Win32.UI.XamlHost.XamlApplication
-     {
-        App();
-     }
 
+
+    [bindable]
     [default_interface]
-    runtimeclass mox : Windows.UI.Xaml.DependencyObject
+    runtimeclass mox : Microsoft.UI.Xaml.DependencyObject
     {
         mox();
-        static Windows.UI.Xaml.DependencyProperty EventProperty{ get; };
-        static String GetEvent(Windows.UI.Xaml.DependencyObject target);
-        static void SetEvent(Windows.UI.Xaml.DependencyObject target, String value);
+        static Microsoft.UI.Xaml.DependencyProperty EventProperty{ get; };
+        static String GetEvent(Microsoft.UI.Xaml.DependencyObject target);
+        static void SetEvent(Microsoft.UI.Xaml.DependencyObject target, String value);
     }
 
     [default_interface]

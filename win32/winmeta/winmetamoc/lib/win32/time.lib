@@ -36,6 +36,7 @@ Win32.TSF_Hardware = 1;
 Win32.TSF_Authenticated = 2;
 Win32.TSF_IPv6 = 4;
 Win32.TSF_SignatureAuthenticated = 8;
+Win32.TIME_ZONE_ID_INVALID = 4294967295;
 Win32.SystemTimeToTzSpecificLocalTime = foreign.native( "KERNEL32.dll", "int", "SystemTimeToTzSpecificLocalTime", [ "ptr", "ptr", "ptr" ] ); 
 Win32.TzSpecificLocalTimeToSystemTime = foreign.native( "KERNEL32.dll", "int", "TzSpecificLocalTimeToSystemTime", [ "ptr", "ptr", "ptr" ] ); 
 Win32.FileTimeToSystemTime = foreign.native( "KERNEL32.dll", "int", "FileTimeToSystemTime", [ "ptr", "ptr" ] ); 

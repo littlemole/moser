@@ -11,18 +11,20 @@ import("win/rt/Windows.Foundation.Collections");
 import("win/rt/Windows.Storage");
 import("win/rt/Windows.Storage.Streams");
 import("win/rt/Windows.Storage.Pickers");
-import("win/rt/Windows.UI");
-import("win/rt/Windows.UI.Xaml");
-import("win/rt/Windows.UI.Xaml.Hosting");
-import("rt/Windows.UI.Xaml.Markup");
-import("win/rt/Windows.UI.Xaml.Interop");
-import("win/rt/Windows.UI.Xaml.Data");
-import("win/rt/Windows.UI.Xaml.Input");
-import("win/rt/Windows.UI.Xaml.Controls");
-import("win/rt/Windows.UI.Xaml.Controls.Primitives");
-
+import("rt\Windows.Graphics");
+import("rt\Microsoft.UI");
+import("rt/Microsoft.UI.Content");
+import("rt/Microsoft.UI.Dispatching");
+import("rt/Microsoft.UI.Windowing");
+import("rt\Microsoft.UI.Xaml");
+import("rt\Microsoft.UI.Xaml.Hosting");
+import("rt\Microsoft.UI.Xaml.Markup");
+import("rt\Microsoft.UI.Xaml.Interop");
+import("rt\Microsoft.UI.Xaml.Data");
+import("rt\Microsoft.UI.Xaml.Input");
+import("rt\Microsoft.UI.Xaml.Controls");
+import("rt\Microsoft.UI.Xaml.Controls.Primitives");
 import("win/rt/Microsoft.Web.WebView2.Core");
-import("win/rt/Microsoft.UI.Xaml.Controls");
 
 import("win/rt/moxaml");
 
@@ -35,7 +37,7 @@ var main_xaml = "
 <Page Name='thePage' xmlns='http://schemas.microsoft.com/winfx/2006/xaml/presentation' 
     xmlns:x='http://schemas.microsoft.com/winfx/2006/xaml'
     xmlns:mux='using:Microsoft.UI.Xaml.Controls'
-    xmlns:m='using:moxaml'>
+    xmlns:m='using:moxaml'  Background='{ThemeResource MoserBackground}'>
     <Grid Name='theGrid'>
 
         <Grid.ColumnDefinitions>
@@ -119,7 +121,11 @@ class MyWindow : Window
     @msg(WM_SIZE)
     onSize(wParam,lParam)
     {
-        this.resizeChild( this.xamlWnd);
+	var width = LOWORD(int(lParam));
+        var height = HIWORD(int(lParam));
+
+	if(this.xamlWnd)
+	    this.xamlWnd.size(0,0,width,height);
         return 0;
     }
     
@@ -137,6 +143,6 @@ var wnd = MyWindow();
 
 wnd.create( "my xaml webview window");
 wnd.show();
-run(wnd);
+Xaml.run();
 
 print "OK";

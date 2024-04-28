@@ -10,10 +10,10 @@ project(
 
 IF (WIN32)
 
-  include_directories(include  ${_VCPKG_INSTALLED_DIR}/${_MSVC_CXX_ARCHITECTURE_FAMILY}-${Z_VCPKG_TARGET_TRIPLET_PLAT}/include)
+  include_directories(include include/win32/xaml  ${_VCPKG_INSTALLED_DIR}/${_MSVC_CXX_ARCHITECTURE_FAMILY}-${Z_VCPKG_TARGET_TRIPLET_PLAT}/include)
 
   add_compile_definitions(_CRT_SECURE_NO_WARNINGS)
-  add_compile_options(/W4)
+  add_compile_options(/W4 /wd4505)
   set(VCPKG_CRT_LINKAGE dynamic) 
 
   find_package(nlohmann_json CONFIG REQUIRED)
@@ -23,7 +23,7 @@ IF (WIN32)
 
 else()
 
-  include_directories(include)
+  include_directories(include include/win32/xaml)
   add_compile_options(-Wall -Wextra -Wpedantic -Werror)
 
   find_package(nlohmann_json CONFIG REQUIRED)
@@ -59,7 +59,7 @@ set(SOURCES
 )
 
 IF (WIN32)
-	set(SOURCES ${SOURCES} moser.manifest)
+	set(SOURCES ${SOURCES} src/win32/xmoser.rc moser.manifest)
 endif()
 
 add_executable(moser 
@@ -71,13 +71,39 @@ target_link_libraries(moser PRIVATE ${LIBS})
 file(COPY lib DESTINATION  ${CMAKE_BINARY_DIR} )
 
 
+if(UNIX) 
+
 ############################################
 # install rules
 ############################################
 
-if(UNIX) 
-
   install(TARGETS moser DESTINATION bin)
   install(DIRECTORY "lib" DESTINATION "lib/moser/" )
+
+  
+############################################
+# Create and install package configuration 
+# and version files.
+############################################
+
+configure_file(
+   ${moser_SOURCE_DIR}/moser-config.cmake.in
+   ${moser_BINARY_DIR}/moser-config.cmake @ONLY)
+
+configure_file(
+   ${moser_SOURCE_DIR}/moser-config-version.cmake.in
+   ${moser_BINARY_DIR}/moser-config-version.cmake @ONLY)
+
+#install(FILES ${moser_BINARY_DIR}/moser-config.cmake
+#         ${moser_BINARY_DIR}/moser-config-version.cmake
+#         DESTINATION lib/cryptoneat-${VERSION})
+
+############################################
+# packaging
+############################################
+
+set(CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}")
+include(package)
+           
 
 endif()

@@ -162,9 +162,15 @@ inline void visit_elemSig(ElemSig& elemSig, std::string& result)
                         result = oss.str();
                     }, av.value);
             }
+            /*
+            else if constexpr (std::is_same_v< std::decay_t<decltype(av)>, unsigned int>)
+            {
+                result = "long";
+            }
+            */
             else
             {
-                result = av;
+                result = "";
             }
         }, elemSig.value);
 }
@@ -248,6 +254,11 @@ inline void visit_fixArgSig(FixedArgSig fixedArgSig, std::vector<std::string>& r
     }
 }
 
+inline void visit_namedArgSig(NamedArgSig namedArgSig, std::vector<std::string>& result)
+{
+    visit_fixArgSig(namedArgSig.value, result);
+}
+
 template<class T>
 std::map<std::string, std::vector<std::vector<std::string>>> get_attrs(T& typeDef)
 {
@@ -258,15 +269,26 @@ std::map<std::string, std::vector<std::vector<std::string>>> get_attrs(T& typeDe
     {
         std::vector<std::string> v;
 
-        if (attr.TypeNamespaceAndName().second == "OverloadAttribute")
+        if (attr.TypeNamespaceAndName().second == "ContentPropertyAttribute")
         {
             int x = 0;
         }
 
         auto n = std::string(attr.TypeNamespaceAndName().second);
         auto value = attr.Value();
+
+        std::vector<NamedArgSig> namedArgs = value.NamedArgs();
         std::vector<FixedArgSig> fixedArgs = value.FixedArgs();
 
+        if (!namedArgs.empty())
+        {
+            for (auto&& arg : namedArgs)
+            {
+//                std::string n = arg.name;
+                visit_namedArgSig(arg, v);
+            }
+        }
+        else
         if (!fixedArgs.empty())
         {
             for (auto&& arg : fixedArgs)
@@ -544,7 +566,7 @@ inline std::vector<std::string> get_statics(TypeDef& typeDef)
 
 inline std::vector<std::string> get_factories(TypeDef& typeDef)
 {
-    if (fullName(typeDef.TypeNamespace(), typeDef.TypeName()) == "Microsoft.Web.WebView2.Core.CoreWebView2EnvironmentOptions")
+    if (fullName(typeDef.TypeNamespace(), typeDef.TypeName()) == "Windows.Storage.Pickers.FileOpenPicker")// "Microsoft.UI.Dispatching.DispatcherExitDeferral")
     {
         int x = 1;
     }
@@ -588,7 +610,7 @@ inline std::vector<std::string> split_generic(const std::string& gen)
 
     auto wgen = to_wstring(gen);
     HSTRING hstr = nullptr;
-    ::WindowsCreateString(wgen.c_str(), wgen.size(), &hstr);
+    ::WindowsCreateString(wgen.c_str(), (UINT32)wgen.size(), &hstr);
 
     DWORD cnt = 0;
     HSTRING* parts = nullptr;
@@ -599,12 +621,12 @@ inline std::vector<std::string> split_generic(const std::string& gen)
         return result;
     }
 
-    for (int i = 0; i < cnt; i++)
+    for (unsigned int i = 0; i < cnt; i++)
     {
-        result.push_back(to_utf8(WindowsGetStringRawBuffer(parts[i], nullptr)));
+        result.push_back(to_utf8(WindowsGetStringRawBuffer(parts[i], 0)));
     }
 
-    for (int i = 0; i < cnt; i++)
+    for (unsigned int i = 0; i < cnt; i++)
     {
         ::WindowsDeleteString(parts[i]);
     }

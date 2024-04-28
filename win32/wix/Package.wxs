@@ -1,0 +1,55 @@
+﻿<Wix xmlns="http://wixtoolset.org/schemas/v4/wxs"  xmlns:ui="http://wixtoolset.org/schemas/v4/wxs/ui">
+  <Package Name="M.O.S.E.R." Manufacturer="mole" Version="1.0.0.0" UpgradeCode="944778a3-373b-479c-bd91-339a43a01500">
+
+
+	  <MajorUpgrade DowngradeErrorMessage="!(loc.DowngradeError)" />
+	  <MediaTemplate EmbedCab="yes" />
+
+	  <!-- package icon -->
+	  <Icon Id="MainIcon.ico" SourceFile=".\res\moe.ico"/>
+	  <Property Id="ARPPRODUCTICON" Value="MainIcon.ico" />
+
+	  <StandardDirectory Id="LocalAppDataFolder"></StandardDirectory>
+
+
+	  <DirectoryRef Id="TARGETDIR">
+		  <Component Id="Path" Guid="{38E27438-D473-4076-BB8F-B0FE20DDC311}" KeyPath="yes">
+			  <CreateFolder />
+			  <Environment Id="PATH" Name="PATH" Value="[INSTALLFOLDER]" Permanent="no" Part="last" Action="set" System="no" />
+		  </Component>
+		  <Component Id="RegistryEntries" Guid="{0ECF2C08-7021-4EC7-A61D-0C07D49D9C52}">
+			  <RegistryKey Root="HKCU"
+						   Key="Software\Classes\moser\shell\open\command">
+				  <RegistryValue Type="string" Value="&quot;[INSTALLFOLDER]\xmoser.exe&quot; &quot;%1&quot;" KeyPath="yes"/>
+			  </RegistryKey>
+			  <RegistryKey Root="HKCU"
+						   Key="Software\Classes\.msr">
+				  <RegistryValue Type="string" Value="moser" KeyPath="no"/>
+			  </RegistryKey>
+		  </Component>
+	  </DirectoryRef>
+
+
+	  <Feature Id="Moser" AllowAdvertise='no' InstallDefault='local' 
+             Title='moser' Description='moser script execution runtime'
+             Level='1' ConfigurableDirectory="INSTALLFOLDER">
+		<ComponentGroupRef Id="HarvestedComponents" />
+		  <ComponentRef Id='Path' />
+		  <ComponentRef Id='RegistryEntries' />
+
+	  </Feature>
+			  
+	  <!-- WIX UI overrides-->
+	  <WixVariable Id="WixUILicenseRtf" Value=".\res\License.rtf" />
+	  <WixVariable Id="WixUIBannerBmp" Value=".\res\moeinstall.jpg" />
+	  <WixVariable Id="WixUIDialogBmp" Value=".\res\front.jpg" />
+
+	  
+	  <!-- WIX UI support -->
+	  <ui:WixUI
+			  Id="WixUI_InstallDir"
+			  InstallDirectory="INSTALLFOLDER"
+        />
+
+  </Package>
+</Wix>

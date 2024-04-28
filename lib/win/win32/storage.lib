@@ -68,7 +68,7 @@ Win32.FILE_FLAGS_AND_ATTRIBUTES = {
 };
 
 
-Win32.FILE_ACCESS_FLAGS = {
+Win32.FILE_ACCESS_RIGHTS = {
     "FILE_READ_DATA" : 1, 
     "FILE_LIST_DIRECTORY" : 1, 
     "FILE_WRITE_DATA" : 2, 
@@ -265,7 +265,11 @@ Win32.MOVE_FILE_FLAGS = {
 };
 
 
-Win32.FILE_NAME = {
+Win32.GETFINALPATHNAMEBYHANDLE_FLAGS = {
+    "VOLUME_NAME_DOS" : 0, 
+    "VOLUME_NAME_GUID" : 1, 
+    "VOLUME_NAME_NT" : 2, 
+    "VOLUME_NAME_NONE" : 4, 
     "FILE_NAME_NORMALIZED" : 0, 
     "FILE_NAME_OPENED" : 8
 };
@@ -355,16 +359,6 @@ Win32.TAPE_POSITION_METHOD = {
     "TAPE_SPACE_SEQUENTIAL_FMKS" : 7, 
     "TAPE_SPACE_SEQUENTIAL_SMKS" : 9, 
     "TAPE_SPACE_SETMARKS" : 8
-};
-
-
-Win32.NT_CREATE_FILE_DISPOSITION = {
-    "FILE_SUPERSEDE" : 0, 
-    "FILE_CREATE" : 2, 
-    "FILE_OPEN" : 1, 
-    "FILE_OPEN_IF" : 3, 
-    "FILE_OVERWRITE" : 4, 
-    "FILE_OVERWRITE_IF" : 5
 };
 
 
@@ -483,6 +477,35 @@ Win32.SYMBOLIC_LINK_FLAGS = {
 };
 
 
+Win32.COMPRESSION_FORMAT = {
+    "COMPRESSION_FORMAT_NONE" : 0, 
+    "COMPRESSION_FORMAT_DEFAULT" : 1, 
+    "COMPRESSION_FORMAT_LZNT1" : 2, 
+    "COMPRESSION_FORMAT_XPRESS" : 3, 
+    "COMPRESSION_FORMAT_XPRESS_HUFF" : 4, 
+    "COMPRESSION_FORMAT_XP10" : 5
+};
+
+
+Win32.FILE_TYPE = {
+    "FILE_TYPE_UNKNOWN" : 0, 
+    "FILE_TYPE_DISK" : 1, 
+    "FILE_TYPE_CHAR" : 2, 
+    "FILE_TYPE_PIPE" : 3, 
+    "FILE_TYPE_REMOTE" : 32768
+};
+
+
+Win32.FILE_DISPOSITION_INFO_EX_FLAGS = {
+    "FILE_DISPOSITION_FLAG_DO_NOT_DELETE" : 0, 
+    "FILE_DISPOSITION_FLAG_DELETE" : 1, 
+    "FILE_DISPOSITION_FLAG_POSIX_SEMANTICS" : 2, 
+    "FILE_DISPOSITION_FLAG_FORCE_IMAGE_SECTION_CHECK" : 4, 
+    "FILE_DISPOSITION_FLAG_ON_CLOSE" : 8, 
+    "FILE_DISPOSITION_FLAG_IGNORE_READONLY_ATTRIBUTE" : 16
+};
+
+
 Win32.FINDEX_INFO_LEVELS = {
     "FindExInfoStandard" : 0, 
     "FindExInfoBasic" : 1, 
@@ -500,7 +523,9 @@ Win32.FINDEX_SEARCH_OPS = {
 
 Win32.READ_DIRECTORY_NOTIFY_INFORMATION_CLASS = {
     "ReadDirectoryNotifyInformation" : 1, 
-    "ReadDirectoryNotifyExtendedInformation" : 2
+    "ReadDirectoryNotifyExtendedInformation" : 2, 
+    "ReadDirectoryNotifyFullInformation" : 3, 
+    "ReadDirectoryNotifyMaximumInformation" : 4
 };
 
 
@@ -989,7 +1014,9 @@ Win32.SERVER_CERTIFICATE_TYPE = {
 
 Win32.IORING_VERSION = {
     "IORING_VERSION_INVALID" : 0, 
-    "IORING_VERSION_1" : 1
+    "IORING_VERSION_1" : 1, 
+    "IORING_VERSION_2" : 2, 
+    "IORING_VERSION_3" : 300
 };
 
 
@@ -1005,12 +1032,15 @@ Win32.IORING_OP_CODE = {
     "IORING_OP_READ" : 1, 
     "IORING_OP_REGISTER_FILES" : 2, 
     "IORING_OP_REGISTER_BUFFERS" : 3, 
-    "IORING_OP_CANCEL" : 4
+    "IORING_OP_CANCEL" : 4, 
+    "IORING_OP_WRITE" : 5, 
+    "IORING_OP_FLUSH" : 6
 };
 
 
 Win32.IORING_SQE_FLAGS = {
-    "IOSQE_FLAGS_NONE" : 0
+    "IOSQE_FLAGS_NONE" : 0, 
+    "IOSQE_FLAGS_DRAIN_PRECEDING_OPS" : 1
 };
 
 
@@ -1060,6 +1090,20 @@ Win32.STORAGE_BUS_TYPE = {
     "BusTypeUfs" : 19, 
     "BusTypeMax" : 20, 
     "BusTypeMaxReserved" : 127
+};
+
+
+Win32.FILE_WRITE_FLAGS = {
+    "FILE_WRITE_FLAGS_NONE" : 0, 
+    "FILE_WRITE_FLAGS_WRITE_THROUGH" : 1
+};
+
+
+Win32.FILE_FLUSH_MODE = {
+    "FILE_FLUSH_DEFAULT" : 0, 
+    "FILE_FLUSH_DATA" : 1, 
+    "FILE_FLUSH_MIN_METADATA" : 2, 
+    "FILE_FLUSH_NO_SYNC" : 3
 };
 
 
@@ -1117,32 +1161,7 @@ Win32.FILE_DISPOSITION_INFO = foreign.named_struct( "Windows.Win32.Storage.FileS
 ]); 
 
 
-Win32.FindFileHandle = foreign.named_struct( "Windows.Win32.Storage.FileSystem.FindFileHandle", [ 
-    "Value:ptr"
-]); 
-
-
-Win32.FindFileNameHandle = foreign.named_struct( "Windows.Win32.Storage.FileSystem.FindFileNameHandle", [ 
-    "Value:ptr"
-]); 
-
-
-Win32.FindStreamHandle = foreign.named_struct( "Windows.Win32.Storage.FileSystem.FindStreamHandle", [ 
-    "Value:ptr"
-]); 
-
-
-Win32.FindChangeNotificationHandle = foreign.named_struct( "Windows.Win32.Storage.FileSystem.FindChangeNotificationHandle", [ 
-    "Value:ptr"
-]); 
-
-
-Win32.FindVolumeHandle = foreign.named_struct( "Windows.Win32.Storage.FileSystem.FindVolumeHandle", [ 
-    "Value:ptr"
-]); 
-
-
-Win32.FindVolumeMointPointHandle = foreign.named_struct( "Windows.Win32.Storage.FileSystem.FindVolumeMointPointHandle", [ 
+Win32.HIORING = foreign.named_struct( "Windows.Win32.Storage.FileSystem.HIORING", [ 
     "Value:ptr"
 ]); 
 
@@ -1178,7 +1197,7 @@ Win32.WIN32_FIND_DATAW = foreign.named_struct( "Windows.Win32.Storage.FileSystem
 Win32.TRANSACTION_NOTIFICATION = foreign.named_struct( "Windows.Win32.Storage.FileSystem.TRANSACTION_NOTIFICATION", [ 
     "TransactionKey:ptr", 
     "TransactionNotification:uint", 
-    "TmVirtualClock:Windows.Win32.Foundation.LARGE_INTEGER", 
+    "TmVirtualClock:long", 
     "ArgumentLength:uint"
 ]); 
 
@@ -1293,7 +1312,7 @@ Win32.CREATEFILE2_EXTENDED_PARAMETERS = foreign.named_struct( "Windows.Win32.Sto
 
 
 Win32.WIN32_FIND_STREAM_DATA = foreign.named_struct( "Windows.Win32.Storage.FileSystem.WIN32_FIND_STREAM_DATA", [ 
-    "StreamSize:Windows.Win32.Foundation.LARGE_INTEGER", 
+    "StreamSize:long", 
     "cStreamName[296]:short"
 ]); 
 
@@ -1307,9 +1326,9 @@ Win32.VS_FIXEDFILEINFO = foreign.named_struct( "Windows.Win32.Storage.FileSystem
     "dwProductVersionLS:uint", 
     "dwFileFlagsMask:uint", 
     "dwFileFlags:uint", 
-    "dwFileOS:int", 
-    "dwFileType:int", 
-    "dwFileSubtype:int", 
+    "dwFileOS:uint", 
+    "dwFileType:uint", 
+    "dwFileSubtype:uint", 
     "dwFileDateMS:uint", 
     "dwFileDateLS:uint"
 ]); 
@@ -1341,7 +1360,7 @@ Win32.NTMS_ALLOCATION_INFORMATION = foreign.named_struct( "Windows.Win32.Storage
 
 Win32.NTMS_DRIVEINFORMATIONA = foreign.named_struct( "Windows.Win32.Storage.FileSystem.NTMS_DRIVEINFORMATIONA", [ 
     "Number:uint", 
-    "State:int", 
+    "State:uint", 
     "DriveType:ptr", 
     "szDeviceName[64]:Windows.Win32.Foundation.CHAR", 
     "szSerialNumber[32]:Windows.Win32.Foundation.CHAR", 
@@ -1361,7 +1380,7 @@ Win32.NTMS_DRIVEINFORMATIONA = foreign.named_struct( "Windows.Win32.Storage.File
 
 Win32.NTMS_DRIVEINFORMATIONW = foreign.named_struct( "Windows.Win32.Storage.FileSystem.NTMS_DRIVEINFORMATIONW", [ 
     "Number:uint", 
-    "State:int", 
+    "State:uint", 
     "DriveType:ptr", 
     "szDeviceName[64]:short", 
     "szSerialNumber[32]:short", 
@@ -1380,12 +1399,12 @@ Win32.NTMS_DRIVEINFORMATIONW = foreign.named_struct( "Windows.Win32.Storage.File
 
 
 Win32.NTMS_LIBRARYINFORMATION = foreign.named_struct( "Windows.Win32.Storage.FileSystem.NTMS_LIBRARYINFORMATION", [ 
-    "LibraryType:int", 
+    "LibraryType:uint", 
     "CleanerSlot:ptr", 
     "CleanerSlotDefault:ptr", 
     "LibrarySupportsDriveCleaning:Windows.Win32.Foundation.BOOL", 
     "BarCodeReaderInstalled:Windows.Win32.Foundation.BOOL", 
-    "InventoryMethod:int", 
+    "InventoryMethod:uint", 
     "dwCleanerUsesRemaining:uint", 
     "FirstDriveNumber:uint", 
     "dwNumberOfDrives:uint", 
@@ -1402,7 +1421,7 @@ Win32.NTMS_LIBRARYINFORMATION = foreign.named_struct( "Windows.Win32.Storage.Fil
     "dwNumberOfLibRequests:uint", 
     "Reserved:ptr", 
     "AutoRecovery:Windows.Win32.Foundation.BOOL", 
-    "dwFlags:int"
+    "dwFlags:uint"
 ]); 
 
 
@@ -1443,7 +1462,7 @@ Win32.NTMS_STORAGESLOTINFORMATION = foreign.named_struct( "Windows.Win32.Storage
 
 Win32.NTMS_IEDOORINFORMATION = foreign.named_struct( "Windows.Win32.Storage.FileSystem.NTMS_IEDOORINFORMATION", [ 
     "Number:uint", 
-    "State:int", 
+    "State:uint", 
     "MaxOpenSecs:ushort", 
     "Library:ptr"
 ]); 
@@ -1451,8 +1470,8 @@ Win32.NTMS_IEDOORINFORMATION = foreign.named_struct( "Windows.Win32.Storage.File
 
 Win32.NTMS_IEPORTINFORMATION = foreign.named_struct( "Windows.Win32.Storage.FileSystem.NTMS_IEPORTINFORMATION", [ 
     "Number:uint", 
-    "Content:int", 
-    "Position:int", 
+    "Content:uint", 
+    "Position:uint", 
     "MaxExtendSecs:ushort", 
     "Library:ptr"
 ]); 
@@ -1466,9 +1485,9 @@ Win32.NTMS_PMIDINFORMATIONA = foreign.named_struct( "Windows.Win32.Storage.FileS
     "MediaType:ptr", 
     "HomeSlot:ptr", 
     "szBarCode[64]:Windows.Win32.Foundation.CHAR", 
-    "BarCodeState:int", 
+    "BarCodeState:uint", 
     "szSequenceNumber[32]:Windows.Win32.Foundation.CHAR", 
-    "MediaState:int", 
+    "MediaState:uint", 
     "dwNumberOfPartitions:uint", 
     "dwMediaTypeCode:uint", 
     "dwDensityCode:uint", 
@@ -1484,9 +1503,9 @@ Win32.NTMS_PMIDINFORMATIONW = foreign.named_struct( "Windows.Win32.Storage.FileS
     "MediaType:ptr", 
     "HomeSlot:ptr", 
     "szBarCode[64]:short", 
-    "BarCodeState:int", 
+    "BarCodeState:uint", 
     "szSequenceNumber[32]:short", 
-    "MediaState:int", 
+    "MediaState:uint", 
     "dwNumberOfPartitions:uint", 
     "dwMediaTypeCode:uint", 
     "dwDensityCode:uint", 
@@ -1503,7 +1522,7 @@ Win32.NTMS_LMIDINFORMATION = foreign.named_struct( "Windows.Win32.Storage.FileSy
 Win32.NTMS_PARTITIONINFORMATIONA = foreign.named_struct( "Windows.Win32.Storage.FileSystem.NTMS_PARTITIONINFORMATIONA", [ 
     "PhysicalMedia:ptr", 
     "LogicalMedia:ptr", 
-    "State:int", 
+    "State:uint", 
     "Side:ushort", 
     "dwOmidLabelIdLength:uint", 
     "OmidLabelId[255]:ubyte", 
@@ -1511,14 +1530,14 @@ Win32.NTMS_PARTITIONINFORMATIONA = foreign.named_struct( "Windows.Win32.Storage.
     "szOmidLabelInfo[256]:Windows.Win32.Foundation.CHAR", 
     "dwMountCount:uint", 
     "dwAllocateCount:uint", 
-    "Capacity:Windows.Win32.Foundation.LARGE_INTEGER"
+    "Capacity:long"
 ]); 
 
 
 Win32.NTMS_PARTITIONINFORMATIONW = foreign.named_struct( "Windows.Win32.Storage.FileSystem.NTMS_PARTITIONINFORMATIONW", [ 
     "PhysicalMedia:ptr", 
     "LogicalMedia:ptr", 
-    "State:int", 
+    "State:uint", 
     "Side:ushort", 
     "dwOmidLabelIdLength:uint", 
     "OmidLabelId[255]:ubyte", 
@@ -1526,7 +1545,7 @@ Win32.NTMS_PARTITIONINFORMATIONW = foreign.named_struct( "Windows.Win32.Storage.
     "szOmidLabelInfo[256]:short", 
     "dwMountCount:uint", 
     "dwAllocateCount:uint", 
-    "Capacity:Windows.Win32.Foundation.LARGE_INTEGER"
+    "Capacity:long"
 ]); 
 
 
@@ -1546,7 +1565,7 @@ Win32.NTMS_MEDIAPOOLINFORMATION = foreign.named_struct( "Windows.Win32.Storage.F
 Win32.NTMS_MEDIATYPEINFORMATION = foreign.named_struct( "Windows.Win32.Storage.FileSystem.NTMS_MEDIATYPEINFORMATION", [ 
     "MediaType:uint", 
     "NumberOfSides:uint", 
-    "ReadWriteCharacteristics:int", 
+    "ReadWriteCharacteristics:uint", 
     "DeviceType:uint"
 ]); 
 
@@ -1582,9 +1601,9 @@ Win32.NTMS_CHANGERTYPEINFORMATIONW = foreign.named_struct( "Windows.Win32.Storag
 
 
 Win32.NTMS_LIBREQUESTINFORMATIONA = foreign.named_struct( "Windows.Win32.Storage.FileSystem.NTMS_LIBREQUESTINFORMATIONA", [ 
-    "OperationCode:int", 
+    "OperationCode:uint", 
     "OperationOption:uint", 
-    "State:int", 
+    "State:uint", 
     "PartitionId:ptr", 
     "DriveId:ptr", 
     "PhysMediaId:ptr", 
@@ -1602,9 +1621,9 @@ Win32.NTMS_LIBREQUESTINFORMATIONA = foreign.named_struct( "Windows.Win32.Storage
 
 
 Win32.NTMS_LIBREQUESTINFORMATIONW = foreign.named_struct( "Windows.Win32.Storage.FileSystem.NTMS_LIBREQUESTINFORMATIONW", [ 
-    "OperationCode:int", 
+    "OperationCode:uint", 
     "OperationOption:uint", 
-    "State:int", 
+    "State:uint", 
     "PartitionId:ptr", 
     "DriveId:ptr", 
     "PhysMediaId:ptr", 
@@ -1622,13 +1641,13 @@ Win32.NTMS_LIBREQUESTINFORMATIONW = foreign.named_struct( "Windows.Win32.Storage
 
 
 Win32.NTMS_OPREQUESTINFORMATIONA = foreign.named_struct( "Windows.Win32.Storage.FileSystem.NTMS_OPREQUESTINFORMATIONA", [ 
-    "Request:int", 
+    "Request:uint", 
     "Submitted:Windows.Win32.Foundation.SYSTEMTIME", 
-    "State:int", 
+    "State:uint", 
     "szMessage[256]:Windows.Win32.Foundation.CHAR", 
-    "Arg1Type:int", 
+    "Arg1Type:uint", 
     "Arg1:ptr", 
-    "Arg2Type:int", 
+    "Arg2Type:uint", 
     "Arg2:ptr", 
     "szApplication[64]:Windows.Win32.Foundation.CHAR", 
     "szUser[64]:Windows.Win32.Foundation.CHAR", 
@@ -1637,13 +1656,13 @@ Win32.NTMS_OPREQUESTINFORMATIONA = foreign.named_struct( "Windows.Win32.Storage.
 
 
 Win32.NTMS_OPREQUESTINFORMATIONW = foreign.named_struct( "Windows.Win32.Storage.FileSystem.NTMS_OPREQUESTINFORMATIONW", [ 
-    "Request:int", 
+    "Request:uint", 
     "Submitted:Windows.Win32.Foundation.SYSTEMTIME", 
-    "State:int", 
+    "State:uint", 
     "szMessage[256]:short", 
-    "Arg1Type:int", 
+    "Arg1Type:uint", 
     "Arg1:ptr", 
-    "Arg2Type:int", 
+    "Arg2Type:uint", 
     "Arg2:ptr", 
     "szApplication[64]:short", 
     "szUser[64]:short", 
@@ -1662,12 +1681,12 @@ Win32.NTMS_COMPUTERINFORMATION = foreign.named_struct( "Windows.Win32.Storage.Fi
 
 Win32.NTMS_OBJECTINFORMATIONA = foreign.named_struct( "Windows.Win32.Storage.FileSystem.NTMS_OBJECTINFORMATIONA", [ 
     "dwSize:uint", 
-    "dwType:int", 
+    "dwType:uint", 
     "Created:Windows.Win32.Foundation.SYSTEMTIME", 
     "Modified:Windows.Win32.Foundation.SYSTEMTIME", 
     "ObjectGuid:ptr", 
     "Enabled:Windows.Win32.Foundation.BOOL", 
-    "dwOperationalState:int", 
+    "dwOperationalState:uint", 
     "szName[64]:Windows.Win32.Foundation.CHAR", 
     "szDescription[127]:Windows.Win32.Foundation.CHAR", 
     "Info:._Info_e__Union"
@@ -1676,12 +1695,12 @@ Win32.NTMS_OBJECTINFORMATIONA = foreign.named_struct( "Windows.Win32.Storage.Fil
 
 Win32.NTMS_OBJECTINFORMATIONW = foreign.named_struct( "Windows.Win32.Storage.FileSystem.NTMS_OBJECTINFORMATIONW", [ 
     "dwSize:uint", 
-    "dwType:int", 
+    "dwType:uint", 
     "Created:Windows.Win32.Foundation.SYSTEMTIME", 
     "Modified:Windows.Win32.Foundation.SYSTEMTIME", 
     "ObjectGuid:ptr", 
     "Enabled:Windows.Win32.Foundation.BOOL", 
-    "dwOperationalState:int", 
+    "dwOperationalState:uint", 
     "szName[64]:short", 
     "szDescription[127]:short", 
     "Info:._Info_e__Union"
@@ -1871,7 +1890,7 @@ Win32.NTMS_FILESYSTEM_INFO = foreign.named_struct( "Windows.Win32.Storage.FileSy
 
 
 Win32.NTMS_NOTIFICATIONINFORMATION = foreign.named_struct( "Windows.Win32.Storage.FileSystem.NTMS_NOTIFICATIONINFORMATION", [ 
-    "dwOperation:int", 
+    "dwOperation:uint", 
     "ObjectId:ptr"
 ]); 
 
@@ -2131,7 +2150,7 @@ Win32.ENCRYPTION_PROTECTOR_LIST = foreign.named_struct( "Windows.Win32.Storage.F
 Win32.WIM_ENTRY_INFO = foreign.named_struct( "Windows.Win32.Storage.FileSystem.WIM_ENTRY_INFO", [ 
     "WimEntryInfoSize:uint", 
     "WimType:uint", 
-    "DataSourceId:Windows.Win32.Foundation.LARGE_INTEGER", 
+    "DataSourceId:long", 
     "WimGuid:ptr", 
     "WimPath:wstr", 
     "WimIndex:uint", 
@@ -2140,7 +2159,7 @@ Win32.WIM_ENTRY_INFO = foreign.named_struct( "Windows.Win32.Storage.FileSystem.W
 
 
 Win32.WIM_EXTERNAL_FILE_INFO = foreign.named_struct( "Windows.Win32.Storage.FileSystem.WIM_EXTERNAL_FILE_INFO", [ 
-    "DataSourceId:Windows.Win32.Foundation.LARGE_INTEGER", 
+    "DataSourceId:long", 
     "ResourceHash[20]:ubyte", 
     "Flags:uint"
 ]); 
@@ -2238,7 +2257,7 @@ Win32.VOLUME_PHYSICAL_OFFSETS = foreign.named_struct( "Windows.Win32.Storage.Fil
 
 
 Win32.VOLUME_READ_PLEX_INPUT = foreign.named_struct( "Windows.Win32.Storage.FileSystem.VOLUME_READ_PLEX_INPUT", [ 
-    "ByteOffset:Windows.Win32.Foundation.LARGE_INTEGER", 
+    "ByteOffset:long", 
     "Length:uint", 
     "PlexNumber:uint"
 ]); 
@@ -2506,24 +2525,25 @@ Win32.SERVER_CERTIFICATE_INFO_0 = foreign.named_struct( "Windows.Win32.Storage.F
     "srvci0_storename:wstr", 
     "srvci0_renewalchain:wstr", 
     "srvci0_type:uint", 
-    "srvci0_flags:uint"
+    "srvci0_flags:uint", 
+    "srvci0_mapping_status:uint"
 ]); 
 
 
 Win32.STAT_WORKSTATION_0 = foreign.named_struct( "Windows.Win32.Storage.FileSystem.STAT_WORKSTATION_0", [ 
-    "StatisticsStartTime:Windows.Win32.Foundation.LARGE_INTEGER", 
-    "BytesReceived:Windows.Win32.Foundation.LARGE_INTEGER", 
-    "SmbsReceived:Windows.Win32.Foundation.LARGE_INTEGER", 
-    "PagingReadBytesRequested:Windows.Win32.Foundation.LARGE_INTEGER", 
-    "NonPagingReadBytesRequested:Windows.Win32.Foundation.LARGE_INTEGER", 
-    "CacheReadBytesRequested:Windows.Win32.Foundation.LARGE_INTEGER", 
-    "NetworkReadBytesRequested:Windows.Win32.Foundation.LARGE_INTEGER", 
-    "BytesTransmitted:Windows.Win32.Foundation.LARGE_INTEGER", 
-    "SmbsTransmitted:Windows.Win32.Foundation.LARGE_INTEGER", 
-    "PagingWriteBytesRequested:Windows.Win32.Foundation.LARGE_INTEGER", 
-    "NonPagingWriteBytesRequested:Windows.Win32.Foundation.LARGE_INTEGER", 
-    "CacheWriteBytesRequested:Windows.Win32.Foundation.LARGE_INTEGER", 
-    "NetworkWriteBytesRequested:Windows.Win32.Foundation.LARGE_INTEGER", 
+    "StatisticsStartTime:long", 
+    "BytesReceived:long", 
+    "SmbsReceived:long", 
+    "PagingReadBytesRequested:long", 
+    "NonPagingReadBytesRequested:long", 
+    "CacheReadBytesRequested:long", 
+    "NetworkReadBytesRequested:long", 
+    "BytesTransmitted:long", 
+    "SmbsTransmitted:long", 
+    "PagingWriteBytesRequested:long", 
+    "NonPagingWriteBytesRequested:long", 
+    "CacheWriteBytesRequested:long", 
+    "NetworkWriteBytesRequested:long", 
     "InitiallyFailedOperations:uint", 
     "FailedCompletionOperations:uint", 
     "ReadOperations:uint", 
@@ -2615,11 +2635,6 @@ Win32.IORING_REGISTERED_BUFFER = foreign.named_struct( "Windows.Win32.Storage.Fi
 ]); 
 
 
-Win32.HIORING__ = foreign.named_struct( "Windows.Win32.Storage.FileSystem.HIORING__", [ 
-    "unused:int"
-]); 
-
-
 Win32.IORING_CREATE_FLAGS = foreign.named_struct( "Windows.Win32.Storage.FileSystem.IORING_CREATE_FLAGS", [ 
     "Required:int", 
     "Advisory:int"
@@ -2677,16 +2692,16 @@ Win32.FILE_NOTIFY_INFORMATION = foreign.named_struct( "Windows.Win32.Storage.Fil
 Win32.FILE_NOTIFY_EXTENDED_INFORMATION = foreign.named_struct( "Windows.Win32.Storage.FileSystem.FILE_NOTIFY_EXTENDED_INFORMATION", [ 
     "NextEntryOffset:uint", 
     "Action:uint", 
-    "CreationTime:Windows.Win32.Foundation.LARGE_INTEGER", 
-    "LastModificationTime:Windows.Win32.Foundation.LARGE_INTEGER", 
-    "LastChangeTime:Windows.Win32.Foundation.LARGE_INTEGER", 
-    "LastAccessTime:Windows.Win32.Foundation.LARGE_INTEGER", 
-    "AllocatedLength:Windows.Win32.Foundation.LARGE_INTEGER", 
-    "FileSize:Windows.Win32.Foundation.LARGE_INTEGER", 
+    "CreationTime:long", 
+    "LastModificationTime:long", 
+    "LastChangeTime:long", 
+    "LastAccessTime:long", 
+    "AllocatedLength:long", 
+    "FileSize:long", 
     "FileAttributes:uint", 
-    "ReparsePointTag:uint", 
-    "FileId:Windows.Win32.Foundation.LARGE_INTEGER", 
-    "ParentFileId:Windows.Win32.Foundation.LARGE_INTEGER", 
+    "Anonymous:._Anonymous_e__Union", 
+    "FileId:long", 
+    "ParentFileId:long", 
     "FileNameLength:uint", 
     "FileName[1]:short"
 ]); 
@@ -2708,35 +2723,35 @@ Win32.REPARSE_GUID_DATA_BUFFER = foreign.named_struct( "Windows.Win32.Storage.Fi
 
 
 Win32.TAPE_ERASE = foreign.named_struct( "Windows.Win32.Storage.FileSystem.TAPE_ERASE", [ 
-    "Type:int", 
+    "Type:uint", 
     "Immediate:Windows.Win32.Foundation.BOOLEAN"
 ]); 
 
 
 Win32.TAPE_PREPARE = foreign.named_struct( "Windows.Win32.Storage.FileSystem.TAPE_PREPARE", [ 
-    "Operation:int", 
+    "Operation:uint", 
     "Immediate:Windows.Win32.Foundation.BOOLEAN"
 ]); 
 
 
 Win32.TAPE_WRITE_MARKS = foreign.named_struct( "Windows.Win32.Storage.FileSystem.TAPE_WRITE_MARKS", [ 
-    "Type:int", 
+    "Type:uint", 
     "Count:uint", 
     "Immediate:Windows.Win32.Foundation.BOOLEAN"
 ]); 
 
 
 Win32.TAPE_GET_POSITION = foreign.named_struct( "Windows.Win32.Storage.FileSystem.TAPE_GET_POSITION", [ 
-    "Type:int", 
+    "Type:uint", 
     "Partition:uint", 
-    "Offset:Windows.Win32.Foundation.LARGE_INTEGER"
+    "Offset:long"
 ]); 
 
 
 Win32.TAPE_SET_POSITION = foreign.named_struct( "Windows.Win32.Storage.FileSystem.TAPE_SET_POSITION", [ 
-    "Method:int", 
+    "Method:uint", 
     "Partition:uint", 
-    "Offset:Windows.Win32.Foundation.LARGE_INTEGER", 
+    "Offset:long", 
     "Immediate:Windows.Win32.Foundation.BOOLEAN"
 ]); 
 
@@ -2754,7 +2769,7 @@ Win32.OFSTRUCT = foreign.named_struct( "Windows.Win32.Storage.FileSystem.OFSTRUC
 Win32.WIN32_STREAM_ID = foreign.named_struct( "Windows.Win32.Storage.FileSystem.WIN32_STREAM_ID", [ 
     "dwStreamId:uint", 
     "dwStreamAttributes:uint", 
-    "Size:Windows.Win32.Foundation.LARGE_INTEGER", 
+    "Size:long", 
     "dwStreamNameSize:uint", 
     "cStreamName[1]:short"
 ]); 
@@ -2790,17 +2805,17 @@ Win32.COPYFILE2_EXTENDED_PARAMETERS_V2 = foreign.named_struct( "Windows.Win32.St
 
 
 Win32.FILE_BASIC_INFO = foreign.named_struct( "Windows.Win32.Storage.FileSystem.FILE_BASIC_INFO", [ 
-    "CreationTime:Windows.Win32.Foundation.LARGE_INTEGER", 
-    "LastAccessTime:Windows.Win32.Foundation.LARGE_INTEGER", 
-    "LastWriteTime:Windows.Win32.Foundation.LARGE_INTEGER", 
-    "ChangeTime:Windows.Win32.Foundation.LARGE_INTEGER", 
+    "CreationTime:long", 
+    "LastAccessTime:long", 
+    "LastWriteTime:long", 
+    "ChangeTime:long", 
     "FileAttributes:uint"
 ]); 
 
 
 Win32.FILE_STANDARD_INFO = foreign.named_struct( "Windows.Win32.Storage.FileSystem.FILE_STANDARD_INFO", [ 
-    "AllocationSize:Windows.Win32.Foundation.LARGE_INTEGER", 
-    "EndOfFile:Windows.Win32.Foundation.LARGE_INTEGER", 
+    "AllocationSize:long", 
+    "EndOfFile:long", 
     "NumberOfLinks:uint", 
     "DeletePending:Windows.Win32.Foundation.BOOLEAN", 
     "Directory:Windows.Win32.Foundation.BOOLEAN"
@@ -2822,26 +2837,26 @@ Win32.FILE_RENAME_INFO = foreign.named_struct( "Windows.Win32.Storage.FileSystem
 
 
 Win32.FILE_ALLOCATION_INFO = foreign.named_struct( "Windows.Win32.Storage.FileSystem.FILE_ALLOCATION_INFO", [ 
-    "AllocationSize:Windows.Win32.Foundation.LARGE_INTEGER"
+    "AllocationSize:long"
 ]); 
 
 
 Win32.FILE_END_OF_FILE_INFO = foreign.named_struct( "Windows.Win32.Storage.FileSystem.FILE_END_OF_FILE_INFO", [ 
-    "EndOfFile:Windows.Win32.Foundation.LARGE_INTEGER"
+    "EndOfFile:long"
 ]); 
 
 
 Win32.FILE_STREAM_INFO = foreign.named_struct( "Windows.Win32.Storage.FileSystem.FILE_STREAM_INFO", [ 
     "NextEntryOffset:uint", 
     "StreamNameLength:uint", 
-    "StreamSize:Windows.Win32.Foundation.LARGE_INTEGER", 
-    "StreamAllocationSize:Windows.Win32.Foundation.LARGE_INTEGER", 
+    "StreamSize:long", 
+    "StreamAllocationSize:long", 
     "StreamName[1]:short"
 ]); 
 
 
 Win32.FILE_COMPRESSION_INFO = foreign.named_struct( "Windows.Win32.Storage.FileSystem.FILE_COMPRESSION_INFO", [ 
-    "CompressedFileSize:Windows.Win32.Foundation.LARGE_INTEGER", 
+    "CompressedFileSize:long", 
     "CompressionFormat:ushort", 
     "CompressionUnitShift:ubyte", 
     "ChunkShift:ubyte", 
@@ -2856,21 +2871,26 @@ Win32.FILE_ATTRIBUTE_TAG_INFO = foreign.named_struct( "Windows.Win32.Storage.Fil
 ]); 
 
 
+Win32.FILE_DISPOSITION_INFO_EX = foreign.named_struct( "Windows.Win32.Storage.FileSystem.FILE_DISPOSITION_INFO_EX", [ 
+    "Flags:uint"
+]); 
+
+
 Win32.FILE_ID_BOTH_DIR_INFO = foreign.named_struct( "Windows.Win32.Storage.FileSystem.FILE_ID_BOTH_DIR_INFO", [ 
     "NextEntryOffset:uint", 
     "FileIndex:uint", 
-    "CreationTime:Windows.Win32.Foundation.LARGE_INTEGER", 
-    "LastAccessTime:Windows.Win32.Foundation.LARGE_INTEGER", 
-    "LastWriteTime:Windows.Win32.Foundation.LARGE_INTEGER", 
-    "ChangeTime:Windows.Win32.Foundation.LARGE_INTEGER", 
-    "EndOfFile:Windows.Win32.Foundation.LARGE_INTEGER", 
-    "AllocationSize:Windows.Win32.Foundation.LARGE_INTEGER", 
+    "CreationTime:long", 
+    "LastAccessTime:long", 
+    "LastWriteTime:long", 
+    "ChangeTime:long", 
+    "EndOfFile:long", 
+    "AllocationSize:long", 
     "FileAttributes:uint", 
     "FileNameLength:uint", 
     "EaSize:uint", 
     "ShortNameLength:byte", 
     "ShortName[12]:short", 
-    "FileId:Windows.Win32.Foundation.LARGE_INTEGER", 
+    "FileId:long", 
     "FileName[1]:short"
 ]); 
 
@@ -2878,12 +2898,12 @@ Win32.FILE_ID_BOTH_DIR_INFO = foreign.named_struct( "Windows.Win32.Storage.FileS
 Win32.FILE_FULL_DIR_INFO = foreign.named_struct( "Windows.Win32.Storage.FileSystem.FILE_FULL_DIR_INFO", [ 
     "NextEntryOffset:uint", 
     "FileIndex:uint", 
-    "CreationTime:Windows.Win32.Foundation.LARGE_INTEGER", 
-    "LastAccessTime:Windows.Win32.Foundation.LARGE_INTEGER", 
-    "LastWriteTime:Windows.Win32.Foundation.LARGE_INTEGER", 
-    "ChangeTime:Windows.Win32.Foundation.LARGE_INTEGER", 
-    "EndOfFile:Windows.Win32.Foundation.LARGE_INTEGER", 
-    "AllocationSize:Windows.Win32.Foundation.LARGE_INTEGER", 
+    "CreationTime:long", 
+    "LastAccessTime:long", 
+    "LastWriteTime:long", 
+    "ChangeTime:long", 
+    "EndOfFile:long", 
+    "AllocationSize:long", 
     "FileAttributes:uint", 
     "FileNameLength:uint", 
     "EaSize:uint", 
@@ -2921,12 +2941,12 @@ Win32.FILE_ID_INFO = foreign.named_struct( "Windows.Win32.Storage.FileSystem.FIL
 Win32.FILE_ID_EXTD_DIR_INFO = foreign.named_struct( "Windows.Win32.Storage.FileSystem.FILE_ID_EXTD_DIR_INFO", [ 
     "NextEntryOffset:uint", 
     "FileIndex:uint", 
-    "CreationTime:Windows.Win32.Foundation.LARGE_INTEGER", 
-    "LastAccessTime:Windows.Win32.Foundation.LARGE_INTEGER", 
-    "LastWriteTime:Windows.Win32.Foundation.LARGE_INTEGER", 
-    "ChangeTime:Windows.Win32.Foundation.LARGE_INTEGER", 
-    "EndOfFile:Windows.Win32.Foundation.LARGE_INTEGER", 
-    "AllocationSize:Windows.Win32.Foundation.LARGE_INTEGER", 
+    "CreationTime:long", 
+    "LastAccessTime:long", 
+    "LastWriteTime:long", 
+    "ChangeTime:long", 
+    "EndOfFile:long", 
+    "AllocationSize:long", 
     "FileAttributes:uint", 
     "FileNameLength:uint", 
     "EaSize:uint", 
@@ -3074,6 +3094,9 @@ Win32.PARTITION_MSFT_SNAPSHOT_GUID = "ptr";
 Win32.PARTITION_OS_DATA_GUID = "ptr";
 Win32.PARTITION_PATCH_GUID = "ptr";
 Win32.PARTITION_PRE_INSTALLED_GUID = "ptr";
+Win32.PARTITION_SBL_CACHE_SSD_GUID = "ptr";
+Win32.PARTITION_SBL_CACHE_SSD_RESERVED_GUID = "ptr";
+Win32.PARTITION_SBL_CACHE_HDD_GUID = "ptr";
 Win32.PARTITION_SERVICING_FILES_GUID = "ptr";
 Win32.PARTITION_SERVICING_METADATA_GUID = "ptr";
 Win32.PARTITION_SERVICING_RESERVE_GUID = "ptr";
@@ -3102,6 +3125,7 @@ Win32.DISKQUOTA_USER_ACCOUNT_DELETED = 2;
 Win32.DISKQUOTA_USER_ACCOUNT_INVALID = 3;
 Win32.DISKQUOTA_USER_ACCOUNT_UNKNOWN = 4;
 Win32.DISKQUOTA_USER_ACCOUNT_UNRESOLVED = 5;
+Win32.INVALID_FILE_SIZE = 4294967295;
 Win32.INVALID_SET_FILE_POINTER = 4294967295;
 Win32.INVALID_FILE_ATTRIBUTES = 4294967295;
 Win32.SHARE_NETNAME_PARMNUM = 1;
@@ -3114,6 +3138,7 @@ Win32.SHARE_PATH_PARMNUM = 8;
 Win32.SHARE_PASSWD_PARMNUM = 9;
 Win32.SHARE_FILE_SD_PARMNUM = 501;
 Win32.SHARE_SERVER_PARMNUM = 503;
+Win32.SHARE_QOS_POLICY_PARMNUM = 504;
 Win32.SHI1_NUM_ELEMENTS = 4;
 Win32.SHI2_NUM_ELEMENTS = 10;
 Win32.STYPE_RESERVED1 = 16777216;
@@ -3144,6 +3169,8 @@ Win32.SHI1005_FLAGS_DISABLE_CLIENT_BUFFERING = 131072;
 Win32.SHI1005_FLAGS_IDENTITY_REMOTING = 262144;
 Win32.SHI1005_FLAGS_CLUSTER_MANAGED = 524288;
 Win32.SHI1005_FLAGS_COMPRESS_DATA = 1048576;
+Win32.SHI1005_FLAGS_ISOLATED_TRANSPORT = 2097152;
+Win32.SHI1005_FLAGS_DISABLE_DIRECTORY_HANDLE_LEASING = 4194304;
 Win32.SESI1_NUM_ELEMENTS = 8;
 Win32.SESI2_NUM_ELEMENTS = 9;
 Win32.STATSOPT_CLR = 1;
@@ -3307,7 +3334,7 @@ Win32.SetFileAttributesA = foreign.native( "KERNEL32.dll", "int", "SetFileAttrib
 Win32.SetFileAttributesW = foreign.native( "KERNEL32.dll", "int", "SetFileAttributesW", [ "wstr", "uint" ] ); 
 Win32.SetFileInformationByHandle = foreign.native( "KERNEL32.dll", "int", "SetFileInformationByHandle", [ "ptr", "int", "ptr", "uint" ] ); 
 Win32.SetFilePointer = foreign.native( "KERNEL32.dll", "uint", "SetFilePointer", [ "ptr", "int", "ptr", "uint" ] ); 
-Win32.SetFilePointerEx = foreign.native( "KERNEL32.dll", "int", "SetFilePointerEx", [ "ptr", "ptr", "ptr", "uint" ] ); 
+Win32.SetFilePointerEx = foreign.native( "KERNEL32.dll", "int", "SetFilePointerEx", [ "ptr", "long", "ptr", "uint" ] ); 
 Win32.SetFileTime = foreign.native( "KERNEL32.dll", "int", "SetFileTime", [ "ptr", "ptr", "ptr", "ptr" ] ); 
 Win32.SetFileValidData = foreign.native( "KERNEL32.dll", "int", "SetFileValidData", [ "ptr", "long" ] ); 
 Win32.UnlockFile = foreign.native( "KERNEL32.dll", "int", "UnlockFile", [ "ptr", "uint", "uint", "uint", "uint" ] ); 
@@ -3450,10 +3477,10 @@ Win32.WofSetFileDataLocation = foreign.native( "WOFUTIL.dll", "int", "WofSetFile
 Win32.WofIsExternalFile = foreign.native( "WOFUTIL.dll", "int", "WofIsExternalFile", [ "wstr", "ptr", "ptr", "ptr", "ptr" ] ); 
 Win32.WofEnumEntries = foreign.native( "WOFUTIL.dll", "int", "WofEnumEntries", [ "wstr", "uint", "ptr", "ptr" ] ); 
 Win32.WofWimAddEntry = foreign.native( "WOFUTIL.dll", "int", "WofWimAddEntry", [ "wstr", "wstr", "uint", "uint", "ptr" ] ); 
-Win32.WofWimEnumFiles = foreign.native( "WOFUTIL.dll", "int", "WofWimEnumFiles", [ "wstr", "ptr", "ptr", "ptr" ] ); 
-Win32.WofWimSuspendEntry = foreign.native( "WOFUTIL.dll", "int", "WofWimSuspendEntry", [ "wstr", "ptr" ] ); 
-Win32.WofWimRemoveEntry = foreign.native( "WOFUTIL.dll", "int", "WofWimRemoveEntry", [ "wstr", "ptr" ] ); 
-Win32.WofWimUpdateEntry = foreign.native( "WOFUTIL.dll", "int", "WofWimUpdateEntry", [ "wstr", "ptr", "wstr" ] ); 
+Win32.WofWimEnumFiles = foreign.native( "WOFUTIL.dll", "int", "WofWimEnumFiles", [ "wstr", "long", "ptr", "ptr" ] ); 
+Win32.WofWimSuspendEntry = foreign.native( "WOFUTIL.dll", "int", "WofWimSuspendEntry", [ "wstr", "long" ] ); 
+Win32.WofWimRemoveEntry = foreign.native( "WOFUTIL.dll", "int", "WofWimRemoveEntry", [ "wstr", "long" ] ); 
+Win32.WofWimUpdateEntry = foreign.native( "WOFUTIL.dll", "int", "WofWimUpdateEntry", [ "wstr", "long", "wstr" ] ); 
 Win32.WofFileEnumFiles = foreign.native( "WOFUTIL.dll", "int", "WofFileEnumFiles", [ "wstr", "uint", "ptr", "ptr" ] ); 
 Win32.TxfLogCreateFileReadContext = foreign.native( "txfw32.dll", "int", "TxfLogCreateFileReadContext", [ "wstr", "ptr", "ptr", "ptr", "ptr" ] ); 
 Win32.TxfLogCreateRangeReadContext = foreign.native( "txfw32.dll", "int", "TxfLogCreateRangeReadContext", [ "wstr", "ptr", "ptr", "ptr", "ptr", "uint", "ptr" ] ); 
@@ -3535,6 +3562,8 @@ Win32.BuildIoRingCancelRequest = foreign.native( "api-ms-win-core-ioring-l1-1-0.
 Win32.BuildIoRingReadFile = foreign.native( "api-ms-win-core-ioring-l1-1-0.dll", "int", "BuildIoRingReadFile", [ "ptr", "ptr", "ptr", "uint", "ulong", "ptr", "int" ] ); 
 Win32.BuildIoRingRegisterFileHandles = foreign.native( "api-ms-win-core-ioring-l1-1-0.dll", "int", "BuildIoRingRegisterFileHandles", [ "ptr", "uint", "ptr", "ptr" ] ); 
 Win32.BuildIoRingRegisterBuffers = foreign.native( "api-ms-win-core-ioring-l1-1-0.dll", "int", "BuildIoRingRegisterBuffers", [ "ptr", "uint", "ptr", "ptr" ] ); 
+Win32.BuildIoRingWriteFile = foreign.native( "KERNEL32.dll", "int", "BuildIoRingWriteFile", [ "ptr", "ptr", "ptr", "uint", "ulong", "int", "ptr", "int" ] ); 
+Win32.BuildIoRingFlushFile = foreign.native( "KERNEL32.dll", "int", "BuildIoRingFlushFile", [ "ptr", "ptr", "int", "ptr", "int" ] ); 
 Win32.Wow64EnableWow64FsRedirection = foreign.native( "KERNEL32.dll", "ubyte", "Wow64EnableWow64FsRedirection", [ "ubyte" ] ); 
 Win32.Wow64DisableWow64FsRedirection = foreign.native( "KERNEL32.dll", "int", "Wow64DisableWow64FsRedirection", [ "ptr" ] ); 
 Win32.Wow64RevertWow64FsRedirection = foreign.native( "KERNEL32.dll", "int", "Wow64RevertWow64FsRedirection", [ "ptr" ] ); 
@@ -3546,12 +3575,12 @@ Win32.GetLongPathNameTransactedW = foreign.native( "KERNEL32.dll", "uint", "GetL
 Win32.SetFileCompletionNotificationModes = foreign.native( "KERNEL32.dll", "int", "SetFileCompletionNotificationModes", [ "ptr", "ubyte" ] ); 
 Win32.SetFileShortNameA = foreign.native( "KERNEL32.dll", "int", "SetFileShortNameA", [ "ptr", "ptr" ] ); 
 Win32.SetFileShortNameW = foreign.native( "KERNEL32.dll", "int", "SetFileShortNameW", [ "ptr", "wstr" ] ); 
-Win32.SetTapePosition = foreign.native( "KERNEL32.dll", "uint", "SetTapePosition", [ "ptr", "int", "uint", "uint", "uint", "int" ] ); 
-Win32.GetTapePosition = foreign.native( "KERNEL32.dll", "uint", "GetTapePosition", [ "ptr", "int", "ptr", "ptr", "ptr" ] ); 
-Win32.PrepareTape = foreign.native( "KERNEL32.dll", "uint", "PrepareTape", [ "ptr", "int", "int" ] ); 
-Win32.EraseTape = foreign.native( "KERNEL32.dll", "uint", "EraseTape", [ "ptr", "int", "int" ] ); 
-Win32.CreateTapePartition = foreign.native( "KERNEL32.dll", "uint", "CreateTapePartition", [ "ptr", "int", "uint", "uint" ] ); 
-Win32.WriteTapemark = foreign.native( "KERNEL32.dll", "uint", "WriteTapemark", [ "ptr", "int", "uint", "int" ] ); 
+Win32.SetTapePosition = foreign.native( "KERNEL32.dll", "uint", "SetTapePosition", [ "ptr", "uint", "uint", "uint", "uint", "int" ] ); 
+Win32.GetTapePosition = foreign.native( "KERNEL32.dll", "uint", "GetTapePosition", [ "ptr", "uint", "ptr", "ptr", "ptr" ] ); 
+Win32.PrepareTape = foreign.native( "KERNEL32.dll", "uint", "PrepareTape", [ "ptr", "uint", "int" ] ); 
+Win32.EraseTape = foreign.native( "KERNEL32.dll", "uint", "EraseTape", [ "ptr", "uint", "int" ] ); 
+Win32.CreateTapePartition = foreign.native( "KERNEL32.dll", "uint", "CreateTapePartition", [ "ptr", "uint", "uint", "uint" ] ); 
+Win32.WriteTapemark = foreign.native( "KERNEL32.dll", "uint", "WriteTapemark", [ "ptr", "uint", "uint", "int" ] ); 
 Win32.GetTapeStatus = foreign.native( "KERNEL32.dll", "uint", "GetTapeStatus", [ "ptr" ] ); 
 Win32.GetTapeParameters = foreign.native( "KERNEL32.dll", "uint", "GetTapeParameters", [ "ptr", "uint", "ptr", "ptr" ] ); 
 Win32.SetTapeParameters = foreign.native( "KERNEL32.dll", "uint", "SetTapeParameters", [ "ptr", "uint", "ptr" ] ); 
@@ -3645,7 +3674,6 @@ Win32.CreateSymbolicLinkA = foreign.native( "KERNEL32.dll", "ubyte", "CreateSymb
 Win32.CreateSymbolicLinkW = foreign.native( "KERNEL32.dll", "ubyte", "CreateSymbolicLinkW", [ "wstr", "wstr", "uint" ] ); 
 Win32.CreateSymbolicLinkTransactedA = foreign.native( "KERNEL32.dll", "ubyte", "CreateSymbolicLinkTransactedA", [ "ptr", "ptr", "uint", "ptr" ] ); 
 Win32.CreateSymbolicLinkTransactedW = foreign.native( "KERNEL32.dll", "ubyte", "CreateSymbolicLinkTransactedW", [ "wstr", "wstr", "uint", "ptr" ] ); 
-Win32.NtCreateFile = foreign.native( "ntdll.dll", "int", "NtCreateFile", [ "ptr", "uint", "ptr", "ptr", "ptr", "uint", "uint", "uint", "uint", "ptr", "uint" ] ); 
 Win32.MAXMEDIALABEL = foreign.callback( "uint", [ "ptr"] );
 Win32.CLAIMMEDIALABEL = foreign.callback( "uint", [ "ptr", "uint", "ptr"] );
 Win32.CLAIMMEDIALABELEX = foreign.callback( "uint", [ "ptr", "uint", "ptr", "ptr"] );
@@ -3667,7 +3695,7 @@ Win32.CACHE_DESTROY_CALLBACK = foreign.callback( "void", [ "uint", "ptr"] );
 Win32.CACHE_ACCESS_CHECK = foreign.callback( "int", [ "ptr", "ptr", "uint", "ptr", "ptr", "ptr", "ptr", "ptr"] );
 Win32.PFE_EXPORT_FUNC = foreign.callback( "uint", [ "ptr", "ptr", "uint"] );
 Win32.PFE_IMPORT_FUNC = foreign.callback( "uint", [ "ptr", "ptr", "ptr"] );
-Win32.LPPROGRESS_ROUTINE = foreign.callback( "uint", [ "ptr", "ptr", "ptr", "ptr", "uint", "uint", "ptr", "ptr", "ptr"] );
+Win32.LPPROGRESS_ROUTINE = foreign.callback( "uint", [ "long", "long", "long", "long", "uint", "uint", "ptr", "ptr", "ptr"] );
 Win32.PCOPYFILE2_PROGRESS_ROUTINE = foreign.callback( "int", [ "ptr", "ptr"] );
 
 }

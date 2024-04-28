@@ -3,6 +3,17 @@
 if( runtime.global("Win32") == nil ) { runtime.global("Win32", {}); }
 var Win32 = runtime.global("Win32");
 
+Win32.SECTION_FLAGS = {
+    "SECTION_ALL_ACCESS" : 983071, 
+    "SECTION_QUERY" : 1, 
+    "SECTION_MAP_WRITE" : 2, 
+    "SECTION_MAP_READ" : 4, 
+    "SECTION_MAP_EXECUTE" : 8, 
+    "SECTION_EXTEND_SIZE" : 16, 
+    "SECTION_MAP_EXECUTE_EXPLICIT" : 32
+};
+
+
 Win32.FILE_MAP = {
     "FILE_MAP_WRITE" : 2, 
     "FILE_MAP_READ" : 4, 
@@ -131,6 +142,14 @@ Win32.PAGE_TYPE = {
 };
 
 
+Win32.SETPROCESSWORKINGSETSIZEEX_FLAGS = {
+    "QUOTA_LIMITS_HARDWS_MIN_ENABLE" : 1, 
+    "QUOTA_LIMITS_HARDWS_MIN_DISABLE" : 2, 
+    "QUOTA_LIMITS_HARDWS_MAX_ENABLE" : 4, 
+    "QUOTA_LIMITS_HARDWS_MAX_DISABLE" : 8
+};
+
+
 Win32.MEMORY_RESOURCE_NOTIFICATION_TYPE = {
     "LowMemoryResourceNotification" : 0, 
     "HighMemoryResourceNotification" : 1
@@ -168,6 +187,24 @@ Win32.MEM_EXTENDED_PARAMETER_TYPE = {
 };
 
 
+Win32.MEM_DEDICATED_ATTRIBUTE_TYPE = {
+    "MemDedicatedAttributeReadBandwidth" : 0, 
+    "MemDedicatedAttributeReadLatency" : 1, 
+    "MemDedicatedAttributeWriteBandwidth" : 2, 
+    "MemDedicatedAttributeWriteLatency" : 3, 
+    "MemDedicatedAttributeMax" : 4
+};
+
+
+Win32.MEM_SECTION_EXTENDED_PARAMETER_TYPE = {
+    "MemSectionExtendedParameterInvalidType" : 0, 
+    "MemSectionExtendedParameterUserPhysicalFlags" : 1, 
+    "MemSectionExtendedParameterNumaNode" : 2, 
+    "MemSectionExtendedParameterSigningLevel" : 3, 
+    "MemSectionExtendedParameterMax" : 4
+};
+
+
 Win32.HEAP_INFORMATION_CLASS = {
     "HeapCompatibilityInformation" : 0, 
     "HeapEnableTerminationOnCorruption" : 1, 
@@ -176,7 +213,12 @@ Win32.HEAP_INFORMATION_CLASS = {
 };
 
 
-Win32.HeapHandle = foreign.named_struct( "Windows.Win32.System.Memory.HeapHandle", [ 
+Win32.MEMORY_MAPPED_VIEW_ADDRESS = foreign.named_struct( "Windows.Win32.System.Memory.MEMORY_MAPPED_VIEW_ADDRESS", [ 
+    "Value:ptr"
+]); 
+
+
+Win32.AtlThunkData_t = foreign.named_struct( "Windows.Win32.System.Memory.AtlThunkData_t", [ 
     "Value:ptr"
 ]); 
 
@@ -290,6 +332,24 @@ Win32.MEM_EXTENDED_PARAMETER = foreign.named_struct( "Windows.Win32.System.Memor
     "Anonymous2:._Anonymous2_e__Union"
 ]); 
 
+
+Win32.MEMORY_PARTITION_DEDICATED_MEMORY_ATTRIBUTE = foreign.named_struct( "Windows.Win32.System.Memory.MEMORY_PARTITION_DEDICATED_MEMORY_ATTRIBUTE", [ 
+    "Type:int", 
+    "Reserved:uint", 
+    "Value:ulong"
+]); 
+
+
+Win32.MEMORY_PARTITION_DEDICATED_MEMORY_INFORMATION = foreign.named_struct( "Windows.Win32.System.Memory.MEMORY_PARTITION_DEDICATED_MEMORY_INFORMATION", [ 
+    "NextEntryOffset:uint", 
+    "SizeOfInformation:uint", 
+    "Flags:uint", 
+    "AttributesOffset:uint", 
+    "AttributeCount:uint", 
+    "Reserved:uint", 
+    "TypeId:ulong"
+]); 
+
 Win32.FILE_CACHE_MAX_HARD_ENABLE = 1;
 Win32.FILE_CACHE_MAX_HARD_DISABLE = 2;
 Win32.FILE_CACHE_MIN_HARD_ENABLE = 4;
@@ -380,7 +440,6 @@ Win32.GlobalUnlock = foreign.native( "KERNEL32.dll", "int", "GlobalUnlock", [ "p
 Win32.GlobalLock = foreign.native( "KERNEL32.dll", "ptr", "GlobalLock", [ "ptr" ] ); 
 Win32.GlobalFlags = foreign.native( "KERNEL32.dll", "uint", "GlobalFlags", [ "ptr" ] ); 
 Win32.GlobalHandle = foreign.native( "KERNEL32.dll", "ptr", "GlobalHandle", [ "ptr" ] ); 
-Win32.GlobalFree = foreign.native( "KERNEL32.dll", "ptr", "GlobalFree", [ "ptr" ] ); 
 Win32.LocalAlloc = foreign.native( "KERNEL32.dll", "ptr", "LocalAlloc", [ "uint", "ptr" ] ); 
 Win32.LocalReAlloc = foreign.native( "KERNEL32.dll", "ptr", "LocalReAlloc", [ "ptr", "ptr", "uint" ] ); 
 Win32.LocalLock = foreign.native( "KERNEL32.dll", "ptr", "LocalLock", [ "ptr" ] ); 
@@ -388,7 +447,6 @@ Win32.LocalHandle = foreign.native( "KERNEL32.dll", "ptr", "LocalHandle", [ "ptr
 Win32.LocalUnlock = foreign.native( "KERNEL32.dll", "int", "LocalUnlock", [ "ptr" ] ); 
 Win32.LocalSize = foreign.native( "KERNEL32.dll", "ptr", "LocalSize", [ "ptr" ] ); 
 Win32.LocalFlags = foreign.native( "KERNEL32.dll", "uint", "LocalFlags", [ "ptr" ] ); 
-Win32.LocalFree = foreign.native( "KERNEL32.dll", "ptr", "LocalFree", [ "ptr" ] ); 
 Win32.CreateFileMappingA = foreign.native( "KERNEL32.dll", "ptr", "CreateFileMappingA", [ "ptr", "ptr", "uint", "uint", "uint", "ptr" ] ); 
 Win32.CreateFileMappingNumaA = foreign.native( "KERNEL32.dll", "ptr", "CreateFileMappingNumaA", [ "ptr", "ptr", "uint", "uint", "uint", "ptr", "uint" ] ); 
 Win32.OpenFileMappingA = foreign.native( "KERNEL32.dll", "ptr", "OpenFileMappingA", [ "uint", "int", "ptr" ] ); 

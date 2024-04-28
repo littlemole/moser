@@ -15,5 +15,10 @@ Release/
 x64-Release/
 x64-Debug/
 dlldeps/
-
+*.msi
+*.zip
 win32/Microsoft.WindowsAppRuntime.lib
+win32/wix/moser/
+_CPack_Packages/
+_packages/
+

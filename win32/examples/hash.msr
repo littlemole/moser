@@ -1,6 +1,6 @@
 import("win32/crypt");
 import("wincrypt");
-import("stdin");
+import("stdio");
 
 var hash_digest = {};
 

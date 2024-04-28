@@ -1,0 +1,1513 @@
+{
+class WinRtInterface { 
+    queryInterface(iid) { return this.comPtr.queryInterface(iid); }
+    release() { this.comPtr.release(); this.comPtr = nil; }
+    valid() { return this.comPtr != nil && int(this.comPtr) != 0; }
+}
+
+if( runtime.global("Microsoft") == nil ) { runtime.global("Microsoft", {}); }
+var Microsoft = runtime.global("Microsoft");
+if ( Microsoft.UI == nil ) { Microsoft.UI = {}; }
+if ( Microsoft.UI.Xaml == nil ) { Microsoft.UI.Xaml = {}; }
+if ( Microsoft.UI.Xaml.Hosting == nil ) { Microsoft.UI.Xaml.Hosting = {}; }
+
+Microsoft.UI.Xaml.Hosting.XamlSourceFocusNavigationReason = {
+    "Programmatic" : 0, 
+    "Restore" : 1, 
+    "First" : 3, 
+    "Last" : 4, 
+    "Left" : 7, 
+    "Up" : 8, 
+    "Right" : 9, 
+    "Down" : 10
+};
+
+//@Interface("Microsoft.UI.Xaml.Hosting.IDesktopWindowXamlSource")
+//@IID("{553AF92C-1381-51D6-BEE0-F34BEB042EA8}")
+class Microsoft_UI_Xaml_Hosting_IDesktopWindowXamlSource : WinRtInterface 
+{
+    Microsoft_UI_Xaml_Hosting_IDesktopWindowXamlSource( comPtr )
+    {
+        var Microsoft = runtime.global("Microsoft");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{553AF92C-1381-51D6-BEE0-F34BEB042EA8}");
+    }
+
+    //@VtableIndex(6)
+    //@Async(0)
+    //@Returns("Microsoft.UI.Xaml.UIElement")
+    get_Content()
+    {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var _r = Microsoft.UI.Xaml.UIElement(
+            this.comPtr.invoke( 6, "Microsoft.UI.Xaml.UIElement", [], [] )
+        );
+        return _r;
+    }
+
+    //@VtableIndex(7)
+    //@Async(0)
+    //@Returns("void")
+    //@Parameters("Microsoft.UI.Xaml.UIElement")
+    put_Content(value)
+    {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var p1 = Microsoft.UI.Xaml.UIElement( value); 
+        this.comPtr.invoke( 7, "void", ["Microsoft.UI.Xaml.UIElement"], [p1] );
+    }
+
+    //@VtableIndex(8)
+    //@Async(0)
+    //@Returns("Boolean")
+    get_HasFocus()
+    {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var _r = this.comPtr.invoke( 8, "Boolean", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(9)
+    //@Async(0)
+    //@Returns("Microsoft.UI.Xaml.Media.SystemBackdrop")
+    get_SystemBackdrop()
+    {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var _r = Microsoft.UI.Xaml.Media.SystemBackdrop(
+            this.comPtr.invoke( 9, "Microsoft.UI.Xaml.Media.SystemBackdrop", [], [] )
+        );
+        return _r;
+    }
+
+    //@VtableIndex(10)
+    //@Async(0)
+    //@Returns("void")
+    //@Parameters("Microsoft.UI.Xaml.Media.SystemBackdrop")
+    put_SystemBackdrop(value)
+    {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var p1 = Microsoft.UI.Xaml.Media.SystemBackdrop( value); 
+        this.comPtr.invoke( 10, "void", ["Microsoft.UI.Xaml.Media.SystemBackdrop"], [p1] );
+    }
+
+    //@VtableIndex(11)
+    //@Async(0)
+    //@Returns("Microsoft.UI.Content.DesktopChildSiteBridge")
+    get_SiteBridge()
+    {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var _r = Microsoft.UI.Content.DesktopChildSiteBridge(
+            this.comPtr.invoke( 11, "Microsoft.UI.Content.DesktopChildSiteBridge", [], [] )
+        );
+        return _r;
+    }
+
+    //@VtableIndex(12)
+    //@Async(0)
+    //@Returns("Windows.Foundation.EventRegistrationToken")
+    //@Parameters("Windows.Foundation.TypedEventHandler`2<Microsoft.UI.Xaml.Hosting.DesktopWindowXamlSource,Microsoft.UI.Xaml.Hosting.DesktopWindowXamlSourceTakeFocusRequestedEventArgs>")
+    add_TakeFocusRequested(handler)
+    {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var p1 = nil; 
+        if( typeof(handler) == "comptr" ) { 
+            p1 = handler;
+        } else {
+            p1 = Windows.Foundation.TypedEventHandler_2_Microsoft_UI_Xaml_Hosting_DesktopWindowXamlSource_Microsoft_UI_Xaml_Hosting_DesktopWindowXamlSourceTakeFocusRequestedEventArgs_.Create( handler); 
+        }
+        var _r = this.comPtr.invoke( 12, "Windows.Foundation.EventRegistrationToken", ["Windows.Foundation.TypedEventHandler`2<Microsoft.UI.Xaml.Hosting.DesktopWindowXamlSource,Microsoft.UI.Xaml.Hosting.DesktopWindowXamlSourceTakeFocusRequestedEventArgs>"], [p1] );
+        return _r;
+    }
+
+    //@VtableIndex(13)
+    //@Async(0)
+    //@Returns("void")
+    //@Parameters("Windows.Foundation.EventRegistrationToken")
+    remove_TakeFocusRequested(token)
+    {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var p1 = token;
+        this.comPtr.invoke( 13, "void", ["Windows.Foundation.EventRegistrationToken"], [p1] );
+    }
+
+    //@VtableIndex(14)
+    //@Async(0)
+    //@Returns("Windows.Foundation.EventRegistrationToken")
+    //@Parameters("Windows.Foundation.TypedEventHandler`2<Microsoft.UI.Xaml.Hosting.DesktopWindowXamlSource,Microsoft.UI.Xaml.Hosting.DesktopWindowXamlSourceGotFocusEventArgs>")
+    add_GotFocus(handler)
+    {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var p1 = nil; 
+        if( typeof(handler) == "comptr" ) { 
+            p1 = handler;
+        } else {
+            p1 = Windows.Foundation.TypedEventHandler_2_Microsoft_UI_Xaml_Hosting_DesktopWindowXamlSource_Microsoft_UI_Xaml_Hosting_DesktopWindowXamlSourceGotFocusEventArgs_.Create( handler); 
+        }
+        var _r = this.comPtr.invoke( 14, "Windows.Foundation.EventRegistrationToken", ["Windows.Foundation.TypedEventHandler`2<Microsoft.UI.Xaml.Hosting.DesktopWindowXamlSource,Microsoft.UI.Xaml.Hosting.DesktopWindowXamlSourceGotFocusEventArgs>"], [p1] );
+        return _r;
+    }
+
+    //@VtableIndex(15)
+    //@Async(0)
+    //@Returns("void")
+    //@Parameters("Windows.Foundation.EventRegistrationToken")
+    remove_GotFocus(token)
+    {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var p1 = token;
+        this.comPtr.invoke( 15, "void", ["Windows.Foundation.EventRegistrationToken"], [p1] );
+    }
+
+    //@VtableIndex(16)
+    //@Async(0)
+    //@Returns("Microsoft.UI.Xaml.Hosting.XamlSourceFocusNavigationResult")
+    //@Parameters("Microsoft.UI.Xaml.Hosting.XamlSourceFocusNavigationRequest")
+    NavigateFocus(request)
+    {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var p1 = Microsoft.UI.Xaml.Hosting.XamlSourceFocusNavigationRequest( request); 
+        var _r = Microsoft.UI.Xaml.Hosting.XamlSourceFocusNavigationResult(
+            this.comPtr.invoke( 16, "Microsoft.UI.Xaml.Hosting.XamlSourceFocusNavigationResult", ["Microsoft.UI.Xaml.Hosting.XamlSourceFocusNavigationRequest"], [p1] )
+        );
+        return _r;
+    }
+
+    //@VtableIndex(17)
+    //@Async(0)
+    //@Returns("void")
+    //@Parameters("Microsoft.UI.WindowId")
+    Initialize(parentWindowId)
+    {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var p1 = parentWindowId;
+        this.comPtr.invoke( 17, "void", ["Microsoft.UI.WindowId"], [p1] );
+    }
+
+
+}
+Microsoft_UI_Xaml_Hosting_IDesktopWindowXamlSource.iid = "{553AF92C-1381-51D6-BEE0-F34BEB042EA8}";
+Microsoft.UI.Xaml.Hosting.IDesktopWindowXamlSource = Microsoft_UI_Xaml_Hosting_IDesktopWindowXamlSource;
+
+
+//@Interface("Microsoft.UI.Xaml.Hosting.IDesktopWindowXamlSource2")
+//@IID("{FB02B9F1-8588-5BD3-8951-4664A675D872}")
+class Microsoft_UI_Xaml_Hosting_IDesktopWindowXamlSource2 : WinRtInterface 
+{
+    Microsoft_UI_Xaml_Hosting_IDesktopWindowXamlSource2( comPtr )
+    {
+        var Microsoft = runtime.global("Microsoft");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{FB02B9F1-8588-5BD3-8951-4664A675D872}");
+    }
+
+    //@VtableIndex(6)
+    //@Async(0)
+    //@Returns("Boolean")
+    get_ShouldConstrainPopupsToWorkArea()
+    {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var _r = this.comPtr.invoke( 6, "Boolean", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(7)
+    //@Async(0)
+    //@Returns("void")
+    //@Parameters("Boolean")
+    put_ShouldConstrainPopupsToWorkArea(value)
+    {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var p1 = value;
+        this.comPtr.invoke( 7, "void", ["Boolean"], [p1] );
+    }
+
+
+}
+Microsoft_UI_Xaml_Hosting_IDesktopWindowXamlSource2.iid = "{FB02B9F1-8588-5BD3-8951-4664A675D872}";
+Microsoft.UI.Xaml.Hosting.IDesktopWindowXamlSource2 = Microsoft_UI_Xaml_Hosting_IDesktopWindowXamlSource2;
+
+
+//@Interface("Microsoft.UI.Xaml.Hosting.IDesktopWindowXamlSourceFactory")
+//@IID("{7D2DB617-14E7-5D49-AEEC-AE10887E595D}")
+class Microsoft_UI_Xaml_Hosting_IDesktopWindowXamlSourceFactory : WinRtInterface 
+{
+    Microsoft_UI_Xaml_Hosting_IDesktopWindowXamlSourceFactory( comPtr )
+    {
+        var Microsoft = runtime.global("Microsoft");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{7D2DB617-14E7-5D49-AEEC-AE10887E595D}");
+    }
+
+
+}
+Microsoft_UI_Xaml_Hosting_IDesktopWindowXamlSourceFactory.iid = "{7D2DB617-14E7-5D49-AEEC-AE10887E595D}";
+Microsoft.UI.Xaml.Hosting.IDesktopWindowXamlSourceFactory = Microsoft_UI_Xaml_Hosting_IDesktopWindowXamlSourceFactory;
+
+
+//@Interface("Microsoft.UI.Xaml.Hosting.IDesktopWindowXamlSourceGotFocusEventArgs")
+//@IID("{CC63D863-2071-5F6B-AEF9-C0BA35F3B8DF}")
+class Microsoft_UI_Xaml_Hosting_IDesktopWindowXamlSourceGotFocusEventArgs : WinRtInterface 
+{
+    Microsoft_UI_Xaml_Hosting_IDesktopWindowXamlSourceGotFocusEventArgs( comPtr )
+    {
+        var Microsoft = runtime.global("Microsoft");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{CC63D863-2071-5F6B-AEF9-C0BA35F3B8DF}");
+    }
+
+    //@VtableIndex(6)
+    //@Async(0)
+    //@Returns("Microsoft.UI.Xaml.Hosting.XamlSourceFocusNavigationRequest")
+    get_Request()
+    {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var _r = Microsoft.UI.Xaml.Hosting.XamlSourceFocusNavigationRequest(
+            this.comPtr.invoke( 6, "Microsoft.UI.Xaml.Hosting.XamlSourceFocusNavigationRequest", [], [] )
+        );
+        return _r;
+    }
+
+
+}
+Microsoft_UI_Xaml_Hosting_IDesktopWindowXamlSourceGotFocusEventArgs.iid = "{CC63D863-2071-5F6B-AEF9-C0BA35F3B8DF}";
+Microsoft.UI.Xaml.Hosting.IDesktopWindowXamlSourceGotFocusEventArgs = Microsoft_UI_Xaml_Hosting_IDesktopWindowXamlSourceGotFocusEventArgs;
+
+
+//@Interface("Microsoft.UI.Xaml.Hosting.IDesktopWindowXamlSourceTakeFocusRequestedEventArgs")
+//@IID("{4F5A0E2C-4DDC-5C03-939F-6F3BDA560363}")
+class Microsoft_UI_Xaml_Hosting_IDesktopWindowXamlSourceTakeFocusRequestedEventArgs : WinRtInterface 
+{
+    Microsoft_UI_Xaml_Hosting_IDesktopWindowXamlSourceTakeFocusRequestedEventArgs( comPtr )
+    {
+        var Microsoft = runtime.global("Microsoft");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{4F5A0E2C-4DDC-5C03-939F-6F3BDA560363}");
+    }
+
+    //@VtableIndex(6)
+    //@Async(0)
+    //@Returns("Microsoft.UI.Xaml.Hosting.XamlSourceFocusNavigationRequest")
+    get_Request()
+    {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var _r = Microsoft.UI.Xaml.Hosting.XamlSourceFocusNavigationRequest(
+            this.comPtr.invoke( 6, "Microsoft.UI.Xaml.Hosting.XamlSourceFocusNavigationRequest", [], [] )
+        );
+        return _r;
+    }
+
+
+}
+Microsoft_UI_Xaml_Hosting_IDesktopWindowXamlSourceTakeFocusRequestedEventArgs.iid = "{4F5A0E2C-4DDC-5C03-939F-6F3BDA560363}";
+Microsoft.UI.Xaml.Hosting.IDesktopWindowXamlSourceTakeFocusRequestedEventArgs = Microsoft_UI_Xaml_Hosting_IDesktopWindowXamlSourceTakeFocusRequestedEventArgs;
+
+
+//@Interface("Microsoft.UI.Xaml.Hosting.IElementCompositionPreview")
+//@IID("{C8AD1EF4-A93F-5A25-85BD-7C498D9856D3}")
+class Microsoft_UI_Xaml_Hosting_IElementCompositionPreview : WinRtInterface 
+{
+    Microsoft_UI_Xaml_Hosting_IElementCompositionPreview( comPtr )
+    {
+        var Microsoft = runtime.global("Microsoft");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{C8AD1EF4-A93F-5A25-85BD-7C498D9856D3}");
+    }
+
+
+}
+Microsoft_UI_Xaml_Hosting_IElementCompositionPreview.iid = "{C8AD1EF4-A93F-5A25-85BD-7C498D9856D3}";
+Microsoft.UI.Xaml.Hosting.IElementCompositionPreview = Microsoft_UI_Xaml_Hosting_IElementCompositionPreview;
+
+
+//@Interface("Microsoft.UI.Xaml.Hosting.IElementCompositionPreviewStatics")
+//@IID("{84DA5A6C-0CFA-532B-9B15-CCD986374342}")
+class Microsoft_UI_Xaml_Hosting_IElementCompositionPreviewStatics : WinRtInterface 
+{
+    Microsoft_UI_Xaml_Hosting_IElementCompositionPreviewStatics( comPtr )
+    {
+        var Microsoft = runtime.global("Microsoft");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{84DA5A6C-0CFA-532B-9B15-CCD986374342}");
+    }
+
+    //@VtableIndex(6)
+    //@Async(0)
+    //@Returns("Microsoft.UI.Composition.Visual")
+    //@Parameters("Microsoft.UI.Xaml.UIElement")
+    GetElementVisual(element)
+    {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var p1 = Microsoft.UI.Xaml.UIElement( element); 
+        var _r = Microsoft.UI.Composition.Visual(
+            this.comPtr.invoke( 6, "Microsoft.UI.Composition.Visual", ["Microsoft.UI.Xaml.UIElement"], [p1] )
+        );
+        return _r;
+    }
+
+    //@VtableIndex(7)
+    //@Async(0)
+    //@Returns("Microsoft.UI.Composition.Visual")
+    //@Parameters("Microsoft.UI.Xaml.UIElement")
+    GetElementChildVisual(element)
+    {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var p1 = Microsoft.UI.Xaml.UIElement( element); 
+        var _r = Microsoft.UI.Composition.Visual(
+            this.comPtr.invoke( 7, "Microsoft.UI.Composition.Visual", ["Microsoft.UI.Xaml.UIElement"], [p1] )
+        );
+        return _r;
+    }
+
+    //@VtableIndex(8)
+    //@Async(0)
+    //@Returns("void")
+    //@Parameters("Microsoft.UI.Xaml.UIElement","Microsoft.UI.Composition.Visual")
+    SetElementChildVisual(element,visual)
+    {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var p1 = Microsoft.UI.Xaml.UIElement( element); 
+        var p2 = Microsoft.UI.Composition.Visual( visual); 
+        this.comPtr.invoke( 8, "void", ["Microsoft.UI.Xaml.UIElement", "Microsoft.UI.Composition.Visual"], [p1, p2] );
+    }
+
+    //@VtableIndex(9)
+    //@Async(0)
+    //@Returns("Microsoft.UI.Composition.CompositionPropertySet")
+    //@Parameters("Microsoft.UI.Xaml.Controls.ScrollViewer")
+    GetScrollViewerManipulationPropertySet(scrollViewer)
+    {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var p1 = Microsoft.UI.Xaml.Controls.ScrollViewer( scrollViewer); 
+        var _r = Microsoft.UI.Composition.CompositionPropertySet(
+            this.comPtr.invoke( 9, "Microsoft.UI.Composition.CompositionPropertySet", ["Microsoft.UI.Xaml.Controls.ScrollViewer"], [p1] )
+        );
+        return _r;
+    }
+
+    //@VtableIndex(10)
+    //@Async(0)
+    //@Returns("void")
+    //@Parameters("Microsoft.UI.Xaml.UIElement","Microsoft.UI.Composition.ICompositionAnimationBase")
+    SetImplicitShowAnimation(element,animation)
+    {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var p1 = Microsoft.UI.Xaml.UIElement( element); 
+        var p2 = Microsoft.UI.Composition.ICompositionAnimationBase( animation); 
+        this.comPtr.invoke( 10, "void", ["Microsoft.UI.Xaml.UIElement", "Microsoft.UI.Composition.ICompositionAnimationBase"], [p1, p2] );
+    }
+
+    //@VtableIndex(11)
+    //@Async(0)
+    //@Returns("void")
+    //@Parameters("Microsoft.UI.Xaml.UIElement","Microsoft.UI.Composition.ICompositionAnimationBase")
+    SetImplicitHideAnimation(element,animation)
+    {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var p1 = Microsoft.UI.Xaml.UIElement( element); 
+        var p2 = Microsoft.UI.Composition.ICompositionAnimationBase( animation); 
+        this.comPtr.invoke( 11, "void", ["Microsoft.UI.Xaml.UIElement", "Microsoft.UI.Composition.ICompositionAnimationBase"], [p1, p2] );
+    }
+
+    //@VtableIndex(12)
+    //@Async(0)
+    //@Returns("void")
+    //@Parameters("Microsoft.UI.Xaml.UIElement","Boolean")
+    SetIsTranslationEnabled(element,value)
+    {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var p1 = Microsoft.UI.Xaml.UIElement( element); 
+        var p2 = value;
+        this.comPtr.invoke( 12, "void", ["Microsoft.UI.Xaml.UIElement", "Boolean"], [p1, p2] );
+    }
+
+    //@VtableIndex(13)
+    //@Async(0)
+    //@Returns("Microsoft.UI.Composition.CompositionPropertySet")
+    //@Parameters("Microsoft.UI.Xaml.UIElement")
+    GetPointerPositionPropertySet(targetElement)
+    {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var p1 = Microsoft.UI.Xaml.UIElement( targetElement); 
+        var _r = Microsoft.UI.Composition.CompositionPropertySet(
+            this.comPtr.invoke( 13, "Microsoft.UI.Composition.CompositionPropertySet", ["Microsoft.UI.Xaml.UIElement"], [p1] )
+        );
+        return _r;
+    }
+
+
+}
+Microsoft_UI_Xaml_Hosting_IElementCompositionPreviewStatics.iid = "{84DA5A6C-0CFA-532B-9B15-CCD986374342}";
+Microsoft.UI.Xaml.Hosting.IElementCompositionPreviewStatics = Microsoft_UI_Xaml_Hosting_IElementCompositionPreviewStatics;
+
+
+//@Interface("Microsoft.UI.Xaml.Hosting.IWindowsXamlManager")
+//@IID("{85A2E562-7E8F-5333-A104-A3E672A2FFEE}")
+class Microsoft_UI_Xaml_Hosting_IWindowsXamlManager : WinRtInterface 
+{
+    Microsoft_UI_Xaml_Hosting_IWindowsXamlManager( comPtr )
+    {
+        var Microsoft = runtime.global("Microsoft");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{85A2E562-7E8F-5333-A104-A3E672A2FFEE}");
+    }
+
+
+}
+Microsoft_UI_Xaml_Hosting_IWindowsXamlManager.iid = "{85A2E562-7E8F-5333-A104-A3E672A2FFEE}";
+Microsoft.UI.Xaml.Hosting.IWindowsXamlManager = Microsoft_UI_Xaml_Hosting_IWindowsXamlManager;
+
+
+//@Interface("Microsoft.UI.Xaml.Hosting.IWindowsXamlManager2")
+//@IID("{BD67CFF5-B887-56DA-B0A2-DAD10A6520E9}")
+class Microsoft_UI_Xaml_Hosting_IWindowsXamlManager2 : WinRtInterface 
+{
+    Microsoft_UI_Xaml_Hosting_IWindowsXamlManager2( comPtr )
+    {
+        var Microsoft = runtime.global("Microsoft");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{BD67CFF5-B887-56DA-B0A2-DAD10A6520E9}");
+    }
+
+    //@VtableIndex(6)
+    //@Async(0)
+    //@Returns("Windows.Foundation.EventRegistrationToken")
+    //@Parameters("Windows.Foundation.TypedEventHandler`2<Microsoft.UI.Xaml.Hosting.WindowsXamlManager,Microsoft.UI.Xaml.Hosting.XamlShutdownCompletedOnThreadEventArgs>")
+    add_XamlShutdownCompletedOnThread(handler)
+    {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var p1 = nil; 
+        if( typeof(handler) == "comptr" ) { 
+            p1 = handler;
+        } else {
+            p1 = Windows.Foundation.TypedEventHandler_2_Microsoft_UI_Xaml_Hosting_WindowsXamlManager_Microsoft_UI_Xaml_Hosting_XamlShutdownCompletedOnThreadEventArgs_.Create( handler); 
+        }
+        var _r = this.comPtr.invoke( 6, "Windows.Foundation.EventRegistrationToken", ["Windows.Foundation.TypedEventHandler`2<Microsoft.UI.Xaml.Hosting.WindowsXamlManager,Microsoft.UI.Xaml.Hosting.XamlShutdownCompletedOnThreadEventArgs>"], [p1] );
+        return _r;
+    }
+
+    //@VtableIndex(7)
+    //@Async(0)
+    //@Returns("void")
+    //@Parameters("Windows.Foundation.EventRegistrationToken")
+    remove_XamlShutdownCompletedOnThread(token)
+    {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var p1 = token;
+        this.comPtr.invoke( 7, "void", ["Windows.Foundation.EventRegistrationToken"], [p1] );
+    }
+
+
+}
+Microsoft_UI_Xaml_Hosting_IWindowsXamlManager2.iid = "{BD67CFF5-B887-56DA-B0A2-DAD10A6520E9}";
+Microsoft.UI.Xaml.Hosting.IWindowsXamlManager2 = Microsoft_UI_Xaml_Hosting_IWindowsXamlManager2;
+
+
+//@Interface("Microsoft.UI.Xaml.Hosting.IWindowsXamlManagerStatics")
+//@IID("{56CB591D-DE97-539F-881D-8CCDC44FA6C4}")
+class Microsoft_UI_Xaml_Hosting_IWindowsXamlManagerStatics : WinRtInterface 
+{
+    Microsoft_UI_Xaml_Hosting_IWindowsXamlManagerStatics( comPtr )
+    {
+        var Microsoft = runtime.global("Microsoft");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{56CB591D-DE97-539F-881D-8CCDC44FA6C4}");
+    }
+
+    //@VtableIndex(6)
+    //@Async(0)
+    //@Returns("Microsoft.UI.Xaml.Hosting.WindowsXamlManager")
+    InitializeForCurrentThread()
+    {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var _r = Microsoft.UI.Xaml.Hosting.WindowsXamlManager(
+            this.comPtr.invoke( 6, "Microsoft.UI.Xaml.Hosting.WindowsXamlManager", [], [] )
+        );
+        return _r;
+    }
+
+
+}
+Microsoft_UI_Xaml_Hosting_IWindowsXamlManagerStatics.iid = "{56CB591D-DE97-539F-881D-8CCDC44FA6C4}";
+Microsoft.UI.Xaml.Hosting.IWindowsXamlManagerStatics = Microsoft_UI_Xaml_Hosting_IWindowsXamlManagerStatics;
+
+
+//@Interface("Microsoft.UI.Xaml.Hosting.IWindowsXamlManagerStatics2")
+//@IID("{1062430E-0898-5240-BA52-89D9225E7E58}")
+class Microsoft_UI_Xaml_Hosting_IWindowsXamlManagerStatics2 : WinRtInterface 
+{
+    Microsoft_UI_Xaml_Hosting_IWindowsXamlManagerStatics2( comPtr )
+    {
+        var Microsoft = runtime.global("Microsoft");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{1062430E-0898-5240-BA52-89D9225E7E58}");
+    }
+
+    //@VtableIndex(6)
+    //@Async(0)
+    //@Returns("Microsoft.UI.Xaml.Hosting.WindowsXamlManager")
+    GetForCurrentThread()
+    {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var _r = Microsoft.UI.Xaml.Hosting.WindowsXamlManager(
+            this.comPtr.invoke( 6, "Microsoft.UI.Xaml.Hosting.WindowsXamlManager", [], [] )
+        );
+        return _r;
+    }
+
+
+}
+Microsoft_UI_Xaml_Hosting_IWindowsXamlManagerStatics2.iid = "{1062430E-0898-5240-BA52-89D9225E7E58}";
+Microsoft.UI.Xaml.Hosting.IWindowsXamlManagerStatics2 = Microsoft_UI_Xaml_Hosting_IWindowsXamlManagerStatics2;
+
+
+//@Interface("Microsoft.UI.Xaml.Hosting.IXamlShutdownCompletedOnThreadEventArgs")
+//@IID("{ACCD20E5-3576-5262-A3DD-990657681F1F}")
+class Microsoft_UI_Xaml_Hosting_IXamlShutdownCompletedOnThreadEventArgs : WinRtInterface 
+{
+    Microsoft_UI_Xaml_Hosting_IXamlShutdownCompletedOnThreadEventArgs( comPtr )
+    {
+        var Microsoft = runtime.global("Microsoft");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{ACCD20E5-3576-5262-A3DD-990657681F1F}");
+    }
+
+    //@VtableIndex(6)
+    //@Async(0)
+    //@Returns("Windows.Foundation.Deferral")
+    GetDispatcherQueueDeferral()
+    {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var _r = Windows.Foundation.Deferral(
+            this.comPtr.invoke( 6, "Windows.Foundation.Deferral", [], [] )
+        );
+        return _r;
+    }
+
+
+}
+Microsoft_UI_Xaml_Hosting_IXamlShutdownCompletedOnThreadEventArgs.iid = "{ACCD20E5-3576-5262-A3DD-990657681F1F}";
+Microsoft.UI.Xaml.Hosting.IXamlShutdownCompletedOnThreadEventArgs = Microsoft_UI_Xaml_Hosting_IXamlShutdownCompletedOnThreadEventArgs;
+
+
+//@Interface("Microsoft.UI.Xaml.Hosting.IXamlSourceFocusNavigationRequest")
+//@IID("{C883EA8B-4CE2-58BE-B547-66DEDF620312}")
+class Microsoft_UI_Xaml_Hosting_IXamlSourceFocusNavigationRequest : WinRtInterface 
+{
+    Microsoft_UI_Xaml_Hosting_IXamlSourceFocusNavigationRequest( comPtr )
+    {
+        var Microsoft = runtime.global("Microsoft");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{C883EA8B-4CE2-58BE-B547-66DEDF620312}");
+    }
+
+    //@VtableIndex(6)
+    //@Async(0)
+    //@Returns("Microsoft.UI.Xaml.Hosting.XamlSourceFocusNavigationReason")
+    get_Reason()
+    {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var _r = this.comPtr.invoke( 6, "UInt32", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(7)
+    //@Async(0)
+    //@Returns("Windows.Foundation.Rect")
+    get_HintRect()
+    {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var _r = this.comPtr.invoke( 7, "Windows.Foundation.Rect", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(8)
+    //@Async(0)
+    //@Returns("ptr")
+    get_CorrelationId()
+    {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var _r = this.comPtr.invoke( 8, "ptr", [], [] );
+        return _r;
+    }
+
+
+}
+Microsoft_UI_Xaml_Hosting_IXamlSourceFocusNavigationRequest.iid = "{C883EA8B-4CE2-58BE-B547-66DEDF620312}";
+Microsoft.UI.Xaml.Hosting.IXamlSourceFocusNavigationRequest = Microsoft_UI_Xaml_Hosting_IXamlSourceFocusNavigationRequest;
+
+
+//@Interface("Microsoft.UI.Xaml.Hosting.IXamlSourceFocusNavigationRequestFactory")
+//@IID("{7A5124DD-2876-5ED8-B564-5867731D7F1E}")
+class Microsoft_UI_Xaml_Hosting_IXamlSourceFocusNavigationRequestFactory : WinRtInterface 
+{
+    Microsoft_UI_Xaml_Hosting_IXamlSourceFocusNavigationRequestFactory( comPtr )
+    {
+        var Microsoft = runtime.global("Microsoft");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{7A5124DD-2876-5ED8-B564-5867731D7F1E}");
+    }
+
+    //@VtableIndex(6)
+    //@Async(0)
+    //@Returns("Microsoft.UI.Xaml.Hosting.XamlSourceFocusNavigationRequest")
+    //@Parameters("Microsoft.UI.Xaml.Hosting.XamlSourceFocusNavigationReason")
+    CreateInstance(reason)
+    {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var p1 = reason;
+        var _r = Microsoft.UI.Xaml.Hosting.XamlSourceFocusNavigationRequest(
+            this.comPtr.invoke( 6, "Microsoft.UI.Xaml.Hosting.XamlSourceFocusNavigationRequest", ["UInt32"], [p1] )
+        );
+        return _r;
+    }
+
+    //@VtableIndex(7)
+    //@Async(0)
+    //@Returns("Microsoft.UI.Xaml.Hosting.XamlSourceFocusNavigationRequest")
+    //@Parameters("Microsoft.UI.Xaml.Hosting.XamlSourceFocusNavigationReason","Windows.Foundation.Rect")
+    CreateInstanceWithHintRect(reason,hintRect)
+    {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var p1 = reason;
+        var p2 = hintRect;
+        var _r = Microsoft.UI.Xaml.Hosting.XamlSourceFocusNavigationRequest(
+            this.comPtr.invoke( 7, "Microsoft.UI.Xaml.Hosting.XamlSourceFocusNavigationRequest", ["UInt32", "Windows.Foundation.Rect"], [p1, p2] )
+        );
+        return _r;
+    }
+
+    //@VtableIndex(8)
+    //@Async(0)
+    //@Returns("Microsoft.UI.Xaml.Hosting.XamlSourceFocusNavigationRequest")
+    //@Parameters("Microsoft.UI.Xaml.Hosting.XamlSourceFocusNavigationReason","Windows.Foundation.Rect","ptr")
+    CreateInstanceWithHintRectAndCorrelationId(reason,hintRect,correlationId)
+    {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var p1 = reason;
+        var p2 = hintRect;
+        var p3 = correlationId;
+        var _r = Microsoft.UI.Xaml.Hosting.XamlSourceFocusNavigationRequest(
+            this.comPtr.invoke( 8, "Microsoft.UI.Xaml.Hosting.XamlSourceFocusNavigationRequest", ["UInt32", "Windows.Foundation.Rect", "ptr"], [p1, p2, p3] )
+        );
+        return _r;
+    }
+
+
+}
+Microsoft_UI_Xaml_Hosting_IXamlSourceFocusNavigationRequestFactory.iid = "{7A5124DD-2876-5ED8-B564-5867731D7F1E}";
+Microsoft.UI.Xaml.Hosting.IXamlSourceFocusNavigationRequestFactory = Microsoft_UI_Xaml_Hosting_IXamlSourceFocusNavigationRequestFactory;
+
+
+//@Interface("Microsoft.UI.Xaml.Hosting.IXamlSourceFocusNavigationResult")
+//@IID("{D6BF378E-2AAC-5E5B-AC8A-6C5D9A4C1CB8}")
+class Microsoft_UI_Xaml_Hosting_IXamlSourceFocusNavigationResult : WinRtInterface 
+{
+    Microsoft_UI_Xaml_Hosting_IXamlSourceFocusNavigationResult( comPtr )
+    {
+        var Microsoft = runtime.global("Microsoft");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{D6BF378E-2AAC-5E5B-AC8A-6C5D9A4C1CB8}");
+    }
+
+    //@VtableIndex(6)
+    //@Async(0)
+    //@Returns("Boolean")
+    get_WasFocusMoved()
+    {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var _r = this.comPtr.invoke( 6, "Boolean", [], [] );
+        return _r;
+    }
+
+
+}
+Microsoft_UI_Xaml_Hosting_IXamlSourceFocusNavigationResult.iid = "{D6BF378E-2AAC-5E5B-AC8A-6C5D9A4C1CB8}";
+Microsoft.UI.Xaml.Hosting.IXamlSourceFocusNavigationResult = Microsoft_UI_Xaml_Hosting_IXamlSourceFocusNavigationResult;
+
+
+//@Interface("Microsoft.UI.Xaml.Hosting.IXamlSourceFocusNavigationResultFactory")
+//@IID("{F533F53B-5C00-5C88-9A41-3888CB86E495}")
+class Microsoft_UI_Xaml_Hosting_IXamlSourceFocusNavigationResultFactory : WinRtInterface 
+{
+    Microsoft_UI_Xaml_Hosting_IXamlSourceFocusNavigationResultFactory( comPtr )
+    {
+        var Microsoft = runtime.global("Microsoft");
+        if(!comPtr || !int(comPtr) ) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( "{F533F53B-5C00-5C88-9A41-3888CB86E495}");
+    }
+
+    //@VtableIndex(6)
+    //@Async(0)
+    //@Returns("Microsoft.UI.Xaml.Hosting.XamlSourceFocusNavigationResult")
+    //@Parameters("Boolean")
+    CreateInstance(focusMoved)
+    {
+        if(!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var p1 = focusMoved;
+        var _r = Microsoft.UI.Xaml.Hosting.XamlSourceFocusNavigationResult(
+            this.comPtr.invoke( 6, "Microsoft.UI.Xaml.Hosting.XamlSourceFocusNavigationResult", ["Boolean"], [p1] )
+        );
+        return _r;
+    }
+
+
+}
+Microsoft_UI_Xaml_Hosting_IXamlSourceFocusNavigationResultFactory.iid = "{F533F53B-5C00-5C88-9A41-3888CB86E495}";
+Microsoft.UI.Xaml.Hosting.IXamlSourceFocusNavigationResultFactory = Microsoft_UI_Xaml_Hosting_IXamlSourceFocusNavigationResultFactory;
+
+
+//@RuntimeClass("Microsoft.UI.Xaml.Hosting.DesktopWindowXamlSource")
+//@Implements("Microsoft.UI.Xaml.Hosting.IDesktopWindowXamlSource","Microsoft.UI.Xaml.Hosting.IDesktopWindowXamlSource2","Windows.Foundation.IClosable")
+//@DefaultInterface("Microsoft.UI.Xaml.Hosting.IDesktopWindowXamlSource")
+@Proxy("WinRtProxy")
+class Microsoft_UI_Xaml_Hosting_DesktopWindowXamlSource : WinRtInterface
+{
+    Microsoft_UI_Xaml_Hosting_DesktopWindowXamlSource( comPtr )
+    {
+        var Microsoft = runtime.global("Microsoft");
+        if(!comPtr || !int(comPtr)) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( Microsoft.UI.Xaml.Hosting.IDesktopWindowXamlSource.iid );
+    }
+
+    static Create()
+    {
+        return Microsoft.UI.Xaml.Hosting.DesktopWindowXamlSource(
+            winrt.activate("Microsoft.UI.Xaml.Hosting.DesktopWindowXamlSource")
+        );
+    }
+    //@Returns("Microsoft.UI.Xaml.UIElement")
+    get_Content()
+    {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Xaml.Hosting.IDesktopWindowXamlSource( this.comPtr );
+        var _r = iface.get_Content(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Parameters("Microsoft.UI.Xaml.UIElement")
+    //@Returns("void")
+    //@Parameters("Microsoft.UI.Xaml.UIElement")
+    put_Content(value)
+    {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Xaml.Hosting.IDesktopWindowXamlSource( this.comPtr );
+        iface.put_Content( value );
+        iface.release();
+    }
+
+    //@Returns("Boolean")
+    get_HasFocus()
+    {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Xaml.Hosting.IDesktopWindowXamlSource( this.comPtr );
+        var _r = iface.get_HasFocus(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Returns("Microsoft.UI.Xaml.Media.SystemBackdrop")
+    get_SystemBackdrop()
+    {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Xaml.Hosting.IDesktopWindowXamlSource( this.comPtr );
+        var _r = iface.get_SystemBackdrop(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Parameters("Microsoft.UI.Xaml.Media.SystemBackdrop")
+    //@Returns("void")
+    //@Parameters("Microsoft.UI.Xaml.Media.SystemBackdrop")
+    put_SystemBackdrop(value)
+    {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Xaml.Hosting.IDesktopWindowXamlSource( this.comPtr );
+        iface.put_SystemBackdrop( value );
+        iface.release();
+    }
+
+    //@Returns("Microsoft.UI.Content.DesktopChildSiteBridge")
+    get_SiteBridge()
+    {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Xaml.Hosting.IDesktopWindowXamlSource( this.comPtr );
+        var _r = iface.get_SiteBridge(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Parameters("Windows.Foundation.TypedEventHandler`2<Microsoft.UI.Xaml.Hosting.DesktopWindowXamlSource,Microsoft.UI.Xaml.Hosting.DesktopWindowXamlSourceTakeFocusRequestedEventArgs>")
+    //@Returns("Windows.Foundation.EventRegistrationToken")
+    //@Parameters("Windows.Foundation.TypedEventHandler`2<Microsoft.UI.Xaml.Hosting.DesktopWindowXamlSource,Microsoft.UI.Xaml.Hosting.DesktopWindowXamlSourceTakeFocusRequestedEventArgs>")
+    add_TakeFocusRequested(handler)
+    {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Xaml.Hosting.IDesktopWindowXamlSource( this.comPtr );
+        var _r = iface.add_TakeFocusRequested( handler );
+        iface.release();
+        return _r;
+    }
+
+    //@Parameters("Windows.Foundation.EventRegistrationToken")
+    //@Returns("void")
+    //@Parameters("Windows.Foundation.EventRegistrationToken")
+    remove_TakeFocusRequested(token)
+    {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Xaml.Hosting.IDesktopWindowXamlSource( this.comPtr );
+        iface.remove_TakeFocusRequested( token );
+        iface.release();
+    }
+
+    //@Parameters("Windows.Foundation.TypedEventHandler`2<Microsoft.UI.Xaml.Hosting.DesktopWindowXamlSource,Microsoft.UI.Xaml.Hosting.DesktopWindowXamlSourceGotFocusEventArgs>")
+    //@Returns("Windows.Foundation.EventRegistrationToken")
+    //@Parameters("Windows.Foundation.TypedEventHandler`2<Microsoft.UI.Xaml.Hosting.DesktopWindowXamlSource,Microsoft.UI.Xaml.Hosting.DesktopWindowXamlSourceGotFocusEventArgs>")
+    add_GotFocus(handler)
+    {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Xaml.Hosting.IDesktopWindowXamlSource( this.comPtr );
+        var _r = iface.add_GotFocus( handler );
+        iface.release();
+        return _r;
+    }
+
+    //@Parameters("Windows.Foundation.EventRegistrationToken")
+    //@Returns("void")
+    //@Parameters("Windows.Foundation.EventRegistrationToken")
+    remove_GotFocus(token)
+    {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Xaml.Hosting.IDesktopWindowXamlSource( this.comPtr );
+        iface.remove_GotFocus( token );
+        iface.release();
+    }
+
+    //@Parameters("Microsoft.UI.Xaml.Hosting.XamlSourceFocusNavigationRequest")
+    //@Returns("Microsoft.UI.Xaml.Hosting.XamlSourceFocusNavigationResult")
+    //@Parameters("Microsoft.UI.Xaml.Hosting.XamlSourceFocusNavigationRequest")
+    NavigateFocus(request)
+    {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Xaml.Hosting.IDesktopWindowXamlSource( this.comPtr );
+        var _r = iface.NavigateFocus( request );
+        iface.release();
+        return _r;
+    }
+
+    //@Parameters("Microsoft.UI.WindowId")
+    //@Returns("void")
+    //@Parameters("Microsoft.UI.WindowId")
+    Initialize(parentWindowId)
+    {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Xaml.Hosting.IDesktopWindowXamlSource( this.comPtr );
+        iface.Initialize( parentWindowId );
+        iface.release();
+    }
+
+    //@Returns("Boolean")
+    get_ShouldConstrainPopupsToWorkArea()
+    {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Xaml.Hosting.IDesktopWindowXamlSource2( this.comPtr );
+        var _r = iface.get_ShouldConstrainPopupsToWorkArea(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Parameters("Boolean")
+    //@Returns("void")
+    //@Parameters("Boolean")
+    put_ShouldConstrainPopupsToWorkArea(value)
+    {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Xaml.Hosting.IDesktopWindowXamlSource2( this.comPtr );
+        iface.put_ShouldConstrainPopupsToWorkArea( value );
+        iface.release();
+    }
+
+    //@Returns("void")
+    Close()
+    {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Windows.Foundation.IClosable( this.comPtr );
+        iface.Close(  );
+        iface.release();
+    }
+
+
+}
+Microsoft.UI.Xaml.Hosting.DesktopWindowXamlSource = Microsoft_UI_Xaml_Hosting_DesktopWindowXamlSource;
+
+//@RuntimeClass("Microsoft.UI.Xaml.Hosting.DesktopWindowXamlSourceGotFocusEventArgs")
+//@Implements("Microsoft.UI.Xaml.Hosting.IDesktopWindowXamlSourceGotFocusEventArgs")
+//@DefaultInterface("Microsoft.UI.Xaml.Hosting.IDesktopWindowXamlSourceGotFocusEventArgs")
+@Proxy("WinRtProxy")
+class Microsoft_UI_Xaml_Hosting_DesktopWindowXamlSourceGotFocusEventArgs : WinRtInterface
+{
+    Microsoft_UI_Xaml_Hosting_DesktopWindowXamlSourceGotFocusEventArgs( comPtr )
+    {
+        var Microsoft = runtime.global("Microsoft");
+        if(!comPtr || !int(comPtr)) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( Microsoft.UI.Xaml.Hosting.IDesktopWindowXamlSourceGotFocusEventArgs.iid );
+    }
+
+    static Create()
+    {
+        return Microsoft.UI.Xaml.Hosting.DesktopWindowXamlSourceGotFocusEventArgs(
+            winrt.activate("Microsoft.UI.Xaml.Hosting.DesktopWindowXamlSourceGotFocusEventArgs")
+        );
+    }
+    //@Returns("Microsoft.UI.Xaml.Hosting.XamlSourceFocusNavigationRequest")
+    get_Request()
+    {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Xaml.Hosting.IDesktopWindowXamlSourceGotFocusEventArgs( this.comPtr );
+        var _r = iface.get_Request(  );
+        iface.release();
+        return _r;
+    }
+
+
+}
+Microsoft.UI.Xaml.Hosting.DesktopWindowXamlSourceGotFocusEventArgs = Microsoft_UI_Xaml_Hosting_DesktopWindowXamlSourceGotFocusEventArgs;
+
+//@RuntimeClass("Microsoft.UI.Xaml.Hosting.DesktopWindowXamlSourceTakeFocusRequestedEventArgs")
+//@Implements("Microsoft.UI.Xaml.Hosting.IDesktopWindowXamlSourceTakeFocusRequestedEventArgs")
+//@DefaultInterface("Microsoft.UI.Xaml.Hosting.IDesktopWindowXamlSourceTakeFocusRequestedEventArgs")
+@Proxy("WinRtProxy")
+class Microsoft_UI_Xaml_Hosting_DesktopWindowXamlSourceTakeFocusRequestedEventArgs : WinRtInterface
+{
+    Microsoft_UI_Xaml_Hosting_DesktopWindowXamlSourceTakeFocusRequestedEventArgs( comPtr )
+    {
+        var Microsoft = runtime.global("Microsoft");
+        if(!comPtr || !int(comPtr)) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( Microsoft.UI.Xaml.Hosting.IDesktopWindowXamlSourceTakeFocusRequestedEventArgs.iid );
+    }
+
+    static Create()
+    {
+        return Microsoft.UI.Xaml.Hosting.DesktopWindowXamlSourceTakeFocusRequestedEventArgs(
+            winrt.activate("Microsoft.UI.Xaml.Hosting.DesktopWindowXamlSourceTakeFocusRequestedEventArgs")
+        );
+    }
+    //@Returns("Microsoft.UI.Xaml.Hosting.XamlSourceFocusNavigationRequest")
+    get_Request()
+    {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Xaml.Hosting.IDesktopWindowXamlSourceTakeFocusRequestedEventArgs( this.comPtr );
+        var _r = iface.get_Request(  );
+        iface.release();
+        return _r;
+    }
+
+
+}
+Microsoft.UI.Xaml.Hosting.DesktopWindowXamlSourceTakeFocusRequestedEventArgs = Microsoft_UI_Xaml_Hosting_DesktopWindowXamlSourceTakeFocusRequestedEventArgs;
+
+//@RuntimeClass("Microsoft.UI.Xaml.Hosting.ElementCompositionPreview")
+//@Implements("Microsoft.UI.Xaml.Hosting.IElementCompositionPreview")
+//@DefaultInterface("Microsoft.UI.Xaml.Hosting.IElementCompositionPreview")
+@Proxy("WinRtProxy")
+class Microsoft_UI_Xaml_Hosting_ElementCompositionPreview : WinRtInterface
+{
+    Microsoft_UI_Xaml_Hosting_ElementCompositionPreview( comPtr )
+    {
+        var Microsoft = runtime.global("Microsoft");
+        if(!comPtr || !int(comPtr)) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( Microsoft.UI.Xaml.Hosting.IElementCompositionPreview.iid );
+    }
+
+    // s Microsoft.UI.Xaml.Hosting.IElementCompositionPreviewStatics
+    //@Async(0)
+    //@Returns("Microsoft.UI.Composition.Visual")
+    //@Parameters("Microsoft.UI.Xaml.UIElement")
+    static GetElementVisual( element)
+    {
+        var Microsoft = runtime.global("Microsoft");
+        var factory = winrt.activationFactory( "Microsoft.UI.Xaml.Hosting.ElementCompositionPreview" );
+        var iface = Microsoft.UI.Xaml.Hosting.IElementCompositionPreviewStatics( factory );
+        var _r = iface.GetElementVisual( element);
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    //@Async(0)
+    //@Returns("Microsoft.UI.Composition.Visual")
+    //@Parameters("Microsoft.UI.Xaml.UIElement")
+    static GetElementChildVisual( element)
+    {
+        var Microsoft = runtime.global("Microsoft");
+        var factory = winrt.activationFactory( "Microsoft.UI.Xaml.Hosting.ElementCompositionPreview" );
+        var iface = Microsoft.UI.Xaml.Hosting.IElementCompositionPreviewStatics( factory );
+        var _r = iface.GetElementChildVisual( element);
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    //@Async(0)
+    //@Returns("void")
+    //@Parameters("Microsoft.UI.Xaml.UIElement","Microsoft.UI.Composition.Visual")
+    static SetElementChildVisual( element, visual)
+    {
+        var Microsoft = runtime.global("Microsoft");
+        var factory = winrt.activationFactory( "Microsoft.UI.Xaml.Hosting.ElementCompositionPreview" );
+        var iface = Microsoft.UI.Xaml.Hosting.IElementCompositionPreviewStatics( factory );
+        iface.SetElementChildVisual( element, visual);
+        iface.release();
+        factory.release();
+    }
+
+
+    //@Async(0)
+    //@Returns("Microsoft.UI.Composition.CompositionPropertySet")
+    //@Parameters("Microsoft.UI.Xaml.Controls.ScrollViewer")
+    static GetScrollViewerManipulationPropertySet( scrollViewer)
+    {
+        var Microsoft = runtime.global("Microsoft");
+        var factory = winrt.activationFactory( "Microsoft.UI.Xaml.Hosting.ElementCompositionPreview" );
+        var iface = Microsoft.UI.Xaml.Hosting.IElementCompositionPreviewStatics( factory );
+        var _r = iface.GetScrollViewerManipulationPropertySet( scrollViewer);
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    //@Async(0)
+    //@Returns("void")
+    //@Parameters("Microsoft.UI.Xaml.UIElement","Microsoft.UI.Composition.ICompositionAnimationBase")
+    static SetImplicitShowAnimation( element, animation)
+    {
+        var Microsoft = runtime.global("Microsoft");
+        var factory = winrt.activationFactory( "Microsoft.UI.Xaml.Hosting.ElementCompositionPreview" );
+        var iface = Microsoft.UI.Xaml.Hosting.IElementCompositionPreviewStatics( factory );
+        iface.SetImplicitShowAnimation( element, animation);
+        iface.release();
+        factory.release();
+    }
+
+
+    //@Async(0)
+    //@Returns("void")
+    //@Parameters("Microsoft.UI.Xaml.UIElement","Microsoft.UI.Composition.ICompositionAnimationBase")
+    static SetImplicitHideAnimation( element, animation)
+    {
+        var Microsoft = runtime.global("Microsoft");
+        var factory = winrt.activationFactory( "Microsoft.UI.Xaml.Hosting.ElementCompositionPreview" );
+        var iface = Microsoft.UI.Xaml.Hosting.IElementCompositionPreviewStatics( factory );
+        iface.SetImplicitHideAnimation( element, animation);
+        iface.release();
+        factory.release();
+    }
+
+
+    //@Async(0)
+    //@Returns("void")
+    //@Parameters("Microsoft.UI.Xaml.UIElement","Boolean")
+    static SetIsTranslationEnabled( element, value)
+    {
+        var Microsoft = runtime.global("Microsoft");
+        var factory = winrt.activationFactory( "Microsoft.UI.Xaml.Hosting.ElementCompositionPreview" );
+        var iface = Microsoft.UI.Xaml.Hosting.IElementCompositionPreviewStatics( factory );
+        iface.SetIsTranslationEnabled( element, value);
+        iface.release();
+        factory.release();
+    }
+
+
+    //@Async(0)
+    //@Returns("Microsoft.UI.Composition.CompositionPropertySet")
+    //@Parameters("Microsoft.UI.Xaml.UIElement")
+    static GetPointerPositionPropertySet( targetElement)
+    {
+        var Microsoft = runtime.global("Microsoft");
+        var factory = winrt.activationFactory( "Microsoft.UI.Xaml.Hosting.ElementCompositionPreview" );
+        var iface = Microsoft.UI.Xaml.Hosting.IElementCompositionPreviewStatics( factory );
+        var _r = iface.GetPointerPositionPropertySet( targetElement);
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    static Create()
+    {
+        return Microsoft.UI.Xaml.Hosting.ElementCompositionPreview(
+            winrt.activate("Microsoft.UI.Xaml.Hosting.ElementCompositionPreview")
+        );
+    }
+
+}
+Microsoft.UI.Xaml.Hosting.ElementCompositionPreview = Microsoft_UI_Xaml_Hosting_ElementCompositionPreview;
+
+//@RuntimeClass("Microsoft.UI.Xaml.Hosting.WindowsXamlManager")
+//@Implements("Microsoft.UI.Xaml.Hosting.IWindowsXamlManager","Microsoft.UI.Xaml.Hosting.IWindowsXamlManager2","Windows.Foundation.IClosable")
+//@DefaultInterface("Microsoft.UI.Xaml.Hosting.IWindowsXamlManager")
+@Proxy("WinRtProxy")
+class Microsoft_UI_Xaml_Hosting_WindowsXamlManager : WinRtInterface
+{
+    Microsoft_UI_Xaml_Hosting_WindowsXamlManager( comPtr )
+    {
+        var Microsoft = runtime.global("Microsoft");
+        if(!comPtr || !int(comPtr)) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( Microsoft.UI.Xaml.Hosting.IWindowsXamlManager.iid );
+    }
+
+    // s Microsoft.UI.Xaml.Hosting.IWindowsXamlManagerStatics2
+    //@Async(0)
+    //@Returns("Microsoft.UI.Xaml.Hosting.WindowsXamlManager")
+    static GetForCurrentThread( )
+    {
+        var Microsoft = runtime.global("Microsoft");
+        var factory = winrt.activationFactory( "Microsoft.UI.Xaml.Hosting.WindowsXamlManager" );
+        var iface = Microsoft.UI.Xaml.Hosting.IWindowsXamlManagerStatics2( factory );
+        var _r = iface.GetForCurrentThread( );
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    // s Microsoft.UI.Xaml.Hosting.IWindowsXamlManagerStatics
+    //@Async(0)
+    //@Returns("Microsoft.UI.Xaml.Hosting.WindowsXamlManager")
+    static InitializeForCurrentThread( )
+    {
+        var Microsoft = runtime.global("Microsoft");
+        var factory = winrt.activationFactory( "Microsoft.UI.Xaml.Hosting.WindowsXamlManager" );
+        var iface = Microsoft.UI.Xaml.Hosting.IWindowsXamlManagerStatics( factory );
+        var _r = iface.InitializeForCurrentThread( );
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    static Create()
+    {
+        return Microsoft.UI.Xaml.Hosting.WindowsXamlManager(
+            winrt.activate("Microsoft.UI.Xaml.Hosting.WindowsXamlManager")
+        );
+    }
+    //@Parameters("Windows.Foundation.TypedEventHandler`2<Microsoft.UI.Xaml.Hosting.WindowsXamlManager,Microsoft.UI.Xaml.Hosting.XamlShutdownCompletedOnThreadEventArgs>")
+    //@Returns("Windows.Foundation.EventRegistrationToken")
+    //@Parameters("Windows.Foundation.TypedEventHandler`2<Microsoft.UI.Xaml.Hosting.WindowsXamlManager,Microsoft.UI.Xaml.Hosting.XamlShutdownCompletedOnThreadEventArgs>")
+    add_XamlShutdownCompletedOnThread(handler)
+    {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Xaml.Hosting.IWindowsXamlManager2( this.comPtr );
+        var _r = iface.add_XamlShutdownCompletedOnThread( handler );
+        iface.release();
+        return _r;
+    }
+
+    //@Parameters("Windows.Foundation.EventRegistrationToken")
+    //@Returns("void")
+    //@Parameters("Windows.Foundation.EventRegistrationToken")
+    remove_XamlShutdownCompletedOnThread(token)
+    {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Xaml.Hosting.IWindowsXamlManager2( this.comPtr );
+        iface.remove_XamlShutdownCompletedOnThread( token );
+        iface.release();
+    }
+
+    //@Returns("void")
+    Close()
+    {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Windows.Foundation.IClosable( this.comPtr );
+        iface.Close(  );
+        iface.release();
+    }
+
+
+}
+Microsoft.UI.Xaml.Hosting.WindowsXamlManager = Microsoft_UI_Xaml_Hosting_WindowsXamlManager;
+
+//@RuntimeClass("Microsoft.UI.Xaml.Hosting.XamlShutdownCompletedOnThreadEventArgs")
+//@Implements("Microsoft.UI.Xaml.Hosting.IXamlShutdownCompletedOnThreadEventArgs")
+//@DefaultInterface("Microsoft.UI.Xaml.Hosting.IXamlShutdownCompletedOnThreadEventArgs")
+@Proxy("WinRtProxy")
+class Microsoft_UI_Xaml_Hosting_XamlShutdownCompletedOnThreadEventArgs : WinRtInterface
+{
+    Microsoft_UI_Xaml_Hosting_XamlShutdownCompletedOnThreadEventArgs( comPtr )
+    {
+        var Microsoft = runtime.global("Microsoft");
+        if(!comPtr || !int(comPtr)) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( Microsoft.UI.Xaml.Hosting.IXamlShutdownCompletedOnThreadEventArgs.iid );
+    }
+
+    static Create()
+    {
+        return Microsoft.UI.Xaml.Hosting.XamlShutdownCompletedOnThreadEventArgs(
+            winrt.activate("Microsoft.UI.Xaml.Hosting.XamlShutdownCompletedOnThreadEventArgs")
+        );
+    }
+    //@Returns("Windows.Foundation.Deferral")
+    GetDispatcherQueueDeferral()
+    {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Xaml.Hosting.IXamlShutdownCompletedOnThreadEventArgs( this.comPtr );
+        var _r = iface.GetDispatcherQueueDeferral(  );
+        iface.release();
+        return _r;
+    }
+
+
+}
+Microsoft.UI.Xaml.Hosting.XamlShutdownCompletedOnThreadEventArgs = Microsoft_UI_Xaml_Hosting_XamlShutdownCompletedOnThreadEventArgs;
+
+//@RuntimeClass("Microsoft.UI.Xaml.Hosting.XamlSourceFocusNavigationRequest")
+//@Implements("Microsoft.UI.Xaml.Hosting.IXamlSourceFocusNavigationRequest")
+//@DefaultInterface("Microsoft.UI.Xaml.Hosting.IXamlSourceFocusNavigationRequest")
+@Proxy("WinRtProxy")
+class Microsoft_UI_Xaml_Hosting_XamlSourceFocusNavigationRequest : WinRtInterface
+{
+    Microsoft_UI_Xaml_Hosting_XamlSourceFocusNavigationRequest( comPtr )
+    {
+        var Microsoft = runtime.global("Microsoft");
+        if(!comPtr || !int(comPtr)) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( Microsoft.UI.Xaml.Hosting.IXamlSourceFocusNavigationRequest.iid );
+    }
+
+    static Create()
+    {
+        return Microsoft.UI.Xaml.Hosting.XamlSourceFocusNavigationRequest(
+            winrt.activate("Microsoft.UI.Xaml.Hosting.XamlSourceFocusNavigationRequest")
+        );
+    }
+    //@Returns("Microsoft.UI.Xaml.Hosting.XamlSourceFocusNavigationRequest")
+    //@Parameters("Microsoft.UI.Xaml.Hosting.XamlSourceFocusNavigationReason")
+    static CreateInstance(reason)
+    {
+        var Microsoft = runtime.global("Microsoft");
+        var factory = winrt.activationFactory( "Microsoft.UI.Xaml.Hosting.XamlSourceFocusNavigationRequest");
+        var iface = Microsoft.UI.Xaml.Hosting.IXamlSourceFocusNavigationRequestFactory( factory );
+        var result = iface.CreateInstance( reason );
+        iface.release();
+        factory.release();
+        return result;
+    }
+    //@Returns("Microsoft.UI.Xaml.Hosting.XamlSourceFocusNavigationRequest")
+    //@Parameters("Microsoft.UI.Xaml.Hosting.XamlSourceFocusNavigationReason","Windows.Foundation.Rect")
+    static CreateInstanceWithHintRect(reason,hintRect)
+    {
+        var Microsoft = runtime.global("Microsoft");
+        var factory = winrt.activationFactory( "Microsoft.UI.Xaml.Hosting.XamlSourceFocusNavigationRequest");
+        var iface = Microsoft.UI.Xaml.Hosting.IXamlSourceFocusNavigationRequestFactory( factory );
+        var result = iface.CreateInstanceWithHintRect( reason, hintRect );
+        iface.release();
+        factory.release();
+        return result;
+    }
+    //@Returns("Microsoft.UI.Xaml.Hosting.XamlSourceFocusNavigationRequest")
+    //@Parameters("Microsoft.UI.Xaml.Hosting.XamlSourceFocusNavigationReason","Windows.Foundation.Rect","ptr")
+    static CreateInstanceWithHintRectAndCorrelationId(reason,hintRect,correlationId)
+    {
+        var Microsoft = runtime.global("Microsoft");
+        var factory = winrt.activationFactory( "Microsoft.UI.Xaml.Hosting.XamlSourceFocusNavigationRequest");
+        var iface = Microsoft.UI.Xaml.Hosting.IXamlSourceFocusNavigationRequestFactory( factory );
+        var result = iface.CreateInstanceWithHintRectAndCorrelationId( reason, hintRect, correlationId );
+        iface.release();
+        factory.release();
+        return result;
+    }
+    // f Microsoft.UI.Xaml.Hosting.IXamlSourceFocusNavigationRequestFactory
+    //@Returns("Microsoft.UI.Xaml.Hosting.XamlSourceFocusNavigationReason")
+    get_Reason()
+    {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Xaml.Hosting.IXamlSourceFocusNavigationRequest( this.comPtr );
+        var _r = iface.get_Reason(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Returns("Windows.Foundation.Rect")
+    get_HintRect()
+    {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Xaml.Hosting.IXamlSourceFocusNavigationRequest( this.comPtr );
+        var _r = iface.get_HintRect(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Returns("ptr")
+    get_CorrelationId()
+    {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Xaml.Hosting.IXamlSourceFocusNavigationRequest( this.comPtr );
+        var _r = iface.get_CorrelationId(  );
+        iface.release();
+        return _r;
+    }
+
+
+}
+Microsoft.UI.Xaml.Hosting.XamlSourceFocusNavigationRequest = Microsoft_UI_Xaml_Hosting_XamlSourceFocusNavigationRequest;
+
+//@RuntimeClass("Microsoft.UI.Xaml.Hosting.XamlSourceFocusNavigationResult")
+//@Implements("Microsoft.UI.Xaml.Hosting.IXamlSourceFocusNavigationResult")
+//@DefaultInterface("Microsoft.UI.Xaml.Hosting.IXamlSourceFocusNavigationResult")
+@Proxy("WinRtProxy")
+class Microsoft_UI_Xaml_Hosting_XamlSourceFocusNavigationResult : WinRtInterface
+{
+    Microsoft_UI_Xaml_Hosting_XamlSourceFocusNavigationResult( comPtr )
+    {
+        var Microsoft = runtime.global("Microsoft");
+        if(!comPtr || !int(comPtr)) { this.comPtr = comPtr; }
+        else this.comPtr = comPtr.queryInterface( Microsoft.UI.Xaml.Hosting.IXamlSourceFocusNavigationResult.iid );
+    }
+
+    static Create()
+    {
+        return Microsoft.UI.Xaml.Hosting.XamlSourceFocusNavigationResult(
+            winrt.activate("Microsoft.UI.Xaml.Hosting.XamlSourceFocusNavigationResult")
+        );
+    }
+    //@Returns("Microsoft.UI.Xaml.Hosting.XamlSourceFocusNavigationResult")
+    //@Parameters("Boolean")
+    static CreateInstance(focusMoved)
+    {
+        var Microsoft = runtime.global("Microsoft");
+        var factory = winrt.activationFactory( "Microsoft.UI.Xaml.Hosting.XamlSourceFocusNavigationResult");
+        var iface = Microsoft.UI.Xaml.Hosting.IXamlSourceFocusNavigationResultFactory( factory );
+        var result = iface.CreateInstance( focusMoved );
+        iface.release();
+        factory.release();
+        return result;
+    }
+    // f Microsoft.UI.Xaml.Hosting.IXamlSourceFocusNavigationResultFactory
+    //@Returns("Boolean")
+    get_WasFocusMoved()
+    {
+        if (!this.comPtr || !int(this.comPtr)) return nil;
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Xaml.Hosting.IXamlSourceFocusNavigationResult( this.comPtr );
+        var _r = iface.get_WasFocusMoved(  );
+        iface.release();
+        return _r;
+    }
+
+
+}
+Microsoft.UI.Xaml.Hosting.XamlSourceFocusNavigationResult = Microsoft_UI_Xaml_Hosting_XamlSourceFocusNavigationResult;
+
+if ( Windows.Foundation == nil ) { Windows.Foundation = {}; }
+//@Delegate("Windows.Foundation.TypedEventHandler`2<Microsoft.UI.Xaml.Hosting.WindowsXamlManager,Microsoft.UI.Xaml.Hosting.XamlShutdownCompletedOnThreadEventArgs>")
+//@IID("{1056F3F8-D8B3-58EA-B256-490450626C55}")
+class Windows_Foundation_TypedEventHandler_2_Microsoft_UI_Xaml_Hosting_WindowsXamlManager_Microsoft_UI_Xaml_Hosting_XamlShutdownCompletedOnThreadEventArgs_{
+    static Create( cb ) 
+    {
+        var callback = fun( s, arg ) {
+            cb( s, Microsoft.UI.Xaml.Hosting.XamlShutdownCompletedOnThreadEventArgs(arg) );
+        };
+        return winrt.Delegate(["Microsoft.UI.Xaml.Hosting.WindowsXamlManager", "Microsoft.UI.Xaml.Hosting.XamlShutdownCompletedOnThreadEventArgs"], "{1056F3F8-D8B3-58EA-B256-490450626C55}", callback );
+    }
+}
+Windows_Foundation_TypedEventHandler_2_Microsoft_UI_Xaml_Hosting_WindowsXamlManager_Microsoft_UI_Xaml_Hosting_XamlShutdownCompletedOnThreadEventArgs_.iid = "{1056F3F8-D8B3-58EA-B256-490450626C55}";
+Windows.Foundation.TypedEventHandler_2_Microsoft_UI_Xaml_Hosting_WindowsXamlManager_Microsoft_UI_Xaml_Hosting_XamlShutdownCompletedOnThreadEventArgs_ = Windows_Foundation_TypedEventHandler_2_Microsoft_UI_Xaml_Hosting_WindowsXamlManager_Microsoft_UI_Xaml_Hosting_XamlShutdownCompletedOnThreadEventArgs_;
+
+
+if ( Windows.Foundation == nil ) { Windows.Foundation = {}; }
+//@Delegate("Windows.Foundation.TypedEventHandler`2<Microsoft.UI.Xaml.Hosting.DesktopWindowXamlSource,Microsoft.UI.Xaml.Hosting.DesktopWindowXamlSourceTakeFocusRequestedEventArgs>")
+//@IID("{A16513AB-CC2E-57A0-9B6A-0CE9F4837285}")
+class Windows_Foundation_TypedEventHandler_2_Microsoft_UI_Xaml_Hosting_DesktopWindowXamlSource_Microsoft_UI_Xaml_Hosting_DesktopWindowXamlSourceTakeFocusRequestedEventArgs_{
+    static Create( cb ) 
+    {
+        var callback = fun( s, arg ) {
+            cb( s, Microsoft.UI.Xaml.Hosting.DesktopWindowXamlSourceTakeFocusRequestedEventArgs(arg) );
+        };
+        return winrt.Delegate(["Microsoft.UI.Xaml.Hosting.DesktopWindowXamlSource", "Microsoft.UI.Xaml.Hosting.DesktopWindowXamlSourceTakeFocusRequestedEventArgs"], "{A16513AB-CC2E-57A0-9B6A-0CE9F4837285}", callback );
+    }
+}
+Windows_Foundation_TypedEventHandler_2_Microsoft_UI_Xaml_Hosting_DesktopWindowXamlSource_Microsoft_UI_Xaml_Hosting_DesktopWindowXamlSourceTakeFocusRequestedEventArgs_.iid = "{A16513AB-CC2E-57A0-9B6A-0CE9F4837285}";
+Windows.Foundation.TypedEventHandler_2_Microsoft_UI_Xaml_Hosting_DesktopWindowXamlSource_Microsoft_UI_Xaml_Hosting_DesktopWindowXamlSourceTakeFocusRequestedEventArgs_ = Windows_Foundation_TypedEventHandler_2_Microsoft_UI_Xaml_Hosting_DesktopWindowXamlSource_Microsoft_UI_Xaml_Hosting_DesktopWindowXamlSourceTakeFocusRequestedEventArgs_;
+
+
+if ( Windows.Foundation == nil ) { Windows.Foundation = {}; }
+//@Delegate("Windows.Foundation.TypedEventHandler`2<Microsoft.UI.Xaml.Hosting.DesktopWindowXamlSource,Microsoft.UI.Xaml.Hosting.DesktopWindowXamlSourceGotFocusEventArgs>")
+//@IID("{819741F0-1D2D-5731-9489-6BAC155A9EF9}")
+class Windows_Foundation_TypedEventHandler_2_Microsoft_UI_Xaml_Hosting_DesktopWindowXamlSource_Microsoft_UI_Xaml_Hosting_DesktopWindowXamlSourceGotFocusEventArgs_{
+    static Create( cb ) 
+    {
+        var callback = fun( s, arg ) {
+            cb( s, Microsoft.UI.Xaml.Hosting.DesktopWindowXamlSourceGotFocusEventArgs(arg) );
+        };
+        return winrt.Delegate(["Microsoft.UI.Xaml.Hosting.DesktopWindowXamlSource", "Microsoft.UI.Xaml.Hosting.DesktopWindowXamlSourceGotFocusEventArgs"], "{819741F0-1D2D-5731-9489-6BAC155A9EF9}", callback );
+    }
+}
+Windows_Foundation_TypedEventHandler_2_Microsoft_UI_Xaml_Hosting_DesktopWindowXamlSource_Microsoft_UI_Xaml_Hosting_DesktopWindowXamlSourceGotFocusEventArgs_.iid = "{819741F0-1D2D-5731-9489-6BAC155A9EF9}";
+Windows.Foundation.TypedEventHandler_2_Microsoft_UI_Xaml_Hosting_DesktopWindowXamlSource_Microsoft_UI_Xaml_Hosting_DesktopWindowXamlSourceGotFocusEventArgs_ = Windows_Foundation_TypedEventHandler_2_Microsoft_UI_Xaml_Hosting_DesktopWindowXamlSource_Microsoft_UI_Xaml_Hosting_DesktopWindowXamlSourceGotFocusEventArgs_;
+
+
+
+}

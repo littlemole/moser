@@ -57,7 +57,6 @@ Win32.CURRENT_IMPORT_REDIRECTION_VERSION = 1;
 Win32.LOAD_LIBRARY_OS_INTEGRITY_CONTINUITY = 32768;
 Win32.DisableThreadLibraryCalls = foreign.native( "KERNEL32.dll", "int", "DisableThreadLibraryCalls", [ "ptr" ] ); 
 Win32.FindResourceExW = foreign.native( "KERNEL32.dll", "ptr", "FindResourceExW", [ "ptr", "wstr", "wstr", "ushort" ] ); 
-Win32.FreeLibrary = foreign.native( "KERNEL32.dll", "int", "FreeLibrary", [ "ptr" ] ); 
 Win32.FreeLibraryAndExitThread = foreign.native( "KERNEL32.dll", "void", "FreeLibraryAndExitThread", [ "ptr", "uint" ] ); 
 Win32.FreeResource = foreign.native( "KERNEL32.dll", "int", "FreeResource", [ "ptr" ] ); 
 Win32.GetModuleFileNameA = foreign.native( "KERNEL32.dll", "uint", "GetModuleFileNameA", [ "ptr", "ptr", "uint" ] ); 

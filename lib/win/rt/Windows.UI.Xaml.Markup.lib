@@ -5,32 +5,32 @@ class WinRtInterface {
     valid() { return this.comPtr != nil && int(this.comPtr) != 0; }
 }
 
-if( runtime.global("Windows") == nil ) { runtime.global("Windows", {}); }
-var Windows = runtime.global("Windows");
-if ( Windows.UI == nil ) { Windows.UI = {}; }
-if ( Windows.UI.Xaml == nil ) { Windows.UI.Xaml = {}; }
-if ( Windows.UI.Xaml.Markup == nil ) { Windows.UI.Xaml.Markup = {}; }
+if( runtime.global("Microsoft") == nil ) { runtime.global("Microsoft", {}); }
+var Microsoft = runtime.global("Microsoft");
+if ( Microsoft.UI == nil ) { Microsoft.UI = {}; }
+if ( Microsoft.UI.Xaml == nil ) { Microsoft.UI.Xaml = {}; }
+if ( Microsoft.UI.Xaml.Markup == nil ) { Microsoft.UI.Xaml.Markup = {}; }
 
-Windows.UI.Xaml.Markup.XamlBinaryWriterErrorInformation = foreign.named_struct( "Windows.UI.Xaml.Markup.XamlBinaryWriterErrorInformation", [ 
+Microsoft.UI.Xaml.Markup.XamlBinaryWriterErrorInformation = foreign.named_struct( "Microsoft.UI.Xaml.Markup.XamlBinaryWriterErrorInformation", [ 
     "InputStreamIndex:uint", 
     "LineNumber:uint", 
     "LinePosition:uint"
 ]); 
 
 
-Windows.UI.Xaml.Markup.XmlnsDefinition = foreign.named_struct( "Windows.UI.Xaml.Markup.XmlnsDefinition", [ 
+Microsoft.UI.Xaml.Markup.XmlnsDefinition = foreign.named_struct( "Microsoft.UI.Xaml.Markup.XmlnsDefinition", [ 
     "XmlNamespace:ptr", 
     "Namespace:ptr"
 ]); 
 
-//@Interface("Windows.UI.Xaml.Markup.IComponentConnector")
-//@IID("{F6790987-E6E5-47F2-92C6-ECCCE4BA159A}")
-class Windows_UI_Xaml_Markup_IComponentConnector : WinRtInterface 
+//@Interface("Microsoft.UI.Xaml.Markup.IComponentConnector")
+//@IID("{AD401812-B091-51D0-B915-2D682CD2AF10}")
+class Microsoft_UI_Xaml_Markup_IComponentConnector : WinRtInterface 
 {
-    Windows_UI_Xaml_Markup_IComponentConnector( comPtr )
+    Microsoft_UI_Xaml_Markup_IComponentConnector( comPtr )
     {
-        var Windows = runtime.global("Windows");
-        this.comPtr = comPtr.queryInterface( "{F6790987-E6E5-47F2-92C6-ECCCE4BA159A}");
+        var Microsoft = runtime.global("Microsoft");
+        this.comPtr = comPtr.queryInterface( "{AD401812-B091-51D0-B915-2D682CD2AF10}");
     }
 
     //@VtableIndex(6)
@@ -39,57 +39,41 @@ class Windows_UI_Xaml_Markup_IComponentConnector : WinRtInterface
     //@Parameters("Int32","Object")
     Connect(connectionId,target)
     {
-        var Windows = runtime.global("Windows");
+        var Microsoft = runtime.global("Microsoft");
         var p1 = connectionId;
         var p2 = target;
         this.comPtr.invoke( 6, "void", ["Int32", "Object"], [p1, p2] );
     }
 
-
-}
-Windows_UI_Xaml_Markup_IComponentConnector.iid = "{F6790987-E6E5-47F2-92C6-ECCCE4BA159A}";
-Windows.UI.Xaml.Markup.IComponentConnector = Windows_UI_Xaml_Markup_IComponentConnector;
-
-
-//@Interface("Windows.UI.Xaml.Markup.IComponentConnector2")
-//@IID("{DC8F368B-ECCC-498E-B139-91142254D7AE}")
-class Windows_UI_Xaml_Markup_IComponentConnector2 : WinRtInterface 
-{
-    Windows_UI_Xaml_Markup_IComponentConnector2( comPtr )
-    {
-        var Windows = runtime.global("Windows");
-        this.comPtr = comPtr.queryInterface( "{DC8F368B-ECCC-498E-B139-91142254D7AE}");
-    }
-
-    //@VtableIndex(6)
+    //@VtableIndex(7)
     //@Async(0)
-    //@Returns("Windows.UI.Xaml.Markup.IComponentConnector")
+    //@Returns("Microsoft.UI.Xaml.Markup.IComponentConnector")
     //@Parameters("Int32","Object")
     GetBindingConnector(connectionId,target)
     {
-        var Windows = runtime.global("Windows");
+        var Microsoft = runtime.global("Microsoft");
         var p1 = connectionId;
         var p2 = target;
-        var _r = Windows.UI.Xaml.Markup.IComponentConnector(
-            this.comPtr.invoke( 6, "Windows.UI.Xaml.Markup.IComponentConnector", ["Int32", "Object"], [p1, p2] )
+        var _r = Microsoft.UI.Xaml.Markup.IComponentConnector(
+            this.comPtr.invoke( 7, "Microsoft.UI.Xaml.Markup.IComponentConnector", ["Int32", "Object"], [p1, p2] )
         );
         return _r;
     }
 
 
 }
-Windows_UI_Xaml_Markup_IComponentConnector2.iid = "{DC8F368B-ECCC-498E-B139-91142254D7AE}";
-Windows.UI.Xaml.Markup.IComponentConnector2 = Windows_UI_Xaml_Markup_IComponentConnector2;
+Microsoft_UI_Xaml_Markup_IComponentConnector.iid = "{AD401812-B091-51D0-B915-2D682CD2AF10}";
+Microsoft.UI.Xaml.Markup.IComponentConnector = Microsoft_UI_Xaml_Markup_IComponentConnector;
 
 
-//@Interface("Windows.UI.Xaml.Markup.IDataTemplateComponent")
-//@IID("{08429DC8-8AB0-4747-AA9A-FEADFC8DA8E1}")
-class Windows_UI_Xaml_Markup_IDataTemplateComponent : WinRtInterface 
+//@Interface("Microsoft.UI.Xaml.Markup.IDataTemplateComponent")
+//@IID("{1743DDF7-38BA-58C9-A2A6-B0AE28713BEE}")
+class Microsoft_UI_Xaml_Markup_IDataTemplateComponent : WinRtInterface 
 {
-    Windows_UI_Xaml_Markup_IDataTemplateComponent( comPtr )
+    Microsoft_UI_Xaml_Markup_IDataTemplateComponent( comPtr )
     {
-        var Windows = runtime.global("Windows");
-        this.comPtr = comPtr.queryInterface( "{08429DC8-8AB0-4747-AA9A-FEADFC8DA8E1}");
+        var Microsoft = runtime.global("Microsoft");
+        this.comPtr = comPtr.queryInterface( "{1743DDF7-38BA-58C9-A2A6-B0AE28713BEE}");
     }
 
     //@VtableIndex(6)
@@ -97,56 +81,56 @@ class Windows_UI_Xaml_Markup_IDataTemplateComponent : WinRtInterface
     //@Returns("void")
     Recycle()
     {
-        var Windows = runtime.global("Windows");
+        var Microsoft = runtime.global("Microsoft");
         this.comPtr.invoke( 6, "void", [], [] );
     }
 
 
 }
-Windows_UI_Xaml_Markup_IDataTemplateComponent.iid = "{08429DC8-8AB0-4747-AA9A-FEADFC8DA8E1}";
-Windows.UI.Xaml.Markup.IDataTemplateComponent = Windows_UI_Xaml_Markup_IDataTemplateComponent;
+Microsoft_UI_Xaml_Markup_IDataTemplateComponent.iid = "{1743DDF7-38BA-58C9-A2A6-B0AE28713BEE}";
+Microsoft.UI.Xaml.Markup.IDataTemplateComponent = Microsoft_UI_Xaml_Markup_IDataTemplateComponent;
 
 
-//@Interface("Windows.UI.Xaml.Markup.IMarkupExtension")
-//@IID("{1EE3416D-562B-486E-9EE5-0F0CBCC8048C}")
-class Windows_UI_Xaml_Markup_IMarkupExtension : WinRtInterface 
+//@Interface("Microsoft.UI.Xaml.Markup.IMarkupExtension")
+//@IID("{C355371E-091D-5136-AF4A-BAF5E00616BD}")
+class Microsoft_UI_Xaml_Markup_IMarkupExtension : WinRtInterface 
 {
-    Windows_UI_Xaml_Markup_IMarkupExtension( comPtr )
+    Microsoft_UI_Xaml_Markup_IMarkupExtension( comPtr )
     {
-        var Windows = runtime.global("Windows");
-        this.comPtr = comPtr.queryInterface( "{1EE3416D-562B-486E-9EE5-0F0CBCC8048C}");
+        var Microsoft = runtime.global("Microsoft");
+        this.comPtr = comPtr.queryInterface( "{C355371E-091D-5136-AF4A-BAF5E00616BD}");
     }
 
 
 }
-Windows_UI_Xaml_Markup_IMarkupExtension.iid = "{1EE3416D-562B-486E-9EE5-0F0CBCC8048C}";
-Windows.UI.Xaml.Markup.IMarkupExtension = Windows_UI_Xaml_Markup_IMarkupExtension;
+Microsoft_UI_Xaml_Markup_IMarkupExtension.iid = "{C355371E-091D-5136-AF4A-BAF5E00616BD}";
+Microsoft.UI.Xaml.Markup.IMarkupExtension = Microsoft_UI_Xaml_Markup_IMarkupExtension;
 
 
-//@Interface("Windows.UI.Xaml.Markup.IMarkupExtensionFactory")
-//@IID("{65329C05-FB5A-4567-9D55-5CDFBADA2739}")
-class Windows_UI_Xaml_Markup_IMarkupExtensionFactory : WinRtInterface 
+//@Interface("Microsoft.UI.Xaml.Markup.IMarkupExtensionFactory")
+//@IID("{20651AFA-5F3A-5F0C-ADB1-B6551F53A6A0}")
+class Microsoft_UI_Xaml_Markup_IMarkupExtensionFactory : WinRtInterface 
 {
-    Windows_UI_Xaml_Markup_IMarkupExtensionFactory( comPtr )
+    Microsoft_UI_Xaml_Markup_IMarkupExtensionFactory( comPtr )
     {
-        var Windows = runtime.global("Windows");
-        this.comPtr = comPtr.queryInterface( "{65329C05-FB5A-4567-9D55-5CDFBADA2739}");
+        var Microsoft = runtime.global("Microsoft");
+        this.comPtr = comPtr.queryInterface( "{20651AFA-5F3A-5F0C-ADB1-B6551F53A6A0}");
     }
 
 
 }
-Windows_UI_Xaml_Markup_IMarkupExtensionFactory.iid = "{65329C05-FB5A-4567-9D55-5CDFBADA2739}";
-Windows.UI.Xaml.Markup.IMarkupExtensionFactory = Windows_UI_Xaml_Markup_IMarkupExtensionFactory;
+Microsoft_UI_Xaml_Markup_IMarkupExtensionFactory.iid = "{20651AFA-5F3A-5F0C-ADB1-B6551F53A6A0}";
+Microsoft.UI.Xaml.Markup.IMarkupExtensionFactory = Microsoft_UI_Xaml_Markup_IMarkupExtensionFactory;
 
 
-//@Interface("Windows.UI.Xaml.Markup.IMarkupExtensionOverrides")
-//@IID("{393779BF-B9C0-4FFB-A57F-58E7356E425F}")
-class Windows_UI_Xaml_Markup_IMarkupExtensionOverrides : WinRtInterface 
+//@Interface("Microsoft.UI.Xaml.Markup.IMarkupExtensionOverrides")
+//@IID("{A12AA575-5D31-5B68-A30F-8495412A351D}")
+class Microsoft_UI_Xaml_Markup_IMarkupExtensionOverrides : WinRtInterface 
 {
-    Windows_UI_Xaml_Markup_IMarkupExtensionOverrides( comPtr )
+    Microsoft_UI_Xaml_Markup_IMarkupExtensionOverrides( comPtr )
     {
-        var Windows = runtime.global("Windows");
-        this.comPtr = comPtr.queryInterface( "{393779BF-B9C0-4FFB-A57F-58E7356E425F}");
+        var Microsoft = runtime.global("Microsoft");
+        this.comPtr = comPtr.queryInterface( "{A12AA575-5D31-5B68-A30F-8495412A351D}");
     }
 
     //@VtableIndex(6)
@@ -154,71 +138,219 @@ class Windows_UI_Xaml_Markup_IMarkupExtensionOverrides : WinRtInterface
     //@Returns("Object")
     ProvideValue()
     {
-        var Windows = runtime.global("Windows");
+        var Microsoft = runtime.global("Microsoft");
+        var _r = this.comPtr.invoke( 6, "Object", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(7)
+    //@Async(0)
+    //@Returns("Object")
+    //@Parameters("Microsoft.UI.Xaml.IXamlServiceProvider")
+    ProvideValueWithIXamlServiceProvider(serviceProvider)
+    {
+        var Microsoft = runtime.global("Microsoft");
+        var p1 = Microsoft.UI.Xaml.IXamlServiceProvider( serviceProvider); 
+        var _r = this.comPtr.invoke( 7, "Object", ["Microsoft.UI.Xaml.IXamlServiceProvider"], [p1] );
+        return _r;
+    }
+
+
+}
+Microsoft_UI_Xaml_Markup_IMarkupExtensionOverrides.iid = "{A12AA575-5D31-5B68-A30F-8495412A351D}";
+Microsoft.UI.Xaml.Markup.IMarkupExtensionOverrides = Microsoft_UI_Xaml_Markup_IMarkupExtensionOverrides;
+
+
+//@Interface("Microsoft.UI.Xaml.Markup.IProvideValueTarget")
+//@IID("{3F01FF68-3EFD-591D-A506-DE13FCAABD83}")
+class Microsoft_UI_Xaml_Markup_IProvideValueTarget : WinRtInterface 
+{
+    Microsoft_UI_Xaml_Markup_IProvideValueTarget( comPtr )
+    {
+        var Microsoft = runtime.global("Microsoft");
+        this.comPtr = comPtr.queryInterface( "{3F01FF68-3EFD-591D-A506-DE13FCAABD83}");
+    }
+
+    //@VtableIndex(6)
+    //@Async(0)
+    //@Returns("Object")
+    get_TargetObject()
+    {
+        var Microsoft = runtime.global("Microsoft");
+        var _r = this.comPtr.invoke( 6, "Object", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(7)
+    //@Async(0)
+    //@Returns("Object")
+    get_TargetProperty()
+    {
+        var Microsoft = runtime.global("Microsoft");
+        var _r = this.comPtr.invoke( 7, "Object", [], [] );
+        return _r;
+    }
+
+
+}
+Microsoft_UI_Xaml_Markup_IProvideValueTarget.iid = "{3F01FF68-3EFD-591D-A506-DE13FCAABD83}";
+Microsoft.UI.Xaml.Markup.IProvideValueTarget = Microsoft_UI_Xaml_Markup_IProvideValueTarget;
+
+
+//@Interface("Microsoft.UI.Xaml.Markup.IProvideValueTargetProperty")
+//@IID("{CE777B1F-B42E-59D1-870D-12FDF0629133}")
+class Microsoft_UI_Xaml_Markup_IProvideValueTargetProperty : WinRtInterface 
+{
+    Microsoft_UI_Xaml_Markup_IProvideValueTargetProperty( comPtr )
+    {
+        var Microsoft = runtime.global("Microsoft");
+        this.comPtr = comPtr.queryInterface( "{CE777B1F-B42E-59D1-870D-12FDF0629133}");
+    }
+
+    //@VtableIndex(6)
+    //@Async(0)
+    //@Returns("String")
+    get_Name()
+    {
+        var Microsoft = runtime.global("Microsoft");
+        var _r = this.comPtr.invoke( 6, "String", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(7)
+    //@Async(0)
+    //@Returns("Windows.UI.Xaml.Interop.TypeName")
+    get_Type()
+    {
+        var Microsoft = runtime.global("Microsoft");
+        var _r = this.comPtr.invoke( 7, "Windows.UI.Xaml.Interop.TypeName", [], [] );
+        return _r;
+    }
+
+    //@VtableIndex(8)
+    //@Async(0)
+    //@Returns("Windows.UI.Xaml.Interop.TypeName")
+    get_DeclaringType()
+    {
+        var Microsoft = runtime.global("Microsoft");
+        var _r = this.comPtr.invoke( 8, "Windows.UI.Xaml.Interop.TypeName", [], [] );
+        return _r;
+    }
+
+
+}
+Microsoft_UI_Xaml_Markup_IProvideValueTargetProperty.iid = "{CE777B1F-B42E-59D1-870D-12FDF0629133}";
+Microsoft.UI.Xaml.Markup.IProvideValueTargetProperty = Microsoft_UI_Xaml_Markup_IProvideValueTargetProperty;
+
+
+//@Interface("Microsoft.UI.Xaml.Markup.IRootObjectProvider")
+//@IID("{13D63599-352F-5EB8-81C1-BC62FB12D6DA}")
+class Microsoft_UI_Xaml_Markup_IRootObjectProvider : WinRtInterface 
+{
+    Microsoft_UI_Xaml_Markup_IRootObjectProvider( comPtr )
+    {
+        var Microsoft = runtime.global("Microsoft");
+        this.comPtr = comPtr.queryInterface( "{13D63599-352F-5EB8-81C1-BC62FB12D6DA}");
+    }
+
+    //@VtableIndex(6)
+    //@Async(0)
+    //@Returns("Object")
+    get_RootObject()
+    {
+        var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 6, "Object", [], [] );
         return _r;
     }
 
 
 }
-Windows_UI_Xaml_Markup_IMarkupExtensionOverrides.iid = "{393779BF-B9C0-4FFB-A57F-58E7356E425F}";
-Windows.UI.Xaml.Markup.IMarkupExtensionOverrides = Windows_UI_Xaml_Markup_IMarkupExtensionOverrides;
+Microsoft_UI_Xaml_Markup_IRootObjectProvider.iid = "{13D63599-352F-5EB8-81C1-BC62FB12D6DA}";
+Microsoft.UI.Xaml.Markup.IRootObjectProvider = Microsoft_UI_Xaml_Markup_IRootObjectProvider;
 
 
-//@Interface("Windows.UI.Xaml.Markup.IXamlBinaryWriter")
-//@IID("{829D2AD3-620A-46F6-845D-436A05927100}")
-class Windows_UI_Xaml_Markup_IXamlBinaryWriter : WinRtInterface 
+//@Interface("Microsoft.UI.Xaml.Markup.IUriContext")
+//@IID("{FB8605F6-8F05-52EE-A01C-3A9E118A6EA2}")
+class Microsoft_UI_Xaml_Markup_IUriContext : WinRtInterface 
 {
-    Windows_UI_Xaml_Markup_IXamlBinaryWriter( comPtr )
+    Microsoft_UI_Xaml_Markup_IUriContext( comPtr )
     {
-        var Windows = runtime.global("Windows");
-        this.comPtr = comPtr.queryInterface( "{829D2AD3-620A-46F6-845D-436A05927100}");
-    }
-
-
-}
-Windows_UI_Xaml_Markup_IXamlBinaryWriter.iid = "{829D2AD3-620A-46F6-845D-436A05927100}";
-Windows.UI.Xaml.Markup.IXamlBinaryWriter = Windows_UI_Xaml_Markup_IXamlBinaryWriter;
-
-
-//@Interface("Windows.UI.Xaml.Markup.IXamlBinaryWriterStatics")
-//@IID("{0D8ED07A-9B82-4AA8-B68B-026F2DE1CC86}")
-class Windows_UI_Xaml_Markup_IXamlBinaryWriterStatics : WinRtInterface 
-{
-    Windows_UI_Xaml_Markup_IXamlBinaryWriterStatics( comPtr )
-    {
-        var Windows = runtime.global("Windows");
-        this.comPtr = comPtr.queryInterface( "{0D8ED07A-9B82-4AA8-B68B-026F2DE1CC86}");
+        var Microsoft = runtime.global("Microsoft");
+        this.comPtr = comPtr.queryInterface( "{FB8605F6-8F05-52EE-A01C-3A9E118A6EA2}");
     }
 
     //@VtableIndex(6)
     //@Async(0)
-    //@Returns("Windows.UI.Xaml.Markup.XamlBinaryWriterErrorInformation")
-    //@Parameters("Windows.Foundation.Collections.IVector`1<Windows.Storage.Streams.IRandomAccessStream>","Windows.Foundation.Collections.IVector`1<Windows.Storage.Streams.IRandomAccessStream>","Windows.UI.Xaml.Markup.IXamlMetadataProvider")
-    Write(inputStreams,outputStreams,xamlMetadataProvider)
+    //@Returns("Windows.Foundation.Uri")
+    get_BaseUri()
     {
-        var Windows = runtime.global("Windows");
-        var p1 = Windows.Foundation.Collections.IVector_1_Windows_Storage_Streams_IRandomAccessStream_( inputStreams); 
-        var p2 = Windows.Foundation.Collections.IVector_1_Windows_Storage_Streams_IRandomAccessStream_( outputStreams); 
-        var p3 = Windows.UI.Xaml.Markup.IXamlMetadataProvider( xamlMetadataProvider); 
-        var _r = this.comPtr.invoke( 6, "Windows.UI.Xaml.Markup.XamlBinaryWriterErrorInformation", ["Windows.Foundation.Collections.IVector`1<Windows.Storage.Streams.IRandomAccessStream>", "Windows.Foundation.Collections.IVector`1<Windows.Storage.Streams.IRandomAccessStream>", "Windows.UI.Xaml.Markup.IXamlMetadataProvider"], [p1, p2, p3] );
+        var Microsoft = runtime.global("Microsoft");
+        var _r = Windows.Foundation.Uri(
+            this.comPtr.invoke( 6, "Windows.Foundation.Uri", [], [] )
+        );
         return _r;
     }
 
 
 }
-Windows_UI_Xaml_Markup_IXamlBinaryWriterStatics.iid = "{0D8ED07A-9B82-4AA8-B68B-026F2DE1CC86}";
-Windows.UI.Xaml.Markup.IXamlBinaryWriterStatics = Windows_UI_Xaml_Markup_IXamlBinaryWriterStatics;
+Microsoft_UI_Xaml_Markup_IUriContext.iid = "{FB8605F6-8F05-52EE-A01C-3A9E118A6EA2}";
+Microsoft.UI.Xaml.Markup.IUriContext = Microsoft_UI_Xaml_Markup_IUriContext;
 
 
-//@Interface("Windows.UI.Xaml.Markup.IXamlBindScopeDiagnostics")
-//@IID("{F264A29D-BDED-43AA-A5B0-26AC21A81EB8}")
-class Windows_UI_Xaml_Markup_IXamlBindScopeDiagnostics : WinRtInterface 
+//@Interface("Microsoft.UI.Xaml.Markup.IXamlBinaryWriter")
+//@IID("{8FB45E3B-E689-55BF-AA11-D83B1C1CDDA1}")
+class Microsoft_UI_Xaml_Markup_IXamlBinaryWriter : WinRtInterface 
 {
-    Windows_UI_Xaml_Markup_IXamlBindScopeDiagnostics( comPtr )
+    Microsoft_UI_Xaml_Markup_IXamlBinaryWriter( comPtr )
     {
-        var Windows = runtime.global("Windows");
-        this.comPtr = comPtr.queryInterface( "{F264A29D-BDED-43AA-A5B0-26AC21A81EB8}");
+        var Microsoft = runtime.global("Microsoft");
+        this.comPtr = comPtr.queryInterface( "{8FB45E3B-E689-55BF-AA11-D83B1C1CDDA1}");
+    }
+
+
+}
+Microsoft_UI_Xaml_Markup_IXamlBinaryWriter.iid = "{8FB45E3B-E689-55BF-AA11-D83B1C1CDDA1}";
+Microsoft.UI.Xaml.Markup.IXamlBinaryWriter = Microsoft_UI_Xaml_Markup_IXamlBinaryWriter;
+
+
+//@Interface("Microsoft.UI.Xaml.Markup.IXamlBinaryWriterStatics")
+//@IID("{774907FC-C846-517F-ABCC-C3F7E8C3FFC9}")
+class Microsoft_UI_Xaml_Markup_IXamlBinaryWriterStatics : WinRtInterface 
+{
+    Microsoft_UI_Xaml_Markup_IXamlBinaryWriterStatics( comPtr )
+    {
+        var Microsoft = runtime.global("Microsoft");
+        this.comPtr = comPtr.queryInterface( "{774907FC-C846-517F-ABCC-C3F7E8C3FFC9}");
+    }
+
+    //@VtableIndex(6)
+    //@Async(0)
+    //@Returns("Microsoft.UI.Xaml.Markup.XamlBinaryWriterErrorInformation")
+    //@Parameters("Windows.Foundation.Collections.IVector`1<Windows.Storage.Streams.IRandomAccessStream>","Windows.Foundation.Collections.IVector`1<Windows.Storage.Streams.IRandomAccessStream>","Microsoft.UI.Xaml.Markup.IXamlMetadataProvider")
+    Write(inputStreams,outputStreams,xamlMetadataProvider)
+    {
+        var Microsoft = runtime.global("Microsoft");
+        var p1 = Windows.Foundation.Collections.IVector_1_Windows_Storage_Streams_IRandomAccessStream_( inputStreams); 
+        var p2 = Windows.Foundation.Collections.IVector_1_Windows_Storage_Streams_IRandomAccessStream_( outputStreams); 
+        var p3 = Microsoft.UI.Xaml.Markup.IXamlMetadataProvider( xamlMetadataProvider); 
+        var _r = this.comPtr.invoke( 6, "Microsoft.UI.Xaml.Markup.XamlBinaryWriterErrorInformation", ["Windows.Foundation.Collections.IVector`1<Windows.Storage.Streams.IRandomAccessStream>", "Windows.Foundation.Collections.IVector`1<Windows.Storage.Streams.IRandomAccessStream>", "Microsoft.UI.Xaml.Markup.IXamlMetadataProvider"], [p1, p2, p3] );
+        return _r;
+    }
+
+
+}
+Microsoft_UI_Xaml_Markup_IXamlBinaryWriterStatics.iid = "{774907FC-C846-517F-ABCC-C3F7E8C3FFC9}";
+Microsoft.UI.Xaml.Markup.IXamlBinaryWriterStatics = Microsoft_UI_Xaml_Markup_IXamlBinaryWriterStatics;
+
+
+//@Interface("Microsoft.UI.Xaml.Markup.IXamlBindScopeDiagnostics")
+//@IID("{3EA84E4E-FDFE-55A8-A561-EDF5697846D7}")
+class Microsoft_UI_Xaml_Markup_IXamlBindScopeDiagnostics : WinRtInterface 
+{
+    Microsoft_UI_Xaml_Markup_IXamlBindScopeDiagnostics( comPtr )
+    {
+        var Microsoft = runtime.global("Microsoft");
+        this.comPtr = comPtr.queryInterface( "{3EA84E4E-FDFE-55A8-A561-EDF5697846D7}");
     }
 
     //@VtableIndex(6)
@@ -227,7 +359,7 @@ class Windows_UI_Xaml_Markup_IXamlBindScopeDiagnostics : WinRtInterface
     //@Parameters("Int32","Int32")
     Disable(lineNumber,columnNumber)
     {
-        var Windows = runtime.global("Windows");
+        var Microsoft = runtime.global("Microsoft");
         var p1 = lineNumber;
         var p2 = columnNumber;
         this.comPtr.invoke( 6, "void", ["Int32", "Int32"], [p1, p2] );
@@ -235,58 +367,58 @@ class Windows_UI_Xaml_Markup_IXamlBindScopeDiagnostics : WinRtInterface
 
 
 }
-Windows_UI_Xaml_Markup_IXamlBindScopeDiagnostics.iid = "{F264A29D-BDED-43AA-A5B0-26AC21A81EB8}";
-Windows.UI.Xaml.Markup.IXamlBindScopeDiagnostics = Windows_UI_Xaml_Markup_IXamlBindScopeDiagnostics;
+Microsoft_UI_Xaml_Markup_IXamlBindScopeDiagnostics.iid = "{3EA84E4E-FDFE-55A8-A561-EDF5697846D7}";
+Microsoft.UI.Xaml.Markup.IXamlBindScopeDiagnostics = Microsoft_UI_Xaml_Markup_IXamlBindScopeDiagnostics;
 
 
-//@Interface("Windows.UI.Xaml.Markup.IXamlBindingHelper")
-//@IID("{FAA6FB06-8AB9-4EF7-8AE7-FBD30BBFD06D}")
-class Windows_UI_Xaml_Markup_IXamlBindingHelper : WinRtInterface 
+//@Interface("Microsoft.UI.Xaml.Markup.IXamlBindingHelper")
+//@IID("{607A9BF2-5A6D-5C89-A756-BB44F24F28F8}")
+class Microsoft_UI_Xaml_Markup_IXamlBindingHelper : WinRtInterface 
 {
-    Windows_UI_Xaml_Markup_IXamlBindingHelper( comPtr )
+    Microsoft_UI_Xaml_Markup_IXamlBindingHelper( comPtr )
     {
-        var Windows = runtime.global("Windows");
-        this.comPtr = comPtr.queryInterface( "{FAA6FB06-8AB9-4EF7-8AE7-FBD30BBFD06D}");
+        var Microsoft = runtime.global("Microsoft");
+        this.comPtr = comPtr.queryInterface( "{607A9BF2-5A6D-5C89-A756-BB44F24F28F8}");
     }
 
 
 }
-Windows_UI_Xaml_Markup_IXamlBindingHelper.iid = "{FAA6FB06-8AB9-4EF7-8AE7-FBD30BBFD06D}";
-Windows.UI.Xaml.Markup.IXamlBindingHelper = Windows_UI_Xaml_Markup_IXamlBindingHelper;
+Microsoft_UI_Xaml_Markup_IXamlBindingHelper.iid = "{607A9BF2-5A6D-5C89-A756-BB44F24F28F8}";
+Microsoft.UI.Xaml.Markup.IXamlBindingHelper = Microsoft_UI_Xaml_Markup_IXamlBindingHelper;
 
 
-//@Interface("Windows.UI.Xaml.Markup.IXamlBindingHelperStatics")
-//@IID("{F65CFB71-C80C-4FFA-86EE-558754EE336D}")
-class Windows_UI_Xaml_Markup_IXamlBindingHelperStatics : WinRtInterface 
+//@Interface("Microsoft.UI.Xaml.Markup.IXamlBindingHelperStatics")
+//@IID("{93C7DAD3-F9C2-5372-84DC-9E9C4661D083}")
+class Microsoft_UI_Xaml_Markup_IXamlBindingHelperStatics : WinRtInterface 
 {
-    Windows_UI_Xaml_Markup_IXamlBindingHelperStatics( comPtr )
+    Microsoft_UI_Xaml_Markup_IXamlBindingHelperStatics( comPtr )
     {
-        var Windows = runtime.global("Windows");
-        this.comPtr = comPtr.queryInterface( "{F65CFB71-C80C-4FFA-86EE-558754EE336D}");
+        var Microsoft = runtime.global("Microsoft");
+        this.comPtr = comPtr.queryInterface( "{93C7DAD3-F9C2-5372-84DC-9E9C4661D083}");
     }
 
     //@VtableIndex(6)
     //@Async(0)
-    //@Returns("Windows.UI.Xaml.DependencyProperty")
+    //@Returns("Microsoft.UI.Xaml.DependencyProperty")
     get_DataTemplateComponentProperty()
     {
-        var Windows = runtime.global("Windows");
-        var _r = Windows.UI.Xaml.DependencyProperty(
-            this.comPtr.invoke( 6, "Windows.UI.Xaml.DependencyProperty", [], [] )
+        var Microsoft = runtime.global("Microsoft");
+        var _r = Microsoft.UI.Xaml.DependencyProperty(
+            this.comPtr.invoke( 6, "Microsoft.UI.Xaml.DependencyProperty", [], [] )
         );
         return _r;
     }
 
     //@VtableIndex(7)
     //@Async(0)
-    //@Returns("Windows.UI.Xaml.Markup.IDataTemplateComponent")
-    //@Parameters("Windows.UI.Xaml.DependencyObject")
+    //@Returns("Microsoft.UI.Xaml.Markup.IDataTemplateComponent")
+    //@Parameters("Microsoft.UI.Xaml.DependencyObject")
     GetDataTemplateComponent(element)
     {
-        var Windows = runtime.global("Windows");
-        var p1 = Windows.UI.Xaml.DependencyObject( element); 
-        var _r = Windows.UI.Xaml.Markup.IDataTemplateComponent(
-            this.comPtr.invoke( 7, "Windows.UI.Xaml.Markup.IDataTemplateComponent", ["Windows.UI.Xaml.DependencyObject"], [p1] )
+        var Microsoft = runtime.global("Microsoft");
+        var p1 = Microsoft.UI.Xaml.DependencyObject( element); 
+        var _r = Microsoft.UI.Xaml.Markup.IDataTemplateComponent(
+            this.comPtr.invoke( 7, "Microsoft.UI.Xaml.Markup.IDataTemplateComponent", ["Microsoft.UI.Xaml.DependencyObject"], [p1] )
         );
         return _r;
     }
@@ -294,35 +426,35 @@ class Windows_UI_Xaml_Markup_IXamlBindingHelperStatics : WinRtInterface
     //@VtableIndex(8)
     //@Async(0)
     //@Returns("void")
-    //@Parameters("Windows.UI.Xaml.DependencyObject","Windows.UI.Xaml.Markup.IDataTemplateComponent")
+    //@Parameters("Microsoft.UI.Xaml.DependencyObject","Microsoft.UI.Xaml.Markup.IDataTemplateComponent")
     SetDataTemplateComponent(element,value)
     {
-        var Windows = runtime.global("Windows");
-        var p1 = Windows.UI.Xaml.DependencyObject( element); 
-        var p2 = Windows.UI.Xaml.Markup.IDataTemplateComponent( value); 
-        this.comPtr.invoke( 8, "void", ["Windows.UI.Xaml.DependencyObject", "Windows.UI.Xaml.Markup.IDataTemplateComponent"], [p1, p2] );
+        var Microsoft = runtime.global("Microsoft");
+        var p1 = Microsoft.UI.Xaml.DependencyObject( element); 
+        var p2 = Microsoft.UI.Xaml.Markup.IDataTemplateComponent( value); 
+        this.comPtr.invoke( 8, "void", ["Microsoft.UI.Xaml.DependencyObject", "Microsoft.UI.Xaml.Markup.IDataTemplateComponent"], [p1, p2] );
     }
 
     //@VtableIndex(9)
     //@Async(0)
     //@Returns("void")
-    //@Parameters("Windows.UI.Xaml.UIElement")
+    //@Parameters("Microsoft.UI.Xaml.UIElement")
     SuspendRendering(target)
     {
-        var Windows = runtime.global("Windows");
-        var p1 = Windows.UI.Xaml.UIElement( target); 
-        this.comPtr.invoke( 9, "void", ["Windows.UI.Xaml.UIElement"], [p1] );
+        var Microsoft = runtime.global("Microsoft");
+        var p1 = Microsoft.UI.Xaml.UIElement( target); 
+        this.comPtr.invoke( 9, "void", ["Microsoft.UI.Xaml.UIElement"], [p1] );
     }
 
     //@VtableIndex(10)
     //@Async(0)
     //@Returns("void")
-    //@Parameters("Windows.UI.Xaml.UIElement")
+    //@Parameters("Microsoft.UI.Xaml.UIElement")
     ResumeRendering(target)
     {
-        var Windows = runtime.global("Windows");
-        var p1 = Windows.UI.Xaml.UIElement( target); 
-        this.comPtr.invoke( 10, "void", ["Windows.UI.Xaml.UIElement"], [p1] );
+        var Microsoft = runtime.global("Microsoft");
+        var p1 = Microsoft.UI.Xaml.UIElement( target); 
+        this.comPtr.invoke( 10, "void", ["Microsoft.UI.Xaml.UIElement"], [p1] );
     }
 
     //@VtableIndex(11)
@@ -331,7 +463,7 @@ class Windows_UI_Xaml_Markup_IXamlBindingHelperStatics : WinRtInterface
     //@Parameters("Windows.UI.Xaml.Interop.TypeName","Object")
     ConvertValue(type,value)
     {
-        var Windows = runtime.global("Windows");
+        var Microsoft = runtime.global("Microsoft");
         var p1 = type;
         var p2 = value;
         var _r = this.comPtr.invoke( 11, "Object", ["Windows.UI.Xaml.Interop.TypeName", "Object"], [p1, p2] );
@@ -341,281 +473,281 @@ class Windows_UI_Xaml_Markup_IXamlBindingHelperStatics : WinRtInterface
     //@VtableIndex(12)
     //@Async(0)
     //@Returns("void")
-    //@Parameters("Object","Windows.UI.Xaml.DependencyProperty","String")
+    //@Parameters("Object","Microsoft.UI.Xaml.DependencyProperty","String")
     SetPropertyFromString(dependencyObject,propertyToSet,value)
     {
-        var Windows = runtime.global("Windows");
+        var Microsoft = runtime.global("Microsoft");
         var p1 = dependencyObject;
-        var p2 = Windows.UI.Xaml.DependencyProperty( propertyToSet); 
+        var p2 = Microsoft.UI.Xaml.DependencyProperty( propertyToSet); 
         var p3 = value;
-        this.comPtr.invoke( 12, "void", ["Object", "Windows.UI.Xaml.DependencyProperty", "String"], [p1, p2, p3] );
+        this.comPtr.invoke( 12, "void", ["Object", "Microsoft.UI.Xaml.DependencyProperty", "String"], [p1, p2, p3] );
     }
 
     //@VtableIndex(13)
     //@Async(0)
     //@Returns("void")
-    //@Parameters("Object","Windows.UI.Xaml.DependencyProperty","Boolean")
+    //@Parameters("Object","Microsoft.UI.Xaml.DependencyProperty","Boolean")
     SetPropertyFromBoolean(dependencyObject,propertyToSet,value)
     {
-        var Windows = runtime.global("Windows");
+        var Microsoft = runtime.global("Microsoft");
         var p1 = dependencyObject;
-        var p2 = Windows.UI.Xaml.DependencyProperty( propertyToSet); 
+        var p2 = Microsoft.UI.Xaml.DependencyProperty( propertyToSet); 
         var p3 = value;
-        this.comPtr.invoke( 13, "void", ["Object", "Windows.UI.Xaml.DependencyProperty", "Boolean"], [p1, p2, p3] );
+        this.comPtr.invoke( 13, "void", ["Object", "Microsoft.UI.Xaml.DependencyProperty", "Boolean"], [p1, p2, p3] );
     }
 
     //@VtableIndex(14)
     //@Async(0)
     //@Returns("void")
-    //@Parameters("Object","Windows.UI.Xaml.DependencyProperty","unk")
+    //@Parameters("Object","Microsoft.UI.Xaml.DependencyProperty","unk")
     SetPropertyFromChar16(dependencyObject,propertyToSet,value)
     {
-        var Windows = runtime.global("Windows");
+        var Microsoft = runtime.global("Microsoft");
         var p1 = dependencyObject;
-        var p2 = Windows.UI.Xaml.DependencyProperty( propertyToSet); 
+        var p2 = Microsoft.UI.Xaml.DependencyProperty( propertyToSet); 
         var p3 = value;
-        this.comPtr.invoke( 14, "void", ["Object", "Windows.UI.Xaml.DependencyProperty", "unk"], [p1, p2, p3] );
+        this.comPtr.invoke( 14, "void", ["Object", "Microsoft.UI.Xaml.DependencyProperty", "unk"], [p1, p2, p3] );
     }
 
     //@VtableIndex(15)
     //@Async(0)
     //@Returns("void")
-    //@Parameters("Object","Windows.UI.Xaml.DependencyProperty","Windows.Foundation.DateTime")
+    //@Parameters("Object","Microsoft.UI.Xaml.DependencyProperty","Windows.Foundation.DateTime")
     SetPropertyFromDateTime(dependencyObject,propertyToSet,value)
     {
-        var Windows = runtime.global("Windows");
+        var Microsoft = runtime.global("Microsoft");
         var p1 = dependencyObject;
-        var p2 = Windows.UI.Xaml.DependencyProperty( propertyToSet); 
+        var p2 = Microsoft.UI.Xaml.DependencyProperty( propertyToSet); 
         var p3 = value;
-        this.comPtr.invoke( 15, "void", ["Object", "Windows.UI.Xaml.DependencyProperty", "Windows.Foundation.DateTime"], [p1, p2, p3] );
+        this.comPtr.invoke( 15, "void", ["Object", "Microsoft.UI.Xaml.DependencyProperty", "Windows.Foundation.DateTime"], [p1, p2, p3] );
     }
 
     //@VtableIndex(16)
     //@Async(0)
     //@Returns("void")
-    //@Parameters("Object","Windows.UI.Xaml.DependencyProperty","Double")
+    //@Parameters("Object","Microsoft.UI.Xaml.DependencyProperty","Double")
     SetPropertyFromDouble(dependencyObject,propertyToSet,value)
     {
-        var Windows = runtime.global("Windows");
+        var Microsoft = runtime.global("Microsoft");
         var p1 = dependencyObject;
-        var p2 = Windows.UI.Xaml.DependencyProperty( propertyToSet); 
+        var p2 = Microsoft.UI.Xaml.DependencyProperty( propertyToSet); 
         var p3 = value;
-        this.comPtr.invoke( 16, "void", ["Object", "Windows.UI.Xaml.DependencyProperty", "Double"], [p1, p2, p3] );
+        this.comPtr.invoke( 16, "void", ["Object", "Microsoft.UI.Xaml.DependencyProperty", "Double"], [p1, p2, p3] );
     }
 
     //@VtableIndex(17)
     //@Async(0)
     //@Returns("void")
-    //@Parameters("Object","Windows.UI.Xaml.DependencyProperty","Int32")
+    //@Parameters("Object","Microsoft.UI.Xaml.DependencyProperty","Int32")
     SetPropertyFromInt32(dependencyObject,propertyToSet,value)
     {
-        var Windows = runtime.global("Windows");
+        var Microsoft = runtime.global("Microsoft");
         var p1 = dependencyObject;
-        var p2 = Windows.UI.Xaml.DependencyProperty( propertyToSet); 
+        var p2 = Microsoft.UI.Xaml.DependencyProperty( propertyToSet); 
         var p3 = value;
-        this.comPtr.invoke( 17, "void", ["Object", "Windows.UI.Xaml.DependencyProperty", "Int32"], [p1, p2, p3] );
+        this.comPtr.invoke( 17, "void", ["Object", "Microsoft.UI.Xaml.DependencyProperty", "Int32"], [p1, p2, p3] );
     }
 
     //@VtableIndex(18)
     //@Async(0)
     //@Returns("void")
-    //@Parameters("Object","Windows.UI.Xaml.DependencyProperty","UInt32")
+    //@Parameters("Object","Microsoft.UI.Xaml.DependencyProperty","UInt32")
     SetPropertyFromUInt32(dependencyObject,propertyToSet,value)
     {
-        var Windows = runtime.global("Windows");
+        var Microsoft = runtime.global("Microsoft");
         var p1 = dependencyObject;
-        var p2 = Windows.UI.Xaml.DependencyProperty( propertyToSet); 
+        var p2 = Microsoft.UI.Xaml.DependencyProperty( propertyToSet); 
         var p3 = value;
-        this.comPtr.invoke( 18, "void", ["Object", "Windows.UI.Xaml.DependencyProperty", "UInt32"], [p1, p2, p3] );
+        this.comPtr.invoke( 18, "void", ["Object", "Microsoft.UI.Xaml.DependencyProperty", "UInt32"], [p1, p2, p3] );
     }
 
     //@VtableIndex(19)
     //@Async(0)
     //@Returns("void")
-    //@Parameters("Object","Windows.UI.Xaml.DependencyProperty","Int64")
+    //@Parameters("Object","Microsoft.UI.Xaml.DependencyProperty","Int64")
     SetPropertyFromInt64(dependencyObject,propertyToSet,value)
     {
-        var Windows = runtime.global("Windows");
+        var Microsoft = runtime.global("Microsoft");
         var p1 = dependencyObject;
-        var p2 = Windows.UI.Xaml.DependencyProperty( propertyToSet); 
+        var p2 = Microsoft.UI.Xaml.DependencyProperty( propertyToSet); 
         var p3 = value;
-        this.comPtr.invoke( 19, "void", ["Object", "Windows.UI.Xaml.DependencyProperty", "Int64"], [p1, p2, p3] );
+        this.comPtr.invoke( 19, "void", ["Object", "Microsoft.UI.Xaml.DependencyProperty", "Int64"], [p1, p2, p3] );
     }
 
     //@VtableIndex(20)
     //@Async(0)
     //@Returns("void")
-    //@Parameters("Object","Windows.UI.Xaml.DependencyProperty","UInt64")
+    //@Parameters("Object","Microsoft.UI.Xaml.DependencyProperty","UInt64")
     SetPropertyFromUInt64(dependencyObject,propertyToSet,value)
     {
-        var Windows = runtime.global("Windows");
+        var Microsoft = runtime.global("Microsoft");
         var p1 = dependencyObject;
-        var p2 = Windows.UI.Xaml.DependencyProperty( propertyToSet); 
+        var p2 = Microsoft.UI.Xaml.DependencyProperty( propertyToSet); 
         var p3 = value;
-        this.comPtr.invoke( 20, "void", ["Object", "Windows.UI.Xaml.DependencyProperty", "UInt64"], [p1, p2, p3] );
+        this.comPtr.invoke( 20, "void", ["Object", "Microsoft.UI.Xaml.DependencyProperty", "UInt64"], [p1, p2, p3] );
     }
 
     //@VtableIndex(21)
     //@Async(0)
     //@Returns("void")
-    //@Parameters("Object","Windows.UI.Xaml.DependencyProperty","Single")
+    //@Parameters("Object","Microsoft.UI.Xaml.DependencyProperty","Single")
     SetPropertyFromSingle(dependencyObject,propertyToSet,value)
     {
-        var Windows = runtime.global("Windows");
+        var Microsoft = runtime.global("Microsoft");
         var p1 = dependencyObject;
-        var p2 = Windows.UI.Xaml.DependencyProperty( propertyToSet); 
+        var p2 = Microsoft.UI.Xaml.DependencyProperty( propertyToSet); 
         var p3 = value;
-        this.comPtr.invoke( 21, "void", ["Object", "Windows.UI.Xaml.DependencyProperty", "Single"], [p1, p2, p3] );
+        this.comPtr.invoke( 21, "void", ["Object", "Microsoft.UI.Xaml.DependencyProperty", "Single"], [p1, p2, p3] );
     }
 
     //@VtableIndex(22)
     //@Async(0)
     //@Returns("void")
-    //@Parameters("Object","Windows.UI.Xaml.DependencyProperty","Windows.Foundation.Point")
+    //@Parameters("Object","Microsoft.UI.Xaml.DependencyProperty","Windows.Foundation.Point")
     SetPropertyFromPoint(dependencyObject,propertyToSet,value)
     {
-        var Windows = runtime.global("Windows");
+        var Microsoft = runtime.global("Microsoft");
         var p1 = dependencyObject;
-        var p2 = Windows.UI.Xaml.DependencyProperty( propertyToSet); 
+        var p2 = Microsoft.UI.Xaml.DependencyProperty( propertyToSet); 
         var p3 = value;
-        this.comPtr.invoke( 22, "void", ["Object", "Windows.UI.Xaml.DependencyProperty", "Windows.Foundation.Point"], [p1, p2, p3] );
+        this.comPtr.invoke( 22, "void", ["Object", "Microsoft.UI.Xaml.DependencyProperty", "Windows.Foundation.Point"], [p1, p2, p3] );
     }
 
     //@VtableIndex(23)
     //@Async(0)
     //@Returns("void")
-    //@Parameters("Object","Windows.UI.Xaml.DependencyProperty","Windows.Foundation.Rect")
+    //@Parameters("Object","Microsoft.UI.Xaml.DependencyProperty","Windows.Foundation.Rect")
     SetPropertyFromRect(dependencyObject,propertyToSet,value)
     {
-        var Windows = runtime.global("Windows");
+        var Microsoft = runtime.global("Microsoft");
         var p1 = dependencyObject;
-        var p2 = Windows.UI.Xaml.DependencyProperty( propertyToSet); 
+        var p2 = Microsoft.UI.Xaml.DependencyProperty( propertyToSet); 
         var p3 = value;
-        this.comPtr.invoke( 23, "void", ["Object", "Windows.UI.Xaml.DependencyProperty", "Windows.Foundation.Rect"], [p1, p2, p3] );
+        this.comPtr.invoke( 23, "void", ["Object", "Microsoft.UI.Xaml.DependencyProperty", "Windows.Foundation.Rect"], [p1, p2, p3] );
     }
 
     //@VtableIndex(24)
     //@Async(0)
     //@Returns("void")
-    //@Parameters("Object","Windows.UI.Xaml.DependencyProperty","Windows.Foundation.Size")
+    //@Parameters("Object","Microsoft.UI.Xaml.DependencyProperty","Windows.Foundation.Size")
     SetPropertyFromSize(dependencyObject,propertyToSet,value)
     {
-        var Windows = runtime.global("Windows");
+        var Microsoft = runtime.global("Microsoft");
         var p1 = dependencyObject;
-        var p2 = Windows.UI.Xaml.DependencyProperty( propertyToSet); 
+        var p2 = Microsoft.UI.Xaml.DependencyProperty( propertyToSet); 
         var p3 = value;
-        this.comPtr.invoke( 24, "void", ["Object", "Windows.UI.Xaml.DependencyProperty", "Windows.Foundation.Size"], [p1, p2, p3] );
+        this.comPtr.invoke( 24, "void", ["Object", "Microsoft.UI.Xaml.DependencyProperty", "Windows.Foundation.Size"], [p1, p2, p3] );
     }
 
     //@VtableIndex(25)
     //@Async(0)
     //@Returns("void")
-    //@Parameters("Object","Windows.UI.Xaml.DependencyProperty","Windows.Foundation.TimeSpan")
+    //@Parameters("Object","Microsoft.UI.Xaml.DependencyProperty","Windows.Foundation.TimeSpan")
     SetPropertyFromTimeSpan(dependencyObject,propertyToSet,value)
     {
-        var Windows = runtime.global("Windows");
+        var Microsoft = runtime.global("Microsoft");
         var p1 = dependencyObject;
-        var p2 = Windows.UI.Xaml.DependencyProperty( propertyToSet); 
+        var p2 = Microsoft.UI.Xaml.DependencyProperty( propertyToSet); 
         var p3 = value;
-        this.comPtr.invoke( 25, "void", ["Object", "Windows.UI.Xaml.DependencyProperty", "Windows.Foundation.TimeSpan"], [p1, p2, p3] );
+        this.comPtr.invoke( 25, "void", ["Object", "Microsoft.UI.Xaml.DependencyProperty", "Windows.Foundation.TimeSpan"], [p1, p2, p3] );
     }
 
     //@VtableIndex(26)
     //@Async(0)
     //@Returns("void")
-    //@Parameters("Object","Windows.UI.Xaml.DependencyProperty","UInt8")
+    //@Parameters("Object","Microsoft.UI.Xaml.DependencyProperty","UInt8")
     SetPropertyFromByte(dependencyObject,propertyToSet,value)
     {
-        var Windows = runtime.global("Windows");
+        var Microsoft = runtime.global("Microsoft");
         var p1 = dependencyObject;
-        var p2 = Windows.UI.Xaml.DependencyProperty( propertyToSet); 
+        var p2 = Microsoft.UI.Xaml.DependencyProperty( propertyToSet); 
         var p3 = value;
-        this.comPtr.invoke( 26, "void", ["Object", "Windows.UI.Xaml.DependencyProperty", "UInt8"], [p1, p2, p3] );
+        this.comPtr.invoke( 26, "void", ["Object", "Microsoft.UI.Xaml.DependencyProperty", "UInt8"], [p1, p2, p3] );
     }
 
     //@VtableIndex(27)
     //@Async(0)
     //@Returns("void")
-    //@Parameters("Object","Windows.UI.Xaml.DependencyProperty","Windows.Foundation.Uri")
+    //@Parameters("Object","Microsoft.UI.Xaml.DependencyProperty","Windows.Foundation.Uri")
     SetPropertyFromUri(dependencyObject,propertyToSet,value)
     {
-        var Windows = runtime.global("Windows");
+        var Microsoft = runtime.global("Microsoft");
         var p1 = dependencyObject;
-        var p2 = Windows.UI.Xaml.DependencyProperty( propertyToSet); 
+        var p2 = Microsoft.UI.Xaml.DependencyProperty( propertyToSet); 
         var p3 = Windows.Foundation.Uri( value); 
-        this.comPtr.invoke( 27, "void", ["Object", "Windows.UI.Xaml.DependencyProperty", "Windows.Foundation.Uri"], [p1, p2, p3] );
+        this.comPtr.invoke( 27, "void", ["Object", "Microsoft.UI.Xaml.DependencyProperty", "Windows.Foundation.Uri"], [p1, p2, p3] );
     }
 
     //@VtableIndex(28)
     //@Async(0)
     //@Returns("void")
-    //@Parameters("Object","Windows.UI.Xaml.DependencyProperty","Object")
+    //@Parameters("Object","Microsoft.UI.Xaml.DependencyProperty","Object")
     SetPropertyFromObject(dependencyObject,propertyToSet,value)
     {
-        var Windows = runtime.global("Windows");
+        var Microsoft = runtime.global("Microsoft");
         var p1 = dependencyObject;
-        var p2 = Windows.UI.Xaml.DependencyProperty( propertyToSet); 
+        var p2 = Microsoft.UI.Xaml.DependencyProperty( propertyToSet); 
         var p3 = value;
-        this.comPtr.invoke( 28, "void", ["Object", "Windows.UI.Xaml.DependencyProperty", "Object"], [p1, p2, p3] );
+        this.comPtr.invoke( 28, "void", ["Object", "Microsoft.UI.Xaml.DependencyProperty", "Object"], [p1, p2, p3] );
     }
 
 
 }
-Windows_UI_Xaml_Markup_IXamlBindingHelperStatics.iid = "{F65CFB71-C80C-4FFA-86EE-558754EE336D}";
-Windows.UI.Xaml.Markup.IXamlBindingHelperStatics = Windows_UI_Xaml_Markup_IXamlBindingHelperStatics;
+Microsoft_UI_Xaml_Markup_IXamlBindingHelperStatics.iid = "{93C7DAD3-F9C2-5372-84DC-9E9C4661D083}";
+Microsoft.UI.Xaml.Markup.IXamlBindingHelperStatics = Microsoft_UI_Xaml_Markup_IXamlBindingHelperStatics;
 
 
-//@Interface("Windows.UI.Xaml.Markup.IXamlMarkupHelper")
-//@IID("{D0E6673C-5342-44EF-85A7-ED327A739D9A}")
-class Windows_UI_Xaml_Markup_IXamlMarkupHelper : WinRtInterface 
+//@Interface("Microsoft.UI.Xaml.Markup.IXamlMarkupHelper")
+//@IID("{CD677310-3B06-5A13-B31A-401849570858}")
+class Microsoft_UI_Xaml_Markup_IXamlMarkupHelper : WinRtInterface 
 {
-    Windows_UI_Xaml_Markup_IXamlMarkupHelper( comPtr )
+    Microsoft_UI_Xaml_Markup_IXamlMarkupHelper( comPtr )
     {
-        var Windows = runtime.global("Windows");
-        this.comPtr = comPtr.queryInterface( "{D0E6673C-5342-44EF-85A7-ED327A739D9A}");
+        var Microsoft = runtime.global("Microsoft");
+        this.comPtr = comPtr.queryInterface( "{CD677310-3B06-5A13-B31A-401849570858}");
     }
 
 
 }
-Windows_UI_Xaml_Markup_IXamlMarkupHelper.iid = "{D0E6673C-5342-44EF-85A7-ED327A739D9A}";
-Windows.UI.Xaml.Markup.IXamlMarkupHelper = Windows_UI_Xaml_Markup_IXamlMarkupHelper;
+Microsoft_UI_Xaml_Markup_IXamlMarkupHelper.iid = "{CD677310-3B06-5A13-B31A-401849570858}";
+Microsoft.UI.Xaml.Markup.IXamlMarkupHelper = Microsoft_UI_Xaml_Markup_IXamlMarkupHelper;
 
 
-//@Interface("Windows.UI.Xaml.Markup.IXamlMarkupHelperStatics")
-//@IID("{C9BC3725-F34F-445C-81A2-6B72A5E8F072}")
-class Windows_UI_Xaml_Markup_IXamlMarkupHelperStatics : WinRtInterface 
+//@Interface("Microsoft.UI.Xaml.Markup.IXamlMarkupHelperStatics")
+//@IID("{D9A0F6E3-C6CC-5CB6-8999-85788701F339}")
+class Microsoft_UI_Xaml_Markup_IXamlMarkupHelperStatics : WinRtInterface 
 {
-    Windows_UI_Xaml_Markup_IXamlMarkupHelperStatics( comPtr )
+    Microsoft_UI_Xaml_Markup_IXamlMarkupHelperStatics( comPtr )
     {
-        var Windows = runtime.global("Windows");
-        this.comPtr = comPtr.queryInterface( "{C9BC3725-F34F-445C-81A2-6B72A5E8F072}");
+        var Microsoft = runtime.global("Microsoft");
+        this.comPtr = comPtr.queryInterface( "{D9A0F6E3-C6CC-5CB6-8999-85788701F339}");
     }
 
     //@VtableIndex(6)
     //@Async(0)
     //@Returns("void")
-    //@Parameters("Windows.UI.Xaml.DependencyObject")
+    //@Parameters("Microsoft.UI.Xaml.DependencyObject")
     UnloadObject(element)
     {
-        var Windows = runtime.global("Windows");
-        var p1 = Windows.UI.Xaml.DependencyObject( element); 
-        this.comPtr.invoke( 6, "void", ["Windows.UI.Xaml.DependencyObject"], [p1] );
+        var Microsoft = runtime.global("Microsoft");
+        var p1 = Microsoft.UI.Xaml.DependencyObject( element); 
+        this.comPtr.invoke( 6, "void", ["Microsoft.UI.Xaml.DependencyObject"], [p1] );
     }
 
 
 }
-Windows_UI_Xaml_Markup_IXamlMarkupHelperStatics.iid = "{C9BC3725-F34F-445C-81A2-6B72A5E8F072}";
-Windows.UI.Xaml.Markup.IXamlMarkupHelperStatics = Windows_UI_Xaml_Markup_IXamlMarkupHelperStatics;
+Microsoft_UI_Xaml_Markup_IXamlMarkupHelperStatics.iid = "{D9A0F6E3-C6CC-5CB6-8999-85788701F339}";
+Microsoft.UI.Xaml.Markup.IXamlMarkupHelperStatics = Microsoft_UI_Xaml_Markup_IXamlMarkupHelperStatics;
 
 
-//@Interface("Windows.UI.Xaml.Markup.IXamlMember")
-//@IID("{C541F58C-43A9-4216-B718-E0B11B14E93E}")
-class Windows_UI_Xaml_Markup_IXamlMember : WinRtInterface 
+//@Interface("Microsoft.UI.Xaml.Markup.IXamlMember")
+//@IID("{BF3A2913-5C63-50EC-8660-61809BE7B9B9}")
+class Microsoft_UI_Xaml_Markup_IXamlMember : WinRtInterface 
 {
-    Windows_UI_Xaml_Markup_IXamlMember( comPtr )
+    Microsoft_UI_Xaml_Markup_IXamlMember( comPtr )
     {
-        var Windows = runtime.global("Windows");
-        this.comPtr = comPtr.queryInterface( "{C541F58C-43A9-4216-B718-E0B11B14E93E}");
+        var Microsoft = runtime.global("Microsoft");
+        this.comPtr = comPtr.queryInterface( "{BF3A2913-5C63-50EC-8660-61809BE7B9B9}");
     }
 
     //@VtableIndex(6)
@@ -623,7 +755,7 @@ class Windows_UI_Xaml_Markup_IXamlMember : WinRtInterface
     //@Returns("Boolean")
     get_IsAttachable()
     {
-        var Windows = runtime.global("Windows");
+        var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 6, "Boolean", [], [] );
         return _r;
     }
@@ -633,7 +765,7 @@ class Windows_UI_Xaml_Markup_IXamlMember : WinRtInterface
     //@Returns("Boolean")
     get_IsDependencyProperty()
     {
-        var Windows = runtime.global("Windows");
+        var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 7, "Boolean", [], [] );
         return _r;
     }
@@ -643,7 +775,7 @@ class Windows_UI_Xaml_Markup_IXamlMember : WinRtInterface
     //@Returns("Boolean")
     get_IsReadOnly()
     {
-        var Windows = runtime.global("Windows");
+        var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 8, "Boolean", [], [] );
         return _r;
     }
@@ -653,31 +785,31 @@ class Windows_UI_Xaml_Markup_IXamlMember : WinRtInterface
     //@Returns("String")
     get_Name()
     {
-        var Windows = runtime.global("Windows");
+        var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 9, "String", [], [] );
         return _r;
     }
 
     //@VtableIndex(10)
     //@Async(0)
-    //@Returns("Windows.UI.Xaml.Markup.IXamlType")
+    //@Returns("Microsoft.UI.Xaml.Markup.IXamlType")
     get_TargetType()
     {
-        var Windows = runtime.global("Windows");
-        var _r = Windows.UI.Xaml.Markup.IXamlType(
-            this.comPtr.invoke( 10, "Windows.UI.Xaml.Markup.IXamlType", [], [] )
+        var Microsoft = runtime.global("Microsoft");
+        var _r = Microsoft.UI.Xaml.Markup.IXamlType(
+            this.comPtr.invoke( 10, "Microsoft.UI.Xaml.Markup.IXamlType", [], [] )
         );
         return _r;
     }
 
     //@VtableIndex(11)
     //@Async(0)
-    //@Returns("Windows.UI.Xaml.Markup.IXamlType")
+    //@Returns("Microsoft.UI.Xaml.Markup.IXamlType")
     get_Type()
     {
-        var Windows = runtime.global("Windows");
-        var _r = Windows.UI.Xaml.Markup.IXamlType(
-            this.comPtr.invoke( 11, "Windows.UI.Xaml.Markup.IXamlType", [], [] )
+        var Microsoft = runtime.global("Microsoft");
+        var _r = Microsoft.UI.Xaml.Markup.IXamlType(
+            this.comPtr.invoke( 11, "Microsoft.UI.Xaml.Markup.IXamlType", [], [] )
         );
         return _r;
     }
@@ -688,7 +820,7 @@ class Windows_UI_Xaml_Markup_IXamlMember : WinRtInterface
     //@Parameters("Object")
     GetValue(instance)
     {
-        var Windows = runtime.global("Windows");
+        var Microsoft = runtime.global("Microsoft");
         var p1 = instance;
         var _r = this.comPtr.invoke( 12, "Object", ["Object"], [p1] );
         return _r;
@@ -700,7 +832,7 @@ class Windows_UI_Xaml_Markup_IXamlMember : WinRtInterface
     //@Parameters("Object","Object")
     SetValue(instance,value)
     {
-        var Windows = runtime.global("Windows");
+        var Microsoft = runtime.global("Microsoft");
         var p1 = instance;
         var p2 = value;
         this.comPtr.invoke( 13, "void", ["Object", "Object"], [p1, p2] );
@@ -708,78 +840,78 @@ class Windows_UI_Xaml_Markup_IXamlMember : WinRtInterface
 
 
 }
-Windows_UI_Xaml_Markup_IXamlMember.iid = "{C541F58C-43A9-4216-B718-E0B11B14E93E}";
-Windows.UI.Xaml.Markup.IXamlMember = Windows_UI_Xaml_Markup_IXamlMember;
+Microsoft_UI_Xaml_Markup_IXamlMember.iid = "{BF3A2913-5C63-50EC-8660-61809BE7B9B9}";
+Microsoft.UI.Xaml.Markup.IXamlMember = Microsoft_UI_Xaml_Markup_IXamlMember;
 
 
-//@Interface("Windows.UI.Xaml.Markup.IXamlMetadataProvider")
-//@IID("{B3765D69-68A5-4B32-8861-FDB90C1F5836}")
-class Windows_UI_Xaml_Markup_IXamlMetadataProvider : WinRtInterface 
+//@Interface("Microsoft.UI.Xaml.Markup.IXamlMetadataProvider")
+//@IID("{A96251F0-2214-5D53-8746-CE99A2593CD7}")
+class Microsoft_UI_Xaml_Markup_IXamlMetadataProvider : WinRtInterface 
 {
-    Windows_UI_Xaml_Markup_IXamlMetadataProvider( comPtr )
+    Microsoft_UI_Xaml_Markup_IXamlMetadataProvider( comPtr )
     {
-        var Windows = runtime.global("Windows");
-        this.comPtr = comPtr.queryInterface( "{B3765D69-68A5-4B32-8861-FDB90C1F5836}");
+        var Microsoft = runtime.global("Microsoft");
+        this.comPtr = comPtr.queryInterface( "{A96251F0-2214-5D53-8746-CE99A2593CD7}");
     }
 
     //@VtableIndex(6)
     //@Async(0)
-    //@Returns("Windows.UI.Xaml.Markup.IXamlType")
+    //@Returns("Microsoft.UI.Xaml.Markup.IXamlType")
     //@Parameters("Windows.UI.Xaml.Interop.TypeName")
     GetXamlType(type)
     {
-        var Windows = runtime.global("Windows");
+        var Microsoft = runtime.global("Microsoft");
         var p1 = type;
-        var _r = Windows.UI.Xaml.Markup.IXamlType(
-            this.comPtr.invoke( 6, "Windows.UI.Xaml.Markup.IXamlType", ["Windows.UI.Xaml.Interop.TypeName"], [p1] )
+        var _r = Microsoft.UI.Xaml.Markup.IXamlType(
+            this.comPtr.invoke( 6, "Microsoft.UI.Xaml.Markup.IXamlType", ["Windows.UI.Xaml.Interop.TypeName"], [p1] )
         );
         return _r;
     }
 
     //@VtableIndex(7)
     //@Async(0)
-    //@Returns("Windows.UI.Xaml.Markup.IXamlType")
+    //@Returns("Microsoft.UI.Xaml.Markup.IXamlType")
     //@Parameters("String")
     GetXamlTypeByFullName(fullName)
     {
-        var Windows = runtime.global("Windows");
+        var Microsoft = runtime.global("Microsoft");
         var p1 = fullName;
-        var _r = Windows.UI.Xaml.Markup.IXamlType(
-            this.comPtr.invoke( 7, "Windows.UI.Xaml.Markup.IXamlType", ["String"], [p1] )
+        var _r = Microsoft.UI.Xaml.Markup.IXamlType(
+            this.comPtr.invoke( 7, "Microsoft.UI.Xaml.Markup.IXamlType", ["String"], [p1] )
         );
         return _r;
     }
 
 
 }
-Windows_UI_Xaml_Markup_IXamlMetadataProvider.iid = "{B3765D69-68A5-4B32-8861-FDB90C1F5836}";
-Windows.UI.Xaml.Markup.IXamlMetadataProvider = Windows_UI_Xaml_Markup_IXamlMetadataProvider;
+Microsoft_UI_Xaml_Markup_IXamlMetadataProvider.iid = "{A96251F0-2214-5D53-8746-CE99A2593CD7}";
+Microsoft.UI.Xaml.Markup.IXamlMetadataProvider = Microsoft_UI_Xaml_Markup_IXamlMetadataProvider;
 
 
-//@Interface("Windows.UI.Xaml.Markup.IXamlReader")
-//@IID("{24374CF1-CCEB-48BF-A514-41B0186F84C2}")
-class Windows_UI_Xaml_Markup_IXamlReader : WinRtInterface 
+//@Interface("Microsoft.UI.Xaml.Markup.IXamlReader")
+//@IID("{54CE54C8-38C6-50D9-AC98-4B03EDDBDE9F}")
+class Microsoft_UI_Xaml_Markup_IXamlReader : WinRtInterface 
 {
-    Windows_UI_Xaml_Markup_IXamlReader( comPtr )
+    Microsoft_UI_Xaml_Markup_IXamlReader( comPtr )
     {
-        var Windows = runtime.global("Windows");
-        this.comPtr = comPtr.queryInterface( "{24374CF1-CCEB-48BF-A514-41B0186F84C2}");
+        var Microsoft = runtime.global("Microsoft");
+        this.comPtr = comPtr.queryInterface( "{54CE54C8-38C6-50D9-AC98-4B03EDDBDE9F}");
     }
 
 
 }
-Windows_UI_Xaml_Markup_IXamlReader.iid = "{24374CF1-CCEB-48BF-A514-41B0186F84C2}";
-Windows.UI.Xaml.Markup.IXamlReader = Windows_UI_Xaml_Markup_IXamlReader;
+Microsoft_UI_Xaml_Markup_IXamlReader.iid = "{54CE54C8-38C6-50D9-AC98-4B03EDDBDE9F}";
+Microsoft.UI.Xaml.Markup.IXamlReader = Microsoft_UI_Xaml_Markup_IXamlReader;
 
 
-//@Interface("Windows.UI.Xaml.Markup.IXamlReaderStatics")
-//@IID("{9891C6BD-534F-4955-B85A-8A8DC0DCA602}")
-class Windows_UI_Xaml_Markup_IXamlReaderStatics : WinRtInterface 
+//@Interface("Microsoft.UI.Xaml.Markup.IXamlReaderStatics")
+//@IID("{82A4CD9E-435E-5AEB-8C4F-300CECE45CAE}")
+class Microsoft_UI_Xaml_Markup_IXamlReaderStatics : WinRtInterface 
 {
-    Windows_UI_Xaml_Markup_IXamlReaderStatics( comPtr )
+    Microsoft_UI_Xaml_Markup_IXamlReaderStatics( comPtr )
     {
-        var Windows = runtime.global("Windows");
-        this.comPtr = comPtr.queryInterface( "{9891C6BD-534F-4955-B85A-8A8DC0DCA602}");
+        var Microsoft = runtime.global("Microsoft");
+        this.comPtr = comPtr.queryInterface( "{82A4CD9E-435E-5AEB-8C4F-300CECE45CAE}");
     }
 
     //@VtableIndex(6)
@@ -788,7 +920,7 @@ class Windows_UI_Xaml_Markup_IXamlReaderStatics : WinRtInterface
     //@Parameters("String")
     Load(xaml)
     {
-        var Windows = runtime.global("Windows");
+        var Microsoft = runtime.global("Microsoft");
         var p1 = xaml;
         var _r = this.comPtr.invoke( 6, "Object", ["String"], [p1] );
         return _r;
@@ -800,7 +932,7 @@ class Windows_UI_Xaml_Markup_IXamlReaderStatics : WinRtInterface
     //@Parameters("String")
     LoadWithInitialTemplateValidation(xaml)
     {
-        var Windows = runtime.global("Windows");
+        var Microsoft = runtime.global("Microsoft");
         var p1 = xaml;
         var _r = this.comPtr.invoke( 7, "Object", ["String"], [p1] );
         return _r;
@@ -808,40 +940,40 @@ class Windows_UI_Xaml_Markup_IXamlReaderStatics : WinRtInterface
 
 
 }
-Windows_UI_Xaml_Markup_IXamlReaderStatics.iid = "{9891C6BD-534F-4955-B85A-8A8DC0DCA602}";
-Windows.UI.Xaml.Markup.IXamlReaderStatics = Windows_UI_Xaml_Markup_IXamlReaderStatics;
+Microsoft_UI_Xaml_Markup_IXamlReaderStatics.iid = "{82A4CD9E-435E-5AEB-8C4F-300CECE45CAE}";
+Microsoft.UI.Xaml.Markup.IXamlReaderStatics = Microsoft_UI_Xaml_Markup_IXamlReaderStatics;
 
 
-//@Interface("Windows.UI.Xaml.Markup.IXamlType")
-//@IID("{7920EAB1-A2E5-479A-BD50-6CEF3C0B4970}")
-class Windows_UI_Xaml_Markup_IXamlType : WinRtInterface 
+//@Interface("Microsoft.UI.Xaml.Markup.IXamlType")
+//@IID("{D24219DF-7EC9-57F1-A27B-6AF251D9C5BC}")
+class Microsoft_UI_Xaml_Markup_IXamlType : WinRtInterface 
 {
-    Windows_UI_Xaml_Markup_IXamlType( comPtr )
+    Microsoft_UI_Xaml_Markup_IXamlType( comPtr )
     {
-        var Windows = runtime.global("Windows");
-        this.comPtr = comPtr.queryInterface( "{7920EAB1-A2E5-479A-BD50-6CEF3C0B4970}");
+        var Microsoft = runtime.global("Microsoft");
+        this.comPtr = comPtr.queryInterface( "{D24219DF-7EC9-57F1-A27B-6AF251D9C5BC}");
     }
 
     //@VtableIndex(6)
     //@Async(0)
-    //@Returns("Windows.UI.Xaml.Markup.IXamlType")
+    //@Returns("Microsoft.UI.Xaml.Markup.IXamlType")
     get_BaseType()
     {
-        var Windows = runtime.global("Windows");
-        var _r = Windows.UI.Xaml.Markup.IXamlType(
-            this.comPtr.invoke( 6, "Windows.UI.Xaml.Markup.IXamlType", [], [] )
+        var Microsoft = runtime.global("Microsoft");
+        var _r = Microsoft.UI.Xaml.Markup.IXamlType(
+            this.comPtr.invoke( 6, "Microsoft.UI.Xaml.Markup.IXamlType", [], [] )
         );
         return _r;
     }
 
     //@VtableIndex(7)
     //@Async(0)
-    //@Returns("Windows.UI.Xaml.Markup.IXamlMember")
+    //@Returns("Microsoft.UI.Xaml.Markup.IXamlMember")
     get_ContentProperty()
     {
-        var Windows = runtime.global("Windows");
-        var _r = Windows.UI.Xaml.Markup.IXamlMember(
-            this.comPtr.invoke( 7, "Windows.UI.Xaml.Markup.IXamlMember", [], [] )
+        var Microsoft = runtime.global("Microsoft");
+        var _r = Microsoft.UI.Xaml.Markup.IXamlMember(
+            this.comPtr.invoke( 7, "Microsoft.UI.Xaml.Markup.IXamlMember", [], [] )
         );
         return _r;
     }
@@ -851,7 +983,7 @@ class Windows_UI_Xaml_Markup_IXamlType : WinRtInterface
     //@Returns("String")
     get_FullName()
     {
-        var Windows = runtime.global("Windows");
+        var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 8, "String", [], [] );
         return _r;
     }
@@ -861,7 +993,7 @@ class Windows_UI_Xaml_Markup_IXamlType : WinRtInterface
     //@Returns("Boolean")
     get_IsArray()
     {
-        var Windows = runtime.global("Windows");
+        var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 9, "Boolean", [], [] );
         return _r;
     }
@@ -871,7 +1003,7 @@ class Windows_UI_Xaml_Markup_IXamlType : WinRtInterface
     //@Returns("Boolean")
     get_IsCollection()
     {
-        var Windows = runtime.global("Windows");
+        var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 10, "Boolean", [], [] );
         return _r;
     }
@@ -881,7 +1013,7 @@ class Windows_UI_Xaml_Markup_IXamlType : WinRtInterface
     //@Returns("Boolean")
     get_IsConstructible()
     {
-        var Windows = runtime.global("Windows");
+        var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 11, "Boolean", [], [] );
         return _r;
     }
@@ -891,7 +1023,7 @@ class Windows_UI_Xaml_Markup_IXamlType : WinRtInterface
     //@Returns("Boolean")
     get_IsDictionary()
     {
-        var Windows = runtime.global("Windows");
+        var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 12, "Boolean", [], [] );
         return _r;
     }
@@ -901,7 +1033,7 @@ class Windows_UI_Xaml_Markup_IXamlType : WinRtInterface
     //@Returns("Boolean")
     get_IsMarkupExtension()
     {
-        var Windows = runtime.global("Windows");
+        var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 13, "Boolean", [], [] );
         return _r;
     }
@@ -911,202 +1043,256 @@ class Windows_UI_Xaml_Markup_IXamlType : WinRtInterface
     //@Returns("Boolean")
     get_IsBindable()
     {
-        var Windows = runtime.global("Windows");
+        var Microsoft = runtime.global("Microsoft");
         var _r = this.comPtr.invoke( 14, "Boolean", [], [] );
         return _r;
     }
 
     //@VtableIndex(15)
     //@Async(0)
-    //@Returns("Windows.UI.Xaml.Markup.IXamlType")
+    //@Returns("Microsoft.UI.Xaml.Markup.IXamlType")
     get_ItemType()
     {
-        var Windows = runtime.global("Windows");
-        var _r = Windows.UI.Xaml.Markup.IXamlType(
-            this.comPtr.invoke( 15, "Windows.UI.Xaml.Markup.IXamlType", [], [] )
+        var Microsoft = runtime.global("Microsoft");
+        var _r = Microsoft.UI.Xaml.Markup.IXamlType(
+            this.comPtr.invoke( 15, "Microsoft.UI.Xaml.Markup.IXamlType", [], [] )
         );
         return _r;
     }
 
     //@VtableIndex(16)
     //@Async(0)
-    //@Returns("Windows.UI.Xaml.Markup.IXamlType")
+    //@Returns("Microsoft.UI.Xaml.Markup.IXamlType")
     get_KeyType()
     {
-        var Windows = runtime.global("Windows");
-        var _r = Windows.UI.Xaml.Markup.IXamlType(
-            this.comPtr.invoke( 16, "Windows.UI.Xaml.Markup.IXamlType", [], [] )
+        var Microsoft = runtime.global("Microsoft");
+        var _r = Microsoft.UI.Xaml.Markup.IXamlType(
+            this.comPtr.invoke( 16, "Microsoft.UI.Xaml.Markup.IXamlType", [], [] )
         );
         return _r;
     }
 
     //@VtableIndex(17)
     //@Async(0)
-    //@Returns("Windows.UI.Xaml.Interop.TypeName")
-    get_UnderlyingType()
+    //@Returns("Microsoft.UI.Xaml.Markup.IXamlType")
+    get_BoxedType()
     {
-        var Windows = runtime.global("Windows");
-        var _r = this.comPtr.invoke( 17, "Windows.UI.Xaml.Interop.TypeName", [], [] );
+        var Microsoft = runtime.global("Microsoft");
+        var _r = Microsoft.UI.Xaml.Markup.IXamlType(
+            this.comPtr.invoke( 17, "Microsoft.UI.Xaml.Markup.IXamlType", [], [] )
+        );
         return _r;
     }
 
     //@VtableIndex(18)
     //@Async(0)
-    //@Returns("Object")
-    ActivateInstance()
+    //@Returns("Windows.UI.Xaml.Interop.TypeName")
+    get_UnderlyingType()
     {
-        var Windows = runtime.global("Windows");
-        var _r = this.comPtr.invoke( 18, "Object", [], [] );
+        var Microsoft = runtime.global("Microsoft");
+        var _r = this.comPtr.invoke( 18, "Windows.UI.Xaml.Interop.TypeName", [], [] );
         return _r;
     }
 
     //@VtableIndex(19)
     //@Async(0)
     //@Returns("Object")
-    //@Parameters("String")
-    CreateFromString(value)
+    ActivateInstance()
     {
-        var Windows = runtime.global("Windows");
-        var p1 = value;
-        var _r = this.comPtr.invoke( 19, "Object", ["String"], [p1] );
+        var Microsoft = runtime.global("Microsoft");
+        var _r = this.comPtr.invoke( 19, "Object", [], [] );
         return _r;
     }
 
     //@VtableIndex(20)
     //@Async(0)
-    //@Returns("Windows.UI.Xaml.Markup.IXamlMember")
+    //@Returns("Object")
     //@Parameters("String")
-    GetMember(name)
+    CreateFromString(value)
     {
-        var Windows = runtime.global("Windows");
-        var p1 = name;
-        var _r = Windows.UI.Xaml.Markup.IXamlMember(
-            this.comPtr.invoke( 20, "Windows.UI.Xaml.Markup.IXamlMember", ["String"], [p1] )
-        );
+        var Microsoft = runtime.global("Microsoft");
+        var p1 = value;
+        var _r = this.comPtr.invoke( 20, "Object", ["String"], [p1] );
         return _r;
     }
 
     //@VtableIndex(21)
     //@Async(0)
-    //@Returns("void")
-    //@Parameters("Object","Object")
-    AddToVector(instance,value)
+    //@Returns("Microsoft.UI.Xaml.Markup.IXamlMember")
+    //@Parameters("String")
+    GetMember(name)
     {
-        var Windows = runtime.global("Windows");
-        var p1 = instance;
-        var p2 = value;
-        this.comPtr.invoke( 21, "void", ["Object", "Object"], [p1, p2] );
+        var Microsoft = runtime.global("Microsoft");
+        var p1 = name;
+        var _r = Microsoft.UI.Xaml.Markup.IXamlMember(
+            this.comPtr.invoke( 21, "Microsoft.UI.Xaml.Markup.IXamlMember", ["String"], [p1] )
+        );
+        return _r;
     }
 
     //@VtableIndex(22)
     //@Async(0)
     //@Returns("void")
-    //@Parameters("Object","Object","Object")
-    AddToMap(instance,key,value)
+    //@Parameters("Object","Object")
+    AddToVector(instance,value)
     {
-        var Windows = runtime.global("Windows");
+        var Microsoft = runtime.global("Microsoft");
         var p1 = instance;
-        var p2 = key;
-        var p3 = value;
-        this.comPtr.invoke( 22, "void", ["Object", "Object", "Object"], [p1, p2, p3] );
+        var p2 = value;
+        this.comPtr.invoke( 22, "void", ["Object", "Object"], [p1, p2] );
     }
 
     //@VtableIndex(23)
     //@Async(0)
     //@Returns("void")
+    //@Parameters("Object","Object","Object")
+    AddToMap(instance,key,value)
+    {
+        var Microsoft = runtime.global("Microsoft");
+        var p1 = instance;
+        var p2 = key;
+        var p3 = value;
+        this.comPtr.invoke( 23, "void", ["Object", "Object", "Object"], [p1, p2, p3] );
+    }
+
+    //@VtableIndex(24)
+    //@Async(0)
+    //@Returns("void")
     RunInitializer()
     {
-        var Windows = runtime.global("Windows");
-        this.comPtr.invoke( 23, "void", [], [] );
+        var Microsoft = runtime.global("Microsoft");
+        this.comPtr.invoke( 24, "void", [], [] );
     }
 
 
 }
-Windows_UI_Xaml_Markup_IXamlType.iid = "{7920EAB1-A2E5-479A-BD50-6CEF3C0B4970}";
-Windows.UI.Xaml.Markup.IXamlType = Windows_UI_Xaml_Markup_IXamlType;
+Microsoft_UI_Xaml_Markup_IXamlType.iid = "{D24219DF-7EC9-57F1-A27B-6AF251D9C5BC}";
+Microsoft.UI.Xaml.Markup.IXamlType = Microsoft_UI_Xaml_Markup_IXamlType;
 
 
-//@Interface("Windows.UI.Xaml.Markup.IXamlType2")
-//@IID("{9F0C6E3B-433B-56AD-8F69-78A4DD3E64F9}")
-class Windows_UI_Xaml_Markup_IXamlType2 : WinRtInterface 
+//@Interface("Microsoft.UI.Xaml.Markup.IXamlTypeResolver")
+//@IID("{3FA15615-CACF-547F-B1ED-89DAE8C67452}")
+class Microsoft_UI_Xaml_Markup_IXamlTypeResolver : WinRtInterface 
 {
-    Windows_UI_Xaml_Markup_IXamlType2( comPtr )
+    Microsoft_UI_Xaml_Markup_IXamlTypeResolver( comPtr )
     {
-        var Windows = runtime.global("Windows");
-        this.comPtr = comPtr.queryInterface( "{9F0C6E3B-433B-56AD-8F69-78A4DD3E64F9}");
+        var Microsoft = runtime.global("Microsoft");
+        this.comPtr = comPtr.queryInterface( "{3FA15615-CACF-547F-B1ED-89DAE8C67452}");
     }
 
     //@VtableIndex(6)
     //@Async(0)
-    //@Returns("Windows.UI.Xaml.Markup.IXamlType")
-    get_BoxedType()
+    //@Returns("Windows.UI.Xaml.Interop.TypeName")
+    //@Parameters("String")
+    Resolve(qualifiedTypeName)
     {
-        var Windows = runtime.global("Windows");
-        var _r = Windows.UI.Xaml.Markup.IXamlType(
-            this.comPtr.invoke( 6, "Windows.UI.Xaml.Markup.IXamlType", [], [] )
-        );
+        var Microsoft = runtime.global("Microsoft");
+        var p1 = qualifiedTypeName;
+        var _r = this.comPtr.invoke( 6, "Windows.UI.Xaml.Interop.TypeName", ["String"], [p1] );
         return _r;
     }
 
 
 }
-Windows_UI_Xaml_Markup_IXamlType2.iid = "{9F0C6E3B-433B-56AD-8F69-78A4DD3E64F9}";
-Windows.UI.Xaml.Markup.IXamlType2 = Windows_UI_Xaml_Markup_IXamlType2;
+Microsoft_UI_Xaml_Markup_IXamlTypeResolver.iid = "{3FA15615-CACF-547F-B1ED-89DAE8C67452}";
+Microsoft.UI.Xaml.Markup.IXamlTypeResolver = Microsoft_UI_Xaml_Markup_IXamlTypeResolver;
 
 
-//@RuntimeClass("Windows.UI.Xaml.Markup.MarkupExtension")
-//@Implements("Windows.UI.Xaml.Markup.IMarkupExtension","Windows.UI.Xaml.Markup.IMarkupExtensionOverrides")
-//@DefaultInterface("Windows.UI.Xaml.Markup.IMarkupExtension")
+//@RuntimeClass("Microsoft.UI.Xaml.Markup.MarkupExtension")
+//@Implements("Microsoft.UI.Xaml.Markup.IMarkupExtension","Microsoft.UI.Xaml.Markup.IMarkupExtensionOverrides")
+//@DefaultInterface("Microsoft.UI.Xaml.Markup.IMarkupExtension")
 @Proxy("WinRtProxy")
-class Windows_UI_Xaml_Markup_MarkupExtension : WinRtInterface
+class Microsoft_UI_Xaml_Markup_MarkupExtension : WinRtInterface
 {
-    Windows_UI_Xaml_Markup_MarkupExtension( comPtr )
+    Microsoft_UI_Xaml_Markup_MarkupExtension( comPtr )
     {
-        var Windows = runtime.global("Windows");
-        this.comPtr = comPtr.queryInterface( Windows.UI.Xaml.Markup.IMarkupExtension.iid );
+        var Microsoft = runtime.global("Microsoft");
+        this.comPtr = comPtr.queryInterface( Microsoft.UI.Xaml.Markup.IMarkupExtension.iid );
     }
 
     static Create()
     {
-        return Windows.UI.Xaml.Markup.MarkupExtension(
-            winrt.activate("Windows.UI.Xaml.Markup.MarkupExtension")
+        return Microsoft.UI.Xaml.Markup.MarkupExtension(
+            winrt.activate("Microsoft.UI.Xaml.Markup.MarkupExtension")
         );
     }
-    //@Returns("Object")
-    ProvideValue()
+
+}
+Microsoft.UI.Xaml.Markup.MarkupExtension = Microsoft_UI_Xaml_Markup_MarkupExtension;
+
+//@RuntimeClass("Microsoft.UI.Xaml.Markup.ProvideValueTargetProperty")
+//@Implements("Microsoft.UI.Xaml.Markup.IProvideValueTargetProperty")
+//@DefaultInterface("Microsoft.UI.Xaml.Markup.IProvideValueTargetProperty")
+@Proxy("WinRtProxy")
+class Microsoft_UI_Xaml_Markup_ProvideValueTargetProperty : WinRtInterface
+{
+    Microsoft_UI_Xaml_Markup_ProvideValueTargetProperty( comPtr )
     {
-        var Windows = runtime.global("Windows");
-        var iface = Windows.UI.Xaml.Markup.IMarkupExtensionOverrides( this.comPtr );
-        var _r = iface.ProvideValue(  );
+        var Microsoft = runtime.global("Microsoft");
+        this.comPtr = comPtr.queryInterface( Microsoft.UI.Xaml.Markup.IProvideValueTargetProperty.iid );
+    }
+
+    static Create()
+    {
+        return Microsoft.UI.Xaml.Markup.ProvideValueTargetProperty(
+            winrt.activate("Microsoft.UI.Xaml.Markup.ProvideValueTargetProperty")
+        );
+    }
+    //@Returns("String")
+    get_Name()
+    {
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Xaml.Markup.IProvideValueTargetProperty( this.comPtr );
+        var _r = iface.get_Name(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Returns("Windows.UI.Xaml.Interop.TypeName")
+    get_Type()
+    {
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Xaml.Markup.IProvideValueTargetProperty( this.comPtr );
+        var _r = iface.get_Type(  );
+        iface.release();
+        return _r;
+    }
+
+    //@Returns("Windows.UI.Xaml.Interop.TypeName")
+    get_DeclaringType()
+    {
+        var Microsoft = runtime.global("Microsoft");
+        var iface = Microsoft.UI.Xaml.Markup.IProvideValueTargetProperty( this.comPtr );
+        var _r = iface.get_DeclaringType(  );
         iface.release();
         return _r;
     }
 
 
 }
-Windows.UI.Xaml.Markup.MarkupExtension = Windows_UI_Xaml_Markup_MarkupExtension;
+Microsoft.UI.Xaml.Markup.ProvideValueTargetProperty = Microsoft_UI_Xaml_Markup_ProvideValueTargetProperty;
 
-//@RuntimeClass("Windows.UI.Xaml.Markup.XamlBinaryWriter")
-//@Implements("Windows.UI.Xaml.Markup.IXamlBinaryWriter")
-//@DefaultInterface("Windows.UI.Xaml.Markup.IXamlBinaryWriter")
+//@RuntimeClass("Microsoft.UI.Xaml.Markup.XamlBinaryWriter")
+//@Implements("Microsoft.UI.Xaml.Markup.IXamlBinaryWriter")
+//@DefaultInterface("Microsoft.UI.Xaml.Markup.IXamlBinaryWriter")
 @Proxy("WinRtProxy")
-class Windows_UI_Xaml_Markup_XamlBinaryWriter : WinRtInterface
+class Microsoft_UI_Xaml_Markup_XamlBinaryWriter : WinRtInterface
 {
-    Windows_UI_Xaml_Markup_XamlBinaryWriter( comPtr )
+    Microsoft_UI_Xaml_Markup_XamlBinaryWriter( comPtr )
     {
-        var Windows = runtime.global("Windows");
-        this.comPtr = comPtr.queryInterface( Windows.UI.Xaml.Markup.IXamlBinaryWriter.iid );
+        var Microsoft = runtime.global("Microsoft");
+        this.comPtr = comPtr.queryInterface( Microsoft.UI.Xaml.Markup.IXamlBinaryWriter.iid );
     }
 
-    // s Windows.UI.Xaml.Markup.IXamlBinaryWriterStatics
+    // s Microsoft.UI.Xaml.Markup.IXamlBinaryWriterStatics
     //@Async(0)
-    //@Returns("Windows.UI.Xaml.Markup.XamlBinaryWriterErrorInformation")
-    //@Parameters("Windows.Foundation.Collections.IVector`1<Windows.Storage.Streams.IRandomAccessStream>","Windows.Foundation.Collections.IVector`1<Windows.Storage.Streams.IRandomAccessStream>","Windows.UI.Xaml.Markup.IXamlMetadataProvider")
+    //@Returns("Microsoft.UI.Xaml.Markup.XamlBinaryWriterErrorInformation")
+    //@Parameters("Windows.Foundation.Collections.IVector`1<Windows.Storage.Streams.IRandomAccessStream>","Windows.Foundation.Collections.IVector`1<Windows.Storage.Streams.IRandomAccessStream>","Microsoft.UI.Xaml.Markup.IXamlMetadataProvider")
     static Write( inputStreams, outputStreams, xamlMetadataProvider)
     {
-        var Windows = runtime.global("Windows");
-        var factory = winrt.activationFactory( "Windows.UI.Xaml.Markup.XamlBinaryWriter" );
-        var iface = Windows.UI.Xaml.Markup.IXamlBinaryWriterStatics( factory );
+        var Microsoft = runtime.global("Microsoft");
+        var factory = winrt.activationFactory( "Microsoft.UI.Xaml.Markup.XamlBinaryWriter" );
+        var iface = Microsoft.UI.Xaml.Markup.IXamlBinaryWriterStatics( factory );
         var _r = iface.Write( inputStreams, outputStreams, xamlMetadataProvider);
         iface.release();
         factory.release();
@@ -1116,34 +1302,34 @@ class Windows_UI_Xaml_Markup_XamlBinaryWriter : WinRtInterface
 
     static Create()
     {
-        return Windows.UI.Xaml.Markup.XamlBinaryWriter(
-            winrt.activate("Windows.UI.Xaml.Markup.XamlBinaryWriter")
+        return Microsoft.UI.Xaml.Markup.XamlBinaryWriter(
+            winrt.activate("Microsoft.UI.Xaml.Markup.XamlBinaryWriter")
         );
     }
 
 }
-Windows.UI.Xaml.Markup.XamlBinaryWriter = Windows_UI_Xaml_Markup_XamlBinaryWriter;
+Microsoft.UI.Xaml.Markup.XamlBinaryWriter = Microsoft_UI_Xaml_Markup_XamlBinaryWriter;
 
-//@RuntimeClass("Windows.UI.Xaml.Markup.XamlBindingHelper")
-//@Implements("Windows.UI.Xaml.Markup.IXamlBindingHelper")
-//@DefaultInterface("Windows.UI.Xaml.Markup.IXamlBindingHelper")
+//@RuntimeClass("Microsoft.UI.Xaml.Markup.XamlBindingHelper")
+//@Implements("Microsoft.UI.Xaml.Markup.IXamlBindingHelper")
+//@DefaultInterface("Microsoft.UI.Xaml.Markup.IXamlBindingHelper")
 @Proxy("WinRtProxy")
-class Windows_UI_Xaml_Markup_XamlBindingHelper : WinRtInterface
+class Microsoft_UI_Xaml_Markup_XamlBindingHelper : WinRtInterface
 {
-    Windows_UI_Xaml_Markup_XamlBindingHelper( comPtr )
+    Microsoft_UI_Xaml_Markup_XamlBindingHelper( comPtr )
     {
-        var Windows = runtime.global("Windows");
-        this.comPtr = comPtr.queryInterface( Windows.UI.Xaml.Markup.IXamlBindingHelper.iid );
+        var Microsoft = runtime.global("Microsoft");
+        this.comPtr = comPtr.queryInterface( Microsoft.UI.Xaml.Markup.IXamlBindingHelper.iid );
     }
 
-    // s Windows.UI.Xaml.Markup.IXamlBindingHelperStatics
+    // s Microsoft.UI.Xaml.Markup.IXamlBindingHelperStatics
     //@Async(0)
-    //@Returns("Windows.UI.Xaml.DependencyProperty")
+    //@Returns("Microsoft.UI.Xaml.DependencyProperty")
     static get_DataTemplateComponentProperty( )
     {
-        var Windows = runtime.global("Windows");
-        var factory = winrt.activationFactory( "Windows.UI.Xaml.Markup.XamlBindingHelper" );
-        var iface = Windows.UI.Xaml.Markup.IXamlBindingHelperStatics( factory );
+        var Microsoft = runtime.global("Microsoft");
+        var factory = winrt.activationFactory( "Microsoft.UI.Xaml.Markup.XamlBindingHelper" );
+        var iface = Microsoft.UI.Xaml.Markup.IXamlBindingHelperStatics( factory );
         var _r = iface.get_DataTemplateComponentProperty( );
         iface.release();
         factory.release();
@@ -1152,13 +1338,13 @@ class Windows_UI_Xaml_Markup_XamlBindingHelper : WinRtInterface
 
 
     //@Async(0)
-    //@Returns("Windows.UI.Xaml.Markup.IDataTemplateComponent")
-    //@Parameters("Windows.UI.Xaml.DependencyObject")
+    //@Returns("Microsoft.UI.Xaml.Markup.IDataTemplateComponent")
+    //@Parameters("Microsoft.UI.Xaml.DependencyObject")
     static GetDataTemplateComponent( element)
     {
-        var Windows = runtime.global("Windows");
-        var factory = winrt.activationFactory( "Windows.UI.Xaml.Markup.XamlBindingHelper" );
-        var iface = Windows.UI.Xaml.Markup.IXamlBindingHelperStatics( factory );
+        var Microsoft = runtime.global("Microsoft");
+        var factory = winrt.activationFactory( "Microsoft.UI.Xaml.Markup.XamlBindingHelper" );
+        var iface = Microsoft.UI.Xaml.Markup.IXamlBindingHelperStatics( factory );
         var _r = iface.GetDataTemplateComponent( element);
         iface.release();
         factory.release();
@@ -1168,12 +1354,12 @@ class Windows_UI_Xaml_Markup_XamlBindingHelper : WinRtInterface
 
     //@Async(0)
     //@Returns("void")
-    //@Parameters("Windows.UI.Xaml.DependencyObject","Windows.UI.Xaml.Markup.IDataTemplateComponent")
+    //@Parameters("Microsoft.UI.Xaml.DependencyObject","Microsoft.UI.Xaml.Markup.IDataTemplateComponent")
     static SetDataTemplateComponent( element, value)
     {
-        var Windows = runtime.global("Windows");
-        var factory = winrt.activationFactory( "Windows.UI.Xaml.Markup.XamlBindingHelper" );
-        var iface = Windows.UI.Xaml.Markup.IXamlBindingHelperStatics( factory );
+        var Microsoft = runtime.global("Microsoft");
+        var factory = winrt.activationFactory( "Microsoft.UI.Xaml.Markup.XamlBindingHelper" );
+        var iface = Microsoft.UI.Xaml.Markup.IXamlBindingHelperStatics( factory );
         iface.SetDataTemplateComponent( element, value);
         iface.release();
         factory.release();
@@ -1182,12 +1368,12 @@ class Windows_UI_Xaml_Markup_XamlBindingHelper : WinRtInterface
 
     //@Async(0)
     //@Returns("void")
-    //@Parameters("Windows.UI.Xaml.UIElement")
+    //@Parameters("Microsoft.UI.Xaml.UIElement")
     static SuspendRendering( target)
     {
-        var Windows = runtime.global("Windows");
-        var factory = winrt.activationFactory( "Windows.UI.Xaml.Markup.XamlBindingHelper" );
-        var iface = Windows.UI.Xaml.Markup.IXamlBindingHelperStatics( factory );
+        var Microsoft = runtime.global("Microsoft");
+        var factory = winrt.activationFactory( "Microsoft.UI.Xaml.Markup.XamlBindingHelper" );
+        var iface = Microsoft.UI.Xaml.Markup.IXamlBindingHelperStatics( factory );
         iface.SuspendRendering( target);
         iface.release();
         factory.release();
@@ -1196,12 +1382,12 @@ class Windows_UI_Xaml_Markup_XamlBindingHelper : WinRtInterface
 
     //@Async(0)
     //@Returns("void")
-    //@Parameters("Windows.UI.Xaml.UIElement")
+    //@Parameters("Microsoft.UI.Xaml.UIElement")
     static ResumeRendering( target)
     {
-        var Windows = runtime.global("Windows");
-        var factory = winrt.activationFactory( "Windows.UI.Xaml.Markup.XamlBindingHelper" );
-        var iface = Windows.UI.Xaml.Markup.IXamlBindingHelperStatics( factory );
+        var Microsoft = runtime.global("Microsoft");
+        var factory = winrt.activationFactory( "Microsoft.UI.Xaml.Markup.XamlBindingHelper" );
+        var iface = Microsoft.UI.Xaml.Markup.IXamlBindingHelperStatics( factory );
         iface.ResumeRendering( target);
         iface.release();
         factory.release();
@@ -1213,9 +1399,9 @@ class Windows_UI_Xaml_Markup_XamlBindingHelper : WinRtInterface
     //@Parameters("Windows.UI.Xaml.Interop.TypeName","Object")
     static ConvertValue( type, value)
     {
-        var Windows = runtime.global("Windows");
-        var factory = winrt.activationFactory( "Windows.UI.Xaml.Markup.XamlBindingHelper" );
-        var iface = Windows.UI.Xaml.Markup.IXamlBindingHelperStatics( factory );
+        var Microsoft = runtime.global("Microsoft");
+        var factory = winrt.activationFactory( "Microsoft.UI.Xaml.Markup.XamlBindingHelper" );
+        var iface = Microsoft.UI.Xaml.Markup.IXamlBindingHelperStatics( factory );
         var _r = iface.ConvertValue( type, value);
         iface.release();
         factory.release();
@@ -1225,12 +1411,12 @@ class Windows_UI_Xaml_Markup_XamlBindingHelper : WinRtInterface
 
     //@Async(0)
     //@Returns("void")
-    //@Parameters("Object","Windows.UI.Xaml.DependencyProperty","String")
+    //@Parameters("Object","Microsoft.UI.Xaml.DependencyProperty","String")
     static SetPropertyFromString( dependencyObject, propertyToSet, value)
     {
-        var Windows = runtime.global("Windows");
-        var factory = winrt.activationFactory( "Windows.UI.Xaml.Markup.XamlBindingHelper" );
-        var iface = Windows.UI.Xaml.Markup.IXamlBindingHelperStatics( factory );
+        var Microsoft = runtime.global("Microsoft");
+        var factory = winrt.activationFactory( "Microsoft.UI.Xaml.Markup.XamlBindingHelper" );
+        var iface = Microsoft.UI.Xaml.Markup.IXamlBindingHelperStatics( factory );
         iface.SetPropertyFromString( dependencyObject, propertyToSet, value);
         iface.release();
         factory.release();
@@ -1239,12 +1425,12 @@ class Windows_UI_Xaml_Markup_XamlBindingHelper : WinRtInterface
 
     //@Async(0)
     //@Returns("void")
-    //@Parameters("Object","Windows.UI.Xaml.DependencyProperty","Boolean")
+    //@Parameters("Object","Microsoft.UI.Xaml.DependencyProperty","Boolean")
     static SetPropertyFromBoolean( dependencyObject, propertyToSet, value)
     {
-        var Windows = runtime.global("Windows");
-        var factory = winrt.activationFactory( "Windows.UI.Xaml.Markup.XamlBindingHelper" );
-        var iface = Windows.UI.Xaml.Markup.IXamlBindingHelperStatics( factory );
+        var Microsoft = runtime.global("Microsoft");
+        var factory = winrt.activationFactory( "Microsoft.UI.Xaml.Markup.XamlBindingHelper" );
+        var iface = Microsoft.UI.Xaml.Markup.IXamlBindingHelperStatics( factory );
         iface.SetPropertyFromBoolean( dependencyObject, propertyToSet, value);
         iface.release();
         factory.release();
@@ -1253,12 +1439,12 @@ class Windows_UI_Xaml_Markup_XamlBindingHelper : WinRtInterface
 
     //@Async(0)
     //@Returns("void")
-    //@Parameters("Object","Windows.UI.Xaml.DependencyProperty","unk")
+    //@Parameters("Object","Microsoft.UI.Xaml.DependencyProperty","unk")
     static SetPropertyFromChar16( dependencyObject, propertyToSet, value)
     {
-        var Windows = runtime.global("Windows");
-        var factory = winrt.activationFactory( "Windows.UI.Xaml.Markup.XamlBindingHelper" );
-        var iface = Windows.UI.Xaml.Markup.IXamlBindingHelperStatics( factory );
+        var Microsoft = runtime.global("Microsoft");
+        var factory = winrt.activationFactory( "Microsoft.UI.Xaml.Markup.XamlBindingHelper" );
+        var iface = Microsoft.UI.Xaml.Markup.IXamlBindingHelperStatics( factory );
         iface.SetPropertyFromChar16( dependencyObject, propertyToSet, value);
         iface.release();
         factory.release();
@@ -1267,12 +1453,12 @@ class Windows_UI_Xaml_Markup_XamlBindingHelper : WinRtInterface
 
     //@Async(0)
     //@Returns("void")
-    //@Parameters("Object","Windows.UI.Xaml.DependencyProperty","Windows.Foundation.DateTime")
+    //@Parameters("Object","Microsoft.UI.Xaml.DependencyProperty","Windows.Foundation.DateTime")
     static SetPropertyFromDateTime( dependencyObject, propertyToSet, value)
     {
-        var Windows = runtime.global("Windows");
-        var factory = winrt.activationFactory( "Windows.UI.Xaml.Markup.XamlBindingHelper" );
-        var iface = Windows.UI.Xaml.Markup.IXamlBindingHelperStatics( factory );
+        var Microsoft = runtime.global("Microsoft");
+        var factory = winrt.activationFactory( "Microsoft.UI.Xaml.Markup.XamlBindingHelper" );
+        var iface = Microsoft.UI.Xaml.Markup.IXamlBindingHelperStatics( factory );
         iface.SetPropertyFromDateTime( dependencyObject, propertyToSet, value);
         iface.release();
         factory.release();
@@ -1281,12 +1467,12 @@ class Windows_UI_Xaml_Markup_XamlBindingHelper : WinRtInterface
 
     //@Async(0)
     //@Returns("void")
-    //@Parameters("Object","Windows.UI.Xaml.DependencyProperty","Double")
+    //@Parameters("Object","Microsoft.UI.Xaml.DependencyProperty","Double")
     static SetPropertyFromDouble( dependencyObject, propertyToSet, value)
     {
-        var Windows = runtime.global("Windows");
-        var factory = winrt.activationFactory( "Windows.UI.Xaml.Markup.XamlBindingHelper" );
-        var iface = Windows.UI.Xaml.Markup.IXamlBindingHelperStatics( factory );
+        var Microsoft = runtime.global("Microsoft");
+        var factory = winrt.activationFactory( "Microsoft.UI.Xaml.Markup.XamlBindingHelper" );
+        var iface = Microsoft.UI.Xaml.Markup.IXamlBindingHelperStatics( factory );
         iface.SetPropertyFromDouble( dependencyObject, propertyToSet, value);
         iface.release();
         factory.release();
@@ -1295,12 +1481,12 @@ class Windows_UI_Xaml_Markup_XamlBindingHelper : WinRtInterface
 
     //@Async(0)
     //@Returns("void")
-    //@Parameters("Object","Windows.UI.Xaml.DependencyProperty","Int32")
+    //@Parameters("Object","Microsoft.UI.Xaml.DependencyProperty","Int32")
     static SetPropertyFromInt32( dependencyObject, propertyToSet, value)
     {
-        var Windows = runtime.global("Windows");
-        var factory = winrt.activationFactory( "Windows.UI.Xaml.Markup.XamlBindingHelper" );
-        var iface = Windows.UI.Xaml.Markup.IXamlBindingHelperStatics( factory );
+        var Microsoft = runtime.global("Microsoft");
+        var factory = winrt.activationFactory( "Microsoft.UI.Xaml.Markup.XamlBindingHelper" );
+        var iface = Microsoft.UI.Xaml.Markup.IXamlBindingHelperStatics( factory );
         iface.SetPropertyFromInt32( dependencyObject, propertyToSet, value);
         iface.release();
         factory.release();
@@ -1309,12 +1495,12 @@ class Windows_UI_Xaml_Markup_XamlBindingHelper : WinRtInterface
 
     //@Async(0)
     //@Returns("void")
-    //@Parameters("Object","Windows.UI.Xaml.DependencyProperty","UInt32")
+    //@Parameters("Object","Microsoft.UI.Xaml.DependencyProperty","UInt32")
     static SetPropertyFromUInt32( dependencyObject, propertyToSet, value)
     {
-        var Windows = runtime.global("Windows");
-        var factory = winrt.activationFactory( "Windows.UI.Xaml.Markup.XamlBindingHelper" );
-        var iface = Windows.UI.Xaml.Markup.IXamlBindingHelperStatics( factory );
+        var Microsoft = runtime.global("Microsoft");
+        var factory = winrt.activationFactory( "Microsoft.UI.Xaml.Markup.XamlBindingHelper" );
+        var iface = Microsoft.UI.Xaml.Markup.IXamlBindingHelperStatics( factory );
         iface.SetPropertyFromUInt32( dependencyObject, propertyToSet, value);
         iface.release();
         factory.release();
@@ -1323,12 +1509,12 @@ class Windows_UI_Xaml_Markup_XamlBindingHelper : WinRtInterface
 
     //@Async(0)
     //@Returns("void")
-    //@Parameters("Object","Windows.UI.Xaml.DependencyProperty","Int64")
+    //@Parameters("Object","Microsoft.UI.Xaml.DependencyProperty","Int64")
     static SetPropertyFromInt64( dependencyObject, propertyToSet, value)
     {
-        var Windows = runtime.global("Windows");
-        var factory = winrt.activationFactory( "Windows.UI.Xaml.Markup.XamlBindingHelper" );
-        var iface = Windows.UI.Xaml.Markup.IXamlBindingHelperStatics( factory );
+        var Microsoft = runtime.global("Microsoft");
+        var factory = winrt.activationFactory( "Microsoft.UI.Xaml.Markup.XamlBindingHelper" );
+        var iface = Microsoft.UI.Xaml.Markup.IXamlBindingHelperStatics( factory );
         iface.SetPropertyFromInt64( dependencyObject, propertyToSet, value);
         iface.release();
         factory.release();
@@ -1337,12 +1523,12 @@ class Windows_UI_Xaml_Markup_XamlBindingHelper : WinRtInterface
 
     //@Async(0)
     //@Returns("void")
-    //@Parameters("Object","Windows.UI.Xaml.DependencyProperty","UInt64")
+    //@Parameters("Object","Microsoft.UI.Xaml.DependencyProperty","UInt64")
     static SetPropertyFromUInt64( dependencyObject, propertyToSet, value)
     {
-        var Windows = runtime.global("Windows");
-        var factory = winrt.activationFactory( "Windows.UI.Xaml.Markup.XamlBindingHelper" );
-        var iface = Windows.UI.Xaml.Markup.IXamlBindingHelperStatics( factory );
+        var Microsoft = runtime.global("Microsoft");
+        var factory = winrt.activationFactory( "Microsoft.UI.Xaml.Markup.XamlBindingHelper" );
+        var iface = Microsoft.UI.Xaml.Markup.IXamlBindingHelperStatics( factory );
         iface.SetPropertyFromUInt64( dependencyObject, propertyToSet, value);
         iface.release();
         factory.release();
@@ -1351,12 +1537,12 @@ class Windows_UI_Xaml_Markup_XamlBindingHelper : WinRtInterface
 
     //@Async(0)
     //@Returns("void")
-    //@Parameters("Object","Windows.UI.Xaml.DependencyProperty","Single")
+    //@Parameters("Object","Microsoft.UI.Xaml.DependencyProperty","Single")
     static SetPropertyFromSingle( dependencyObject, propertyToSet, value)
     {
-        var Windows = runtime.global("Windows");
-        var factory = winrt.activationFactory( "Windows.UI.Xaml.Markup.XamlBindingHelper" );
-        var iface = Windows.UI.Xaml.Markup.IXamlBindingHelperStatics( factory );
+        var Microsoft = runtime.global("Microsoft");
+        var factory = winrt.activationFactory( "Microsoft.UI.Xaml.Markup.XamlBindingHelper" );
+        var iface = Microsoft.UI.Xaml.Markup.IXamlBindingHelperStatics( factory );
         iface.SetPropertyFromSingle( dependencyObject, propertyToSet, value);
         iface.release();
         factory.release();
@@ -1365,12 +1551,12 @@ class Windows_UI_Xaml_Markup_XamlBindingHelper : WinRtInterface
 
     //@Async(0)
     //@Returns("void")
-    //@Parameters("Object","Windows.UI.Xaml.DependencyProperty","Windows.Foundation.Point")
+    //@Parameters("Object","Microsoft.UI.Xaml.DependencyProperty","Windows.Foundation.Point")
     static SetPropertyFromPoint( dependencyObject, propertyToSet, value)
     {
-        var Windows = runtime.global("Windows");
-        var factory = winrt.activationFactory( "Windows.UI.Xaml.Markup.XamlBindingHelper" );
-        var iface = Windows.UI.Xaml.Markup.IXamlBindingHelperStatics( factory );
+        var Microsoft = runtime.global("Microsoft");
+        var factory = winrt.activationFactory( "Microsoft.UI.Xaml.Markup.XamlBindingHelper" );
+        var iface = Microsoft.UI.Xaml.Markup.IXamlBindingHelperStatics( factory );
         iface.SetPropertyFromPoint( dependencyObject, propertyToSet, value);
         iface.release();
         factory.release();
@@ -1379,12 +1565,12 @@ class Windows_UI_Xaml_Markup_XamlBindingHelper : WinRtInterface
 
     //@Async(0)
     //@Returns("void")
-    //@Parameters("Object","Windows.UI.Xaml.DependencyProperty","Windows.Foundation.Rect")
+    //@Parameters("Object","Microsoft.UI.Xaml.DependencyProperty","Windows.Foundation.Rect")
     static SetPropertyFromRect( dependencyObject, propertyToSet, value)
     {
-        var Windows = runtime.global("Windows");
-        var factory = winrt.activationFactory( "Windows.UI.Xaml.Markup.XamlBindingHelper" );
-        var iface = Windows.UI.Xaml.Markup.IXamlBindingHelperStatics( factory );
+        var Microsoft = runtime.global("Microsoft");
+        var factory = winrt.activationFactory( "Microsoft.UI.Xaml.Markup.XamlBindingHelper" );
+        var iface = Microsoft.UI.Xaml.Markup.IXamlBindingHelperStatics( factory );
         iface.SetPropertyFromRect( dependencyObject, propertyToSet, value);
         iface.release();
         factory.release();
@@ -1393,12 +1579,12 @@ class Windows_UI_Xaml_Markup_XamlBindingHelper : WinRtInterface
 
     //@Async(0)
     //@Returns("void")
-    //@Parameters("Object","Windows.UI.Xaml.DependencyProperty","Windows.Foundation.Size")
+    //@Parameters("Object","Microsoft.UI.Xaml.DependencyProperty","Windows.Foundation.Size")
     static SetPropertyFromSize( dependencyObject, propertyToSet, value)
     {
-        var Windows = runtime.global("Windows");
-        var factory = winrt.activationFactory( "Windows.UI.Xaml.Markup.XamlBindingHelper" );
-        var iface = Windows.UI.Xaml.Markup.IXamlBindingHelperStatics( factory );
+        var Microsoft = runtime.global("Microsoft");
+        var factory = winrt.activationFactory( "Microsoft.UI.Xaml.Markup.XamlBindingHelper" );
+        var iface = Microsoft.UI.Xaml.Markup.IXamlBindingHelperStatics( factory );
         iface.SetPropertyFromSize( dependencyObject, propertyToSet, value);
         iface.release();
         factory.release();
@@ -1407,12 +1593,12 @@ class Windows_UI_Xaml_Markup_XamlBindingHelper : WinRtInterface
 
     //@Async(0)
     //@Returns("void")
-    //@Parameters("Object","Windows.UI.Xaml.DependencyProperty","Windows.Foundation.TimeSpan")
+    //@Parameters("Object","Microsoft.UI.Xaml.DependencyProperty","Windows.Foundation.TimeSpan")
     static SetPropertyFromTimeSpan( dependencyObject, propertyToSet, value)
     {
-        var Windows = runtime.global("Windows");
-        var factory = winrt.activationFactory( "Windows.UI.Xaml.Markup.XamlBindingHelper" );
-        var iface = Windows.UI.Xaml.Markup.IXamlBindingHelperStatics( factory );
+        var Microsoft = runtime.global("Microsoft");
+        var factory = winrt.activationFactory( "Microsoft.UI.Xaml.Markup.XamlBindingHelper" );
+        var iface = Microsoft.UI.Xaml.Markup.IXamlBindingHelperStatics( factory );
         iface.SetPropertyFromTimeSpan( dependencyObject, propertyToSet, value);
         iface.release();
         factory.release();
@@ -1421,12 +1607,12 @@ class Windows_UI_Xaml_Markup_XamlBindingHelper : WinRtInterface
 
     //@Async(0)
     //@Returns("void")
-    //@Parameters("Object","Windows.UI.Xaml.DependencyProperty","UInt8")
+    //@Parameters("Object","Microsoft.UI.Xaml.DependencyProperty","UInt8")
     static SetPropertyFromByte( dependencyObject, propertyToSet, value)
     {
-        var Windows = runtime.global("Windows");
-        var factory = winrt.activationFactory( "Windows.UI.Xaml.Markup.XamlBindingHelper" );
-        var iface = Windows.UI.Xaml.Markup.IXamlBindingHelperStatics( factory );
+        var Microsoft = runtime.global("Microsoft");
+        var factory = winrt.activationFactory( "Microsoft.UI.Xaml.Markup.XamlBindingHelper" );
+        var iface = Microsoft.UI.Xaml.Markup.IXamlBindingHelperStatics( factory );
         iface.SetPropertyFromByte( dependencyObject, propertyToSet, value);
         iface.release();
         factory.release();
@@ -1435,12 +1621,12 @@ class Windows_UI_Xaml_Markup_XamlBindingHelper : WinRtInterface
 
     //@Async(0)
     //@Returns("void")
-    //@Parameters("Object","Windows.UI.Xaml.DependencyProperty","Windows.Foundation.Uri")
+    //@Parameters("Object","Microsoft.UI.Xaml.DependencyProperty","Windows.Foundation.Uri")
     static SetPropertyFromUri( dependencyObject, propertyToSet, value)
     {
-        var Windows = runtime.global("Windows");
-        var factory = winrt.activationFactory( "Windows.UI.Xaml.Markup.XamlBindingHelper" );
-        var iface = Windows.UI.Xaml.Markup.IXamlBindingHelperStatics( factory );
+        var Microsoft = runtime.global("Microsoft");
+        var factory = winrt.activationFactory( "Microsoft.UI.Xaml.Markup.XamlBindingHelper" );
+        var iface = Microsoft.UI.Xaml.Markup.IXamlBindingHelperStatics( factory );
         iface.SetPropertyFromUri( dependencyObject, propertyToSet, value);
         iface.release();
         factory.release();
@@ -1449,12 +1635,12 @@ class Windows_UI_Xaml_Markup_XamlBindingHelper : WinRtInterface
 
     //@Async(0)
     //@Returns("void")
-    //@Parameters("Object","Windows.UI.Xaml.DependencyProperty","Object")
+    //@Parameters("Object","Microsoft.UI.Xaml.DependencyProperty","Object")
     static SetPropertyFromObject( dependencyObject, propertyToSet, value)
     {
-        var Windows = runtime.global("Windows");
-        var factory = winrt.activationFactory( "Windows.UI.Xaml.Markup.XamlBindingHelper" );
-        var iface = Windows.UI.Xaml.Markup.IXamlBindingHelperStatics( factory );
+        var Microsoft = runtime.global("Microsoft");
+        var factory = winrt.activationFactory( "Microsoft.UI.Xaml.Markup.XamlBindingHelper" );
+        var iface = Microsoft.UI.Xaml.Markup.IXamlBindingHelperStatics( factory );
         iface.SetPropertyFromObject( dependencyObject, propertyToSet, value);
         iface.release();
         factory.release();
@@ -1463,35 +1649,35 @@ class Windows_UI_Xaml_Markup_XamlBindingHelper : WinRtInterface
 
     static Create()
     {
-        return Windows.UI.Xaml.Markup.XamlBindingHelper(
-            winrt.activate("Windows.UI.Xaml.Markup.XamlBindingHelper")
+        return Microsoft.UI.Xaml.Markup.XamlBindingHelper(
+            winrt.activate("Microsoft.UI.Xaml.Markup.XamlBindingHelper")
         );
     }
 
 }
-Windows.UI.Xaml.Markup.XamlBindingHelper = Windows_UI_Xaml_Markup_XamlBindingHelper;
+Microsoft.UI.Xaml.Markup.XamlBindingHelper = Microsoft_UI_Xaml_Markup_XamlBindingHelper;
 
-//@RuntimeClass("Windows.UI.Xaml.Markup.XamlMarkupHelper")
-//@Implements("Windows.UI.Xaml.Markup.IXamlMarkupHelper")
-//@DefaultInterface("Windows.UI.Xaml.Markup.IXamlMarkupHelper")
+//@RuntimeClass("Microsoft.UI.Xaml.Markup.XamlMarkupHelper")
+//@Implements("Microsoft.UI.Xaml.Markup.IXamlMarkupHelper")
+//@DefaultInterface("Microsoft.UI.Xaml.Markup.IXamlMarkupHelper")
 @Proxy("WinRtProxy")
-class Windows_UI_Xaml_Markup_XamlMarkupHelper : WinRtInterface
+class Microsoft_UI_Xaml_Markup_XamlMarkupHelper : WinRtInterface
 {
-    Windows_UI_Xaml_Markup_XamlMarkupHelper( comPtr )
+    Microsoft_UI_Xaml_Markup_XamlMarkupHelper( comPtr )
     {
-        var Windows = runtime.global("Windows");
-        this.comPtr = comPtr.queryInterface( Windows.UI.Xaml.Markup.IXamlMarkupHelper.iid );
+        var Microsoft = runtime.global("Microsoft");
+        this.comPtr = comPtr.queryInterface( Microsoft.UI.Xaml.Markup.IXamlMarkupHelper.iid );
     }
 
-    // s Windows.UI.Xaml.Markup.IXamlMarkupHelperStatics
+    // s Microsoft.UI.Xaml.Markup.IXamlMarkupHelperStatics
     //@Async(0)
     //@Returns("void")
-    //@Parameters("Windows.UI.Xaml.DependencyObject")
+    //@Parameters("Microsoft.UI.Xaml.DependencyObject")
     static UnloadObject( element)
     {
-        var Windows = runtime.global("Windows");
-        var factory = winrt.activationFactory( "Windows.UI.Xaml.Markup.XamlMarkupHelper" );
-        var iface = Windows.UI.Xaml.Markup.IXamlMarkupHelperStatics( factory );
+        var Microsoft = runtime.global("Microsoft");
+        var factory = winrt.activationFactory( "Microsoft.UI.Xaml.Markup.XamlMarkupHelper" );
+        var iface = Microsoft.UI.Xaml.Markup.IXamlMarkupHelperStatics( factory );
         iface.UnloadObject( element);
         iface.release();
         factory.release();
@@ -1500,35 +1686,35 @@ class Windows_UI_Xaml_Markup_XamlMarkupHelper : WinRtInterface
 
     static Create()
     {
-        return Windows.UI.Xaml.Markup.XamlMarkupHelper(
-            winrt.activate("Windows.UI.Xaml.Markup.XamlMarkupHelper")
+        return Microsoft.UI.Xaml.Markup.XamlMarkupHelper(
+            winrt.activate("Microsoft.UI.Xaml.Markup.XamlMarkupHelper")
         );
     }
 
 }
-Windows.UI.Xaml.Markup.XamlMarkupHelper = Windows_UI_Xaml_Markup_XamlMarkupHelper;
+Microsoft.UI.Xaml.Markup.XamlMarkupHelper = Microsoft_UI_Xaml_Markup_XamlMarkupHelper;
 
-//@RuntimeClass("Windows.UI.Xaml.Markup.XamlReader")
-//@Implements("Windows.UI.Xaml.Markup.IXamlReader")
-//@DefaultInterface("Windows.UI.Xaml.Markup.IXamlReader")
+//@RuntimeClass("Microsoft.UI.Xaml.Markup.XamlReader")
+//@Implements("Microsoft.UI.Xaml.Markup.IXamlReader")
+//@DefaultInterface("Microsoft.UI.Xaml.Markup.IXamlReader")
 @Proxy("WinRtProxy")
-class Windows_UI_Xaml_Markup_XamlReader : WinRtInterface
+class Microsoft_UI_Xaml_Markup_XamlReader : WinRtInterface
 {
-    Windows_UI_Xaml_Markup_XamlReader( comPtr )
+    Microsoft_UI_Xaml_Markup_XamlReader( comPtr )
     {
-        var Windows = runtime.global("Windows");
-        this.comPtr = comPtr.queryInterface( Windows.UI.Xaml.Markup.IXamlReader.iid );
+        var Microsoft = runtime.global("Microsoft");
+        this.comPtr = comPtr.queryInterface( Microsoft.UI.Xaml.Markup.IXamlReader.iid );
     }
 
-    // s Windows.UI.Xaml.Markup.IXamlReaderStatics
+    // s Microsoft.UI.Xaml.Markup.IXamlReaderStatics
     //@Async(0)
     //@Returns("Object")
     //@Parameters("String")
     static Load( xaml)
     {
-        var Windows = runtime.global("Windows");
-        var factory = winrt.activationFactory( "Windows.UI.Xaml.Markup.XamlReader" );
-        var iface = Windows.UI.Xaml.Markup.IXamlReaderStatics( factory );
+        var Microsoft = runtime.global("Microsoft");
+        var factory = winrt.activationFactory( "Microsoft.UI.Xaml.Markup.XamlReader" );
+        var iface = Microsoft.UI.Xaml.Markup.IXamlReaderStatics( factory );
         var _r = iface.Load( xaml);
         iface.release();
         factory.release();
@@ -1541,9 +1727,9 @@ class Windows_UI_Xaml_Markup_XamlReader : WinRtInterface
     //@Parameters("String")
     static LoadWithInitialTemplateValidation( xaml)
     {
-        var Windows = runtime.global("Windows");
-        var factory = winrt.activationFactory( "Windows.UI.Xaml.Markup.XamlReader" );
-        var iface = Windows.UI.Xaml.Markup.IXamlReaderStatics( factory );
+        var Microsoft = runtime.global("Microsoft");
+        var factory = winrt.activationFactory( "Microsoft.UI.Xaml.Markup.XamlReader" );
+        var iface = Microsoft.UI.Xaml.Markup.IXamlReaderStatics( factory );
         var _r = iface.LoadWithInitialTemplateValidation( xaml);
         iface.release();
         factory.release();
@@ -1553,13 +1739,13 @@ class Windows_UI_Xaml_Markup_XamlReader : WinRtInterface
 
     static Create()
     {
-        return Windows.UI.Xaml.Markup.XamlReader(
-            winrt.activate("Windows.UI.Xaml.Markup.XamlReader")
+        return Microsoft.UI.Xaml.Markup.XamlReader(
+            winrt.activate("Microsoft.UI.Xaml.Markup.XamlReader")
         );
     }
 
 }
-Windows.UI.Xaml.Markup.XamlReader = Windows_UI_Xaml_Markup_XamlReader;
+Microsoft.UI.Xaml.Markup.XamlReader = Microsoft_UI_Xaml_Markup_XamlReader;
 
 if ( Windows.Foundation == nil ) { Windows.Foundation = {}; }
 if ( Windows.Foundation.Collections == nil ) { Windows.Foundation.Collections = {}; }

@@ -10,15 +10,18 @@ import("rt/Windows.Graphics");
 import("rt/Windows.Storage");
 import("rt/Windows.Storage.Streams");
 import("rt/Windows.Storage.Pickers");
-import("rt/Windows.UI.Xaml");
-import("rt/Windows.UI.Xaml.Hosting");
-import("rt/Windows.UI.Xaml.Markup");
-import("rt/Windows.UI.Xaml.Interop");
-import("rt/Windows.UI.Xaml.Data");
-import("rt/Windows.UI.Xaml.Input");
-import("rt/Windows.UI.Xaml.Controls");
-import("rt/Windows.UI.Xaml.Controls.Primitives");
+import("rt/Microsoft.UI");
+import("rt/Microsoft.UI.Content");
+import("rt/Microsoft.UI.Dispatching");
 import("rt/Microsoft.UI.Windowing");
+import("rt/Microsoft.UI.Xaml");
+import("rt/Microsoft.UI.Xaml.Hosting");
+import("rt/Microsoft.UI.Xaml.Markup");
+import("rt/Microsoft.UI.Xaml.Interop");
+import("rt/Microsoft.UI.Xaml.Data");
+import("rt/Microsoft.UI.Xaml.Input");
+import("rt/Microsoft.UI.Xaml.Controls");
+import("rt/Microsoft.UI.Xaml.Controls.Primitives");
 import("rt/Microsoft.Web.WebView2.Core");
 import("rt/moxaml");
 
@@ -55,7 +58,7 @@ class MyWindow : Window
         var xaml = Xaml.load(xml,this);
         if(!xaml) return;
 
-        var root = Windows.UI.Xaml.FrameworkElement( xaml );
+        var root = Microsoft.UI.Xaml.FrameworkElement( xaml );
         this.dataContext.xamlSrc = root;
         
         if(!r) return;
@@ -66,6 +69,7 @@ class MyWindow : Window
         var c = r.controller;
 
         c.xamlWnd = this.xamlWnd;
+	c.xamlRoot = root;
 
         Xaml.bindEvents(root,c);
     }
@@ -165,21 +169,18 @@ class MyWindow : Window
         this.xamlWnd = XamlWindow( this, io.slurp( this.self + "\\xpad.xaml") );
 
         //support for custom titlebar - win11
-        //Xaml.expand(this.hwnd,300);
+        Xaml.expand(this.hwnd,300);
 
     }
 
     @msg(WM_SIZE)
     onSize(wParam,lParam)
     {
-        // resize Xaml child window if already created
-        if(!this.xamlWnd || !this.xamlWnd.hwnd) return;
-        print int(this.xamlWnd.hwnd);
-        this.resizeChild( this.xamlWnd.hwnd);
+	var width = LOWORD(int(lParam));
+        var height = HIWORD(int(lParam));
 
-        //support for custom titlebar - win11
-        Xaml.expand(this.hwnd,300);
-
+	if(this.xamlWnd)
+	    this.xamlWnd.size(0,0,width,height);
         return 0;
     }
     
@@ -196,7 +197,7 @@ var wnd = MyWindow();
 
 wnd.create( "Xaml Pad");
 wnd.show();
-run(wnd);
+Xaml.run();
 
 
 print "OK";

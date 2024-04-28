@@ -16,6 +16,7 @@ extern from "User32.dll" {
 	ptr CreatePopupMenu();
 	int AppendMenuA( ptr, uint, ptr, str) as AppendMenu;
 	int SetMenu( ptr, ptr);
+	ptr LoadIconA( ptr, str );
 }
 
 extern from "Gdi32.dll" {
@@ -172,6 +173,9 @@ wc.lpfnWndProc = windowProc;
 wc.hInstance = hinstance;
 wc.lpszClassName = classname;
 wc.hbrBackground = COLOR_WINDOW+1;
+wc.hIcon = LoadIconA( hinstance, win32.MAKEINTRESOURCE(107) );
+
+print int(wc.hIcon);
 
 print RegisterClass(wc);
 

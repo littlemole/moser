@@ -2,7 +2,7 @@
 
 <Page Name='thePage' xmlns='http://schemas.microsoft.com/winfx/2006/xaml/presentation' 
     xmlns:x='http://schemas.microsoft.com/winfx/2006/xaml'
-    xmlns:m='using:moxaml'>
+    xmlns:m='using:moxaml'  Background='{ThemeResource MoserBackground}'>
     <Grid Name='theGrid'>
 
 
