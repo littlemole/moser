@@ -125,7 +125,7 @@ install on debian systems like
 dpkg -i moser_1.0_amd64.deb
 ```
 
-Download the .dev package from current github release: [release](xxx)
+Download the .dev package from current github release: [release](https://github.com/littlemole/moser/releases)
 
 sha256 
 a31b44628cf2dcbaee035726dc46a12ab30173443f038668ed7a45e2696230df [virustotal](https://www.virustotal.com/gui/file/a31b44628cf2dcbaee035726dc46a12ab30173443f038668ed7a45e2696230df/detection)
@@ -136,10 +136,10 @@ a31b44628cf2dcbaee035726dc46a12ab30173443f038668ed7a45e2696230df [virustotal](ht
 Xcopy and .msi releases are available.
 
 - the XCopy release brings a full moser installation you can extract everywhere, but here is no PATH or filetype registration. You have to run MOSER from the cmd line and call MOSER with full or relative path. <br>
-XCopy Download: [moser.zip](github) 
+XCopy Download: [moser.zip](https://github.com/littlemole/moser/releases) 
 sha256 28cfd171f69c7c4e8f4b3cc71322e1f1d490b76b92b3b61128b2670d0e9243ff [virustotal](https://www.virustotal.com/gui/file/28cfd171f69c7c4e8f4b3cc71322e1f1d490b76b92b3b61128b2670d0e9243ff)
 - the .msi installer allows to install MOSER to a destination of your liking. In addition to an XCopy install, it will patch %PATH% to include the MOSER install directory, and register .msr file extension to be run through the MOSER executable, allowing to click on .msr scripts that launch a UI. <br>
-MSI Download: [moserSetupPerUser.msi](github) 
+MSI Download: [moserSetupPerUser.msi](https://github.com/littlemole/moser/releases) 
 sha256
 50a27c331576ebae07c320e7b5c858402c91a06e6d3e98d3ea172e6ad74ed8d3 [virustotal](https://www.virustotal.com/gui/file/50a27c331576ebae07c320e7b5c858402c91a06e6d3e98d3ea172e6ad74ed8d3)
 
