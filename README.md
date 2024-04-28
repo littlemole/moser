@@ -4,7 +4,7 @@ The Mole's own Script execution runtime (M.O.S.E.R.).
 
 <p align=right><i><small>dedicated to E.M., for everything.</small></i></p>
 
-Moser is an academic study of [Crafting Interpreters](https://craftinginterpreters.com/) fame. Technically Moser is a C++ port of the VM based Interpreter Lox which is implemented in the second part of this wonderful book. Like Lox, Moser is a Javascript/Python hybrid scripting language powered by running bytecode in a virtual machine. Moser supports a large subset of Lox and for the most part, Syntax follows the [Lox](https://craftinginterpreters.com/the-lox-language.html) example.
+Moser is an academic study of [Crafting Interpreters](https://craftinginterpreters.com/) fame. Technically Moser is a C++ port of the VM based Interpreter *Lox* which is implemented in the second part of this wonderful book. Like Lox, Moser is a Javascript/Python hybrid scripting language powered by running bytecode in a virtual machine. Moser supports a large subset of Lox and for the most part, Syntax follows the [Lox](https://craftinginterpreters.com/the-lox-language.html) example.
 
 ## Warning: MOSER is not intended for production usage.
 
@@ -13,16 +13,16 @@ Moser is an academic study of [Crafting Interpreters](https://craftinginterprete
 <br>
 <br>
 
-# Major Aims of this Exercise
+# Major Aims of this Effort
 
 - Implementation of a scripting VM based on bytecode
-- Native interop in the spirit of CLRs Platform Invoke (which itself of course is in the spirit of VB6's Declare Function), including event driven async programming
+- Native interop in the spirit of .NET CLRs Platform Invoke (which itself of course is in the spirit of VB6's Declare Function), including suppoer for event driven async programming
 - Displaying native Desktop UI from script
 - Some helpful Basics like Arrays and Maps (like Javascript Object), JSON support, Regular Expressions, Metadata (Annotations), runtime import and eval.
 
 # Basic Moser Syntax
 
-Here is fizzbuzz written in MOSER:
+Here is [fizzbuzz](https://wiki.c2.com/?FizzBuzzTest) written in MOSER:
 
 ```js
 
@@ -56,26 +56,23 @@ for( var i = 1; i <= n; i++)
 
 ```
 
-# Major Changes to Nox Syntax
+# Major Changes to Lox Syntax
 
-Moser follows Lox [syntax](https://craftinginterpreters.com/appendix-i.html) with the exception of indiciting inheritance: While Nox uses '>' as a separator in Class declarations to indicate the base (super) class, Moser uses ':' like Java or C##.
+Moser Syntax follows Lox [syntax](https://craftinginterpreters.com/appendix-i.html) with the exception of indiciting inheritance: While Lox uses '>' as a separator in Class declarations to indicate the base (super) class, Moser uses ':' like Java or C##.
 
 Moser has support for for and while loops, including break and continue functionality. Moser has a rudimentary throw exceptions mechanism, including catch and finally constructs.
 
 Moser comes with two major builtin data structures - Array and Map (Object), allowing for a native JSON implementation.
 
-Moser comes with a handful of builtin objects and functions for some fundamental tasks, and to allow for native OS interop. see [builtins](doc/builtin_objects.md) and [native lib](doc/native_lib.md)
+For a full list of Moser's handful builtin objects and functions see [builtins](doc/builtin_objects.md) and [native lib](doc/native_lib.md)
 
-Moser also allows for variadic functions with optional arguments.
-
-[link to stdlib]
 
 <br>
 <br>
 
 # Native OS Integration
 
-Moser supports native OS integration by providing a foreign function interface to call into system libraries based on libffi.
+Moser supports native OS integration by providing a foreign function interface to call into system libraries (.DLLs on windows, .so on Linux) based on [libffi](https://github.com/libffi/libffi).
 
 - import C functions, including variadic ones
 - declare and use C style structs
@@ -114,6 +111,48 @@ print content;
 
 fclose(file);
 ```
+
+## Installing MOSER
+
+Binary Releases avail on GitHub.
+
+### Debian/Ubuntu
+
+There is a simple .deb package that you can
+install on debian systems like 
+
+```bash
+dpkg -i moser_1.0_amd64.deb
+```
+
+Download the .dev package from current github release: [release](xxx)
+
+sha256 
+a31b44628cf2dcbaee035726dc46a12ab30173443f038668ed7a45e2696230df [virustotal](https://www.virustotal.com/gui/file/a31b44628cf2dcbaee035726dc46a12ab30173443f038668ed7a45e2696230df/detection)
+
+
+### Windows 10/11
+
+Xcopy and .msi releases are available.
+
+- the XCopy release brings a full moser installation you can extract everywhere, but here is no PATH or filetype registration. You have to run MOSER from the cmd line and call MOSER with full or relative path. <br>
+XCopy Download: [moser.zip](github) 
+sha256 28cfd171f69c7c4e8f4b3cc71322e1f1d490b76b92b3b61128b2670d0e9243ff [virustotal](https://www.virustotal.com/gui/file/28cfd171f69c7c4e8f4b3cc71322e1f1d490b76b92b3b61128b2670d0e9243ff)
+- the .msi installer allows to install MOSER to a destination of your liking. In addition to an XCopy install, it will patch %PATH% to include the MOSER install directory, and register .msr file extension to be run through the MOSER executable, allowing to click on .msr scripts that launch a UI. <br>
+MSI Download: [moserSetupPerUser.msi](github) 
+sha256
+50a27c331576ebae07c320e7b5c858402c91a06e6d3e98d3ea172e6ad74ed8d3 [virustotal](https://www.virustotal.com/gui/file/50a27c331576ebae07c320e7b5c858402c91a06e6d3e98d3ea172e6ad74ed8d3)
+
+
+
+note that on Windows, there are two executables following the Windows tradition of providing two executables for console or GUI interaction:
+- moser.exe is a console application, always shows a console, and has good support for console IO
+- xmoser.exe is a windows application. It will attach to console if launched from a console window, which allows for output on the console, but console input is a mess. if called in REPL mode (no arguments) it will launch a new console. If launched otherwise - like clicking on a .msr file from Explorer - it will NOT launch a console.
+
+only xmoser.exe has builtin support for XAML. SImple petzold style UI examples run fine with moser.exe - except that you get a console. If you want support for XAML you need to run it through xmoser.exe.
+
+
+
 
 ## Building MOSER
 
