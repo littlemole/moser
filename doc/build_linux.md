@@ -38,6 +38,8 @@ cd linux/curl
 ../../build/moser curl.msr
 ```
 
+note that some examples have further dependencies to be installed, like the gtk and gnome-object-introspection dependencies for running GUI examples. 
+
 <details>
   <summary>fedora dependencies</summary>
 

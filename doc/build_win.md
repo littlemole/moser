@@ -5,27 +5,28 @@ note: x64 only!
 # prerequisites
 
 - Visual Studio latest
-- C++ Desktop + UWP workloads
-- Python and Git (Visual Studio versions ok)
-- Windows SDK v 10.0.19041.0 
-- Cmake
-- nuget.exe in path
+- C++ & C# Desktop + UWP workloads
+- Windows SDK v 10.0.19041.0 (enable in VS installer!)
+- Git (Visual Studio version or standalone)
+- Cmake (Visual Studio version or standalone)
 
 # building
 
-open a x64 visual studo console window. make sure it is x64.
+open a x64 visual studo console window. make sure it is x64!
 
 fist build:
 
 - git clone https://github.com/littlemole/moser.git
 - cd moser
-- bin/bootstrap.bat
+- msbuild build.xml -t:bootstrap
+
+this will build MOSER and all of the freakin Win32 specific support stuff (win32 and winRT API projections, XAML support, WindowsAppSDK support, etc - see win32 subfolder)
 
 subsequent builds:
 
-- bin/build.bat
+- msbuild build.xml -t:build
 
-this will build MOSER and all of the freakin Win32 specific support stuff (win32 and winRT API projections, XAML support, WindowsAppSDK support, etc - see win32 subfolder)
+look at build.xml for all the available msbuild targets.
 
 # PATIENCE !
 
