@@ -1,0 +1,657 @@
+import("SDL");
+import("SDL_scancodes");
+
+#############################
+# linked list support
+# objects in linked list 
+# spposed to have a .next member
+#############################
+
+class List
+{
+	List()
+	{
+		this.next = nil;
+	}
+
+	add(elem)
+	{
+		elem.next = this.next;
+		this.next = elem;
+	}
+}
+
+#############################
+# IntersectRect
+# collision detection support
+#############################
+
+fun rectOverlap(rectA, rectB)
+{
+	var valueInRange = fun (value, min, max)
+	{ 
+		return (value >= min) && (value <= max); 
+	};
+
+    var xOverlap = valueInRange(rectA.x, rectB.x+30, rectB.x + rectB.w-60) ||
+                    valueInRange(rectB.x, rectA.x+30, rectA.x + rectA.w-60);
+
+    var yOverlap = valueInRange(rectA.y, rectB.y+30, rectB.y + rectB.h-60) ||
+                    valueInRange(rectB.y, rectA.y+30, rectA.y + rectA.h-60);
+
+    return xOverlap && yOverlap;
+}
+
+#############################
+# video, audio and resources
+#############################
+
+class Video
+{
+	Video()
+	{
+		this.Screen = {
+			"x" : 1080,
+			"y" : 1080
+		};
+
+		this.Window = SDL_CreateWindow( 
+			"hello SQL", 
+			50,50,
+			this.Screen.x,this.Screen.y,
+			SDL_WindowFlags.SHOWN|SDL_WindowFlags.KEYBOARD_GRABBED
+		);
+
+		this.Renderer = SDL_CreateRenderer(this.Window, -1, 0);
+
+		TTF_Init();
+	}
+
+	load(file)
+	{
+		var base = io.dirname(io.self()) + "/sdl/";
+		return IMG_LoadTexture(this.Renderer, base + file);
+	}
+
+	font(file)
+	{
+		var base = io.dirname(io.self()) + "/sdl/";
+		return TTF_OpenFont( base+file, 48);
+	}
+
+	get_text_and_rect( x, y, text, font, alpha, rect)
+	{
+		var text_width;
+		var text_height;
+
+		var color = make_sdl_color(255,255,255,alpha);
+		var surfacePtr = TTF_RenderUTF8_Solid(font, text, color);
+
+		var texture = SDL_CreateTextureFromSurface(this.Renderer, surfacePtr);
+		var surface = SDL_Surface(surfacePtr);
+
+		text_width = surface.w;
+		text_height = surface.h;
+		SDL_FreeSurface(surfacePtr);
+
+		rect.x = x;
+		rect.y = y;
+		rect.w = text_width;
+		rect.h = text_height;
+
+		return texture;
+	}
+}
+
+class Audio
+{
+	Audio()
+	{
+		if( Mix_OpenAudio( 22050, MIX_DEFAULT_FORMAT, 2, 4096 ) == -1 ) 
+			throw "failed to initialize audio"; 
+	}
+
+	load_wav(file)
+	{
+		var raw = SDL_RWFromFile(io.dirname(io.self()) + "/sdl/" + file, "rb");
+		return Mix_LoadWAV_RW(raw,1);
+	}
+
+	load_music(file)
+	{
+		return Mix_LoadMUS(io.dirname(io.self()) + "/sdl/" + file );
+	}
+
+	play_music(track)
+	{
+		return Mix_PlayMusic( track, -1) == -1;
+	}
+
+	play_wav(wav)
+	{
+		return Mix_PlayChannelTimed(-1, wav, 0, -1) == -1;
+	}
+}
+
+class Resources
+{
+	Resources(video,audio)
+	{
+		this.video = video;
+		this.audio = audio;
+		var base = io.dirname(io.self()) + "/sdl/";
+
+		this.bkgTexture = this.video.load("bkg.png");
+		this.shuttleTexture = this.video.load("shuttle.png");
+		this.alienTexture = this.video.load("alien1.png");
+		this.laserTexture = this.video.load("laser.png");
+		this.shieldTexture = this.video.load("shield.png");
+
+		this.explo1Texture = this.video.load("explosion1.png");
+		this.explo2Texture = this.video.load("explosion2.png");
+		this.explo3Texture = this.video.load("explosion3.png");
+		this.explo4Texture = this.video.load("explosion4.png");
+
+		this.exploTextures = [
+			this.explo1Texture,
+			this.explo2Texture,
+			this.explo3Texture,
+			this.explo4Texture
+		];
+
+		this.wave = audio.load_wav("explo1.wav");
+		this.music = audio.load_music("music.ogg");
+
+		this.font = this.video.font("UbuntuMono-B.ttf");
+	}
+};
+
+#############################
+# the Game
+#############################
+
+class Game
+{
+	Game()
+	{
+		this.Running = true;
+		this.level = 1;
+		this.video = Video();
+		this.audio = Audio();
+
+		this.bkg_y = this.video.Screen.x; 
+
+		this.aliens = List();
+		this.playerShots = List();
+		this.explosions = List();
+		this.scores = List();
+
+		this.resources = Resources(this.video,this.audio);
+
+		this.Player = Player(
+			this.video.Screen.x/2, 
+			this.video.Screen.y-100,
+			this.resources.shuttleTexture
+		);
+
+		this.audio.play_music( this.resources.music );
+
+		this.alienCombo(1);
+	}
+
+	moveAndRender(list)
+	{
+		var a = list.next;
+		var last = list;
+		while(a != nil)
+		{
+			var b = a.move();
+			if(b)
+			{
+				a.render(this.video);
+			}
+			else
+			{
+				last.next = a.next;
+			}
+			last = a;
+			a = a.next;
+		}
+	}	
+
+	alienCombo(n)
+	{
+		var  x = this.video.Screen.x/4 + sys.rand(0,this.video.Screen.x/2);
+		for( var i = 0; i < n; i++)
+		{
+			var alien = Alien(x,this.resources.alienTexture);
+			this.aliens.add( alien );
+		}
+	}
+
+	explode(n,x,y)
+	{
+		var explo = this.resources.exploTextures[sys.rand(0,4)];
+		this.explosions.add( BigExplosion(explo,x,y,64) );
+		this.audio.play_wav(this.resources.wave);
+	}
+
+	explode_player(n,x,y)
+	{
+		for( var i = 0; i < n; i++)
+		{
+			var x1 = x + sys.rand(0,128) - 64;
+			var y1 = y + sys.rand(0,128) - 64;
+			var texture = this.resources.exploTextures[sys.rand(0,3)];
+			this.explosions.add( Explosion(texture,x1,y1,64) );
+			this.explosions.add( Explosion(this.resources.shieldTexture,x,y,1));
+
+		}
+	}
+
+	checkCollision1(last1, a1, list)
+	{
+		var a = list.next;
+		var last = list;
+		var result = false;
+		while(a != nil)
+		{
+			var b = rectOverlap(a1.pos,a.pos);
+			if(b)
+			{
+				result = true;
+				last.next = a.next;
+			}
+			else
+			{
+				last = a;
+			}
+			a = a.next;
+		}
+		return result;
+	}
+
+	checkCollision(list1, list2)
+	{
+		var a = list1.next;
+		var last = list1;
+		while(a != nil)
+		{
+			var b = this.checkCollision1(last,a,list2);
+			if(b)
+			{
+				this.explode(40,a.pos.x,a.pos.y);
+				this.scores.add(Score(a.pos.x,a.pos.y,500,this.resources.font));
+				this.Player.score = this.Player.score + 500;
+
+				last.next = a.next;
+			}
+			else
+			{
+				last = a;
+			}
+			a = a.next;
+		}
+	}
+
+	checkPlayerCollision()
+	{
+		var a = this.aliens.next;
+		var last = this.aliens;
+		var result = false;
+
+		var pr = make_sdl_rect(
+			this.Player.pos.x,
+			this.video.Screen.y-(this.Player.pos.h*2),
+			this.Player.pos.w,
+			this.Player.pos.h
+		);
+
+		while(a != nil)
+		{
+			var b = rectOverlap(a.pos,pr);
+			if(b)
+			{
+				result = true;
+			}
+			last = a;
+			a = a.next;
+		}
+		return result;
+	}
+
+	OnEvent(Event) 
+	{
+		if(Event.type == SDL_EVENTS.QUIT) 
+		{
+			this.Running = false;
+		}
+	}
+
+	new_level()
+	{
+		this.bkg_y = this.video.Screen.y ;
+		this.level = this.level + 1;
+		for( var i = 0; i < 1 + (this.level % 10); i++)
+		{
+			this.alienCombo(1+this.level/10);
+		}
+	}
+	
+	scroll_background() 
+	{
+		this.bkg_y = this.bkg_y - 5;
+		if(this.bkg_y < 0) 
+		{
+			this.new_level();
+		}
+	}
+
+	render_background()
+	{
+		var br = make_sdl_rect(0,0,this.video.Screen.x,this.bkg_y);
+		var dest = make_sdl_rect(0,this.video.Screen.y-this.bkg_y,this.video.Screen.x,this.bkg_y);
+		SDL_RenderCopy(this.video.Renderer, this.resources.bkgTexture, br, dest);	
+
+		var br2 = make_sdl_rect(0,this.video.Screen.y-(this.video.Screen.y-this.bkg_y),this.video.Screen.x,this.video.Screen.y-this.bkg_y);
+		var dest2 = make_sdl_rect(0,0,this.video.Screen.x,this.video.Screen.y-this.bkg_y);
+		SDL_RenderCopy(this.video.Renderer, this.resources.bkgTexture, br2, dest2);	
+	}
+
+	render_score()
+	{
+		var textRect = SDL_Rect();
+		var textTexture = this.video.get_text_and_rect( 0, 0, "" + this.Player.score, this.resources.font, 0, textRect );
+		SDL_RenderCopy( this.video.Renderer, textTexture, 0, textRect );
+		SDL_DestroyTexture(textTexture);
+	}
+	
+	update() 
+	{
+		SDL_SetRenderDrawColor(this.video.Renderer, 0, 0, 0, 255);
+		SDL_RenderClear(this.video.Renderer);
+
+		this.scroll_background();
+		this.render_background();
+		this.render_score();
+
+		this.Player.move(this);
+		this.Player.render(this.video);
+
+		this.checkCollision(this.aliens,this.playerShots);
+
+		if(this.checkPlayerCollision())
+		{
+			this.explode_player(
+				1,
+				this.Player.pos.x-(this.Player.pos.w/2),
+				this.video.Screen.y-(this.Player.pos.h*2)
+			);
+		}
+
+		this.moveAndRender(this.aliens);
+		this.moveAndRender(this.playerShots);
+		this.moveAndRender(this.explosions);
+		this.moveAndRender(this.scores);
+
+		SDL_RenderPresent(this.video.Renderer);
+
+	}
+}
+
+#############################
+# Game Objects
+#############################
+
+class Player
+{
+	Player(x,y,texture) 
+	{
+		this.texture = texture;
+		this.pos = make_sdl_rect(x,y,0,0);
+		var w = 0;
+		var h = 0;
+		SDL_QueryTexture(this.texture, 0, 0, &w, &h);	
+		this.pos.w = w;
+		this.pos.h = h;
+		this.src = make_sdl_rect(0,0,w,h);
+		this.score = 0;
+		this.ps_delay = 0;
+	}
+
+	move(game)
+	{
+		var currentKeyStates = SDL_GetKeyboardState( 0 );
+		if( sys.pointer(int(currentKeyStates)+SDL_Scancode.LEFT).bool() )
+		{
+			if(this.pos.x > 0) 
+				this.pos.x = this.pos.x - 10;
+		}
+		if( sys.pointer(int(currentKeyStates)+SDL_Scancode.RIGHT).bool() )
+		{
+			if(this.pos.x < game.video.Screen.x-this.pos.w) 
+				this.pos.x = this.pos.x + 10;
+		}
+		if( sys.pointer(int(currentKeyStates)+SDL_Scancode.SPACE).bool() )
+		{
+			if(this.ps_delay > 0) 
+			{
+				this.ps_delay = this.ps_delay - 1;
+			}
+			else
+			{
+				game.playerShots.add(
+					PlayerShot(
+						this.pos.x - 16, 
+						game.video.Screen.y-(this.pos.h*2),
+						game.resources.laserTexture
+					)
+				);
+				this.ps_delay = 10;
+			}
+		}
+
+		return true;
+	}
+
+	render(video)
+	{
+		SDL_RenderCopy(video.Renderer, this.texture, this.src, this.pos);	
+	}
+}
+
+
+class Alien 
+{
+	Alien(x,texture)
+	{
+		this.pos = SDL_Rect();
+		this.pos.x = x ;
+		this.pos.y = -200;
+		this.pos.w = 256;
+		this.pos.h = 256;
+		this.speed = 4;
+		this.frame = sys.rand(0,8);
+
+		this.src = make_sdl_rect(this.frame*64,0,64,64);
+		this.next = nil;
+
+		this.texture = texture;
+	}
+
+	move()
+	{
+		this.pos.y = this.pos.y + this.speed;
+		if(this.pos.y > 1200) return false;
+		return true;
+	}
+
+	render(video)
+	{
+		SDL_RenderCopy(video.Renderer, this.texture, this.src, this.pos);	
+	}
+}
+
+class Score 
+{
+	Score(x,y,amount,font)
+	{
+		this.x = x;
+		this.y = y;
+		this.amount = amount;
+
+		this.next = nil;
+
+		this.timeout = 255;
+		this.font = font; 
+	}
+
+	move()
+	{
+		this.timeout = this.timeout -5;
+		if(this.timeout <= 0) return false;
+		return true;
+	}
+
+	render(video)
+	{
+		this.pos = SDL_Rect();
+		this.texture = video.get_text_and_rect( 0, 0, "" + this.amount, this.font,this.timeout, this.pos );
+
+		this.dest = make_sdl_rect(this.x+96,this.y+128,this.pos.w,this.pos.h);
+
+		SDL_RenderCopy(video.Renderer, this.texture, this.pos, this.dest);	
+
+		SDL_DestroyTexture(this.texture);
+	}
+}
+
+
+class PlayerShot 
+{
+	PlayerShot(x,y,texture)
+	{
+		this.pos = SDL_Rect();
+		this.pos.x = x;
+		this.pos.y = y;
+		this.pos.w = 64;
+		this.pos.h = 64;
+		this.speed = -32;
+
+		this.src = make_sdl_rect(0,0,16,32);
+
+		this.next = nil;
+		this.texture = texture;
+	}
+
+	move()
+	{
+		this.pos.y = this.pos.y + this.speed;
+		if(this.pos.y < -100) return false;
+		return true;
+	}
+
+	render(video)
+	{
+		SDL_RenderCopy(video.Renderer, this.texture, this.src, this.pos);	
+	}
+}
+
+class Explosion 
+{
+	Explosion(texture,x,y,frames)
+	{
+		this.texture = texture;
+
+		this.pos = SDL_Rect();
+		this.pos.x = x-64;
+		this.pos.y = y-64;
+		this.pos.w = 256;
+		this.pos.h = 256;
+
+		this.frames = frames;
+		this.frame =  -1;//-1 * sys.rand(0,60);
+		this.src = make_sdl_rect(0,0,512,512);
+
+		this.next = nil;
+	}
+
+	move()
+	{
+		this.frame = this.frame + 1;
+		if(this.frame >= this.frames) return false;
+		return true;
+	}
+
+	render(video)
+	{
+		if(this.frame < 0 ) return;
+		this.src.x = (this.frame % 8) * 512;
+		this.src.y = (this.frame / 8) * 512;
+		SDL_RenderCopy(video.Renderer, this.texture, this.src, this.pos);	
+	}
+}
+
+class BigExplosion 
+{
+	BigExplosion(texture,x,y,frames)
+	{
+		this.texture = texture;
+
+		this.pos = SDL_Rect();
+		this.pos.x = x - 128;
+		this.pos.y = y - 128;
+		this.pos.w = 512;
+		this.pos.h = 512;
+		this.speed = 4;
+
+		this.frames = frames;
+		this.frame = - 4;
+		this.src = make_sdl_rect(0,0,512,512);
+
+		this.next = nil;
+	}
+
+	move()
+	{
+		this.pos.y = this.pos.y + this.speed;
+		this.frame = this.frame + 1;
+		if(this.frame >= this.frames) return false;
+		return true;
+	}
+
+	render(video)
+	{
+		if(this.frame < 0 ) return;
+		this.src = make_sdl_rect( (this.frame % 8) * 512, (this.frame / 8) * 512,512,512);
+		SDL_RenderCopy(video.Renderer, this.texture, this.src, this.pos);	
+	}
+}
+
+######################################
+# main 
+######################################
+
+var theGame = Game();
+
+var Event = SDL_Event();
+var b = SDL_GetTicks();
+
+while(theGame.Running) 
+{
+	var a = SDL_GetTicks();
+	var delta = a - b;
+
+	while(SDL_PollEvent(Event)) 
+	{
+		theGame.OnEvent(Event);
+	}
+	if (delta > 1000.0/60.0)
+	{
+		b = a;    
+		theGame.update();
+	}
+}
+
+SDL_Quit();
+
