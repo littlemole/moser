@@ -1,11 +1,15 @@
 import("SDL");
 import("SDL_scancodes");
 
-#############################
-# linked list support
-# objects in linked list 
-# spposed to have a .next member
-#############################
+################################################
+# game object linked list. 
+# game objects are supposed to:
+# - have a .next member pointing to next obj in
+#   linked list
+# - have move() func that returns false 
+#   if obj dead and to be removed from list
+# - have a render(video) func to render itself
+################################################
 
 class List
 {
@@ -19,6 +23,26 @@ class List
 		elem.next = this.next;
 		this.next = elem;
 	}
+
+	moveAndRender(video)
+	{
+		var a = this.next;
+		var last = this;
+		while(a != nil)
+		{
+			var b = a.move();
+			if(b)
+			{
+				a.render(video);
+			}
+			else
+			{
+				last.next = a.next;
+			}
+			last = a;
+			a = a.next;
+		}
+	}		
 }
 
 #############################
@@ -43,7 +67,7 @@ fun rectOverlap(rectA, rectB)
 }
 
 #############################
-# video, audio and resources
+# video device singleton
 #############################
 
 class Video
@@ -65,20 +89,58 @@ class Video
 		this.Renderer = SDL_CreateRenderer(this.Window, -1, 0);
 
 		TTF_Init();
+
+		this.base = io.dirname(io.self()) + "/sdl/";
 	}
 
+	# clear the scene
+	clear()
+	{
+		SDL_SetRenderDrawColor(this.Renderer, 0, 0, 0, 255);
+		SDL_RenderClear(this.Renderer);
+	}
+
+	# render a texture
+	render(texture,src,dest)
+	{
+		SDL_RenderCopy(this.Renderer, texture, src, dest);	
+	}
+
+    # render texture with rotation angle+center, and 
+	# with flip option
+	renderEx(texture,src,dest,angle,center,flip)
+	{
+		SDL_RenderCopyEx( this.Renderer, texture, src, dest, angle, center, flip);
+	}
+
+	# update the scene - actually updates screen
+	present()
+	{
+		SDL_RenderPresent(this.Renderer);
+	}
+
+	# load texture from file
 	load(file)
 	{
-		var base = io.dirname(io.self()) + "/sdl/";
-		return IMG_LoadTexture(this.Renderer, base + file);
+		return IMG_LoadTexture(this.Renderer, this.base + file);
 	}
 
+	# free a texture
+	release(texture)
+	{
+		SDL_DestroyTexture(texture);
+	}
+
+	# load a ttf font from file
 	font(file)
 	{
-		var base = io.dirname(io.self()) + "/sdl/";
-		return TTF_OpenFont( base+file, 48);
+		return TTF_OpenFont( this.base + file, 48);
 	}
 
+	# draw text to texture returned
+	# note rect is an out parameter that will update
+	# the passed rect to (x,y) and set (w,h) to
+	# width and height of generated text
 	get_text_and_rect( x, y, text, font, alpha, rect)
 	{
 		var text_width;
@@ -103,23 +165,29 @@ class Video
 	}
 }
 
+#############################
+# audio device singleton
+#############################
+
 class Audio
 {
 	Audio()
 	{
 		if( Mix_OpenAudio( 22050, MIX_DEFAULT_FORMAT, 2, 4096 ) == -1 ) 
 			throw "failed to initialize audio"; 
+
+		this.base = io.dirname(io.self()) + "/sdl/";
 	}
 
 	load_wav(file)
 	{
-		var raw = SDL_RWFromFile(io.dirname(io.self()) + "/sdl/" + file, "rb");
+		var raw = SDL_RWFromFile( this.base + file, "rb");
 		return Mix_LoadWAV_RW(raw,1);
 	}
 
 	load_music(file)
 	{
-		return Mix_LoadMUS(io.dirname(io.self()) + "/sdl/" + file );
+		return Mix_LoadMUS( this.base + file );
 	}
 
 	play_music(track)
@@ -133,17 +201,44 @@ class Audio
 	}
 }
 
+###########################################
+# keyboard device
+# instantiate a new object everytime you 
+# want to take a snapshot of the current 
+# keyboard state
+###########################################
+
+class Keyboard 
+{
+	Keyboard() 
+	{
+		this.currentKeyStates = SDL_GetKeyboardState( 0 );
+	}
+
+	check(key)
+	{
+		return sys.pointer(int(this.currentKeyStates)+key).bool();
+	}
+}
+
+##################################
+# Game Resources Singleton to load
+# - textures
+# - sound files
+# - font
+##################################
+
 class Resources
 {
 	Resources(video,audio)
 	{
 		this.video = video;
 		this.audio = audio;
-		var base = io.dirname(io.self()) + "/sdl/";
 
 		this.bkgTexture = this.video.load("bkg.png");
 		this.shuttleTexture = this.video.load("shuttle.png");
 		this.alienTexture = this.video.load("alien1.png");
+		this.alien2Texture = this.video.load("alien2.png");
 		this.laserTexture = this.video.load("laser.png");
 		this.shieldTexture = this.video.load("shield.png");
 
@@ -159,6 +254,11 @@ class Resources
 			this.explo4Texture
 		];
 
+		this.alienTextures = [
+			this.alienTexture,
+			this.alien2Texture
+		];
+
 		this.wave = audio.load_wav("explo1.wav");
 		this.music = audio.load_music("music.ogg");
 
@@ -167,19 +267,16 @@ class Resources
 };
 
 #############################
-# the Game
+# the Game singleton
 #############################
 
 class Game
 {
 	Game()
 	{
-		this.Running = true;
-		this.level = 1;
+		this.level = 0;
 		this.video = Video();
 		this.audio = Audio();
-
-		this.bkg_y = this.video.Screen.x; 
 
 		this.aliens = List();
 		this.playerShots = List();
@@ -188,214 +285,126 @@ class Game
 
 		this.resources = Resources(this.video,this.audio);
 
+		this.background = Background(this.video.Screen.y, this.resources.bkgTexture );
+
 		this.Player = Player(
 			this.video.Screen.x/2, 
 			this.video.Screen.y-100,
-			this.resources.shuttleTexture
+			this.resources.shuttleTexture,
+			this.resources.font
 		);
 
 		this.audio.play_music( this.resources.music );
 
-		this.alienCombo(1);
+		this.new_level();
 	}
 
-	moveAndRender(list)
+	new_level()
 	{
-		var a = list.next;
-		var last = list;
-		while(a != nil)
+		this.level = this.level + 1;
+		var ncols = 4;
+		var rows = this.level / ncols;
+		var texture = this.resources.alienTextures[sys.rand(2)];
+		var naliens = (this.level % 10);
+		for( var i = 0; i < naliens; i++)
 		{
-			var b = a.move();
-			if(b)
+			var adjustX = 0;
+			if(naliens < ncols)
 			{
-				a.render(this.video);
+				adjustX = this.video.Screen.x / (naliens+1);
 			}
-			else
-			{
-				last.next = a.next;
-			}
-			last = a;
-			a = a.next;
-		}
-	}	
+			var col = i % ncols;
+			var row = 1 + (i / ncols);
 
-	alienCombo(n)
+			var  x = sys.rand(0,100) + (col * 256) + adjustX;
+			var y = -200 - (row*400);
+			this.alienCombo(1+this.level/10,x,y,texture);
+		}
+	}
+
+	alienCombo(n,x,y,texture)
 	{
-		var  x = this.video.Screen.x/4 + sys.rand(0,this.video.Screen.x/2);
 		for( var i = 0; i < n; i++)
 		{
-			var alien = Alien(x,this.resources.alienTexture);
+			var alien = Alien(x,y,texture);
 			this.aliens.add( alien );
 		}
 	}
 
-	explode(n,x,y)
+	explode(x,y)
 	{
 		var explo = this.resources.exploTextures[sys.rand(0,4)];
 		this.explosions.add( BigExplosion(explo,x,y,64) );
 		this.audio.play_wav(this.resources.wave);
 	}
 
-	explode_player(n,x,y)
+	explode_player(x,y)
 	{
-		for( var i = 0; i < n; i++)
-		{
-			var x1 = x + sys.rand(0,128) - 64;
-			var y1 = y + sys.rand(0,128) - 64;
-			var texture = this.resources.exploTextures[sys.rand(0,3)];
-			this.explosions.add( Explosion(texture,x1,y1,64) );
-			this.explosions.add( Explosion(this.resources.shieldTexture,x,y,1));
-
-		}
+		var x1 = x + sys.rand(0,128) - 64;
+		var y1 = y + sys.rand(0,128) - 64;
+		var texture = this.resources.exploTextures[sys.rand(0,3)];
+		this.explosions.add( Explosion(texture,x1,y1,64) );
+		this.explosions.add( Explosion(this.resources.shieldTexture,x,y,1));
 	}
 
-	checkCollision1(last1, a1, list)
+	checkCollision(aliens, playerShots)
 	{
-		var a = list.next;
-		var last = list;
-		var result = false;
-		while(a != nil)
+		var alien = aliens.next;
+		var last = aliens;
+		while(alien != nil)
 		{
-			var b = rectOverlap(a1.pos,a.pos);
+			var b = alien.checkCollision(playerShots);
 			if(b)
 			{
-				result = true;
-				last.next = a.next;
-			}
-			else
-			{
-				last = a;
-			}
-			a = a.next;
-		}
-		return result;
-	}
-
-	checkCollision(list1, list2)
-	{
-		var a = list1.next;
-		var last = list1;
-		while(a != nil)
-		{
-			var b = this.checkCollision1(last,a,list2);
-			if(b)
-			{
-				this.explode(40,a.pos.x,a.pos.y);
-				this.scores.add(Score(a.pos.x,a.pos.y,500,this.resources.font));
+				this.explode(alien.pos.x,alien.pos.y);
+				this.scores.add(Score(alien.pos.x,alien.pos.y,500,this.resources.font));
 				this.Player.score = this.Player.score + 500;
 
-				last.next = a.next;
+				last.next = alien.next;
 			}
 			else
 			{
-				last = a;
+				last = alien;
 			}
-			a = a.next;
+			alien = alien.next;
 		}
 	}
 
 	checkPlayerCollision()
 	{
-		var a = this.aliens.next;
-		var last = this.aliens;
-		var result = false;
-
-		var pr = make_sdl_rect(
-			this.Player.pos.x,
-			this.video.Screen.y-(this.Player.pos.h*2),
-			this.Player.pos.w,
-			this.Player.pos.h
-		);
-
-		while(a != nil)
-		{
-			var b = rectOverlap(a.pos,pr);
-			if(b)
-			{
-				result = true;
-			}
-			last = a;
-			a = a.next;
-		}
-		return result;
-	}
-
-	OnEvent(Event) 
-	{
-		if(Event.type == SDL_EVENTS.QUIT) 
-		{
-			this.Running = false;
-		}
-	}
-
-	new_level()
-	{
-		this.bkg_y = this.video.Screen.y ;
-		this.level = this.level + 1;
-		for( var i = 0; i < 1 + (this.level % 10); i++)
-		{
-			this.alienCombo(1+this.level/10);
-		}
-	}
-	
-	scroll_background() 
-	{
-		this.bkg_y = this.bkg_y - 5;
-		if(this.bkg_y < 0) 
-		{
-			this.new_level();
-		}
-	}
-
-	render_background()
-	{
-		var br = make_sdl_rect(0,0,this.video.Screen.x,this.bkg_y);
-		var dest = make_sdl_rect(0,this.video.Screen.y-this.bkg_y,this.video.Screen.x,this.bkg_y);
-		SDL_RenderCopy(this.video.Renderer, this.resources.bkgTexture, br, dest);	
-
-		var br2 = make_sdl_rect(0,this.video.Screen.y-(this.video.Screen.y-this.bkg_y),this.video.Screen.x,this.video.Screen.y-this.bkg_y);
-		var dest2 = make_sdl_rect(0,0,this.video.Screen.x,this.video.Screen.y-this.bkg_y);
-		SDL_RenderCopy(this.video.Renderer, this.resources.bkgTexture, br2, dest2);	
-	}
-
-	render_score()
-	{
-		var textRect = SDL_Rect();
-		var textTexture = this.video.get_text_and_rect( 0, 0, "" + this.Player.score, this.resources.font, 0, textRect );
-		SDL_RenderCopy( this.video.Renderer, textTexture, 0, textRect );
-		SDL_DestroyTexture(textTexture);
-	}
-	
-	update() 
-	{
-		SDL_SetRenderDrawColor(this.video.Renderer, 0, 0, 0, 255);
-		SDL_RenderClear(this.video.Renderer);
-
-		this.scroll_background();
-		this.render_background();
-		this.render_score();
-
-		this.Player.move(this);
-		this.Player.render(this.video);
-
-		this.checkCollision(this.aliens,this.playerShots);
-
-		if(this.checkPlayerCollision())
+		if( this.Player.checkCollision(this.aliens) )
 		{
 			this.explode_player(
-				1,
 				this.Player.pos.x-(this.Player.pos.w/2),
 				this.video.Screen.y-(this.Player.pos.h*2)
 			);
 		}
+	}
 
-		this.moveAndRender(this.aliens);
-		this.moveAndRender(this.playerShots);
-		this.moveAndRender(this.explosions);
-		this.moveAndRender(this.scores);
+	update() 
+	{
+		this.checkPlayerCollision();
+		this.checkCollision(this.aliens,this.playerShots);
 
-		SDL_RenderPresent(this.video.Renderer);
+		this.video.clear();
 
+		if(this.background.scroll())
+		{
+			# new level should not really depend on 
+			# background scroll but hey this is just a demo
+			this.new_level();
+		}
+		this.background.render(this.video);
+
+		this.Player.move(this);
+		this.Player.render(this.video);
+
+		this.aliens.moveAndRender(this.video);
+		this.playerShots.moveAndRender(this.video);
+		this.explosions.moveAndRender(this.video);
+		this.scores.moveAndRender(this.video);
+
+		this.video.present();
 	}
 }
 
@@ -403,36 +412,70 @@ class Game
 # Game Objects
 #############################
 
+class Background 
+{
+	Background(y,texture)
+	{
+		this.bkg_y_max = y;
+		this.bkg_y = y;
+		this.texture = texture;
+	}
+
+	scroll() 
+	{
+		this.bkg_y = this.bkg_y - 5;
+		if(this.bkg_y < 0) 
+		{
+			this.bkg_y = this.bkg_y_max;
+			return true;
+		}
+		return false;
+	}
+
+	render(video)
+	{
+		var br = make_sdl_rect(0,0,video.Screen.x,this.bkg_y);
+		var dest = make_sdl_rect(0,video.Screen.y-this.bkg_y,video.Screen.x,this.bkg_y);
+		video.render(this.texture,br,dest);
+
+		var br2 = make_sdl_rect(0,video.Screen.y-(video.Screen.y-this.bkg_y),video.Screen.x,video.Screen.y-this.bkg_y);
+		var dest2 = make_sdl_rect(0,0,video.Screen.x,video.Screen.y-this.bkg_y);
+		video.render(this.texture,br2,dest2);
+	}
+}
+
 class Player
 {
-	Player(x,y,texture) 
+	Player(x,y,texture,font) 
 	{
 		this.texture = texture;
-		this.pos = make_sdl_rect(x,y,0,0);
+		this.font = font;
+
 		var w = 0;
 		var h = 0;
 		SDL_QueryTexture(this.texture, 0, 0, &w, &h);	
-		this.pos.w = w;
-		this.pos.h = h;
+
+		this.pos = make_sdl_rect(x,y,w,h);
 		this.src = make_sdl_rect(0,0,w,h);
+
 		this.score = 0;
 		this.ps_delay = 0;
 	}
 
 	move(game)
 	{
-		var currentKeyStates = SDL_GetKeyboardState( 0 );
-		if( sys.pointer(int(currentKeyStates)+SDL_Scancode.LEFT).bool() )
+		var keyboard = Keyboard();
+		if(keyboard.check(SDL_Scancode.LEFT))
 		{
 			if(this.pos.x > 0) 
 				this.pos.x = this.pos.x - 10;
 		}
-		if( sys.pointer(int(currentKeyStates)+SDL_Scancode.RIGHT).bool() )
+		if(keyboard.check(SDL_Scancode.RIGHT))
 		{
 			if(this.pos.x < game.video.Screen.x-this.pos.w) 
-				this.pos.x = this.pos.x + 10;
+				this.pos.x = this.pos.x + 10;			
 		}
-		if( sys.pointer(int(currentKeyStates)+SDL_Scancode.SPACE).bool() )
+		if(keyboard.check(SDL_Scancode.SPACE))
 		{
 			if(this.ps_delay > 0) 
 			{
@@ -448,35 +491,56 @@ class Player
 					)
 				);
 				this.ps_delay = 10;
-			}
+			}			
 		}
-
 		return true;
 	}
 
 	render(video)
 	{
-		SDL_RenderCopy(video.Renderer, this.texture, this.src, this.pos);	
+		video.render(this.texture,this.src,this.pos);
+
+		# render the score
+		var textRect = SDL_Rect();
+		var textTexture = video.get_text_and_rect( 0, 0, "" + this.score, this.font, 0, textRect );
+		video.render(textTexture, 0, textRect);
+		video.release(textTexture);
+	}
+
+	checkCollision(aliens)
+	{
+		var alien = aliens.next;
+		var last = aliens;
+		var result = false;
+
+		while(alien != nil)
+		{
+			var b = rectOverlap(alien.pos,this.pos);
+			if(b)
+			{
+				result = true;
+			}
+			last = alien;
+			alien = alien.next;
+		}
+		return result;
 	}
 }
 
 
 class Alien 
 {
-	Alien(x,texture)
+	Alien(x,y,texture)
 	{
-		this.pos = SDL_Rect();
-		this.pos.x = x ;
-		this.pos.y = -200;
-		this.pos.w = 256;
-		this.pos.h = 256;
+		this.texture = texture;
+		this.pos = make_sdl_rect(x,y,256,256);
+
 		this.speed = 4;
 		this.frame = sys.rand(0,8);
 
 		this.src = make_sdl_rect(this.frame*64,0,64,64);
-		this.next = nil;
 
-		this.texture = texture;
+		this.next = nil;
 	}
 
 	move()
@@ -488,7 +552,29 @@ class Alien
 
 	render(video)
 	{
-		SDL_RenderCopy(video.Renderer, this.texture, this.src, this.pos);	
+		video.render(this.texture, this.src, this.pos);
+	}
+
+	checkCollision(playerShots)
+	{
+		var ps = playerShots.next;
+		var last = playerShots;
+		var result = false;
+		while(ps != nil)
+		{
+			var b = rectOverlap(this.pos,ps.pos);
+			if(b)
+			{
+				result = true;
+				last.next = ps.next;
+			}
+			else
+			{
+				last = ps;
+			}
+			ps = ps.next;
+		}
+		return result;
 	}
 }
 
@@ -496,14 +582,15 @@ class Score
 {
 	Score(x,y,amount,font)
 	{
-		this.x = x;
-		this.y = y;
+		this.x = x + 96;
+		this.y = y + 128;
 		this.amount = amount;
+		this.font = font; 
+
+		this.pos = SDL_Rect();
+		this.timeout = 255;
 
 		this.next = nil;
-
-		this.timeout = 255;
-		this.font = font; 
 	}
 
 	move()
@@ -515,33 +602,27 @@ class Score
 
 	render(video)
 	{
-		this.pos = SDL_Rect();
-		this.texture = video.get_text_and_rect( 0, 0, "" + this.amount, this.font,this.timeout, this.pos );
+		var texture = video.get_text_and_rect( 0, 0, "" + this.amount, this.font,this.timeout, this.pos );
 
-		this.dest = make_sdl_rect(this.x+96,this.y+128,this.pos.w,this.pos.h);
+		this.dest = make_sdl_rect(this.x,this.y,this.pos.w,this.pos.h);
 
-		SDL_RenderCopy(video.Renderer, this.texture, this.pos, this.dest);	
-
-		SDL_DestroyTexture(this.texture);
+		video.render( texture, this.pos, this.dest );
+		video.release( texture );
 	}
 }
-
 
 class PlayerShot 
 {
 	PlayerShot(x,y,texture)
 	{
-		this.pos = SDL_Rect();
-		this.pos.x = x;
-		this.pos.y = y;
-		this.pos.w = 64;
-		this.pos.h = 64;
-		this.speed = -32;
-
+		this.pos = make_sdl_rect(x,y,64,64);
 		this.src = make_sdl_rect(0,0,16,32);
 
-		this.next = nil;
+		this.speed = -32;
+
 		this.texture = texture;
+
+		this.next = nil;
 	}
 
 	move()
@@ -553,8 +634,9 @@ class PlayerShot
 
 	render(video)
 	{
-		SDL_RenderCopy(video.Renderer, this.texture, this.src, this.pos);	
+		video.render( this.texture, this.src, this.pos);
 	}
+
 }
 
 class Explosion 
@@ -563,15 +645,12 @@ class Explosion
 	{
 		this.texture = texture;
 
-		this.pos = SDL_Rect();
-		this.pos.x = x-64;
-		this.pos.y = y-64;
-		this.pos.w = 256;
-		this.pos.h = 256;
+		this.pos = make_sdl_rect(x-64,y-64,256,256);
+		this.src = make_sdl_rect(0,0,512,512);
 
 		this.frames = frames;
-		this.frame =  -1;//-1 * sys.rand(0,60);
-		this.src = make_sdl_rect(0,0,512,512);
+		this.frame =  -1;
+		this.flip = sys.rand(0,4);
 
 		this.next = nil;
 	}
@@ -588,7 +667,7 @@ class Explosion
 		if(this.frame < 0 ) return;
 		this.src.x = (this.frame % 8) * 512;
 		this.src.y = (this.frame / 8) * 512;
-		SDL_RenderCopy(video.Renderer, this.texture, this.src, this.pos);	
+		video.renderEx( this.texture, this.src, this.pos, 0, 0, this.flip );
 	}
 }
 
@@ -598,16 +677,19 @@ class BigExplosion
 	{
 		this.texture = texture;
 
-		this.pos = SDL_Rect();
-		this.pos.x = x - 128;
-		this.pos.y = y - 128;
-		this.pos.w = 512;
-		this.pos.h = 512;
-		this.speed = 4;
+		this.scale = sys.rand(0,3);
 
+		this.pos = make_sdl_rect( 
+			x-(128)-(256*this.scale), 
+			y-(128)-(256*this.scale), 
+			512*(this.scale+1), 
+			512*(this.scale+1) );
+		this.src = make_sdl_rect(0,0,512,512);
+
+		this.speed = 4;
 		this.frames = frames;
 		this.frame = - 4;
-		this.src = make_sdl_rect(0,0,512,512);
+		this.flip = sys.rand(0,4);
 
 		this.next = nil;
 	}
@@ -624,7 +706,46 @@ class BigExplosion
 	{
 		if(this.frame < 0 ) return;
 		this.src = make_sdl_rect( (this.frame % 8) * 512, (this.frame / 8) * 512,512,512);
-		SDL_RenderCopy(video.Renderer, this.texture, this.src, this.pos);	
+		video.renderEx( this.texture, this.src, this.pos, 0, 0, this.flip );
+	}
+}
+
+###################################################
+# Game Loop static class
+# run() executes the game loop, watching for quit
+# event (user closed window) and adjusts framerate 
+# to 60 fps and calls the cb() function to update
+# the actual game
+###################################################
+
+class Loop
+{
+	static run( cb )
+	{
+		var Event = SDL_Event();
+		var Running = true;
+		var b = SDL_GetTicks();
+
+		while(Running) 
+		{
+			var a = SDL_GetTicks();
+			var delta = a - b;
+
+			while(SDL_PollEvent(Event)) 
+			{
+				if(Event.type == SDL_EVENTS.QUIT) 
+				{
+					Running = false;
+				}
+			}
+
+			if (delta > 1000.0/60.0)
+			{
+				b = a;    
+				cb();
+			}
+		}
+		SDL_Quit();
 	}
 }
 
@@ -634,24 +755,9 @@ class BigExplosion
 
 var theGame = Game();
 
-var Event = SDL_Event();
-var b = SDL_GetTicks();
-
-while(theGame.Running) 
+Loop.run( fun() 
 {
-	var a = SDL_GetTicks();
-	var delta = a - b;
+	theGame.update();
+});
 
-	while(SDL_PollEvent(Event)) 
-	{
-		theGame.OnEvent(Event);
-	}
-	if (delta > 1000.0/60.0)
-	{
-		b = a;    
-		theGame.update();
-	}
-}
-
-SDL_Quit();
 
