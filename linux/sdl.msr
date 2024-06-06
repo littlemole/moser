@@ -1,5 +1,4 @@
 import("SDL");
-import("SDL_scancodes");
 
 ################################################
 # game object linked list. 
@@ -45,26 +44,6 @@ class List
 	}		
 }
 
-#############################
-# IntersectRect
-# collision detection support
-#############################
-
-fun rectOverlap(rectA, rectB)
-{
-	var valueInRange = fun (value, min, max)
-	{ 
-		return (value >= min) && (value <= max); 
-	};
-
-    var xOverlap = valueInRange(rectA.x, rectB.x+30, rectB.x + rectB.w-60) ||
-                    valueInRange(rectB.x, rectA.x+30, rectA.x + rectA.w-60);
-
-    var yOverlap = valueInRange(rectA.y, rectB.y+30, rectB.y + rectB.h-60) ||
-                    valueInRange(rectB.y, rectA.y+30, rectA.y + rectA.h-60);
-
-    return xOverlap && yOverlap;
-}
 
 #############################
 # video device singleton
@@ -299,6 +278,8 @@ class Game
 		this.new_level();
 	}
 
+	# crude level generator placing some aliens
+	# onto the screen
 	new_level()
 	{
 		this.level = this.level + 1;
@@ -322,6 +303,9 @@ class Game
 		}
 	}
 
+	# helper used by new_level to stack several
+	# aliens at the same position, effectvely 
+	# decorating the alien texture
 	alienCombo(n,x,y,texture)
 	{
 		for( var i = 0; i < n; i++)
@@ -331,6 +315,7 @@ class Game
 		}
 	}
 
+	# generate some explosions if alien was hit
 	explode(x,y)
 	{
 		var explo = this.resources.exploTextures[sys.rand(0,4)];
@@ -338,6 +323,7 @@ class Game
 		this.audio.play_wav(this.resources.wave);
 	}
 
+	# generate some explosions when player was hit
 	explode_player(x,y)
 	{
 		var x1 = x + sys.rand(0,128) - 64;
@@ -347,6 +333,7 @@ class Game
 		this.explosions.add( Explosion(this.resources.shieldTexture,x,y,1));
 	}
 
+	# check collisions between aliens and the player's shots
 	checkCollision(aliens, playerShots)
 	{
 		var alien = aliens.next;
@@ -370,6 +357,7 @@ class Game
 		}
 	}
 
+	# check if player collieded with an alien
 	checkPlayerCollision()
 	{
 		if( this.Player.checkCollision(this.aliens) )
@@ -381,6 +369,7 @@ class Game
 		}
 	}
 
+	# the main game loop for every frame
 	update() 
 	{
 		this.checkPlayerCollision();
@@ -399,10 +388,10 @@ class Game
 		this.Player.move(this);
 		this.Player.render(this.video);
 
-		this.aliens.moveAndRender(this.video);
-		this.playerShots.moveAndRender(this.video);
 		this.explosions.moveAndRender(this.video);
 		this.scores.moveAndRender(this.video);
+		this.aliens.moveAndRender(this.video);
+		this.playerShots.moveAndRender(this.video);
 
 		this.video.present();
 	}
@@ -636,8 +625,13 @@ class PlayerShot
 	{
 		video.render( this.texture, this.src, this.pos);
 	}
-
 }
+
+######################################
+# explosions
+# explosions are framed animations
+# ("flipbook")
+######################################
 
 class Explosion 
 {
