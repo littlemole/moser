@@ -11,7 +11,7 @@
    <preset Condition=" '$(Configuration)' == 'Release' ">win-x64-release</preset>
    <preset Condition=" '$(Configuration)' == 'Debug' ">win-x64-debug</preset>
 
-   <vcredistdir>C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Redist\MSVC\14.38.33135\x64\</vcredistdir>
+   <vcredistdir>C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Redist\MSVC\14.40.33807\x64\</vcredistdir>
    <appsdk>Microsoft.WindowsAppSDK.1.5.240311000</appsdk>
    <win32meta>Microsoft.Windows.SDK.Win32Metadata.59.0.13-preview</win32meta>
 
@@ -76,6 +76,11 @@
       <Exec Command='copy /Y "$(vcredistdir)\Microsoft.VC143.CRT\*.dll" out\build\x64-$(Configuration)' WorkingDirectory="$(MSBuildThisFileDirectory)"/>
       <Exec Command='copy /Y "$(vcredistdir)\Microsoft.VC143.CXXAMP\*.dll" out\build\x64-$(Configuration)' WorkingDirectory="$(MSBuildThisFileDirectory)"/>
       <Exec Command='copy /Y "$(vcredistdir)\Microsoft.VC143.OpenMP\*.dll" out\build\x64-$(Configuration)' WorkingDirectory="$(MSBuildThisFileDirectory)"/>
+  </Target>
+
+  <Target Name="sdl" >  
+      <Exec Command='copy /Y "out\build\x64-$(Configuration)\vcpkg_installed\x64-windows\bin\*.dll" "out\build\x64-$(Configuration)' WorkingDirectory="$(MSBuildThisFileDirectory)" Condition="$(Configuration)=='Release'" />
+      <Exec Command='copy /Y "out\build\x64-$(Configuration)\vcpkg_installed\x64-windows\debug\bin\*.dll" "out\build\x64-$(Configuration)' WorkingDirectory="$(MSBuildThisFileDirectory)" Condition="$(Configuration)=='Release'" />
   </Target>
 
   <Target Name="winmd" >  
@@ -168,10 +173,10 @@
   <Target Name="armageddon" DependsOnTargets="purge;bootstrap">  
   </Target>
 
-  <Target Name="bootstrap" DependsOnTargets="initVcpkg;prepareDirectories;nugetRestore;moxaml;cmakePrepare;moser;mocres;meta;winmd;winrt;win32;xmoser;vcredist;precompile">  
+  <Target Name="bootstrap" DependsOnTargets="initVcpkg;prepareDirectories;nugetRestore;moxaml;cmakePrepare;moser;mocres;meta;winmd;winrt;win32;xmoser;vcredist;sdl;precompile">  
   </Target>
 
-  <Target Name="build" DependsOnTargets="prepareDirectories;moxaml;mocres;cmakePrepare;moser;xmoser;vcredist;precompile">  
+  <Target Name="build" DependsOnTargets="prepareDirectories;moxaml;mocres;cmakePrepare;moser;xmoser;vcredist;sdl;precompile">  
   </Target>
 
   <Target Name="restoreWix" DependsOnTargets="purgeWix">  

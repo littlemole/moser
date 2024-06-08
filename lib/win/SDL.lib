@@ -1,0 +1,560 @@
+var MIX_DEFAULT_FORMAT = 0x8010;
+
+var SDL_RendererFlip = {};
+SDL_RendererFlip.FLIP_NONE = 0x00000000;     /**< Do not flip */
+SDL_RendererFlip.FLIP_HORIZONTAL = 0x00000001;    /**< flip horizontally */
+SDL_RendererFlip.FLIP_VERTICAL = 0x00000002;     /**< flip vertically */
+
+var SDL_WindowFlags = {};
+SDL_WindowFlags.FULLSCREEN = 0x00000001;         /**< fullscreen window */
+SDL_WindowFlags.OPENGL = 0x00000002;             /**< window usable with OpenGL context */
+SDL_WindowFlags.SHOWN = 0x00000004;              /**< window is visible */
+SDL_WindowFlags.HIDDEN = 0x00000008;             /**< window is not visible */
+SDL_WindowFlags.BORDERLESS = 0x00000010;         /**< no window decoration */
+SDL_WindowFlags.RESIZABLE = 0x00000020;          /**< window can be resized */
+SDL_WindowFlags.MINIMIZED = 0x00000040;          /**< window is minimized */
+SDL_WindowFlags.MAXIMIZED = 0x00000080;          /**< window is maximized */
+SDL_WindowFlags.MOUSE_GRABBED = 0x00000100;      /**< window has grabbed mouse input */
+SDL_WindowFlags.INPUT_FOCUS = 0x00000200;        /**< window has input focus */
+SDL_WindowFlags.MOUSE_FOCUS = 0x00000400;        /**< window has mouse focus */
+SDL_WindowFlags.FULLSCREEN_DESKTOP = ( SDL_WindowFlags.FULLSCREEN | 0x00001000 );
+SDL_WindowFlags.FOREIGN = 0x00000800;            /**< window not created by SDL */
+SDL_WindowFlags.ALLOW_HIGHDPI = 0x00002000;      /**< window should be created in high-DPI mode if supported.
+													On macOS NSHighResolutionCapable must be set true in the
+													application's Info.plist for this to have any effect. */
+SDL_WindowFlags.MOUSE_CAPTURE    = 0x00004000;   /**< window has mouse captured (unrelated to MOUSE_GRABBED) */
+SDL_WindowFlags.ALWAYS_ON_TOP    = 0x00008000;   /**< window should always be above others */
+SDL_WindowFlags.SKIP_TASKBAR     = 0x00010000;   /**< window should not be added to the taskbar */
+SDL_WindowFlags.UTILITY          = 0x00020000;   /**< window should be treated as a utility window */
+SDL_WindowFlags.TOOLTIP          = 0x00040000;   /**< window should be treated as a tooltip */
+SDL_WindowFlags.POPUP_MENU       = 0x00080000;   /**< window should be treated as a popup menu */
+SDL_WindowFlags.KEYBOARD_GRABBED = 0x00100000;   /**< window has grabbed keyboard input */
+SDL_WindowFlags.VULKAN           = 0x10000000;   /**< window usable for Vulkan surface */
+SDL_WindowFlags.METAL            = 0x20000000;   /**< window usable for Metal view */
+
+SDL_WindowFlags.INPUT_GRABBED = SDL_WindowFlags.MOUSE_GRABBED; /**< equivalent to SDL_WindowFlags.MOUSE_GRABBED for compatibility */
+
+
+/* events */
+
+var SDL_RELEASED = 0;
+var SDL_PRESSED = 1;
+
+var SDL_EVENTS = {};
+
+SDL_EVENTS.FIRSTEVENT     = 0;     /**< Unused (do not remove) */
+
+    /* Application events */
+SDL_EVENTS.QUIT           = 0x100; /**< User-requested quit */
+
+    /* These application events have special meaning on iOS; see README-ios.md for details */
+SDL_EVENTS.APP_TERMINATING = 0x101;        /**< The application is being terminated by the OS
+                                     Called on iOS in applicationWillTerminate()
+                                     Called on Android in onDestroy()
+                                */
+SDL_EVENTS.APP_LOWMEMORY = 0x102;          /**< The application is low on memory; free memory if possible.
+                                     Called on iOS in applicationDidReceiveMemoryWarning()
+                                     Called on Android in onLowMemory()
+                                */
+SDL_EVENTS.APP_WILLENTERBACKGROUND = 0x103; /**< The application is about to enter the background
+                                     Called on iOS in applicationWillResignActive()
+                                     Called on Android in onPause()
+                                */
+SDL_EVENTS.APP_DIDENTERBACKGROUND = 0x104; /**< The application did enter the background and may not get CPU for some time
+                                     Called on iOS in applicationDidEnterBackground()
+                                     Called on Android in onPause()
+                                */
+SDL_EVENTS.APP_WILLENTERFOREGROUND = 0x105; /**< The application is about to enter the foreground
+                                     Called on iOS in applicationWillEnterForeground()
+                                     Called on Android in onResume()
+                                */
+SDL_EVENTS.APP_DIDENTERFOREGROUND = 0x106; /**< The application is now interactive
+                                     Called on iOS in applicationDidBecomeActive()
+                                     Called on Android in onResume()
+                                */
+
+SDL_EVENTS.LOCALECHANGED = 0x107;  /**< The user's locale preferences have changed. */
+
+    /* Display events */
+SDL_EVENTS.DISPLAYEVENT   = 0x150;  /**< Display state change */
+
+    /* Window events */
+SDL_EVENTS.WINDOWEVENT    = 0x200; /**< Window state change */
+SDL_EVENTS.SYSWMEVENT = 0x201;             /**< System specific event */
+
+    /* Keyboard events */
+SDL_EVENTS.KEYDOWN        = 0x300; /**< Key pressed */
+SDL_EVENTS.KEYUP = 0x301;                  /**< Key released */
+SDL_EVENTS.TEXTEDITING = 0x302;            /**< Keyboard text editing (composition) */
+SDL_EVENTS.TEXTINPUT = 0x303;              /**< Keyboard text input */
+SDL_EVENTS.KEYMAPCHANGED = 0x304;          /**< Keymap changed due to a system event such as an
+                                     input language or keyboard layout change.
+                                */
+
+    /* Mouse events */
+SDL_EVENTS.MOUSEMOTION    = 0x400; /**< Mouse moved */
+SDL_EVENTS.MOUSEBUTTONDOWN = 0x401;        /**< Mouse button pressed */
+SDL_EVENTS.MOUSEBUTTONUP = 0x402;          /**< Mouse button released */
+SDL_EVENTS.MOUSEWHEEL = 0x403;             /**< Mouse wheel motion */
+
+    /* Joystick events */
+SDL_EVENTS.JOYAXISMOTION  = 0x600; /**< Joystick axis motion */
+SDL_EVENTS.JOYBALLMOTION = 0x601;          /**< Joystick trackball motion */
+SDL_EVENTS.JOYHATMOTION = 0x602;           /**< Joystick hat position change */
+SDL_EVENTS.JOYBUTTONDOWN = 0x603;          /**< Joystick button pressed */
+SDL_EVENTS.JOYBUTTONUP = 0x604;            /**< Joystick button released */
+SDL_EVENTS.JOYDEVICEADDED = 0x605;         /**< A new joystick has been inserted into the system */
+SDL_EVENTS.JOYDEVICEREMOVED = 0x606;       /**< An opened joystick has been removed */
+
+    /* Game controller events */
+SDL_EVENTS.CONTROLLERAXISMOTION  = 0x650; /**< Game controller axis motion */
+SDL_EVENTS.CONTROLLERBUTTONDOWN = 0x651;          /**< Game controller button pressed */
+SDL_EVENTS.CONTROLLERBUTTONUP = 0x652;            /**< Game controller button released */
+SDL_EVENTS.CONTROLLERDEVICEADDED = 0x653;         /**< A new Game controller has been inserted into the system */
+SDL_EVENTS.CONTROLLERDEVICEREMOVED = 0x654;       /**< An opened Game controller has been removed */
+SDL_EVENTS.CONTROLLERDEVICEREMAPPED = 0x655;      /**< The controller mapping was updated */
+SDL_EVENTS.CONTROLLERTOUCHPADDOWN = 0x656;        /**< Game controller touchpad was touched */
+SDL_EVENTS.CONTROLLERTOUCHPADMOTION = 0x657;      /**< Game controller touchpad finger was moved */
+SDL_EVENTS.CONTROLLERTOUCHPADUP = 0x658;          /**< Game controller touchpad finger was lifted */
+SDL_EVENTS.CONTROLLERSENSORUPDATE = 0x659;        /**< Game controller sensor was updated */
+
+    /* Touch events */
+SDL_EVENTS.FINGERDOWN      = 0x700;
+SDL_EVENTS.FINGERUP = 0x701;
+SDL_EVENTS.FINGERMOTION = 0x702;
+
+    /* Gesture events */
+SDL_EVENTS.DOLLARGESTURE   = 0x800;
+SDL_EVENTS.DOLLARRECORD = 0x801;
+SDL_EVENTS.MULTIGESTURE = 0x802;
+
+    /* Clipboard events */
+SDL_EVENTS.CLIPBOARDUPDATE = 0x900; /**< The clipboard changed */
+
+    /* Drag and drop events */
+SDL_EVENTS.DROPFILE        = 0x1000; /**< The system requests a file open */
+SDL_EVENTS.DROPTEXT = 0x1001;                 /**< text/plain drag-and-drop event */
+SDL_EVENTS.DROPBEGIN = 0x1002;                /**< A new set of drops is beginning (NULL filename) */
+SDL_EVENTS.DROPCOMPLETE = 0x1003;             /**< Current set of drops is now complete (NULL filename) */
+
+    /* Audio hotplug events */
+SDL_EVENTS.AUDIODEVICEADDED = 0x1100; /**< A new audio device is available */
+SDL_EVENTS.AUDIODEVICEREMOVED = 0x1101;        /**< An audio device has been removed. */
+
+    /* Sensor events */
+SDL_EVENTS.SENSORUPDATE = 0x1200;     /**< A sensor was updated */
+
+    /* Render events */
+SDL_EVENTS.RENDER_TARGETS_RESET = 0x2000; /**< The render targets have been reset and their contents need to be updated */
+SDL_EVENTS.RENDER_DEVICE_RESET = 0x2001; /**< The device has been reset and all textures need to be recreated */
+
+    /* Internal events */
+SDL_EVENTS.POLLSENTINEL = 0x7F00; /**< Signals the end of an event poll cycle */
+
+    /** Events ::SDL_USEREVENT through ::SDL_LASTEVENT are for your use;
+     *  and should be allocated with SDL_RegisterEvents()
+     */
+SDL_EVENTS.USEREVENT    = 0x8000;
+
+    /**
+     *  This last event is only for bounding internal arrays
+     */
+SDL_EVENTS.LASTEVENT    = 0xFFFF;
+
+#######################################
+
+var SDL_Scancode = {};
+
+SDL_Scancode.UNKNOWN = 0;
+SDL_Scancode.A = 4;
+SDL_Scancode.B = 5;
+SDL_Scancode.C = 6;
+SDL_Scancode.D = 7;
+SDL_Scancode.E = 8;
+SDL_Scancode.F = 9;
+SDL_Scancode.G = 10;
+SDL_Scancode.H = 11;
+SDL_Scancode.I = 12;
+SDL_Scancode.J = 13;
+SDL_Scancode.K = 14;
+SDL_Scancode.L = 15;
+SDL_Scancode.M = 16;
+SDL_Scancode.N = 17;
+SDL_Scancode.O = 18;
+SDL_Scancode.P = 19;
+SDL_Scancode.Q = 20;
+SDL_Scancode.R = 21;
+SDL_Scancode.S = 22;
+SDL_Scancode.T = 23;
+SDL_Scancode.U = 24;
+SDL_Scancode.V = 25;
+SDL_Scancode.W = 26;
+SDL_Scancode.X = 27;
+SDL_Scancode.Y = 28;
+SDL_Scancode.Z = 29;
+SDL_Scancode.ONE = 30;
+SDL_Scancode.TWO = 31;
+SDL_Scancode.THREE = 32;
+SDL_Scancode.FOUR = 33;
+SDL_Scancode.FIVE = 34;
+SDL_Scancode.SIX = 35;
+SDL_Scancode.SEVEN = 36;
+SDL_Scancode.EIGHT = 37;
+SDL_Scancode.NINE = 38;
+SDL_Scancode.ZERO = 39;
+SDL_Scancode.RETURN = 40;
+SDL_Scancode.ESCAPE = 41;
+SDL_Scancode.BACKSPACE = 42;
+SDL_Scancode.TAB = 43;
+SDL_Scancode.SPACE = 44;
+SDL_Scancode.MINUS = 45;
+SDL_Scancode.EQUALS = 46;
+SDL_Scancode.LEFTBRACKET = 47;
+SDL_Scancode.RIGHTBRACKET = 48;
+SDL_Scancode.BACKSLASH = 49;
+SDL_Scancode.NONUSHASH = 50;
+SDL_Scancode.SEMICOLON = 51;
+SDL_Scancode.APOSTROPHE = 52;
+SDL_Scancode.GRAVE = 53;
+SDL_Scancode.COMMA = 54;
+SDL_Scancode.PERIOD = 55;
+SDL_Scancode.SLASH = 56;
+SDL_Scancode.CAPSLOCK = 57;
+SDL_Scancode.F1 = 58;
+SDL_Scancode.F2 = 59;
+SDL_Scancode.F3 = 60;
+SDL_Scancode.F4 = 61;
+SDL_Scancode.F5 = 62;
+SDL_Scancode.F6 = 63;
+SDL_Scancode.F7 = 64;
+SDL_Scancode.F8 = 65;
+SDL_Scancode.F9 = 66;
+SDL_Scancode.F10 = 67;
+SDL_Scancode.F11 = 68;
+SDL_Scancode.F12 = 69;
+SDL_Scancode.PRINTSCREEN = 70;
+SDL_Scancode.SCROLLLOCK = 71;
+SDL_Scancode.PAUSE = 72;
+SDL_Scancode.INSERT = 73;
+SDL_Scancode.HOME = 74;
+SDL_Scancode.PAGEUP = 75;
+SDL_Scancode.DELETE = 76;
+SDL_Scancode.END = 77;
+SDL_Scancode.PAGEDOWN = 78;
+SDL_Scancode.RIGHT = 79;
+SDL_Scancode.LEFT = 80;
+SDL_Scancode.DOWN = 81;
+SDL_Scancode.UP = 82;
+SDL_Scancode.NUMLOCKCLEAR = 83;
+SDL_Scancode.KP_DIVIDE = 84;
+SDL_Scancode.KP_MULTIPLY = 85;
+SDL_Scancode.KP_MINUS = 86;
+SDL_Scancode.KP_PLUS = 87;
+SDL_Scancode.KP_ENTER = 88;
+SDL_Scancode.KP_1 = 89;
+SDL_Scancode.KP_2 = 90;
+SDL_Scancode.KP_3 = 91;
+SDL_Scancode.KP_4 = 92;
+SDL_Scancode.KP_5 = 93;
+SDL_Scancode.KP_6 = 94;
+SDL_Scancode.KP_7 = 95;
+SDL_Scancode.KP_8 = 96;
+SDL_Scancode.KP_9 = 97;
+SDL_Scancode.KP_0 = 98;
+SDL_Scancode.KP_PERIOD = 99;
+SDL_Scancode.NONUSBACKSLASH = 100;
+SDL_Scancode.APPLICATION = 101;
+SDL_Scancode.POWER = 102;
+SDL_Scancode.KP_EQUALS = 103;
+SDL_Scancode.F13 = 104;
+SDL_Scancode.F14 = 105;
+SDL_Scancode.F15 = 106;
+SDL_Scancode.F16 = 107;
+SDL_Scancode.F17 = 108;
+SDL_Scancode.F18 = 109;
+SDL_Scancode.F19 = 110;
+SDL_Scancode.F20 = 111;
+SDL_Scancode.F21 = 112;
+SDL_Scancode.F22 = 113;
+SDL_Scancode.F23 = 114;
+SDL_Scancode.F24 = 115;
+SDL_Scancode.EXECUTE = 116;
+SDL_Scancode.HELP = 117;
+SDL_Scancode.MENU = 118;
+SDL_Scancode.SELECT = 119;
+SDL_Scancode.STOP = 120;
+SDL_Scancode.AGAIN = 121;
+SDL_Scancode.UNDO = 122;
+SDL_Scancode.CUT = 123;
+SDL_Scancode.COPY = 124;
+SDL_Scancode.PASTE = 125;
+SDL_Scancode.FIND = 126;
+SDL_Scancode.MUTE = 127;
+SDL_Scancode.VOLUMEUP = 128;
+SDL_Scancode.VOLUMEDOWN = 129;
+SDL_Scancode.LOCKINGCAPSLOCK = 130;
+SDL_Scancode.LOCKINGNUMLOCK = 131;
+SDL_Scancode.LOCKINGSCROLLLOCK = 132;
+SDL_Scancode.KP_COMMA = 133;
+SDL_Scancode.KP_EQUALSAS400 = 134;
+SDL_Scancode.INTERNATIONAL1 = 135;
+SDL_Scancode.INTERNATIONAL2 = 136;
+SDL_Scancode.INTERNATIONAL3 = 137;
+SDL_Scancode.INTERNATIONAL4 = 138;
+SDL_Scancode.INTERNATIONAL5 = 139;
+SDL_Scancode.INTERNATIONAL6 = 140;
+SDL_Scancode.INTERNATIONAL7 = 141;
+SDL_Scancode.INTERNATIONAL8 = 142;
+SDL_Scancode.INTERNATIONAL9 = 143;
+SDL_Scancode.LANG1 = 144;
+SDL_Scancode.LANG2 = 145;
+SDL_Scancode.LANG3 = 146;
+SDL_Scancode.LANG4 = 147;
+SDL_Scancode.LANG5 = 148;
+SDL_Scancode.LANG6 = 149;
+SDL_Scancode.LANG7 = 150;
+SDL_Scancode.LANG8 = 151;
+SDL_Scancode.LANG9 = 152;
+SDL_Scancode.ALTERASE = 153;
+SDL_Scancode.SYSREQ = 154;
+SDL_Scancode.CANCEL = 155;
+SDL_Scancode.CLEAR = 156;
+SDL_Scancode.PRIOR = 157;
+SDL_Scancode.RETURN2 = 158;
+SDL_Scancode.SEPARATOR = 159;
+SDL_Scancode.OUT = 160;
+SDL_Scancode.OPER = 161;
+SDL_Scancode.CLEARAGAIN = 162;
+SDL_Scancode.CRSEL = 163;
+SDL_Scancode.EXSEL = 164;
+SDL_Scancode.KP_00 = 176;
+SDL_Scancode.KP_000 = 177;
+SDL_Scancode.THOUSANDSSEPARATOR = 178;
+SDL_Scancode.DECIMALSEPARATOR = 179;
+SDL_Scancode.CURRENCYUNIT = 180;
+SDL_Scancode.CURRENCYSUBUNIT = 181;
+SDL_Scancode.KP_LEFTPAREN = 182;
+SDL_Scancode.KP_RIGHTPAREN = 183;
+SDL_Scancode.KP_LEFTBRACE = 184;
+SDL_Scancode.KP_RIGHTBRACE = 185;
+SDL_Scancode.KP_TAB = 186;
+SDL_Scancode.KP_BACKSPACE = 187;
+SDL_Scancode.KP_A = 188;
+SDL_Scancode.KP_B = 189;
+SDL_Scancode.KP_C = 190;
+SDL_Scancode.KP_D = 191;
+SDL_Scancode.KP_E = 192;
+SDL_Scancode.KP_F = 193;
+SDL_Scancode.KP_XOR = 194;
+SDL_Scancode.KP_POWER = 195;
+SDL_Scancode.KP_PERCENT = 196;
+SDL_Scancode.KP_LESS = 197;
+SDL_Scancode.KP_GREATER = 198;
+SDL_Scancode.KP_AMPERSAND = 199;
+SDL_Scancode.KP_DBLAMPERSAND = 200;
+SDL_Scancode.KP_VERTICALBAR = 201;
+SDL_Scancode.KP_DBLVERTICALBAR = 202;
+SDL_Scancode.KP_COLON = 203;
+SDL_Scancode.KP_HASH = 204;
+SDL_Scancode.KP_SPACE = 205;
+SDL_Scancode.KP_AT = 206;
+SDL_Scancode.KP_EXCLAM = 207;
+SDL_Scancode.KP_MEMSTORE = 208;
+SDL_Scancode.KP_MEMRECALL = 209;
+SDL_Scancode.KP_MEMCLEAR = 210;
+SDL_Scancode.KP_MEMADD = 211;
+SDL_Scancode.KP_MEMSUBTRACT = 212;
+SDL_Scancode.KP_MEMMULTIPLY = 213;
+SDL_Scancode.KP_MEMDIVIDE = 214;
+SDL_Scancode.KP_PLUSMINUS = 215;
+SDL_Scancode.KP_CLEAR = 216;
+SDL_Scancode.KP_CLEARENTRY = 217;
+SDL_Scancode.KP_BINARY = 218;
+SDL_Scancode.KP_OCTAL = 219;
+SDL_Scancode.KP_DECIMAL = 220;
+SDL_Scancode.KP_HEXADECIMAL = 221;
+SDL_Scancode.LCTRL = 224;
+SDL_Scancode.LSHIFT = 225;
+SDL_Scancode.LALT = 226;
+SDL_Scancode.LGUI = 227;
+SDL_Scancode.RCTRL = 228;
+SDL_Scancode.RSHIFT = 229;
+SDL_Scancode.RALT = 230;
+SDL_Scancode.RGUI = 231;
+SDL_Scancode.MODE = 257;
+SDL_Scancode.AUDIONEXT = 258;
+SDL_Scancode.AUDIOPREV = 259;
+SDL_Scancode.AUDIOSTOP = 260;
+SDL_Scancode.AUDIOPLAY = 261;
+SDL_Scancode.AUDIOMUTE = 262;
+SDL_Scancode.MEDIASELECT = 263;
+SDL_Scancode.WWW = 264;
+SDL_Scancode.MAIL = 265;
+SDL_Scancode.CALCULATOR = 266;
+SDL_Scancode.COMPUTER = 267;
+SDL_Scancode.AC_SEARCH = 268;
+SDL_Scancode.AC_HOME = 269;
+SDL_Scancode.AC_BACK = 270;
+SDL_Scancode.AC_FORWARD = 271;
+SDL_Scancode.AC_STOP = 272;
+SDL_Scancode.AC_REFRESH = 273;
+SDL_Scancode.AC_BOOKMARKS = 274;
+SDL_Scancode.BRIGHTNESSDOWN = 275;
+SDL_Scancode.BRIGHTNESSUP = 276;
+SDL_Scancode.DISPLAYSWITCH = 277;
+SDL_Scancode.KBDILLUMTOGGLE = 278;
+SDL_Scancode.KBDILLUMDOWN = 279;
+SDL_Scancode.KBDILLUMUP = 280;
+SDL_Scancode.EJECT = 281;
+SDL_Scancode.SLEEP = 282;
+SDL_Scancode.APP1 = 283;
+SDL_Scancode.APP2 = 284;
+SDL_Scancode.AUDIOREWIND = 285;
+SDL_Scancode.AUDIOFASTFORWARD = 286;
+
+##############################################
+
+extern struct SDL_Rect
+{
+	int x,
+	int y,
+	int w,
+	int h
+}
+
+
+extern struct SDL_Surface
+{
+    uint flags,               /**< Read-only */
+    ptr format,    /**< Read-only */
+	int w,
+	int h,
+	int pitch,
+	ptr pixels,
+
+    /** Application data associated with the surface */
+    ptr userdata,             /**< Read-write */
+
+    /** information needed for surfaces requiring locks */
+    int locked,                /**< Read-only */
+
+    /** list of BlitMap that hold a reference to this surface */
+    ptr list_blitmap,         /**< Private */
+
+    /** clipping information */
+    SDL_Rect clip_rect,         /**< Read-only */
+
+    /** info for fast blit mapping to other surfaces */
+    ptr map,    /**< Private */
+
+    /** Reference count -- used when freeing surface */
+    int refcount               /**< Read-mostly */
+} 
+
+extern struct Mix_Chunk {
+    int allocated,
+    ptr abuf,
+    uint alen,
+    ubyte volume       /* Per-sample volume, 0-128 */
+} 
+
+extern struct SDL_Event
+{
+   uint type,
+   uint dummy1,
+   ptr dummy2[6],
+}
+
+extern from "SDL2.dll" {
+	ptr SDL_CreateWindow(str, int, int, int, int, uint);
+	ptr SDL_CreateRenderer(ptr,int,uint);
+	void SDL_DestroyRenderer(ptr);
+	int SDL_QueryTexture(ptr,ptr,ptr,ptr,ptr);
+
+	void SDL_DestroyTexture(ptr);
+	ptr SDL_CreateTextureFromSurface(ptr, ptr);
+	void SDL_FreeSurface(ptr);
+
+	int SDL_SetRenderDrawColor(ptr, ubyte,ubyte,ubyte,ubyte);
+	int SDL_RenderClear(ptr);
+
+	int SDL_RenderCopy( ptr, ptr, ptr, ptr );
+	int SDL_RenderCopyEx( ptr, ptr, ptr, ptr, double, ptr, int);
+	void SDL_RenderPresent(ptr);
+
+ 	ptr SDL_GetKeyboardState(ptr);
+ 	uint SDL_GetTicks();
+
+	ptr SDL_RWFromFile(str,str);
+
+	int SDL_PollEvent(ptr);
+	void SDL_Quit();
+}
+
+extern from "SDL2_image.dll" {
+	ptr IMG_LoadTexture(ptr,str);
+}
+
+extern from "SDL2_mixer.dll" {
+	int Mix_OpenAudio(int,ushort,int,int);
+	ptr Mix_LoadWAV_RW(ptr,int);
+	ptr Mix_LoadMUS(str);
+	int Mix_PlayMusic(ptr,int );		
+	int Mix_PlayChannelTimed( int, ptr, int, int);	
+}
+
+extern from "SDL2_ttf.dll" {
+	int TTF_Init();
+	ptr TTF_OpenFont(str,int);
+
+	ptr TTF_RenderUTF8_Solid(ptr,str,ptr);	
+}
+
+fun set_sdl_rect(r,x,y,w,h)
+{
+	r.x = x;
+	r.y = y;
+	r.w = w;
+	r.h = h;
+}
+
+fun make_sdl_rect(x,y,w,h)
+{
+	var r = SDL_Rect();
+	r.x = x;
+	r.y = y;
+	r.w = w;
+	r.h = h;
+	return r;
+}
+
+
+fun make_sdl_color(r,g,b,a) {
+
+	var color = r;
+	color = color | (g << 8);
+	color = color | (b << 16);
+	color = color | (a << 24);
+	return color;
+}
+
+#############################
+# IntersectRect
+# collision detection support
+#############################
+
+fun rectOverlap(rectA, rectB)
+{
+	var valueInRange = fun (value, min, max)
+	{ 
+		return (value >= min) && (value <= max); 
+	};
+
+    var xOverlap = valueInRange(rectA.x, rectB.x+30, rectB.x + rectB.w-60) ||
+                    valueInRange(rectB.x, rectA.x+30, rectA.x + rectA.w-60);
+
+    var yOverlap = valueInRange(rectA.y, rectB.y+30, rectB.y + rectB.h-60) ||
+                    valueInRange(rectB.y, rectA.y+30, rectA.y + rectA.h-60);
+
+    return xOverlap && yOverlap;
+}

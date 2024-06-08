@@ -55,7 +55,7 @@ class Video
 	{
 		this.Screen = {
 			"x" : 1080,
-			"y" : 1080
+			"y" : 980
 		};
 
 		this.Window = SDL_CreateWindow( 
@@ -239,7 +239,7 @@ class Resources
 		];
 
 		this.wave = audio.load_wav("explo1.wav");
-		this.music = audio.load_music("music.ogg");
+		this.music = audio.load_music("music.mp3");
 
 		this.font = this.video.font("UbuntuMono-B.ttf");
 	}
@@ -723,6 +723,8 @@ class Loop
 		while(Running) 
 		{
 			var a = SDL_GetTicks();
+print a;
+print b;
 			var delta = a - b;
 
 			while(SDL_PollEvent(Event)) 
