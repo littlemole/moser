@@ -3,7 +3,7 @@ set(CMAKE_CXX_STANDARD 20)
 
 project(
   moser
-  VERSION 1.0
+  VERSION 1.1
   LANGUAGES CXX
 )
 
