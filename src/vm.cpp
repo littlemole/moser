@@ -21,6 +21,7 @@
 Value& CallFrame::arg(VM& vm, int i) 
 { 
     return vm.stack[argBaseIndex+i]; 
+//	return vm.peek(vm.stack_size()-argBaseIndex-i);
 }
 
 
@@ -1353,9 +1354,10 @@ Value VM::pop()
     return result;
 }
 
-Value VM::peek(int distance) 
+Value& VM::peek(int distance) 
 {
-    if(stack.empty()) return NIL_VAL;
+	static Value nil_val;
+    if(stack.empty()) return nil_val;
 
     ptrdiff_t index = stack.size() -1 -distance;
     return stack[index];
@@ -1511,4 +1513,9 @@ void VM::finalize()
             object++;
         }
     }
+}
+
+void VM::poke(int distance, const Value& v)
+{
+	stack[stack.size()-1-distance] = v;
 }

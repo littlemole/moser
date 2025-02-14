@@ -377,7 +377,8 @@ const std::string& ObjNativeFun::toString()  const
 bool ObjNativeFun::callValue(int argCount)
 {
     //unused: auto frame = &vm.frames.back();
-    Value result = function(vm, argCount, &vm.stack.back() - argCount+ 1);
+//    Value result = function(vm, argCount, &vm.stack.back() - argCount+ 1);
+	Value result = function(vm, argCount, &vm.peek(argCount-1));
 
     for( int i = 0; i < argCount;i++)
     {
@@ -414,9 +415,11 @@ void ObjNativeMethod::mark_gc()
 
 bool ObjNativeMethod::callValue(int argCount)
 {
-    Value* thet = &vm.stack.back() - argCount;
+//    Value* thet = &vm.stack.back() - argCount;
+	Value* thet = &vm.peek(argCount );
     auto frame = &vm.top_frame();
-    Value result = function( *thet, this->name, argCount, &vm.stack.back() - argCount +1);
+//    Value result = function( *thet, this->name, argCount, &vm.stack.back() - argCount +1);
+    Value result = function( *thet, this->name, argCount, &vm.peek(argCount -1));
 
     // support eval which changes frame
     if( &vm.top_frame() == frame )
@@ -515,7 +518,8 @@ void ObjClass::mark_gc()
 
 bool ObjClass::callValue(int argCount)
 {
-    vm.stack[vm.stack.size()-argCount - 1] = new ObjInstance(vm, this);
+//    vm.stack[vm.stack.size()-argCount - 1] = new ObjInstance(vm, this);
+	vm.poke(argCount, Value(new ObjInstance(vm, this)));
 
     if(methods.count(name->toString()))
     {
@@ -1662,7 +1666,8 @@ const std::string& ObjBoundMethod::toString() const
 
 bool ObjBoundMethod::callValue(int argCount)
 {
-    vm.stack[vm.stack.size()-argCount -1 ] = receiver;                
+//    vm.stack[vm.stack.size()-argCount -1 ] = receiver;                
+	vm.poke(argCount, receiver);                
 
     auto closure = as<ObjClosure>(method);
     if(closure)
@@ -1908,7 +1913,9 @@ bool ObjDecorator::callValue(int argCount)
     std::vector<Value> args;
     for(int i = 0; i < argCount; i++)
     {
-        args.push_back(vm.stack[vm.stack.size()-argCount+i]);
+//        args.push_back(vm.stack[vm.stack.size()-argCount+i]);
+		args.push_back(vm.peek(argCount-1-i));
+
     }
     for(int i = 0; i < argCount; i++)
     {
@@ -1940,7 +1947,9 @@ bool ObjDecorator::callValue(Value receiver, int argCount)
     std::vector<Value> args;
     for(int i = 0; i < argCount; i++)
     {
-        args.push_back(vm.stack[vm.stack.size()-argCount+i]);
+//        args.push_back(vm.stack[vm.stack.size()-argCount+i]);
+		args.push_back(vm.peek(argCount-1-i));
+
     }
     for(int i = 0; i < argCount; i++)
     {
@@ -2067,7 +2076,9 @@ bool ObjProxy::invokeMethod(const std::string& mname, int argCount)
     std::vector<Value> args;
     for(int i = 0; i < argCount; i++)
     {
-        args.push_back(vm.stack[vm.stack.size()-argCount+i]);
+//        args.push_back(vm.stack[vm.stack.size()-argCount+i]);
+		args.push_back(vm.peek(argCount-1-i));
+
     }
     for(int i = 0; i < argCount; i++)
     {

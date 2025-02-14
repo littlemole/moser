@@ -24,7 +24,8 @@ public:
     uint8_t* ip = nullptr;
     std::vector<Value> varargs;
 
-    int argBaseIndex = 0;
+	Value* basePointer = nullptr;
+//    int argBaseIndex = 0;
 
     Value& arg(VM& vm, int i);
     
@@ -58,11 +59,13 @@ public:
     GC gc;
     Compiler* compiler = nullptr;
 
-    std::vector<Value> stack;
     std::unordered_map<std::string,Value> globals;
     std::vector<std::string> cliArgs;
 
+	std::vector<Value> stack;
+
 private:
+
 	std::vector<CallFrame> frames;
 	std::vector<ExceptionHandler> exHandlers;
 	std::list<Obj*> objects;
@@ -86,7 +89,8 @@ public:
 
     void push(Value value);
     Value pop();
-    Value peek(int distance);
+    Value& peek(int distance);
+	void poke(int distance, const Value& v);
 
     Value eval(const std::string& src);
 
@@ -170,6 +174,10 @@ public:
 
 	inline CallFrame& top_frame() {
 		return frames.back();
+	}
+
+	inline size_t stack_size() {
+		return stack.size();
 	}
 
 	std::vector<std::string> include_path;
