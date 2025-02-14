@@ -49,8 +49,8 @@ enum CO_INIT {
 
 class VM
 {
-friend class Obj;
-friend class GC;
+//friend class Obj;
+//friend class GC;
 public:
     VM();
     ~VM();
@@ -58,22 +58,31 @@ public:
     GC gc;
     Compiler* compiler = nullptr;
 
-    std::vector<CallFrame> frames;
     std::vector<Value> stack;
-    std::vector<ExceptionHandler> exHandlers;
-    std::list<Obj*> objects;
     std::unordered_map<std::string,Value> globals;
-    std::list<ObjUpvalue*> openUpvalues;
-    std::vector<Obj*>grayStack;
     std::vector<std::string> cliArgs;
 
-    std::vector<Value> pendingEx;
+private:
+	std::vector<CallFrame> frames;
+	std::vector<ExceptionHandler> exHandlers;
+	std::list<Obj*> objects;
+	std::list<ObjUpvalue*> openUpvalues;
+	std::vector<Obj*>grayStack;
+	std::vector<Value> pendingEx;
     std::vector<Value> pendingRet;
+public:
 
     InterpretResult interpret(const std::string& source);
     InterpretResult compile(const std::string& source, bool persist = false);
     InterpretResult execute(const std::string& bytes);
     InterpretResult debug(const std::string& path);
+
+	void markRoots(); 
+
+	bool hasException();
+	void printPendingException();
+	void sweep();
+	void finalize();
 
     void push(Value value);
     Value pop();
@@ -127,7 +136,43 @@ public:
     void defineNative(const char* name, NativeFn function);
     void defineGlobal(const char* name, Value value);    
 
-    std::vector<std::string> include_path;
+
+	inline void inc_allocations(Obj* obj)
+	{
+		allocations++;
+		objects.push_back(obj);
+	}
+
+	inline void decc_allocations()
+	{
+		allocations--;
+	}
+
+	inline void setNextGC(long n)
+	{
+		nextGC = allocations * n;
+	}
+
+	inline void push_obj_to_greystack(Obj* obj)
+	{
+		grayStack.push_back(obj);
+	}
+
+	inline void traceReferences() 
+	{
+		while(!grayStack.empty())
+		{
+			Obj* object = grayStack.back();
+			grayStack.pop_back();
+			gc.blackenObject(object);
+		}
+	}	
+
+	inline CallFrame& top_frame() {
+		return frames.back();
+	}
+
+	std::vector<std::string> include_path;
 
 #ifdef _WIN32
     CO_INIT coinit = CO_INIT_NONE;
@@ -186,6 +231,8 @@ private:
         Obj* obj = v.as.obj;
         return  as<ObjString>(obj);
     }
+
+
 };
 
 

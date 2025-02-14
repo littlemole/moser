@@ -23,6 +23,8 @@ public:
     bool locked();
     void lock(bool);
     void collectGarbage();
+	void blackenObject(Obj* object);
+	void traceReferences();
 
     void markValue(Value& value);
     void markObject(Obj* object);

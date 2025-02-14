@@ -1430,12 +1430,12 @@ ObjCallback::ObjCallback(
             }
         }
         this->cbFun_->callValue(cif->nargs);
-        vm.frames.back().returnToCallerOnReturn = true;
+        vm.top_frame().returnToCallerOnReturn = true;
         Value r = vm.run();
-        if(!vm.pendingEx.empty())
+        if(vm.hasException())
         {
-            vm.pendingEx.back().print();
             printf("unhandled exception in callback");
+            vm.printPendingException();
             exit(1);
         }
         FFIMarshaller::to_foreign(cif->rtype,ret,r);

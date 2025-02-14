@@ -1417,3 +1417,98 @@ Value VM::runtimeError( const char* format, ...)
     return NIL_VAL;
 }
 
+void VM::markRoots() 
+{
+    for ( auto& it : stack )
+    {
+        gc.markValue(it);
+    }
+
+    gc.markMap(globals);
+
+    gc.markCompilerRoots();
+
+    for (size_t i = 0; i < frames.size(); i++) 
+    {
+        gc.markObject((Obj*)frames[i].closure);
+        gc.markArray(frames[i].varargs);
+    }
+
+    for( auto& it : openUpvalues)
+    {
+        gc.markObject( it );
+    }    
+
+    gc.markArray(pendingEx);
+    gc.markArray(pendingRet);
+
+}
+
+bool VM::hasException()
+{
+	return pendingEx.size() != 0;
+}
+
+void VM::printPendingException()
+{
+	pendingEx.back().print();
+}
+
+
+void VM::sweep() 
+{
+    auto object = objects.begin();
+    while ( object != objects.end()) 
+    {
+        if ( (*object)->isMarked) 
+        {
+            (*object)->isMarked = false;
+            object++;
+        } 
+        else 
+        {
+            Obj* unreached = *object;
+            decltype(object) tmp = object;
+            if(object != objects.begin())
+            {
+                object--;
+
+                objects.erase(tmp);
+                if(object != objects.end())
+                    object++;
+
+                delete unreached;
+            }
+            else
+            {
+                objects.erase(tmp);
+                object = objects.begin();
+                delete unreached;
+            }
+        }
+    }
+}
+
+void VM::finalize() 
+{
+    auto object = objects.begin();
+    while ( object != objects.end()) 
+    {
+        if ( (*object)->isMarked) 
+        {
+            object++;
+        } 
+        else 
+        {
+            Obj* unreached = *object;
+
+#ifdef DEBUG_LOG_GC
+    printf("finalize ");
+    Value(unreached).print();
+#endif
+
+            unreached->finalize();
+            object++;
+        }
+    }
+}

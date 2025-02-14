@@ -629,4 +629,39 @@ public:
 
 };
 
+
+/*
+    A simple Promise obkect encapsulation std c++ regexes
+*/
+/*
+class ObjPromise : public ObjBuiltin
+{
+public:
+
+    ObjPromise(VM& v);
+
+    virtual ~ObjPromise() {}
+    virtual void mark_gc() override;
+
+    virtual Value getMethod(const std::string& name) override;
+    virtual bool  invokeMethod(const std::string& name, int argCount) override;
+
+    virtual Value getProperty(const std::string& name) override;
+    virtual void setProperty(const std::string& name, Value val) override;
+    virtual void deleteProperty(const std::string& name) override;
+    virtual std::vector<std::string> keys() override;
+
+    virtual const std::string& toString() const override;    
+    virtual std::string type() const override { return "<Promise>>"; }
+
+    virtual void* pointer() override { return this; }
+
+    void init();
+
+	Value result;
+	Obj* onResolve = nullptr;
+	Obj* onReject = nullptr;
+	ObjPromise* chain = nullptr;
+};
+*/
 #endif

@@ -763,12 +763,12 @@ Value evalNative(VM& vm, int argCount, Value* args)
         vm.call(closure,0);
     }
 
-    vm.frames.back().returnToCallerOnReturn = true;
+    vm.top_frame().returnToCallerOnReturn = true;
     Value r = vm.run();
-    if(!vm.pendingEx.empty())
+    if(vm.hasException())
     {
-        vm.pendingEx.back().print();
         printf("unhandlex exception");
+        vm.printPendingException();
 		return NIL_VAL;
     }
     vm.pop();
@@ -901,12 +901,12 @@ Value importNative(VM& vm, int argCount, Value* args)
         vm.call(closure,0);
     }
 
-    vm.frames.back().returnToCallerOnReturn = true;
+    vm.top_frame().returnToCallerOnReturn = true;
     Value r = vm.run();
-    if(!vm.pendingEx.empty())
+    if(vm.hasException())
     {
-        vm.pendingEx.back().print();
         printf("unhandled exception");
+        vm.printPendingException();
         exit(1);
     }
     vm.pop();
@@ -937,7 +937,7 @@ Value argumentsNative(VM& vm, int /* argCount */, Value* /* args */)
     auto array = new ObjArray(vm);
 
     int argc = 0;
-    int slot = vm.frames[vm.frames.size()-1].argBaseIndex;
+    int slot = vm.top_frame().argBaseIndex;
     argc = (int)vm.stack.size()-1-slot-1;
 
     for(int i = 0; i < argc; i++)
@@ -945,11 +945,11 @@ Value argumentsNative(VM& vm, int /* argCount */, Value* /* args */)
         array->add( *(&vm.stack.back() -argc  +i) );
     }
 
-    if(!vm.frames.back().varargs.empty())
+    if(!vm.top_frame().varargs.empty())
     {
-        for( size_t i = 0; i < vm.frames.back().varargs.size(); i++)
+        for( size_t i = 0; i < vm.top_frame().varargs.size(); i++)
         {
-            array->add(vm.frames.back().varargs[i]);
+            array->add(vm.top_frame().varargs[i]);
         }
     }
 
@@ -1791,7 +1791,7 @@ Value invokeNative(VM& vm, int argCount, Value* args)
             }
 
             target.as.obj->callValue(cnt);
-            vm.frames.back().returnToCallerOnReturn = true;
+            vm.top_frame().returnToCallerOnReturn = true;
             Value r = vm.run();
             vm.pop();
             return r;
@@ -1842,7 +1842,7 @@ Value invokeNative(VM& vm, int argCount, Value* args)
     }
 
     target.as.obj->callValue(cnt);
-    vm.frames.back().returnToCallerOnReturn = true;
+    vm.top_frame().returnToCallerOnReturn = true;
     Value r = vm.run();
     vm.pop();
     return r;

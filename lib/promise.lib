@@ -5,8 +5,25 @@ class Future
     Future()
     {
         this.result = nil;
-        this.onResolve = fun(result) { this.result = result; };
-        this.onError = fun(e) { this.error = e; };
+		this.coro = nil;
+        this.onResolve = fun(result) 
+		{ 
+			this.result = result; 
+			if(this.coro)
+			{
+				this.core.resume(1,this.result);
+				this.result = nil;
+			}
+		};
+        this.onError = fun(e) 
+		{ 
+			this.error = e; 
+			if(this.coro)
+			{
+				this.core.resume(0,this.error);
+				this.error = nil;
+			}			
+		};
     }
 
     resolve()
@@ -25,6 +42,17 @@ class Future
     {
         var f = Future();
         this.chain = f;
+
+		if(this.result)
+		{
+			if(this.coro) 
+			{
+				this.coro.resume(1,this.result);
+				this.result = nil;
+				return f;
+			}
+		}
+
         this.onResolve = fun()
         {
             var args = arguments();
@@ -45,23 +73,36 @@ class Future
                 runtime.invoke(f.reject,args);
             });
         };
+
         this.onError = fun()
         {
             var args = arguments();
             runtime.invoke(f.reject,args);
         };
+
+		if(this.result)
+		{
+			this.onResolve(this.result);
+			this.result = nil;
+		}
+
         return f;
     }
 
     otherwise(cb)
     {
         this.onError = cb;
-        if(this.result) {
-	    this.onResolve(this.result);
-	};
         if(this.error) {
-	    this.onError(this.error);
-	};
+			if(this.coro)
+			{
+				this.coro.resume(0,this.error);
+			}
+			else
+			{
+		    	this.onError(this.error);
+			}
+			this.error = nil;
+		};
 
         return this;
     }

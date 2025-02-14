@@ -25,9 +25,7 @@ method lookup
 
 Obj::Obj(VM& v) : vm(v)
 {
-    vm.allocations++;
-
-    vm.objects.push_back(this);
+	vm.inc_allocations(this);
 
 #ifdef DEBUG_VERBOSE_GC
     printf("%p allocate  \n", (void*)this);
@@ -36,7 +34,7 @@ Obj::Obj(VM& v) : vm(v)
 
 Obj::~Obj()
 {
-    vm.allocations--;
+	vm.decc_allocations();
 #ifdef DEBUG_VERBOSE_GC
     printf("%p deallocate  %d\n", (void*)this);
 #endif
@@ -417,11 +415,11 @@ void ObjNativeMethod::mark_gc()
 bool ObjNativeMethod::callValue(int argCount)
 {
     Value* thet = &vm.stack.back() - argCount;
-    auto frame = &vm.frames.back();
+    auto frame = &vm.top_frame();
     Value result = function( *thet, this->name, argCount, &vm.stack.back() - argCount +1);
 
     // support eval which changes frame
-    if( &vm.frames.back() == frame )
+    if( &vm.top_frame() == frame )
     {
         for( int i = 0; i < argCount;i++)
         {
@@ -523,7 +521,7 @@ bool ObjClass::callValue(int argCount)
     {
         Value ctor = methods[name->toString()];
         vm.call(as<ObjClosure>(ctor), argCount);
-        vm.frames.back().returnToCallerOnReturn = true;
+        vm.top_frame().returnToCallerOnReturn = true;
         //unused: Value r = 
         vm.run();
     }
@@ -790,7 +788,7 @@ void ObjInstance::finalize()
         {
             vm.push(this);
             invokeMethod(dtor,0);
-            vm.frames.back().returnToCallerOnReturn = true;
+            vm.top_frame().returnToCallerOnReturn = true;
             //unused: Value v = 
             vm.run();
             vm.pop();
@@ -935,7 +933,7 @@ Value ObjInstance::getProperty(const std::string& pname)
         vm.push(bound);
         bound->callValue(0);
 //        vm.call(bound,0);
-        vm.frames.back().returnToCallerOnReturn = true;
+        vm.top_frame().returnToCallerOnReturn = true;
         Value r = vm.run();
         vm.pop();
         return r;
@@ -987,7 +985,7 @@ void ObjInstance::setProperty(const std::string& key, Value val)
         vm.push(val);
         bound2->callValue(1);
 //        vm.call(bound,1);
-        vm.frames.back().returnToCallerOnReturn = true;
+        vm.top_frame().returnToCallerOnReturn = true;
         //unused: Value r = 
         vm.run();
         vm.pop();
@@ -2099,7 +2097,7 @@ bool ObjProxy::invokeMethod(const std::string& mname, int argCount)
     {
         vm.gc.pin(this);
         obj->invokeMethod("invoke",argCount+2);
-        vm.frames.back().returnToCallerOnReturn = true;
+        vm.top_frame().returnToCallerOnReturn = true;
         Value r = vm.run();
         vm.pop(); 
         vm.pop();
@@ -2132,7 +2130,7 @@ Value ObjProxy::getProperty(const std::string& pname)
     if(obj)
     {
         obj->invokeMethod("getter",2);
-        vm.frames.back().returnToCallerOnReturn = true;
+        vm.top_frame().returnToCallerOnReturn = true;
         Value r = vm.run();
         vm.pop();
         vm.pop();
@@ -2163,7 +2161,7 @@ void ObjProxy::setProperty(const std::string& key, Value val)
     if(obj)
     {
         obj->invokeMethod("setter",3);
-        vm.frames.back().returnToCallerOnReturn = true;
+        vm.top_frame().returnToCallerOnReturn = true;
         //unused: Value r = 
         vm.run();
         vm.pop();
@@ -2206,6 +2204,173 @@ void ObjProxy::mark_gc()
     vm.gc.markMap(methods);
 }
 
+///////////////////////////////////////////////////////////////////////
+/*
+ObjPromise::ObjPromise(VM& v)
+    : ObjBuiltin(v)
+{
+    init();
+}
+
+
+void ObjPromise::init()
+{
+    //fields["suffix"] =  new ObjString(vm, "");
+
+    auto thenFunction = new ObjNativeMethod( vm, 
+        [](Value that, const std::string&, int argCount, Value* args) -> Value
+        {            
+            if(argCount == 0) return NIL_VAL;
+
+			Callable* callable = as<Callable>(args[0].as.obj);
+			if(!callable) return NIL_VAL;
+
+			auto promise = as<ObjPromise>(that.as.obj);
+
+			promise->onResolve = args[0].as.obj;
+            return that;
+        }
+    );
+    methods["then"] = thenFunction;
+
+	auto otherwiseFunction = new ObjNativeMethod( vm, 
+        [](Value that, const std::string&, int argCount, Value* args) -> Value
+        {            
+            if(argCount == 0) return NIL_VAL;
+
+			Callable* callable = as<Callable>(args[0].as.obj);
+			if(!callable) return NIL_VAL;
+
+			auto promise = as<ObjPromise>(that.as.obj);
+
+			promise->onReject = args[0].as.obj;
+            return that;
+        }
+    );
+    methods["otherwise"] = otherwiseFunction;
+
+	auto resolveFunction = new ObjNativeMethod( vm, 
+        [](Value that, const std::string&, int argCount, Value* args) -> Value
+        {            
+			auto promise = as<ObjPromise>(that.as.obj);
+
+			if(!promise->onResolve) return NIL_VAL;
+
+			Callable* callable = as<Callable>(promise->onResolve);
+			if(!callable) return NIL_VAL;
+
+			callable->callValue(argCount);
+
+			promise->vm.frames.back().returnToCallerOnReturn = true;
+			Value r = promise->vm.run();
+			promise->vm.pop();
+			return r;
+        }
+    );
+    methods["resolve"] = resolveFunction;
+
+	auto rejectFunction = new ObjNativeMethod( vm, 
+        [](Value that, const std::string&, int argCount, Value* args) -> Value
+        {            
+			auto promise = as<ObjPromise>(that.as.obj);
+
+			if(!promise->onReject) return NIL_VAL;
+
+			Callable* callable = as<Callable>(promise->onReject);
+			if(!callable) return NIL_VAL;
+
+			callable->callValue(argCount);
+
+			promise->vm.frames.back().returnToCallerOnReturn = true;
+			Value r = promise->vm.run();
+			promise->vm.pop();
+			return r;
+        }
+    );
+    methods["reject"] = rejectFunction;
+
+}
+
+Value ObjPromise::getMethod(const std::string& mname)
+{
+    if (methods.count(mname) == 0) return NIL_VAL;
+    return methods[mname];
+}
+
+bool ObjPromise::invokeMethod(const std::string& mname, int argCount)
+{
+    if (methods.count(mname) == 0) return false;
+
+    Value val = methods[mname];
+    if(IS_OBJ(val))
+    {
+        return val.as.obj->callValue(argCount);
+    }
+    return false;
+}
+
+Value ObjPromise::getProperty(const std::string& pname)
+{
+    if (methods.count(pname) ) 
+	{
+		return methods[pname];
+	}
+
+    if(!fields.count(pname)) return NIL_VAL;
+    return fields[pname];
+}
+
+void ObjPromise::setProperty(const std::string& / * key * /, Value / * val * /)
+{
+//    fields[key] = val;
+}
+
+
+void ObjPromise::deleteProperty(const std::string& / * name * /)
+{
+}
+
+std::vector<std::string> ObjPromise::keys()
+{
+    std::vector<std::string> k;
+    for(auto& it : fields)
+    {
+        k.push_back(it.first);
+    }
+    return k;
+}
+
+const std::string& ObjPromise::toString() const
+{
+    static std::string s( "<Promsie>");
+	return s;
+}
+ 
+void ObjPromise::mark_gc()
+{    
+    vm.gc.markMap(fields);
+    vm.gc.markMap(methods);
+	if(onResolve)
+	{
+		vm.gc.markObject(onResolve);
+	}
+	if(onReject)
+	{
+		vm.gc.markObject(onReject);
+	}
+	if(chain)
+	{
+		vm.gc.markObject(chain);
+	}
+	if(IS_OBJ(result))
+	{
+		vm.gc.markObject(result.as.obj);
+	}
+}
+
+*/
+
+////////////////////////////////////////////
 
 
 
