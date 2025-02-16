@@ -20,10 +20,42 @@
 
 Value& CallFrame::arg(VM& vm, int i) 
 { 
-    return vm.stack[argBaseIndex+i]; 
+	return vm.stack_at(argBaseIndex+i);
+//    return vm.stack[argBaseIndex+i]; 
 //	return vm.peek(vm.stack_size()-argBaseIndex-i);
 }
 
+Value CallFrame::arguments(VM& vm) 
+{
+	auto array = new ObjArray(vm);
+/*
+	int argc = 0;
+    int slot = argBaseIndex;
+    argc = (int)vm.stack.size()-1-slot-1;
+
+	printf("argc %i =?= %i\n",argc,argCount);
+	*/
+    for(int i = 0; i < argCount; i++)
+    {
+		array->add( vm.stack_at(argBaseIndex+i));
+    //    array->add( *(&vm.stack.back() -argc  +i) );
+    }
+/*
+	for(int i = 0; i < argCount; i++)
+	{
+		array->add( vm.stack_at(argBaseIndex+i));
+	}
+*/
+	if(!varargs.empty())
+	{
+		for( size_t i = 0; i < varargs.size(); i++)
+		{
+			array->add(varargs[i]);
+		}
+	}
+
+	return array;
+}
 
 VM::VM() : gc(*this)
 {
@@ -37,6 +69,8 @@ VM::VM() : gc(*this)
 
 VM::~VM()
 {
+	stack.clear();
+
 #ifdef _WIN32
     if (coinit & CO_INIT_WINRT)
     {
@@ -408,7 +442,11 @@ int VM::unwind()
 {
     CallFrame* frame = &frames.back();
 
-    Value result = pop();
+    Value result;
+	if(!stack.empty())
+	{
+		result = pop();
+	}
     closeUpvalues(&stack[frame->argBaseIndex]);
     if(frames.size() < 1)
     {
@@ -419,7 +457,10 @@ int VM::unwind()
     {
         stack.pop_back();
     }
-    stack.pop_back();
+	if(!stack.empty())
+	{
+    	stack.pop_back();
+	}
     push(result);
 
     frames.pop_back();
@@ -1144,6 +1185,7 @@ bool VM::call(ObjClosure* closure, int argCount)
 
     auto f =  CallFrame{ 
         closure, 
+		closure->function->arity(), //argCount,
         &closure->function->chunk.code[0],
         (int)(stack.size() - argCount - 1)
     };
@@ -1362,6 +1404,12 @@ Value& VM::peek(int distance)
     ptrdiff_t index = stack.size() -1 -distance;
     return stack[index];
 }
+
+Value& VM::stack_at(int idx)
+{
+	return stack[idx];
+}
+
 
 void VM::defineNative(const char* name, NativeFn function) 
 {

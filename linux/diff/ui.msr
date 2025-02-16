@@ -1,7 +1,7 @@
 import("promise");
 import("gir/gir");
 
-var gir = GIR( [ "Gio:2.0", "GLib:2.0", "Gdk:3.0", "Gtk:3.0", "GObject:2.0", "GtkSource:3.0", "WebKit2:4.0", "JavaScriptCore:4.0" ] );
+var gir = GIR( [ "Gio:2.0", "GLib:2.0", "Gdk:3.0", "Gtk:3.0", "GObject:2.0", "GtkSource:3.0", "WebKit2:4.1", "JavaScriptCore:4.1" ] );
 
 import("mtkdirtree");
 import("mtkwebview");
@@ -116,6 +116,8 @@ DiffModel.properties = [
 
 g_register_types( MtkDirTree, MtkWebView, DiffModel);
 
+print "##################################";
+
 //////////////////////////////////////////
 
 
@@ -123,6 +125,7 @@ class Controller
 {
     Controller()
     {
+
         this.model = DiffModel.new();
 
         this.propertyActions = [
@@ -132,6 +135,7 @@ class Controller
 
     activate()
     {
+
                 this.ui.webView.load_uri("file://" + io.dirname(io.self()) + "/diff.html");
 
 
@@ -245,10 +249,13 @@ class Controller
     }
 }
 
+print "controller";
 
 var controller = Controller();
 
-var gtkUi = GtkUI("diff.ui");
+print "ui";
 
+var gtkUi = GtkUI("diff.ui");
+print "run";
 gtkUi.run("moc.app",controller);
 

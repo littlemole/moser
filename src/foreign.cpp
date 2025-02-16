@@ -639,7 +639,12 @@ bool ObjForeignFunction::callValue(int argCount)
 
     for (int i = 0; i < argCount; i++)
     {
-        Value v = *(&vm.stack.back() - argCount +1 +i);
+//        Value v = *(&vm.stack.back() - argCount +1 +i);
+
+		Value v = vm.peek(argCount-i-1);
+
+		//Value v = vm.top_frame().arg(vm,i);
+
         //unused: const std::string& paramType = fun_->argument(i);
 
         size_t r = 0;
@@ -713,7 +718,12 @@ bool ObjFunctionPtr::callValue(int argCount)
 
     for (int i = 0; i < argCount; i++)
     {
-        Value v = *(&vm.stack.back() - argCount +1 +i);
+//        Value v = *(&vm.stack.back() - argCount +1 +i);
+
+		Value v = vm.peek(argCount-i-1);
+
+		//Value v = vm.top_frame().arg(vm,i);
+
         //unused: const std::string& paramType = fun_->argument(i);
 
         size_t r = 0;
@@ -1045,7 +1055,10 @@ bool ObjVariadicForeignFunction::callValue(int argCount)
 
     for (int i = 0; i < argCount; i++)
     {
-        Value v = *(&vm.stack.back() - argCount +1 +i);
+		Value v = vm.peek(argCount-i-1);
+
+//        Value v = *(&vm.stack.back() - argCount +1 +i);
+//		Value v = vm.top_frame().arg(vm,i);
         auto ts = FFIMarshaller::getType(v);
         //unused: const std::string& paramType = i < fun_->nfixed ? fun_->argument(i) : ts;
 
@@ -1119,7 +1132,10 @@ bool ObjStruct::callValue(int argCount)
 {
     if(argCount > 0)
     {
-        Value v = vm.stack[vm.stack.size() - argCount];
+//        Value v = vm.stack[vm.stack.size() - argCount];
+		Value v = vm.peek(0);
+
+//		Value v = vm.top_frame().arg(vm,argCount+1);
         auto ptr = as<ObjPointer>(v);
         if(ptr)
         {
@@ -1365,7 +1381,8 @@ bool ObjCallbackType::callValue(int argCount)
         return false;
     }
 
-    Value funVal = *(&vm.stack.back() );
+    //Value funVal = *(&vm.stack.back() );
+	Value funVal = vm.peek(0);
     auto fun = as<Obj>(funVal);
     if(!fun)
     {

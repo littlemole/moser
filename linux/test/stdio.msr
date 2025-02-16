@@ -29,4 +29,8 @@ fclose(file);
 var d = JSON.parse(content);
 print JSON.stringify(d.dependencies);
 
-// expect: [{"name":"winmdparser"},{"name":"libffi"},{"name":"nlohmann-json"},{"name":"dirent"}]
+// expect: [{"name":"libffi"},{"name":"nlohmann-json"},{"name":"dirent"},{"name":"sdl2"},{"name":"sdl2-image"},{"features":["mpg123","wavpack"],"name":"sdl2-mixer"},{"name":"sdl2-ttf"}]
+
+
+
+

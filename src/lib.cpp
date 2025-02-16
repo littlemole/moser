@@ -934,6 +934,8 @@ Value timeNative(VM&, int /* argCount */, Value* /* args */)
 
 Value argumentsNative(VM& vm, int /* argCount */, Value* /* args */)
 {
+	return vm.top_frame().arguments(vm);
+
     auto array = new ObjArray(vm);
 
     int argc = 0;

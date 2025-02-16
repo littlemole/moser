@@ -16,22 +16,24 @@ class CallFrame
 public:
 
     CallFrame() {};
-    CallFrame(ObjClosure* c, uint8_t* p, int idx)
-    : closure(c), ip(p), argBaseIndex(idx)
+    CallFrame(ObjClosure* c, int argc, uint8_t* p, int idx)
+    : closure(c), argCount(argc) , ip(p), argBaseIndex(idx)
     {}
 
     ObjClosure* closure = nullptr;
+	int argCount = 0;
     uint8_t* ip = nullptr;
     std::vector<Value> varargs;
 
-	Value* basePointer = nullptr;
-//    int argBaseIndex = 0;
+//	Value* basePointer = nullptr;
+    int argBaseIndex = 0;
 
     Value& arg(VM& vm, int i);
     
     InterpretResult exitCode = InterpretResult::INTERPRET_OK;
 	bool returnToCallerOnReturn = false;
 
+	Value arguments(VM& vm) ;
 };
 
 struct ExceptionHandler 
@@ -90,6 +92,7 @@ public:
     void push(Value value);
     Value pop();
     Value& peek(int distance);
+	Value& stack_at(int idx);
 	void poke(int distance, const Value& v);
 
     Value eval(const std::string& src);
