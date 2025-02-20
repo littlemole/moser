@@ -20,8 +20,6 @@ fun foo() {
 
 foo();
 
-
-// expect: [line 18] in foo()
 // expect: [line 18] in foo()
 // expect: [line 18] in foo()
 // expect: [line 18] in foo()

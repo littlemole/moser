@@ -84,7 +84,9 @@ class MtkDirTree : GObj
 
         wrapper.append_column( that.file_name_column );
 
+print "tree init " + wrapper.onExpand;
         wrapper.signal_connect( "row-expanded", wrapper.onExpand);
+print "--";
         wrapper.signal_connect( "row-activated", wrapper.onSelect);
         wrapper.signal_connect( "notify::root", wrapper.onRoot);
     }

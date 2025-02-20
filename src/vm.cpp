@@ -37,7 +37,7 @@ Value CallFrame::arguments(VM& vm)
 	*/
     for(int i = 0; i < argCount; i++)
     {
-		array->add( vm.stack_at(argBaseIndex+i));
+		array->add( vm.stack_at(argBaseIndex+1));
     //    array->add( *(&vm.stack.back() -argc  +i) );
     }
 /*
@@ -65,6 +65,10 @@ VM::VM() : gc(*this)
     frames.reserve(256);
 
     init_stdlib(*this);
+
+	frames.push_back(
+		CallFrame()
+	);
 }
 
 VM::~VM()
@@ -443,27 +447,39 @@ int VM::unwind()
     CallFrame* frame = &frames.back();
 
     Value result;
-	if(!stack.empty())
+	if(!frame->stack.empty())
 	{
 		result = pop();
 	}
-    closeUpvalues(&stack[frame->argBaseIndex]);
-    if(frames.size() < 1)
+	int argc = frame->argCount;
+
+    if(frames.size() < 2)
     {
         return 0;
     }
 
-    while( !stack.empty() && (int)stack.size()-1 != frame->argBaseIndex)
-    {
-        stack.pop_back();
-    }
-	if(!stack.empty())
-	{
-    	stack.pop_back();
-	}
-    push(result);
+	// for(int i = 0; i < argc+1; i++)
+	// {
+	// 	auto& st = frames[frames.size()-2].stack;
+	// 	st[st.size()-1-argc+i] = frame->stack[i];
+	// }
+//	printf("unwind\n");
+    closeUpvalues(&frame->stack[frame->argBaseIndex]);
 
-    frames.pop_back();
+//	closeUpvalues(&(frames[frames.size()-2].stack[0]));
+
+
+
+//	int argc = frame->argCount;
+
+	frames.pop_back();
+	
+	for(int i = 0; i < argc+1; i++)
+	{
+		pop();
+	}
+
+    push(result);
     return (int)frames.size();
 }
 
@@ -541,7 +557,8 @@ Value VM::run()
                 uint16_t slot = read_short();
                 //unused: Value val = 
                 peek(0);
-                stack[frame->argBaseIndex+slot] = peek(0);
+                //stack[frame->argBaseIndex+slot] = peek(0);
+                top_frame().stack[top_frame().argBaseIndex+slot] = peek(0);
                 break;
             }        
             case OpCode::OP_GET_UPVALUE: 
@@ -885,19 +902,35 @@ Value VM::run()
                     uint16_t index = read_short();
                     if (isLocal) 
                     {
-                        closure->upvalues[i] = captureUpvalue(&stack[frame->argBaseIndex + index]);
-                    } 
+//						printf("local: %i\n",index);
+                        //closure->upvalues[i] = captureUpvalue(&stack[frame->argBaseIndex + index]);
+//						frame->stack[frame->argBaseIndex + index].print();
+						closure->upvalues[i] = captureUpvalue(&frame->stack[frame->argBaseIndex + index]);
+					} 
                     else 
                     {
+//						printf("nonlocal: %i\n",index);
                         closure->upvalues[i] = frame->closure->upvalues[index];
                     }                
                 }            
                 break;
             }      
             case OpCode::OP_CLOSE_UPVALUE:
-                closeUpvalues( &stack[stack.size()-1] );
+			{
+//				printf("op_close_upvalue\n");
+                closeUpvalues( &frame->stack[frame->stack.size()-1] );
+//				ObjUpvalue* upvalue = openUpvalues.front();
+//				printf("close1: %lu \n", (size_t)upvalue->pointer());
+//				((Value*)(upvalue->pointer()))->print();
+//				printf("close1: \n");
+
+//				upvalue->closed = *(upvalue->location);
+//				upvalue->location = &upvalue->closed;
+//				openUpvalues.pop_front();
+
                 pop();
                 break;       
+			}
             case OpCode::OP_CLASS:
                 push(new ObjClass(*this,read_string()));
                 break;       
@@ -1187,15 +1220,17 @@ bool VM::call(ObjClosure* closure, int argCount)
         closure, 
 		closure->function->arity(), //argCount,
         &closure->function->chunk.code[0],
-        (int)(stack.size() - argCount - 1)
+		0
+//        (int)(stack.size() - argCount - 1)
     };
 
+	if(!frames.empty())
     if(argCount > closure->function->arity())
     {
         for( int i = closure->function->arity(); i <argCount; i++ )
         {
-            int index = (int) stack.size() -argCount + i;
-            f.varargs.push_back(stack[index]);
+            int index = (int) top_frame().stack.size()-argCount + i;
+            f.varargs.push_back(top_frame().stack[index]);
         }
         for( int i = closure->function->arity(); i <argCount; i++ )
         {
@@ -1203,7 +1238,17 @@ bool VM::call(ObjClosure* closure, int argCount)
         }
     }
 
-    frames.push_back( f );
+	if(!frames.empty())
+	for( int i = 0; i < closure->function->arity()+1; i++)
+	{
+//		printf("upfix: %i\n",i);
+		Value& v = top_frame().stack[top_frame().stack.size()-1-closure->function->arity()+i];
+		f.stack.push_back(v);
+
+	}
+
+
+    frames.push_back( std::move(f) );
 
     return true;
 }
@@ -1242,7 +1287,7 @@ bool VM::doReturn(Value& result)
     }
 
     int n = unwind();
-    if(n == 0)
+    if(n == 1)
     {
         bailOut = true;
     }
@@ -1265,7 +1310,7 @@ bool VM::doThrow()
     while( exHandlers.back().frameIndex != frames.size()-1)
     {
         int n = unwind();
-        if( n == 0)
+        if( n == 1)
         {
             Value ex = pop();
             ex.print();
@@ -1319,8 +1364,16 @@ bool VM::doThrow()
 
 ObjUpvalue* VM::captureUpvalue(Value* local) 
 {
-    auto upvalue = openUpvalues.begin();
+    //auto upvalue = openUpvalues.end();
 
+	for(auto it = openUpvalues.begin(); it != openUpvalues.end(); it++)
+	{
+		if( (*it)->location == local )
+		{
+			return *it;
+		}
+	}
+	/**
     while( upvalue != openUpvalues.end() && (*upvalue)->location > local)
     {
         upvalue++;
@@ -1330,16 +1383,46 @@ ObjUpvalue* VM::captureUpvalue(Value* local)
     {
         return *upvalue;
     }    
-    ObjUpvalue* createdUpvalue = new ObjUpvalue(*this,local);
-    openUpvalues.insert(upvalue,createdUpvalue);
+	*/
+    ObjUpvalue* createdUpvalue = new ObjUpvalue(*this,&top_frame(),local);
+//    openUpvalues.insert(upvalue,createdUpvalue);
+//printf("create: %i \n", (int)frames.size());
+//local->print();
+//printf("create: %lu \n", (size_t)createdUpvalue->pointer());
+//((Value*)(createdUpvalue->pointer()))->print();
+openUpvalues.push_front(createdUpvalue);
+//printf("create: %i\n", (int)openUpvalues.size());
     return createdUpvalue;
 }
 
-void VM::closeUpvalues(Value* last) 
+void VM::closeUpvalues(Value* last ) 
 {
-    while( !openUpvalues.empty() && openUpvalues.front()->location >= last)
+//	printf("close0: %i \n", (int)frames.size());
+//	printf("close0: %i\n", (int)openUpvalues.size());
+//	printf("close0: %lu\n", (size_t)(void*)last);
+//	last->print();
+    while( !openUpvalues.empty() && 
+		openUpvalues.front()->location != last &&
+		openUpvalues.front()->frame == &top_frame() )
     {
         ObjUpvalue* upvalue = openUpvalues.front();
+//		printf("close1: %lu \n", (size_t)upvalue->pointer());
+//		((Value*)(upvalue->pointer()))->print();
+//		printf("close1: \n");
+		
+        upvalue->closed = *(upvalue->location);
+        upvalue->location = &upvalue->closed;
+        openUpvalues.pop_front();
+    }
+
+	if( !openUpvalues.empty() && 
+		openUpvalues.front()->location == last &&
+		openUpvalues.front()->frame == &top_frame() )
+    {
+//		printf("!!!\n");
+        ObjUpvalue* upvalue = openUpvalues.front();
+//		printf("close3: \n");
+//		((Value*)(upvalue->pointer()))->print();
         upvalue->closed = *(upvalue->location);
         upvalue->location = &upvalue->closed;
         openUpvalues.pop_front();
@@ -1385,52 +1468,52 @@ void VM::resetStack()
 
 void VM::push(Value value)
 {   
-    stack.push_back(value);
+    top_frame().stack.push_back(value);
 }
 
 Value VM::pop()
 {
-    if(stack.empty()) return NIL_VAL;
-    Value result = stack.back();
-    stack.pop_back();
+    if(top_frame().stack.empty()) return NIL_VAL;
+    Value result = top_frame().stack.back();
+    top_frame().stack.pop_back();
     return result;
 }
 
 Value& VM::peek(int distance) 
 {
 	static Value nil_val;
-    if(stack.empty()) return nil_val;
+    if(top_frame().stack.empty()) return nil_val;
 
-    ptrdiff_t index = stack.size() -1 -distance;
-    return stack[index];
+    ptrdiff_t index = top_frame().stack.size() -1 -distance;
+    return top_frame().stack[index];
 }
 
 Value& VM::stack_at(int idx)
 {
-	return stack[idx];
+	return top_frame().stack[idx];
 }
 
 
 void VM::defineNative(const char* name, NativeFn function) 
 {
-    push(new ObjString(*this,name, (int)strlen(name)));
-    push(new ObjNativeFun(*this,function));
+    stack.push_back(new ObjString(*this,name, (int)strlen(name)));
+    stack.push_back(new ObjNativeFun(*this,function));
 
     globals[stack[0].to_string()] = stack[1];
     
-    pop();
-    pop();
+    stack.pop_back();
+    stack.pop_back();
 }
 
 void VM::defineGlobal(const char* name, Value value) 
 {
-    push(new ObjString(*this, name, (int)strlen(name)));
-    push(value);
+    stack.push_back(new ObjString(*this, name, (int)strlen(name)));
+    stack.push_back(value);
 
     globals[stack[0].to_string()] = stack[1];
     
-    pop();
-    pop();
+    stack.pop_back();
+    stack.pop_back();
 }
 
 Value VM::runtimeError( const char* format, ...) 
@@ -1442,7 +1525,7 @@ Value VM::runtimeError( const char* format, ...)
     fputs("\n", stderr);
 
     int s = (int)frames.size();
-    for (int i = s - 1; i >= 0; i--) 
+    for (int i = s - 1; i > 0; i--) 
     {
         CallFrame* frame = &frames[i];
         ObjFunction* function = frame->closure->function;
@@ -1482,6 +1565,7 @@ void VM::markRoots()
     {
         gc.markObject((Obj*)frames[i].closure);
         gc.markArray(frames[i].varargs);
+        gc.markArray(frames[i].stack);
     }
 
     for( auto& it : openUpvalues)
@@ -1565,5 +1649,5 @@ void VM::finalize()
 
 void VM::poke(int distance, const Value& v)
 {
-	stack[stack.size()-1-distance] = v;
+	top_frame().stack[top_frame().stack.size()-1-distance] = v;
 }

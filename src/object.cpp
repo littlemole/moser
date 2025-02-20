@@ -438,8 +438,8 @@ bool ObjNativeMethod::callValue(int argCount)
     return true;
 }
 
-ObjUpvalue::ObjUpvalue(VM& v, Value* val)
-    : Obj(v),
+ObjUpvalue::ObjUpvalue(VM& v, CallFrame* f, Value* val)
+    : Obj(v), frame(f), 
     location(val),
     closed(NIL_VAL)
 {}

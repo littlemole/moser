@@ -11,7 +11,7 @@
 // forwards
 class VM;
 class ObjInstance;
-
+class CallFrame;
 
 /*
     MOSER builtin interfaces used by MOSER builtin objects
@@ -272,7 +272,7 @@ class ObjUpvalue : public Obj
 {
 friend class VM;
 public:
-    ObjUpvalue(VM& v, Value* val);
+    ObjUpvalue(VM& v,CallFrame* f, Value* val);
 
     virtual ~ObjUpvalue() {}
     virtual void mark_gc() override;
@@ -284,6 +284,7 @@ public:
     virtual void* pointer() override { return location; }
 
 private:
+	CallFrame* frame = nullptr;
     Value* location = nullptr;
     Value closed;  
 };

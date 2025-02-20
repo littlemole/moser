@@ -18,7 +18,22 @@ public:
     CallFrame() {};
     CallFrame(ObjClosure* c, int argc, uint8_t* p, int idx)
     : closure(c), argCount(argc) , ip(p), argBaseIndex(idx)
-    {}
+    {
+		stack.reserve(1024);
+	}
+	CallFrame(const CallFrame& rhs) = delete;
+
+	CallFrame(CallFrame&& rhs)
+    : closure(rhs.closure), argCount(rhs.argCount), ip(rhs.ip), argBaseIndex(rhs.argBaseIndex),
+		stack(std::move(rhs.stack))
+	{
+		varargs = rhs.varargs;
+		rhs.varargs.clear();
+		rhs.closure=nullptr;
+		rhs.argCount = 0;
+		rhs.ip = 0;
+		rhs.stack.clear();
+	}
 
     ObjClosure* closure = nullptr;
 	int argCount = 0;
@@ -34,6 +49,8 @@ public:
 	bool returnToCallerOnReturn = false;
 
 	Value arguments(VM& vm) ;
+	std::vector<Value> stack;
+
 };
 
 struct ExceptionHandler 
@@ -64,14 +81,14 @@ public:
     std::unordered_map<std::string,Value> globals;
     std::vector<std::string> cliArgs;
 
-	std::vector<Value> stack;
 
 private:
+std::list<ObjUpvalue*> openUpvalues;
 
+	std::vector<Value> stack;
 	std::vector<CallFrame> frames;
 	std::vector<ExceptionHandler> exHandlers;
 	std::list<Obj*> objects;
-	std::list<ObjUpvalue*> openUpvalues;
 	std::vector<Obj*>grayStack;
 	std::vector<Value> pendingEx;
     std::vector<Value> pendingRet;
