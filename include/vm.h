@@ -11,20 +11,56 @@
     the MOSER Virtual Machine
 */
 
+class CallFrame;
+
+class ValueOrPtr
+{
+public:
+	ValueOrPtr( CallFrame* f, int idx)
+		: frame(f), index(idx)
+	{}
+
+	ValueOrPtr( const Value& v)
+	: value(v)
+	{}
+
+	Value* operator->()
+	{
+		if(frame != nullptr)
+		{
+			return &frame->stack[index];
+		}
+		else{
+			return &value;
+		}
+	}
+
+	void close()
+	{
+		value = frame->stack[index];
+		frame = nullptr;
+	}
+
+private:
+	CallFrame* frame = nullptr;
+	int index = 0;
+	Value value;
+};
+
 class CallFrame 
 {
 public:
 
     CallFrame() {};
-    CallFrame(ObjClosure* c, int argc, uint8_t* p, int idx)
-    : closure(c), argCount(argc) , ip(p), argBaseIndex(idx)
+    CallFrame(ObjClosure* c, int argc, uint8_t* p)
+    : closure(c), argCount(argc) , ip(p)
     {
 		stack.reserve(1024);
 	}
 	CallFrame(const CallFrame& rhs) = delete;
 
 	CallFrame(CallFrame&& rhs)
-    : closure(rhs.closure), argCount(rhs.argCount), ip(rhs.ip), argBaseIndex(rhs.argBaseIndex),
+    : closure(rhs.closure), argCount(rhs.argCount), ip(rhs.ip), 
 		stack(std::move(rhs.stack))
 	{
 		varargs = rhs.varargs;
@@ -35,22 +71,18 @@ public:
 		rhs.stack.clear();
 	}
 
+	Obj* future = nullptr;
     ObjClosure* closure = nullptr;
 	int argCount = 0;
     uint8_t* ip = nullptr;
-    std::vector<Value> varargs;
-
-//	Value* basePointer = nullptr;
-    int argBaseIndex = 0;
-
-    Value& arg(VM& vm, int i);
-    
-    InterpretResult exitCode = InterpretResult::INTERPRET_OK;
 	bool returnToCallerOnReturn = false;
-
-	Value arguments(VM& vm) ;
+    std::vector<Value> varargs;
 	std::vector<Value> stack;
 
+	InterpretResult exitCode = InterpretResult::INTERPRET_OK;
+
+    Value& arg(VM& vm, int i);
+	Value arguments(VM& vm) ;
 };
 
 struct ExceptionHandler 
@@ -86,7 +118,7 @@ private:
 std::list<ObjUpvalue*> openUpvalues;
 
 	std::vector<Value> stack;
-	std::vector<CallFrame> frames;
+	std::vector<CallFrame*> frames;
 	std::vector<ExceptionHandler> exHandlers;
 	std::list<Obj*> objects;
 	std::vector<Obj*>grayStack;
@@ -152,7 +184,7 @@ public:
         }
 
         call(f, (int)values.size());
-		frames.back().returnToCallerOnReturn = true;
+		frames.back()->returnToCallerOnReturn = true;
         Value r = run();
         return r;
     }
@@ -193,7 +225,7 @@ public:
 	}	
 
 	inline CallFrame& top_frame() {
-		return frames.back();
+		return *(frames.back());
 	}
 
 	inline size_t stack_size() {
@@ -236,20 +268,20 @@ private:
 
     inline uint8_t read_byte()
     {
-        CallFrame* frame = &frames.back();
+        CallFrame* frame = frames.back();
         return (*frame->ip++);
     }
 
     inline uint16_t read_short()
     {
-        CallFrame* frame = &frames.back();
+        CallFrame* frame = frames.back();
         frame->ip += 2;
         return (uint16_t)((frame->ip[-2] << 8) | frame->ip[-1]);
     }
 
     inline Value& read_constant()
     {
-        CallFrame* frame = &frames.back();
+        CallFrame* frame = frames.back();
         return  (frame->closure->function->chunk.constants[read_short()]);
     }
 

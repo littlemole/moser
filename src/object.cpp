@@ -2216,99 +2216,72 @@ void ObjProxy::mark_gc()
 }
 
 ///////////////////////////////////////////////////////////////////////
-/*
-ObjPromise::ObjPromise(VM& v)
+
+ObjCoro::ObjCoro(VM& v)
     : ObjBuiltin(v)
 {
     init();
 }
 
+/*
 
-void ObjPromise::init()
+Coro - async fun
+
+- vm has pendingCoro CallFrame set
+
+- has a coro Future object. Who? CallFrame?
+
+- operator await
+	- create Coro object, set frame and closure
+	- take returned Future and set Coro
+	- saves coro frame and pops it
+	- return Future
+- return
+	- resolve the coro future
+	- drop the coro frame and delete it
+
+*/
+
+
+void ObjCoro::init()
 {
     //fields["suffix"] =  new ObjString(vm, "");
 
-    auto thenFunction = new ObjNativeMethod( vm, 
+    auto resumeFunction = new ObjNativeMethod( vm, 
         [](Value that, const std::string&, int argCount, Value* args) -> Value
         {            
-            if(argCount == 0) return NIL_VAL;
+            if(argCount != 2) return NIL_VAL;
+			bool isSuccess = args[0].as.boolean;
+			Value& result = args[1];
 
-			Callable* callable = as<Callable>(args[0].as.obj);
-			if(!callable) return NIL_VAL;
-
-			auto promise = as<ObjPromise>(that.as.obj);
-
-			promise->onResolve = args[0].as.obj;
+			if(isSuccess)
+			{
+				result.print();
+				// put coro frame on top
+				// pop future from coro stack
+				// push result to coro stack
+				// increment coro ip ?
+				// resume coro
+			}
+			else
+			{
+				// put coro on stack
+				// throw exception
+				// resume coro
+			}
             return that;
         }
     );
-    methods["then"] = thenFunction;
-
-	auto otherwiseFunction = new ObjNativeMethod( vm, 
-        [](Value that, const std::string&, int argCount, Value* args) -> Value
-        {            
-            if(argCount == 0) return NIL_VAL;
-
-			Callable* callable = as<Callable>(args[0].as.obj);
-			if(!callable) return NIL_VAL;
-
-			auto promise = as<ObjPromise>(that.as.obj);
-
-			promise->onReject = args[0].as.obj;
-            return that;
-        }
-    );
-    methods["otherwise"] = otherwiseFunction;
-
-	auto resolveFunction = new ObjNativeMethod( vm, 
-        [](Value that, const std::string&, int argCount, Value* args) -> Value
-        {            
-			auto promise = as<ObjPromise>(that.as.obj);
-
-			if(!promise->onResolve) return NIL_VAL;
-
-			Callable* callable = as<Callable>(promise->onResolve);
-			if(!callable) return NIL_VAL;
-
-			callable->callValue(argCount);
-
-			promise->vm.frames.back().returnToCallerOnReturn = true;
-			Value r = promise->vm.run();
-			promise->vm.pop();
-			return r;
-        }
-    );
-    methods["resolve"] = resolveFunction;
-
-	auto rejectFunction = new ObjNativeMethod( vm, 
-        [](Value that, const std::string&, int argCount, Value* args) -> Value
-        {            
-			auto promise = as<ObjPromise>(that.as.obj);
-
-			if(!promise->onReject) return NIL_VAL;
-
-			Callable* callable = as<Callable>(promise->onReject);
-			if(!callable) return NIL_VAL;
-
-			callable->callValue(argCount);
-
-			promise->vm.frames.back().returnToCallerOnReturn = true;
-			Value r = promise->vm.run();
-			promise->vm.pop();
-			return r;
-        }
-    );
-    methods["reject"] = rejectFunction;
-
+    methods["resume"] = resumeFunction;
 }
 
-Value ObjPromise::getMethod(const std::string& mname)
+Value ObjCoro::getMethod(const std::string& mname)
 {
     if (methods.count(mname) == 0) return NIL_VAL;
     return methods[mname];
 }
 
-bool ObjPromise::invokeMethod(const std::string& mname, int argCount)
+bool ObjCoro::invokeMethod(const std::string& mname, int argCount)
 {
     if (methods.count(mname) == 0) return false;
 
@@ -2320,7 +2293,7 @@ bool ObjPromise::invokeMethod(const std::string& mname, int argCount)
     return false;
 }
 
-Value ObjPromise::getProperty(const std::string& pname)
+Value ObjCoro::getProperty(const std::string& pname)
 {
     if (methods.count(pname) ) 
 	{
@@ -2331,17 +2304,21 @@ Value ObjPromise::getProperty(const std::string& pname)
     return fields[pname];
 }
 
-void ObjPromise::setProperty(const std::string& / * key * /, Value / * val * /)
+void ObjCoro::setProperty(const std::string& key, Value val )
 {
-//    fields[key] = val;
+    fields[key] = val;
 }
 
 
-void ObjPromise::deleteProperty(const std::string& / * name * /)
+void ObjCoro::deleteProperty(const std::string& name )
 {
+	if(fields.count(name) > 0)
+	{
+		fields.erase(name);
+	}
 }
 
-std::vector<std::string> ObjPromise::keys()
+std::vector<std::string> ObjCoro::keys()
 {
     std::vector<std::string> k;
     for(auto& it : fields)
@@ -2351,35 +2328,19 @@ std::vector<std::string> ObjPromise::keys()
     return k;
 }
 
-const std::string& ObjPromise::toString() const
+const std::string& ObjCoro::toString() const
 {
-    static std::string s( "<Promsie>");
+    static std::string s( "<Coro>");
 	return s;
 }
  
-void ObjPromise::mark_gc()
+void ObjCoro::mark_gc()
 {    
     vm.gc.markMap(fields);
     vm.gc.markMap(methods);
-	if(onResolve)
-	{
-		vm.gc.markObject(onResolve);
-	}
-	if(onReject)
-	{
-		vm.gc.markObject(onReject);
-	}
-	if(chain)
-	{
-		vm.gc.markObject(chain);
-	}
-	if(IS_OBJ(result))
-	{
-		vm.gc.markObject(result.as.obj);
-	}
 }
 
-*/
+
 
 ////////////////////////////////////////////
 

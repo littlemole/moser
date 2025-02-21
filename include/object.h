@@ -632,16 +632,16 @@ public:
 
 
 /*
-    A simple Promise obkect encapsulation std c++ regexes
+    A simple Coro object 
 */
-/*
-class ObjPromise : public ObjBuiltin
+
+class ObjCoro : public ObjBuiltin
 {
 public:
 
-    ObjPromise(VM& v);
+	ObjCoro(VM& v);
 
-    virtual ~ObjPromise() {}
+    virtual ~ObjCoro() {}
     virtual void mark_gc() override;
 
     virtual Value getMethod(const std::string& name) override;
@@ -653,16 +653,13 @@ public:
     virtual std::vector<std::string> keys() override;
 
     virtual const std::string& toString() const override;    
-    virtual std::string type() const override { return "<Promise>>"; }
+    virtual std::string type() const override { return "<Coro>>"; }
 
     virtual void* pointer() override { return this; }
 
     void init();
 
-	Value result;
-	Obj* onResolve = nullptr;
-	Obj* onReject = nullptr;
-	ObjPromise* chain = nullptr;
+	CallFrame* frame = nullptr;
 };
-*/
+
 #endif

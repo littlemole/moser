@@ -20,7 +20,7 @@
 
 Value& CallFrame::arg(VM& vm, int i) 
 { 
-	return vm.stack_at(argBaseIndex+i);
+	return vm.stack_at(i);
 //    return vm.stack[argBaseIndex+i]; 
 //	return vm.peek(vm.stack_size()-argBaseIndex-i);
 }
@@ -37,7 +37,7 @@ Value CallFrame::arguments(VM& vm)
 	*/
     for(int i = 0; i < argCount; i++)
     {
-		array->add( vm.stack_at(argBaseIndex+1));
+		array->add( vm.stack_at(1));
     //    array->add( *(&vm.stack.back() -argc  +i) );
     }
 /*
@@ -67,7 +67,7 @@ VM::VM() : gc(*this)
     init_stdlib(*this);
 
 	frames.push_back(
-		CallFrame()
+		new CallFrame()
 	);
 }
 
@@ -164,7 +164,7 @@ InterpretResult VM::execute(const std::string& path)
     run();
     if(frames.empty()) return InterpretResult::INTERPRET_OK;
 
-    InterpretResult r = frames.back().exitCode;
+    InterpretResult r = frames.back()->exitCode;
     return r;
 }
 
@@ -194,13 +194,13 @@ InterpretResult VM::interpret(const std::string& bytes)
         call(closure, 0);    
     }
     if(ip)
-        frames.back().ip = &frames.back().closure->function->chunk.code[ip];
+        frames.back()->ip = &frames.back()->closure->function->chunk.code[ip];
     //unused: Value result = 
     run();
     pop();
     if(frames.empty()) return InterpretResult::INTERPRET_OK;
 
-    InterpretResult r = frames.back().exitCode;
+    InterpretResult r = frames.back()->exitCode;
     return r;
 }
 
@@ -214,7 +214,7 @@ InterpretResult VM::debug(const std::string& path)
 void VM::step()
 {
     if(frames.empty()) return;
-    CallFrame* frame = &frames.back();
+    CallFrame* frame = frames.back();
 
     int offset = (int)(frame->ip - &frame->closure->function->chunk.code[0]);
 
@@ -285,7 +285,7 @@ void VM::step()
                 if(!stack.empty())
                 {
                     printf("      ");
-                    Value* slot = &stack[frame->argBaseIndex];
+                    Value* slot = &stack[0];
                     for ( ; slot - &stack[0] < (int) stack.size(); slot++)
                     {
                         printf("[ ");
@@ -305,7 +305,7 @@ void VM::step()
                 auto v = split(l," ");
                 if(v.size() != 2 ) continue;
 
-                Value& value = stack[frame->argBaseIndex + atoi(v[1].c_str()) ];
+                Value& value = stack[atoi(v[1].c_str()) ];
 
                 printf("%i | %s\r\n", (int)value.type, value.to_string().c_str());
 
@@ -316,7 +316,7 @@ void VM::step()
                 auto v = split(l," ");
                 if(v.size() != 3 ) continue;
 
-                Value value = stack[frame->argBaseIndex + atoi(v[1].c_str()) ];
+                Value value = stack[atoi(v[1].c_str()) ];
                 std::string g = trim(v[2]);
 
                 globals[g] = value;
@@ -393,7 +393,7 @@ Value VM::eval(const std::string& src)
         call(closure,0);
     }
 
-    frames.back().returnToCallerOnReturn = true;
+    frames.back()->returnToCallerOnReturn = true;
     Value r = run();
     if(!pendingEx.empty())
     {
@@ -444,7 +444,7 @@ static Value meta(Value& value)
 
 int VM::unwind()
 {
-    CallFrame* frame = &frames.back();
+    CallFrame* frame = frames.back();
 
     Value result;
 	if(!frame->stack.empty())
@@ -464,7 +464,7 @@ int VM::unwind()
 	// 	st[st.size()-1-argc+i] = frame->stack[i];
 	// }
 //	printf("unwind\n");
-    closeUpvalues(&frame->stack[frame->argBaseIndex]);
+    closeUpvalues(&frame->stack[0]);
 
 //	closeUpvalues(&(frames[frames.size()-2].stack[0]));
 
@@ -473,6 +473,7 @@ int VM::unwind()
 //	int argc = frame->argCount;
 
 	frames.pop_back();
+	delete frame;
 	
 	for(int i = 0; i < argc+1; i++)
 	{
@@ -503,7 +504,7 @@ Value VM::run()
 
     if(frames.empty()) return NIL_VAL;
 
-    CallFrame* frame = &frames.back();
+    CallFrame* frame = frames.back();
 
     DEBUG_TRACE_EXECUTION_PREAMBLE
 
@@ -558,7 +559,7 @@ Value VM::run()
                 //unused: Value val = 
                 peek(0);
                 //stack[frame->argBaseIndex+slot] = peek(0);
-                top_frame().stack[top_frame().argBaseIndex+slot] = peek(0);
+                top_frame().stack[slot] = peek(0);
                 break;
             }        
             case OpCode::OP_GET_UPVALUE: 
@@ -808,7 +809,7 @@ Value VM::run()
                 {
                     return runtimeError("unhandled exception\n");
                 }
-                frame = &frames.back();
+                frame = frames.back();
                 break;
             }
             case OpCode::OP_FINALLY:
@@ -822,7 +823,7 @@ Value VM::run()
                     {
                         return runtimeError("unhandled exception\n");
                     }
-                    frame = &frames.back();
+                    frame = frames.back();
                 }
                 if(!pendingRet.empty())
                 {
@@ -830,7 +831,7 @@ Value VM::run()
                     pendingRet.clear();
                     Value r;
                     bool bailOut = doReturn(r);
-                    frame = &frames.back();
+                    frame = frames.back();
                     if(bailOut) return r;
                 }
                 break;
@@ -846,7 +847,7 @@ Value VM::run()
                     return r;
                 } 
 
-                frame = &frames.back();
+                frame = frames.back();
 
                 break;
             }
@@ -861,7 +862,7 @@ Value VM::run()
                 callee.as.obj->callValue(argCount);
 
                 if(frames.empty()) return peek(0);
-                frame = &frames.back();
+                frame = frames.back();
 
                 break;
             }        
@@ -887,7 +888,7 @@ Value VM::run()
                     }
                 }
                 if(frames.empty()) return peek(0);
-                frame = &frames.back();
+                frame = frames.back();
                 break;
             }           
             case OpCode::OP_CLOSURE: 
@@ -905,7 +906,7 @@ Value VM::run()
 //						printf("local: %i\n",index);
                         //closure->upvalues[i] = captureUpvalue(&stack[frame->argBaseIndex + index]);
 //						frame->stack[frame->argBaseIndex + index].print();
-						closure->upvalues[i] = captureUpvalue(&frame->stack[frame->argBaseIndex + index]);
+						closure->upvalues[i] = captureUpvalue(&frame->stack[index]);
 					} 
                     else 
                     {
@@ -1216,12 +1217,10 @@ bool VM::call(ObjClosure* closure, int argCount)
         exit(27);
     }    
 
-    auto f =  CallFrame{ 
+    auto f =  new CallFrame{ 
         closure, 
 		closure->function->arity(), //argCount,
-        &closure->function->chunk.code[0],
-		0
-//        (int)(stack.size() - argCount - 1)
+        &closure->function->chunk.code[0]
     };
 
 	if(!frames.empty())
@@ -1230,7 +1229,7 @@ bool VM::call(ObjClosure* closure, int argCount)
         for( int i = closure->function->arity(); i <argCount; i++ )
         {
             int index = (int) top_frame().stack.size()-argCount + i;
-            f.varargs.push_back(top_frame().stack[index]);
+            f->varargs.push_back(top_frame().stack[index]);
         }
         for( int i = closure->function->arity(); i <argCount; i++ )
         {
@@ -1243,12 +1242,12 @@ bool VM::call(ObjClosure* closure, int argCount)
 	{
 //		printf("upfix: %i\n",i);
 		Value& v = top_frame().stack[top_frame().stack.size()-1-closure->function->arity()+i];
-		f.stack.push_back(v);
+		f->stack.push_back(v);
 
 	}
 
 
-    frames.push_back( std::move(f) );
+    frames.push_back(f);
 
     return true;
 }
@@ -1257,7 +1256,7 @@ bool VM::call(ObjClosure* closure, int argCount)
 bool VM::doReturn(Value& result)
 {
     bool bailOut = false;
-    CallFrame* frame = &frames.back();
+    CallFrame* frame = frames.back();
 
     if(!pendingEx.empty())
     {
@@ -1299,7 +1298,7 @@ bool VM::doReturn(Value& result)
 // return true if unhandled exception
 bool VM::doThrow()
 {
-    CallFrame* frame = &frames.back();
+    CallFrame* frame = frames.back();
 
     if(exHandlers.empty())
     {
@@ -1317,7 +1316,7 @@ bool VM::doThrow()
             return true;
         }
 
-        frame = &frames.back();
+        frame = frames.back();
 
         if(frame->returnToCallerOnReturn)
         {
@@ -1527,7 +1526,7 @@ Value VM::runtimeError( const char* format, ...)
     int s = (int)frames.size();
     for (int i = s - 1; i > 0; i--) 
     {
-        CallFrame* frame = &frames[i];
+        CallFrame* frame = frames[i];
         ObjFunction* function = frame->closure->function;
         size_t instruction = frame->ip - &function->chunk.code[0] - 1;
         fprintf(stderr, "[line %d] in ", function->chunk.lines[instruction]);
@@ -1542,7 +1541,7 @@ Value VM::runtimeError( const char* format, ...)
 
     if(!frames.empty())
     {
-        CallFrame* frame = &frames.back();
+        CallFrame* frame = frames.back();
         frame->exitCode = InterpretResult::INTERPRET_RUNTIME_ERROR;
     }
 
@@ -1563,9 +1562,9 @@ void VM::markRoots()
 
     for (size_t i = 0; i < frames.size(); i++) 
     {
-        gc.markObject((Obj*)frames[i].closure);
-        gc.markArray(frames[i].varargs);
-        gc.markArray(frames[i].stack);
+        gc.markObject((Obj*)frames[i]->closure);
+        gc.markArray(frames[i]->varargs);
+        gc.markArray(frames[i]->stack);
     }
 
     for( auto& it : openUpvalues)
