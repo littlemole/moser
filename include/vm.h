@@ -13,6 +13,7 @@
 
 class CallFrame;
 
+/*
 class ValueOrPtr
 {
 public:
@@ -46,7 +47,7 @@ private:
 	int index = 0;
 	Value value;
 };
-
+*/
 class CallFrame 
 {
 public:

@@ -451,7 +451,7 @@ int VM::unwind()
 	{
 		result = pop();
 	}
-	int argc = frame->argCount;
+//	int argc = frame->argCount;
 
     if(frames.size() < 2)
     {
@@ -474,12 +474,12 @@ int VM::unwind()
 
 	frames.pop_back();
 	delete frame;
-	
+	/*
 	for(int i = 0; i < argc+1; i++)
 	{
 		pop();
 	}
-
+*/
     push(result);
     return (int)frames.size();
 }
@@ -1246,7 +1246,10 @@ bool VM::call(ObjClosure* closure, int argCount)
 
 	}
 
-
+	for( int i = 0; i < closure->function->arity()+1; i++)
+	{
+		pop();
+	}
     frames.push_back(f);
 
     return true;
