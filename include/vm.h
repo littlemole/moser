@@ -31,7 +31,7 @@ public:
     CallFrame(ObjClosure* c, int argc, uint8_t* p)
     : closure(c), argCount(argc) , ip(p)
     {
-//		stack.reserve(1024);
+		stack.reserve(32);
 	}
 	CallFrame(const CallFrame& rhs) = delete;
 

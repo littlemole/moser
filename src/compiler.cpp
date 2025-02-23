@@ -403,24 +403,31 @@ void Compiler::classDeclaration()
         {
             metaDeclaration();
         }
+		
+		bool async = false;
+		if(parser->match(TokenType::ASYNC)) 
+		{
+			async = true;
+		}
+
         if( (parser->current.type == TokenType::IDENTIFIER) && (parser->current.str() == "get"))
         {
             parser->consume(TokenType::IDENTIFIER,"getter");
-            method(OpCode::OP_GETTER);
+            method(OpCode::OP_GETTER,async);
         }
         else if((parser->current.type == TokenType::IDENTIFIER) && (parser->current.str() == "set"))
         {
             parser->consume(TokenType::IDENTIFIER,"setter");
-            method(OpCode::OP_SETTER);
+            method(OpCode::OP_SETTER,async);
         }
         else if(parser->current.type == TokenType::STATIC )
         {
             parser->consume(TokenType::STATIC,"static");
-            method(OpCode::OP_STATIC_METHOD);
+            method(OpCode::OP_STATIC_METHOD,async);
         }
         else 
         {
-            method(OpCode::OP_METHOD);
+            method(OpCode::OP_METHOD,async);
         }
     }    
     parser->consume(TokenType::RIGHT_BRACE, "Expect '}' after class body.");
@@ -1366,7 +1373,7 @@ void Compiler::parseFunction(FunctionType typ, bool async)
 
 }
 
-void Compiler::method(OpCode op) 
+void Compiler::method(OpCode op, bool async) 
 {
     bool dtor = false;
     if(parser->match(TokenType::TILDE))
@@ -1409,7 +1416,7 @@ void Compiler::method(OpCode op)
             parser->errorAtCurrent("destructor must have class name.");
         }
     }
-    parseFunction(typ,false);    
+    parseFunction(typ,async);    
     emitBytes(op, constant);
 }
 

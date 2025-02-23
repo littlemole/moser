@@ -153,7 +153,7 @@ private:
     void patchLoop(int offset, int dest);
 
     void parseFunction(FunctionType type, bool async);
-    void method(OpCode op);
+    void method(OpCode op, bool async);
     cindex_t argumentList();    
 
     cindex_t parseVariable(const char* errorMessage);
