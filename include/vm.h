@@ -48,6 +48,14 @@ private:
 	Value value;
 };
 */
+
+struct ExceptionHandler 
+{
+	CallFrame* frame = nullptr;
+    ptrdiff_t offset = 0;
+    ptrdiff_t finalizer = 0;
+};
+
 class CallFrame 
 {
 public:
@@ -72,13 +80,17 @@ public:
 		rhs.stack.clear();
 	}
 
-	Obj* future = nullptr;
+	Obj* future_result = nullptr;
+	Obj* future_prending = nullptr;
     ObjClosure* closure = nullptr;
 	int argCount = 0;
     uint8_t* ip = nullptr;
 	bool returnToCallerOnReturn = false;
     std::vector<Value> varargs;
 	std::vector<Value> stack;
+	std::vector<Value> pendingEx;
+	std::vector<Value> pendingRet;
+	std::vector<ExceptionHandler> exHandlers;
 
 	InterpretResult exitCode = InterpretResult::INTERPRET_OK;
 
@@ -86,12 +98,6 @@ public:
 	Value arguments(VM& vm) ;
 };
 
-struct ExceptionHandler 
-{
-    size_t frameIndex = 0;
-    ptrdiff_t offset = 0;
-    ptrdiff_t finalizer = 0;
-};
 
 enum CO_INIT {
     CO_INIT_NONE  = 0,
@@ -119,13 +125,14 @@ private:
 std::list<ObjUpvalue*> openUpvalues;
 
 	std::vector<Value> stack;
-	std::vector<CallFrame*> frames;
-	std::vector<ExceptionHandler> exHandlers;
 	std::list<Obj*> objects;
 	std::vector<Obj*>grayStack;
-	std::vector<Value> pendingEx;
-    std::vector<Value> pendingRet;
+//	std::vector<Value> pendingEx;
+//    std::vector<Value> pendingRet;
 public:
+
+std::set<CallFrame*> pendingCoroutines;
+std::vector<CallFrame*> frames;
 
     InterpretResult interpret(const std::string& source);
     InterpretResult compile(const std::string& source, bool persist = false);
@@ -144,6 +151,7 @@ public:
     Value& peek(int distance);
 	Value& stack_at(int idx);
 	void poke(int distance, const Value& v);
+    bool doThrow();
 
     Value eval(const std::string& src);
 
@@ -228,11 +236,11 @@ public:
 	inline CallFrame& top_frame() {
 		return *(frames.back());
 	}
-
+/*
 	inline size_t stack_size() {
 		return stack.size();
 	}
-
+*/
 	std::vector<std::string> include_path;
 
 #ifdef _WIN32
@@ -259,13 +267,12 @@ private:
     void defineGetter(ObjString* name);    
     void defineSetter(ObjString* name);    
 
-    void resetStack();
+//    void resetStack();
 
     void concatenate();
     int unwind();
 
     bool doReturn(Value& result);
-    bool doThrow();
 
     inline uint8_t read_byte()
     {

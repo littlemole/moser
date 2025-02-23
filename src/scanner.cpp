@@ -186,7 +186,19 @@ TokenType Scanner::identifierType()
 {
     switch (start[0]) 
     {
-        case 'a': return checkKeyword(1, 2, "nd", TokenType::AND);
+        case 'a': 
+		{
+	    	if (current - start > 1) 
+			{
+				switch(start[1])
+				{
+					case 'n' : return checkKeyword(2, 1, "d", TokenType::AND);
+					case 'w' : return checkKeyword(2, 3, "ait", TokenType::CO_AWAIT);
+					case 's' : return checkKeyword(2, 3, "ync", TokenType::ASYNC);
+				}
+			}
+			break;
+		}
         case 'b': return checkKeyword(1, 4, "reak", TokenType::BREAK);
         case 'c': 
         {

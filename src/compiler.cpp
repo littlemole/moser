@@ -9,7 +9,7 @@ ClassCompiler* currentClass = nullptr;
 
 Compiler::Compiler(VM& v) : vm(v), type(FunctionType::TYPE_SCRIPT)
 {
-    function = new ObjFunction(vm, nullptr,0);
+    function = new ObjFunction(vm, nullptr,0,0,false);
 
     if (type != FunctionType::TYPE_FUNCTION) 
     {
@@ -33,10 +33,10 @@ Compiler::Compiler(VM& v) : vm(v), type(FunctionType::TYPE_SCRIPT)
     currentCompiler = this;
 }
 
-Compiler::Compiler(VM& v, Compiler* parent,FunctionType ft)
+Compiler::Compiler(VM& v, Compiler* parent,FunctionType ft, bool async)
     : vm(v), enclosing(parent), type(ft)
 {
-    function = new ObjFunction(vm,nullptr,0);
+    function = new ObjFunction(vm,nullptr,0,0,async);
 
     filename = enclosing->filename;
     function->chunk.filename = filename;
@@ -51,17 +51,17 @@ Compiler::Compiler(VM& v, Compiler* parent,FunctionType ft)
     currentCompiler = this;
 }
 
-Compiler::Compiler(VM& v, Compiler* parent,FunctionType ft, Scanner* s, Parser* p) 
+Compiler::Compiler(VM& v, Compiler* parent,FunctionType ft, Scanner* s, Parser* p, bool async) 
     : vm(v), enclosing(parent), type(ft), scanner(s), parser(p)
 {
     if (type != FunctionType::TYPE_SCRIPT) 
     {
         auto name = new ObjString(vm, parser->previous.str());
-        function = new ObjFunction(vm, name,0);
+        function = new ObjFunction(vm, name,0,0,async);
     }
     else
     {
-        function = new ObjFunction(vm, nullptr,0);
+        function = new ObjFunction(vm, nullptr,0,0,false);
     }
 
     filename = enclosing->filename;
@@ -149,6 +149,10 @@ void Compiler::declaration()
     else if (parser->match(TokenType::EXTERN)) 
     {
         externDeclaration();
+    } 
+    else if (parser->match(TokenType::ASYNC)) 
+    {
+        asyncDeclaration();
     } 
     else 
     {
@@ -429,11 +433,21 @@ void Compiler::classDeclaration()
     currentClass = currentClass->enclosing;
 }
 
+void Compiler::asyncDeclaration() 
+{
+	parser->consume(TokenType::FUN, "Expect fun after async.");
+
+    cindex_t global = parseVariable("Expect function name.");
+    markInitialized();
+    parseFunction(FunctionType::TYPE_FUNCTION, true);
+    defineVariable(global);
+}
+
 void Compiler::funDeclaration() 
 {
     cindex_t global = parseVariable("Expect function name.");
     markInitialized();
-    parseFunction(FunctionType::TYPE_FUNCTION);
+    parseFunction(FunctionType::TYPE_FUNCTION,false);
     defineVariable(global);
 }
 
@@ -1282,9 +1296,9 @@ cindex_t Compiler::parseVariable(const char* errorMessage)
     return id;
 }
 
-void Compiler::parseFunction(FunctionType typ) 
+void Compiler::parseFunction(FunctionType typ, bool async) 
 {
-    Compiler compiler(vm,this,typ,scanner,parser);
+    Compiler compiler(vm,this,typ,scanner,parser,async);
     
     compiler.beginScope(); 
 
@@ -1395,7 +1409,7 @@ void Compiler::method(OpCode op)
             parser->errorAtCurrent("destructor must have class name.");
         }
     }
-    parseFunction(typ);    
+    parseFunction(typ,false);    
     emitBytes(op, constant);
 }
 
@@ -1727,7 +1741,7 @@ void Compiler::mapAccess(bool canAssign)
 
 void Compiler::funExpression(bool /* canAssign */)
 {
-    parseFunction(FunctionType::TYPE_FUNCTION);
+    parseFunction(FunctionType::TYPE_FUNCTION,false);
 }
 
 
@@ -1793,6 +1807,7 @@ void Compiler::unary(bool)
         case TokenType::BANG: emitByte(OpCode::OP_NOT); break;        
         case TokenType::MINUS: emitByte(OpCode::OP_NEGATE); break;
         case TokenType::TILDE: emitByte(OpCode::OP_BIN_NEGATE); break;
+        case TokenType::CO_AWAIT: emitByte(OpCode::OP_CO_AWAIT); break;
         default: 
             return; // Unreachable.
     }
@@ -1823,7 +1838,7 @@ void Compiler::binary(bool)
         case TokenType::BIN_OR:        emitByte(OpCode::OP_BIN_OR); break;                
         case TokenType::SHIFT_LEFT:    emitByte(OpCode::OP_SHIFT_LEFT); break;                
         case TokenType::SHIFT_RIGHT:   emitByte(OpCode::OP_SHIFT_RIGHT); break;                
-        case TokenType::ISA:           emitByte(OpCode::OP_ISA); break;                
+        case TokenType::ISA:           emitByte(OpCode::OP_ISA); break;                     
         case TokenType::PLUS_EQUAL: 
         {
             printf("HERE");

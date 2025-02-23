@@ -749,7 +749,7 @@ Value evalNative(VM& vm, int argCount, Value* args)
 
 	{
 		GC::Lock lock(vm);
-		Compiler compiler(vm, vm.compiler,FunctionType::TYPE_FUNCTION);
+		Compiler compiler(vm, vm.compiler,FunctionType::TYPE_FUNCTION,false);
 
 		function = compiler.compile(compiler.filename.c_str(),str.c_str());
 		vm.push(function);
@@ -885,7 +885,7 @@ Value importNative(VM& vm, int argCount, Value* args)
     else
     {
         GC::Lock lock(vm);
-        Compiler compiler(vm,vm.compiler,FunctionType::TYPE_FUNCTION);
+        Compiler compiler(vm,vm.compiler,FunctionType::TYPE_FUNCTION,false);
 
         function = compiler.compile(file.c_str(),content.c_str());
         vm.push(function);

@@ -11,7 +11,7 @@ class Future
 			this.result = result; 
 			if(this.coro)
 			{
-				this.core.resume(1,this.result);
+				this.coro.resume(1,this.result);
 				this.result = nil;
 			}
 		};
@@ -20,7 +20,7 @@ class Future
 			this.error = e; 
 			if(this.coro)
 			{
-				this.core.resume(0,this.error);
+				this.coro.resume(0,this.error);
 				this.error = nil;
 			}			
 		};
@@ -56,6 +56,13 @@ class Future
         this.onResolve = fun()
         {
             var args = arguments();
+		    if(this.coro)
+	    	{
+				this.coro.resume(1,args[0]);
+				this.result = nil;
+				return;
+	    	}
+
             var r = runtime.invoke(cb,args);
             if( r{"then"} == nil )
             {
@@ -76,6 +83,12 @@ class Future
 
         this.onError = fun()
         {
+			if(this.coro)
+			{
+				this.coro.resume(0,this.error);
+				this.error = nil;
+				return;
+			}			
             var args = arguments();
             runtime.invoke(f.reject,args);
         };

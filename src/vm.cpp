@@ -28,24 +28,12 @@ Value& CallFrame::arg(VM& vm, int i)
 Value CallFrame::arguments(VM& vm) 
 {
 	auto array = new ObjArray(vm);
-/*
-	int argc = 0;
-    int slot = argBaseIndex;
-    argc = (int)vm.stack.size()-1-slot-1;
 
-	printf("argc %i =?= %i\n",argc,argCount);
-	*/
-    for(int i = 0; i < argCount; i++)
+	for(int i = 0; i < argCount; i++)
     {
 		array->add( vm.stack_at(1));
-    //    array->add( *(&vm.stack.back() -argc  +i) );
     }
-/*
-	for(int i = 0; i < argCount; i++)
-	{
-		array->add( vm.stack_at(argBaseIndex+i));
-	}
-*/
+
 	if(!varargs.empty())
 	{
 		for( size_t i = 0; i < varargs.size(); i++)
@@ -61,7 +49,7 @@ VM::VM() : gc(*this)
 {
     compiler = new Compiler(*this);
 
-    stack.reserve(1024);
+    //stack.reserve(1024);
     frames.reserve(256);
 
     init_stdlib(*this);
@@ -73,7 +61,7 @@ VM::VM() : gc(*this)
 
 VM::~VM()
 {
-	stack.clear();
+//	stack.clear();
 
 #ifdef _WIN32
     if (coinit & CO_INIT_WINRT)
@@ -215,6 +203,7 @@ void VM::step()
 {
     if(frames.empty()) return;
     CallFrame* frame = frames.back();
+	std::vector<Value>& stack = frame->stack;
 
     int offset = (int)(frame->ip - &frame->closure->function->chunk.code[0]);
 
@@ -379,7 +368,7 @@ Value VM::eval(const std::string& src)
 
 	{
 		GC::Lock lock(*this);
-		Compiler mycompiler(*this, this->compiler,FunctionType::TYPE_FUNCTION);
+		Compiler mycompiler(*this, this->compiler,FunctionType::TYPE_FUNCTION,false);
 
 		function = mycompiler.compile(mycompiler.filename.c_str(),src.c_str());
 		push(function);
@@ -395,9 +384,9 @@ Value VM::eval(const std::string& src)
 
     frames.back()->returnToCallerOnReturn = true;
     Value r = run();
-    if(!pendingEx.empty())
+    if(!frames.back()->pendingEx.empty())
     {
-        pendingEx.back().print();
+        frames.back()->pendingEx.back().print();
         printf("unhandlex exception");
 		return NIL_VAL;
     }
@@ -451,36 +440,68 @@ int VM::unwind()
 	{
 		result = pop();
 	}
-//	int argc = frame->argCount;
 
     if(frames.size() < 2)
     {
         return 0;
     }
 
-	// for(int i = 0; i < argc+1; i++)
-	// {
-	// 	auto& st = frames[frames.size()-2].stack;
-	// 	st[st.size()-1-argc+i] = frame->stack[i];
-	// }
-//	printf("unwind\n");
     closeUpvalues(&frame->stack[0]);
 
-//	closeUpvalues(&(frames[frames.size()-2].stack[0]));
+	if(frame->closure->function->isAsync())
+	{
+		if(frame->future_result == 0)
+		{
+			stack.push_back(result);
+			Value futureClass = globals["Future"];
+			push(futureClass);
+			ObjClass* clazz = as<ObjClass>(futureClass);
+			if(clazz)
+			{
+				clazz->callValue(0);
+				Value future = peek(0);
+				stack.push_back(future);
+				frame->future_result = future.as.obj;
+				ObjInstance* f = as<ObjInstance>(future);
+				if(f)
+				{	
+					push(result);
+					f->invokeMethod("resolve",1);
+					top_frame().returnToCallerOnReturn = true;
+					run();
+					pop();
+					result = future;
+				}
+				stack.pop_back();
+			}
+			stack.pop_back();
+		}
+		else		
+		{
+			stack.push_back(result);
 
+			Obj* future = frame->future_result;
+			stack.push_back(future);
+			ObjInstance* f = as<ObjInstance>(future);
+			if(f)
+			{	
+				push(result);
+				f->invokeMethod("resolve",1);
+				top_frame().returnToCallerOnReturn = true;
+				run();
+				pop();
+				result = future;
+			}
 
-
-//	int argc = frame->argCount;
+			stack.pop_back();
+			stack.pop_back();
+		}
+	}
 
 	frames.pop_back();
 	delete frame;
-	/*
-	for(int i = 0; i < argc+1; i++)
-	{
-		pop();
-	}
-*/
-    push(result);
+
+	push(result);
     return (int)frames.size();
 }
 
@@ -794,12 +815,12 @@ Value VM::run()
                 ptrdiff_t cur = frame->ip - &frame->closure->function->chunk.code[0];
                 ptrdiff_t try_offset = offset == 0xFFFF ? 0 : offset + cur;
                 ptrdiff_t fin_offset = finalizer == 0xFFFF ? 0 : finalizer + cur;
-                exHandlers.push_back(ExceptionHandler{ frames.size()-1, try_offset, fin_offset });
+                frame->exHandlers.push_back(ExceptionHandler{ &top_frame(), try_offset, fin_offset });
                 break; 
             }
             case OpCode::OP_TRY_END:
             {
-                exHandlers.pop_back();
+                frame->exHandlers.pop_back();
                 break;
             }
             case OpCode::OP_THROW:
@@ -814,10 +835,10 @@ Value VM::run()
             }
             case OpCode::OP_FINALLY:
             {
-                if(!pendingEx.empty())
+                if(!frame->pendingEx.empty())
                 {
-                    push(pendingEx.back());
-                    pendingEx.clear();
+                    push(frame->pendingEx.back());
+                    frame->pendingEx.clear();
                     bool unHandledEx = doThrow();
                     if(unHandledEx)
                     {
@@ -825,10 +846,10 @@ Value VM::run()
                     }
                     frame = frames.back();
                 }
-                if(!pendingRet.empty())
+                if(!frame->pendingRet.empty())
                 {
-                    push(pendingRet.back());
-                    pendingRet.clear();
+                    push(frame->pendingRet.back());
+                    frame->pendingRet.clear();
                     Value r;
                     bool bailOut = doReturn(r);
                     frame = frames.back();
@@ -903,14 +924,10 @@ Value VM::run()
                     uint16_t index = read_short();
                     if (isLocal) 
                     {
-//						printf("local: %i\n",index);
-                        //closure->upvalues[i] = captureUpvalue(&stack[frame->argBaseIndex + index]);
-//						frame->stack[frame->argBaseIndex + index].print();
 						closure->upvalues[i] = captureUpvalue(&frame->stack[index]);
 					} 
                     else 
                     {
-//						printf("nonlocal: %i\n",index);
                         closure->upvalues[i] = frame->closure->upvalues[index];
                     }                
                 }            
@@ -918,17 +935,7 @@ Value VM::run()
             }      
             case OpCode::OP_CLOSE_UPVALUE:
 			{
-//				printf("op_close_upvalue\n");
                 closeUpvalues( &frame->stack[frame->stack.size()-1] );
-//				ObjUpvalue* upvalue = openUpvalues.front();
-//				printf("close1: %lu \n", (size_t)upvalue->pointer());
-//				((Value*)(upvalue->pointer()))->print();
-//				printf("close1: \n");
-
-//				upvalue->closed = *(upvalue->location);
-//				upvalue->location = &upvalue->closed;
-//				openUpvalues.pop_front();
-
                 pop();
                 break;       
 			}
@@ -1177,6 +1184,36 @@ Value VM::run()
                 pop();
                 break;
             }
+			case OpCode::OP_CO_AWAIT:
+			{
+				Value future = pop();
+				auto coro = new ObjCoro(*this);
+				coro->frame = &top_frame();
+				coro->frame->future_prending = future.as.obj;
+				ObjInstance* f = as<ObjInstance>(future);
+				if(f)
+				{
+					f->setProperty("coro",coro);
+				}
+				
+				Value futureClass = globals["Future"];
+				push(futureClass);
+
+				ObjClass* clazz = as<ObjClass>(futureClass);
+				if(clazz)
+				{
+					clazz->callValue(0);
+					Value future = pop();
+					frame->future_result = future.as.obj;
+
+					pendingCoroutines.insert(coro->frame);
+					frames.pop_back();
+					push(future);
+				}
+
+                frame = frames.back();
+				break;
+			}
         }
         if (allocations > nextGC) 
         {
@@ -1240,10 +1277,8 @@ bool VM::call(ObjClosure* closure, int argCount)
 	if(!frames.empty())
 	for( int i = 0; i < closure->function->arity()+1; i++)
 	{
-//		printf("upfix: %i\n",i);
 		Value& v = top_frame().stack[top_frame().stack.size()-1-closure->function->arity()+i];
 		f->stack.push_back(v);
-
 	}
 
 	for( int i = 0; i < closure->function->arity()+1; i++)
@@ -1261,24 +1296,24 @@ bool VM::doReturn(Value& result)
     bool bailOut = false;
     CallFrame* frame = frames.back();
 
-    if(!pendingEx.empty())
+    if(!frame->pendingEx.empty())
     {
         // cannot return, rethrow
-        push(pendingEx.back());
-        pendingEx.pop_back();
+        push(frame->pendingEx.back());
+        frame->pendingEx.pop_back();
         bool r = doThrow();
         return r;
     }
 
     // check for finalizers to run
 
-    if(!exHandlers.empty() && exHandlers.back().frameIndex == frames.size()-1)
+    if(!frame->exHandlers.empty() && frame->exHandlers.back().frame == frame)
     {
-        pendingRet.clear();
-        pendingRet.push_back(pop());
-        exHandlers.back().offset = 0;
-        frame->ip = &frame->closure->function->chunk.code[exHandlers.back().finalizer];
-        exHandlers.back().finalizer = 0;
+        frame->pendingRet.clear();
+        frame->pendingRet.push_back(pop());
+        frame->exHandlers.back().offset = 0;
+        frame->ip = &frame->closure->function->chunk.code[frame->exHandlers.back().finalizer];
+        frame->exHandlers.back().finalizer = 0;
         return bailOut;
     }
 
@@ -1289,11 +1324,11 @@ bool VM::doReturn(Value& result)
     }
 
     int n = unwind();
-    if(n == 1)
+    if(n < 2)
     {
         bailOut = true;
     }
-    pendingRet.clear();
+    frame->pendingRet.clear();
 
     return bailOut;
 }
@@ -1303,58 +1338,67 @@ bool VM::doThrow()
 {
     CallFrame* frame = frames.back();
 
-    if(exHandlers.empty())
+	if(frame->closure->function->isAsync())
+	{
+		if(frame->exHandlers.empty())
+		{
+			ObjInstance* f = as<ObjInstance>(frame->future_result);
+			if(f)
+			{
+				f->invokeMethod("reject",1);
+			}
+			return false;
+		}	
+	}
+	else 
+	{
+
+		while( frame->exHandlers.empty() )
+		{
+			int n = unwind();
+			if( n < 2)
+			{
+				Value ex = pop();
+				ex.print();
+				return true;
+			}
+
+			frame = frames.back();
+
+			if(frame->returnToCallerOnReturn)
+			{
+				Value ex = pop();
+				frame->pendingEx.clear();
+				frame->pendingRet.clear();
+				frame->pendingEx.push_back(ex);
+				return true;
+			}
+		}
+	}
+
+	Value ex = pop();
+	frame->pendingEx.clear();
+	frame->pendingRet.clear();
+	frame->pendingEx.push_back(ex);
+	
+    if(! frame->exHandlers.empty() )
     {
-        Value ex = pop();
-        ex.print();
-        return true;
-    }
-    while( exHandlers.back().frameIndex != frames.size()-1)
-    {
-        int n = unwind();
-        if( n == 1)
-        {
-            Value ex = pop();
-            ex.print();
-            return true;
-        }
-
-        frame = frames.back();
-
-        if(frame->returnToCallerOnReturn)
-        {
-            Value ex = pop();
-            pendingEx.clear();
-            pendingRet.clear();
-            pendingEx.push_back(ex);
-            return true;
-        }
-    }
-
-    Value ex = pop();
-    pendingEx.clear();
-    pendingRet.clear();
-    pendingEx.push_back(ex);
-
-
-    if(! exHandlers.empty() && exHandlers.back().frameIndex == frames.size()-1)
-    {
-        ptrdiff_t offset = exHandlers.back().offset;
-        ptrdiff_t finalizer = exHandlers.back().finalizer;
+        ptrdiff_t offset = frame->exHandlers.back().offset;
+        ptrdiff_t finalizer = frame->exHandlers.back().finalizer;
 
         if(offset)
         {
-            push(pendingEx.back());
-            pendingEx.clear();
+            push(frame->pendingEx.back());
+            frame->pendingEx.clear();
             frame->ip = &frame->closure->function->chunk.code[offset];
-            exHandlers.back().offset = 0;
+            frame->exHandlers.back().offset = 0;
 
             return false;
         }
         if(finalizer)
         {
             frame->ip = &frame->closure->function->chunk.code[finalizer];
-            exHandlers.back().finalizer = 0;
+            frame->exHandlers.back().finalizer = 0;
 
             return false;
         }
@@ -1366,8 +1410,6 @@ bool VM::doThrow()
 
 ObjUpvalue* VM::captureUpvalue(Value* local) 
 {
-    //auto upvalue = openUpvalues.end();
-
 	for(auto it = openUpvalues.begin(); it != openUpvalues.end(); it++)
 	{
 		if( (*it)->location == local )
@@ -1375,43 +1417,19 @@ ObjUpvalue* VM::captureUpvalue(Value* local)
 			return *it;
 		}
 	}
-	/**
-    while( upvalue != openUpvalues.end() && (*upvalue)->location > local)
-    {
-        upvalue++;
-    }
 
-    if (upvalue != openUpvalues.end() && (*upvalue)->location == local) 
-    {
-        return *upvalue;
-    }    
-	*/
-    ObjUpvalue* createdUpvalue = new ObjUpvalue(*this,&top_frame(),local);
-//    openUpvalues.insert(upvalue,createdUpvalue);
-//printf("create: %i \n", (int)frames.size());
-//local->print();
-//printf("create: %lu \n", (size_t)createdUpvalue->pointer());
-//((Value*)(createdUpvalue->pointer()))->print();
-openUpvalues.push_front(createdUpvalue);
-//printf("create: %i\n", (int)openUpvalues.size());
+	ObjUpvalue* createdUpvalue = new ObjUpvalue(*this,&top_frame(),local);
+	openUpvalues.push_front(createdUpvalue);
     return createdUpvalue;
 }
 
 void VM::closeUpvalues(Value* last ) 
 {
-//	printf("close0: %i \n", (int)frames.size());
-//	printf("close0: %i\n", (int)openUpvalues.size());
-//	printf("close0: %lu\n", (size_t)(void*)last);
-//	last->print();
     while( !openUpvalues.empty() && 
 		openUpvalues.front()->location != last &&
 		openUpvalues.front()->frame == &top_frame() )
     {
         ObjUpvalue* upvalue = openUpvalues.front();
-//		printf("close1: %lu \n", (size_t)upvalue->pointer());
-//		((Value*)(upvalue->pointer()))->print();
-//		printf("close1: \n");
-		
         upvalue->closed = *(upvalue->location);
         upvalue->location = &upvalue->closed;
         openUpvalues.pop_front();
@@ -1421,10 +1439,7 @@ void VM::closeUpvalues(Value* last )
 		openUpvalues.front()->location == last &&
 		openUpvalues.front()->frame == &top_frame() )
     {
-//		printf("!!!\n");
         ObjUpvalue* upvalue = openUpvalues.front();
-//		printf("close3: \n");
-//		((Value*)(upvalue->pointer()))->print();
         upvalue->closed = *(upvalue->location);
         upvalue->location = &upvalue->closed;
         openUpvalues.pop_front();
@@ -1462,11 +1477,12 @@ void VM::defineGetter(ObjString* name)
     klass->defineGetter(name,method);
     pop();
 }
-
+/*
 void VM::resetStack()
 {
     stack.clear();
 }
+	*/
 
 void VM::push(Value value)
 {   
@@ -1548,7 +1564,7 @@ Value VM::runtimeError( const char* format, ...)
         frame->exitCode = InterpretResult::INTERPRET_RUNTIME_ERROR;
     }
 
-    resetStack();
+    //resetStack();
     return NIL_VAL;
 }
 
@@ -1566,8 +1582,18 @@ void VM::markRoots()
     for (size_t i = 0; i < frames.size(); i++) 
     {
         gc.markObject((Obj*)frames[i]->closure);
+		if(frames[i]->future_prending)
+		{
+			gc.markObject(frames[i]->future_prending);
+		}
+		if(frames[i]->future_result)
+		{
+			gc.markObject(frames[i]->future_result);
+		}
         gc.markArray(frames[i]->varargs);
         gc.markArray(frames[i]->stack);
+		gc.markArray(frames[i]->pendingEx);
+		gc.markArray(frames[i]->pendingRet);
     }
 
     for( auto& it : openUpvalues)
@@ -1575,19 +1601,31 @@ void VM::markRoots()
         gc.markObject( it );
     }    
 
-    gc.markArray(pendingEx);
-    gc.markArray(pendingRet);
+	for( auto& it : pendingCoroutines)
+    {
+        gc.markObject((Obj*)it->closure);
+		if(it->future_prending)
+		{
+			gc.markObject(it->future_prending);
+		}
+		if(it->future_result)
+		{
+			gc.markObject(it->future_result);
+		}
+        gc.markArray(it->varargs);
+        gc.markArray(it->stack);
+    }    
 
 }
 
 bool VM::hasException()
 {
-	return pendingEx.size() != 0;
+	return top_frame().pendingEx.size() != 0;
 }
 
 void VM::printPendingException()
 {
-	pendingEx.back().print();
+	top_frame().pendingEx.back().print();
 }
 
 

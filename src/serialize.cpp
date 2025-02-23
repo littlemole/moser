@@ -769,6 +769,8 @@ std::ostream& serialize(std::ostream& os, ObjFunction& fun)
     write(os,cnt);
     int arity = fun.arity();
     write(os,arity);
+	bool async = fun.isAsync();
+	write(os,async);
     serialize(os, fun.chunk);
     serialize(os, fun.metadata);
     return os;
@@ -782,7 +784,9 @@ std::istream& deserialize(VM& vm, std::istream& is, ObjFunction** fun)
     read(is,cnt);
     int arity = 0;
     read(is,arity);
-    ObjFunction* f = new ObjFunction(vm,s,cnt,arity);
+	bool async = false;
+	read(is,async);
+    ObjFunction* f = new ObjFunction(vm,s,cnt,arity,async);
     deserialize(vm, is, f->chunk);
     *fun = f;
     deserialize(vm, is, f->metadata);

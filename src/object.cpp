@@ -311,8 +311,8 @@ const std::string& ObjString::toString() const
     return chars;
 }
 
-ObjFunction::ObjFunction(VM& v, ObjString* n, int cnt, int a) 
-: Obj(v), name_(n), upvalueCount_(cnt), arity_(a)
+ObjFunction::ObjFunction(VM& v, ObjString* n, int cnt, int a, bool async) 
+: Obj(v), name_(n), upvalueCount_(cnt), arity_(a), async_(async)
 {
     if(name_)
     {
@@ -2233,12 +2233,28 @@ Coro - async fun
 
 - operator await
 	- create Coro object, set frame and closure
-	- take returned Future and set Coro
+	- take returned Future and set Coro, keep it on stakc
 	- saves coro frame and pops it
 	- return Future
-- return
-	- resolve the coro future
+- operator return (new: if async!)
+	- resolve the coro future unless
+	- there is pending ex, if so reject 
+	  the coro future 
 	- drop the coro frame and delete it
+
+- operator coro_resume coro	
+	- expects coro and result on stack
+	- restore frame from coro.frame
+	- pop future
+	- push result to coro.frame stack
+	- continue vm
+
+- operator coro_reject coro	
+	- expects coro and exception on stack
+	- restore frame from coro.frame
+	- pop future
+	- push ex to coro.frame stack pending ex
+	- continue vm
 
 */
 
@@ -2247,27 +2263,28 @@ void ObjCoro::init()
 {
     //fields["suffix"] =  new ObjString(vm, "");
 
-    auto resumeFunction = new ObjNativeMethod( vm, 
+	auto resumeFunction = new ObjNativeMethod( vm, 
         [](Value that, const std::string&, int argCount, Value* args) -> Value
         {            
             if(argCount != 2) return NIL_VAL;
+
 			bool isSuccess = args[0].as.boolean;
 			Value& result = args[1];
 
+			ObjCoro* coro = as<ObjCoro>(that);
+
 			if(isSuccess)
-			{
-				result.print();
-				// put coro frame on top
-				// pop future from coro stack
-				// push result to coro stack
-				// increment coro ip ?
-				// resume coro
+			{				
+				coro->vm.pendingCoroutines.erase(coro->frame);
+				coro->vm.frames.push_back(coro->frame);
+				coro->vm.push(result);
 			}
 			else
 			{
-				// put coro on stack
-				// throw exception
-				// resume coro
+				coro->vm.pendingCoroutines.erase(coro->frame);
+				coro->vm.frames.push_back(coro->frame);
+				coro->vm.push(result);
+				coro->vm.doThrow();
 			}
             return that;
         }

@@ -72,6 +72,7 @@ enum class OpCode : uint8_t
     OP_DUP,
     OP_DECORATOR,
     OP_STATIC_METHOD,
+	OP_CO_AWAIT,
 };
 
 /*
