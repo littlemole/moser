@@ -7,11 +7,9 @@ import("promise");
 var loop = g_main_loop_new(nil,0);
 
 
-
-
 fun fetch(session,url) {
 
-    var f = Future();
+    var future = Future();
 
     var msg = soup_message_new(
         "GET", 
@@ -26,7 +24,7 @@ fun fetch(session,url) {
         if ( int(err)) 
         {
             var error = GError(&err);
-            f.reject("Failed to download" +  error.message.string());
+            future.reject("Failed to download" +  error.message.string());
             g_error_free (err);
         }
         else
@@ -39,14 +37,14 @@ fun fetch(session,url) {
             print "Downloaded bytes " + size + " of type " + content_type;
 
             var content = g_bytes_get_data(bytes,nil);
-            f.resolve(content.string());
+            future.resolve(content.string());
 
             g_bytes_unref (bytes);
         }
 	g_object_unref (msg);
     });
 
-    f.cb = cb;
+    future.cb = cb;
 
     soup_session_send_and_read_async(
         session,
@@ -57,7 +55,7 @@ fun fetch(session,url) {
         msg
     );
 
-    return f;
+    return future;
 }
 
 async fun async_fetch(session,url) {

@@ -519,7 +519,7 @@ void ObjClass::mark_gc()
 bool ObjClass::callValue(int argCount)
 {
 //    vm.stack[vm.stack.size()-argCount - 1] = new ObjInstance(vm, this);
-	vm.poke(argCount, Value(new ObjInstance(vm, this)));
+	vm.top_frame().poke(argCount, Value(new ObjInstance(vm, this)));
 
     if(methods.count(name->toString()))
     {
@@ -1667,7 +1667,7 @@ const std::string& ObjBoundMethod::toString() const
 bool ObjBoundMethod::callValue(int argCount)
 {
 //    vm.stack[vm.stack.size()-argCount -1 ] = receiver;                
-	vm.poke(argCount, receiver);                
+	vm.top_frame().poke(argCount, receiver);                
 
     auto closure = as<ObjClosure>(method);
     if(closure)
@@ -2272,20 +2272,7 @@ void ObjCoro::init()
 			Value& result = args[1];
 
 			ObjCoro* coro = as<ObjCoro>(that);
-
-			if(isSuccess)
-			{				
-				coro->vm.pendingCoroutines.erase(coro->frame);
-				coro->vm.frames.push_back(coro->frame);
-				coro->vm.push(result);
-			}
-			else
-			{
-				coro->vm.pendingCoroutines.erase(coro->frame);
-				coro->vm.frames.push_back(coro->frame);
-				coro->vm.push(result);
-				coro->vm.doThrow();
-			}
+			coro->vm.co_resume(coro,result,isSuccess);
             return that;
         }
     );

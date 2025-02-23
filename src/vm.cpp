@@ -80,12 +80,29 @@ int ValueOrPtr::index()
 	return index_;
 }
 
+CallFrame::CallFrame() {};
 
-Value& CallFrame::arg(VM& vm, int i) 
+CallFrame::CallFrame(ObjClosure* c, int argc, uint8_t* p)
+: closure(c), argCount(argc) , ip(p)
+{
+	stack.reserve(32);
+}
+
+CallFrame::CallFrame(CallFrame&& rhs)
+: closure(rhs.closure), argCount(rhs.argCount), ip(rhs.ip), 
+	stack(std::move(rhs.stack))
+{
+	varargs = rhs.varargs;
+	rhs.varargs.clear();
+	rhs.closure=nullptr;
+	rhs.argCount = 0;
+	rhs.ip = 0;
+	rhs.stack.clear();
+}
+
+Value& CallFrame::arg(int i) 
 { 
-	return vm.stack_at(i);
-//    return vm.stack[argBaseIndex+i]; 
-//	return vm.peek(vm.stack_size()-argBaseIndex-i);
+	return stack[i];
 }
 
 Value CallFrame::arguments(VM& vm) 
@@ -94,7 +111,7 @@ Value CallFrame::arguments(VM& vm)
 
 	for(int i = 0; i < argCount; i++)
     {
-		array->add( vm.stack_at(1));
+		array->add( stack[i]);
     }
 
 	if(!varargs.empty())
@@ -106,6 +123,12 @@ Value CallFrame::arguments(VM& vm)
 	}
 
 	return array;
+}
+
+
+void CallFrame::poke(int distance, const Value& v)
+{
+	stack[stack.size()-1-distance] = v;
 }
 
 VM::VM() : gc(*this)
@@ -137,20 +160,6 @@ VM::~VM()
     }
 #endif
 
-}
-
-void VM::freeObjects()
-{
-    gc.shutdown(true);
-
-    gc.finalize();
-    for( auto it = objects.rbegin(); it != objects.rend(); it++)
-    {
-        delete *it;
-    }
-    objects.clear();
-
-    if(compiler) delete compiler;
 }
 
 InterpretResult VM::compile(const std::string& path, bool persist)
@@ -516,27 +525,24 @@ int VM::unwind()
 		if(frame->future_result == 0)
 		{
 			stack.push_back(result);
-			Value futureClass = globals["Future"];
-			push(futureClass);
-			ObjClass* clazz = as<ObjClass>(futureClass);
-			if(clazz)
-			{
-				clazz->callValue(0);
-				Value future = peek(0);
-				stack.push_back(future);
-				frame->future_result = future.as.obj;
-				ObjInstance* f = as<ObjInstance>(future);
-				if(f)
-				{	
-					push(result);
-					f->invokeMethod("resolve",1);
-					top_frame().returnToCallerOnReturn = true;
-					run();
-					pop();
-					result = future;
-				}
-				stack.pop_back();
+
+			make_obj("Future");
+			Value future = peek(0);
+			stack.push_back(future);
+
+			frame->future_result = future.as.obj;
+			ObjInstance* f = as<ObjInstance>(future);
+			if(f)
+			{	
+				push(result);
+				f->invokeMethod("resolve",1);
+				top_frame().returnToCallerOnReturn = true;
+				run();
+				pop();
+				result = future;
 			}
+
+			stack.pop_back();
 			stack.pop_back();
 		}
 		else		
@@ -545,6 +551,7 @@ int VM::unwind()
 
 			Obj* future = frame->future_result;
 			stack.push_back(future);
+
 			ObjInstance* f = as<ObjInstance>(future);
 			if(f)
 			{	
@@ -617,13 +624,13 @@ Value VM::run()
             case OpCode::OP_GET_LOCAL: 
             {
                 uint16_t slot = read_short();
-                push(frame->arg(*this, slot));
+                push(frame->arg(slot));
                 break;
             }        
             case OpCode::OP_GET_LOCAL_ADDR: 
             {
                 uint16_t slot = read_short();
-                push(frame->arg(*this, slot).pointer(*this));
+                push(frame->arg(slot).pointer(*this));
                 break;
             }        
             case OpCode::OP_GET_META: 
@@ -640,9 +647,6 @@ Value VM::run()
             case OpCode::OP_SET_LOCAL: 
             {
                 uint16_t slot = read_short();
-                //unused: Value val = 
-                peek(0);
-                //stack[frame->argBaseIndex+slot] = peek(0);
                 top_frame().stack[slot] = peek(0);
                 break;
             }        
@@ -1258,22 +1262,17 @@ Value VM::run()
 				{
 					f->setProperty("coro",coro);
 				}
-				
-				Value futureClass = globals["Future"];
-				push(futureClass);
 
-				ObjClass* clazz = as<ObjClass>(futureClass);
-				if(clazz)
+				if(frame->future_result == nullptr)
 				{
-					clazz->callValue(0);
-					Value future = pop();
-					frame->future_result = future.as.obj;
-
-					pendingCoroutines.insert(coro->frame);
-					frames.pop_back();
-					push(future);
+					make_obj("Future");
+					Value new_future = pop();
+					frame->future_result = new_future.as.obj;	
 				}
 
+				pendingCoroutines.insert(coro->frame);
+				frames.pop_back();
+				push(frame->future_result);
                 frame = frames.back();
 				break;
 			}
@@ -1323,7 +1322,6 @@ bool VM::call(ObjClosure* closure, int argCount)
         &closure->function->chunk.code[0]
     };
 
-	if(!frames.empty())
     if(argCount > closure->function->arity())
     {
         for( int i = closure->function->arity(); i <argCount; i++ )
@@ -1337,7 +1335,6 @@ bool VM::call(ObjClosure* closure, int argCount)
         }
     }
 
-	if(!frames.empty())
 	for( int i = 0; i < closure->function->arity()+1; i++)
 	{
 		Value& v = top_frame().stack[top_frame().stack.size()-1-closure->function->arity()+i];
@@ -1415,7 +1412,6 @@ bool VM::doThrow()
 	}
 	else 
 	{
-
 		while( frame->exHandlers.empty() )
 		{
 			int n = unwind();
@@ -1567,11 +1563,12 @@ Value& VM::peek(int distance)
     return top_frame().stack[index];
 }
 
+/*
 Value& VM::stack_at(int idx)
 {
 	return top_frame().stack[idx];
 }
-
+*/
 
 void VM::defineNative(const char* name, NativeFn function) 
 {
@@ -1746,9 +1743,4 @@ void VM::finalize()
             object++;
         }
     }
-}
-
-void VM::poke(int distance, const Value& v)
-{
-	top_frame().stack[top_frame().stack.size()-1-distance] = v;
 }

@@ -1,8 +1,9 @@
 import("promise");
 
 var f = Future();
+var f2 = Future();
 
-fun timeout()
+fun timeout(f)
 {
 	print ">timeout";
 	return f;
@@ -12,9 +13,11 @@ async fun test() {
 
 	print ">async"; 
 try {
-	var r = await timeout();
-
-	print ">asnyc";
+	var r = await timeout(f);
+	print ">asnyc1";
+	print r;
+	print ">asnyc2";
+	r = await timeout(f2);
 //throw(r);
 	return r; 
 } catch (e) {
@@ -38,7 +41,11 @@ test()
 
 print ">resolve f";
 
-//f.resolve(42);
-f.reject("error");
+f.resolve(42);
+//f.reject("error");
+
+print ">resolve f2";
+
+f2.resolve(43);
 
 print ">done";

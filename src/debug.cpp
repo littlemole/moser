@@ -161,6 +161,8 @@ size_t disassembleInstruction(Chunk& chunk, size_t offset)
       return simpleInstruction("OP_BIN_NEGATE", offset);     
     case OpCode::OP_PRINT:
       return simpleInstruction("OP_PRINT", offset);    
+	case OpCode::OP_CO_AWAIT:
+      return simpleInstruction("OP_CO_AWAIT", offset);    
     case OpCode::OP_JUMP:
       return jumpInstruction("OP_JUMP", 1, chunk, offset);
     case OpCode::OP_JUMP_IF_FALSE:

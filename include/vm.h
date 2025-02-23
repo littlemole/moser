@@ -13,9 +13,6 @@
 
 class CallFrame;
 
-
-
-
 struct ExceptionHandler 
 {
 	CallFrame* frame = nullptr;
@@ -25,44 +22,36 @@ struct ExceptionHandler
 
 class CallFrame 
 {
+friend class VM;
+friend class ValueOrPtr;
 public:
 
-    CallFrame() {};
-    CallFrame(ObjClosure* c, int argc, uint8_t* p)
-    : closure(c), argCount(argc) , ip(p)
-    {
-		stack.reserve(32);
-	}
+    CallFrame();
+    CallFrame(ObjClosure* c, int argc, uint8_t* p);
+	CallFrame(CallFrame&& rhs);
+
 	CallFrame(const CallFrame& rhs) = delete;
 
-	CallFrame(CallFrame&& rhs)
-    : closure(rhs.closure), argCount(rhs.argCount), ip(rhs.ip), 
-		stack(std::move(rhs.stack))
-	{
-		varargs = rhs.varargs;
-		rhs.varargs.clear();
-		rhs.closure=nullptr;
-		rhs.argCount = 0;
-		rhs.ip = 0;
-		rhs.stack.clear();
-	}
+	InterpretResult exitCode = InterpretResult::INTERPRET_OK;
 
+    Value& arg( int i);
+	Value arguments(VM& vm) ;
+	void poke(int distance, const Value& v);
+
+	bool returnToCallerOnReturn = false;
+
+private:
 	Obj* future_result = nullptr;
 	Obj* future_prending = nullptr;
     ObjClosure* closure = nullptr;
 	int argCount = 0;
     uint8_t* ip = nullptr;
-	bool returnToCallerOnReturn = false;
+
     std::vector<Value> varargs;
 	std::vector<Value> stack;
 	std::vector<Value> pendingEx;
 	std::vector<Value> pendingRet;
 	std::vector<ExceptionHandler> exHandlers;
-
-	InterpretResult exitCode = InterpretResult::INTERPRET_OK;
-
-    Value& arg(VM& vm, int i);
-	Value arguments(VM& vm) ;
 };
 
 
@@ -75,8 +64,6 @@ enum CO_INIT {
 
 class VM
 {
-//friend class Obj;
-//friend class GC;
 public:
     VM();
     ~VM();
@@ -86,46 +73,34 @@ public:
 
     std::unordered_map<std::string,Value> globals;
     std::vector<std::string> cliArgs;
+	std::vector<std::string> include_path;
 
+	InterpretResult interpret(const std::string& source);
+	InterpretResult compile(const std::string& source, bool persist = false);
+	InterpretResult execute(const std::string& bytes);
+	InterpretResult debug(const std::string& path);
 
-private:
-std::list<ObjUpvalue*> openUpvalues;
-
-	std::vector<Value> stack;
-	std::list<Obj*> objects;
-	std::vector<Obj*>grayStack;
-//	std::vector<Value> pendingEx;
-//    std::vector<Value> pendingRet;
-public:
-
-std::set<CallFrame*> pendingCoroutines;
-std::vector<CallFrame*> frames;
-
-    InterpretResult interpret(const std::string& source);
-    InterpretResult compile(const std::string& source, bool persist = false);
-    InterpretResult execute(const std::string& bytes);
-    InterpretResult debug(const std::string& path);
-
-	void markRoots(); 
+	inline CallFrame& top_frame() {
+		return *(frames.back());
+	}
 
 	bool hasException();
 	void printPendingException();
-	void sweep();
-	void finalize();
 
     void push(Value value);
     Value pop();
     Value& peek(int distance);
-	Value& stack_at(int idx);
-	void poke(int distance, const Value& v);
+
+    Value run();
+    int unwind();
     bool doThrow();
+    bool doReturn(Value& result);
+
+    Value runtimeError( const char* format, ...);
 
     Value eval(const std::string& src);
 
     bool call(ObjClosure* closure, int argCount);
-    Value runtimeError( const char* format, ...);
-
-    Value run();
 
     template<class ... Args>
     void make_obj(const std::string& name, Args ... args)
@@ -138,6 +113,7 @@ std::vector<CallFrame*> frames;
         Value clazz = globals[name];
         if(!IS_OBJ(clazz)) return;
 
+		push(clazz);
         Obj* obj = clazz.as.obj;
         std::vector<Value> values{ args... };
         for(auto& v : values)
@@ -148,7 +124,6 @@ std::vector<CallFrame*> frames;
         obj->callValue(values.size());
         // obj now on top of stack
     }
-    void freeObjects();
 
     template<class ... Args>
     Value execute( ObjClosure* f, Args ... args )
@@ -165,9 +140,28 @@ std::vector<CallFrame*> frames;
         return r;
     }
 
+	inline void co_resume(ObjCoro* coro, Value result, bool isSuccess)
+	{
+		pendingCoroutines.erase(coro->frame);
+		frames.push_back(coro->frame);
+		push(result);
+
+		if(!isSuccess)
+		{
+			doThrow();
+		}
+	}
+
+	// compiler interface
+
     void defineNative(const char* name, NativeFn function);
     void defineGlobal(const char* name, Value value);    
 
+
+	// gc interface
+	void markRoots(); 
+	void sweep();
+	void finalize();
 
 	inline void inc_allocations(Obj* obj)
 	{
@@ -200,21 +194,19 @@ std::vector<CallFrame*> frames;
 		}
 	}	
 
-	inline CallFrame& top_frame() {
-		return *(frames.back());
-	}
-/*
-	inline size_t stack_size() {
-		return stack.size();
-	}
-*/
-	std::vector<std::string> include_path;
 
 #ifdef _WIN32
     CO_INIT coinit = CO_INIT_NONE;
 #endif
 
 private:
+
+	std::list<ObjUpvalue*> openUpvalues;
+	std::vector<Value> stack;
+	std::list<Obj*> objects;
+	std::vector<Obj*>grayStack;
+	std::set<CallFrame*> pendingCoroutines;
+	std::vector<CallFrame*> frames;
 
     size_t allocations = 0;
     size_t nextGC = 10;
@@ -237,9 +229,6 @@ private:
 //    void resetStack();
 
     void concatenate();
-    int unwind();
-
-    bool doReturn(Value& result);
 
     inline uint8_t read_byte()
     {
