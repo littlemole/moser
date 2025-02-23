@@ -135,7 +135,6 @@ VM::VM() : gc(*this)
 {
     compiler = new Compiler(*this);
 
-    //stack.reserve(1024);
     frames.reserve(256);
 
     init_stdlib(*this);
@@ -147,8 +146,6 @@ VM::VM() : gc(*this)
 
 VM::~VM()
 {
-//	stack.clear();
-
 #ifdef _WIN32
     if (coinit & CO_INIT_WINRT)
     {
@@ -1563,13 +1560,6 @@ Value& VM::peek(int distance)
     return top_frame().stack[index];
 }
 
-/*
-Value& VM::stack_at(int idx)
-{
-	return top_frame().stack[idx];
-}
-*/
-
 void VM::defineNative(const char* name, NativeFn function) 
 {
     stack.push_back(new ObjString(*this,name, (int)strlen(name)));
@@ -1622,7 +1612,6 @@ Value VM::runtimeError( const char* format, ...)
         frame->exitCode = InterpretResult::INTERPRET_RUNTIME_ERROR;
     }
 
-    //resetStack();
     return NIL_VAL;
 }
 
