@@ -21,7 +21,7 @@ class Obj;
 class ObjString;
 class ObjPointer;
 class Compiler;
-
+class CallFrame;
 
 // string helpers
 std::string trim(const std::string& input);

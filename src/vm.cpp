@@ -17,6 +17,69 @@
 #endif
 
 
+ValueOrPtr::ValueOrPtr( CallFrame* f, int idx)
+: frame(f), index_(idx)
+{}
+
+ValueOrPtr::ValueOrPtr( const Value& v)
+: value(v)
+{}
+
+Value* ValueOrPtr::valuePtr()
+{
+	if(frame != nullptr)
+	{
+		return &frame->stack[index_];
+	}
+	else
+	{
+		return &value;
+	}
+}
+
+Value* ValueOrPtr::operator->()
+{
+	if(frame != nullptr)
+	{
+		return &frame->stack[index_];
+	}
+	else
+	{
+		return &value;
+	}
+}
+
+Value& ValueOrPtr::operator*()
+{
+	if(frame != nullptr)
+	{
+		return frame->stack[index_];
+	}
+	else
+	{
+		return value;
+	}
+}
+
+void ValueOrPtr::close()
+{
+	value = frame->stack[index_];
+	frame = nullptr;
+}
+
+void ValueOrPtr::mark_gc(VM& vm)
+{
+	if(!IS_NIL(value) && IS_OBJ(value))
+	{
+		vm.gc.markObject(value.as.obj);
+	}
+}
+
+int ValueOrPtr::index()
+{
+	return index_;
+}
+
 
 Value& CallFrame::arg(VM& vm, int i) 
 { 
@@ -446,7 +509,7 @@ int VM::unwind()
         return 0;
     }
 
-    closeUpvalues(&frame->stack[0]);
+    closeUpvalues(0);
 
 	if(frame->closure->function->isAsync())
 	{
@@ -586,14 +649,14 @@ Value VM::run()
             case OpCode::OP_GET_UPVALUE: 
             {
                 uint16_t slot = read_short();
-                Value val = *(frame->closure->upvalues[slot]->location);
+                Value val = *(frame->closure->upvalues[slot]->value);
                 push(val);
                 break;
             }        
             case OpCode::OP_SET_UPVALUE: 
             {
                 uint16_t slot = read_short();
-                Value* val = frame->closure->upvalues[slot]->location;
+                Value* val = frame->closure->upvalues[slot]->value.valuePtr();
                 *val = peek(0);
                 break;
             }        
@@ -924,7 +987,7 @@ Value VM::run()
                     uint16_t index = read_short();
                     if (isLocal) 
                     {
-						closure->upvalues[i] = captureUpvalue(&frame->stack[index]);
+						closure->upvalues[i] = captureUpvalue(index);
 					} 
                     else 
                     {
@@ -935,7 +998,7 @@ Value VM::run()
             }      
             case OpCode::OP_CLOSE_UPVALUE:
 			{
-                closeUpvalues( &frame->stack[frame->stack.size()-1] );
+                closeUpvalues( frame->stack.size()-1 );
                 pop();
                 break;       
 			}
@@ -1408,40 +1471,38 @@ bool VM::doThrow()
 }
 
 
-ObjUpvalue* VM::captureUpvalue(Value* local) 
+ObjUpvalue* VM::captureUpvalue(int index) 
 {
 	for(auto it = openUpvalues.begin(); it != openUpvalues.end(); it++)
 	{
-		if( (*it)->location == local )
+		if( (*it)->value.index() == index && (*it)->frame == &top_frame() )
 		{
 			return *it;
 		}
 	}
 
-	ObjUpvalue* createdUpvalue = new ObjUpvalue(*this,&top_frame(),local);
+	ObjUpvalue* createdUpvalue = new ObjUpvalue(*this,&top_frame(),index);
 	openUpvalues.push_front(createdUpvalue);
     return createdUpvalue;
 }
 
-void VM::closeUpvalues(Value* last ) 
+void VM::closeUpvalues( int index ) 
 {
     while( !openUpvalues.empty() && 
-		openUpvalues.front()->location != last &&
+		openUpvalues.front()->value.index() != index &&
 		openUpvalues.front()->frame == &top_frame() )
     {
         ObjUpvalue* upvalue = openUpvalues.front();
-        upvalue->closed = *(upvalue->location);
-        upvalue->location = &upvalue->closed;
+		upvalue->value.close();
         openUpvalues.pop_front();
     }
 
 	if( !openUpvalues.empty() && 
-		openUpvalues.front()->location == last &&
+		openUpvalues.front()->value.index() == index &&
 		openUpvalues.front()->frame == &top_frame() )
     {
         ObjUpvalue* upvalue = openUpvalues.front();
-        upvalue->closed = *(upvalue->location);
-        upvalue->location = &upvalue->closed;
+		upvalue->value.close();
         openUpvalues.pop_front();
     }
 }

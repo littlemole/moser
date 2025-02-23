@@ -438,10 +438,11 @@ bool ObjNativeMethod::callValue(int argCount)
     return true;
 }
 
-ObjUpvalue::ObjUpvalue(VM& v, CallFrame* f, Value* val)
-    : Obj(v), frame(f), 
-    location(val),
-    closed(NIL_VAL)
+ObjUpvalue::ObjUpvalue(VM& v, CallFrame* f, int index)
+    : Obj(v), value(f,index), frame(f)
+	//frame(f), 
+    //location(val),
+    //closed(NIL_VAL)
 {}
 
 
@@ -483,8 +484,7 @@ bool ObjUpvalue::callValue(int /* argCount */)
 
 void ObjUpvalue::mark_gc()
 {
-    vm.gc.markValue(closed);
-    
+	value.mark_gc(vm);
 }
 
 

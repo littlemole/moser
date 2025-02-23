@@ -274,7 +274,7 @@ class ObjUpvalue : public Obj
 {
 friend class VM;
 public:
-    ObjUpvalue(VM& v,CallFrame* f, Value* val);
+    ObjUpvalue(VM& v,CallFrame* f, int index);
 
     virtual ~ObjUpvalue() {}
     virtual void mark_gc() override;
@@ -283,12 +283,13 @@ public:
     virtual const std::string& toString() const override;    
     virtual std::string type() const override;
 
-    virtual void* pointer() override { return location; }
+    virtual void* pointer() override { return value.valuePtr(); }
 
 private:
+	ValueOrPtr value;
 	CallFrame* frame = nullptr;
-    Value* location = nullptr;
-    Value closed;  
+//    Value* location = nullptr;
+//    Value closed;  
 };
 
 /*

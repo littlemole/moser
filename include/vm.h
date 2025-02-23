@@ -13,41 +13,8 @@
 
 class CallFrame;
 
-/*
-class ValueOrPtr
-{
-public:
-	ValueOrPtr( CallFrame* f, int idx)
-		: frame(f), index(idx)
-	{}
 
-	ValueOrPtr( const Value& v)
-	: value(v)
-	{}
 
-	Value* operator->()
-	{
-		if(frame != nullptr)
-		{
-			return &frame->stack[index];
-		}
-		else{
-			return &value;
-		}
-	}
-
-	void close()
-	{
-		value = frame->stack[index];
-		frame = nullptr;
-	}
-
-private:
-	CallFrame* frame = nullptr;
-	int index = 0;
-	Value value;
-};
-*/
 
 struct ExceptionHandler 
 {
@@ -64,7 +31,7 @@ public:
     CallFrame(ObjClosure* c, int argc, uint8_t* p)
     : closure(c), argCount(argc) , ip(p)
     {
-		stack.reserve(1024);
+//		stack.reserve(1024);
 	}
 	CallFrame(const CallFrame& rhs) = delete;
 
@@ -259,8 +226,8 @@ private:
 
     void step();
 
-    ObjUpvalue* captureUpvalue(Value* local);
-    void closeUpvalues(Value* last);
+    ObjUpvalue* captureUpvalue(int index);
+    void closeUpvalues(int index);
     
     void defineMethod(ObjString* name);    
     void defineStaticMethod(ObjString* name);    
