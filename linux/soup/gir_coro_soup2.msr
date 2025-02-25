@@ -1,0 +1,123 @@
+import("gir/gir");
+import("promise");
+
+var gir = GIR( [ "GLib:2.0", "Gio:2.0", "GObject:2.0", "Soup:3.0" ] );
+
+
+fun async_callback( future, that, finish_fun ) {
+
+    var cb = Gio.AsyncReadyCallback( fun(src,res,ptr) 
+    {    
+print "cb " + finish_fun;
+        var err = sys.pointer();
+//        var data = finish_fun(res,&err);
+	var data = runtime.invoke( that, finish_fun, [res, &err]);
+print  "---> :" + data + " " + int(data);
+        if ( int(err) )     // on error 
+        {
+            var error = GLib.Error(err);
+            future.reject(error.message.string());
+        }
+        else                // on success
+        {
+	    future.resolve(data);
+        }
+    });
+    return cb;
+}
+
+fun async_call( that, fname ) {
+
+    var args = arguments();
+    var params = args[2:];
+    
+    var future = Future();
+
+    var finish_fun = fname+"_finish";
+print finish_fun; 
+    //future.cb = async_callback( future, that, finish_fun);
+
+    future.cb = Gio.AsyncReadyCallback( fun(src,res,ptr) 
+    {    
+print "cb " + finish_fun;
+        var err = sys.pointer();
+//        var data = finish_fun(res,&err);
+	var data = runtime.invoke( that, finish_fun, [res, &err]);
+print  "---> :" + data + " " + int(data);
+        if ( int(err) )     // on error 
+        {
+            var error = GLib.Error(err);
+            future.reject(error.message.string());
+        }
+        else                // on success
+        {
+	    future.resolve(data);
+        }
+    });
+
+    var f = fname+"_async";
+print f;
+    params.push(future.cb);
+    params.push(0);
+print params;
+    runtime.invoke( that, f, params );
+print "--";
+    return future;
+}
+
+
+fun fetch_soup( session, url ) {
+
+    var future = Future();
+
+    // async HTTP callback
+
+    future.cb = cb;
+	
+    var msg = Soup.Message.new( "GET", url );
+
+    session.send_and_read_async( msg, 0, 0, cb, 0 );
+
+    return future;
+    // quit the event loop
+//    loop.quit();
+}
+
+/*
+ - object proxy, if invoke as "async_*"
+ - find fn *_async and fn *_finish
+ - get return type from _finish
+ - invoke generic async function and return the promise
+*/
+
+async fun fetch_async(session,msg) {
+
+//    var result = await fetch_soup(session,url);
+    var result = GLib.Bytes(await async_call( session, "send_and_read", msg,0,0));
+//    var result = GLib.Bytes(ptr);
+print result;
+print result.target;
+print "1:" + int(result.target);
+   var content = result.get_data(0);
+print "2:" + content;
+    print content.string();
+}
+
+// main
+
+var session = Soup.Session.new();
+
+var msg = Soup.Message.new( "GET", "https://www.amazon.de/");
+
+// glib event loop
+var loop = GLib.MainLoop.new(0,0);
+
+//session.send_and_read_async(msg,0,0,cb,msg);
+
+fetch_async(session,msg)
+.then( fun() {
+    loop.quit();
+});
+
+loop.run();
+
