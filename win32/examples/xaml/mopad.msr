@@ -204,21 +204,32 @@ class MyWindow : Window
         .then(
             fun(file) 
             {
+print "then " + file;
                 if(file.valid()  )
                 {
+print "valid" + file.Path;
                     this.dataContext.filename = file.Path;
                     this.dataContext.ext = file.FileType;
                     
-                    Windows.Storage.FileIO.ReadTextAsync(file)
-                    .then( fun(content) 
+                    this.p = Windows.Storage.FileIO.ReadTextAsync(file);
+print this.p;
+
+                    this.p.then( fun(content) 
                     {
+print "content";
                         this.dataContext.text = content;
                         this.dataContext.cmds.EOL.Label = this.eolMode(content);
-                    });
+                    })
+		    .otherwise( fun(e) {
+			print "e: " + e;
+		    });
                 }
 		this.xamlWnd.focus();
             }
-        );
+        )
+	.otherwise( fun(e) {
+print "e: " + e;
+	});
     }
 
     @XamlAccel(key=S,flag=Control)
@@ -235,6 +246,7 @@ class MyWindow : Window
          .then(
             fun(file) 
             {
+print "then";
                 if( file.valid() )
                 {
                     var content =  this.dataContext.text;
@@ -256,7 +268,10 @@ class MyWindow : Window
                 }
 		this.xamlWnd.focus();
             }
-        );
+        )
+	.otherwise( fun(e) {
+print "e: " + e;
+	});
     }
 
     //instead of directly binding to Event

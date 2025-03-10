@@ -378,7 +378,7 @@ bool ObjNativeFun::callValue(int argCount)
 {
     //unused: auto frame = &vm.frames.back();
 //    Value result = function(vm, argCount, &vm.stack.back() - argCount+ 1);
-	Value result = function(vm, argCount, &vm.peek(argCount-1));
+	Value result = function(vm, argCount, argCount ? &vm.peek(argCount-1) : 0);
 
     for( int i = 0; i < argCount;i++)
     {
@@ -419,7 +419,7 @@ bool ObjNativeMethod::callValue(int argCount)
 	Value* thet = &vm.peek(argCount );
     auto frame = &vm.top_frame();
 //    Value result = function( *thet, this->name, argCount, &vm.stack.back() - argCount +1);
-    Value result = function( *thet, this->name, argCount, &vm.peek(argCount -1));
+    Value result = function( *thet, this->name, argCount, argCount ? &vm.peek(argCount -1) : 0);
 
     // support eval which changes frame
     if( &vm.top_frame() == frame )
@@ -2314,11 +2314,11 @@ void ObjCoro::setProperty(const std::string& key, Value val )
 }
 
 
-void ObjCoro::deleteProperty(const std::string& name )
+void ObjCoro::deleteProperty(const std::string& pname )
 {
-	if(fields.count(name) > 0)
+	if(fields.count(pname) > 0)
 	{
-		fields.erase(name);
+		fields.erase(pname);
 	}
 }
 

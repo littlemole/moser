@@ -121,7 +121,7 @@ public:
             push(v);
         }
         GC::Lock lock(*this);
-        obj->callValue(values.size());
+        obj->callValue( (int)values.size());
         // obj now on top of stack
     }
 

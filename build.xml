@@ -11,7 +11,7 @@
    <preset Condition=" '$(Configuration)' == 'Release' ">win-x64-release</preset>
    <preset Condition=" '$(Configuration)' == 'Debug' ">win-x64-debug</preset>
 
-   <vcredistdir>C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Redist\MSVC\14.40.33807\x64\</vcredistdir>
+   <vcredistdir>$(VCToolsRedistDir)\x64\</vcredistdir>
    <appsdk>Microsoft.WindowsAppSDK.1.5.240311000</appsdk>
    <win32meta>Microsoft.Windows.SDK.Win32Metadata.59.0.13-preview</win32meta>
 

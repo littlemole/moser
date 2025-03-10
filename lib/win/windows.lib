@@ -298,7 +298,7 @@ class Window : Wnd {
         this.font = Font("Consolas").create();
         Win32.SendMessageW(ctrl.hwnd, Win32.WM_SETFONT,font,1);
 
-        return edit;
+        return ctrl;
     }
 }
 

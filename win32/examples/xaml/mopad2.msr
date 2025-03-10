@@ -1,0 +1,314 @@
+import("win32/base");
+import("win32/lib");
+import("win32/gdi");
+import("win32/user");
+import("win32/sysinfo");
+import("promise");
+import("rt/Windows.System");
+import("rt/Windows.Foundation");
+import("rt/Windows.Foundation.Collections");
+import("rt/Windows.Graphics");
+import("rt/Windows.Storage");
+import("rt/Windows.Storage.Streams");
+import("rt/Windows.Storage.Pickers");
+import("rt/Windows.Security.Cryptography");
+import("rt/Windows.Security.Cryptography.Core");
+import("rt/Windows.Security.Cryptography.Certificates");
+import("rt\Microsoft.UI");
+import("rt/Microsoft.UI.Content");
+import("rt/Microsoft.UI.Dispatching");
+import("rt/Microsoft.UI.Windowing");
+import("rt\Microsoft.UI.Xaml");
+import("rt\Microsoft.UI.Xaml.Hosting");
+import("rt\Microsoft.UI.Xaml.Markup");
+import("rt\Microsoft.UI.Xaml.Interop");
+import("rt\Microsoft.UI.Xaml.Data");
+import("rt\Microsoft.UI.Xaml.Input");
+import("rt\Microsoft.UI.Xaml.Controls");
+import("rt\Microsoft.UI.Xaml.Controls.Primitives");
+import("rt/moxaml");
+
+import("windows");
+import("winrt");
+import("xaml");
+
+var ID_EXIT = 101;
+
+
+var edit_xaml = "
+
+<Page Name='thePage' xmlns='http://schemas.microsoft.com/winfx/2006/xaml/presentation' 
+    xmlns:x='http://schemas.microsoft.com/winfx/2006/xaml'
+    xmlns:m='using:moxaml'  Background='{ThemeResource MoserBackground}' >
+    <Page.Resources>
+        <Style TargetType='TextBox'>
+            <Setter Property='Margin' Value='5,5,5,5' />
+            <Setter Property='FontFamily' Value='Consolas' />
+        </Style>
+
+    </Page.Resources>
+
+    <Grid Name='theGrid' >
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width='*'/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height='auto'/>
+            <RowDefinition Height='*'/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Column='0' Grid.Row='0' Orientation='Horizontal' Background='{ThemeResource ControlSolidFillColorDefaultBrush}' >
+
+	    <AppBarButton Icon='OpenFile' Label='Open File' Name='openFile'  Command='{Binding [cmds][Open] }' />
+            <AppBarButton Icon='Save' Label='Save File' Name='saveFile' Command='{Binding [cmds][Save] }'/>
+            <AppBarButton Icon='Tag' Label='EOL' Name='convert'>
+	    	<AppBarButton.Flyout>
+		    <MenuFlyout>
+		    	<MenuFlyoutItem Name='Unix2Dos' Text='DOS' Command='{Binding [cmds][Unix2Dos] }'/>
+		    	<MenuFlyoutItem Name='Dos2Unix' Text='UNIX' Command='{Binding [cmds][Dos2Unix] }'/>
+		    </MenuFlyout>
+	    	</AppBarButton.Flyout>
+	    </AppBarButton>
+        </StackPanel>
+
+        <StackPanel Grid.Column='0' Grid.Row='0' HorizontalAlignment='Right' Orientation='Horizontal'  >
+
+            <Button Name='eolMenu' Margin='5,35,15,5' Command='{Binding [cmds][EOL] }' />
+
+        </StackPanel>
+
+        <TextBox Name='text' ScrollViewer.VerticalScrollBarVisibility='Visible' 
+                 ScrollViewer.HorizontalScrollBarVisibility='Auto' 
+                 FontFamily='Consolas'
+                 AcceptsReturn='True' TextWrapping='NoWrap' 
+                 Grid.Column='0' Grid.Row='1' 
+                 Text='{Binding [text], Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}' >
+	    <TextBox.ContextFlyout >
+    		<MenuFlyout >
+		    <MenuFlyoutItem Name='Open' Text='Open' Command='{Binding [cmds][Open] }'/>
+		    <MenuFlyoutItem Name='Save' Text='Save' Command='{Binding [cmds][Save] }'/>
+		    <MenuFlyoutItem Name='Dos' Text='DOS' Command='{Binding [cmds][Unix2Dos] }'/>
+		    <MenuFlyoutItem Name='Unix' Text='UNIX' Command='{Binding [cmds][Dos2Unix] }'/>
+    		</MenuFlyout>
+  	    </TextBox.ContextFlyout>
+	</TextBox>
+    </Grid> 
+</Page>";
+
+
+
+class MyWindow : Window 
+{
+    MyWindow()
+    {
+        super.Window();
+
+        this.dataContext = DataContext( 
+        {
+            "filename" : "",
+            "ext"      : "",
+            "text"     : "<example text>" ,
+	    "cmds"     : Xaml.commands(this)
+        });
+    }
+
+    eolMode(content)
+    {
+        //print content;
+        var check = os.toDos(content);
+        if( check == content ) return "DOS";
+        return "UNIX";
+    }
+
+    @XamlStandardCommand(Open)
+    async openFile() {
+
+        var file = await this.xamlWnd.FileOpenPicker(
+            { 
+                "FileTypeFilter" : [ "*" ],
+            }
+        );
+
+	if(file.valid()  )
+        {
+            this.dataContext.filename = file.Path;
+            this.dataContext.ext = file.FileType;
+                    
+            var content = await Windows.Storage.FileIO.ReadTextAsync(file);
+
+            this.dataContext.text = content;
+            this.dataContext.cmds.EOL.Label = this.eolMode(content);
+	    this.xamlWnd.focus();
+            
+        }
+    }
+
+    onOpenFile(sender,args)
+    {
+return this.openFile();
+
+         this.xamlWnd.FileOpenPicker(
+            { 
+                "FileTypeFilter" : [ "*" ],
+            }
+        )
+        .then(
+            fun(file) 
+            {
+                if(file.valid()  )
+                {
+                    this.dataContext.filename = file.Path;
+                    this.dataContext.ext = file.FileType;
+                    
+                    Windows.Storage.FileIO.ReadTextAsync(file)
+                    .then( fun(content) 
+                    {
+                        this.dataContext.text = content;
+                        this.dataContext.cmds.EOL.Label = this.eolMode(content);
+                    })
+		    .otherwise( fun(e) {
+			print "e: " + e;
+		    });
+                }
+		this.xamlWnd.focus();
+            }
+        )
+	.otherwise( fun(e) {
+		print "e: " + e;
+	});
+    }
+
+    @XamlAccel(key=S,flag=Control)
+    @XamlCommand(Save)
+//same as:    @XamlStandardCommand(Save)
+    onSaveFile(sender,args)
+    {
+         this.xamlWnd.FileSavePicker(
+            { 
+                "FileName" : this.dataContext.filename,
+                "FileTypeChoices" : { "file" : [ this.dataContext.ext ] }
+            }
+            )
+         .then(
+            fun(file) 
+            {
+                if( file.valid() )
+                {
+                    var content =  this.dataContext.text;
+
+                    if(this.dataContext.cmds.EOL.Label == "DOS")
+                    {
+                        content = os.toDos(content);
+                    }
+                    else
+                    {
+                        content = os.toUnix(content);
+                    }
+
+                    Windows.Storage.FileIO.WriteTextAsync(file,content)
+                    .then( fun() 
+                    {
+                        this.dataContext.filename = file.Path;
+                    });
+                }
+		this.xamlWnd.focus();
+            }
+        )
+	.otherwise( fun(e) {
+		print "e: " + e;
+	});
+    }
+
+    //instead of directly binding to Event
+    //@Xaml(Element=eolMenu,Event=PointerPressed)
+    @XamlAccel(key=T,flag=Control)
+    @XamlCommand(EOL)
+    onEol()
+    {
+        var eol = this.dataContext.cmds.EOL.Label;
+        print eol;
+        if(eol == "DOS")
+        {
+            eol = "UNIX";
+        }
+        else
+        {
+            eol = "DOS";
+        }
+        this.dataContext.cmds.EOL.Label = eol;
+    }
+
+    @XamlAccel(key=U,flag=Control)
+    @XamlCommand(Dos2Unix)
+    toDos()
+    {
+        var txt = this.dataContext.text;
+
+        var r = os.toUnix(txt);        
+        this.dataContext.cmds.EOL.Label = "UNIX";
+        this.dataContext.text = r;
+    }
+    
+    @XamlAccel(key=D,flag=Control)
+    @XamlCommand(Unix2Dos)
+    onUnix2Dos()
+    {
+        var txt = this.dataContext.text;
+
+        var r = os.toDos(txt);     
+        this.dataContext.cmds.EOL.Label = "DOS";
+        this.dataContext.text = r;
+    }
+    
+    // global non-xaml accelerator 
+    @cmd(ID_EXIT)
+    @accel(key=Q,flag=FCONTROL)
+    onExit(wParam,lParam)
+    {
+        Win32.DestroyWindow(this.hwnd);
+    }
+
+    @msg(WM_CREATE)
+    onCreate()
+    {
+        this.xamlWnd = XamlWindow( this, edit_xaml );
+        Xaml.expand(this.hwnd,300);
+
+	// focus the edit window
+	this.xamlWnd.find("text").Focus(3);
+
+//	fixupCommands(this,this.xamlWnd);
+	// workaround for lazy binding of initially hidden elements
+//	this.xamlWnd.find("toDos").Command = this.dataContext.cmds.Unix2Dos;
+//	this.xamlWnd.find("toUnix").Command = this.dataContext.cmds.Dos2Unix;
+	
+    }
+
+    @msg(WM_DESTROY)
+    onDestroy(wParam,lParam)
+    {
+        Win32.PostQuitMessage(0);
+        return 0;
+    }
+
+    @msg(WM_SIZE)
+    onSize(wParam,lParam)
+    {
+	var width = LOWORD(int(lParam));
+        var height = HIWORD(int(lParam));
+
+	if(this.xamlWnd)
+	    this.xamlWnd.size(0,0,width,height);
+        return 0;
+    }
+}
+
+
+var wnd = MyWindow();
+
+wnd.create( "mocpadx" );
+wnd.show();
+Xaml.run(wnd);
+
+print "OK";

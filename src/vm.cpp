@@ -272,7 +272,7 @@ void VM::step()
 {
     if(frames.empty()) return;
     CallFrame* frame = frames.back();
-	std::vector<Value>& stack = frame->stack;
+	std::vector<Value>& stackref = frame->stack;
 
     int offset = (int)(frame->ip - &frame->closure->function->chunk.code[0]);
 
@@ -328,7 +328,7 @@ void VM::step()
                 if(!stack.empty())
                 {
                     printf("      ");
-                    for (Value* slot = &stack[0]; slot - &stack[0] < (int) stack.size(); slot++)
+                    for (Value* slot = &stackref[0]; slot - &stackref[0] < (int)stackref.size(); slot++)
                     {
                         printf("[ ");
                         slot->print();
@@ -343,8 +343,8 @@ void VM::step()
                 if(!stack.empty())
                 {
                     printf("      ");
-                    Value* slot = &stack[0];
-                    for ( ; slot - &stack[0] < (int) stack.size(); slot++)
+                    Value* slot = &stackref[0];
+                    for ( ; slot - &stackref[0] < (int)stackref.size(); slot++)
                     {
                         printf("[ ");
                         slot->print();
@@ -363,7 +363,7 @@ void VM::step()
                 auto v = split(l," ");
                 if(v.size() != 2 ) continue;
 
-                Value& value = stack[atoi(v[1].c_str()) ];
+                Value& value = stackref[atoi(v[1].c_str()) ];
 
                 printf("%i | %s\r\n", (int)value.type, value.to_string().c_str());
 
@@ -374,7 +374,7 @@ void VM::step()
                 auto v = split(l," ");
                 if(v.size() != 3 ) continue;
 
-                Value value = stack[atoi(v[1].c_str()) ];
+                Value value = stackref[atoi(v[1].c_str()) ];
                 std::string g = trim(v[2]);
 
                 globals[g] = value;
@@ -999,7 +999,7 @@ Value VM::run()
             }      
             case OpCode::OP_CLOSE_UPVALUE:
 			{
-                closeUpvalues( frame->stack.size()-1 );
+                closeUpvalues( (int) frame->stack.size()-1 );
                 pop();
                 break;       
 			}
@@ -1482,8 +1482,9 @@ ObjUpvalue* VM::captureUpvalue(int index)
 void VM::closeUpvalues( int index ) 
 {
     while( !openUpvalues.empty() && 
-		openUpvalues.front()->value.index() != index &&
-		openUpvalues.front()->frame == &top_frame() )
+		((openUpvalues.front()->value.index() != index &&
+		openUpvalues.front()->frame == &top_frame())
+            || openUpvalues.front()->frame != &top_frame()) )
     {
         ObjUpvalue* upvalue = openUpvalues.front();
 		upvalue->value.close();
