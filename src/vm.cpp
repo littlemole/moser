@@ -1483,8 +1483,8 @@ void VM::closeUpvalues( int index )
 {
     while( !openUpvalues.empty() && 
 		((openUpvalues.front()->value.index() != index &&
-		openUpvalues.front()->frame == &top_frame())
-            || openUpvalues.front()->frame != &top_frame()) )
+		openUpvalues.front()->frame == &top_frame())))
+  //          || openUpvalues.front()->frame != &top_frame()) )
     {
         ObjUpvalue* upvalue = openUpvalues.front();
 		upvalue->value.close();
