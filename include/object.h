@@ -274,7 +274,7 @@ class ObjUpvalue : public Obj
 {
 friend class VM;
 public:
-    ObjUpvalue(VM& v,CallFrame* f, int index);
+    ObjUpvalue(VM& v,CallFrame* f, int index, int depth);
 
     virtual ~ObjUpvalue() {}
     virtual void mark_gc() override;

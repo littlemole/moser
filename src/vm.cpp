@@ -17,8 +17,8 @@
 #endif
 
 
-ValueOrPtr::ValueOrPtr( CallFrame* f, int idx)
-: frame(f), index_(idx)
+ValueOrPtr::ValueOrPtr( CallFrame* f, int idx, int dpth)
+: frame(f), index_(idx), depth_(dpth)
 {}
 
 ValueOrPtr::ValueOrPtr( const Value& v)
@@ -63,6 +63,7 @@ Value& ValueOrPtr::operator*()
 
 void ValueOrPtr::close()
 {
+    if (frame == nullptr) return;
 	value = frame->stack[index_];
 	frame = nullptr;
 }
@@ -78,6 +79,11 @@ void ValueOrPtr::mark_gc(VM& vm)
 int ValueOrPtr::index()
 {
 	return index_;
+}
+
+int ValueOrPtr::depth()
+{
+    return depth_;
 }
 
 CallFrame::CallFrame() {};
@@ -1466,6 +1472,25 @@ bool VM::doThrow()
 
 ObjUpvalue* VM::captureUpvalue(int index) 
 {
+    auto it = openUpvalues.begin();
+    for ( it; it != openUpvalues.end(); it++)
+    {
+        if ((*it)->value.index() == index && (*it)->frame == &top_frame())
+        {
+            return *it;
+        }
+        if ((*it)->value.depth() <= frames.size())
+        {
+            break;
+        }
+    }
+
+    ObjUpvalue* createdUpvalue = new ObjUpvalue(*this, &top_frame(), index, (int)frames.size());
+    openUpvalues.insert(it, createdUpvalue);
+//    openUpvalues.push_front(createdUpvalue);
+    return createdUpvalue;
+
+    /*
 	for(auto it = openUpvalues.begin(); it != openUpvalues.end(); it++)
 	{
 		if( (*it)->value.index() == index && (*it)->frame == &top_frame() )
@@ -1477,10 +1502,24 @@ ObjUpvalue* VM::captureUpvalue(int index)
 	ObjUpvalue* createdUpvalue = new ObjUpvalue(*this,&top_frame(),index);
 	openUpvalues.push_front(createdUpvalue);
     return createdUpvalue;
+    */
 }
 
 void VM::closeUpvalues( int index ) 
 {
+    while (!openUpvalues.empty() &&
+        ((openUpvalues.front()->value.index() >= index &&
+            openUpvalues.front()->frame == &top_frame())
+        || (openUpvalues.front()->frame != &top_frame() && 
+            openUpvalues.front()->value.depth() >= frames.size())) )
+    {
+        ObjUpvalue* upvalue = openUpvalues.front();
+        upvalue->value.close();
+        openUpvalues.pop_front();
+    }
+
+
+    /*
     while( !openUpvalues.empty() && 
 		((openUpvalues.front()->value.index() != index &&
 		openUpvalues.front()->frame == &top_frame())))
@@ -1499,6 +1538,7 @@ void VM::closeUpvalues( int index )
 		upvalue->value.close();
         openUpvalues.pop_front();
     }
+    */
 }
 
 void VM::defineMethod(ObjString* name) 

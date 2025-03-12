@@ -196,35 +196,41 @@ class MyWindow : Window
     @XamlStandardCommand(Open)
     onOpenFile(sender,args)
     {
-         this.xamlWnd.FileOpenPicker(
+print this;
+	var that = this;
+print "That " +  that;
+        that.pp = this.xamlWnd.FileOpenPicker(
             { 
                 "FileTypeFilter" : [ "*" ],
             }
-        )
-        .then(
+        );
+        that.pp.then(
             fun(file) 
             {
 print "then " + file;
+print this;
+print that;
                 if(file.valid()  )
                 {
 print "valid" + file.Path;
-                    this.dataContext.filename = file.Path;
-                    this.dataContext.ext = file.FileType;
+print that;
+                    that.dataContext.filename = file.Path;
+                    that.dataContext.ext = file.FileType;
                     
-                    this.p = Windows.Storage.FileIO.ReadTextAsync(file);
-print this.p;
+                    that.p = Windows.Storage.FileIO.ReadTextAsync(file);
+print that.p;
 
-                    this.p.then( fun(content) 
+                    that.p.then( fun(content) 
                     {
 print "content";
-                        this.dataContext.text = content;
-                        this.dataContext.cmds.EOL.Label = this.eolMode(content);
+                        that.dataContext.text = content;
+                        that.dataContext.cmds.EOL.Label = this.eolMode(content);
                     })
 		    .otherwise( fun(e) {
 			print "e: " + e;
 		    });
                 }
-		this.xamlWnd.focus();
+		that.xamlWnd.focus();
             }
         )
 	.otherwise( fun(e) {

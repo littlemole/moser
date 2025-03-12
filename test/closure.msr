@@ -1,0 +1,17 @@
+{
+	var m = {
+		"key1" : "value1",
+		"key2" : "value2"
+	};
+
+	fun test()
+	{
+		var r = nil;
+		m.forEach( fun(k,v) 
+		{
+			r = v;
+		});		
+		print "r: " + r;  // expect: r: value1
+	}
+	test();
+}
