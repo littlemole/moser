@@ -287,7 +287,7 @@ public:
 
 private:
 	ValueOrPtr value;
-	CallFrame* frame = nullptr;
+//	CallFrame* frame = nullptr;
 //    Value* location = nullptr;
 //    Value closed;  
 };

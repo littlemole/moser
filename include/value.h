@@ -89,9 +89,10 @@ public:
 	void mark_gc(VM& vm);
 	int index();
     int depth();
+	CallFrame* frame();
 
 private:
-	CallFrame* frame = nullptr;
+	CallFrame* frame_ = nullptr;
 	int index_ = 0;
     int depth_ = 0;
 	Value value;

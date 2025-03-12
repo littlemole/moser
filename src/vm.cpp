@@ -18,7 +18,7 @@
 
 
 ValueOrPtr::ValueOrPtr( CallFrame* f, int idx, int dpth)
-: frame(f), index_(idx), depth_(dpth)
+: frame_(f), index_(idx), depth_(dpth)
 {}
 
 ValueOrPtr::ValueOrPtr( const Value& v)
@@ -27,9 +27,9 @@ ValueOrPtr::ValueOrPtr( const Value& v)
 
 Value* ValueOrPtr::valuePtr()
 {
-	if(frame != nullptr)
+	if(frame_ != nullptr)
 	{
-		return &frame->stack[index_];
+		return &frame_->stack[index_];
 	}
 	else
 	{
@@ -39,9 +39,9 @@ Value* ValueOrPtr::valuePtr()
 
 Value* ValueOrPtr::operator->()
 {
-	if(frame != nullptr)
+	if(frame_ != nullptr)
 	{
-		return &frame->stack[index_];
+		return &frame_->stack[index_];
 	}
 	else
 	{
@@ -51,9 +51,9 @@ Value* ValueOrPtr::operator->()
 
 Value& ValueOrPtr::operator*()
 {
-	if(frame != nullptr)
+	if(frame_ != nullptr)
 	{
-		return frame->stack[index_];
+		return frame_->stack[index_];
 	}
 	else
 	{
@@ -63,9 +63,9 @@ Value& ValueOrPtr::operator*()
 
 void ValueOrPtr::close()
 {
-    if (frame == nullptr) return;
-	value = frame->stack[index_];
-	frame = nullptr;
+    if (frame_ == nullptr) return;
+	value = frame_->stack[index_];
+	frame_ = nullptr;
 }
 
 void ValueOrPtr::mark_gc(VM& vm)
@@ -84,6 +84,11 @@ int ValueOrPtr::index()
 int ValueOrPtr::depth()
 {
     return depth_;
+}
+
+CallFrame* ValueOrPtr::frame()
+{
+	return frame_;
 }
 
 CallFrame::CallFrame() {};
@@ -1475,7 +1480,7 @@ ObjUpvalue* VM::captureUpvalue(int index)
     auto it = openUpvalues.begin();
     for ( ; it != openUpvalues.end(); it++)
     {
-        if ((*it)->value.index() == index && (*it)->frame == &top_frame())
+        if ((*it)->value.index() == index && ((*it)->value.frame()) == &top_frame())
         {
             return *it;
         }
@@ -1509,9 +1514,10 @@ void VM::closeUpvalues( int index )
 {
     while (!openUpvalues.empty() &&
         ((openUpvalues.front()->value.index() >= index &&
-            openUpvalues.front()->frame == &top_frame())
-        || (openUpvalues.front()->frame != &top_frame() && 
+            openUpvalues.front()->value.frame() == &top_frame())))
+/*        || (openUpvalues.front()->value.frame() != &top_frame() && 
             openUpvalues.front()->value.depth() >= (int)frames.size())) )
+			*/
     {
         ObjUpvalue* upvalue = openUpvalues.front();
         upvalue->value.close();
