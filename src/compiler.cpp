@@ -873,8 +873,6 @@ void Compiler::doWhileStatement()
         patchJump(pos);
     }
     function->breakes.pop_back();
-
-
 }
 
 void Compiler::forOfStatement()
@@ -902,8 +900,6 @@ void Compiler::forOfStatement()
 
     auto rv = resolve(count);
     emitBytes(rv.setOp, rv.arg);
-
-   //emitByte(OpCode::OP_POP);
 
     expression(); // array variable
 
@@ -1102,13 +1098,10 @@ void Compiler::forStatement()
     } 
     else if (parser->match(TokenType::VAR))
     {
-        //varDeclaration();
-        // unused Token varname = parser->current;
         cindex_t vglobal = parseVariable("Expect variable name.");
         if (parser->match(TokenType::EQUAL))
         {
             expression();
-            // add meta?
         }
         else
         {
@@ -1255,28 +1248,6 @@ void Compiler::deleteStatement()
     expression();
     emitByte(OpCode::OP_DELETE);
     parser->consume(TokenType::SEMICOLON,"need semicolon after delete statement.");
-    /*
-    parser->consume(TokenType::IDENTIFIER, "need variable name for delete statement.");
-    Token var = parser->previous;
-
-    auto r = resolve(var);
-
-    emitBytes(r.getOp,r.arg);
-
-    if(parser->match(TokenType::LEFT_BRACE))
-    {
-        expression();
-        emitByte(OpCode::OP_DELETE);
-        parser->consume(TokenType::RIGHT_BRACE,"need right brace/bracket for delete statement");
-    }
-    else if(parser->match(TokenType::LEFT_BRACKET))
-    {
-        expression();
-        emitByte(OpCode::OP_DELETE);
-        parser->consume(TokenType::RIGHT_BRACKET,"need right brace/bracket for delete statement");
-    }
-    parser->consume(TokenType::SEMICOLON,"need semicolon after delete statement.");
-    */
 }
 
 // parsing functions

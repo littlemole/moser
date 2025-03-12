@@ -1,4 +1,3 @@
-//#include "pch.h"
 #include "vm.h"
 #include "debug.h"
 #include "object.h"
@@ -17,7 +16,7 @@
 #endif
 
 
-ValueOrPtr::ValueOrPtr( CallFrame* f, int idx, int dpth)
+ValueOrPtr::ValueOrPtr( CallFrame* f, size_t idx, size_t dpth)
 : frame_(f), index_(idx), depth_(dpth)
 {}
 
@@ -76,12 +75,12 @@ void ValueOrPtr::mark_gc(VM& vm)
 	}
 }
 
-int ValueOrPtr::index()
+size_t ValueOrPtr::index()
 {
 	return index_;
 }
 
-int ValueOrPtr::depth()
+size_t ValueOrPtr::depth()
 {
     return depth_;
 }
@@ -99,7 +98,7 @@ CallFrame::CallFrame(ObjClosure* c, int argc, uint8_t* p)
 	stack.reserve(32);
 }
 
-CallFrame::CallFrame(CallFrame&& rhs)
+CallFrame::CallFrame(CallFrame&& rhs) noexcept
 : closure(rhs.closure), argCount(rhs.argCount), ip(rhs.ip), 
 	stack(std::move(rhs.stack))
 {
@@ -336,7 +335,7 @@ void VM::step()
             }
             if(l.substr(0,2) == "st")
             {
-                if(!stack.empty())
+                if(!stackref.empty())
                 {
                     printf("      ");
                     for (Value* slot = &stackref[0]; slot - &stackref[0] < (int)stackref.size(); slot++)
@@ -351,7 +350,7 @@ void VM::step()
             }
             if(l.substr(0,5) == "local")
             {
-                if(!stack.empty())
+                if(!stackref.empty())
                 {
                     printf("      ");
                     Value* slot = &stackref[0];
@@ -511,7 +510,7 @@ static Value meta(Value& value)
 }
 
 
-int VM::unwind()
+size_t VM::unwind()
 {
     CallFrame* frame = frames.back();
 
@@ -532,11 +531,11 @@ int VM::unwind()
 	{
 		if(frame->future_result == 0)
 		{
-			stack.push_back(result);
+			vmstack.push_back(result);
 
 			make_obj("Future");
 			Value future = peek(0);
-			stack.push_back(future);
+			vmstack.push_back(future);
 
 			frame->future_result = future.as.obj;
 			ObjInstance* f = as<ObjInstance>(future);
@@ -550,15 +549,15 @@ int VM::unwind()
 				result = future;
 			}
 
-			stack.pop_back();
-			stack.pop_back();
+			vmstack.pop_back();
+			vmstack.pop_back();
 		}
 		else		
 		{
-			stack.push_back(result);
+			vmstack.push_back(result);
 
 			Obj* future = frame->future_result;
-			stack.push_back(future);
+			vmstack.push_back(future);
 
 			ObjInstance* f = as<ObjInstance>(future);
 			if(f)
@@ -571,8 +570,8 @@ int VM::unwind()
 				result = future;
 			}
 
-			stack.pop_back();
-			stack.pop_back();
+			vmstack.pop_back();
+			vmstack.pop_back();
 		}
 	}
 
@@ -580,7 +579,7 @@ int VM::unwind()
 	delete frame;
 
 	push(result);
-    return (int)frames.size();
+    return frames.size();
 }
 
 void VM::concatenate() 
@@ -1391,7 +1390,7 @@ bool VM::doReturn(Value& result)
         bailOut = true;
     }
 
-    int n = unwind();
+    size_t n = unwind();
     if(n < 2)
     {
         bailOut = true;
@@ -1422,7 +1421,7 @@ bool VM::doThrow()
 	{
 		while( frame->exHandlers.empty() )
 		{
-			int n = unwind();
+			size_t n = unwind();
 			if( n < 2)
 			{
 				Value ex = pop();
@@ -1475,7 +1474,7 @@ bool VM::doThrow()
 }
 
 
-ObjUpvalue* VM::captureUpvalue(int index) 
+ObjUpvalue* VM::captureUpvalue(size_t index) 
 {
     auto it = openUpvalues.begin();
     for ( ; it != openUpvalues.end(); it++)
@@ -1484,67 +1483,31 @@ ObjUpvalue* VM::captureUpvalue(int index)
         {
             return *it;
         }
-        if ((*it)->value.depth() <= (int)frames.size())
+        if ((*it)->value.depth() <= frames.size())
         {
             break;
         }
     }
 
-    ObjUpvalue* createdUpvalue = new ObjUpvalue(*this, &top_frame(), index, (int)frames.size());
+    ObjUpvalue* createdUpvalue = new ObjUpvalue(*this, &top_frame(), index, frames.size());
     openUpvalues.insert(it, createdUpvalue);
-//    openUpvalues.push_front(createdUpvalue);
     return createdUpvalue;
-
-    /*
-	for(auto it = openUpvalues.begin(); it != openUpvalues.end(); it++)
-	{
-		if( (*it)->value.index() == index && (*it)->frame == &top_frame() )
-		{
-			return *it;
-		}
-	}
-
-	ObjUpvalue* createdUpvalue = new ObjUpvalue(*this,&top_frame(),index);
-	openUpvalues.push_front(createdUpvalue);
-    return createdUpvalue;
-    */
 }
 
-void VM::closeUpvalues( int index ) 
+void VM::closeUpvalues( size_t index ) 
 {
-    while (!openUpvalues.empty() &&
-        ((openUpvalues.front()->value.index() >= index &&
-            openUpvalues.front()->value.frame() == &top_frame())))
-/*        || (openUpvalues.front()->value.frame() != &top_frame() && 
-            openUpvalues.front()->value.depth() >= (int)frames.size())) )
-			*/
+    while ( 
+            !openUpvalues.empty() &&
+            ( 
+              openUpvalues.front()->value.index() >= index &&
+              openUpvalues.front()->value.frame() == &top_frame()
+            )
+        )
     {
         ObjUpvalue* upvalue = openUpvalues.front();
         upvalue->value.close();
         openUpvalues.pop_front();
     }
-
-
-    /*
-    while( !openUpvalues.empty() && 
-		((openUpvalues.front()->value.index() != index &&
-		openUpvalues.front()->frame == &top_frame())))
-  //          || openUpvalues.front()->frame != &top_frame()) )
-    {
-        ObjUpvalue* upvalue = openUpvalues.front();
-		upvalue->value.close();
-        openUpvalues.pop_front();
-    }
-
-	if( !openUpvalues.empty() && 
-		openUpvalues.front()->value.index() == index &&
-		openUpvalues.front()->frame == &top_frame() )
-    {
-        ObjUpvalue* upvalue = openUpvalues.front();
-		upvalue->value.close();
-        openUpvalues.pop_front();
-    }
-    */
 }
 
 void VM::defineMethod(ObjString* name) 
@@ -1578,12 +1541,6 @@ void VM::defineGetter(ObjString* name)
     klass->defineGetter(name,method);
     pop();
 }
-/*
-void VM::resetStack()
-{
-    stack.clear();
-}
-	*/
 
 void VM::push(Value value)
 {   
@@ -1609,24 +1566,24 @@ Value& VM::peek(int distance)
 
 void VM::defineNative(const char* name, NativeFn function) 
 {
-    stack.push_back(new ObjString(*this,name, (int)strlen(name)));
-    stack.push_back(new ObjNativeFun(*this,function));
+    vmstack.push_back(new ObjString(*this,name, (int)strlen(name)));
+    vmstack.push_back(new ObjNativeFun(*this,function));
 
-    globals[stack[0].to_string()] = stack[1];
+    globals[vmstack[0].to_string()] = vmstack[1];
     
-    stack.pop_back();
-    stack.pop_back();
+    vmstack.pop_back();
+    vmstack.pop_back();
 }
 
 void VM::defineGlobal(const char* name, Value value) 
 {
-    stack.push_back(new ObjString(*this, name, (int)strlen(name)));
-    stack.push_back(value);
+    vmstack.push_back(new ObjString(*this, name, (int)strlen(name)));
+    vmstack.push_back(value);
 
-    globals[stack[0].to_string()] = stack[1];
+    globals[vmstack[0].to_string()] = vmstack[1];
     
-    stack.pop_back();
-    stack.pop_back();
+    vmstack.pop_back();
+    vmstack.pop_back();
 }
 
 Value VM::runtimeError( const char* format, ...) 
@@ -1664,7 +1621,7 @@ Value VM::runtimeError( const char* format, ...)
 
 void VM::markRoots() 
 {
-    for ( auto& it : stack )
+    for ( auto& it : vmstack )
     {
         gc.markValue(it);
     }

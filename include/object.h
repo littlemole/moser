@@ -253,7 +253,7 @@ public:
     virtual ~ObjNativeMethod() {}
     virtual void mark_gc() override;
 
-    NativeMeth function;
+    NativeMeth function = nullptr;
 
     virtual const std::string& toString() const override;    
     virtual std::string type() const override { return "native method"; }
@@ -274,7 +274,7 @@ class ObjUpvalue : public Obj
 {
 friend class VM;
 public:
-    ObjUpvalue(VM& v,CallFrame* f, int index, int depth);
+    ObjUpvalue(VM& v,CallFrame* f, size_t index, size_t depth);
 
     virtual ~ObjUpvalue() {}
     virtual void mark_gc() override;
@@ -287,9 +287,6 @@ public:
 
 private:
 	ValueOrPtr value;
-//	CallFrame* frame = nullptr;
-//    Value* location = nullptr;
-//    Value closed;  
 };
 
 /*

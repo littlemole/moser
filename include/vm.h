@@ -28,7 +28,7 @@ public:
 
     CallFrame();
     CallFrame(ObjClosure* c, int argc, uint8_t* p);
-	CallFrame(CallFrame&& rhs);
+	CallFrame(CallFrame&& rhs) noexcept;
 
 	CallFrame(const CallFrame& rhs) = delete;
 
@@ -92,7 +92,7 @@ public:
     Value& peek(int distance);
 
     Value run();
-    int unwind();
+    size_t unwind();
     bool doThrow();
     bool doReturn(Value& result);
 
@@ -202,7 +202,7 @@ public:
 private:
 
 	std::list<ObjUpvalue*> openUpvalues;
-	std::vector<Value> stack;
+	std::vector<Value> vmstack;
 	std::list<Obj*> objects;
 	std::vector<Obj*>grayStack;
 	std::set<CallFrame*> pendingCoroutines;
@@ -218,15 +218,13 @@ private:
 
     void step();
 
-    ObjUpvalue* captureUpvalue(int index);
-    void closeUpvalues(int index);
+    ObjUpvalue* captureUpvalue(size_t index);
+    void closeUpvalues(size_t index);
     
     void defineMethod(ObjString* name);    
     void defineStaticMethod(ObjString* name);    
     void defineGetter(ObjString* name);    
     void defineSetter(ObjString* name);    
-
-//    void resetStack();
 
     void concatenate();
 
@@ -255,8 +253,6 @@ private:
         Obj* obj = v.as.obj;
         return  as<ObjString>(obj);
     }
-
-
 };
 
 

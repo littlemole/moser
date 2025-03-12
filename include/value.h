@@ -79,7 +79,7 @@ inline bool IS_OBJ   (const Value& val) { return val.type == ValueType::VAL_OBJ;
 class ValueOrPtr
 {
 public:
-	ValueOrPtr( CallFrame* f, int idx, int dpth);
+	ValueOrPtr( CallFrame* f, size_t idx, size_t dpth);
 	ValueOrPtr( const Value& v);
 
 	Value* valuePtr();
@@ -87,14 +87,14 @@ public:
 	Value& operator*();
 	void close();
 	void mark_gc(VM& vm);
-	int index();
-    int depth();
+	size_t index();
+    size_t depth();
 	CallFrame* frame();
 
 private:
 	CallFrame* frame_ = nullptr;
-	int index_ = 0;
-    int depth_ = 0;
+    size_t index_ = 0;
+    size_t depth_ = 0;
 	Value value;
 };
 

@@ -376,8 +376,6 @@ const std::string& ObjNativeFun::toString()  const
 
 bool ObjNativeFun::callValue(int argCount)
 {
-    //unused: auto frame = &vm.frames.back();
-//    Value result = function(vm, argCount, &vm.stack.back() - argCount+ 1);
 	Value result = function(vm, argCount, argCount ? &vm.peek(argCount-1) : 0);
 
     for( int i = 0; i < argCount;i++)
@@ -415,10 +413,8 @@ void ObjNativeMethod::mark_gc()
 
 bool ObjNativeMethod::callValue(int argCount)
 {
-//    Value* thet = &vm.stack.back() - argCount;
 	Value* thet = &vm.peek(argCount );
     auto frame = &vm.top_frame();
-//    Value result = function( *thet, this->name, argCount, &vm.stack.back() - argCount +1);
     Value result = function( *thet, this->name, argCount, argCount ? &vm.peek(argCount -1) : 0);
 
     // support eval which changes frame
@@ -438,11 +434,8 @@ bool ObjNativeMethod::callValue(int argCount)
     return true;
 }
 
-ObjUpvalue::ObjUpvalue(VM& v, CallFrame* f, int index, int depth)
-    : Obj(v), value(f,index,depth)//, frame(f)
-	//frame(f), 
-    //location(val),
-    //closed(NIL_VAL)
+ObjUpvalue::ObjUpvalue(VM& v, CallFrame* f, size_t index, size_t depth)
+    : Obj(v), value(f,index,depth)
 {}
 
 
@@ -518,7 +511,6 @@ void ObjClass::mark_gc()
 
 bool ObjClass::callValue(int argCount)
 {
-//    vm.stack[vm.stack.size()-argCount - 1] = new ObjInstance(vm, this);
 	vm.top_frame().poke(argCount, Value(new ObjInstance(vm, this)));
 
     if(methods.count(name->toString()))
@@ -936,7 +928,6 @@ Value ObjInstance::getProperty(const std::string& pname)
         ObjBoundMethod* bound = new ObjBoundMethod( vm, this, as<ObjClosure>(meth));
         vm.push(bound);
         bound->callValue(0);
-//        vm.call(bound,0);
         vm.top_frame().returnToCallerOnReturn = true;
         Value r = vm.run();
         vm.pop();
@@ -988,7 +979,6 @@ void ObjInstance::setProperty(const std::string& key, Value val)
         vm.push(bound2);
         vm.push(val);
         bound2->callValue(1);
-//        vm.call(bound,1);
         vm.top_frame().returnToCallerOnReturn = true;
         //unused: Value r = 
         vm.run();
@@ -1356,7 +1346,6 @@ bool ObjArray::invokeMethod(const std::string& mname, int argCount)
             {
                 return val.as.obj->callValue(argCount);
             }
-
         }
     }
     return false;
@@ -1537,8 +1526,6 @@ ObjMap::ObjMap(VM& vm) : ObjBuiltin(vm)
         }
     );
     methods["transform"] = transform;
-
-
 }
 
 void ObjMap::mark_gc()
@@ -1666,7 +1653,6 @@ const std::string& ObjBoundMethod::toString() const
 
 bool ObjBoundMethod::callValue(int argCount)
 {
-//    vm.stack[vm.stack.size()-argCount -1 ] = receiver;                
 	vm.top_frame().poke(argCount, receiver);                
 
     auto closure = as<ObjClosure>(method);
@@ -1913,7 +1899,6 @@ bool ObjDecorator::callValue(int argCount)
     std::vector<Value> args;
     for(int i = 0; i < argCount; i++)
     {
-//        args.push_back(vm.stack[vm.stack.size()-argCount+i]);
 		args.push_back(vm.peek(argCount-1-i));
 
     }
@@ -1947,7 +1932,6 @@ bool ObjDecorator::callValue(Value receiver, int argCount)
     std::vector<Value> args;
     for(int i = 0; i < argCount; i++)
     {
-//        args.push_back(vm.stack[vm.stack.size()-argCount+i]);
 		args.push_back(vm.peek(argCount-1-i));
 
     }
@@ -1955,7 +1939,6 @@ bool ObjDecorator::callValue(Value receiver, int argCount)
     {
         vm.pop();
     }
-
 
     vm.push(target);
     ObjString* fname = nullptr;
@@ -1989,14 +1972,12 @@ bool ObjDecorator::invokeMethod(const std::string& /*mname*/, int /*argCount*/)
 Value ObjDecorator::getProperty(const std::string& pname)
 {
     Value target = fields["target"];
-//    Value proxy  = fields["proxy"];
 
     auto obj = as<ObjInstance>(target);
     if(obj)
     {
         Value m = obj->getProperty(pname);
         return m;
-//        return new ObjDecorator(vm, m.as.obj,proxy.as.obj);
     }
 
     auto p = as<ObjDecorator>(target);
@@ -2076,19 +2057,12 @@ bool ObjProxy::invokeMethod(const std::string& mname, int argCount)
     std::vector<Value> args;
     for(int i = 0; i < argCount; i++)
     {
-//        args.push_back(vm.stack[vm.stack.size()-argCount+i]);
 		args.push_back(vm.peek(argCount-1-i));
 
     }
     for(int i = 0; i < argCount; i++)
     {
         vm.pop();
-    }
-
-    auto obj = as<ObjInstance>(target);
-    if(obj)
-    {
-       // target = obj->getProperty(name);
     }
 
     {
@@ -2103,7 +2077,7 @@ bool ObjProxy::invokeMethod(const std::string& mname, int argCount)
         }
     }
 
-    obj = as<ObjInstance>(proxy);
+    auto obj = as<ObjInstance>(proxy);
     if(obj)
     {
         vm.gc.pin(this);
@@ -2127,17 +2101,11 @@ Value ObjProxy::getProperty(const std::string& pname)
     if (pname == "target") return target;
     if (pname == "proxy") return proxy;
 
-    auto obj = as<ObjInstance>(target);
-    if(obj)
-    {
-      //  target = obj->getProperty(name);
-    }
-
     vm.push(proxy);
     vm.push(target);
     vm.push(new ObjString(vm, pname));
 
-    obj = as<ObjInstance>(proxy);
+    auto obj = as<ObjInstance>(proxy);
     if(obj)
     {
         obj->invokeMethod("getter",2);
@@ -2157,18 +2125,12 @@ void ObjProxy::setProperty(const std::string& key, Value val)
     Value target = fields["target"];
     Value proxy  = fields["proxy"];
 
-    auto obj = as<ObjInstance>(target);
-    if(obj)
-    {
-      //  target = obj->getProperty(name);
-    }
-
     vm.push(proxy);
     vm.push(target);
     vm.push(new ObjString(vm, key));
     vm.push(val);
 
-    obj = as<ObjInstance>(proxy);
+    auto obj = as<ObjInstance>(proxy);
     if(obj)
     {
         obj->invokeMethod("setter",3);
@@ -2176,9 +2138,7 @@ void ObjProxy::setProperty(const std::string& key, Value val)
         //unused: Value r = 
         vm.run();
         vm.pop();
-        //return r;
     }
-//    return NIL_VAL;
 }
 
 
@@ -2223,46 +2183,8 @@ ObjCoro::ObjCoro(VM& v)
     init();
 }
 
-/*
-
-Coro - async fun
-
-- vm has pendingCoro CallFrame set
-
-- has a coro Future object. Who? CallFrame?
-
-- operator await
-	- create Coro object, set frame and closure
-	- take returned Future and set Coro, keep it on stakc
-	- saves coro frame and pops it
-	- return Future
-- operator return (new: if async!)
-	- resolve the coro future unless
-	- there is pending ex, if so reject 
-	  the coro future 
-	- drop the coro frame and delete it
-
-- operator coro_resume coro	
-	- expects coro and result on stack
-	- restore frame from coro.frame
-	- pop future
-	- push result to coro.frame stack
-	- continue vm
-
-- operator coro_reject coro	
-	- expects coro and exception on stack
-	- restore frame from coro.frame
-	- pop future
-	- push ex to coro.frame stack pending ex
-	- continue vm
-
-*/
-
-
 void ObjCoro::init()
 {
-    //fields["suffix"] =  new ObjString(vm, "");
-
 	auto resumeFunction = new ObjNativeMethod( vm, 
         [](Value that, const std::string&, int argCount, Value* args) -> Value
         {            
