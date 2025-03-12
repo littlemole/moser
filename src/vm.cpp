@@ -1473,13 +1473,13 @@ bool VM::doThrow()
 ObjUpvalue* VM::captureUpvalue(int index) 
 {
     auto it = openUpvalues.begin();
-    for ( it; it != openUpvalues.end(); it++)
+    for ( ; it != openUpvalues.end(); it++)
     {
         if ((*it)->value.index() == index && (*it)->frame == &top_frame())
         {
             return *it;
         }
-        if ((*it)->value.depth() <= frames.size())
+        if ((*it)->value.depth() <= (int)frames.size())
         {
             break;
         }
@@ -1511,7 +1511,7 @@ void VM::closeUpvalues( int index )
         ((openUpvalues.front()->value.index() >= index &&
             openUpvalues.front()->frame == &top_frame())
         || (openUpvalues.front()->frame != &top_frame() && 
-            openUpvalues.front()->value.depth() >= frames.size())) )
+            openUpvalues.front()->value.depth() >= (int)frames.size())) )
     {
         ObjUpvalue* upvalue = openUpvalues.front();
         upvalue->value.close();
