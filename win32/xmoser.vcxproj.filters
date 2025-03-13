@@ -4,9 +4,6 @@
     <Manifest Include="../src/win32/xmoser.manifest" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="../src/win32/App.xaml.cpp">
-      <Filter>src\win32</Filter>
-    </ClCompile>
     <ClCompile Include="../src/chunk.cpp">
       <Filter>src</Filter>
     </ClCompile>
@@ -39,12 +36,6 @@
     </ClCompile>
     <ClCompile Include="../src/main.cpp">
       <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="$(GeneratedFilesDir)module.g.cpp">
-      <Filter>src\win32</Filter>
-    </ClCompile>
-    <ClCompile Include="../src/win32/MoserX.cpp">
-      <Filter>src\win32</Filter>
     </ClCompile>
     <ClCompile Include="../src/must.cpp">
       <Filter>src</Filter>
@@ -87,12 +78,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="../include/win32/xaml/App.xaml.h">
-      <Filter>includes\win32\xaml</Filter>
-    </ClInclude>
-    <ClInclude Include="../include/win32/xaml/MoserX.h">
-      <Filter>includes\win32\xaml</Filter>
-    </ClInclude>
     <ClInclude Include="../include/win32/xaml/pch.h">
       <Filter>includes\win32\xaml</Filter>
     </ClInclude>
@@ -219,10 +204,5 @@
   </ItemGroup>
   <ItemGroup>
     <PRIResource Include="Resources.resw" />
-  </ItemGroup>
-  <ItemGroup>
-    <ApplicationDefinition Include="../include/win32/xaml/App.xaml">
-      <Filter>src\win32</Filter>
-    </ApplicationDefinition>
   </ItemGroup>
 </Project>

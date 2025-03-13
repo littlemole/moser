@@ -15,35 +15,5 @@
 // Com and WinRT headers
 #include <Unknwn.h>
 
-// Some generated files, like MainPage.xaml.g.h need files such as Microsoft.UI.Xaml.Markup.h
-// to already be included.  Let's just include a bunch of stuff we know we'll need here in the PCH.
-
-
-#include <winrt/base.h>
-
-#include <winrt/Windows.Foundation.Collections.h>
-#include <winrt/Windows.Foundation.h>
-/*
-namespace winrt::Microsoft::UI::Xaml::Markup::Windows::Foundation
-{
-	using ::winrt::Windows::Foundation::IInspectable;
-}
-
-namespace winrt::Microsoft::UI::Xaml::Markup
-{
-	struct IComponentConnector2;
-}
-
-*/
-#include <winrt/Microsoft.UI.Xaml.XamlTypeInfo.h>
-
-#include <winrt/Microsoft.UI.Content.h>
-#include <winrt/Microsoft.UI.Dispatching.h>
-#include <winrt/Microsoft.UI.Interop.h>
-#include <winrt/Microsoft.UI.Xaml.Controls.Primitives.h>
-#include <winrt/Microsoft.UI.Xaml.h>
-#include <winrt/Microsoft.UI.Xaml.Hosting.h>
-#include <winrt/Microsoft.UI.Xaml.Markup.h>
-
 #endif
 

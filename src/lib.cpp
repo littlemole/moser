@@ -34,9 +34,6 @@
 #include <unistd.h>
 #endif
 
-#ifdef ENABLE_MOSER_XAML
-#include "MoserX.h"
-#endif
 
 using namespace nlohmann;
 
@@ -1863,18 +1860,6 @@ Value wrtInitNative(VM& vm, int /* argCount */, Value* /* args */)
     return NIL_VAL;
 }
 
-#ifdef ENABLE_MOSER_XAML
-
-MoserX xmos;
-
-Value xamlInitNative(VM& /*vm*/, int /* argCount */, Value* /* args */)
-{
-    xmos.init();
-    return NIL_VAL;
-}
-
-#endif
-
 #endif
 
 void init_stdlib(VM& vm)
@@ -2010,14 +1995,6 @@ void init_stdlib(VM& vm)
     winrt->item("Delegate", new ObjNativeFun(vm, delegateNative));
     winrt->item("init", new ObjNativeFun(vm, wrtInitNative));
     vm.defineGlobal("winrt", winrt);
-
-#ifdef ENABLE_MOSER_XAML
-
-    // xaml
-    auto xaml = new ObjMap(vm);
-    xaml->item("init", new ObjNativeFun(vm, xamlInitNative));
-    winrt->item("xaml", xaml);
-#endif
 
 #endif
 }
