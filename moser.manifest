@@ -1,7 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <assembly xmlns="urn:schemas-microsoft-com:asm.v1" xmlns:asmv3="urn:schemas-microsoft-com:asm.v3" manifestVersion="1.0">
 	<assemblyIdentity version="1.0.0.0" name="moser.app"/>
-
+	<asmv3:file name="moxaml.dll">
+		<activatableClass name="moxaml.mox" threadingModel="both" xmlns="urn:schemas-microsoft-com:winrt.v1"></activatableClass>
+		<activatableClass name="moxaml.Vector" threadingModel="both" xmlns="urn:schemas-microsoft-com:winrt.v1"></activatableClass>
+		<activatableClass name="moxaml.IntVector" threadingModel="both" xmlns="urn:schemas-microsoft-com:winrt.v1"></activatableClass>
+		<activatableClass name="moxaml.DoubleVector" threadingModel="both" xmlns="urn:schemas-microsoft-com:winrt.v1"></activatableClass>
+		<activatableClass name="moxaml.StringVector" threadingModel="both" xmlns="urn:schemas-microsoft-com:winrt.v1"></activatableClass>
+		<activatableClass name="moxaml.Map" threadingModel="both" xmlns="urn:schemas-microsoft-com:winrt.v1"></activatableClass>
+		<activatableClass name="moxaml.IntMap" threadingModel="both" xmlns="urn:schemas-microsoft-com:winrt.v1"></activatableClass>
+		<activatableClass name="moxaml.DoubleMap" threadingModel="both" xmlns="urn:schemas-microsoft-com:winrt.v1"></activatableClass>
+		<activatableClass name="moxaml.StringMap" threadingModel="both" xmlns="urn:schemas-microsoft-com:winrt.v1"></activatableClass>
+	</asmv3:file>
 	<trustInfo xmlns="urn:schemas-microsoft-com:asm.v2">
 		<security>
 			<requestedPrivileges xmlns="urn:schemas-microsoft-com:asm.v3">
@@ -21,4 +31,16 @@
 			<ms_compatibility:maxversiontested xmlns:ms_compatibility="urn:schemas-microsoft-com:compatibility.v1" Id="10.0.18362.0"></ms_compatibility:maxversiontested>
 		</ms_compatibility:application>
 	</ms_compatibility:compatibility>
+<dependency>
+    <dependentAssembly>
+        <assemblyIdentity
+            type="win32"
+            name="Microsoft.Windows.Common-Controls"
+            version="6.0.0.0"
+            processorArchitecture="*"
+            publicKeyToken="6595b64144ccf1df"
+            language="*"
+        />
+    </dependentAssembly>
+</dependency>
 </assembly>

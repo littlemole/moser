@@ -5,6 +5,7 @@ import("win32/user");
 import("win32/uni");
 import("windows");
 
+
 // mocres.dll is a pure resource only dll
 
 // integer ids from resource.h of mocres.dll
@@ -33,7 +34,10 @@ class EncodingDlg : Dialog
         });
 
         // select default item 0 (UTF-8)
-        Win32.SendDlgItemMessageW( this.hwnd, IDC_ENCODING, Win32.CB_SETCURSEL, 0, 0 );        
+        Win32.SendDlgItemMessageW( this.hwnd, IDC_ENCODING, Win32.CB_SETCURSEL, 0, 0 );     
+
+
+  
     }
 
     @cmd(IDOK)
