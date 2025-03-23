@@ -222,14 +222,14 @@ var on_accept = event_callback( fun( fd, what, arg)
 ////////////////
 
 var listen_addr = sockaddr_in();
-var	listen_fd = socket(AF_INET, SOCK_STREAM, 0);
+var listen_fd = socket(AF_INET, SOCK_STREAM, 0);
 
 var reuseaddr_on = 1;
 var ev_accept    = 0;
 
 if (listen_fd >= 0)
 {
-	if (setsockopt(listen_fd, SOL_SOCKET, SO_REUSEADDR, &reuseaddr_on, 8) != -1)
+    if (setsockopt(listen_fd, SOL_SOCKET, SO_REUSEADDR, &reuseaddr_on, 8) != -1)
     {
         listen_addr.sin_family = AF_INET;
         listen_addr.sin_addr = INADDR_ANY;

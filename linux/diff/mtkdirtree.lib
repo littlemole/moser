@@ -58,7 +58,6 @@ class MtkDirTree : GObj
         var klazz = Gtk.TreeViewClass(ptr);
         
         MtkDirTree.row_activated = row_activated(fun(ptr,path,col){
-            print "Override!";
             var parentKlazz =  Gtk.TreeViewClass( MtkDirTree.parentClass );
             var chain = parentKlazz.row_activated;
             var f = row_activated(chain);
@@ -84,10 +83,7 @@ class MtkDirTree : GObj
 
         wrapper.append_column( that.file_name_column );
 
-print "tree init " + wrapper.onExpand;
-print wrapper.target.methods();
         wrapper.signal_connect( "row-expanded", wrapper.onExpand);
-print "--";
         wrapper.signal_connect( "row-activated", wrapper.onSelect);
         wrapper.signal_connect( "notify::root", wrapper.onRoot);
     }

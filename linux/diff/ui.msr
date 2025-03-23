@@ -28,9 +28,7 @@ class Git
     diff()
     {
         var txt = this.bash( this.cmd_target("git rev-parse --show-toplevel && git diff") );
-       // print txt;
         var lines = txt.split("\n");
-        //print lines;
         if(lines.length == 0)
         {
             return ["",""];
@@ -115,8 +113,6 @@ DiffModel.properties = [
 ];
 
 g_register_types( MtkDirTree, MtkWebView, DiffModel);
-
-print "##################################";
 
 //////////////////////////////////////////
 
@@ -204,7 +200,7 @@ class Controller
     quit(ptr,target)
     {
         var v = GLib.Variant(target);
-        print v.get_string(0);
+        //print v.get_string(0);
         this.wnd.destroy();
     }
 
@@ -239,7 +235,7 @@ class Controller
 
         if(!f) return;
 
-        print f.path;
+        //print f.path;
 
         if(r == 3)
         {
@@ -249,13 +245,8 @@ class Controller
     }
 }
 
-print "controller";
-
 var controller = Controller();
 
-print "ui";
-
 var gtkUi = GtkUI("diff.ui");
-print "run";
 gtkUi.run("moc.app",controller);
 

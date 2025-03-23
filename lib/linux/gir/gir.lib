@@ -991,7 +991,7 @@ class TypeLib
         p.forEach( fun(path)
         {
             var lib = dlopen(path,0x00102);
-            print "// load " + path + ": " + lib.integer();
+            //print "// load " + path + ": " + lib.integer();
         });
     }
 
