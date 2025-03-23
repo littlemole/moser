@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildThisFileDirectory)packages\Microsoft.WindowsAppSDK.1.5.240311000\build\native\Microsoft.WindowsAppSDK.props" Condition="Exists('$(MSBuildThisFileDirectory)packages\Microsoft.WindowsAppSDK.1.5.240311000\build\native\Microsoft.WindowsAppSDK.props')" />
-  <Import Project="$(MSBuildThisFileDirectory)packages\Microsoft.Windows.CppWinRT.2.0.240111.5\build\native\Microsoft.Windows.CppWinRT.props" Condition="Exists('$(MSBuildThisFileDirectory)packages\Microsoft.Windows.CppWinRT.2.0.240111.5\build\native\Microsoft.Windows.CppWinRT.props')" />
   <Import Project="$(MSBuildThisFileDirectory)packages\Microsoft.Windows.SDK.BuildTools.10.0.22621.3233\build\Microsoft.Windows.SDK.BuildTools.props" Condition="Exists('$(MSBuildThisFileDirectory)packages\Microsoft.Windows.SDK.BuildTools.10.0.22621.3233\build\Microsoft.Windows.SDK.BuildTools.props')" />
   <Import Project="$(MSBuildThisFileDirectory)HybridCRT.props" />
   <ItemGroup Label="ProjectConfigurations">
@@ -144,7 +143,7 @@
       <AdditionalIncludeDirectories>$(MSBuildThisFileDirectory)..\include\;$(MSBuildThisFileDirectory)..\include\win32\xaml\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>ole32.lib;ffi.lib;user32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>windowsapp.lib;ole32.lib;ffi.lib;user32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <DelayLoadDLLs>Microsoft.UI.Windowing.Core.dll</DelayLoadDLLs>
     </Link>
   </ItemDefinitionGroup>
@@ -245,14 +244,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="../include/win32/xaml/MoserX.h" />
     <ClInclude Include="../include/win32/xaml/xmoser.h" />
     <ClInclude Include="../include/win32/xaml/pch.h" />
     <ClInclude Include="../include/win32/xaml/resource.h" />
-    <ClInclude Include="../include/win32/xaml/App.xaml.h">
-      <DependentUpon>../src/win32/App.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </ClInclude>
     <ClInclude Include="../include/win32/xaml/targetver.h" />
     <ClInclude Include="..\include\chunk.h" />
     <ClInclude Include="..\include\common.h" />
@@ -282,16 +276,10 @@
     <ClInclude Include="..\include\win32\xaml.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="../src/win32/MoserX.cpp" />
     <ClCompile Include="../src/win32/pch.cpp">
       <PrecompiledHeader>Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="../src/win32/App.xaml.cpp">
-      <DependentUpon>../src/win32/App.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </ClCompile>
     <!-- Island-support: This generated file implements some activation factories -->
-    <ClCompile Include="$(GeneratedFilesDir)module.g.cpp" />
     <ClCompile Include="../src/win32/xmoser.cpp" />
     <ClCompile Include="../src/main.cpp">
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
@@ -354,16 +342,6 @@
     <PRIResource Include="Resources.resw" />
   </ItemGroup>
   <ItemGroup>
-    <!-- Island-support: Needed to run Markup Compiler on App.xaml and make the generated files -->
-    <ApplicationDefinition Include="../include/win32/xaml/App.xaml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Midl Include="../src/win32/App.idl">
-      <DependentUpon>../include/win32/xaml/App.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Midl>
-  </ItemGroup>
-  <ItemGroup>
     <Manifest Include="../src/win32/xmoser.manifest" />
   </ItemGroup>
   <ItemGroup>
@@ -378,7 +356,6 @@
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
     <Import Project="$(MSBuildThisFileDirectory)packages\Microsoft.Windows.SDK.BuildTools.10.0.22621.3233\build\Microsoft.Windows.SDK.BuildTools.targets" Condition="Exists('$(MSBuildThisFileDirectory)packages\Microsoft.Windows.SDK.BuildTools.10.0.22621.3233\build\Microsoft.Windows.SDK.BuildTools.targets')" />
-    <Import Project="$(MSBuildThisFileDirectory)packages\Microsoft.Windows.CppWinRT.2.0.240111.5\build\native\Microsoft.Windows.CppWinRT.targets" Condition="Exists('$(MSBuildThisFileDirectory)packages\Microsoft.Windows.CppWinRT.2.0.240111.5\build\native\Microsoft.Windows.CppWinRT.targets')" />
     <Import Project="$(MSBuildThisFileDirectory)packages\Microsoft.WindowsAppSDK.1.5.240311000\build\native\Microsoft.WindowsAppSDK.targets" Condition="Exists('$(MSBuildThisFileDirectory)packages\Microsoft.WindowsAppSDK.1.5.240311000\build\native\Microsoft.WindowsAppSDK.targets')" />
   </ImportGroup>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
@@ -387,8 +364,6 @@
     </PropertyGroup>
     <Error Condition="!Exists('$(MSBuildThisFileDirectory)packages\Microsoft.Windows.SDK.BuildTools.10.0.22621.3233\build\Microsoft.Windows.SDK.BuildTools.props')" Text="$([System.String]::Format('$(ErrorText)', '$(MSBuildThisFileDirectory)packages\Microsoft.Windows.SDK.BuildTools.10.0.22621.3233\build\Microsoft.Windows.SDK.BuildTools.props'))" />
     <Error Condition="!Exists('$(MSBuildThisFileDirectory)packages\Microsoft.Windows.SDK.BuildTools.10.0.22621.3233\build\Microsoft.Windows.SDK.BuildTools.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(MSBuildThisFileDirectory)packages\Microsoft.Windows.SDK.BuildTools.10.0.22621.3233\build\Microsoft.Windows.SDK.BuildTools.targets'))" />
-    <Error Condition="!Exists('$(MSBuildThisFileDirectory)packages\Microsoft.Windows.CppWinRT.2.0.240111.5\build\native\Microsoft.Windows.CppWinRT.props')" Text="$([System.String]::Format('$(ErrorText)', '$(MSBuildThisFileDirectory)packages\Microsoft.Windows.CppWinRT.2.0.240111.5\build\native\Microsoft.Windows.CppWinRT.props'))" />
-    <Error Condition="!Exists('$(MSBuildThisFileDirectory)packages\Microsoft.Windows.CppWinRT.2.0.240111.5\build\native\Microsoft.Windows.CppWinRT.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(MSBuildThisFileDirectory)packages\Microsoft.Windows.CppWinRT.2.0.240111.5\build\native\Microsoft.Windows.CppWinRT.targets'))" />
     <Error Condition="!Exists('$(MSBuildThisFileDirectory)packages\Microsoft.WindowsAppSDK.1.5.240311000\build\native\Microsoft.WindowsAppSDK.props')" Text="$([System.String]::Format('$(ErrorText)', '$(MSBuildThisFileDirectory)packages\Microsoft.WindowsAppSDK.1.5.240311000\build\native\Microsoft.WindowsAppSDK.props'))" />
     <Error Condition="!Exists('$(MSBuildThisFileDirectory)packages\Microsoft.WindowsAppSDK.1.5.240311000\build\native\Microsoft.WindowsAppSDK.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(MSBuildThisFileDirectory)packages\Microsoft.WindowsAppSDK.1.5.240311000\build\native\Microsoft.WindowsAppSDK.targets'))" />
   </Target>

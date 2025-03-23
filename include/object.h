@@ -11,7 +11,7 @@
 // forwards
 class VM;
 class ObjInstance;
-
+class CallFrame;
 
 /*
     MOSER builtin interfaces used by MOSER builtin objects
@@ -176,7 +176,7 @@ friend std::ostream& operator<<(std::ostream& os, ObjFunction& fun);
 friend std::istream& operator>>(std::istream& is, ObjFunction** fun);
 public:
 
-    ObjFunction(VM&, ObjString* n, int cnt, int arity = 0);
+    ObjFunction(VM&, ObjString* n, int cnt, int arity, bool async);
     
     virtual ~ObjFunction() {}
     virtual void mark_gc() override;
@@ -187,6 +187,7 @@ public:
     ObjString* name() { return name_; }
     int upvalueCount() { return upvalueCount_;} 
     int arity() { return arity_; }
+	bool isAsync() { return async_; }
 
     int addUpvalue(Compiler& compiler, uint8_t index, bool isLocal);
 
@@ -200,6 +201,7 @@ private:
     int upvalueCount_ = 0;
 
     int arity_ = 0;
+	bool async_ = false;
 
     std::vector<std::vector<int>> breakes;
     std::vector<std::vector<int>> loops;
@@ -251,7 +253,7 @@ public:
     virtual ~ObjNativeMethod() {}
     virtual void mark_gc() override;
 
-    NativeMeth function;
+    NativeMeth function = nullptr;
 
     virtual const std::string& toString() const override;    
     virtual std::string type() const override { return "native method"; }
@@ -272,7 +274,7 @@ class ObjUpvalue : public Obj
 {
 friend class VM;
 public:
-    ObjUpvalue(VM& v, Value* val);
+    ObjUpvalue(VM& v,CallFrame* f, size_t index, size_t depth);
 
     virtual ~ObjUpvalue() {}
     virtual void mark_gc() override;
@@ -281,11 +283,10 @@ public:
     virtual const std::string& toString() const override;    
     virtual std::string type() const override;
 
-    virtual void* pointer() override { return location; }
+    virtual void* pointer() override { return value.valuePtr(); }
 
 private:
-    Value* location = nullptr;
-    Value closed;  
+	ValueOrPtr value;
 };
 
 /*
@@ -627,6 +628,38 @@ public:
 
     virtual void* pointer() override { return this; }
 
+};
+
+
+/*
+    A simple Coro object 
+*/
+
+class ObjCoro : public ObjBuiltin
+{
+public:
+
+	ObjCoro(VM& v);
+
+    virtual ~ObjCoro() {}
+    virtual void mark_gc() override;
+
+    virtual Value getMethod(const std::string& name) override;
+    virtual bool  invokeMethod(const std::string& name, int argCount) override;
+
+    virtual Value getProperty(const std::string& name) override;
+    virtual void setProperty(const std::string& name, Value val) override;
+    virtual void deleteProperty(const std::string& name) override;
+    virtual std::vector<std::string> keys() override;
+
+    virtual const std::string& toString() const override;    
+    virtual std::string type() const override { return "<Coro>>"; }
+
+    virtual void* pointer() override { return this; }
+
+    void init();
+
+	CallFrame* frame = nullptr;
 };
 
 #endif

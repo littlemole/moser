@@ -196,12 +196,11 @@ class MyWindow : Window
     @XamlStandardCommand(Open)
     onOpenFile(sender,args)
     {
-         this.xamlWnd.FileOpenPicker(
+        this.xamlWnd.FileOpenPicker(
             { 
                 "FileTypeFilter" : [ "*" ],
             }
-        )
-        .then(
+        ).then(
             fun(file) 
             {
                 if(file.valid()  )
@@ -210,15 +209,21 @@ class MyWindow : Window
                     this.dataContext.ext = file.FileType;
                     
                     Windows.Storage.FileIO.ReadTextAsync(file)
-                    .then( fun(content) 
+		    .then( fun(content) 
                     {
                         this.dataContext.text = content;
                         this.dataContext.cmds.EOL.Label = this.eolMode(content);
-                    });
+                    })
+		    .otherwise( fun(e) {
+			print "e: " + e;
+		    });
                 }
 		this.xamlWnd.focus();
             }
-        );
+        )
+	.otherwise( fun(e) {
+            print "e: " + e;
+	});
     }
 
     @XamlAccel(key=S,flag=Control)
@@ -256,7 +261,10 @@ class MyWindow : Window
                 }
 		this.xamlWnd.focus();
             }
-        );
+        )
+	.otherwise( fun(e) {
+            print "e: " + e;
+	});
     }
 
     //instead of directly binding to Event
@@ -316,12 +324,6 @@ class MyWindow : Window
 
 	// focus the edit window
 	this.xamlWnd.find("text").Focus(3);
-
-//	fixupCommands(this,this.xamlWnd);
-	// workaround for lazy binding of initially hidden elements
-//	this.xamlWnd.find("toDos").Command = this.dataContext.cmds.Unix2Dos;
-//	this.xamlWnd.find("toUnix").Command = this.dataContext.cmds.Dos2Unix;
-	
     }
 
     @msg(WM_DESTROY)

@@ -639,7 +639,12 @@ bool ObjForeignFunction::callValue(int argCount)
 
     for (int i = 0; i < argCount; i++)
     {
-        Value v = *(&vm.stack.back() - argCount +1 +i);
+//        Value v = *(&vm.stack.back() - argCount +1 +i);
+
+		Value v = vm.peek(argCount-i-1);
+
+		//Value v = vm.top_frame().arg(vm,i);
+
         //unused: const std::string& paramType = fun_->argument(i);
 
         size_t r = 0;
@@ -713,7 +718,12 @@ bool ObjFunctionPtr::callValue(int argCount)
 
     for (int i = 0; i < argCount; i++)
     {
-        Value v = *(&vm.stack.back() - argCount +1 +i);
+//        Value v = *(&vm.stack.back() - argCount +1 +i);
+
+		Value v = vm.peek(argCount-i-1);
+
+		//Value v = vm.top_frame().arg(vm,i);
+
         //unused: const std::string& paramType = fun_->argument(i);
 
         size_t r = 0;
@@ -767,7 +777,6 @@ ObjPointer::~ObjPointer()
 {
     if( (deletor_ != 0) && (ptr_ != 0) )
     {
-       // printf("killroy\n");
         finalizer fin = (finalizer)deletor_;
         (fin)(ptr_);
         ptr_ = 0;
@@ -809,7 +818,6 @@ void ObjPointer::init()
         {
             auto ptr = as<ObjPointer>(that.as.obj);
             if(!ptr) return NIL_VAL;
-            //printf("detach\n");
             ptr->deletor_= 0;
             ptr->ptr_ = 0;
             return NIL_VAL;
@@ -1045,7 +1053,10 @@ bool ObjVariadicForeignFunction::callValue(int argCount)
 
     for (int i = 0; i < argCount; i++)
     {
-        Value v = *(&vm.stack.back() - argCount +1 +i);
+		Value v = vm.peek(argCount-i-1);
+
+//        Value v = *(&vm.stack.back() - argCount +1 +i);
+//		Value v = vm.top_frame().arg(vm,i);
         auto ts = FFIMarshaller::getType(v);
         //unused: const std::string& paramType = i < fun_->nfixed ? fun_->argument(i) : ts;
 
@@ -1119,7 +1130,10 @@ bool ObjStruct::callValue(int argCount)
 {
     if(argCount > 0)
     {
-        Value v = vm.stack[vm.stack.size() - argCount];
+//        Value v = vm.stack[vm.stack.size() - argCount];
+		Value v = vm.peek(0);
+
+//		Value v = vm.top_frame().arg(vm,argCount+1);
         auto ptr = as<ObjPointer>(v);
         if(ptr)
         {
@@ -1365,7 +1379,8 @@ bool ObjCallbackType::callValue(int argCount)
         return false;
     }
 
-    Value funVal = *(&vm.stack.back() );
+    //Value funVal = *(&vm.stack.back() );
+	Value funVal = vm.peek(0);
     auto fun = as<Obj>(funVal);
     if(!fun)
     {
@@ -1430,12 +1445,12 @@ ObjCallback::ObjCallback(
             }
         }
         this->cbFun_->callValue(cif->nargs);
-        vm.frames.back().returnToCallerOnReturn = true;
+        vm.top_frame().returnToCallerOnReturn = true;
         Value r = vm.run();
-        if(!vm.pendingEx.empty())
+        if(vm.hasException())
         {
-            vm.pendingEx.back().print();
             printf("unhandled exception in callback");
+            vm.printPendingException();
             exit(1);
         }
         FFIMarshaller::to_foreign(cif->rtype,ret,r);

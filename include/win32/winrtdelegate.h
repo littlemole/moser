@@ -110,7 +110,7 @@ HRESULT STDMETHODCALLTYPE Delegate<Args...>::Invoke(Args ... arg)
         vm.push(cb_);
         for (auto& it : values) vm.push(it);
         obj->callValue((int)values.size());
-        vm.frames.back().returnToCallerOnReturn = true;
+        vm.top_frame().returnToCallerOnReturn = true;
         vm.run();
         vm.pop(); // ?
     }

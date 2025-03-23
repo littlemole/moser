@@ -25,9 +25,7 @@ method lookup
 
 Obj::Obj(VM& v) : vm(v)
 {
-    vm.allocations++;
-
-    vm.objects.push_back(this);
+	vm.inc_allocations(this);
 
 #ifdef DEBUG_VERBOSE_GC
     printf("%p allocate  \n", (void*)this);
@@ -36,7 +34,7 @@ Obj::Obj(VM& v) : vm(v)
 
 Obj::~Obj()
 {
-    vm.allocations--;
+	vm.decc_allocations();
 #ifdef DEBUG_VERBOSE_GC
     printf("%p deallocate  %d\n", (void*)this);
 #endif
@@ -313,8 +311,8 @@ const std::string& ObjString::toString() const
     return chars;
 }
 
-ObjFunction::ObjFunction(VM& v, ObjString* n, int cnt, int a) 
-: Obj(v), name_(n), upvalueCount_(cnt), arity_(a)
+ObjFunction::ObjFunction(VM& v, ObjString* n, int cnt, int a, bool async) 
+: Obj(v), name_(n), upvalueCount_(cnt), arity_(a), async_(async)
 {
     if(name_)
     {
@@ -378,8 +376,7 @@ const std::string& ObjNativeFun::toString()  const
 
 bool ObjNativeFun::callValue(int argCount)
 {
-    //unused: auto frame = &vm.frames.back();
-    Value result = function(vm, argCount, &vm.stack.back() - argCount+ 1);
+	Value result = function(vm, argCount, argCount ? &vm.peek(argCount-1) : 0);
 
     for( int i = 0; i < argCount;i++)
     {
@@ -416,12 +413,12 @@ void ObjNativeMethod::mark_gc()
 
 bool ObjNativeMethod::callValue(int argCount)
 {
-    Value* thet = &vm.stack.back() - argCount;
-    auto frame = &vm.frames.back();
-    Value result = function( *thet, this->name, argCount, &vm.stack.back() - argCount +1);
+	Value* thet = &vm.peek(argCount );
+    auto frame = &vm.top_frame();
+    Value result = function( *thet, this->name, argCount, argCount ? &vm.peek(argCount -1) : 0);
 
     // support eval which changes frame
-    if( &vm.frames.back() == frame )
+    if( &vm.top_frame() == frame )
     {
         for( int i = 0; i < argCount;i++)
         {
@@ -437,10 +434,8 @@ bool ObjNativeMethod::callValue(int argCount)
     return true;
 }
 
-ObjUpvalue::ObjUpvalue(VM& v, Value* val)
-    : Obj(v),
-    location(val),
-    closed(NIL_VAL)
+ObjUpvalue::ObjUpvalue(VM& v, CallFrame* f, size_t index, size_t depth)
+    : Obj(v), value(f,index,depth)
 {}
 
 
@@ -482,8 +477,7 @@ bool ObjUpvalue::callValue(int /* argCount */)
 
 void ObjUpvalue::mark_gc()
 {
-    vm.gc.markValue(closed);
-    
+	value.mark_gc(vm);
 }
 
 
@@ -517,13 +511,13 @@ void ObjClass::mark_gc()
 
 bool ObjClass::callValue(int argCount)
 {
-    vm.stack[vm.stack.size()-argCount - 1] = new ObjInstance(vm, this);
+	vm.top_frame().poke(argCount, Value(new ObjInstance(vm, this)));
 
     if(methods.count(name->toString()))
     {
         Value ctor = methods[name->toString()];
         vm.call(as<ObjClosure>(ctor), argCount);
-        vm.frames.back().returnToCallerOnReturn = true;
+        vm.top_frame().returnToCallerOnReturn = true;
         //unused: Value r = 
         vm.run();
     }
@@ -790,7 +784,7 @@ void ObjInstance::finalize()
         {
             vm.push(this);
             invokeMethod(dtor,0);
-            vm.frames.back().returnToCallerOnReturn = true;
+            vm.top_frame().returnToCallerOnReturn = true;
             //unused: Value v = 
             vm.run();
             vm.pop();
@@ -934,8 +928,7 @@ Value ObjInstance::getProperty(const std::string& pname)
         ObjBoundMethod* bound = new ObjBoundMethod( vm, this, as<ObjClosure>(meth));
         vm.push(bound);
         bound->callValue(0);
-//        vm.call(bound,0);
-        vm.frames.back().returnToCallerOnReturn = true;
+        vm.top_frame().returnToCallerOnReturn = true;
         Value r = vm.run();
         vm.pop();
         return r;
@@ -986,8 +979,7 @@ void ObjInstance::setProperty(const std::string& key, Value val)
         vm.push(bound2);
         vm.push(val);
         bound2->callValue(1);
-//        vm.call(bound,1);
-        vm.frames.back().returnToCallerOnReturn = true;
+        vm.top_frame().returnToCallerOnReturn = true;
         //unused: Value r = 
         vm.run();
         vm.pop();
@@ -1354,7 +1346,6 @@ bool ObjArray::invokeMethod(const std::string& mname, int argCount)
             {
                 return val.as.obj->callValue(argCount);
             }
-
         }
     }
     return false;
@@ -1535,8 +1526,6 @@ ObjMap::ObjMap(VM& vm) : ObjBuiltin(vm)
         }
     );
     methods["transform"] = transform;
-
-
 }
 
 void ObjMap::mark_gc()
@@ -1664,7 +1653,7 @@ const std::string& ObjBoundMethod::toString() const
 
 bool ObjBoundMethod::callValue(int argCount)
 {
-    vm.stack[vm.stack.size()-argCount -1 ] = receiver;                
+	vm.top_frame().poke(argCount, receiver);                
 
     auto closure = as<ObjClosure>(method);
     if(closure)
@@ -1910,7 +1899,8 @@ bool ObjDecorator::callValue(int argCount)
     std::vector<Value> args;
     for(int i = 0; i < argCount; i++)
     {
-        args.push_back(vm.stack[vm.stack.size()-argCount+i]);
+		args.push_back(vm.peek(argCount-1-i));
+
     }
     for(int i = 0; i < argCount; i++)
     {
@@ -1942,13 +1932,13 @@ bool ObjDecorator::callValue(Value receiver, int argCount)
     std::vector<Value> args;
     for(int i = 0; i < argCount; i++)
     {
-        args.push_back(vm.stack[vm.stack.size()-argCount+i]);
+		args.push_back(vm.peek(argCount-1-i));
+
     }
     for(int i = 0; i < argCount; i++)
     {
         vm.pop();
     }
-
 
     vm.push(target);
     ObjString* fname = nullptr;
@@ -1982,14 +1972,12 @@ bool ObjDecorator::invokeMethod(const std::string& /*mname*/, int /*argCount*/)
 Value ObjDecorator::getProperty(const std::string& pname)
 {
     Value target = fields["target"];
-//    Value proxy  = fields["proxy"];
 
     auto obj = as<ObjInstance>(target);
     if(obj)
     {
         Value m = obj->getProperty(pname);
         return m;
-//        return new ObjDecorator(vm, m.as.obj,proxy.as.obj);
     }
 
     auto p = as<ObjDecorator>(target);
@@ -2069,17 +2057,12 @@ bool ObjProxy::invokeMethod(const std::string& mname, int argCount)
     std::vector<Value> args;
     for(int i = 0; i < argCount; i++)
     {
-        args.push_back(vm.stack[vm.stack.size()-argCount+i]);
+		args.push_back(vm.peek(argCount-1-i));
+
     }
     for(int i = 0; i < argCount; i++)
     {
         vm.pop();
-    }
-
-    auto obj = as<ObjInstance>(target);
-    if(obj)
-    {
-       // target = obj->getProperty(name);
     }
 
     {
@@ -2094,12 +2077,12 @@ bool ObjProxy::invokeMethod(const std::string& mname, int argCount)
         }
     }
 
-    obj = as<ObjInstance>(proxy);
+    auto obj = as<ObjInstance>(proxy);
     if(obj)
     {
         vm.gc.pin(this);
         obj->invokeMethod("invoke",argCount+2);
-        vm.frames.back().returnToCallerOnReturn = true;
+        vm.top_frame().returnToCallerOnReturn = true;
         Value r = vm.run();
         vm.pop(); 
         vm.pop();
@@ -2118,21 +2101,15 @@ Value ObjProxy::getProperty(const std::string& pname)
     if (pname == "target") return target;
     if (pname == "proxy") return proxy;
 
-    auto obj = as<ObjInstance>(target);
-    if(obj)
-    {
-      //  target = obj->getProperty(name);
-    }
-
     vm.push(proxy);
     vm.push(target);
     vm.push(new ObjString(vm, pname));
 
-    obj = as<ObjInstance>(proxy);
+    auto obj = as<ObjInstance>(proxy);
     if(obj)
     {
         obj->invokeMethod("getter",2);
-        vm.frames.back().returnToCallerOnReturn = true;
+        vm.top_frame().returnToCallerOnReturn = true;
         Value r = vm.run();
         vm.pop();
         vm.pop();
@@ -2148,28 +2125,20 @@ void ObjProxy::setProperty(const std::string& key, Value val)
     Value target = fields["target"];
     Value proxy  = fields["proxy"];
 
-    auto obj = as<ObjInstance>(target);
-    if(obj)
-    {
-      //  target = obj->getProperty(name);
-    }
-
     vm.push(proxy);
     vm.push(target);
     vm.push(new ObjString(vm, key));
     vm.push(val);
 
-    obj = as<ObjInstance>(proxy);
+    auto obj = as<ObjInstance>(proxy);
     if(obj)
     {
         obj->invokeMethod("setter",3);
-        vm.frames.back().returnToCallerOnReturn = true;
+        vm.top_frame().returnToCallerOnReturn = true;
         //unused: Value r = 
         vm.run();
         vm.pop();
-        //return r;
     }
-//    return NIL_VAL;
 }
 
 
@@ -2206,6 +2175,100 @@ void ObjProxy::mark_gc()
     vm.gc.markMap(methods);
 }
 
+///////////////////////////////////////////////////////////////////////
+
+ObjCoro::ObjCoro(VM& v)
+    : ObjBuiltin(v)
+{
+    init();
+}
+
+void ObjCoro::init()
+{
+	auto resumeFunction = new ObjNativeMethod( vm, 
+        [](Value that, const std::string&, int argCount, Value* args) -> Value
+        {            
+            if(argCount != 2) return NIL_VAL;
+
+			bool isSuccess = args[0].as.boolean;
+			Value& result = args[1];
+
+			ObjCoro* coro = as<ObjCoro>(that);
+			coro->vm.co_resume(coro,result,isSuccess);
+            return that;
+        }
+    );
+    methods["resume"] = resumeFunction;
+}
+
+Value ObjCoro::getMethod(const std::string& mname)
+{
+    if (methods.count(mname) == 0) return NIL_VAL;
+    return methods[mname];
+}
+
+bool ObjCoro::invokeMethod(const std::string& mname, int argCount)
+{
+    if (methods.count(mname) == 0) return false;
+
+    Value val = methods[mname];
+    if(IS_OBJ(val))
+    {
+        return val.as.obj->callValue(argCount);
+    }
+    return false;
+}
+
+Value ObjCoro::getProperty(const std::string& pname)
+{
+    if (methods.count(pname) ) 
+	{
+		return methods[pname];
+	}
+
+    if(!fields.count(pname)) return NIL_VAL;
+    return fields[pname];
+}
+
+void ObjCoro::setProperty(const std::string& key, Value val )
+{
+    fields[key] = val;
+}
+
+
+void ObjCoro::deleteProperty(const std::string& pname )
+{
+	if(fields.count(pname) > 0)
+	{
+		fields.erase(pname);
+	}
+}
+
+std::vector<std::string> ObjCoro::keys()
+{
+    std::vector<std::string> k;
+    for(auto& it : fields)
+    {
+        k.push_back(it.first);
+    }
+    return k;
+}
+
+const std::string& ObjCoro::toString() const
+{
+    static std::string s( "<Coro>");
+	return s;
+}
+ 
+void ObjCoro::mark_gc()
+{    
+    vm.gc.markMap(fields);
+    vm.gc.markMap(methods);
+}
+
+
+
+////////////////////////////////////////////
 
 
 

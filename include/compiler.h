@@ -57,8 +57,8 @@ public:
     VM& vm;
 
     Compiler(VM&);
-    Compiler(VM& ,Compiler* parent, FunctionType t);
-    Compiler(VM& ,Compiler* parent, FunctionType t,Scanner* s, Parser* p);
+    Compiler(VM& ,Compiler* parent, FunctionType t, bool async);
+    Compiler(VM& ,Compiler* parent, FunctionType t,Scanner* s, Parser* p, bool async);
     ~Compiler();
 
     Compiler* enclosing = nullptr;
@@ -86,6 +86,7 @@ private:
     void expression();
 
     void classDeclaration();
+	void asyncDeclaration() ;	
     void funDeclaration();
     void varDeclaration();
     void externDeclaration();
@@ -151,8 +152,8 @@ private:
     void patchTryFinal(int offset);
     void patchLoop(int offset, int dest);
 
-    void parseFunction(FunctionType type);
-    void method(OpCode op);
+    void parseFunction(FunctionType type, bool async);
+    void method(OpCode op, bool async);
     cindex_t argumentList();    
 
     cindex_t parseVariable(const char* errorMessage);

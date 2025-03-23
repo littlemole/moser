@@ -76,5 +76,26 @@ inline bool IS_OBJ   (const Value& val) { return val.type == ValueType::VAL_OBJ;
 
 #define NIL_VAL           Value{}
 
+class ValueOrPtr
+{
+public:
+	ValueOrPtr( CallFrame* f, size_t idx, size_t dpth);
+	ValueOrPtr( const Value& v);
+
+	Value* valuePtr();
+	Value* operator->();
+	Value& operator*();
+	void close();
+	void mark_gc(VM& vm);
+	size_t index();
+    size_t depth();
+	CallFrame* frame();
+
+private:
+	CallFrame* frame_ = nullptr;
+    size_t index_ = 0;
+    size_t depth_ = 0;
+	Value value;
+};
 
 #endif

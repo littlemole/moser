@@ -58,7 +58,6 @@ class MtkDirTree : GObj
         var klazz = Gtk.TreeViewClass(ptr);
         
         MtkDirTree.row_activated = row_activated(fun(ptr,path,col){
-            print "Override!";
             var parentKlazz =  Gtk.TreeViewClass( MtkDirTree.parentClass );
             var chain = parentKlazz.row_activated;
             var f = row_activated(chain);

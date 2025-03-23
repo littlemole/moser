@@ -180,6 +180,45 @@ class GObjInterceptor
             return runtime.invoke(this.methods{name},params);
         }
 
+		if(name.substr(0,6) == "async_") {
+
+			var shortname = name.substr(6);
+			var name_async = shortname + "_async";
+			var name_finish = shortname + "_finish";
+			
+	        var moa = GIMPL.find_method(target.typelib,target.info,name_async);
+	        var mof = GIMPL.find_method(target.typelib,target.info,name_finish);
+			if( mof && moa ) {
+
+				var params = [target.object];
+				args[2:].forEach( fun(arg) { params.push(arg); });
+
+				var future = Future();
+
+				future.cb = Gio.AsyncReadyCallback( fun(src,res,ptr) 
+				{
+					var err = sys.pointer();
+					if ( int(err) )     // on error 
+					{
+						var error = GLib.Error(err);
+						future.reject(error.message.string());
+					}
+					else                // on success
+					{
+						var data = runtime.invoke( mof, [target.object, res, &err]);
+						future.resolve(data);
+					}
+				});
+
+				params.push(future.cb);
+				params.push(0);
+
+				runtime.invoke( moa, params );
+
+				return future;
+			}
+		}
+
         var mo = GIMPL.find_method(target.typelib,target.info,name);
         if(mo != nil)
         {
@@ -952,7 +991,7 @@ class TypeLib
         p.forEach( fun(path)
         {
             var lib = dlopen(path,0x00102);
-            print "// load " + path + ": " + lib.integer();
+            //print "// load " + path + ": " + lib.integer();
         });
     }
 

@@ -1,12 +1,10 @@
-//import("windows");
 import("win32/crypt");
 import("wincrypt");
 
 
-var CLEARTEXT = "TEST"; //io.slurp("C:\\Users\\mike\\Documents\\new document.ctx");
-//var CLEARTEXT = io.slurp("C:\\Users\\mike\\Documents\\new document.ctx");
-print CLEARTEXT;
+var CLEARTEXT = "TEST"; 
 
+print CLEARTEXT;
 print CALG_MD5;
 
 var cc = CryptoCtx();
@@ -53,15 +51,12 @@ class CryptoString
     {
         var ws = wstring( str );
         var len = 0;
-         print ">>>>>>>><< 0 " + ws + " " + this.algo;
         var r = Win32.CryptStringToBinaryW(ws,ws.length, this.algo, 0, &len, 0, 0 );
         if(r)
         {
-            print ">>>>>>>><< 1";
             var buf = sys.buffer( x );
             if(Win32.CryptStringToBinaryW(ws,ws.length, this.algo, buf, &x, 0, 0 ))
             {
-                print ">>>>>>>><< 2";
                 key = buf.asString();
                 return key;
             }                
@@ -88,15 +83,12 @@ class CryptoString
 
 var x = 0;
 var len = Win32.CryptStringToBinaryW (ws,ws.length, Win32.CRYPT_STRING.CRYPT_STRING_BASE64, 0, &x, 0, 0 );
-print "LEN:" + len + " " + x;
 var key = "";
 if(len)
 {
-    print "CRYPTO";
     var buf = sys.buffer( x );
     if(Win32.CryptStringToBinaryW (ws,ws.length, Win32.CRYPT_STRING.CRYPT_STRING_BASE64, buf, &x, 0, 0 ))
     {
-        print "CRYPTO";
         key = buf.asString();
         print "KEY: " + key + "[";
     }                
@@ -105,11 +97,9 @@ if(len)
 var y = 0;
 if(Win32.CryptBinaryToStringW( key, key.length, Win32.CRYPT_STRING.CRYPT_STRING_BASE64, 0, &y))
 {
-    print "CRYPTO2 " + y;
     var buf = sys.buffer( (y)*2);
     if(Win32.CryptBinaryToStringW( key, key.length, Win32.CRYPT_STRING.CRYPT_STRING_BASE64, buf, &y))
     {
-        print "CRYPTO3";
         var ws = buf.asWideString();
         var s = string(ws);
         s = s.substr(0,s.length-2);

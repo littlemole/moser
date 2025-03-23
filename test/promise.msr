@@ -1,0 +1,58 @@
+import("promise");
+
+var promise = Future();
+
+promise.then( fun(r) {
+	print r;
+});
+
+promise.otherwise( fun(e) {
+	print e;
+});
+
+promise.resolve(4711);
+
+promise.reject("error");
+
+// expect: 4711
+// expect: error
+
+var p = Future();
+p.resolve(4711);
+
+// expect: 4711
+
+p.then( fun(r) {
+	print r;
+});
+
+var p2 = Future();
+p2.reject("error");
+
+// expect: error
+
+p2.otherwise( fun(r) {
+	print r;
+});
+
+var p3 = Future();
+
+fun async_test(v) {
+	return p3;	
+}
+
+var p4 = Future();
+
+p4.then( fun(r) {
+	print r;
+	return async_test(r);
+})
+.then( fun(r) {
+	print r;
+});
+
+p4.resolve(42);
+p3.resolve(43);
+
+// expect: 42
+// expect: 43

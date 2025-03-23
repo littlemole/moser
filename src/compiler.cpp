@@ -9,7 +9,7 @@ ClassCompiler* currentClass = nullptr;
 
 Compiler::Compiler(VM& v) : vm(v), type(FunctionType::TYPE_SCRIPT)
 {
-    function = new ObjFunction(vm, nullptr,0);
+    function = new ObjFunction(vm, nullptr,0,0,false);
 
     if (type != FunctionType::TYPE_FUNCTION) 
     {
@@ -33,10 +33,10 @@ Compiler::Compiler(VM& v) : vm(v), type(FunctionType::TYPE_SCRIPT)
     currentCompiler = this;
 }
 
-Compiler::Compiler(VM& v, Compiler* parent,FunctionType ft)
+Compiler::Compiler(VM& v, Compiler* parent,FunctionType ft, bool async)
     : vm(v), enclosing(parent), type(ft)
 {
-    function = new ObjFunction(vm,nullptr,0);
+    function = new ObjFunction(vm,nullptr,0,0,async);
 
     filename = enclosing->filename;
     function->chunk.filename = filename;
@@ -51,17 +51,17 @@ Compiler::Compiler(VM& v, Compiler* parent,FunctionType ft)
     currentCompiler = this;
 }
 
-Compiler::Compiler(VM& v, Compiler* parent,FunctionType ft, Scanner* s, Parser* p) 
+Compiler::Compiler(VM& v, Compiler* parent,FunctionType ft, Scanner* s, Parser* p, bool async) 
     : vm(v), enclosing(parent), type(ft), scanner(s), parser(p)
 {
     if (type != FunctionType::TYPE_SCRIPT) 
     {
         auto name = new ObjString(vm, parser->previous.str());
-        function = new ObjFunction(vm, name,0);
+        function = new ObjFunction(vm, name,0,0,async);
     }
     else
     {
-        function = new ObjFunction(vm, nullptr,0);
+        function = new ObjFunction(vm, nullptr,0,0,false);
     }
 
     filename = enclosing->filename;
@@ -149,6 +149,10 @@ void Compiler::declaration()
     else if (parser->match(TokenType::EXTERN)) 
     {
         externDeclaration();
+    } 
+    else if (parser->match(TokenType::ASYNC)) 
+    {
+        asyncDeclaration();
     } 
     else 
     {
@@ -399,24 +403,31 @@ void Compiler::classDeclaration()
         {
             metaDeclaration();
         }
+		
+		bool async = false;
+		if(parser->match(TokenType::ASYNC)) 
+		{
+			async = true;
+		}
+
         if( (parser->current.type == TokenType::IDENTIFIER) && (parser->current.str() == "get"))
         {
             parser->consume(TokenType::IDENTIFIER,"getter");
-            method(OpCode::OP_GETTER);
+            method(OpCode::OP_GETTER,async);
         }
         else if((parser->current.type == TokenType::IDENTIFIER) && (parser->current.str() == "set"))
         {
             parser->consume(TokenType::IDENTIFIER,"setter");
-            method(OpCode::OP_SETTER);
+            method(OpCode::OP_SETTER,async);
         }
         else if(parser->current.type == TokenType::STATIC )
         {
             parser->consume(TokenType::STATIC,"static");
-            method(OpCode::OP_STATIC_METHOD);
+            method(OpCode::OP_STATIC_METHOD,async);
         }
         else 
         {
-            method(OpCode::OP_METHOD);
+            method(OpCode::OP_METHOD,async);
         }
     }    
     parser->consume(TokenType::RIGHT_BRACE, "Expect '}' after class body.");
@@ -429,11 +440,21 @@ void Compiler::classDeclaration()
     currentClass = currentClass->enclosing;
 }
 
+void Compiler::asyncDeclaration() 
+{
+	parser->consume(TokenType::FUN, "Expect fun after async.");
+
+    cindex_t global = parseVariable("Expect function name.");
+    markInitialized();
+    parseFunction(FunctionType::TYPE_FUNCTION, true);
+    defineVariable(global);
+}
+
 void Compiler::funDeclaration() 
 {
     cindex_t global = parseVariable("Expect function name.");
     markInitialized();
-    parseFunction(FunctionType::TYPE_FUNCTION);
+    parseFunction(FunctionType::TYPE_FUNCTION,false);
     defineVariable(global);
 }
 
@@ -852,8 +873,6 @@ void Compiler::doWhileStatement()
         patchJump(pos);
     }
     function->breakes.pop_back();
-
-
 }
 
 void Compiler::forOfStatement()
@@ -881,8 +900,6 @@ void Compiler::forOfStatement()
 
     auto rv = resolve(count);
     emitBytes(rv.setOp, rv.arg);
-
-   //emitByte(OpCode::OP_POP);
 
     expression(); // array variable
 
@@ -1081,13 +1098,10 @@ void Compiler::forStatement()
     } 
     else if (parser->match(TokenType::VAR))
     {
-        //varDeclaration();
-        // unused Token varname = parser->current;
         cindex_t vglobal = parseVariable("Expect variable name.");
         if (parser->match(TokenType::EQUAL))
         {
             expression();
-            // add meta?
         }
         else
         {
@@ -1234,28 +1248,6 @@ void Compiler::deleteStatement()
     expression();
     emitByte(OpCode::OP_DELETE);
     parser->consume(TokenType::SEMICOLON,"need semicolon after delete statement.");
-    /*
-    parser->consume(TokenType::IDENTIFIER, "need variable name for delete statement.");
-    Token var = parser->previous;
-
-    auto r = resolve(var);
-
-    emitBytes(r.getOp,r.arg);
-
-    if(parser->match(TokenType::LEFT_BRACE))
-    {
-        expression();
-        emitByte(OpCode::OP_DELETE);
-        parser->consume(TokenType::RIGHT_BRACE,"need right brace/bracket for delete statement");
-    }
-    else if(parser->match(TokenType::LEFT_BRACKET))
-    {
-        expression();
-        emitByte(OpCode::OP_DELETE);
-        parser->consume(TokenType::RIGHT_BRACKET,"need right brace/bracket for delete statement");
-    }
-    parser->consume(TokenType::SEMICOLON,"need semicolon after delete statement.");
-    */
 }
 
 // parsing functions
@@ -1282,9 +1274,9 @@ cindex_t Compiler::parseVariable(const char* errorMessage)
     return id;
 }
 
-void Compiler::parseFunction(FunctionType typ) 
+void Compiler::parseFunction(FunctionType typ, bool async) 
 {
-    Compiler compiler(vm,this,typ,scanner,parser);
+    Compiler compiler(vm,this,typ,scanner,parser,async);
     
     compiler.beginScope(); 
 
@@ -1352,7 +1344,7 @@ void Compiler::parseFunction(FunctionType typ)
 
 }
 
-void Compiler::method(OpCode op) 
+void Compiler::method(OpCode op, bool async) 
 {
     bool dtor = false;
     if(parser->match(TokenType::TILDE))
@@ -1395,7 +1387,7 @@ void Compiler::method(OpCode op)
             parser->errorAtCurrent("destructor must have class name.");
         }
     }
-    parseFunction(typ);    
+    parseFunction(typ,async);    
     emitBytes(op, constant);
 }
 
@@ -1727,7 +1719,7 @@ void Compiler::mapAccess(bool canAssign)
 
 void Compiler::funExpression(bool /* canAssign */)
 {
-    parseFunction(FunctionType::TYPE_FUNCTION);
+    parseFunction(FunctionType::TYPE_FUNCTION,false);
 }
 
 
@@ -1793,6 +1785,7 @@ void Compiler::unary(bool)
         case TokenType::BANG: emitByte(OpCode::OP_NOT); break;        
         case TokenType::MINUS: emitByte(OpCode::OP_NEGATE); break;
         case TokenType::TILDE: emitByte(OpCode::OP_BIN_NEGATE); break;
+        case TokenType::CO_AWAIT: emitByte(OpCode::OP_CO_AWAIT); break;
         default: 
             return; // Unreachable.
     }
@@ -1823,10 +1816,9 @@ void Compiler::binary(bool)
         case TokenType::BIN_OR:        emitByte(OpCode::OP_BIN_OR); break;                
         case TokenType::SHIFT_LEFT:    emitByte(OpCode::OP_SHIFT_LEFT); break;                
         case TokenType::SHIFT_RIGHT:   emitByte(OpCode::OP_SHIFT_RIGHT); break;                
-        case TokenType::ISA:           emitByte(OpCode::OP_ISA); break;                
+        case TokenType::ISA:           emitByte(OpCode::OP_ISA); break;                     
         case TokenType::PLUS_EQUAL: 
         {
-            printf("HERE");
             break;
         }
         default: return; // Unreachable.

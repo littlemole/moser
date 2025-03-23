@@ -1,7 +1,7 @@
 import("promise");
 import("gir/gir");
 
-var gir = GIR( [ "Gio:2.0", "GLib:2.0", "Gdk:3.0", "Gtk:3.0", "GObject:2.0", "GtkSource:3.0", "WebKit2:4.0", "JavaScriptCore:4.0" ] );
+var gir = GIR( [ "Gio:2.0", "GLib:2.0", "Gdk:3.0", "Gtk:3.0", "GObject:2.0", "GtkSource:3.0", "WebKit2:4.1", "JavaScriptCore:4.1" ] );
 
 import("mtkdirtree");
 import("mtkwebview");
@@ -28,9 +28,7 @@ class Git
     diff()
     {
         var txt = this.bash( this.cmd_target("git rev-parse --show-toplevel && git diff") );
-       // print txt;
         var lines = txt.split("\n");
-        //print lines;
         if(lines.length == 0)
         {
             return ["",""];
@@ -123,6 +121,7 @@ class Controller
 {
     Controller()
     {
+
         this.model = DiffModel.new();
 
         this.propertyActions = [
@@ -132,6 +131,7 @@ class Controller
 
     activate()
     {
+
                 this.ui.webView.load_uri("file://" + io.dirname(io.self()) + "/diff.html");
 
 
@@ -200,7 +200,7 @@ class Controller
     quit(ptr,target)
     {
         var v = GLib.Variant(target);
-        print v.get_string(0);
+        //print v.get_string(0);
         this.wnd.destroy();
     }
 
@@ -235,7 +235,7 @@ class Controller
 
         if(!f) return;
 
-        print f.path;
+        //print f.path;
 
         if(r == 3)
         {
@@ -245,10 +245,8 @@ class Controller
     }
 }
 
-
 var controller = Controller();
 
 var gtkUi = GtkUI("diff.ui");
-
 gtkUi.run("moc.app",controller);
 

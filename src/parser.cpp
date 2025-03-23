@@ -156,7 +156,8 @@ int Parser::init_rules()
   rules[(uint8_t)TokenType::SLASH]         = {NULL,     &Compiler::binary, Precedence::PREC_FACTOR};
   rules[(uint8_t)TokenType::MODULO]        = {NULL,     &Compiler::binary, Precedence::PREC_FACTOR};
   rules[(uint8_t)TokenType::STAR]          = {NULL,     &Compiler::binary, Precedence::PREC_FACTOR};
-  rules[(uint8_t)TokenType::BANG]          = {&Compiler::unary,     NULL,  Precedence::PREC_NONE};
+  rules[(uint8_t)TokenType::BANG]          = {&Compiler::unary,   NULL,  Precedence::PREC_NONE};
+  rules[(uint8_t)TokenType::CO_AWAIT]      = {&Compiler::unary,   NULL,  Precedence::PREC_NONE};
   rules[(uint8_t)TokenType::BANG_EQUAL]    = {NULL,     &Compiler::binary, Precedence::PREC_EQUALITY};
   rules[(uint8_t)TokenType::EQUAL]         = {NULL,     NULL,   Precedence::PREC_NONE};
   rules[(uint8_t)TokenType::PLUS_EQUAL]    = {NULL,     NULL,   Precedence::PREC_NONE};

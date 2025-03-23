@@ -8,6 +8,9 @@ import("win32/dlg");
 import("wincrypt");
 import("windows");
 
+extern from "UxTheme.dll" {
+ int SetWindowTheme( ptr, ptr, ptr );
+}
 
 var ID_FILE_EXIT  = 1001;
 var ID_FILE_OPEN  = 1002;
@@ -112,6 +115,8 @@ class MyWindow : Window
 
         this.font = Font("Consolas").create();
         Win32.SendMessageW(this.edit.hwnd, Win32.WM_SETFONT,this.font,1);
+
+ 	//SetWindowTheme(this.hwnd, wstring(""), wstring("") );
 
         return 1;
     }

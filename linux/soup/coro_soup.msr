@@ -1,0 +1,31 @@
+import("gir/gir");
+import("promise");
+
+var gir = GIR( [ "GLib:2.0", "Gio:2.0", "GObject:2.0", "Soup:3.0" ] );
+
+
+async fun fetch_async(session,msg) {
+
+    var ptr = await session.async_send_and_read(msg,0,0);
+    var result = GLib.Bytes(ptr);
+
+    var content = result.get_data(0);
+    print content.string();
+}
+
+// main
+
+var session = Soup.Session.new();
+
+var msg = Soup.Message.new( "GET", "https://www.amazon.de/");
+
+// glib event loop
+var loop = GLib.MainLoop.new(0,0);
+
+fetch_async(session,msg)
+.then( fun() {
+    loop.quit();
+});
+
+loop.run();
+

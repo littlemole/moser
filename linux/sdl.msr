@@ -127,10 +127,8 @@ class Video
 
 		var color = make_sdl_color(255,255,255,alpha);
 		var surfacePtr = TTF_RenderUTF8_Solid(font, text, color);
-
 		var texture = SDL_CreateTextureFromSurface(this.Renderer, surfacePtr);
 		var surface = SDL_Surface(surfacePtr);
-
 		text_width = surface.w;
 		text_height = surface.h;
 		SDL_FreeSurface(surfacePtr);
@@ -171,7 +169,11 @@ class Audio
 
 	play_music(track)
 	{
-		return Mix_PlayMusic( track, -1) == -1;
+		var r = Mix_PlayMusic( track, -1) == -1;
+		if(r)
+		{
+			print Mix_GetError();
+		}
 	}
 
 	play_wav(wav)
@@ -239,7 +241,8 @@ class Resources
 		];
 
 		this.wave = audio.load_wav("explo1.wav");
-		this.music = audio.load_music("music.ogg");
+//		this.music = audio.load_music("music.ogg");
+		this.music = audio.load_music("music.mp3");
 
 		this.font = this.video.font("UbuntuMono-B.ttf");
 	}
@@ -272,9 +275,7 @@ class Game
 			this.resources.shuttleTexture,
 			this.resources.font
 		);
-
 		this.audio.play_music( this.resources.music );
-
 		this.new_level();
 	}
 

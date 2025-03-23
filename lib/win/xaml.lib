@@ -9,6 +9,10 @@ extern from "Microsoft.UI.Windowing.Core.dll" {
     int ContentPreTranslateMessage( ptr );
 }
 
+extern from "moxaml.dll" {
+    void by_the_power_of_grayskull_init_the_xaml();
+}
+
 
 fun getXamlClassByName(name)
 {
@@ -386,7 +390,8 @@ class Xaml
         if(!Xaml.isInitialized)
         {
 	    Xaml.dispatcher = Microsoft.UI.Dispatching.DispatcherQueueController.CreateOnCurrentThread();
-	    winrt.xaml.init();
+	    //winrt.xaml.init();
+	    by_the_power_of_grayskull_init_the_xaml();
 	    Xaml.isInitialized = true;
         }
     }

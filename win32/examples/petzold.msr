@@ -54,23 +54,6 @@ extern struct PAINTSTRUCT {
   long unused[4]
 }
 
-extern struct PAINTSTRUCT2 {
-  ptr  hdc,
-  int  fErase,
-  int  left,
-  int  top,
-  int  right,
-  int  bottom,
-  int  fRestore,
-  int  fIncUpdate,
-  long unused1,
-  long unused2,
-  long unused3,
-  long unused4
-}
-
-print PAINTSTRUCT.size + ":" + PAINTSTRUCT2.size;
-
 extern struct POINT {
   int    x,
   int    y
@@ -85,19 +68,6 @@ extern struct MSG {
   POINT  pt,
   int    lPrivate
 }
-
-extern struct MSG2 {
-  ptr    hwnd,
-  uint   message,
-  ptr    wParam,
-  ptr    lParam,
-  int    time,
-  int    x,
-  int    y
-  int    lPrivate
-}
-
-print MSG.size + ":" + MSG2.size;
 
 extern struct RECT {
   int left,
@@ -149,7 +119,7 @@ var windowProc = WINDOWPROC( fun( hWnd, msg, wParam, lParam)
 
 		var hdc = BeginPaint(hWnd, ps);
 		var txt = "HELLO WINDOWS";
-        TextOut( hdc, 50,50, txt, txt.length);
+                TextOut( hdc, 50,50, txt, txt.length);
 		EndPaint(hWnd, ps);
 		return 0;
 	}
@@ -175,9 +145,7 @@ wc.lpszClassName = classname;
 wc.hbrBackground = COLOR_WINDOW+1;
 wc.hIcon = LoadIconA( hinstance, win32.MAKEINTRESOURCE(107) );
 
-print int(wc.hIcon);
-
-print RegisterClass(wc);
+RegisterClass(wc);
 
 
 var hwnd = CreateWindowEx(

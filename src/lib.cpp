@@ -34,9 +34,6 @@
 #include <unistd.h>
 #endif
 
-#ifdef ENABLE_MOSER_XAML
-#include "MoserX.h"
-#endif
 
 using namespace nlohmann;
 
@@ -749,7 +746,7 @@ Value evalNative(VM& vm, int argCount, Value* args)
 
 	{
 		GC::Lock lock(vm);
-		Compiler compiler(vm, vm.compiler,FunctionType::TYPE_FUNCTION);
+		Compiler compiler(vm, vm.compiler,FunctionType::TYPE_FUNCTION,false);
 
 		function = compiler.compile(compiler.filename.c_str(),str.c_str());
 		vm.push(function);
@@ -763,12 +760,12 @@ Value evalNative(VM& vm, int argCount, Value* args)
         vm.call(closure,0);
     }
 
-    vm.frames.back().returnToCallerOnReturn = true;
+    vm.top_frame().returnToCallerOnReturn = true;
     Value r = vm.run();
-    if(!vm.pendingEx.empty())
+    if(vm.hasException())
     {
-        vm.pendingEx.back().print();
         printf("unhandlex exception");
+        vm.printPendingException();
 		return NIL_VAL;
     }
     vm.pop();
@@ -885,7 +882,7 @@ Value importNative(VM& vm, int argCount, Value* args)
     else
     {
         GC::Lock lock(vm);
-        Compiler compiler(vm,vm.compiler,FunctionType::TYPE_FUNCTION);
+        Compiler compiler(vm,vm.compiler,FunctionType::TYPE_FUNCTION,false);
 
         function = compiler.compile(file.c_str(),content.c_str());
         vm.push(function);
@@ -901,12 +898,12 @@ Value importNative(VM& vm, int argCount, Value* args)
         vm.call(closure,0);
     }
 
-    vm.frames.back().returnToCallerOnReturn = true;
+    vm.top_frame().returnToCallerOnReturn = true;
     Value r = vm.run();
-    if(!vm.pendingEx.empty())
+    if(vm.hasException())
     {
-        vm.pendingEx.back().print();
         printf("unhandled exception");
+        vm.printPendingException();
         exit(1);
     }
     vm.pop();
@@ -934,10 +931,12 @@ Value timeNative(VM&, int /* argCount */, Value* /* args */)
 
 Value argumentsNative(VM& vm, int /* argCount */, Value* /* args */)
 {
+	return vm.top_frame().arguments(vm);
+/*
     auto array = new ObjArray(vm);
 
     int argc = 0;
-    int slot = vm.frames[vm.frames.size()-1].argBaseIndex;
+    int slot = vm.top_frame().argBaseIndex;
     argc = (int)vm.stack.size()-1-slot-1;
 
     for(int i = 0; i < argc; i++)
@@ -945,16 +944,17 @@ Value argumentsNative(VM& vm, int /* argCount */, Value* /* args */)
         array->add( *(&vm.stack.back() -argc  +i) );
     }
 
-    if(!vm.frames.back().varargs.empty())
+    if(!vm.top_frame().varargs.empty())
     {
-        for( size_t i = 0; i < vm.frames.back().varargs.size(); i++)
+        for( size_t i = 0; i < vm.top_frame().varargs.size(); i++)
         {
-            array->add(vm.frames.back().varargs[i]);
+            array->add(vm.top_frame().varargs[i]);
         }
     }
 
    // array->isMarked = true;
     return array;
+	*/
 }
 
 
@@ -1791,7 +1791,7 @@ Value invokeNative(VM& vm, int argCount, Value* args)
             }
 
             target.as.obj->callValue(cnt);
-            vm.frames.back().returnToCallerOnReturn = true;
+            vm.top_frame().returnToCallerOnReturn = true;
             Value r = vm.run();
             vm.pop();
             return r;
@@ -1842,7 +1842,7 @@ Value invokeNative(VM& vm, int argCount, Value* args)
     }
 
     target.as.obj->callValue(cnt);
-    vm.frames.back().returnToCallerOnReturn = true;
+    vm.top_frame().returnToCallerOnReturn = true;
     Value r = vm.run();
     vm.pop();
     return r;
@@ -1859,18 +1859,6 @@ Value wrtInitNative(VM& vm, int /* argCount */, Value* /* args */)
     }
     return NIL_VAL;
 }
-
-#ifdef ENABLE_MOSER_XAML
-
-MoserX xmos;
-
-Value xamlInitNative(VM& /*vm*/, int /* argCount */, Value* /* args */)
-{
-    xmos.init();
-    return NIL_VAL;
-}
-
-#endif
 
 #endif
 
@@ -2007,14 +1995,6 @@ void init_stdlib(VM& vm)
     winrt->item("Delegate", new ObjNativeFun(vm, delegateNative));
     winrt->item("init", new ObjNativeFun(vm, wrtInitNative));
     vm.defineGlobal("winrt", winrt);
-
-#ifdef ENABLE_MOSER_XAML
-
-    // xaml
-    auto xaml = new ObjMap(vm);
-    xaml->item("init", new ObjNativeFun(vm, xamlInitNative));
-    winrt->item("xaml", xaml);
-#endif
 
 #endif
 }

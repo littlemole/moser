@@ -1,0 +1,78 @@
+import("gir/gir");
+import("promise");
+
+var gir = GIR( [ "GLib:2.0", "Gio:2.0", "GObject:2.0", "Soup:3.0" ] );
+
+// promisify async operation
+fun fetch_soup( session, url ) {
+
+    var future = Future();
+
+    // async HTTP callback
+    var cb = Gio.AsyncReadyCallback( fun(src,res,ptr) 
+    {    
+        var session = Soup.Session(src);
+        var msg = Soup.Message(ptr);
+
+        // fetch the async HTTP result
+
+        var err = sys.pointer();
+        var data = session.send_and_read_finish(res,&err);
+        var bytes = GLib.Bytes(data);
+
+        if ( int(err) )     // on error 
+        {
+            var error = GLib.Error(err);
+            future.reject("Failed to download" +  error.message.string());
+        }
+        else                // on success
+        {
+            var response_headers = msg.get_response_headers();
+            var content_type = response_headers.get_content_type(0);
+
+            var size = bytes.get_size();
+
+            print "Downloaded bytes " + size + " of type " + content_type;
+
+            var content = bytes.get_data(0);
+            // print content.string();
+	    future.resolve({
+		"content_type" : content_type,
+		"size" : size,
+		"content" : content.string()
+	    });
+        }
+    });
+
+    future.cb = cb;
+	
+    var msg = Soup.Message.new( "GET", url );
+
+    session.send_and_read_async( msg, 0, 0, cb, msg );
+
+    return future;
+}
+
+// coroutine 
+async fun fetch_async(session,url) {
+
+    var result = await fetch_soup(session,url);
+    print result.content;
+    print result.size;
+    print result.content_type;
+}
+
+// main
+
+var session = Soup.Session.new();
+
+// glib event loop
+var loop = GLib.MainLoop.new(0,0);
+
+fetch_async(session,"https://www.amazon.de/")
+.then( fun() {
+    loop.quit();
+});
+
+loop.run();
+

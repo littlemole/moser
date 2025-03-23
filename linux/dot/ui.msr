@@ -3,7 +3,7 @@ import("gir/gir");
 import("gtk3ui");
 
 var gir = GIR( [ "Gio:2.0", "GLib:2.0", "Gtk:3.0", "GObject:2.0", "GtkSource:3.0",
-"WebKit2:4.0", "JavaScriptCore:4.0" ] );
+"WebKit2:4.1", "JavaScriptCore:4.1" ] );
 
 class Controller
 {

@@ -418,7 +418,7 @@ inline void resolve_rt_callback(VM& vm, const std::string& retType, ABI::Windows
         vm.push((size_t)status);
         vm.push(v);
         obj->callValue(2);
-        vm.frames.back().returnToCallerOnReturn = true;
+        vm.top_frame().returnToCallerOnReturn = true;
         vm.run();
         vm.pop(); // ?
     }
@@ -433,7 +433,7 @@ inline void resolve_rt_callback(VM& vm, ABI::Windows::Foundation::AsyncStatus st
         vm.push(obj);
         vm.push((size_t)status);
         obj->callValue(1);
-        vm.frames.back().returnToCallerOnReturn = true;
+        vm.top_frame().returnToCallerOnReturn = true;
         vm.run();
         vm.pop(); // ?
     }

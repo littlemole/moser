@@ -1,0 +1,51 @@
+import("promise");
+
+var f = Future();
+var f2 = Future();
+
+fun timeout(f)
+{
+	print ">timeout";
+	return f;
+}
+
+async fun test() { 
+
+	print ">async"; 
+try {
+	var r = await timeout(f);
+	print ">asnyc1";
+	print r;
+	print ">asnyc2";
+	r = await timeout(f2);
+//throw(r);
+	return r; 
+} catch (e) {
+	print "#################";
+	return 4711;
+}
+}
+
+print ">call test";
+
+test()
+.then( fun(i) {
+	print ">then";
+	print ">" + i;
+})
+.otherwise( fun(ex) {
+
+	print "error:";
+	print ex;
+});
+
+print ">resolve f";
+
+f.resolve(42);
+//f.reject("error");
+
+print ">resolve f2";
+
+f2.resolve(43);
+
+print ">done";
