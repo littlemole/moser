@@ -4,16 +4,17 @@ The Mole's own Script execution runtime (M.O.S.E.R.).
 
 <p align=right><i><small>dedicated to E.M., for everything.</small></i></p>
 
-# Changes Version 1.2 (March 2025)
-- Coroutine support (async functions)
-- Simple Media Layers (SDL2) example
-
 
 Moser is an academic study of [Crafting Interpreters](https://craftinginterpreters.com/) fame. Technically Moser is a C++ port of the VM based Interpreter *Lox* which is implemented in the second part of this wonderful book. Like Lox, Moser is a Javascript/Python hybrid scripting language powered by running bytecode in a virtual machine. Moser supports a large subset of Lox and for the most part, Syntax follows the [Lox](https://craftinginterpreters.com/the-lox-language.html) example.
 
 ## Warning: MOSER is not intended for production usage.
 
 <i>did I say it is an academic exercise?</i>
+
+# Changes Version 1.2 (March 2025)
+- Coroutine support (async functions)
+- Simple Media Layers (SDL2) example
+
 
 <br>
 <br>
@@ -133,7 +134,7 @@ dpkg -i moser_1.0_amd64.deb
 Download the .dev package from current github release: [release](https://github.com/littlemole/moser/releases)
 
 sha256 
-a31b44628cf2dcbaee035726dc46a12ab30173443f038668ed7a45e2696230df [virustotal](https://www.virustotal.com/gui/file/a31b44628cf2dcbaee035726dc46a12ab30173443f038668ed7a45e2696230df/detection)
+562339a727008c688fc9ee310e0822ce4f93e8ea8e155ab7740a59f261d18dd5 [virustotal](https://www.virustotal.com/gui/file/562339a727008c688fc9ee310e0822ce4f93e8ea8e155ab7740a59f261d18dd5/detection)
 
 
 ### Windows 10/11
