@@ -4,6 +4,11 @@ The Mole's own Script execution runtime (M.O.S.E.R.).
 
 <p align=right><i><small>dedicated to E.M., for everything.</small></i></p>
 
+# Changes Version 1.2 (March 2025)
+- Coroutine support (async functions)
+- Simple Media Layers (SDL2) example
+
+
 Moser is an academic study of [Crafting Interpreters](https://craftinginterpreters.com/) fame. Technically Moser is a C++ port of the VM based Interpreter *Lox* which is implemented in the second part of this wonderful book. Like Lox, Moser is a Javascript/Python hybrid scripting language powered by running bytecode in a virtual machine. Moser supports a large subset of Lox and for the most part, Syntax follows the [Lox](https://craftinginterpreters.com/the-lox-language.html) example.
 
 ## Warning: MOSER is not intended for production usage.
@@ -137,11 +142,11 @@ Xcopy and .msi releases are available.
 
 - the XCopy release brings a full moser installation you can extract everywhere, but here is no PATH or filetype registration. You have to run MOSER from the cmd line and call MOSER with full or relative path. <br>
 XCopy Download: [moser.zip](https://github.com/littlemole/moser/releases) 
-sha256 28cfd171f69c7c4e8f4b3cc71322e1f1d490b76b92b3b61128b2670d0e9243ff [virustotal](https://www.virustotal.com/gui/file/28cfd171f69c7c4e8f4b3cc71322e1f1d490b76b92b3b61128b2670d0e9243ff)
+sha256 4c4d179ade58655241f7edf0ddaf779f761b753c1346187ac7a26632f6a16026 
 - the .msi installer allows to install MOSER to a destination of your liking. In addition to an XCopy install, it will patch %PATH% to include the MOSER install directory, and register .msr file extension to be run through the MOSER executable, allowing to click on .msr scripts that launch a UI. <br>
 MSI Download: [moserSetupPerUser.msi](https://github.com/littlemole/moser/releases) 
 sha256
-50a27c331576ebae07c320e7b5c858402c91a06e6d3e98d3ea172e6ad74ed8d3 [virustotal](https://www.virustotal.com/gui/file/50a27c331576ebae07c320e7b5c858402c91a06e6d3e98d3ea172e6ad74ed8d3)
+a39d3efed19d1b05b2463c4dec8387f206df6b9d954f6b47f68f4a6833239ce8 [virustotal](https://www.virustotal.com/gui/file/a39d3efed19d1b05b2463c4dec8387f206df6b9d954f6b47f68f4a6833239ce8)
 
 
 
@@ -149,7 +154,6 @@ note that on Windows, there are two executables following the Windows tradition 
 - moser.exe is a console application, always shows a console, and has good support for console IO
 - xmoser.exe is a windows application. It will attach to console if launched from a console window, which allows for output on the console, but console input is a mess. if called in REPL mode (no arguments) it will launch a new console. If launched otherwise - like clicking on a .msr file from Explorer - it will NOT launch a console.
 
-only xmoser.exe has builtin support for XAML. SImple petzold style UI examples run fine with moser.exe - except that you get a console. If you want support for XAML you need to run it through xmoser.exe.
 
 
 
@@ -201,7 +205,19 @@ Git diff viewer using runtime gnome object introspection similar to pgtk or vala
 
 ### soup
 
-Gnome soup networking examples, including async io.
+Gnome soup networking examples, including async io. New in Version 1.2: Coroutine (async) function support.
+Snippet from the [coro_soup.msr](./Linux/soup/coro_soup.msr) example:
+
+```
+async fun fetch_async(session,msg) {
+
+    var ptr = await session.async_send_and_read(msg,0,0);
+    var result = GLib.Bytes(ptr);
+
+    var content = result.get_data(0);
+    print content.string();
+}
+```
 
 ### eve
 async io using libevent
@@ -260,6 +276,9 @@ demonstrates using IDispatch based COM Apis from moser.
  !["hash"](./doc/hash-xaml.png) 
 - mochrome.msr and mohtml.msr demonstrate using WebView2 in a moser XAML app
 - simple_xaml.msr just shows basic XAML embedding
+
+New in Version 1.2:
+the [mopad2.msr](./win32/examples/xaml/mopad2.msr) example features coroutine (async) function.
 
 # Windows impl extra deps
 
