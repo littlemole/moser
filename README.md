@@ -152,7 +152,7 @@ a39d3efed19d1b05b2463c4dec8387f206df6b9d954f6b47f68f4a6833239ce8 [virustotal](ht
 
 note that on Windows, there are two executables following the Windows tradition of providing two executables for console or GUI interaction:
 - moser.exe is a console application, always shows a console, and has good support for console IO
-- xmoser.exe is a windows application. It will attach to console if launched from a console window, which allows for output on the console, but console input is a mess. if called in REPL mode (no arguments) it will launch a new console. If launched otherwise - like clicking on a .msr file from Explorer - it will NOT launch a console.
+- xmoser.exe is a windows application. It will attach to console if launched from a console window, which allows for output on the console, but console input is a mess. if called in REPL mode (no arguments) it will launch a new console. If launched otherwise - like clicking on a .msr file from Explorer - it will NOT launch a console. Only xmoser.exe has support for WinUI / XAML Features. Classic Win32 UI (Petzold style) and even non-ui WinRT is also supported via moser.exe.
 
 
 
