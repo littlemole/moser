@@ -23,10 +23,10 @@ cpack --config build/CPackConfig.cmake  -G DEB
 echo "package created"
 
 # print hashes
-ls _packages/moser_1.0_amd64.deb
+ls _packages/moser_1.2_amd64.deb
 echo "md5"
-cat _packages/moser_1.0_amd64.deb | md5sum
+cat _packages/moser_1.2_amd64.deb | md5sum
 echo "sha256"
-cat _packages/moser_1.0_amd64.deb | sha256sum
+cat _packages/moser_1.2_amd64.deb | sha256sum
 
 popd +0
