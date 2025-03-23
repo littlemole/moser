@@ -1,15 +1,11 @@
 com.init();
 var fso = com.createObject("Scripting.FileSystemObject");
-print fso;
 
 var p = fso.BuildPath("C:\\Log Files","moc.txt");
 
 print p;
 
-print fso.Drives;
-
 var drives = com.enumerate(fso.Drives);
-print drives.length;
 
 var i = 0;
 for( i = 0; i < drives.length; i = i + 1)

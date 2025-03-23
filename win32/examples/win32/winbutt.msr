@@ -38,7 +38,7 @@ class MyWindow : Window
         if( msg == Win32.WM_PAINT ) 
         {
             var hdc = Win32.BeginPaint(hWnd, this.ps);
-            var txt = wstring("HELLO WINDOWS");
+            var txt = wstring("CLick the BUTTON!");
             Win32.TextOutW( hdc, 50,50, txt, txt.length);
             Win32.EndPaint(hWnd, this.ps);
             return 0;
@@ -69,7 +69,7 @@ var butt = Control("BUTTON", ID_BUTTON);
 butt.style = Win32.WINDOW_STYLE.WS_VISIBLE | Win32.WINDOW_STYLE.WS_CHILD | Win32.BS_DEFPUSHBUTTON;
 wnd.add(butt);
 butt.create("ehlo");
-butt.setPos(0,200,100,100);
+butt.setPos(50,200,100,100);
 
 run(wnd);
 

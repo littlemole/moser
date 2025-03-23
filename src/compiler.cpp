@@ -1819,7 +1819,6 @@ void Compiler::binary(bool)
         case TokenType::ISA:           emitByte(OpCode::OP_ISA); break;                     
         case TokenType::PLUS_EQUAL: 
         {
-            printf("HERE");
             break;
         }
         default: return; // Unreachable.

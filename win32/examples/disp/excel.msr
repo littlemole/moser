@@ -6,7 +6,6 @@ var excel = com.createObject("Excel.Application",Win32.CLSCTX.CLSCTX_LOCAL_SERVE
 excel.Visible = true;
 
 var workbooks = excel.Workbooks;
-print workbooks;
 var wb = workbooks.Add(); 
 
 var ws = wb.ActiveSheet;

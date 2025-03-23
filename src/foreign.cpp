@@ -777,7 +777,6 @@ ObjPointer::~ObjPointer()
 {
     if( (deletor_ != 0) && (ptr_ != 0) )
     {
-       // printf("killroy\n");
         finalizer fin = (finalizer)deletor_;
         (fin)(ptr_);
         ptr_ = 0;
@@ -819,7 +818,6 @@ void ObjPointer::init()
         {
             auto ptr = as<ObjPointer>(that.as.obj);
             if(!ptr) return NIL_VAL;
-            //printf("detach\n");
             ptr->deletor_= 0;
             ptr->ptr_ = 0;
             return NIL_VAL;

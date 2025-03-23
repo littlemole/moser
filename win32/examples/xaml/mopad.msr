@@ -196,45 +196,33 @@ class MyWindow : Window
     @XamlStandardCommand(Open)
     onOpenFile(sender,args)
     {
-print this;
-	var that = this;
-print "That " +  that;
-        that.pp = this.xamlWnd.FileOpenPicker(
+        this.xamlWnd.FileOpenPicker(
             { 
                 "FileTypeFilter" : [ "*" ],
             }
-        );
-        that.pp.then(
+        ).then(
             fun(file) 
             {
-print "then " + file;
-print this;
-print that;
                 if(file.valid()  )
                 {
-print "valid" + file.Path;
-print that;
-                    that.dataContext.filename = file.Path;
-                    that.dataContext.ext = file.FileType;
+                    this.dataContext.filename = file.Path;
+                    this.dataContext.ext = file.FileType;
                     
-                    that.p = Windows.Storage.FileIO.ReadTextAsync(file);
-print that.p;
-
-                    that.p.then( fun(content) 
+                    Windows.Storage.FileIO.ReadTextAsync(file)
+		    .then( fun(content) 
                     {
-print "content";
-                        that.dataContext.text = content;
-                        that.dataContext.cmds.EOL.Label = this.eolMode(content);
+                        this.dataContext.text = content;
+                        this.dataContext.cmds.EOL.Label = this.eolMode(content);
                     })
 		    .otherwise( fun(e) {
 			print "e: " + e;
 		    });
                 }
-		that.xamlWnd.focus();
+		this.xamlWnd.focus();
             }
         )
 	.otherwise( fun(e) {
-print "e: " + e;
+            print "e: " + e;
 	});
     }
 
@@ -252,7 +240,6 @@ print "e: " + e;
          .then(
             fun(file) 
             {
-print "then";
                 if( file.valid() )
                 {
                     var content =  this.dataContext.text;
@@ -276,7 +263,7 @@ print "then";
             }
         )
 	.otherwise( fun(e) {
-print "e: " + e;
+            print "e: " + e;
 	});
     }
 
@@ -337,12 +324,6 @@ print "e: " + e;
 
 	// focus the edit window
 	this.xamlWnd.find("text").Focus(3);
-
-//	fixupCommands(this,this.xamlWnd);
-	// workaround for lazy binding of initially hidden elements
-//	this.xamlWnd.find("toDos").Command = this.dataContext.cmds.Unix2Dos;
-//	this.xamlWnd.find("toUnix").Command = this.dataContext.cmds.Dos2Unix;
-	
     }
 
     @msg(WM_DESTROY)

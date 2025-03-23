@@ -723,8 +723,6 @@ class Loop
 		while(Running) 
 		{
 			var a = SDL_GetTicks();
-print a;
-print b;
 			var delta = a - b;
 
 			while(SDL_PollEvent(Event)) 
