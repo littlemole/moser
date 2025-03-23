@@ -299,6 +299,4 @@ see directory win32
     * metamoc generates WinRT bindings
     * winmetamoc generates Win32 bindings
 
- - winui is a simple WinUI example app used to ripp all the dependencies that then can be used from moser to play with WinUI. the only feature ever used is to expand xaml into the window titlebar ...
-
  - wix contains code for creating a MSI installer using the WIX toolkit
