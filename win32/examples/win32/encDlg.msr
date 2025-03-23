@@ -2,7 +2,6 @@ import("win32/base");
 import("win32/lib");
 import("win32/uni");
 import("win32/user");
-import("win32/uni");
 import("windows");
 
 
@@ -34,10 +33,7 @@ class EncodingDlg : Dialog
         });
 
         // select default item 0 (UTF-8)
-        Win32.SendDlgItemMessageW( this.hwnd, IDC_ENCODING, Win32.CB_SETCURSEL, 0, 0 );     
-
-
-  
+        Win32.SendDlgItemMessageW( this.hwnd, IDC_ENCODING, Win32.CB_SETCURSEL, 0, 0 );       
     }
 
     @cmd(IDOK)
