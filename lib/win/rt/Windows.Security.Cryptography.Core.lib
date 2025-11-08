@@ -3052,112 +3052,6 @@ class Windows_Security_Cryptography_Core_CryptographicEngine : WinRtInterface
         this.comPtr = comPtr;
     }
 
-    // s Windows.Security.Cryptography.Core.ICryptographicEngineStatics2
-    //@Async(0)
-    //@Returns("Windows.Storage.Streams.IBuffer")
-    //@Parameters("Windows.Security.Cryptography.Core.CryptographicKey","Windows.Storage.Streams.IBuffer")
-    static SignHashedData( key, data)
-    {
-        var Windows = runtime.global("Windows");
-        var factory = winrt.activationFactory( "Windows.Security.Cryptography.Core.CryptographicEngine" );
-        var iface = Windows.Security.Cryptography.Core.ICryptographicEngineStatics2( factory );
-        var _r = iface.SignHashedData( key, data);
-        iface.release();
-        factory.release();
-        return _r;
-    }
-
-
-    //@Async(0)
-    //@Returns("Boolean")
-    //@Parameters("Windows.Security.Cryptography.Core.CryptographicKey","Windows.Storage.Streams.IBuffer","Windows.Storage.Streams.IBuffer")
-    static VerifySignatureWithHashInput( key, data, signature)
-    {
-        var Windows = runtime.global("Windows");
-        var factory = winrt.activationFactory( "Windows.Security.Cryptography.Core.CryptographicEngine" );
-        var iface = Windows.Security.Cryptography.Core.ICryptographicEngineStatics2( factory );
-        var _r = iface.VerifySignatureWithHashInput( key, data, signature);
-        iface.release();
-        factory.release();
-        return _r;
-    }
-
-
-    //@Async(3)
-    //@Returns("Windows.Foundation.IAsyncOperation`1<Windows.Storage.Streams.IBuffer>")
-    //@Parameters("Windows.Security.Cryptography.Core.CryptographicKey","Windows.Storage.Streams.IBuffer","Windows.Storage.Streams.IBuffer")
-    static DecryptAsync( key, data, iv)
-    {
-        var Windows = runtime.global("Windows");
-        var factory = winrt.activationFactory( "Windows.Security.Cryptography.Core.CryptographicEngine" );
-        var iface = Windows.Security.Cryptography.Core.ICryptographicEngineStatics2( factory );
-        var _promise = Future();
-        var _cb = fun(status, result)
-        {
-            if (status == Windows.Foundation.AsyncStatus.Completed)
-            {
-                _promise.resolve(result);
-            } else {
-                _promise.reject(status);
-            }
-        };
-        iface.DecryptAsync( key, data, iv, _cb);
-        iface.release();
-        factory.release();
-        return _promise;
-    }
-
-
-    //@Async(3)
-    //@Returns("Windows.Foundation.IAsyncOperation`1<Windows.Storage.Streams.IBuffer>")
-    //@Parameters("Windows.Security.Cryptography.Core.CryptographicKey","Windows.Storage.Streams.IBuffer")
-    static SignAsync( key, data)
-    {
-        var Windows = runtime.global("Windows");
-        var factory = winrt.activationFactory( "Windows.Security.Cryptography.Core.CryptographicEngine" );
-        var iface = Windows.Security.Cryptography.Core.ICryptographicEngineStatics2( factory );
-        var _promise = Future();
-        var _cb = fun(status, result)
-        {
-            if (status == Windows.Foundation.AsyncStatus.Completed)
-            {
-                _promise.resolve(result);
-            } else {
-                _promise.reject(status);
-            }
-        };
-        iface.SignAsync( key, data, _cb);
-        iface.release();
-        factory.release();
-        return _promise;
-    }
-
-
-    //@Async(3)
-    //@Returns("Windows.Foundation.IAsyncOperation`1<Windows.Storage.Streams.IBuffer>")
-    //@Parameters("Windows.Security.Cryptography.Core.CryptographicKey","Windows.Storage.Streams.IBuffer")
-    static SignHashedDataAsync( key, data)
-    {
-        var Windows = runtime.global("Windows");
-        var factory = winrt.activationFactory( "Windows.Security.Cryptography.Core.CryptographicEngine" );
-        var iface = Windows.Security.Cryptography.Core.ICryptographicEngineStatics2( factory );
-        var _promise = Future();
-        var _cb = fun(status, result)
-        {
-            if (status == Windows.Foundation.AsyncStatus.Completed)
-            {
-                _promise.resolve(result);
-            } else {
-                _promise.reject(status);
-            }
-        };
-        iface.SignHashedDataAsync( key, data, _cb);
-        iface.release();
-        factory.release();
-        return _promise;
-    }
-
-
     // s Windows.Security.Cryptography.Core.ICryptographicEngineStatics
     //@Async(0)
     //@Returns("Windows.Storage.Streams.IBuffer")
@@ -3261,6 +3155,112 @@ class Windows_Security_Cryptography_Core_CryptographicEngine : WinRtInterface
         iface.release();
         factory.release();
         return _r;
+    }
+
+
+    // s Windows.Security.Cryptography.Core.ICryptographicEngineStatics2
+    //@Async(0)
+    //@Returns("Windows.Storage.Streams.IBuffer")
+    //@Parameters("Windows.Security.Cryptography.Core.CryptographicKey","Windows.Storage.Streams.IBuffer")
+    static SignHashedData( key, data)
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Security.Cryptography.Core.CryptographicEngine" );
+        var iface = Windows.Security.Cryptography.Core.ICryptographicEngineStatics2( factory );
+        var _r = iface.SignHashedData( key, data);
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    //@Async(0)
+    //@Returns("Boolean")
+    //@Parameters("Windows.Security.Cryptography.Core.CryptographicKey","Windows.Storage.Streams.IBuffer","Windows.Storage.Streams.IBuffer")
+    static VerifySignatureWithHashInput( key, data, signature)
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Security.Cryptography.Core.CryptographicEngine" );
+        var iface = Windows.Security.Cryptography.Core.ICryptographicEngineStatics2( factory );
+        var _r = iface.VerifySignatureWithHashInput( key, data, signature);
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    //@Async(3)
+    //@Returns("Windows.Foundation.IAsyncOperation`1<Windows.Storage.Streams.IBuffer>")
+    //@Parameters("Windows.Security.Cryptography.Core.CryptographicKey","Windows.Storage.Streams.IBuffer","Windows.Storage.Streams.IBuffer")
+    static DecryptAsync( key, data, iv)
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Security.Cryptography.Core.CryptographicEngine" );
+        var iface = Windows.Security.Cryptography.Core.ICryptographicEngineStatics2( factory );
+        var _promise = Future();
+        var _cb = fun(status, result)
+        {
+            if (status == Windows.Foundation.AsyncStatus.Completed)
+            {
+                _promise.resolve(result);
+            } else {
+                _promise.reject(status);
+            }
+        };
+        iface.DecryptAsync( key, data, iv, _cb);
+        iface.release();
+        factory.release();
+        return _promise;
+    }
+
+
+    //@Async(3)
+    //@Returns("Windows.Foundation.IAsyncOperation`1<Windows.Storage.Streams.IBuffer>")
+    //@Parameters("Windows.Security.Cryptography.Core.CryptographicKey","Windows.Storage.Streams.IBuffer")
+    static SignAsync( key, data)
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Security.Cryptography.Core.CryptographicEngine" );
+        var iface = Windows.Security.Cryptography.Core.ICryptographicEngineStatics2( factory );
+        var _promise = Future();
+        var _cb = fun(status, result)
+        {
+            if (status == Windows.Foundation.AsyncStatus.Completed)
+            {
+                _promise.resolve(result);
+            } else {
+                _promise.reject(status);
+            }
+        };
+        iface.SignAsync( key, data, _cb);
+        iface.release();
+        factory.release();
+        return _promise;
+    }
+
+
+    //@Async(3)
+    //@Returns("Windows.Foundation.IAsyncOperation`1<Windows.Storage.Streams.IBuffer>")
+    //@Parameters("Windows.Security.Cryptography.Core.CryptographicKey","Windows.Storage.Streams.IBuffer")
+    static SignHashedDataAsync( key, data)
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Security.Cryptography.Core.CryptographicEngine" );
+        var iface = Windows.Security.Cryptography.Core.ICryptographicEngineStatics2( factory );
+        var _promise = Future();
+        var _cb = fun(status, result)
+        {
+            if (status == Windows.Foundation.AsyncStatus.Completed)
+            {
+                _promise.resolve(result);
+            } else {
+                _promise.reject(status);
+            }
+        };
+        iface.SignHashedDataAsync( key, data, _cb);
+        iface.release();
+        factory.release();
+        return _promise;
     }
 
 
@@ -4621,22 +4621,6 @@ class Windows_Security_Cryptography_Core_KeyDerivationParameters : WinRtInterfac
         else this.comPtr = comPtr.queryInterface( Windows.Security.Cryptography.Core.IKeyDerivationParameters.iid );
     }
 
-    // s Windows.Security.Cryptography.Core.IKeyDerivationParametersStatics2
-    //@Async(0)
-    //@Returns("Windows.Security.Cryptography.Core.KeyDerivationParameters")
-    //@Parameters("Windows.Security.Cryptography.Core.Capi1KdfTargetAlgorithm")
-    static BuildForCapi1Kdf( capi1KdfTargetAlgorithm)
-    {
-        var Windows = runtime.global("Windows");
-        var factory = winrt.activationFactory( "Windows.Security.Cryptography.Core.KeyDerivationParameters" );
-        var iface = Windows.Security.Cryptography.Core.IKeyDerivationParametersStatics2( factory );
-        var _r = iface.BuildForCapi1Kdf( capi1KdfTargetAlgorithm);
-        iface.release();
-        factory.release();
-        return _r;
-    }
-
-
     // s Windows.Security.Cryptography.Core.IKeyDerivationParametersStatics
     //@Async(0)
     //@Returns("Windows.Security.Cryptography.Core.KeyDerivationParameters")
@@ -4677,6 +4661,22 @@ class Windows_Security_Cryptography_Core_KeyDerivationParameters : WinRtInterfac
         var factory = winrt.activationFactory( "Windows.Security.Cryptography.Core.KeyDerivationParameters" );
         var iface = Windows.Security.Cryptography.Core.IKeyDerivationParametersStatics( factory );
         var _r = iface.BuildForSP80056a( algorithmId, partyUInfo, partyVInfo, suppPubInfo, suppPrivInfo);
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    // s Windows.Security.Cryptography.Core.IKeyDerivationParametersStatics2
+    //@Async(0)
+    //@Returns("Windows.Security.Cryptography.Core.KeyDerivationParameters")
+    //@Parameters("Windows.Security.Cryptography.Core.Capi1KdfTargetAlgorithm")
+    static BuildForCapi1Kdf( capi1KdfTargetAlgorithm)
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Security.Cryptography.Core.KeyDerivationParameters" );
+        var iface = Windows.Security.Cryptography.Core.IKeyDerivationParametersStatics2( factory );
+        var _r = iface.BuildForCapi1Kdf( capi1KdfTargetAlgorithm);
         iface.release();
         factory.release();
         return _r;

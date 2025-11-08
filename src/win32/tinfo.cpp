@@ -439,7 +439,7 @@ namespace typelib {
 
 
 
-	bool parse_typeinfo(ITypeInfo* typeInfo,std::wstring name, typelib::MetaInterface& result )
+	bool parse_typeinfo(ITypeInfo* typeInfo,std::wstring /*name*/, typelib::MetaInterface& result)
 	{
 		TYPEATTR* attr;
 		int cFuncs = 0;

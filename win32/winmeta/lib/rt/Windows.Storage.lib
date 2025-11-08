@@ -4470,6 +4470,21 @@ class Windows_Storage_ApplicationData : WinRtInterface
         else this.comPtr = comPtr.queryInterface( Windows.Storage.IApplicationData.iid );
     }
 
+    // s Windows.Storage.IApplicationDataStatics
+    //@Async(0)
+    //@Returns("Windows.Storage.ApplicationData")
+    static get_Current( )
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Storage.ApplicationData" );
+        var iface = Windows.Storage.IApplicationDataStatics( factory );
+        var _r = iface.get_Current( );
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
     // s Windows.Storage.IApplicationDataStatics2
     //@Async(3)
     //@Returns("Windows.Foundation.IAsyncOperation`1<Windows.Storage.ApplicationData>")
@@ -4493,21 +4508,6 @@ class Windows_Storage_ApplicationData : WinRtInterface
         iface.release();
         factory.release();
         return _promise;
-    }
-
-
-    // s Windows.Storage.IApplicationDataStatics
-    //@Async(0)
-    //@Returns("Windows.Storage.ApplicationData")
-    static get_Current( )
-    {
-        var Windows = runtime.global("Windows");
-        var factory = winrt.activationFactory( "Windows.Storage.ApplicationData" );
-        var iface = Windows.Storage.IApplicationDataStatics( factory );
-        var _r = iface.get_Current( );
-        iface.release();
-        factory.release();
-        return _r;
     }
 
 
@@ -5758,6 +5758,105 @@ class Windows_Storage_KnownFolders : WinRtInterface
         this.comPtr = comPtr;
     }
 
+    // s Windows.Storage.IKnownFoldersSavedPicturesStatics
+    //@Async(0)
+    //@Returns("Windows.Storage.StorageFolder")
+    static get_SavedPictures( )
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Storage.KnownFolders" );
+        var iface = Windows.Storage.IKnownFoldersSavedPicturesStatics( factory );
+        var _r = iface.get_SavedPictures( );
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    // s Windows.Storage.IKnownFoldersStatics2
+    //@Async(0)
+    //@Returns("Windows.Storage.StorageFolder")
+    static get_Objects3D( )
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Storage.KnownFolders" );
+        var iface = Windows.Storage.IKnownFoldersStatics2( factory );
+        var _r = iface.get_Objects3D( );
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    //@Async(0)
+    //@Returns("Windows.Storage.StorageFolder")
+    static get_AppCaptures( )
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Storage.KnownFolders" );
+        var iface = Windows.Storage.IKnownFoldersStatics2( factory );
+        var _r = iface.get_AppCaptures( );
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    //@Async(0)
+    //@Returns("Windows.Storage.StorageFolder")
+    static get_RecordedCalls( )
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Storage.KnownFolders" );
+        var iface = Windows.Storage.IKnownFoldersStatics2( factory );
+        var _r = iface.get_RecordedCalls( );
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    // s Windows.Storage.IKnownFoldersPlaylistsStatics
+    //@Async(0)
+    //@Returns("Windows.Storage.StorageFolder")
+    static get_Playlists( )
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Storage.KnownFolders" );
+        var iface = Windows.Storage.IKnownFoldersPlaylistsStatics( factory );
+        var _r = iface.get_Playlists( );
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    // s Windows.Storage.IKnownFoldersStatics3
+    //@Async(3)
+    //@Returns("Windows.Foundation.IAsyncOperation`1<Windows.Storage.StorageFolder>")
+    //@Parameters("Windows.System.User","Windows.Storage.KnownFolderId")
+    static GetFolderForUserAsync( user, folderId)
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Storage.KnownFolders" );
+        var iface = Windows.Storage.IKnownFoldersStatics3( factory );
+        var _promise = Future();
+        var _cb = fun(status, result)
+        {
+            if (status == Windows.Foundation.AsyncStatus.Completed)
+            {
+                _promise.resolve(result);
+            } else {
+                _promise.reject(status);
+            }
+        };
+        iface.GetFolderForUserAsync( user, folderId, _cb);
+        iface.release();
+        factory.release();
+        return _promise;
+    }
+
+
     // s Windows.Storage.IKnownFoldersStatics
     //@Async(0)
     //@Returns("Windows.Storage.StorageFolder")
@@ -5857,120 +5956,6 @@ class Windows_Storage_KnownFolders : WinRtInterface
     }
 
 
-    // s Windows.Storage.IKnownFoldersSavedPicturesStatics
-    //@Async(0)
-    //@Returns("Windows.Storage.StorageFolder")
-    static get_SavedPictures( )
-    {
-        var Windows = runtime.global("Windows");
-        var factory = winrt.activationFactory( "Windows.Storage.KnownFolders" );
-        var iface = Windows.Storage.IKnownFoldersSavedPicturesStatics( factory );
-        var _r = iface.get_SavedPictures( );
-        iface.release();
-        factory.release();
-        return _r;
-    }
-
-
-    // s Windows.Storage.IKnownFoldersPlaylistsStatics
-    //@Async(0)
-    //@Returns("Windows.Storage.StorageFolder")
-    static get_Playlists( )
-    {
-        var Windows = runtime.global("Windows");
-        var factory = winrt.activationFactory( "Windows.Storage.KnownFolders" );
-        var iface = Windows.Storage.IKnownFoldersPlaylistsStatics( factory );
-        var _r = iface.get_Playlists( );
-        iface.release();
-        factory.release();
-        return _r;
-    }
-
-
-    // s Windows.Storage.IKnownFoldersStatics2
-    //@Async(0)
-    //@Returns("Windows.Storage.StorageFolder")
-    static get_Objects3D( )
-    {
-        var Windows = runtime.global("Windows");
-        var factory = winrt.activationFactory( "Windows.Storage.KnownFolders" );
-        var iface = Windows.Storage.IKnownFoldersStatics2( factory );
-        var _r = iface.get_Objects3D( );
-        iface.release();
-        factory.release();
-        return _r;
-    }
-
-
-    //@Async(0)
-    //@Returns("Windows.Storage.StorageFolder")
-    static get_AppCaptures( )
-    {
-        var Windows = runtime.global("Windows");
-        var factory = winrt.activationFactory( "Windows.Storage.KnownFolders" );
-        var iface = Windows.Storage.IKnownFoldersStatics2( factory );
-        var _r = iface.get_AppCaptures( );
-        iface.release();
-        factory.release();
-        return _r;
-    }
-
-
-    //@Async(0)
-    //@Returns("Windows.Storage.StorageFolder")
-    static get_RecordedCalls( )
-    {
-        var Windows = runtime.global("Windows");
-        var factory = winrt.activationFactory( "Windows.Storage.KnownFolders" );
-        var iface = Windows.Storage.IKnownFoldersStatics2( factory );
-        var _r = iface.get_RecordedCalls( );
-        iface.release();
-        factory.release();
-        return _r;
-    }
-
-
-    // s Windows.Storage.IKnownFoldersStatics3
-    //@Async(3)
-    //@Returns("Windows.Foundation.IAsyncOperation`1<Windows.Storage.StorageFolder>")
-    //@Parameters("Windows.System.User","Windows.Storage.KnownFolderId")
-    static GetFolderForUserAsync( user, folderId)
-    {
-        var Windows = runtime.global("Windows");
-        var factory = winrt.activationFactory( "Windows.Storage.KnownFolders" );
-        var iface = Windows.Storage.IKnownFoldersStatics3( factory );
-        var _promise = Future();
-        var _cb = fun(status, result)
-        {
-            if (status == Windows.Foundation.AsyncStatus.Completed)
-            {
-                _promise.resolve(result);
-            } else {
-                _promise.reject(status);
-            }
-        };
-        iface.GetFolderForUserAsync( user, folderId, _cb);
-        iface.release();
-        factory.release();
-        return _promise;
-    }
-
-
-    // s Windows.Storage.IKnownFoldersCameraRollStatics
-    //@Async(0)
-    //@Returns("Windows.Storage.StorageFolder")
-    static get_CameraRoll( )
-    {
-        var Windows = runtime.global("Windows");
-        var factory = winrt.activationFactory( "Windows.Storage.KnownFolders" );
-        var iface = Windows.Storage.IKnownFoldersCameraRollStatics( factory );
-        var _r = iface.get_CameraRoll( );
-        iface.release();
-        factory.release();
-        return _r;
-    }
-
-
     // s Windows.Storage.IKnownFoldersStatics4
     //@Async(3)
     //@Returns("Windows.Foundation.IAsyncOperation`1<Windows.Storage.KnownFoldersAccessStatus>")
@@ -6044,6 +6029,21 @@ class Windows_Storage_KnownFolders : WinRtInterface
         iface.release();
         factory.release();
         return _promise;
+    }
+
+
+    // s Windows.Storage.IKnownFoldersCameraRollStatics
+    //@Async(0)
+    //@Returns("Windows.Storage.StorageFolder")
+    static get_CameraRoll( )
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Storage.KnownFolders" );
+        var iface = Windows.Storage.IKnownFoldersCameraRollStatics( factory );
+        var _r = iface.get_CameraRoll( );
+        iface.release();
+        factory.release();
+        return _r;
     }
 
 
@@ -6532,6 +6532,32 @@ class Windows_Storage_StorageFile : WinRtInterface
         else this.comPtr = comPtr.queryInterface( Windows.Storage.IStorageFile.iid );
     }
 
+    // s Windows.Storage.IStorageFileStatics2
+    //@Async(3)
+    //@Returns("Windows.Foundation.IAsyncOperation`1<Windows.Storage.StorageFile>")
+    //@Parameters("Windows.System.User","String")
+    static GetFileFromPathForUserAsync( user, path)
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Storage.StorageFile" );
+        var iface = Windows.Storage.IStorageFileStatics2( factory );
+        var _promise = Future();
+        var _cb = fun(status, result)
+        {
+            if (status == Windows.Foundation.AsyncStatus.Completed)
+            {
+                _promise.resolve(result);
+            } else {
+                _promise.reject(status);
+            }
+        };
+        iface.GetFileFromPathForUserAsync( user, path, _cb);
+        iface.release();
+        factory.release();
+        return _promise;
+    }
+
+
     // s Windows.Storage.IStorageFileStatics
     //@Async(3)
     //@Returns("Windows.Foundation.IAsyncOperation`1<Windows.Storage.StorageFile>")
@@ -6677,32 +6703,6 @@ class Windows_Storage_StorageFile : WinRtInterface
             }
         };
         iface.ReplaceWithStreamedFileFromUriAsync( fileToReplace, uri, thumbnail, _cb);
-        iface.release();
-        factory.release();
-        return _promise;
-    }
-
-
-    // s Windows.Storage.IStorageFileStatics2
-    //@Async(3)
-    //@Returns("Windows.Foundation.IAsyncOperation`1<Windows.Storage.StorageFile>")
-    //@Parameters("Windows.System.User","String")
-    static GetFileFromPathForUserAsync( user, path)
-    {
-        var Windows = runtime.global("Windows");
-        var factory = winrt.activationFactory( "Windows.Storage.StorageFile" );
-        var iface = Windows.Storage.IStorageFileStatics2( factory );
-        var _promise = Future();
-        var _cb = fun(status, result)
-        {
-            if (status == Windows.Foundation.AsyncStatus.Completed)
-            {
-                _promise.resolve(result);
-            } else {
-                _promise.reject(status);
-            }
-        };
-        iface.GetFileFromPathForUserAsync( user, path, _cb);
         iface.release();
         factory.release();
         return _promise;
@@ -7565,32 +7565,6 @@ class Windows_Storage_StorageLibrary : WinRtInterface
         else this.comPtr = comPtr.queryInterface( Windows.Storage.IStorageLibrary.iid );
     }
 
-    // s Windows.Storage.IStorageLibraryStatics2
-    //@Async(3)
-    //@Returns("Windows.Foundation.IAsyncOperation`1<Windows.Storage.StorageLibrary>")
-    //@Parameters("Windows.System.User","Windows.Storage.KnownLibraryId")
-    static GetLibraryForUserAsync( user, libraryId)
-    {
-        var Windows = runtime.global("Windows");
-        var factory = winrt.activationFactory( "Windows.Storage.StorageLibrary" );
-        var iface = Windows.Storage.IStorageLibraryStatics2( factory );
-        var _promise = Future();
-        var _cb = fun(status, result)
-        {
-            if (status == Windows.Foundation.AsyncStatus.Completed)
-            {
-                _promise.resolve(result);
-            } else {
-                _promise.reject(status);
-            }
-        };
-        iface.GetLibraryForUserAsync( user, libraryId, _cb);
-        iface.release();
-        factory.release();
-        return _promise;
-    }
-
-
     // s Windows.Storage.IStorageLibraryStatics
     //@Async(3)
     //@Returns("Windows.Foundation.IAsyncOperation`1<Windows.Storage.StorageLibrary>")
@@ -7611,6 +7585,32 @@ class Windows_Storage_StorageLibrary : WinRtInterface
             }
         };
         iface.GetLibraryAsync( libraryId, _cb);
+        iface.release();
+        factory.release();
+        return _promise;
+    }
+
+
+    // s Windows.Storage.IStorageLibraryStatics2
+    //@Async(3)
+    //@Returns("Windows.Foundation.IAsyncOperation`1<Windows.Storage.StorageLibrary>")
+    //@Parameters("Windows.System.User","Windows.Storage.KnownLibraryId")
+    static GetLibraryForUserAsync( user, libraryId)
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Storage.StorageLibrary" );
+        var iface = Windows.Storage.IStorageLibraryStatics2( factory );
+        var _promise = Future();
+        var _cb = fun(status, result)
+        {
+            if (status == Windows.Foundation.AsyncStatus.Completed)
+            {
+                _promise.resolve(result);
+            } else {
+                _promise.reject(status);
+            }
+        };
+        iface.GetLibraryForUserAsync( user, libraryId, _cb);
         iface.release();
         factory.release();
         return _promise;

@@ -3490,6 +3490,32 @@ class Windows_Security_Cryptography_Certificates_CertificateEnrollmentManager : 
         this.comPtr = comPtr;
     }
 
+    // s Windows.Security.Cryptography.Certificates.ICertificateEnrollmentManagerStatics3
+    //@Async(1)
+    //@Returns("Windows.Foundation.IAsyncAction")
+    //@Parameters("String","String","Windows.Security.Cryptography.Certificates.PfxImportParameters")
+    static ImportPfxDataToKspWithParametersAsync( pfxData, password, pfxImportParameters)
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Security.Cryptography.Certificates.CertificateEnrollmentManager" );
+        var iface = Windows.Security.Cryptography.Certificates.ICertificateEnrollmentManagerStatics3( factory );
+        var _promise = Future();
+        var _cb = fun(status)
+        {
+            if (status == Windows.Foundation.AsyncStatus.Completed)
+            {
+                _promise.resolve();
+            } else {
+                _promise.reject(status);
+            }
+        };
+        iface.ImportPfxDataToKspWithParametersAsync( pfxData, password, pfxImportParameters, _cb);
+        iface.release();
+        factory.release();
+        return _promise;
+    }
+
+
     // s Windows.Security.Cryptography.Certificates.ICertificateEnrollmentManagerStatics
     //@Async(3)
     //@Returns("Windows.Foundation.IAsyncOperation`1<String>")
@@ -3560,32 +3586,6 @@ class Windows_Security_Cryptography_Certificates_CertificateEnrollmentManager : 
             }
         };
         iface.ImportPfxDataAsync( pfxData, password, exportable, keyProtectionLevel, installOption, friendlyName, _cb);
-        iface.release();
-        factory.release();
-        return _promise;
-    }
-
-
-    // s Windows.Security.Cryptography.Certificates.ICertificateEnrollmentManagerStatics3
-    //@Async(1)
-    //@Returns("Windows.Foundation.IAsyncAction")
-    //@Parameters("String","String","Windows.Security.Cryptography.Certificates.PfxImportParameters")
-    static ImportPfxDataToKspWithParametersAsync( pfxData, password, pfxImportParameters)
-    {
-        var Windows = runtime.global("Windows");
-        var factory = winrt.activationFactory( "Windows.Security.Cryptography.Certificates.CertificateEnrollmentManager" );
-        var iface = Windows.Security.Cryptography.Certificates.ICertificateEnrollmentManagerStatics3( factory );
-        var _promise = Future();
-        var _cb = fun(status)
-        {
-            if (status == Windows.Foundation.AsyncStatus.Completed)
-            {
-                _promise.resolve();
-            } else {
-                _promise.reject(status);
-            }
-        };
-        iface.ImportPfxDataToKspWithParametersAsync( pfxData, password, pfxImportParameters, _cb);
         iface.release();
         factory.release();
         return _promise;
@@ -4595,22 +4595,6 @@ class Windows_Security_Cryptography_Certificates_CertificateStores : WinRtInterf
         this.comPtr = comPtr;
     }
 
-    // s Windows.Security.Cryptography.Certificates.ICertificateStoresStatics2
-    //@Async(0)
-    //@Returns("Windows.Security.Cryptography.Certificates.UserCertificateStore")
-    //@Parameters("String")
-    static GetUserStoreByName( storeName)
-    {
-        var Windows = runtime.global("Windows");
-        var factory = winrt.activationFactory( "Windows.Security.Cryptography.Certificates.CertificateStores" );
-        var iface = Windows.Security.Cryptography.Certificates.ICertificateStoresStatics2( factory );
-        var _r = iface.GetUserStoreByName( storeName);
-        iface.release();
-        factory.release();
-        return _r;
-    }
-
-
     // s Windows.Security.Cryptography.Certificates.ICertificateStoresStatics
     //@Async(3)
     //@Returns("Windows.Foundation.IAsyncOperation`1<Windows.Foundation.Collections.IVectorView`1<Windows.Security.Cryptography.Certificates.Certificate>>")
@@ -4698,6 +4682,22 @@ class Windows_Security_Cryptography_Certificates_CertificateStores : WinRtInterf
         var factory = winrt.activationFactory( "Windows.Security.Cryptography.Certificates.CertificateStores" );
         var iface = Windows.Security.Cryptography.Certificates.ICertificateStoresStatics( factory );
         var _r = iface.GetStoreByName( storeName);
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    // s Windows.Security.Cryptography.Certificates.ICertificateStoresStatics2
+    //@Async(0)
+    //@Returns("Windows.Security.Cryptography.Certificates.UserCertificateStore")
+    //@Parameters("String")
+    static GetUserStoreByName( storeName)
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Security.Cryptography.Certificates.CertificateStores" );
+        var iface = Windows.Security.Cryptography.Certificates.ICertificateStoresStatics2( factory );
+        var _r = iface.GetUserStoreByName( storeName);
         iface.release();
         factory.release();
         return _r;
@@ -5292,35 +5292,6 @@ class Windows_Security_Cryptography_Certificates_KeyAlgorithmNames : WinRtInterf
         this.comPtr = comPtr;
     }
 
-    // s Windows.Security.Cryptography.Certificates.IKeyAlgorithmNamesStatics2
-    //@Async(0)
-    //@Returns("String")
-    static get_Ecdsa( )
-    {
-        var Windows = runtime.global("Windows");
-        var factory = winrt.activationFactory( "Windows.Security.Cryptography.Certificates.KeyAlgorithmNames" );
-        var iface = Windows.Security.Cryptography.Certificates.IKeyAlgorithmNamesStatics2( factory );
-        var _r = iface.get_Ecdsa( );
-        iface.release();
-        factory.release();
-        return _r;
-    }
-
-
-    //@Async(0)
-    //@Returns("String")
-    static get_Ecdh( )
-    {
-        var Windows = runtime.global("Windows");
-        var factory = winrt.activationFactory( "Windows.Security.Cryptography.Certificates.KeyAlgorithmNames" );
-        var iface = Windows.Security.Cryptography.Certificates.IKeyAlgorithmNamesStatics2( factory );
-        var _r = iface.get_Ecdh( );
-        iface.release();
-        factory.release();
-        return _r;
-    }
-
-
     // s Windows.Security.Cryptography.Certificates.IKeyAlgorithmNamesStatics
     //@Async(0)
     //@Returns("String")
@@ -5434,6 +5405,35 @@ class Windows_Security_Cryptography_Certificates_KeyAlgorithmNames : WinRtInterf
     }
 
 
+    // s Windows.Security.Cryptography.Certificates.IKeyAlgorithmNamesStatics2
+    //@Async(0)
+    //@Returns("String")
+    static get_Ecdsa( )
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Security.Cryptography.Certificates.KeyAlgorithmNames" );
+        var iface = Windows.Security.Cryptography.Certificates.IKeyAlgorithmNamesStatics2( factory );
+        var _r = iface.get_Ecdsa( );
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    //@Async(0)
+    //@Returns("String")
+    static get_Ecdh( )
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Security.Cryptography.Certificates.KeyAlgorithmNames" );
+        var iface = Windows.Security.Cryptography.Certificates.IKeyAlgorithmNamesStatics2( factory );
+        var _r = iface.get_Ecdh( );
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
     static Create()
     {
         return Windows.Security.Cryptography.Certificates.KeyAlgorithmNames(
@@ -5454,6 +5454,32 @@ class Windows_Security_Cryptography_Certificates_KeyAttestationHelper : WinRtInt
     {
         this.comPtr = comPtr;
     }
+
+    // s Windows.Security.Cryptography.Certificates.IKeyAttestationHelperStatics2
+    //@Async(3)
+    //@Returns("Windows.Foundation.IAsyncOperation`1<String>")
+    //@Parameters("String","String")
+    static DecryptTpmAttestationCredentialWithContainerNameAsync( credential, containerName)
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Security.Cryptography.Certificates.KeyAttestationHelper" );
+        var iface = Windows.Security.Cryptography.Certificates.IKeyAttestationHelperStatics2( factory );
+        var _promise = Future();
+        var _cb = fun(status, result)
+        {
+            if (status == Windows.Foundation.AsyncStatus.Completed)
+            {
+                _promise.resolve(result);
+            } else {
+                _promise.reject(status);
+            }
+        };
+        iface.DecryptTpmAttestationCredentialWithContainerNameAsync( credential, containerName, _cb);
+        iface.release();
+        factory.release();
+        return _promise;
+    }
+
 
     // s Windows.Security.Cryptography.Certificates.IKeyAttestationHelperStatics
     //@Async(3)
@@ -5493,32 +5519,6 @@ class Windows_Security_Cryptography_Certificates_KeyAttestationHelper : WinRtInt
         iface.release();
         factory.release();
         return _r;
-    }
-
-
-    // s Windows.Security.Cryptography.Certificates.IKeyAttestationHelperStatics2
-    //@Async(3)
-    //@Returns("Windows.Foundation.IAsyncOperation`1<String>")
-    //@Parameters("String","String")
-    static DecryptTpmAttestationCredentialWithContainerNameAsync( credential, containerName)
-    {
-        var Windows = runtime.global("Windows");
-        var factory = winrt.activationFactory( "Windows.Security.Cryptography.Certificates.KeyAttestationHelper" );
-        var iface = Windows.Security.Cryptography.Certificates.IKeyAttestationHelperStatics2( factory );
-        var _promise = Future();
-        var _cb = fun(status, result)
-        {
-            if (status == Windows.Foundation.AsyncStatus.Completed)
-            {
-                _promise.resolve(result);
-            } else {
-                _promise.reject(status);
-            }
-        };
-        iface.DecryptTpmAttestationCredentialWithContainerNameAsync( credential, containerName, _cb);
-        iface.release();
-        factory.release();
-        return _promise;
     }
 
 

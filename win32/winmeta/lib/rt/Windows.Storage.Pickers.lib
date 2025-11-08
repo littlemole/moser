@@ -1043,6 +1043,22 @@ class Windows_Storage_Pickers_FileOpenPicker : WinRtInterface
         else this.comPtr = comPtr.queryInterface( Windows.Storage.Pickers.IFileOpenPicker.iid );
     }
 
+    // s Windows.Storage.Pickers.IFileOpenPickerStatics2
+    //@Async(0)
+    //@Returns("Windows.Storage.Pickers.FileOpenPicker")
+    //@Parameters("Windows.System.User")
+    static CreateForUser( user)
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.Storage.Pickers.FileOpenPicker" );
+        var iface = Windows.Storage.Pickers.IFileOpenPickerStatics2( factory );
+        var _r = iface.CreateForUser( user);
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
     // s Windows.Storage.Pickers.IFileOpenPickerStatics
     //@Async(3)
     //@Returns("Windows.Foundation.IAsyncOperation`1<Windows.Storage.StorageFile>")
@@ -1065,22 +1081,6 @@ class Windows_Storage_Pickers_FileOpenPicker : WinRtInterface
         iface.release();
         factory.release();
         return _promise;
-    }
-
-
-    // s Windows.Storage.Pickers.IFileOpenPickerStatics2
-    //@Async(0)
-    //@Returns("Windows.Storage.Pickers.FileOpenPicker")
-    //@Parameters("Windows.System.User")
-    static CreateForUser( user)
-    {
-        var Windows = runtime.global("Windows");
-        var factory = winrt.activationFactory( "Windows.Storage.Pickers.FileOpenPicker" );
-        var iface = Windows.Storage.Pickers.IFileOpenPickerStatics2( factory );
-        var _r = iface.CreateForUser( user);
-        iface.release();
-        factory.release();
-        return _r;
     }
 
 

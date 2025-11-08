@@ -4940,31 +4940,6 @@ class Windows_System_AppDiagnosticInfo : WinRtInterface
         else this.comPtr = comPtr.queryInterface( Windows.System.IAppDiagnosticInfo.iid );
     }
 
-    // s Windows.System.IAppDiagnosticInfoStatics
-    //@Async(3)
-    //@Returns("Windows.Foundation.IAsyncOperation`1<Windows.Foundation.Collections.IVector`1<Windows.System.AppDiagnosticInfo>>")
-    static RequestInfoAsync( )
-    {
-        var Windows = runtime.global("Windows");
-        var factory = winrt.activationFactory( "Windows.System.AppDiagnosticInfo" );
-        var iface = Windows.System.IAppDiagnosticInfoStatics( factory );
-        var _promise = Future();
-        var _cb = fun(status, result)
-        {
-            if (status == Windows.Foundation.AsyncStatus.Completed)
-            {
-                _promise.resolve(result);
-            } else {
-                _promise.reject(status);
-            }
-        };
-        iface.RequestInfoAsync( _cb);
-        iface.release();
-        factory.release();
-        return _promise;
-    }
-
-
     // s Windows.System.IAppDiagnosticInfoStatics2
     //@Async(0)
     //@Returns("Windows.System.AppDiagnosticInfoWatcher")
@@ -5072,6 +5047,31 @@ class Windows_System_AppDiagnosticInfo : WinRtInterface
             }
         };
         iface.RequestInfoForAppUserModelId( appUserModelId, _cb);
+        iface.release();
+        factory.release();
+        return _promise;
+    }
+
+
+    // s Windows.System.IAppDiagnosticInfoStatics
+    //@Async(3)
+    //@Returns("Windows.Foundation.IAsyncOperation`1<Windows.Foundation.Collections.IVector`1<Windows.System.AppDiagnosticInfo>>")
+    static RequestInfoAsync( )
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.System.AppDiagnosticInfo" );
+        var iface = Windows.System.IAppDiagnosticInfoStatics( factory );
+        var _promise = Future();
+        var _cb = fun(status, result)
+        {
+            if (status == Windows.Foundation.AsyncStatus.Completed)
+            {
+                _promise.resolve(result);
+            } else {
+                _promise.reject(status);
+            }
+        };
+        iface.RequestInfoAsync( _cb);
         iface.release();
         factory.release();
         return _promise;
@@ -6948,107 +6948,6 @@ class Windows_System_Launcher : WinRtInterface
         this.comPtr = comPtr;
     }
 
-    // s Windows.System.ILauncherStatics5
-    //@Async(3)
-    //@Returns("Windows.Foundation.IAsyncOperation`1<Boolean>")
-    //@Parameters("String")
-    static LaunchFolderPathAsync( path)
-    {
-        var Windows = runtime.global("Windows");
-        var factory = winrt.activationFactory( "Windows.System.Launcher" );
-        var iface = Windows.System.ILauncherStatics5( factory );
-        var _promise = Future();
-        var _cb = fun(status, result)
-        {
-            if (status == Windows.Foundation.AsyncStatus.Completed)
-            {
-                _promise.resolve(result);
-            } else {
-                _promise.reject(status);
-            }
-        };
-        iface.LaunchFolderPathAsync( path, _cb);
-        iface.release();
-        factory.release();
-        return _promise;
-    }
-
-
-    //@Async(3)
-    //@Returns("Windows.Foundation.IAsyncOperation`1<Boolean>")
-    //@Parameters("String","Windows.System.FolderLauncherOptions")
-    static LaunchFolderPathWithOptionsAsync( path, options)
-    {
-        var Windows = runtime.global("Windows");
-        var factory = winrt.activationFactory( "Windows.System.Launcher" );
-        var iface = Windows.System.ILauncherStatics5( factory );
-        var _promise = Future();
-        var _cb = fun(status, result)
-        {
-            if (status == Windows.Foundation.AsyncStatus.Completed)
-            {
-                _promise.resolve(result);
-            } else {
-                _promise.reject(status);
-            }
-        };
-        iface.LaunchFolderPathWithOptionsAsync( path, options, _cb);
-        iface.release();
-        factory.release();
-        return _promise;
-    }
-
-
-    //@Async(3)
-    //@Returns("Windows.Foundation.IAsyncOperation`1<Boolean>")
-    //@Parameters("Windows.System.User","String")
-    static LaunchFolderPathForUserAsync( user, path)
-    {
-        var Windows = runtime.global("Windows");
-        var factory = winrt.activationFactory( "Windows.System.Launcher" );
-        var iface = Windows.System.ILauncherStatics5( factory );
-        var _promise = Future();
-        var _cb = fun(status, result)
-        {
-            if (status == Windows.Foundation.AsyncStatus.Completed)
-            {
-                _promise.resolve(result);
-            } else {
-                _promise.reject(status);
-            }
-        };
-        iface.LaunchFolderPathForUserAsync( user, path, _cb);
-        iface.release();
-        factory.release();
-        return _promise;
-    }
-
-
-    //@Async(3)
-    //@Returns("Windows.Foundation.IAsyncOperation`1<Boolean>")
-    //@Parameters("Windows.System.User","String","Windows.System.FolderLauncherOptions")
-    static LaunchFolderPathWithOptionsForUserAsync( user, path, options)
-    {
-        var Windows = runtime.global("Windows");
-        var factory = winrt.activationFactory( "Windows.System.Launcher" );
-        var iface = Windows.System.ILauncherStatics5( factory );
-        var _promise = Future();
-        var _cb = fun(status, result)
-        {
-            if (status == Windows.Foundation.AsyncStatus.Completed)
-            {
-                _promise.resolve(result);
-            } else {
-                _promise.reject(status);
-            }
-        };
-        iface.LaunchFolderPathWithOptionsForUserAsync( user, path, options, _cb);
-        iface.release();
-        factory.release();
-        return _promise;
-    }
-
-
     // s Windows.System.ILauncherStatics2
     //@Async(3)
     //@Returns("Windows.Foundation.IAsyncOperation`1<Windows.System.LaunchUriResult>")
@@ -7602,6 +7501,107 @@ class Windows_System_Launcher : WinRtInterface
     }
 
 
+    // s Windows.System.ILauncherStatics5
+    //@Async(3)
+    //@Returns("Windows.Foundation.IAsyncOperation`1<Boolean>")
+    //@Parameters("String")
+    static LaunchFolderPathAsync( path)
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.System.Launcher" );
+        var iface = Windows.System.ILauncherStatics5( factory );
+        var _promise = Future();
+        var _cb = fun(status, result)
+        {
+            if (status == Windows.Foundation.AsyncStatus.Completed)
+            {
+                _promise.resolve(result);
+            } else {
+                _promise.reject(status);
+            }
+        };
+        iface.LaunchFolderPathAsync( path, _cb);
+        iface.release();
+        factory.release();
+        return _promise;
+    }
+
+
+    //@Async(3)
+    //@Returns("Windows.Foundation.IAsyncOperation`1<Boolean>")
+    //@Parameters("String","Windows.System.FolderLauncherOptions")
+    static LaunchFolderPathWithOptionsAsync( path, options)
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.System.Launcher" );
+        var iface = Windows.System.ILauncherStatics5( factory );
+        var _promise = Future();
+        var _cb = fun(status, result)
+        {
+            if (status == Windows.Foundation.AsyncStatus.Completed)
+            {
+                _promise.resolve(result);
+            } else {
+                _promise.reject(status);
+            }
+        };
+        iface.LaunchFolderPathWithOptionsAsync( path, options, _cb);
+        iface.release();
+        factory.release();
+        return _promise;
+    }
+
+
+    //@Async(3)
+    //@Returns("Windows.Foundation.IAsyncOperation`1<Boolean>")
+    //@Parameters("Windows.System.User","String")
+    static LaunchFolderPathForUserAsync( user, path)
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.System.Launcher" );
+        var iface = Windows.System.ILauncherStatics5( factory );
+        var _promise = Future();
+        var _cb = fun(status, result)
+        {
+            if (status == Windows.Foundation.AsyncStatus.Completed)
+            {
+                _promise.resolve(result);
+            } else {
+                _promise.reject(status);
+            }
+        };
+        iface.LaunchFolderPathForUserAsync( user, path, _cb);
+        iface.release();
+        factory.release();
+        return _promise;
+    }
+
+
+    //@Async(3)
+    //@Returns("Windows.Foundation.IAsyncOperation`1<Boolean>")
+    //@Parameters("Windows.System.User","String","Windows.System.FolderLauncherOptions")
+    static LaunchFolderPathWithOptionsForUserAsync( user, path, options)
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.System.Launcher" );
+        var iface = Windows.System.ILauncherStatics5( factory );
+        var _promise = Future();
+        var _cb = fun(status, result)
+        {
+            if (status == Windows.Foundation.AsyncStatus.Completed)
+            {
+                _promise.resolve(result);
+            } else {
+                _promise.reject(status);
+            }
+        };
+        iface.LaunchFolderPathWithOptionsForUserAsync( user, path, options, _cb);
+        iface.release();
+        factory.release();
+        return _promise;
+    }
+
+
     // s Windows.System.ILauncherStatics3
     //@Async(3)
     //@Returns("Windows.Foundation.IAsyncOperation`1<Boolean>")
@@ -8053,6 +8053,21 @@ class Windows_System_MemoryManager : WinRtInterface
         this.comPtr = comPtr;
     }
 
+    // s Windows.System.IMemoryManagerStatics4
+    //@Async(0)
+    //@Returns("UInt64")
+    static get_ExpectedAppMemoryUsageLimit( )
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.System.MemoryManager" );
+        var iface = Windows.System.IMemoryManagerStatics4( factory );
+        var _r = iface.get_ExpectedAppMemoryUsageLimit( );
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
     // s Windows.System.IMemoryManagerStatics2
     //@Async(0)
     //@Returns("Windows.System.AppMemoryReport")
@@ -8076,6 +8091,22 @@ class Windows_System_MemoryManager : WinRtInterface
         var factory = winrt.activationFactory( "Windows.System.MemoryManager" );
         var iface = Windows.System.IMemoryManagerStatics2( factory );
         var _r = iface.GetProcessMemoryReport( );
+        iface.release();
+        factory.release();
+        return _r;
+    }
+
+
+    // s Windows.System.IMemoryManagerStatics3
+    //@Async(0)
+    //@Returns("Boolean")
+    //@Parameters("UInt64")
+    static TrySetAppMemoryUsageLimit( value)
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.System.MemoryManager" );
+        var iface = Windows.System.IMemoryManagerStatics3( factory );
+        var _r = iface.TrySetAppMemoryUsageLimit( value);
         iface.release();
         factory.release();
         return _r;
@@ -8209,37 +8240,6 @@ class Windows_System_MemoryManager : WinRtInterface
         iface.remove_AppMemoryUsageLimitChanging( token);
         iface.release();
         factory.release();
-    }
-
-
-    // s Windows.System.IMemoryManagerStatics3
-    //@Async(0)
-    //@Returns("Boolean")
-    //@Parameters("UInt64")
-    static TrySetAppMemoryUsageLimit( value)
-    {
-        var Windows = runtime.global("Windows");
-        var factory = winrt.activationFactory( "Windows.System.MemoryManager" );
-        var iface = Windows.System.IMemoryManagerStatics3( factory );
-        var _r = iface.TrySetAppMemoryUsageLimit( value);
-        iface.release();
-        factory.release();
-        return _r;
-    }
-
-
-    // s Windows.System.IMemoryManagerStatics4
-    //@Async(0)
-    //@Returns("UInt64")
-    static get_ExpectedAppMemoryUsageLimit( )
-    {
-        var Windows = runtime.global("Windows");
-        var factory = winrt.activationFactory( "Windows.System.MemoryManager" );
-        var iface = Windows.System.IMemoryManagerStatics4( factory );
-        var _r = iface.get_ExpectedAppMemoryUsageLimit( );
-        iface.release();
-        factory.release();
-        return _r;
     }
 
 
@@ -8719,6 +8719,34 @@ class Windows_System_ShutdownManager : WinRtInterface
         this.comPtr = comPtr;
     }
 
+    // s Windows.System.IShutdownManagerStatics
+    //@Async(0)
+    //@Returns("void")
+    //@Parameters("Windows.System.ShutdownKind","Windows.Foundation.TimeSpan")
+    static BeginShutdown( shutdownKind, timeout)
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.System.ShutdownManager" );
+        var iface = Windows.System.IShutdownManagerStatics( factory );
+        iface.BeginShutdown( shutdownKind, timeout);
+        iface.release();
+        factory.release();
+    }
+
+
+    //@Async(0)
+    //@Returns("void")
+    static CancelShutdown( )
+    {
+        var Windows = runtime.global("Windows");
+        var factory = winrt.activationFactory( "Windows.System.ShutdownManager" );
+        var iface = Windows.System.IShutdownManagerStatics( factory );
+        iface.CancelShutdown( );
+        iface.release();
+        factory.release();
+    }
+
+
     // s Windows.System.IShutdownManagerStatics2
     //@Async(0)
     //@Returns("Boolean")
@@ -8758,34 +8786,6 @@ class Windows_System_ShutdownManager : WinRtInterface
         var factory = winrt.activationFactory( "Windows.System.ShutdownManager" );
         var iface = Windows.System.IShutdownManagerStatics2( factory );
         iface.EnterPowerStateWithTimeSpan( powerState, wakeUpAfter);
-        iface.release();
-        factory.release();
-    }
-
-
-    // s Windows.System.IShutdownManagerStatics
-    //@Async(0)
-    //@Returns("void")
-    //@Parameters("Windows.System.ShutdownKind","Windows.Foundation.TimeSpan")
-    static BeginShutdown( shutdownKind, timeout)
-    {
-        var Windows = runtime.global("Windows");
-        var factory = winrt.activationFactory( "Windows.System.ShutdownManager" );
-        var iface = Windows.System.IShutdownManagerStatics( factory );
-        iface.BeginShutdown( shutdownKind, timeout);
-        iface.release();
-        factory.release();
-    }
-
-
-    //@Async(0)
-    //@Returns("void")
-    static CancelShutdown( )
-    {
-        var Windows = runtime.global("Windows");
-        var factory = winrt.activationFactory( "Windows.System.ShutdownManager" );
-        var iface = Windows.System.IShutdownManagerStatics( factory );
-        iface.CancelShutdown( );
         iface.release();
         factory.release();
     }
