@@ -176,7 +176,7 @@ friend std::ostream& operator<<(std::ostream& os, ObjFunction& fun);
 friend std::istream& operator>>(std::istream& is, ObjFunction** fun);
 public:
 
-    ObjFunction(VM&, ObjString* n, int cnt, int arity, bool async);
+    ObjFunction(VM&, ObjString* n, int cnt, int arity, bool async, int stack_size = 32);
     
     virtual ~ObjFunction() {}
     virtual void mark_gc() override;
@@ -187,6 +187,7 @@ public:
     ObjString* name() { return name_; }
     int upvalueCount() { return upvalueCount_;} 
     int arity() { return arity_; }
+    int initial_stack_size() { return initial_stack_size_; }
 	bool isAsync() { return async_; }
 
     int addUpvalue(Compiler& compiler, uint8_t index, bool isLocal);
@@ -201,6 +202,7 @@ private:
     int upvalueCount_ = 0;
 
     int arity_ = 0;
+	int initial_stack_size_ = 32;
 	bool async_ = false;
 
     std::vector<std::vector<int>> breakes;

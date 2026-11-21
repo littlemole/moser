@@ -311,8 +311,8 @@ const std::string& ObjString::toString() const
     return chars;
 }
 
-ObjFunction::ObjFunction(VM& v, ObjString* n, int cnt, int a, bool async) 
-: Obj(v), name_(n), upvalueCount_(cnt), arity_(a), async_(async)
+ObjFunction::ObjFunction(VM& v, ObjString* n, int cnt, int a, bool async, int stack_size) 
+: Obj(v), name_(n), upvalueCount_(cnt), arity_(a), initial_stack_size_(stack_size), async_(async)
 {
     if(name_)
     {

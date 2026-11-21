@@ -91,12 +91,13 @@ Compiler::Compiler(VM& v, Compiler* parent,FunctionType ft, Scanner* s, Parser* 
 
 Compiler::~Compiler()
 {
+	function->initial_stack_size_ = locals.capacity() +32;
     currentCompiler = enclosing;
 }
 
 ObjFunction* Compiler::compile(const char* file, std::string source)
 {
-    filename = file;
+    filename = file; 
 
     Scanner s;
     scanner = &s;

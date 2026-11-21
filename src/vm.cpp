@@ -92,10 +92,10 @@ CallFrame* ValueOrPtr::frame()
 
 CallFrame::CallFrame() {};
 
-CallFrame::CallFrame(ObjClosure* c, int argc, uint8_t* p)
+CallFrame::CallFrame(ObjClosure* c, int argc, uint8_t* p, int reserve)
 : closure(c), argCount(argc) , ip(p)
 {
-	stack.reserve(32);
+	stack.reserve(reserve);
 }
 
 CallFrame::CallFrame(CallFrame&& rhs) noexcept
@@ -1326,7 +1326,8 @@ bool VM::call(ObjClosure* closure, int argCount)
     auto f =  new CallFrame{ 
         closure, 
 		closure->function->arity(), //argCount,
-        &closure->function->chunk.code[0]
+        &closure->function->chunk.code[0],
+		closure->function->initial_stack_size(),
     };
 
     if(argCount > closure->function->arity())

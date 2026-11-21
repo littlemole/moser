@@ -27,7 +27,7 @@ friend class ValueOrPtr;
 public:
 
     CallFrame();
-    CallFrame(ObjClosure* c, int argc, uint8_t* p);
+    CallFrame(ObjClosure* c, int argc, uint8_t* p, int reserve = 64);
 	CallFrame(CallFrame&& rhs) noexcept;
 
 	CallFrame(const CallFrame& rhs) = delete;
