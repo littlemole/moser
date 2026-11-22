@@ -664,6 +664,13 @@ Value VM::run()
                 push(val);
                 break;
             }        
+            case OpCode::OP_GET_UPVALUE_ADDR: 
+            {
+                uint16_t slot = read_short();
+				Value val = frame->closure->upvalues[slot]->value->pointer(*this);
+                push(val);
+                break;
+            }        
             case OpCode::OP_SET_UPVALUE: 
             {
                 uint16_t slot = read_short();

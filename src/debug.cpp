@@ -129,6 +129,8 @@ size_t disassembleInstruction(Chunk& chunk, size_t offset)
       return constantInstruction("OP_SET_GLOBAL", chunk, offset);   
     case OpCode::OP_GET_UPVALUE:
       return shortInstruction("OP_GET_UPVALUE", chunk, offset);
+    case OpCode::OP_GET_UPVALUE_ADDR:
+      return shortInstruction("OP_GET_UPVALUE_ADDR", chunk, offset);
     case OpCode::OP_SET_UPVALUE:
       return shortInstruction("OP_SET_UPVALUE", chunk, offset);           
     case OpCode::OP_EQUAL:

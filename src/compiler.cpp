@@ -1609,8 +1609,7 @@ void Compiler::address(bool /* canAssign */)
     } 
     else if ((arg = (cindex_t) resolveUpvalue(&var)) != 65535) // -1 
     {
-        parser->errorAtCurrent("cannot take address of upvalue");
-        return;
+        op = OpCode::OP_GET_UPVALUE_ADDR;
     }    
     else 
     {

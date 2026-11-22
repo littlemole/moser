@@ -22,6 +22,7 @@ enum class OpCode : uint8_t
     OP_DEFINE_GLOBAL,
     OP_SET_GLOBAL,
     OP_GET_UPVALUE,
+	OP_GET_UPVALUE_ADDR,
     OP_SET_UPVALUE,    
     OP_EQUAL,
     OP_GREATER,
