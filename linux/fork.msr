@@ -1,0 +1,95 @@
+
+extern {
+    int open( str, str, ... );
+    int close( int );
+    long read( int, ptr, long );
+    long write( int, ptr, long );
+    int pipe2( ptr, int );
+    long fork();
+    long waitpid(long, ptr, int);
+    uint sleep(uint);
+}
+
+extern struct Pipe {
+  int in,
+  int out
+};
+
+class Channel {
+
+  Channel( p1, p2 ) {
+    this.p1 = p1;
+    this.p2 = p2;
+
+    close(p1.in);
+    close(p2.out);
+  }
+
+  write( content ) {
+
+    return write( this.p1.out, content, content.length );
+  }
+
+  read ( n ) {
+
+    var buf = sys.buffer( n );
+    var len = read( this.p2.in, buf, n);
+    var msg = buf.asString(len);
+    return msg;
+  }
+
+  close() {
+
+    close(this.p1.out);
+    close(this.p2.in);
+  }
+
+  static pipe() {
+
+    var pipe= Pipe();
+    pipe2( pipe, 0 );
+    return pipe;
+  }
+};
+
+
+print "go";
+var pipe_1 = Channel.pipe();
+var pipe_2 = Channel.pipe();
+
+var pid = fork();
+if (pid) // parent
+{
+  print "I am the parent";
+
+  var channel = Channel( pipe_1, pipe_2 );
+  channel.write("hi from parent");
+
+  while(true) {  
+
+    var msg = channel.read(1024);
+    if(msg.length == 0 ) break;
+    print msg;
+  }
+  waitpid(pid,0,0);
+  print "gone";
+}
+else // child
+{
+  print "child";
+
+  var channel = Channel( pipe_2, pipe_1 );
+  channel.write("xxx");
+
+  var msg = channel.read( 1024 );
+  print msg;
+
+  msg += " and back again from child";
+  channel.write( msg );
+  channel.close();
+}
+
+print "done " + pid;
+
+
+
